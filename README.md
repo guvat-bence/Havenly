@@ -1,3 +1,3 @@
-##Tagok:
--Herczeg Máté János
--Guvat Bence József
+## Tagok:
+- Herczeg Máté János
+- Guvat Bence József
