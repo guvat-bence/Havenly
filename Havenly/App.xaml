@@ -4,6 +4,30 @@
              xmlns:local="clr-namespace:Havenly"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontFamily" 
+                    Value="Segoe UI"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#22223B"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="2" 
+                                CornerRadius="10" 
+                                Padding="10,5">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

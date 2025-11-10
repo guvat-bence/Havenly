@@ -1,13 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\",
+  "WorkspaceRootPath": "F:\\havenly\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|c:\\users\\herczeg.mate\\source\\repos\\havenly\\havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|f:\\havenly\\havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|c:\\users\\herczeg.mate\\source\\repos\\havenly\\havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|f:\\havenly\\havenly\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|f:\\havenly\\havenly\\image\\details.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\image\\details.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|f:\\havenly\\havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,15 +26,39 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "details.png - PNG [256x256, 32 bit, PNG]",
+              "DocumentMoniker": "F:\\havenly\\Havenly\\image\\details.png",
+              "RelativeDocumentMoniker": "Havenly\\image\\details.png",
+              "ToolTip": "F:\\havenly\\Havenly\\image\\details.png - PNG [256x256, 32 bit, PNG]",
+              "RelativeToolTip": "Havenly\\image\\details.png - PNG [256x256, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-11-10T16:53:35.031Z",
+              "EditorCaption": " - PNG [256x256, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml",
+              "DocumentMoniker": "F:\\havenly\\Havenly\\App.xaml",
+              "RelativeDocumentMoniker": "Havenly\\App.xaml",
+              "ToolTip": "F:\\havenly\\Havenly\\App.xaml",
+              "RelativeToolTip": "Havenly\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-10T15:25:22.206Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\MainWindow.xaml",
+              "DocumentMoniker": "F:\\havenly\\Havenly\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Havenly\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\MainWindow.xaml",
+              "ToolTip": "F:\\havenly\\Havenly\\MainWindow.xaml",
               "RelativeToolTip": "Havenly\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-11-10T10:05:04.464Z",
@@ -34,15 +66,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\MainWindow.xaml.cs",
+              "DocumentMoniker": "F:\\havenly\\Havenly\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Havenly\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\MainWindow.xaml.cs",
+              "ToolTip": "F:\\havenly\\Havenly\\MainWindow.xaml.cs",
               "RelativeToolTip": "Havenly\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:05:03.076Z"
+              "WhenOpened": "2025-11-10T10:05:03.076Z",
+              "EditorCaption": ""
             }
           ]
         }

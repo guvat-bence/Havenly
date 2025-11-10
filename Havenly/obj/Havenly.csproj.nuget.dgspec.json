@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\Havenly.csproj": {}
+    "F:\\havenly\\Havenly\\Havenly.csproj": {}
   },
   "projects": {
-    "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\Havenly.csproj": {
+    "F:\\havenly\\Havenly\\Havenly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\Havenly.csproj",
+        "projectUniqueName": "F:\\havenly\\Havenly\\Havenly.csproj",
         "projectName": "Havenly",
-        "projectPath": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\Havenly.csproj",
-        "packagesPath": "C:\\Users\\herczeg.mate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\herczeg.mate\\source\\repos\\Havenly\\Havenly\\obj\\",
+        "projectPath": "F:\\havenly\\Havenly\\Havenly.csproj",
+        "packagesPath": "C:\\Users\\mateh\\.nuget\\packages\\",
+        "outputPath": "F:\\havenly\\Havenly\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\herczeg.mate\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mateh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

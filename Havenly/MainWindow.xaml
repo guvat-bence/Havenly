@@ -5,9 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Havenly"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#262626">
-        <DataGrid Background="#1a1919" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="147,89,171,89"/>
+        Title="MainWindow" Height="602" Width="1020">
+
+    <Grid Margin="0,0,-48,-16" >
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#E3F2FD" Offset="0"/>
+                <GradientStop Color="#FFFFFF" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+
+        <Label Content="Havenly adminisztrátor UI" 
+               HorizontalAlignment="Center" 
+               Margin="0,22,0,0" 
+               VerticalAlignment="Top" 
+               Height="66" 
+               Width="478"
+               FontSize="40"
+               Foreground="Black"/>
+
+        <Button Margin="13,475,925,27" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/city.png" Height="75" Width="86"/>
+        </Button>
+
+        <Button Margin="148,475,790,27" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/country.png" Height="81" Width="63"/>
+        </Button>
+
+        <Button Margin="283,475,655,27" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/details.png" Height="80" Width="63"/>
+        </Button>
+
+        <Button Margin="418,475,520,27" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/expreience.png" Height="69" Width="65"/>
+        </Button>
+
+        <Button Margin="13,370,925,132" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/favourite.png" Height="82" Width="63"/>
+        </Button>
+
+        <Button Margin="148,370,790,132" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/history.png" Height="108" Width="96"/>
+        </Button>
+
+        <Button Margin="418,370,520,132" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/szallas.png" Height="108" Width="96"/>
+        </Button>
+
+        <Button Margin="283,371,655,131" 
+                Background="#FFFFFF"
+                Height="100"
+                Width="130">
+            <Image Source="image/user.png" Height="93" Width="96"/>
+        </Button>
 
     </Grid>
 </Window>
