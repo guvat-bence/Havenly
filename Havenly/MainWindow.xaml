@@ -5,146 +5,225 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Havenly"
     mc:Ignorable="d"
-    Title="MainWindow" Height="700" Width="1000">
+    Title="MainWindow" Height="800" Width="1000">
 
-    <Grid>
+    <Grid Background="#4a3d94">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="0*" />
         </Grid.ColumnDefinitions>
 
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="#E3F2FD" Offset="0" />
-                <GradientStop Color="#FFFFFF" Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
-
-
         <Label Content="Havenly adminisztrátor UI"
-            HorizontalAlignment="Center"
-            Margin="0,22,0,0"
+            HorizontalAlignment="Left"
+            Margin="98,22,0,0"
             VerticalAlignment="Top"
-            Height="66"
-            Width="478"
-            FontSize="40"
-            Foreground="Black"
+            Height="72"
+            Width="605"
+            FontSize="50"
             Name="test" />
 
-        <Border Margin="10,444,0,0"
-            HorizontalAlignment="Left"
+        <Border Margin="0,77,10,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Width="450"
+            Width="242"
             BorderThickness="2"
-            BorderBrush="Black"
+            BorderBrush="Transparent"
             CornerRadius="10"
-            Height="230"
+            Height="675"
             Padding="10"
-            Background="Black">
-            <Grid Grid.Row="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom">
-                <UniformGrid Rows="2" Columns="4" Margin="14,-204,-410,7">
+            Background="#2f275e">
+            <UniformGrid Rows="8" Columns="1" Margin="-12,-2,105,-2">
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/city.png"
+                    <Image Source="image/city.png"
                             MaxHeight="72"
                             MaxWidth="60"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/country.png"
+                    <Image Source="image/country.png"
                             MaxHeight="81"
                             MaxWidth="63"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/details.png"
+                    <Image Source="image/details.png"
                             MaxHeight="80"
                             MaxWidth="63"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
-                        Name="experience_button" Click="experience_button_Click">
-                        <Image Source="image/expreience.png"
+                        Name="experience_button">
+                    <Image Source="/image/experience.png"
                             MaxHeight="69"
                             MaxWidth="65"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/favourite.png"
+                    <Image Source="image/favourite.png"
                             MaxHeight="47"
                             MaxWidth="52"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/history.png"
+                    <Image Source="image/history.png"
                             MaxHeight="52"
                             MaxWidth="54"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/szallas.png"
+                    <Image Source="image/user.png"
                             MaxHeight="108"
                             MaxWidth="96"
                             Stretch="Uniform" />
-                    </Button>
+                </Button>
 
-                    <Button
-                        Background="#FFFFFF"
-                        Height="80"
+                <Button Height="80"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80">
-                        <Image Source="image/user.png"
+                    <Image Source="/image/szallas.png"
                             MaxHeight="93"
                             MaxWidth="96"
                             Stretch="Uniform" />
-                    </Button>
-                </UniformGrid>
-            </Grid>
+                </Button>
+            </UniformGrid>
         </Border>
+
+        <Border Background="#2f275e" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Padding="10"
+                Height="400"
+                Width="500"
+                CornerRadius="10"
+                BorderBrush="Transparent"
+                BorderThickness="2" 
+                Margin="22,0,0,0">
+            <DataGrid Background="Transparent" 
+                      BorderBrush="Transparent" 
+                      d:ItemsSource="{d:SampleData ItemCount=5}"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      VerticalAlignment="Top"
+                      Name="datagrid0"
+                      HorizontalAlignment="Center" Height="349" Width="454" Margin="0,29,0,0"/>
+        </Border>
+
+        <Label Content="City" 
+               HorizontalAlignment="Right" 
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Margin="0,94,10,0" 
+               VerticalAlignment="Top"
+               Height="62" 
+               Width="139"
+               FontSize="30"/>
+
+        <Label Content="Country" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,175,10,0" 
+            VerticalAlignment="Top"
+            Height="68" 
+            Width="139"
+            FontSize="30"/>
+
+        <Label Content="Details" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,260,10,0" 
+            VerticalAlignment="Top"
+            Height="75" 
+            Width="139"
+            FontSize="30"/>
+
+        <Label Content="Experience" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,340,10,0" 
+            VerticalAlignment="Top"
+            Height="71" 
+            Width="139"
+            FontSize="25"/>
+
+        <Label Content="Favourite" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,422,10,0" 
+            VerticalAlignment="Top"
+            Height="78" 
+            Width="139"
+            FontSize="30"/>
+
+        <Label Content="History" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,500,10,0" 
+            VerticalAlignment="Top"
+            Height="78" 
+            Width="139"
+            FontSize="30"/>
+        <Label Content="Users" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,578,10,0" 
+            VerticalAlignment="Top"
+            Height="79" 
+            Width="139"
+            FontSize="30"/>
+        <Label Content="Szallas" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,662,10,0" 
+            VerticalAlignment="Top"
+            Height="74" 
+            Width="139"
+            FontSize="30"/>
+
+        <Label Content="Táblák"
+            HorizontalAlignment="Right"
+            Margin="0,21,0,0"
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Height="56"
+            Width="252"
+            FontSize="30"/>
 
     </Grid>
 </Window>

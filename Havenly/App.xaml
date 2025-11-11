@@ -6,14 +6,20 @@
     <Application.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontFamily" 
-                    Value="Segoe UI"/>
+                    Value="Meiryo"/>
+            
+            <Setter Property="Foreground"
+                    Value="#cacacc"/>
+            
+            <Setter Property="FontWeight" 
+                    Value="SemiBold"/>
         </Style>
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="#3a3075"/>
             <Setter Property="Foreground" Value="#22223B"/>
-            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -25,6 +31,19 @@
                             <ContentPresenter HorizontalAlignment="Center" 
                                               VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Setter Property="Background" 
+                                        Value="#4b3fa0"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" 
+                                        Value="#585280"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

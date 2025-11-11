@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "Z:\\vizsgaremek\\Havenly\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Havenly\\MainWindow.xaml",
@@ -50,13 +50,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Havenly\\MainWindow.xaml.cs",
               "ToolTip": "Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml.cs",
               "RelativeToolTip": "Havenly\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAswBkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAwBoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T10:05:03.076Z",
               "EditorCaption": ""

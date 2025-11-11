@@ -11,7 +11,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/city.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/country.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/details.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/expreience.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/experience.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/favourite.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/history.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/szallas.png")]
