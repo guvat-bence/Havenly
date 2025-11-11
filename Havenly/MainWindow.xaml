@@ -1,86 +1,150 @@
 ﻿<Window x:Class="Havenly.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Havenly"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="602" Width="1020">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Havenly"
+    mc:Ignorable="d"
+    Title="MainWindow" Height="700" Width="1000">
 
-    <Grid Margin="0,0,-48,-16" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0*" />
+        </Grid.ColumnDefinitions>
 
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="#E3F2FD" Offset="0"/>
-                <GradientStop Color="#FFFFFF" Offset="1"/>
+                <GradientStop Color="#E3F2FD" Offset="0" />
+                <GradientStop Color="#FFFFFF" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
 
 
-        <Label Content="Havenly adminisztrátor UI" 
-               HorizontalAlignment="Center" 
-               Margin="0,22,0,0" 
-               VerticalAlignment="Top" 
-               Height="66" 
-               Width="478"
-               FontSize="40"
-               Foreground="Black"/>
+        <Label Content="Havenly adminisztrátor UI"
+            HorizontalAlignment="Center"
+            Margin="0,22,0,0"
+            VerticalAlignment="Top"
+            Height="66"
+            Width="478"
+            FontSize="40"
+            Foreground="Black"
+            Name="test" />
 
-        <Button Margin="13,475,925,27" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/city.png" Height="75" Width="86"/>
-        </Button>
+        <Border Margin="10,444,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="450"
+            BorderThickness="2"
+            BorderBrush="Black"
+            CornerRadius="10"
+            Height="230"
+            Padding="10"
+            Background="Black">
+            <Grid Grid.Row="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom">
+                <UniformGrid Rows="2" Columns="4" Margin="14,-204,-410,7">
 
-        <Button Margin="148,475,790,27" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/country.png" Height="81" Width="63"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/city.png"
+                            MaxHeight="72"
+                            MaxWidth="60"
+                            Stretch="Uniform" />
+                    </Button>
 
-        <Button Margin="283,475,655,27" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/details.png" Height="80" Width="63"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/country.png"
+                            MaxHeight="81"
+                            MaxWidth="63"
+                            Stretch="Uniform" />
+                    </Button>
 
-        <Button Margin="418,475,520,27" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/expreience.png" Height="69" Width="65"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/details.png"
+                            MaxHeight="80"
+                            MaxWidth="63"
+                            Stretch="Uniform" />
+                    </Button>
 
-        <Button Margin="13,370,925,132" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/favourite.png" Height="82" Width="63"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80"
+                        Name="experience_button" Click="experience_button_Click">
+                        <Image Source="image/expreience.png"
+                            MaxHeight="69"
+                            MaxWidth="65"
+                            Stretch="Uniform" />
+                    </Button>
 
-        <Button Margin="148,370,790,132" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/history.png" Height="108" Width="96"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/favourite.png"
+                            MaxHeight="47"
+                            MaxWidth="52"
+                            Stretch="Uniform" />
+                    </Button>
 
-        <Button Margin="418,370,520,132" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/szallas.png" Height="108" Width="96"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/history.png"
+                            MaxHeight="52"
+                            MaxWidth="54"
+                            Stretch="Uniform" />
+                    </Button>
 
-        <Button Margin="283,371,655,131" 
-                Background="#FFFFFF"
-                Height="100"
-                Width="130">
-            <Image Source="image/user.png" Height="93" Width="96"/>
-        </Button>
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/szallas.png"
+                            MaxHeight="108"
+                            MaxWidth="96"
+                            Stretch="Uniform" />
+                    </Button>
+
+                    <Button
+                        Background="#FFFFFF"
+                        Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80">
+                        <Image Source="image/user.png"
+                            MaxHeight="93"
+                            MaxWidth="96"
+                            Stretch="Uniform" />
+                    </Button>
+                </UniformGrid>
+            </Grid>
+        </Border>
 
     </Grid>
 </Window>
