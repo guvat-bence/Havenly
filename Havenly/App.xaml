@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:Havenly"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <Style TargetType="Window">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Window">
+                        <Border CornerRadius="10"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontFamily" 
                     Value="Meiryo"/>
