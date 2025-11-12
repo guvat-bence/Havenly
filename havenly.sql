@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Nov 11. 11:17
+-- Létrehozás ideje: 2025. Nov 12. 07:35
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -739,7 +739,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `apartmans`
   ADD CONSTRAINT `apartmans_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`),
-  ADD CONSTRAINT `apartmans_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`);
+  ADD CONSTRAINT `apartmans_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`),
+  ADD CONSTRAINT `apartmans_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`);
 
 --
 -- Megkötések a táblához `apartman_details`
