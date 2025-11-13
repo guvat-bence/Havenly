@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "Z:\\vizsgaremek\\Havenly\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Havenly\\MainWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|Z:\\vizsgaremek\\Havenly\\Havenly\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Havenly\\App.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|z:\\vizsgaremek\\havenly\\havenly\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B9B6298F-C0D9-4BF3-B1EB-9B54C691FF23}|Havenly\\Havenly.csproj|solutionrelative:havenly\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Havenly\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,15 +26,14 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "App.xaml",
               "DocumentMoniker": "Z:\\vizsgaremek\\Havenly\\Havenly\\App.xaml",
               "RelativeDocumentMoniker": "Havenly\\App.xaml",
               "ToolTip": "Z:\\vizsgaremek\\Havenly\\Havenly\\App.xaml",
               "RelativeToolTip": "Havenly\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-10T15:25:22.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T15:25:22.206Z"
             },
             {
               "$type": "Document",
@@ -45,12 +44,11 @@
               "ToolTip": "Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml",
               "RelativeToolTip": "Havenly\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-10T10:05:04.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T10:05:04.464Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "Z:\\vizsgaremek\\Havenly\\Havenly\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Havenly\\MainWindow.xaml.cs",
@@ -58,8 +56,7 @@
               "RelativeToolTip": "Havenly\\MainWindow.xaml.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAhwJAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:05:03.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T10:05:03.076Z"
             }
           ]
         }

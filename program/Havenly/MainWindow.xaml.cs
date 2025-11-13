@@ -24,7 +24,6 @@ namespace Havenly
         {
             
             InitializeComponent();
-            readData("users");
         }
 
         public void openConnection()
@@ -103,7 +102,7 @@ namespace Havenly
 
         private void experience_button_Click_1(object sender, RoutedEventArgs e)
         {
-            readData("experience");
+            readData("experiences");
             citybtn.IsEnabled = true;
             detailsbtn.IsEnabled = true;
             countrybtn.IsEnabled = true;
@@ -155,6 +154,7 @@ namespace Havenly
 
         private void accommodationbtn_Click(object sender, RoutedEventArgs e)
         {
+            readData("apartmans");
             citybtn.IsEnabled = true;
             detailsbtn.IsEnabled = true;
             countrybtn.IsEnabled = true;
@@ -164,5 +164,7 @@ namespace Havenly
             historybtn.IsEnabled = true;
             experience_button.IsEnabled = true;
         }
+
+        
     }
 }
