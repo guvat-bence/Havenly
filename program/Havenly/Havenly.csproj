@@ -18,11 +18,14 @@
   <ItemGroup>
     <None Remove="image\city.png" />
     <None Remove="image\country.png" />
+    <None Remove="image\create.png" />
+    <None Remove="image\delete.png" />
     <None Remove="image\details.png" />
     <None Remove="image\experience.png" />
     <None Remove="image\expreience.png" />
     <None Remove="image\favourite.png" />
     <None Remove="image\history.png" />
+    <None Remove="image\modify.png" />
     <None Remove="image\szallas.png" />
     <None Remove="image\user.png" />
   </ItemGroup>
@@ -32,6 +35,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\country.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\create.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\details.png">
@@ -44,6 +53,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\history.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\modify.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\szallas.png">

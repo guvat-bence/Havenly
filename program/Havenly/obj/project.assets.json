@@ -787,11 +787,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\vizsgaremek\\Havenly\\Havenly\\Havenly.csproj",
+      "projectUniqueName": "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\Havenly.csproj",
       "projectName": "Havenly",
-      "projectPath": "Z:\\vizsgaremek\\Havenly\\Havenly\\Havenly.csproj",
+      "projectPath": "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\Havenly.csproj",
       "packagesPath": "C:\\Users\\herczeg.mate\\.nuget\\packages\\",
-      "outputPath": "Z:\\vizsgaremek\\Havenly\\Havenly\\obj\\",
+      "outputPath": "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

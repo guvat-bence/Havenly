@@ -10,10 +10,13 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/city.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/country.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/create.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/delete.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/details.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/experience.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/favourite.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/history.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/modify.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/szallas.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/user.png")]
 
