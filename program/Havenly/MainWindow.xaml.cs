@@ -24,6 +24,9 @@ namespace Havenly
         {
             
             InitializeComponent();
+            addButton.IsEnabled = false;
+            editButton.IsEnabled = false;
+            removeButton.IsEnabled = false;
         }
 
         public void openConnection()
@@ -45,6 +48,17 @@ namespace Havenly
         public void saveOrCancle() 
         {
             optionBorder.Visibility = Visibility.Visible;
+            citybtn.IsEnabled = false;
+            detailsbtn.IsEnabled = false;
+            countrybtn.IsEnabled = false;
+            accommodationbtn.IsEnabled = false;
+            favouritebtn.IsEnabled = false;
+            usersbtn.IsEnabled = false;
+            historybtn.IsEnabled = false;
+            experience_button.IsEnabled = false;
+            addButton.IsEnabled = false;
+            editButton.IsEnabled = false;
+            removeButton.IsEnabled = false;
         }
 
         public void readData(string tableName)
@@ -56,6 +70,11 @@ namespace Havenly
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 datagrid0.ItemsSource = ds.Tables[0].DefaultView;
+
+
+                addButton.IsEnabled = true;
+                editButton.IsEnabled = true;
+                removeButton.IsEnabled = true;
             }
             catch (Exception e)
             {
@@ -64,12 +83,20 @@ namespace Havenly
         }
         private void experience_button_Click(object sender, RoutedEventArgs e)
         {
+            readData("experience");
+            citybtn.IsEnabled = true;
+            detailsbtn.IsEnabled = true;
+            countrybtn.IsEnabled = true;
+            accommodationbtn.IsEnabled = true;
+            favouritebtn.IsEnabled = true;
+            usersbtn.IsEnabled = true;
+            historybtn.IsEnabled = true;
+            experience_button.IsEnabled = false;
         }
 
         private void citybtn_Click(object sender, RoutedEventArgs e)
         {
             readData("city");
-            saveOrCancle();
             citybtn.IsEnabled = false;
             detailsbtn.IsEnabled = true;
             countrybtn.IsEnabled = true;
@@ -134,7 +161,7 @@ namespace Havenly
 
         private void historybtn_Click(object sender, RoutedEventArgs e)
         {
-            readData("history");
+            readData("rents");
             citybtn.IsEnabled = true;
             detailsbtn.IsEnabled = true;
             countrybtn.IsEnabled = true;
@@ -171,6 +198,20 @@ namespace Havenly
             experience_button.IsEnabled = true;
         }
 
-        
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            saveOrCancle();
+           
+        }
+
+        private void approveButon_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void declineButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

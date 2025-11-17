@@ -244,25 +244,28 @@
                 Background="#2f275e">
             <UniformGrid Columns="3" Rows="1">
                 <Button
+                        Name="addButton"
                         MaxHeight="80"
-                        MaxWidth="80" Margin="30,1,30,-12">
-                    <Image Source="/image/create.png"
+                        MaxWidth="80" Margin="30,1,30,0">
+                    <Image Source="image/create.png"
                             MaxHeight="93"
                             MaxWidth="96"
                             Stretch="Uniform" Height="70" />
                 </Button>
                 <Button
+                    Name="editButton"
                     MaxHeight="80"
-                    MaxWidth="80" Margin="30,1,30,-12">
-                    <Image Source="/image/modify.png"
+                    MaxWidth="80" Margin="30,1,30,0" Click="editButton_Click">
+                    <Image Source="image/modify.png"
                         MaxHeight="93"
                         MaxWidth="96"
                         Stretch="Uniform" Height="70" />
                 </Button>
                 <Button
+                    Name="removeButton"
                     MaxHeight="80"
-                    MaxWidth="80" Margin="30,1,30,-12">
-                    <Image Source="/image/delete.png"
+                    MaxWidth="80" Margin="30,1,30,0">
+                    <Image Source="image/delete.png"
                         MaxHeight="93"
                         MaxWidth="96"
                         Stretch="Uniform" Height="70" />
@@ -290,17 +293,19 @@
             Background="#2f275e">
             <UniformGrid Columns="2" Rows="1">
                 <Button
+                   Name="approveButon"
                     MaxHeight="70"
-                    MaxWidth="70" Margin="30,1,30,0">
-                    <Image Source="/image/create.png"
+                    MaxWidth="70" Margin="30,1,30,0" Click="approveButon_Click">
+                    <Image Source="image/approve.png"
                         MaxHeight="93"
                         MaxWidth="96"
                         Stretch="Uniform" Height="70" />
                 </Button>
                 <Button
+                    Name="declineButton"
                     MaxHeight="70"
-                    MaxWidth="70" Margin="30,1,30,0">
-                    <Image Source="/image/modify.png"
+                    MaxWidth="70" Margin="30,1,30,0" Click="declineButton_Click">
+                    <Image Source="image/decline.png"
                         MaxHeight="93"
                         MaxWidth="96"
                         Stretch="Uniform" Height="70" />
