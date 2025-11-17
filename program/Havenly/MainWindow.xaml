@@ -128,7 +128,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Padding="10"
-                Height="506"
+                Height="490"
                 Width="706"
                 CornerRadius="20"
                 BorderBrush="Transparent"
@@ -141,7 +141,7 @@
                       HorizontalContentAlignment="Center"
                       VerticalAlignment="Top"
                       Name="datagrid0"
-                      HorizontalAlignment="Center" Height="469" Width="634" Margin="0,15,0,0"/>
+                      HorizontalAlignment="Center" Height="453" Width="634" Margin="0,15,0,0"/>
         </Border>
 
         <Label Content="City" 
@@ -269,13 +269,44 @@
                 </Button>
             </UniformGrid>
         </Border>
-        
+
         <Label Content="Havenly admin" 
                HorizontalAlignment="Left" 
                FontSize="40"
                Height="56" 
                Margin="27,22,0,0" 
                VerticalAlignment="Top" Width="300"/>
+        <Border BorderBrush="Black"
+            Name="optionBorder"
+            BorderThickness="0"
+            Visibility="Hidden"
+            Margin="204,0,0,165"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom" 
+            Height="86" 
+            RenderTransformOrigin="0.5,0.5" 
+            Width="318"
+            CornerRadius="20"
+            Background="#2f275e">
+            <UniformGrid Columns="2" Rows="1">
+                <Button
+                    MaxHeight="70"
+                    MaxWidth="70" Margin="30,1,30,0">
+                    <Image Source="/image/create.png"
+                        MaxHeight="93"
+                        MaxWidth="96"
+                        Stretch="Uniform" Height="70" />
+                </Button>
+                <Button
+                    MaxHeight="70"
+                    MaxWidth="70" Margin="30,1,30,0">
+                    <Image Source="/image/modify.png"
+                        MaxHeight="93"
+                        MaxWidth="96"
+                        Stretch="Uniform" Height="70" />
+                </Button>
+            </UniformGrid>
+        </Border>
 
     </Grid>
 </Window>

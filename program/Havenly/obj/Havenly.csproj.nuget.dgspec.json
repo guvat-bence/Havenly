@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\Havenly.csproj": {}
+    "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\Havenly.csproj": {}
   },
   "projects": {
-    "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\Havenly.csproj": {
+    "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\Havenly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\Havenly.csproj",
+        "projectUniqueName": "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\Havenly.csproj",
         "projectName": "Havenly",
-        "projectPath": "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\Havenly.csproj",
-        "packagesPath": "C:\\Users\\herczeg.mate\\.nuget\\packages\\",
-        "outputPath": "Z:\\vizsgaremek\\Havenly\\program\\Havenly\\obj\\",
+        "projectPath": "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\Havenly.csproj",
+        "packagesPath": "C:\\Users\\guvat.bence\\.nuget\\packages\\",
+        "outputPath": "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\herczeg.mate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\guvat.bence\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

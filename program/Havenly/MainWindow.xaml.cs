@@ -42,6 +42,11 @@ namespace Havenly
             }
         }
 
+        public void saveOrCancle() 
+        {
+            optionBorder.Visibility = Visibility.Visible;
+        }
+
         public void readData(string tableName)
         {
             try
@@ -64,6 +69,7 @@ namespace Havenly
         private void citybtn_Click(object sender, RoutedEventArgs e)
         {
             readData("city");
+            saveOrCancle();
             citybtn.IsEnabled = false;
             detailsbtn.IsEnabled = true;
             countrybtn.IsEnabled = true;
