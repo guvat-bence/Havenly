@@ -8,9 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/approve.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/city.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/country.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/create.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/decline.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/delete.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/details.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/experience.png")]
