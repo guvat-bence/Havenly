@@ -288,3 +288,7 @@ F:\havenly\program\Havenly\obj\Debug\net8.0-windows\refint\Havenly.dll
 F:\havenly\program\Havenly\obj\Debug\net8.0-windows\Havenly.pdb
 F:\havenly\program\Havenly\obj\Debug\net8.0-windows\Havenly.genruntimeconfig.cache
 F:\havenly\program\Havenly\obj\Debug\net8.0-windows\ref\Havenly.dll
+Z:\vizsgaremek\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\approve.png
+Z:\vizsgaremek\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\decline.png
+Z:\vizsgaremek\Havenly\program\Havenly\obj\Debug\net8.0-windows\controllPanel.g.cs
+Z:\vizsgaremek\Havenly\program\Havenly\obj\Debug\net8.0-windows\controllPanel.baml
