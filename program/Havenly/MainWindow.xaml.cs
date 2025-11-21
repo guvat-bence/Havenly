@@ -81,121 +81,81 @@ namespace Havenly
                 MessageBox.Show(e.Message);
             }
         }
-        private void experience_button_Click(object sender, RoutedEventArgs e)
+
+        private void enable_btns()
         {
-            readData("experience");
             citybtn.IsEnabled = true;
             detailsbtn.IsEnabled = true;
             countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
             favouritebtn.IsEnabled = true;
             usersbtn.IsEnabled = true;
             historybtn.IsEnabled = true;
+            experience_button.IsEnabled = true;
+            accommodationbtn.IsEnabled = true;
+        }
+        private void experience_button_Click(object sender, RoutedEventArgs e)
+        {
+            readData("experience");
+            enable_btns();
             experience_button.IsEnabled = false;
         }
 
         private void citybtn_Click(object sender, RoutedEventArgs e)
         {
             readData("city");
+            enable_btns();
             citybtn.IsEnabled = false;
-            detailsbtn.IsEnabled = true;
-            countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
-            favouritebtn.IsEnabled = true;
-            usersbtn.IsEnabled = true;
-            historybtn.IsEnabled = true;
-            experience_button.IsEnabled = true;
         }
 
         private void detailsbtn_Click(object sender, RoutedEventArgs e)
         {
             readData("apartman_details");
-            citybtn.IsEnabled = true;
+            enable_btns();
             detailsbtn.IsEnabled = false;
-            countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
-            favouritebtn.IsEnabled = true;
-            usersbtn.IsEnabled = true;
-            historybtn.IsEnabled = true;
-            experience_button.IsEnabled = true;
+
         }
 
         private void countrybtn_Click(object sender, RoutedEventArgs e)
         {
             readData("country");
-            citybtn.IsEnabled = true;
-            detailsbtn.IsEnabled = true;
+            enable_btns();
             countrybtn.IsEnabled = false;
-            accommodationbtn.IsEnabled = true;
-            favouritebtn.IsEnabled = true;
-            usersbtn.IsEnabled = true;
-            historybtn.IsEnabled = true;
-            experience_button.IsEnabled = true;
         }
 
         private void experience_button_Click_1(object sender, RoutedEventArgs e)
         {
             readData("experiences");
-            citybtn.IsEnabled = true;
-            detailsbtn.IsEnabled = true;
-            countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
-            favouritebtn.IsEnabled = true;
-            usersbtn.IsEnabled = true;
-            historybtn.IsEnabled = true;
+            enable_btns();
             experience_button.IsEnabled = false;
         }
 
         private void favouritebtn_Click(object sender, RoutedEventArgs e)
         {
             readData("favourite");
-            citybtn.IsEnabled = true;
-            detailsbtn.IsEnabled = true;
-            countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
+            enable_btns();
             favouritebtn.IsEnabled = false;
-            usersbtn.IsEnabled = true;
-            historybtn.IsEnabled = true;
-            experience_button.IsEnabled = true;
         }
 
         private void historybtn_Click(object sender, RoutedEventArgs e)
         {
             readData("rents");
-            citybtn.IsEnabled = true;
-            detailsbtn.IsEnabled = true;
-            countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
-            favouritebtn.IsEnabled = true;
-            usersbtn.IsEnabled = true;
+            enable_btns();
             historybtn.IsEnabled = false;
-            experience_button.IsEnabled = true;
         }
 
         private void usersbtn_Click(object sender, RoutedEventArgs e)
         {
             readData("users");
-            citybtn.IsEnabled = true;
-            detailsbtn.IsEnabled = true;
-            countrybtn.IsEnabled = true;
-            accommodationbtn.IsEnabled = true;
-            favouritebtn.IsEnabled = true;
+            enable_btns();
             usersbtn.IsEnabled = false;
-            historybtn.IsEnabled = true;
-            experience_button.IsEnabled = true;
         }
 
         private void accommodationbtn_Click(object sender, RoutedEventArgs e)
         {
             readData("apartmans");
-            citybtn.IsEnabled = true;
-            detailsbtn.IsEnabled = true;
-            countrybtn.IsEnabled = true;
+            enable_btns();
             accommodationbtn.IsEnabled = false;
-            favouritebtn.IsEnabled = true;
-            usersbtn.IsEnabled = true;
-            historybtn.IsEnabled = true;
-            experience_button.IsEnabled = true;
+
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)
