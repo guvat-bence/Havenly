@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Havenly")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdb587fae54e014f98920c9010c00bddee59600c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ae09091c86f2011528482808ec580ddb90a6235")]
 [assembly: System.Reflection.AssemblyProductAttribute("Havenly")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Havenly")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
