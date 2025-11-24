@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 
 namespace Havenly
 {
@@ -24,9 +25,13 @@ namespace Havenly
         {
             
             InitializeComponent();
+
             addButton.IsEnabled = false;
             editButton.IsEnabled = false;
             removeButton.IsEnabled = false;
+            datagrid0.IsReadOnly = true;
+            datagrid0.CanUserAddRows = false;
+            datagrid0.CanUserDeleteRows = false;
         }
 
         public void openConnection()
@@ -45,9 +50,9 @@ namespace Havenly
             }
         }
 
-        public void saveOrCancle() 
+        public void saveOrCancle()
         {
-            optionBorder.Visibility = Visibility.Visible;
+
             citybtn.IsEnabled = false;
             detailsbtn.IsEnabled = false;
             countrybtn.IsEnabled = false;
@@ -92,6 +97,7 @@ namespace Havenly
             historybtn.IsEnabled = true;
             experience_button.IsEnabled = true;
             accommodationbtn.IsEnabled = true;
+            datagrid0.IsReadOnly = true;
         }
         private void experience_button_Click(object sender, RoutedEventArgs e)
         {
@@ -158,20 +164,127 @@ namespace Havenly
 
         }
 
+        string operation = "";
+        bool isCommitting = false;
+        int watcher = 0;
+
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
             saveOrCancle();
-           
-        }
-
-        private void approveButon_Click(object sender, RoutedEventArgs e)
-        {
+            datagrid0.IsReadOnly = false;
+            operation = "edit";
+            watcher = 0;
 
         }
 
-        private void declineButton_Click(object sender, RoutedEventArgs e)
+        private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            saveOrCancle();
+            datagrid0.IsReadOnly = false;
+            datagrid0.CanUserAddRows = true;
+            operation = "add";
+            watcher = 0;
 
+            DataTable dt = (datagrid0.ItemsSource as DataView).Table;
+            dt.Rows.Clear();
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            saveOrCancle();
+            datagrid0.IsReadOnly = false;
+            datagrid0.CanUserDeleteRows = true;
+            operation = "delete";
+            watcher = 0;
+        }
+
+        
+        // AZ adatbázisba méég nem tölti fel a változtatásokat.
+
+
+        private void datagrid0_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            if (operation == "edit")
+            {
+                if (!isCommitting)
+                {
+                    isCommitting = true;
+                    datagrid0.CommitEdit(DataGridEditingUnit.Row, true);
+                    isCommitting = false;
+                    watcher += 1;
+                }
+
+                if (e.Row.Item is DataRowView && watcher == 1)
+                {
+                    DataRowView datas = (DataRowView)e.Row.Item;
+
+                    var response = MessageBox.Show("Biztos szeretné módosítani a sort?", "Adat szerkesztő", MessageBoxButton.YesNo);
+                    if (response == MessageBoxResult.Yes)
+                    {
+                        MessageBox.Show("Módosítások elmentve!");
+                        enable_btns();
+                    }
+                    else
+                    {
+                        datas.CancelEdit();
+                        MessageBox.Show("A módosítások nem lettek elmentve!");
+                        enable_btns();
+                    }
+                }
+            }
+            else if (operation == "add")
+            {
+                if (!isCommitting)
+                {
+                    isCommitting = true;
+                    datagrid0.CommitEdit(DataGridEditingUnit.Row, true);
+                    isCommitting = false;
+                    watcher += 1;
+                }
+
+                if (e.Row.Item is DataRowView && watcher == 1)
+                {
+                    DataRowView datas = (DataRowView)e.Row.Item;
+
+                    var response = MessageBox.Show("Biztos szeretné felvinni az adatokat?", "Adat szerkesztő", MessageBoxButton.YesNo);
+                    if (response == MessageBoxResult.Yes)
+                    {
+                        MessageBox.Show("Módosítások elmentve!");
+                        enable_btns();
+                    }
+                    else
+                    {
+                        datas.CancelEdit();
+                        MessageBox.Show("A módosítások nem lettek elmentve!");
+                        enable_btns();
+                    }
+                }
+            }
+        }
+
+        private void datagrid0_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (operation == "delete" && e.Key == Key.Delete)
+            {
+                if (datagrid0.SelectedItem is DataRowView)
+                {
+                    DataRowView datas = (DataRowView)datagrid0.SelectedItem;
+
+                    var response = MessageBox.Show("Biztos szeretné kitörölni a sort?", "Adat szerkesztő", MessageBoxButton.YesNo);
+                    if (response == MessageBoxResult.Yes)
+                    {
+                        datas.Delete();
+                        MessageBox.Show("Módosítások elmentve!");
+                        enable_btns();
+                    }
+                    else
+                    {
+                        e.Handled = true;
+                        MessageBox.Show("A módosítások nem lettek elmentve!");
+                        enable_btns();
+                    }
+                }
+            }
         }
     }
 }

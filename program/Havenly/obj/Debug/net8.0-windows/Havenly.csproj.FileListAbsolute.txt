@@ -292,3 +292,5 @@ Z:\vizsgaremek\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\approve.pn
 Z:\vizsgaremek\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\decline.png
 Z:\vizsgaremek\Havenly\program\Havenly\obj\Debug\net8.0-windows\controllPanel.g.cs
 Z:\vizsgaremek\Havenly\program\Havenly\obj\Debug\net8.0-windows\controllPanel.baml
+E:\xampp\htdocs\html\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\approve.png
+E:\xampp\htdocs\html\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\decline.png
