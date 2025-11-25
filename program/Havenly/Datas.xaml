@@ -1,0 +1,31 @@
+﻿<Window x:Class="Havenly.Datas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Havenly"
+        mc:Ignorable="d"
+        Title="Datas" Height="664" Width="849">
+
+    <Grid Background="#4a3d94">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0*" />
+        </Grid.ColumnDefinitions>
+        <Border Background="#2f275e" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Padding="10"
+            Height="498"
+            Width="767"
+            CornerRadius="20"
+            BorderBrush="Transparent"
+            BorderThickness="2" 
+            Margin="0,26,0,0"/>
+        <StackPanel Name="asd" Margin="562,39,41,94">
+        </StackPanel>
+        <StackPanel Name="asd33" Margin="466,39,265,110">
+        </StackPanel>
+
+    </Grid>
+</Window>

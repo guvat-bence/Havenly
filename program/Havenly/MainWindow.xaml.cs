@@ -286,5 +286,12 @@ namespace Havenly
                 }
             }
         }
+
+        private void datagrid0_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Datas dataWin = new Datas();
+            dataWin.Show();
+            this.Close();
+        }
     }
 }
