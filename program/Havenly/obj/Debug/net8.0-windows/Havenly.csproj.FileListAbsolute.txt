@@ -350,3 +350,5 @@ C:\xampp\htdocs\Havenly\program\Havenly\obj\Debug\net8.0-windows\Havenly.genrunt
 C:\xampp\htdocs\Havenly\program\Havenly\obj\Debug\net8.0-windows\ref\Havenly.dll
 C:\xampp\htdocs\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.g.cs
 C:\xampp\htdocs\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.baml
+E:\xampp\htdocs\html\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.g.cs
+E:\xampp\htdocs\html\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.baml

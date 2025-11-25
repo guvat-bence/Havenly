@@ -23,20 +23,30 @@ namespace Havenly
         {
             InitializeComponent();
 
+            this.Height = 660;
+            this.Width = 800;
+
             for (int i = 0; i <2; i++)
             {
+                Label dlb = new Label();
+                dlb.Width = 200;
+                dlb.Margin = new Thickness(4);
+                dlb.HorizontalAlignment = HorizontalAlignment.Center;
+                dlb.HorizontalContentAlignment = HorizontalAlignment.Center;
+                dlb.Foreground = Brushes.White;
+                dlb.Content = "asd";
+                asd1.Children.Add(dlb);
                 DatePicker dt = new DatePicker();
                 dt.Width = 150;
                 dt.Margin = new Thickness(5);
-
-                asd22.Children.Add(dt);
+                asd1.Children.Add(dt);
             }
           
             Label llb = new Label();
             llb.Width = 200;
             llb.Margin = new Thickness(4);
-            llb.HorizontalAlignment = HorizontalAlignment.Left;
-            llb.HorizontalContentAlignment = HorizontalAlignment.Left;
+            llb.HorizontalAlignment = HorizontalAlignment.Center;
+            llb.HorizontalContentAlignment = HorizontalAlignment.Center;
             llb.Foreground = Brushes.White;
             llb.Content = "asd";
             asd22.Children.Add(llb);
@@ -47,10 +57,9 @@ namespace Havenly
             ltb.AcceptsReturn = true;
             ltb.TextWrapping = TextWrapping.Wrap;
             ltb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            ltb.HorizontalAlignment = HorizontalAlignment.Left;
+            ltb.HorizontalAlignment = HorizontalAlignment.Center;
             ltb.Text = "Hoszzú szöveg";
             asd22.Children.Add(ltb);
-
 
             for (int i = 0; i < 15; i++)
             {
