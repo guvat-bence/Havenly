@@ -4,8 +4,11 @@
 - Projekt vezető.: Guvat Bence József
 - Projekt tag.: Herczeg Máté János 
 
+## <center> Github
+    https://github.com/guvat-bence/Havenly
+
 ## <center> Trello
-https://trello.com/invite/b/691599ce9ab4a402e1dad998/ATTIfd8609eb53786ddbd43556bfb2cdb03a94A5CF3F/havenly
+    https://trello.com/invite/b/691599ce9ab4a402e1dad998/ATTIfd8609eb53786ddbd43556bfb2cdb03a94A5CF3F/havenly
 
 ## <center> Mivel dolgozunk?
 - TailwindCSS
