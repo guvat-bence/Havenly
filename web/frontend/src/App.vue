@@ -1,9 +1,9 @@
-<script setup></script>
+<script setup>
+import navbar from './components/navbar.vue';
+</script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+   <navbar></navbar>
 </template>
 
 <style scoped></style>
