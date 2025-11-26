@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,97 @@ namespace Havenly
     /// </summary>
     public partial class Datas : Window
     {
-        public Datas()
+        private MainWindow mainWindow;
+
+        public Datas(object data, MainWindow mainWindow)
         {
             InitializeComponent();
+
+            this.mainWindow = mainWindow;
+
+            this.Closed += ClosedEvent;
 
             this.Height = 660;
             this.Width = 800;
 
-            for (int i = 0; i <2; i++)
+            if (data is DataRowView)
+            {
+                DataRowView rowDatas = (DataRowView)data;
+
+                if (rowDatas.Row.Table.Columns.Count < 15)
+                {
+                    for (int i = 0; i < rowDatas.Row.Table.Columns.Count; i++)
+                    {
+                        string colName = rowDatas.Row.Table.Columns[i].ColumnName;
+                        string value = rowDatas[colName].ToString();
+
+                        Label lb = new Label();
+                        lb.Width = 200;
+                        lb.Margin = new Thickness(4);
+                        lb.HorizontalAlignment = HorizontalAlignment.Right;
+                        lb.HorizontalContentAlignment = HorizontalAlignment.Right;
+                        lb.Foreground = Brushes.White;
+                        lb.Content = $"{colName}";
+                        mainLabels.Children.Add(lb);
+
+                        TextBox tb = new TextBox();
+                        tb.Width = 200;
+                        tb.Margin = new Thickness(7);
+                        tb.HorizontalAlignment = HorizontalAlignment.Right;
+                        tb.Text = $"{value}";
+                        mainTextboxses.Children.Add(tb);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        extra_textboxses1.Visibility = Visibility.Visible;
+                        extra_textboxses2.Visibility = Visibility.Visible;
+                        string colName = rowDatas.Row.Table.Columns[i].ColumnName;
+                        string value = rowDatas[colName].ToString();
+
+                        Label lb = new Label();
+                        lb.Width = 200;
+                        lb.Margin = new Thickness(4);
+                        lb.HorizontalAlignment = HorizontalAlignment.Right;
+                        lb.HorizontalContentAlignment = HorizontalAlignment.Right;
+                        lb.Foreground = Brushes.White;
+                        lb.Content = $"{colName}";
+                        mainLabels.Children.Add(lb);
+
+                        TextBox tb = new TextBox();
+                        tb.Width = 200;
+                        tb.Margin = new Thickness(7);
+                        tb.HorizontalAlignment = HorizontalAlignment.Right;
+                        tb.Text = $"{value}";
+                        mainTextboxses.Children.Add(tb);
+                    }
+                    for (int i = 15; i < rowDatas.Row.Table.Columns.Count; i++)
+                    {
+                        string colName = rowDatas.Row.Table.Columns[i].ColumnName;
+                        string value = rowDatas[colName].ToString();
+
+                        Label lb = new Label();
+                        lb.Width = 200;
+                        lb.Margin = new Thickness(4);
+                        lb.HorizontalAlignment = HorizontalAlignment.Right;
+                        lb.HorizontalContentAlignment = HorizontalAlignment.Right;
+                        lb.Foreground = Brushes.White;
+                        lb.Content = $"{colName}";
+                        extra_textboxsesStackPanel.Children.Add(lb);
+
+                        TextBox tb = new TextBox();
+                        tb.Width = 200;
+                        tb.Margin = new Thickness(7);
+                        tb.HorizontalAlignment = HorizontalAlignment.Right;
+                        tb.Text = $"{value}";
+                        extra_textboxsesStackPanel2.Children.Add(tb);
+                    }
+                }
+            }
+
+            for (int i = 0; i < 2; i++)
             {
                 Label dlb = new Label();
                 dlb.Width = 200;
@@ -34,14 +118,14 @@ namespace Havenly
                 dlb.HorizontalAlignment = HorizontalAlignment.Center;
                 dlb.HorizontalContentAlignment = HorizontalAlignment.Center;
                 dlb.Foreground = Brushes.White;
-                dlb.Content = "asd";
-                asd1.Children.Add(dlb);
+                dlb.Content = $"{data}";
+                dateTimeStackPanel.Children.Add(dlb);
                 DatePicker dt = new DatePicker();
                 dt.Width = 150;
                 dt.Margin = new Thickness(5);
-                asd1.Children.Add(dt);
+                dateTimeStackPanel.Children.Add(dt);
             }
-          
+
             Label llb = new Label();
             llb.Width = 200;
             llb.Margin = new Thickness(4);
@@ -49,7 +133,7 @@ namespace Havenly
             llb.HorizontalContentAlignment = HorizontalAlignment.Center;
             llb.Foreground = Brushes.White;
             llb.Content = "asd";
-            asd22.Children.Add(llb);
+            bigTextboxStackPanel.Children.Add(llb);
 
             TextBox ltb = new TextBox();
             ltb.Width = 300;
@@ -58,30 +142,13 @@ namespace Havenly
             ltb.TextWrapping = TextWrapping.Wrap;
             ltb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             ltb.HorizontalAlignment = HorizontalAlignment.Center;
-            ltb.Text = "Hoszzú szöveg";
-            asd22.Children.Add(ltb);
+            ltb.Text = $"{data}";
+            bigTextboxStackPanel.Children.Add(ltb);
+        }
 
-            for (int i = 0; i < 15; i++)
-            {
-                TextBox tb = new TextBox();
-                tb.Width = 200; 
-                tb.Margin = new Thickness(7);
-                tb.HorizontalAlignment = HorizontalAlignment.Right;
-                tb.Text = $"Textbox #{i + 1}";
-                asd.Children.Add(tb);
-
-            }
-            for(int i = 0; i < 15; i++)
-            {
-                Label lb = new Label();
-                lb.Width = 200;
-                lb.Margin = new Thickness(4);
-                lb.HorizontalAlignment = HorizontalAlignment.Right;
-                lb.HorizontalContentAlignment = HorizontalAlignment.Right;
-                lb.Foreground = Brushes.White;
-                lb.Content = "asd";
-                asd33.Children.Add(lb);
-            }
+        private void ClosedEvent(object sender, EventArgs e)
+        {
+            mainWindow.Show();
         }
     }
 }

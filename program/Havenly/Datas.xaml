@@ -8,7 +8,7 @@
         Title="Datas" Height="623" Width="776">
 
     <Grid Background="#4a3d94" Margin="0,0,0,-6">
-      
+
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -19,10 +19,9 @@
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="72,10,0,0">
-            <StackPanel Name="asd" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
+            <StackPanel Name="mainTextboxses" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
             </StackPanel>
         </Border>
-
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -33,9 +32,10 @@
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="10,10,0,0">
-            <StackPanel Name="asd33" Margin="-12,-2,-12,-12">
+            <StackPanel Name="mainLabels" Margin="-12,-2,-12,-12">
             </StackPanel>
         </Border>
+        
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -46,7 +46,7 @@
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="406,208,0,0">
-            <StackPanel Name="asd22" Margin="-12,-2,-12,-2">
+            <StackPanel Name="bigTextboxStackPanel" Margin="-12,-2,-12,-2">
             </StackPanel>
         </Border>
         <Border Background="#2f275e" 
@@ -57,9 +57,9 @@
             Width="360"
             CornerRadius="20"
             BorderBrush="Transparent"
-            BorderThickness="2" 
+            BorderThickness="2"
             Margin="406,10,0,0">
-            <StackPanel Name="asd1" Margin="-12,-2,-12,-2"/>
+            <StackPanel Name="dateTimeStackPanel" Margin="-12,-2,-12,-2"/>
         </Border>
 
         <Border BorderBrush="Black" 
@@ -92,6 +92,34 @@
                         Stretch="Uniform" Height="70" />
                 </Button>
             </UniformGrid>
+        </Border>
+        <Border Background="#2f275e" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Padding="10"
+            Height="498"
+            Width="300"
+            CornerRadius="20"
+            BorderBrush="Transparent"
+            BorderThickness="2" 
+            Margin="468,10,0,0"
+            Name="extra_textboxses2"
+            Visibility="Hidden">
+            <StackPanel Name="extra_textboxsesStackPanel2" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5"/>
+        </Border>
+        <Border Background="#2f275e" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Padding="10"
+            Height="498"
+            Width="100"
+            CornerRadius="20"
+            BorderBrush="Transparent"
+            BorderThickness="2" 
+            Margin="406,10,0,0"
+            Visibility="Hidden"
+            Name="extra_textboxses1">
+            <StackPanel Name="extra_textboxsesStackPanel" Margin="-12,-2,-12,-12"/>
         </Border>
 
     </Grid>

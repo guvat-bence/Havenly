@@ -23,8 +23,8 @@ namespace Havenly
         MySql.Data.MySqlClient.MySqlCommand command;
         public MainWindow()
         {
-            
             InitializeComponent();
+
 
             addButton.IsEnabled = false;
             editButton.IsEnabled = false;
@@ -289,9 +289,9 @@ namespace Havenly
 
         private void datagrid0_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Datas dataWin = new Datas();
+            Datas dataWin = new Datas(datagrid0.SelectedItem, this);
             dataWin.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }
