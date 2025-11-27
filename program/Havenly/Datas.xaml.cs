@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -23,8 +24,12 @@ namespace Havenly
         private MainWindow mainWindow;
 
         public Datas(object data, MainWindow mainWindow)
+
+
         {
             InitializeComponent();
+
+            
 
             this.mainWindow = mainWindow;
 
@@ -32,6 +37,8 @@ namespace Havenly
 
             this.Height = 660;
             this.Width = 800;
+
+            this.DataSortingAndElementCreating(data);
 
             if (data is DataRowView)
             {
@@ -51,14 +58,14 @@ namespace Havenly
                         lb.HorizontalContentAlignment = HorizontalAlignment.Right;
                         lb.Foreground = Brushes.White;
                         lb.Content = $"{colName}";
-                        mainLabels.Children.Add(lb);
+                        mainLabelsStackPanel.Children.Add(lb);
 
                         TextBox tb = new TextBox();
                         tb.Width = 200;
                         tb.Margin = new Thickness(7);
                         tb.HorizontalAlignment = HorizontalAlignment.Right;
                         tb.Text = $"{value}";
-                        mainTextboxses.Children.Add(tb);
+                        mainTextboxsesStackPanel.Children.Add(tb);
                     }
                 }
                 else
@@ -77,14 +84,14 @@ namespace Havenly
                         lb.HorizontalContentAlignment = HorizontalAlignment.Right;
                         lb.Foreground = Brushes.White;
                         lb.Content = $"{colName}";
-                        mainLabels.Children.Add(lb);
+                        mainLabelsStackPanel.Children.Add(lb);
 
                         TextBox tb = new TextBox();
                         tb.Width = 200;
                         tb.Margin = new Thickness(7);
                         tb.HorizontalAlignment = HorizontalAlignment.Right;
                         tb.Text = $"{value}";
-                        mainTextboxses.Children.Add(tb);
+                        mainTextboxsesStackPanel.Children.Add(tb);
                     }
                     for (int i = 15; i < rowDatas.Row.Table.Columns.Count; i++)
                     {
@@ -144,8 +151,27 @@ namespace Havenly
             ltb.HorizontalAlignment = HorizontalAlignment.Center;
             ltb.Text = $"{data}";
             bigTextboxStackPanel.Children.Add(ltb);
+
+
+            //CheckBox tb = new CheckBox();
+            //tb.Width = 200;
+            //tb.Margin = new Thickness(7);
+            //tb.HorizontalAlignment = HorizontalAlignment.Right;
+            //CheckBoxStackPanel.Children.Add(tb);
+
+            //bool isChecked = false;
+
+            //if (value == "1" || value.Equals("True", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    isChecked = true;
+            //}
+            //tb.IsChecked = isChecked;
         }
 
+        public void DataSortingAndElementCreating(object asd) 
+        {
+            
+        }
         private void ClosedEvent(object sender, EventArgs e)
         {
             mainWindow.Show();

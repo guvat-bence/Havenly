@@ -19,7 +19,7 @@
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="72,10,0,0">
-            <StackPanel Name="mainTextboxses" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
+            <StackPanel Name="mainTextboxsesStackPanel" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
             </StackPanel>
         </Border>
         <Border Background="#2f275e" 
@@ -32,7 +32,7 @@
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="10,10,0,0">
-            <StackPanel Name="mainLabels" Margin="-12,-2,-12,-12">
+            <StackPanel Name="mainLabelsStackPanel" Margin="-12,-2,-12,-12">
             </StackPanel>
         </Border>
         
@@ -120,6 +120,34 @@
             Visibility="Hidden"
             Name="extra_textboxses1">
             <StackPanel Name="extra_textboxsesStackPanel" Margin="-12,-2,-12,-12"/>
+        </Border>
+        <Border Background="#2f275e" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Padding="10"
+            Height="498"
+            Width="200"
+            CornerRadius="20"
+            BorderBrush="Transparent"
+            BorderThickness="2" 
+            Margin="10,10,0,0"
+            Visibility="Hidden"
+            Name="CheckBoxLabelBorder">
+            <StackPanel Name="CheckBoxLabelsStackPanel" Margin="-12,-2,-12,-12"/>
+        </Border>
+        <Border Background="#2f275e" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Padding="10"
+            Height="498"
+            Width="200"
+            CornerRadius="20"
+            BorderBrush="Transparent"
+            BorderThickness="2" 
+            Margin="172,10,0,0"
+            Visibility="Hidden"
+            Name="CheckBoxBorder">
+            <StackPanel Name="CheckBoxStackPanel" Margin="-12,-2,-12,-12"/>
         </Border>
 
     </Grid>
