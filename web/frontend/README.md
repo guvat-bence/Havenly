@@ -1,30 +1,38 @@
-# <center> Havenly projekt
+# frontend
 
-## <center> Csapat tagok
-- Projekt vezető.: Guvat Bence József
-- Projekt tag.: Herczeg Máté János 
+This template should help get you started developing with Vue 3 in Vite.
 
-## <center> Trello
-https://trello.com/invite/b/691599ce9ab4a402e1dad998/ATTIfd8609eb53786ddbd43556bfb2cdb03a94A5CF3F/havenly
+## Recommended IDE Setup
 
-## <center> Mivel dolgozunk?
-- TailwindCSS
-- ExpressJS
-- Vue
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## <center> Telepítés és indítás
+## Recommended Browser Setup
 
-## 1. Frontend telepítése és indítása
-    A "frontend" mappán belül az alábbi parancsot futassa:
-    npm install
-    npm run dev
+- Chromium-based browsers (Chrome, Edge, Brave, etc.):
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
+  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
+- Firefox:
+  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
-## 2. Backend telepítése és indítása
-    A "backend" mappán belül az alábbi parancsot futassa:
-    npm install
-    node app.js
+## Customize configuration
 
-    
+See [Vite Configuration Reference](https://vite.dev/config/).
 
+## Project Setup
 
+```sh
+npm install
+```
 
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
