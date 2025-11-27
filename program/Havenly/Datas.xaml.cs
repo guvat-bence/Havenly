@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -24,24 +25,74 @@ namespace Havenly
         private MainWindow mainWindow;
 
         public Datas(object data, MainWindow mainWindow)
-
-
         {
             InitializeComponent();
-
-            
-
             this.mainWindow = mainWindow;
-
             this.Closed += ClosedEvent;
-
             this.Height = 660;
             this.Width = 800;
 
-            this.DataSortingAndElementCreating(data);
-
             if (data is DataRowView)
             {
+                DataRowView dataRow = (DataRowView)data;
+
+                int dataCount = dataRow.Row.Table.Columns.Count;
+                string variation = "";
+                int counter = 0;
+
+                for (int i = 0; i < dataCount; i++)
+                {
+                    var dataType = dataRow.Row.Table.Columns[i].DataType;
+
+                    var dataName = dataRow.Row.Table.Columns[i].ColumnName;
+
+                    if (dataType == typeof(DateTime))
+                    {
+                        variation = "datetime";
+                        counter++;
+                    }
+                    else if (dataType == typeof(string) && dataName == "description")
+                    {
+                        variation = "description";
+                        counter++;
+                    }
+                    else if (dataType == typeof(Boolean))
+                    {
+                        variation = "checkbox";
+                    }
+
+                    switch (variation)
+                    {
+                        case "datetime":
+                            
+                            this.ElementCreating(dataRow,variation,counter,dataCount);
+                            break;
+                            
+
+                        case "description":
+
+                            this.ElementCreating(dataRow,variation,counter,dataCount);
+                            break;
+
+                        case "checkbox":
+
+                            this.ElementCreating(dataRow,variation,counter,dataCount);
+                            break;
+
+                        default:
+
+                            this.ElementCreating(dataRow,variation,counter,dataCount);
+                            break;
+                    }
+                }
+
+
+
+
+
+
+
+                //Régi verzió
                 DataRowView rowDatas = (DataRowView)data;
 
                 if (rowDatas.Row.Table.Columns.Count < 15)
@@ -133,24 +184,24 @@ namespace Havenly
                 dateTimeStackPanel.Children.Add(dt);
             }
 
-            Label llb = new Label();
-            llb.Width = 200;
-            llb.Margin = new Thickness(4);
-            llb.HorizontalAlignment = HorizontalAlignment.Center;
-            llb.HorizontalContentAlignment = HorizontalAlignment.Center;
-            llb.Foreground = Brushes.White;
-            llb.Content = "asd";
-            bigTextboxStackPanel.Children.Add(llb);
+            //Label llb = new Label();
+            //llb.Width = 200;
+            //llb.Margin = new Thickness(4);
+            //llb.HorizontalAlignment = HorizontalAlignment.Center;
+            //llb.HorizontalContentAlignment = HorizontalAlignment.Center;
+            //llb.Foreground = Brushes.White;
+            //llb.Content = "asd";
+            //bigTextboxStackPanel.Children.Add(llb);
 
-            TextBox ltb = new TextBox();
-            ltb.Width = 300;
-            ltb.Height = 400;
-            ltb.AcceptsReturn = true;
-            ltb.TextWrapping = TextWrapping.Wrap;
-            ltb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            ltb.HorizontalAlignment = HorizontalAlignment.Center;
-            ltb.Text = $"{data}";
-            bigTextboxStackPanel.Children.Add(ltb);
+            //TextBox ltb = new TextBox();
+            //ltb.Width = 300;
+            //ltb.Height = 400;
+            //ltb.AcceptsReturn = true;
+            //ltb.TextWrapping = TextWrapping.Wrap;
+            //ltb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            //ltb.HorizontalAlignment = HorizontalAlignment.Center;
+            //ltb.Text = $"{data}";
+            //bigTextboxStackPanel.Children.Add(ltb);
 
 
             //CheckBox tb = new CheckBox();
@@ -168,9 +219,43 @@ namespace Havenly
             //tb.IsChecked = isChecked;
         }
 
-        public void DataSortingAndElementCreating(object asd) 
+        public void ElementCreating(DataRowView data, string variation, int counter, int dataCount)
         {
-            
+            int textBoxCounter = dataCount - counter;
+
+            for (int i = 0; i < textBoxCounter; i++)
+            {
+                string colName = data.Row.Table.Columns[i].ColumnName;
+                string value = data[colName].ToString();
+
+                Label lb = new Label();
+                lb.Width = 200;
+                lb.Margin = new Thickness(4);
+                lb.HorizontalAlignment = HorizontalAlignment.Right;
+                lb.HorizontalContentAlignment = HorizontalAlignment.Right;
+                lb.Foreground = Brushes.White;
+                lb.Content = $"{colName}";
+                mainLabelsStackPanel.Children.Add(lb);
+
+                TextBox tb = new TextBox();
+                tb.Width = 200;
+                tb.Margin = new Thickness(7);
+                tb.HorizontalAlignment = HorizontalAlignment.Right;
+                tb.Text = $"{value}";
+                mainTextboxsesStackPanel.Children.Add(tb);
+            }
+
+            if (dataCount - textBoxCounter > 0)
+            {
+                for (int i = 0; i < counter; i++)
+                {
+
+                }
+            }
+            else
+            {
+
+            }
         }
         private void ClosedEvent(object sender, EventArgs e)
         {
