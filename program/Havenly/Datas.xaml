@@ -18,12 +18,11 @@
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
-            Margin="72,10,0,0">
-            <UniformGrid>
-                <StackPanel Name="mainTextboxsesStackPanel" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
-                </StackPanel>
-            </UniformGrid>
-            
+            Margin="72,10,0,0"
+            Visibility="Hidden"
+            Name="mainTextboxsesBorder">
+            <StackPanel Name="mainTextboxsesStackPanel" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
+            </StackPanel>
         </Border>
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
@@ -34,24 +33,28 @@
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
-            Margin="10,10,0,0">
+            Margin="10,10,0,0"
+            Visibility="Hidden"
+            Name="mainLabelsBorder">
             <UniformGrid>
                 <StackPanel Name="mainLabelsStackPanel" Margin="-12,-2,-12,-12">
                 </StackPanel>
             </UniformGrid>
-            
+
         </Border>
-        
+
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Padding="10"
-            Height="300"
+            Height="290"
             Width="360"
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
-            Margin="406,208,0,0">
+            Margin="406,218,0,0"
+            Visibility="Hidden"
+            Name="bigTextboxBorder">
             <StackPanel Name="bigTextboxStackPanel" Margin="-12,-2,-12,-2">
             </StackPanel>
         </Border>
@@ -59,12 +62,14 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Padding="10"
-            Height="231"
+            Height="195"
             Width="360"
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2"
-            Margin="406,10,0,0">
+            Margin="406,12,0,0"
+            Visibility="Hidden"
+            Name="dateTimeBorder">
             <StackPanel Name="dateTimeStackPanel" Margin="-12,-2,-12,-2"/>
         </Border>
 
@@ -77,12 +82,14 @@
             RenderTransformOrigin="0.5,0.5" 
             Width="277"
             CornerRadius="20"
-            Background="#2f275e">
+            Background="#2f275e"
+            Visibility="Visible"
+            Name="applyorDeclineBorder">
             <UniformGrid Columns="2" Rows="1" HorizontalAlignment="Center" Width="277">
                 <Button
                     x:Name="addButton"
                     MaxHeight="80"
-                    MaxWidth="80">
+                    MaxWidth="80" Click="addButton_Click">
                     <Image Source="/image/approve.png"
                         MaxHeight="93"
                         MaxWidth="96"
@@ -91,7 +98,7 @@
                 <Button
                     x:Name="removeButton"
                     MaxHeight="80"
-                    MaxWidth="80" Margin="0,0,1,0">
+                    MaxWidth="80" Margin="0,0,1,0" Click="removeButton_Click">
                     <Image Source="/image/decline.png"
                         MaxHeight="93"
                         MaxWidth="96"
@@ -104,53 +111,53 @@
             VerticalAlignment="Top"
             Padding="10"
             Height="498"
-            Width="300"
+            Width="218"
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
-            Margin="468,10,0,0"
-            Name="extra_textboxses2"
+            Margin="548,10,0,0"
+            Name="extra_checkboxses"
             Visibility="Hidden">
-            <StackPanel Name="extra_textboxsesStackPanel2" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5"/>
+            <StackPanel Name="extra_checkboxsesStackPanel" Margin="-2,-2,-2,-2" RenderTransformOrigin="0.5,0.5"/>
         </Border>
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Padding="10"
             Height="498"
-            Width="100"
+            Width="175"
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="406,10,0,0"
             Visibility="Hidden"
-            Name="extra_textboxses1">
-            <StackPanel Name="extra_textboxsesStackPanel" Margin="-12,-2,-12,-12"/>
+            Name="extra_lables">
+            <StackPanel Name="extra_labelsStackPanel" Margin="-12,-2,-12,-12"/>
         </Border>
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Padding="10"
             Height="498"
-            Width="200"
+            Width="175"
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
             Margin="10,10,0,0"
             Visibility="Hidden"
             Name="CheckBoxLabelBorder">
-            <StackPanel Name="CheckBoxLabelsStackPanel" Margin="-12,-2,-12,-12"/>
+            <StackPanel Name="CheckBoxLabelsStackPanel" Margin="-12,-2,-12,-51"/>
         </Border>
         <Border Background="#2f275e" 
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Padding="10"
             Height="498"
-            Width="200"
+            Width="218"
             CornerRadius="20"
             BorderBrush="Transparent"
             BorderThickness="2" 
-            Margin="172,10,0,0"
+            Margin="154,10,0,0"
             Visibility="Hidden"
             Name="CheckBoxBorder">
             <StackPanel Name="CheckBoxStackPanel" Margin="-12,-2,-12,-12"/>

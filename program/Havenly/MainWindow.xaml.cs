@@ -65,7 +65,6 @@ namespace Havenly
             editButton.IsEnabled = false;
             removeButton.IsEnabled = false;
         }
-
         public void readData(string tableName)
         {
             try
@@ -80,6 +79,7 @@ namespace Havenly
                 addButton.IsEnabled = true;
                 editButton.IsEnabled = true;
                 removeButton.IsEnabled = true;
+                operation = "read";
             }
             catch (Exception e)
             {
@@ -163,7 +163,6 @@ namespace Havenly
             accommodationbtn.IsEnabled = false;
 
         }
-
         string operation = "";
         bool isCommitting = false;
         int watcher = 0;
@@ -206,31 +205,32 @@ namespace Havenly
         {
             if (operation == "edit")
             {
-                if (!isCommitting)
-                {
-                    isCommitting = true;
-                    datagrid0.CommitEdit(DataGridEditingUnit.Row, true);
-                    isCommitting = false;
-                    watcher += 1;
-                }
 
-                if (e.Row.Item is DataRowView && watcher == 1)
-                {
-                    DataRowView datas = (DataRowView)e.Row.Item;
+                //if (!isCommitting)
+                //{
+                //    isCommitting = true;
+                //    datagrid0.CommitEdit(DataGridEditingUnit.Row, true);
+                //    isCommitting = false;
+                //    watcher += 1;
+                //}
 
-                    var response = MessageBox.Show("Biztos szeretné módosítani a sort?", "Adat szerkesztő", MessageBoxButton.YesNo);
-                    if (response == MessageBoxResult.Yes)
-                    {
-                        MessageBox.Show("Módosítások elmentve!");
-                        enable_btns();
-                    }
-                    else
-                    {
-                        datas.CancelEdit();
-                        MessageBox.Show("A módosítások nem lettek elmentve!");
-                        enable_btns();
-                    }
-                }
+                //if (e.Row.Item is DataRowView && watcher == 1)
+                //{
+                //    DataRowView datas = (DataRowView)e.Row.Item;
+
+                //    var response = MessageBox.Show("Biztos szeretné módosítani a sort?", "Adat szerkesztő", MessageBoxButton.YesNo);
+                //    if (response == MessageBoxResult.Yes)
+                //    {
+                //        MessageBox.Show("Módosítások elmentve!");
+                //        enable_btns();
+                //    }
+                //    else
+                //    {
+                //        datas.CancelEdit();
+                //        MessageBox.Show("A módosítások nem lettek elmentve!");
+                //        enable_btns();
+                //    }
+                //}
             }
             else if (operation == "add")
             {
@@ -287,11 +287,25 @@ namespace Havenly
             }
         }
 
-        private void datagrid0_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        public void datagrid0_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Datas dataWin = new Datas(datagrid0.SelectedItem, this);
-            dataWin.Show();
-            this.Hide();
+            if(datagrid0.CurrentColumn != null && operation != "delete")
+            {
+                Datas dataWin = new Datas(datagrid0.SelectedItem, operation, this, saveEditedRow);
+                dataWin.Show();
+                this.Hide();
+
+                if (operation != "read")
+                {
+                    datagrid0.ItemsSource = null;
+                    enable_btns();
+                }
+            }
+        }
+        public void saveEditedRow(DataRowView row)
+        {
+            row.EndEdit();
+            
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using Mysqlx.Expr;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,18 +24,24 @@ namespace Havenly
     public partial class Datas : Window
     {
         private MainWindow mainWindow;
+        private Action<DataRowView> saveDatas;
+        private DataRowView currentData;
 
-        public Datas(object data, MainWindow mainWindow)
+        public Datas(object data,string operation, MainWindow mainWindow, Action<DataRowView> saveDatas)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+            this.saveDatas = saveDatas;
             this.Closed += ClosedEvent;
+
             this.Height = 660;
             this.Width = 800;
 
             if (data is DataRowView)
             {
                 DataRowView dataRow = (DataRowView)data;
+
+                currentData = dataRow;
 
                 int dataCount = dataRow.Row.Table.Columns.Count;
                 string variation = "";
@@ -51,211 +58,201 @@ namespace Havenly
                         variation = "datetime";
                         counter++;
                     }
-                    else if (dataType == typeof(string) && dataName == "description")
+                    else if (dataType == typeof(string) && (dataName == "description" || dataName == "apartman_details"))
                     {
                         variation = "description";
                         counter++;
+                        break;
                     }
                     else if (dataType == typeof(Boolean))
                     {
                         variation = "checkbox";
-                    }
-
-                    switch (variation)
-                    {
-                        case "datetime":
-                            
-                            this.ElementCreating(dataRow,variation,counter,dataCount);
-                            break;
-                            
-
-                        case "description":
-
-                            this.ElementCreating(dataRow,variation,counter,dataCount);
-                            break;
-
-                        case "checkbox":
-
-                            this.ElementCreating(dataRow,variation,counter,dataCount);
-                            break;
-
-                        default:
-
-                            this.ElementCreating(dataRow,variation,counter,dataCount);
-                            break;
+                        counter++;
                     }
                 }
 
+                this.ElementCreating(dataRow, variation, counter, dataCount, operation);
 
-
-
-
-
-
-                //Régi verzió
-                DataRowView rowDatas = (DataRowView)data;
-
-                if (rowDatas.Row.Table.Columns.Count < 15)
-                {
-                    for (int i = 0; i < rowDatas.Row.Table.Columns.Count; i++)
-                    {
-                        string colName = rowDatas.Row.Table.Columns[i].ColumnName;
-                        string value = rowDatas[colName].ToString();
-
-                        Label lb = new Label();
-                        lb.Width = 200;
-                        lb.Margin = new Thickness(4);
-                        lb.HorizontalAlignment = HorizontalAlignment.Right;
-                        lb.HorizontalContentAlignment = HorizontalAlignment.Right;
-                        lb.Foreground = Brushes.White;
-                        lb.Content = $"{colName}";
-                        mainLabelsStackPanel.Children.Add(lb);
-
-                        TextBox tb = new TextBox();
-                        tb.Width = 200;
-                        tb.Margin = new Thickness(7);
-                        tb.HorizontalAlignment = HorizontalAlignment.Right;
-                        tb.Text = $"{value}";
-                        mainTextboxsesStackPanel.Children.Add(tb);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < 15; i++)
-                    {
-                        extra_textboxses1.Visibility = Visibility.Visible;
-                        extra_textboxses2.Visibility = Visibility.Visible;
-                        string colName = rowDatas.Row.Table.Columns[i].ColumnName;
-                        string value = rowDatas[colName].ToString();
-
-                        Label lb = new Label();
-                        lb.Width = 200;
-                        lb.Margin = new Thickness(4);
-                        lb.HorizontalAlignment = HorizontalAlignment.Right;
-                        lb.HorizontalContentAlignment = HorizontalAlignment.Right;
-                        lb.Foreground = Brushes.White;
-                        lb.Content = $"{colName}";
-                        mainLabelsStackPanel.Children.Add(lb);
-
-                        TextBox tb = new TextBox();
-                        tb.Width = 200;
-                        tb.Margin = new Thickness(7);
-                        tb.HorizontalAlignment = HorizontalAlignment.Right;
-                        tb.Text = $"{value}";
-                        mainTextboxsesStackPanel.Children.Add(tb);
-                    }
-                    for (int i = 15; i < rowDatas.Row.Table.Columns.Count; i++)
-                    {
-                        string colName = rowDatas.Row.Table.Columns[i].ColumnName;
-                        string value = rowDatas[colName].ToString();
-
-                        Label lb = new Label();
-                        lb.Width = 200;
-                        lb.Margin = new Thickness(4);
-                        lb.HorizontalAlignment = HorizontalAlignment.Right;
-                        lb.HorizontalContentAlignment = HorizontalAlignment.Right;
-                        lb.Foreground = Brushes.White;
-                        lb.Content = $"{colName}";
-                        extra_textboxsesStackPanel.Children.Add(lb);
-
-                        TextBox tb = new TextBox();
-                        tb.Width = 200;
-                        tb.Margin = new Thickness(7);
-                        tb.HorizontalAlignment = HorizontalAlignment.Right;
-                        tb.Text = $"{value}";
-                        extra_textboxsesStackPanel2.Children.Add(tb);
-                    }
-                }
             }
-
-            for (int i = 0; i < 2; i++)
-            {
-                Label dlb = new Label();
-                dlb.Width = 200;
-                dlb.Margin = new Thickness(4);
-                dlb.HorizontalAlignment = HorizontalAlignment.Center;
-                dlb.HorizontalContentAlignment = HorizontalAlignment.Center;
-                dlb.Foreground = Brushes.White;
-                dlb.Content = $"{data}";
-                dateTimeStackPanel.Children.Add(dlb);
-                DatePicker dt = new DatePicker();
-                dt.Width = 150;
-                dt.Margin = new Thickness(5);
-                dateTimeStackPanel.Children.Add(dt);
-            }
-
-            //Label llb = new Label();
-            //llb.Width = 200;
-            //llb.Margin = new Thickness(4);
-            //llb.HorizontalAlignment = HorizontalAlignment.Center;
-            //llb.HorizontalContentAlignment = HorizontalAlignment.Center;
-            //llb.Foreground = Brushes.White;
-            //llb.Content = "asd";
-            //bigTextboxStackPanel.Children.Add(llb);
-
-            //TextBox ltb = new TextBox();
-            //ltb.Width = 300;
-            //ltb.Height = 400;
-            //ltb.AcceptsReturn = true;
-            //ltb.TextWrapping = TextWrapping.Wrap;
-            //ltb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            //ltb.HorizontalAlignment = HorizontalAlignment.Center;
-            //ltb.Text = $"{data}";
-            //bigTextboxStackPanel.Children.Add(ltb);
-
-
-            //CheckBox tb = new CheckBox();
-            //tb.Width = 200;
-            //tb.Margin = new Thickness(7);
-            //tb.HorizontalAlignment = HorizontalAlignment.Right;
-            //CheckBoxStackPanel.Children.Add(tb);
-
-            //bool isChecked = false;
-
-            //if (value == "1" || value.Equals("True", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    isChecked = true;
-            //}
-            //tb.IsChecked = isChecked;
         }
 
-        public void ElementCreating(DataRowView data, string variation, int counter, int dataCount)
+        public void ElementCreating(DataRowView data, string variation, int counter, int dataCount,string operation)
         {
             int textBoxCounter = dataCount - counter;
+            string colName = "";
+            string value = "";
+
+            if(operation != "read")
+            {
+                applyorDeclineBorder.Visibility = Visibility.Visible;
+            }
+
 
             for (int i = 0; i < textBoxCounter; i++)
             {
-                string colName = data.Row.Table.Columns[i].ColumnName;
-                string value = data[colName].ToString();
+                colName = data.Row.Table.Columns[i].ColumnName;
+                value = data[colName].ToString();
 
                 Label lb = new Label();
                 lb.Width = 200;
                 lb.Margin = new Thickness(4);
-                lb.HorizontalAlignment = HorizontalAlignment.Right;
-                lb.HorizontalContentAlignment = HorizontalAlignment.Right;
+                lb.Tag = colName;
+
                 lb.Foreground = Brushes.White;
                 lb.Content = $"{colName}";
-                mainLabelsStackPanel.Children.Add(lb);
 
+                lb.HorizontalAlignment = HorizontalAlignment.Center;
+                lb.HorizontalContentAlignment = HorizontalAlignment.Center;
+    
                 TextBox tb = new TextBox();
                 tb.Width = 200;
                 tb.Margin = new Thickness(7);
                 tb.HorizontalAlignment = HorizontalAlignment.Right;
                 tb.Text = $"{value}";
-                mainTextboxsesStackPanel.Children.Add(tb);
+                tb.Tag = colName;
+
+                if (operation == "read")
+                {
+                    tb.IsReadOnly = true;
+                }
+
+                if (textBoxCounter == 1)
+                {
+                    CheckBoxStackPanel.Children.Add(tb);
+                    CheckBoxLabelsStackPanel.Children.Add(lb);
+                }
+                else
+                {
+                    mainTextboxsesStackPanel.Children.Add(tb);
+                    mainLabelsStackPanel.Children.Add(lb);
+                }
+                mainLabelsBorder.Visibility = Visibility.Visible;
+                mainTextboxsesBorder.Visibility = Visibility.Visible;
             }
 
             if (dataCount - textBoxCounter > 0)
             {
-                for (int i = 0; i < counter; i++)
-                {
 
+                for (int i = textBoxCounter; i < dataCount; i++)
+                {
+                    colName = data.Row.Table.Columns[i].ColumnName;
+                    value = data[colName].ToString();
+
+                    Label lb = new Label();
+
+                    lb.Width = 200;
+                    lb.Margin = new Thickness(4);
+                    lb.HorizontalAlignment = HorizontalAlignment.Center;
+                    lb.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    lb.Foreground = Brushes.White;
+                    lb.Content = $"{colName}";
+                    lb.Tag = colName;
+
+                    switch (variation)
+                    {
+                        case "datetime":
+
+                            dateTimeStackPanel.Children.Add(lb);
+                            DatePicker dp = new DatePicker();
+                            dp.Width = 150;
+                            dp.SelectedDate = DateTime.Parse(value);
+                            dp.Tag = colName;
+                            dateTimeStackPanel.Children.Add(dp);
+                            dateTimeBorder.Visibility = Visibility.Visible;
+
+                            if (operation == "read")
+                            {
+                                dp.IsHitTestVisible = false;
+                                dp.Focusable = false;
+                            }
+                            break;
+
+                        case "description":
+                           
+                            bigTextboxStackPanel.Children.Add(lb);
+                            TextBox ltb = new TextBox();
+                            ltb.Width = 300;
+                            ltb.Height = 400;
+                            ltb.AcceptsReturn = true;
+                            ltb.TextWrapping = TextWrapping.Wrap;
+                            ltb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                            ltb.HorizontalAlignment = HorizontalAlignment.Center;
+                            ltb.Text = $"{value}";
+                            ltb.Tag = colName;
+                            bigTextboxStackPanel.Children.Add(ltb);
+                            bigTextboxBorder.Visibility = Visibility.Visible;
+
+                            if (operation == "read")
+                            {
+                                ltb.IsReadOnly = true;
+                            }
+                            break;
+
+                        case "checkbox":
+
+                            CheckBox cb = new CheckBox();
+                            cb.Margin = new Thickness(8.5);
+                            cb.HorizontalAlignment = HorizontalAlignment.Center;
+                            cb.Tag = colName;
+
+                            if (i>14)
+                            {
+                                extra_labelsStackPanel.Children.Add(lb);
+                                extra_checkboxsesStackPanel.Children.Add(cb);
+                            }
+                            else 
+                            {
+                                CheckBoxLabelsStackPanel.Children.Add(lb);
+                                CheckBoxStackPanel.Children.Add(cb);
+                            }
+
+                            CheckBoxBorder.Visibility = Visibility.Visible;
+                            CheckBoxLabelBorder.Visibility = Visibility.Visible;
+                            extra_lables.Visibility = Visibility.Visible;
+                            extra_checkboxses.Visibility = Visibility.Visible;
+
+                            if (operation == "read")
+                            {
+                                cb.IsHitTestVisible = false;
+                                cb.Focusable = false;
+                            }
+
+                            bool isChecked = false;
+
+                            if (value == "1" || value.Equals("True", StringComparison.OrdinalIgnoreCase))
+                            {
+                                isChecked = true;
+                            }
+                            cb.IsChecked = isChecked;
+                            break;
+                    }
                 }
             }
-            else
-            {
+        }
 
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            //NIncs készen
+
+
+            // currentData a már átadott DataRowView
+            foreach (var tb in mainTextboxsesStackPanel.Children.OfType<TextBox>())
+            {
+                string colName = tb.Tag.ToString();
+                currentData[colName] = tb.Text;
             }
+
+            // ... ugyanígy a többi elem
+
+            saveDatas?.Invoke(currentData);
+            this.Close();
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
         private void ClosedEvent(object sender, EventArgs e)
         {
