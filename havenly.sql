@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Nov 12. 07:35
+-- Létrehozás ideje: 2025. Nov 30. 15:17
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -31,43 +31,43 @@ CREATE TABLE `apartmans` (
   `apartman_id` int(200) NOT NULL,
   `owner_id` int(200) NOT NULL,
   `apartman_name` varchar(40) NOT NULL,
-  `apartman_details` text NOT NULL,
   `apartman_size` int(3) NOT NULL,
   `country_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
-  `price` int(11) NOT NULL
+  `price` int(11) NOT NULL,
+  `apartman_details` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `apartmans`
 --
 
-INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_details`, `apartman_size`, `country_id`, `city_id`, `price`) VALUES
-(1, 2, 'Budapest Center Apartment', 'Kényelmes apartman a belváros szívében, közel a látnivalókhoz.', 55, 3, 7, 120),
-(2, 3, 'Szeged Riverside Loft', 'Modern loft a Tisza partján, erkélyes kilátással.', 65, 3, 8, 90),
-(3, 4, 'Debrecen Cozy Flat', 'Csendes lakás a belváros közelében, jól felszerelt konyhával.', 50, 3, 9, 80),
-(4, 5, 'Pécs Art Apartment', 'Stílusos apartman a Pécsi belvárosban, közel a kulturális központokhoz.', 60, 3, 103, 95),
-(5, 6, 'Győr Riverside Studio', 'Kis stúdió a Rába partján, ideális pároknak.', 40, 3, 104, 70),
-(6, 7, 'Tokyo Shinjuku Flat', 'Kényelmes apartman Shinjuku szívében, közel a metróhoz.', 55, 1, 1, 150),
-(7, 8, 'Osaka Modern Studio', 'Modern stúdió Osaka központjában, ideális rövid tartózkodásra.', 45, 1, 2, 130),
-(8, 9, 'Rome Colosseum View', 'Panorámás lakás a Colosseum közelében, erkélyes kilátással.', 70, 2, 4, 180),
-(9, 10, 'Milan Fashion Loft', 'Stílusos loft Milánó központjában, közel a divatnegyedhez.', 60, 2, 5, 200),
-(10, 11, 'Paris Eiffel Apartment', 'Romantikus apartman az Eiffel-torony közelében, erkélyes kilátással.', 50, 4, 10, 220),
-(11, 12, 'Barcelona Sea View Flat', 'Lakás a tengerpart közelében, panorámás kilátással.', 65, 5, 14, 180),
-(12, 13, 'Berlin Central Apartment', 'Kényelmes apartman Berlin központjában, jó közlekedéssel.', 55, 6, 16, 140),
-(13, 14, 'Athens Acropolis View', 'Lakás az Akropoliszra néző kilátással, központi elhelyezkedéssel.', 60, 8, 22, 100),
-(14, 15, 'Rio Copacabana Studio', 'Stúdió közvetlen közel a Copacabana strandra.', 45, 10, 29, 130),
-(15, 16, 'New York Manhattan Flat', 'Modern lakás Manhattan szívében, közel a Central Parkhoz.', 75, 12, 34, 250),
-(16, 17, 'Sydney Harbour Apartment', 'Panorámás apartman a kikötő közelében.', 70, 13, 37, 220),
-(17, 18, 'Seoul Gangnam Studio', 'Kis stúdió Gangnam központjában, jól felszerelt.', 40, 14, 40, 120),
-(18, 19, 'Beijing Modern Flat', 'Kényelmes lakás Peking központjában, metró közel.', 60, 15, 43, 180),
-(19, 20, 'Mumbai Sea View Apartment', 'Panorámás lakás a tengerre néző kilátással.', 65, 16, 46, 160),
-(20, 21, 'Lisbon Alfama Flat', 'Hagyományos apartman az Alfama negyedben.', 50, 18, 52, 140),
-(21, 22, 'Budapest Luxury Penthouse', 'Exkluzív penthouse a Duna partján, nagy terasszal.', 120, 3, 7, 350),
-(22, 23, 'Szeged Modern Loft', 'Modern loft a belvárosban, erkélyes és világos.', 70, 3, 8, 130),
-(23, 24, 'Debrecen Family Apartment', 'Tágas családi lakás közel a belvároshoz.', 80, 3, 9, 110),
-(24, 25, 'Pécs Cozy Studio', 'Kis stúdió a Pécsi kulturális központban.', 35, 3, 103, 60),
-(25, 2, 'Győr Central Apartment', 'Kényelmes lakás Győr belvárosában.', 55, 3, 104, 90);
+INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_size`, `country_id`, `city_id`, `price`, `apartman_details`) VALUES
+(1, 2, 'Budapest Center Apartment', 55, 3, 7, 120, 'Kényelmes apartman a belváros szívében, közel a látnivalókhoz.'),
+(2, 3, 'Szeged Riverside Loft', 65, 3, 8, 90, 'Modern loft a Tisza partján, erkélyes kilátással.'),
+(3, 4, 'Debrecen Cozy Flat', 50, 3, 9, 80, 'Csendes lakás a belváros közelében, jól felszerelt konyhával.'),
+(4, 5, 'Pécs Art Apartment', 60, 3, 103, 95, 'Stílusos apartman a Pécsi belvárosban, közel a kulturális központokhoz.'),
+(5, 6, 'Győr Riverside Studio', 40, 3, 104, 70, 'Kis stúdió a Rába partján, ideális pároknak.'),
+(6, 7, 'Tokyo Shinjuku Flat', 55, 1, 1, 150, 'Kényelmes apartman Shinjuku szívében, közel a metróhoz.'),
+(7, 8, 'Osaka Modern Studio', 45, 1, 2, 130, 'Modern stúdió Osaka központjában, ideális rövid tartózkodásra.'),
+(8, 9, 'Rome Colosseum View', 70, 2, 4, 180, 'Panorámás lakás a Colosseum közelében, erkélyes kilátással.'),
+(9, 10, 'Milan Fashion Loft', 60, 2, 5, 200, 'Stílusos loft Milánó központjában, közel a divatnegyedhez.'),
+(10, 11, 'Paris Eiffel Apartment', 50, 4, 10, 220, 'Romantikus apartman az Eiffel-torony közelében, erkélyes kilátással.'),
+(11, 12, 'Barcelona Sea View Flat', 65, 5, 14, 180, 'Lakás a tengerpart közelében, panorámás kilátással.'),
+(12, 13, 'Berlin Central Apartment', 55, 6, 16, 140, 'Kényelmes apartman Berlin központjában, jó közlekedéssel.'),
+(13, 14, 'Athens Acropolis View', 60, 8, 22, 100, 'Lakás az Akropoliszra néző kilátással, központi elhelyezkedéssel.'),
+(14, 15, 'Rio Copacabana Studio', 45, 10, 29, 130, 'Stúdió közvetlen közel a Copacabana strandra.'),
+(15, 16, 'New York Manhattan Flat', 75, 12, 34, 250, 'Modern lakás Manhattan szívében, közel a Central Parkhoz.'),
+(16, 17, 'Sydney Harbour Apartment', 70, 13, 37, 220, 'Panorámás apartman a kikötő közelében.'),
+(17, 18, 'Seoul Gangnam Studio', 40, 14, 40, 120, 'Kis stúdió Gangnam központjában, jól felszerelt.'),
+(18, 19, 'Beijing Modern Flat', 60, 15, 43, 180, 'Kényelmes lakás Peking központjában, metró közel.'),
+(19, 20, 'Mumbai Sea View Apartment', 65, 16, 46, 160, 'Panorámás lakás a tengerre néző kilátással.'),
+(20, 21, 'Lisbon Alfama Flat', 50, 18, 52, 140, 'Hagyományos apartman az Alfama negyedben.'),
+(21, 22, 'Budapest Luxury Penthouse', 120, 3, 7, 350, 'Exkluzív penthouse a Duna partján, nagy terasszal.'),
+(22, 23, 'Szeged Modern Loft', 70, 3, 8, 130, 'Modern loft a belvárosban, erkélyes és világos.'),
+(23, 24, 'Debrecen Family Apartment', 80, 3, 9, 110, 'Tágas családi lakás közel a belvároshoz.'),
+(24, 25, 'Pécs Cozy Studio', 35, 3, 103, 60, 'Kis stúdió a Pécsi kulturális központban.'),
+(25, 2, 'Győr Central Apartment', 55, 3, 104, 90, 'Kényelmes lakás Győr belvárosában.');
 
 -- --------------------------------------------------------
 
@@ -562,26 +562,31 @@ INSERT INTO `favourite` (`user_id`, `apartman_id`) VALUES
 --
 
 CREATE TABLE `rents` (
+  `rent_id` int(11) NOT NULL,
   `renter_id` int(20) NOT NULL,
   `owner_id` int(20) NOT NULL,
   `apartman_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `payment_type` varchar(20) NOT NULL DEFAULT '''''''unpaid''''''',
+  `card_number` int(11) DEFAULT NULL,
+  `expiration` varchar(7) DEFAULT NULL,
+  `cvv` int(3) DEFAULT NULL,
   `rent_date` date DEFAULT NULL,
   `rent_beginning` date NOT NULL,
-  `rent_end` date NOT NULL,
-  `price` int(11) NOT NULL
+  `rent_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `rents`
 --
 
-INSERT INTO `rents` (`renter_id`, `owner_id`, `apartman_id`, `rent_date`, `rent_beginning`, `rent_end`, `price`) VALUES
-(3, 2, 1, '2025-08-06', '2025-08-12', '2025-08-19', 120),
-(4, 20, 2, '2025-07-11', '2025-07-20', '2025-07-25', 90),
-(5, 21, 3, '2025-05-22', '2025-06-15', '2025-06-20', 80),
-(6, 22, 4, '2025-05-04', '2025-05-10', '2025-05-17', 95),
-(7, 23, 5, '2025-08-23', '2025-09-05', '2025-09-12', 70),
-(8, 2, 6, '2025-08-07', '2025-08-22', '2025-08-29', 150);
+INSERT INTO `rents` (`rent_id`, `renter_id`, `owner_id`, `apartman_id`, `price`, `payment_type`, `card_number`, `expiration`, `cvv`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
+(1, 3, 2, 1, 120, 'paid', 2147483647, '11/27', 241, '2025-08-06', '2025-08-12', '2025-08-19'),
+(2, 4, 20, 2, 90, 'paid', 2147483647, '04/26', 522, '2025-07-11', '2025-07-20', '2025-07-25'),
+(3, 5, 21, 3, 80, 'paid', 2147483647, '09/28', 113, '2025-05-22', '2025-06-15', '2025-06-20'),
+(4, 6, 22, 4, 95, 'paid', 2147483647, '02/27', 448, '2025-05-04', '2025-05-10', '2025-05-17'),
+(5, 7, 23, 5, 70, 'paid', 2147483647, '06/29', 772, '2025-08-23', '2025-09-05', '2025-09-12'),
+(6, 8, 2, 6, 150, 'paid', 2147483647, '12/26', 399, '2025-08-07', '2025-08-22', '2025-08-29');
 
 -- --------------------------------------------------------
 
@@ -593,44 +598,47 @@ CREATE TABLE `users` (
   `id` int(200) NOT NULL,
   `first_name` varchar(40) NOT NULL,
   `last_name` varchar(40) NOT NULL,
-  `middle_name` varchar(40) NOT NULL,
+  `middle_name` varchar(40) DEFAULT NULL,
   `email` varchar(254) NOT NULL,
   `password` varchar(30) NOT NULL,
   `phone_number` varchar(40) NOT NULL,
   `gender` varchar(1) NOT NULL,
-  `user_type` char(1) NOT NULL DEFAULT 'U'
+  `user_type` char(1) NOT NULL DEFAULT 'U',
+  `card_number` int(11) DEFAULT NULL,
+  `expiration` varchar(7) DEFAULT NULL,
+  `cvv` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `password`, `phone_number`, `gender`, `user_type`) VALUES
-(1, 'Admin', '', '', 'admin@gmail.com', 'admin123', '+36304443358', 'M', 'A'),
-(2, 'Hiroshi', 'Tanaka', '', 'hiroshi.tanaka@gmail.com', 'HiroshiT21', '+818012345678', 'M', 'U'),
-(3, 'Giulia', 'Rossi', 'Elena', 'giulia.rossi@gmail.com', 'GiuliaR34', '+393471234567', 'F', 'U'),
-(4, 'Bence', 'Kovács', '', 'bence.kovacs@gmail.com', 'BenceK77', '+36301234567', 'M', 'U'),
-(5, 'Camille', 'Lefevre', '', 'camille.lefevre@gmail.com', 'CamilleL56', '+33612345678', 'F', 'U'),
-(6, 'Diego', 'Martinez', 'Alejandro', 'diego.martinez@gmail.com', 'DiegoM09', '+34612345678', 'M', 'U'),
-(7, 'Hans', 'Müller', 'Peter', 'hans.muller@gmail.com', 'HansM88', '+4915123456789', 'M', 'U'),
-(8, 'Anna', 'Schmidt', '', 'anna.schmidt@gmail.com', 'AnnaS15', '+4917123456789', 'F', 'U'),
-(9, 'Maria', 'Papadopoulos', 'Eleni', 'maria.papad@gmail.com', 'MariaP63', '+306931234567', 'F', 'U'),
-(10, 'Kenji', 'Sato', '', 'kenji.sato@gmail.com', 'KenjiS22', '+818043218765', 'M', 'U'),
-(11, 'Sophie', 'Dubois', '', 'sophie.dubois@gmail.com', 'SophieD71', '+33723456789', 'F', 'U'),
-(12, 'Luca', 'Bianchi', 'Marco', 'luca.bianchi@gmail.com', 'LucaB05', '+393482345678', 'M', 'U'),
-(13, 'Dóra', 'Tóth', '', 'dora.toth@gmail.com', 'DoraT39', '+36206543210', 'F', 'U'),
-(14, 'Carlos', 'Fernandez', '', 'carlos.fernandez@gmail.com', 'CarlosF58', '+34622987654', 'M', 'U'),
-(15, 'Eva', 'Novak', '', 'eva.novak@gmail.com', 'EvaN13', '+436609876543', 'F', 'U'),
-(16, 'Peter', 'Hansen', 'Oskar', 'peter.hansen@gmail.com', 'PeterH46', '+47998765432', 'M', 'U'),
-(17, 'Emily', 'Johnson', '', 'emily.johnson@gmail.com', 'EmilyJ90', '+12125557890', 'F', 'U'),
-(18, 'Liam', 'Smith', '', 'liam.smith@gmail.com', 'LiamS11', '+16465553210', 'M', 'U'),
-(19, 'Sakura', 'Yamamoto', 'Aiko', 'sakura.yamamoto@gmail.com', 'SakuraY77', '+819098765432', 'F', 'U'),
-(20, 'Mateo', 'Silva', '', 'mateo.silva@gmail.com', 'MateoS66', '+5511987654321', 'M', 'U'),
-(21, 'Eszter', 'Szabó', '', 'eszter.szabo@gmail.com', 'EszterS89', '+36209876543', 'F', 'U'),
-(22, 'Levente', 'Horváth', '', 'levente.horvath@gmail.com', 'LeventeH25', '+36308887777', 'M', 'U'),
-(23, 'Zsófia', 'Kiss', 'Réka', 'zsofia.kiss@gmail.com', 'ZsofiaK91', '+36702223333', 'F', 'U'),
-(24, 'Ádám', 'Nagy', '', 'adam.nagy@gmail.com', 'AdamN55', '+36201112222', 'M', 'U'),
-(25, 'Gábor', 'Molnár', '', 'gabor.molnar@gmail.com', 'GaborM42', '+36704445555', 'M', 'U');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `password`, `phone_number`, `gender`, `user_type`, `card_number`, `expiration`, `cvv`) VALUES
+(1, 'Admin', 'Admin', NULL, 'admin@gmail.com', 'admin123', '+36304443358', 'M', 'A', NULL, NULL, NULL),
+(2, 'Hiroshi', 'Tanaka', NULL, 'hiroshi.tanaka@gmail.com', 'HiroshiT21', '+818012345678', 'M', 'U', NULL, NULL, NULL),
+(3, 'Giulia', 'Rossi', 'Elena', 'giulia.rossi@gmail.com', 'GiuliaR34', '+393471234567', 'F', 'U', 2147483647, '11/27', 241),
+(4, 'Bence', 'Kovács', NULL, 'bence.kovacs@gmail.com', 'BenceK77', '+36301234567', 'M', 'U', 2147483647, '04/26', 522),
+(5, 'Camille', 'Lefevre', NULL, 'camille.lefevre@gmail.com', 'CamilleL56', '+33612345678', 'F', 'U', 2147483647, '09/28', 113),
+(6, 'Diego', 'Martinez', 'Alejandro', 'diego.martinez@gmail.com', 'DiegoM09', '+34612345678', 'M', 'U', 2147483647, '02/27', 448),
+(7, 'Hans', 'Müller', 'Peter', 'hans.muller@gmail.com', 'HansM88', '+4915123456789', 'M', 'U', 2147483647, '06/29', 772),
+(8, 'Anna', 'Schmidt', NULL, 'anna.schmidt@gmail.com', 'AnnaS15', '+4917123456789', 'F', 'U', 2147483647, '12/26', 399),
+(9, 'Maria', 'Papadopoulos', 'Eleni', 'maria.papad@gmail.com', 'MariaP63', '+306931234567', 'F', 'U', NULL, NULL, NULL),
+(10, 'Kenji', 'Sato', NULL, 'kenji.sato@gmail.com', 'KenjiS22', '+818043218765', 'M', 'U', NULL, NULL, NULL),
+(11, 'Sophie', 'Dubois', NULL, 'sophie.dubois@gmail.com', 'SophieD71', '+33723456789', 'F', 'U', NULL, NULL, NULL),
+(12, 'Luca', 'Bianchi', 'Marco', 'luca.bianchi@gmail.com', 'LucaB05', '+393482345678', 'M', 'U', NULL, NULL, NULL),
+(13, 'Dóra', 'Tóth', NULL, 'dora.toth@gmail.com', 'DoraT39', '+36206543210', 'F', 'U', NULL, NULL, NULL),
+(14, 'Carlos', 'Fernandez', NULL, 'carlos.fernandez@gmail.com', 'CarlosF58', '+34622987654', 'M', 'U', NULL, NULL, NULL),
+(15, 'Eva', 'Novak', NULL, 'eva.novak@gmail.com', 'EvaN13', '+436609876543', 'F', 'U', NULL, NULL, NULL),
+(16, 'Peter', 'Hansen', 'Oskar', 'peter.hansen@gmail.com', 'PeterH46', '+47998765432', 'M', 'U', NULL, NULL, NULL),
+(17, 'Emily', 'Johnson', NULL, 'emily.johnson@gmail.com', 'EmilyJ90', '+12125557890', 'F', 'U', NULL, NULL, NULL),
+(18, 'Liam', 'Smith', NULL, 'liam.smith@gmail.com', 'LiamS11', '+16465553210', 'M', 'U', NULL, NULL, NULL),
+(19, 'Sakura', 'Yamamoto', 'Aiko', 'sakura.yamamoto@gmail.com', 'SakuraY77', '+819098765432', 'F', 'U', NULL, NULL, NULL),
+(20, 'Mateo', 'Silva', NULL, 'mateo.silva@gmail.com', 'MateoS66', '+5511987654321', 'M', 'U', NULL, NULL, NULL),
+(21, 'Eszter', 'Szabó', NULL, 'eszter.szabo@gmail.com', 'EszterS89', '+36209876543', 'F', 'U', NULL, NULL, NULL),
+(22, 'Levente', 'Horváth', NULL, 'levente.horvath@gmail.com', 'LeventeH25', '+36308887777', 'M', 'U', NULL, NULL, NULL),
+(23, 'Zsófia', 'Kiss', 'Réka', 'zsofia.kiss@gmail.com', 'ZsofiaK91', '+36702223333', 'F', 'U', NULL, NULL, NULL),
+(24, 'Ádám', 'Nagy', NULL, 'adam.nagy@gmail.com', 'AdamN55', '+36201112222', 'M', 'U', NULL, NULL, NULL),
+(25, 'Gábor', 'Molnár', NULL, 'gabor.molnar@gmail.com', 'GaborM42', '+36704445555', 'M', 'U', NULL, NULL, NULL);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -685,6 +693,7 @@ ALTER TABLE `favourite`
 -- A tábla indexei `rents`
 --
 ALTER TABLE `rents`
+  ADD PRIMARY KEY (`rent_id`),
   ADD KEY `renter_id` (`renter_id`,`owner_id`,`apartman_id`),
   ADD KEY `apartman_id` (`apartman_id`),
   ADD KEY `owner_id` (`owner_id`);
@@ -723,6 +732,12 @@ ALTER TABLE `country`
 --
 ALTER TABLE `experiences`
   MODIFY `experience_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT a táblához `rents`
+--
+ALTER TABLE `rents`
+  MODIFY `rent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `users`
