@@ -83,7 +83,7 @@
             Width="277"
             CornerRadius="20"
             Background="#2f275e"
-            Visibility="Visible"
+            Visibility="Hidden"
             Name="applyorDeclineBorder">
             <UniformGrid Columns="2" Rows="1" HorizontalAlignment="Center" Width="277">
                 <Button

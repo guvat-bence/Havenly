@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Nov 30. 15:17
+-- Létrehozás ideje: 2025. Dec 08. 21:54
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -28,21 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `apartmans` (
-  `apartman_id` int(200) NOT NULL,
-  `owner_id` int(200) NOT NULL,
+  `apartman_id` int(5) NOT NULL,
+  `owner_id` int(5) NOT NULL,
   `apartman_name` varchar(40) NOT NULL,
   `apartman_size` int(3) NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `apartman_details` text NOT NULL
+  `country_id` int(5) NOT NULL,
+  `city_id` int(5) NOT NULL,
+  `price` int(7) NOT NULL,
+  `apartman_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `apartmans`
 --
 
-INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_size`, `country_id`, `city_id`, `price`, `apartman_details`) VALUES
+INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_size`, `country_id`, `city_id`, `price`, `apartman_description`) VALUES
 (1, 2, 'Budapest Center Apartment', 55, 3, 7, 120, 'Kényelmes apartman a belváros szívében, közel a látnivalókhoz.'),
 (2, 3, 'Szeged Riverside Loft', 65, 3, 8, 90, 'Modern loft a Tisza partján, erkélyes kilátással.'),
 (3, 4, 'Debrecen Cozy Flat', 50, 3, 9, 80, 'Csendes lakás a belváros közelében, jól felszerelt konyhával.'),
@@ -76,7 +76,7 @@ INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_s
 --
 
 CREATE TABLE `apartman_details` (
-  `apartman_id` int(11) NOT NULL,
+  `apartman_id` int(5) NOT NULL,
   `kavefozo` tinyint(1) DEFAULT 0,
   `vizforralo` tinyint(1) DEFAULT 0,
   `mikrohullamu` tinyint(1) DEFAULT 0,
@@ -138,9 +138,9 @@ INSERT INTO `apartman_details` (`apartman_id`, `kavefozo`, `vizforralo`, `mikroh
 --
 
 CREATE TABLE `city` (
-  `city_id` int(11) NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `city_name` text NOT NULL
+  `city_id` int(5) NOT NULL,
+  `country_id` int(5) NOT NULL,
+  `city_name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -368,8 +368,8 @@ INSERT INTO `city` (`city_id`, `country_id`, `city_name`) VALUES
 --
 
 CREATE TABLE `country` (
-  `country_id` int(11) NOT NULL,
-  `country_name` text NOT NULL
+  `country_id` int(5) NOT NULL,
+  `country_name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -377,76 +377,76 @@ CREATE TABLE `country` (
 --
 
 INSERT INTO `country` (`country_id`, `country_name`) VALUES
-(1, 'Japán'),
-(2, 'Olaszország'),
-(3, 'Magyarország'),
-(4, 'Franciaország'),
-(5, 'Spanyolország'),
-(6, 'Németország'),
-(7, 'Ausztria'),
-(8, 'Görögország'),
-(9, 'Thaiföld'),
-(10, 'Brazília'),
-(11, 'Kanada'),
-(12, 'Egyesült Államok'),
-(13, 'Ausztrália'),
-(14, 'Dél-Korea'),
-(15, 'Kína'),
-(16, 'India'),
-(17, 'Mexikó'),
-(18, 'Portugália'),
-(19, 'Svédország'),
-(20, 'Norvégia'),
-(21, 'Finnország'),
-(22, 'Lengyelország'),
-(23, 'Csehország'),
-(24, 'Szlovákia'),
-(25, 'Románia'),
-(26, 'Horvátország'),
-(27, 'Szlovénia'),
-(28, 'Szerbia'),
-(29, 'Montenegró'),
-(30, 'Bosznia-Hercegovina'),
 (31, 'Albánia'),
-(32, 'Bulgária'),
-(33, 'Törökország'),
-(34, 'Egyiptom'),
-(35, 'Marokkó'),
-(36, 'Dél-afrikai Köztársaság'),
 (37, 'Argentína'),
-(38, 'Chile'),
-(39, 'Peru'),
-(40, 'Kolumbia'),
-(41, 'Írország'),
+(13, 'Ausztrália'),
+(7, 'Ausztria'),
 (42, 'Belgium'),
-(43, 'Hollandia'),
-(44, 'Luxemburg'),
-(45, 'Liechtenstein'),
-(46, 'Svájc'),
-(47, 'Észtország'),
-(48, 'Lettország'),
-(49, 'Litvánia'),
-(50, 'Málta'),
-(51, 'Izland'),
-(52, 'Grúzia'),
-(53, 'Ukrajna'),
-(54, 'Fehéroroszország'),
-(55, 'Oroszország'),
-(56, 'Kazahsztán'),
-(57, 'Szingapúr'),
-(58, 'Malajzia'),
-(59, 'Indonézia'),
-(60, 'Vietnam'),
-(61, 'Fülöp-szigetek'),
-(62, 'Pakisztán'),
-(63, 'Nepál'),
-(64, 'Srí Lanka'),
-(65, 'Irán'),
-(66, 'Irak'),
-(67, 'Szaúd-Arábia'),
+(30, 'Bosznia-Hercegovina'),
+(10, 'Brazília'),
+(32, 'Bulgária'),
+(38, 'Chile'),
+(23, 'Csehország'),
+(36, 'Dél-afrikai Köztársaság'),
+(14, 'Dél-Korea'),
+(12, 'Egyesült Államok'),
 (68, 'Egyesült Arab Emírségek'),
+(34, 'Egyiptom'),
+(47, 'Észtország'),
+(54, 'Fehéroroszország'),
+(21, 'Finnország'),
+(4, 'Franciaország'),
+(61, 'Fülöp-szigetek'),
+(8, 'Görögország'),
+(52, 'Grúzia'),
+(43, 'Hollandia'),
+(26, 'Horvátország'),
+(16, 'India'),
+(59, 'Indonézia'),
+(66, 'Irak'),
+(65, 'Irán'),
+(41, 'Írország'),
+(51, 'Izland'),
 (69, 'Izrael'),
-(70, 'Új-Zéland');
+(1, 'Japán'),
+(11, 'Kanada'),
+(56, 'Kazahsztán'),
+(15, 'Kína'),
+(40, 'Kolumbia'),
+(22, 'Lengyelország'),
+(48, 'Lettország'),
+(45, 'Liechtenstein'),
+(49, 'Litvánia'),
+(44, 'Luxemburg'),
+(3, 'Magyarország'),
+(58, 'Malajzia'),
+(50, 'Málta'),
+(35, 'Marokkó'),
+(17, 'Mexikó'),
+(29, 'Montenegró'),
+(6, 'Németország'),
+(63, 'Nepál'),
+(20, 'Norvégia'),
+(2, 'Olaszország'),
+(55, 'Oroszország'),
+(62, 'Pakisztán'),
+(39, 'Peru'),
+(18, 'Portugália'),
+(25, 'Románia'),
+(5, 'Spanyolország'),
+(64, 'Srí Lanka'),
+(46, 'Svájc'),
+(19, 'Svédország'),
+(67, 'Szaúd-Arábia'),
+(28, 'Szerbia'),
+(57, 'Szingapúr'),
+(24, 'Szlovákia'),
+(27, 'Szlovénia'),
+(9, 'Thaiföld'),
+(33, 'Törökország'),
+(70, 'Új-Zéland'),
+(53, 'Ukrajna'),
+(60, 'Vietnam');
 
 -- --------------------------------------------------------
 
@@ -455,11 +455,11 @@ INSERT INTO `country` (`country_id`, `country_name`) VALUES
 --
 
 CREATE TABLE `experiences` (
-  `experience_id` int(11) NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL,
+  `experience_id` int(5) NOT NULL,
+  `country_id` int(5) NOT NULL,
+  `city_id` int(5) NOT NULL,
   `name` varchar(150) NOT NULL,
-  `price` int(10) NOT NULL,
+  `price` int(7) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -495,8 +495,8 @@ INSERT INTO `experiences` (`experience_id`, `country_id`, `city_id`, `name`, `pr
 --
 
 CREATE TABLE `favourite` (
-  `user_id` int(11) NOT NULL,
-  `apartman_id` int(11) NOT NULL
+  `user_id` int(5) NOT NULL,
+  `apartman_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -562,11 +562,11 @@ INSERT INTO `favourite` (`user_id`, `apartman_id`) VALUES
 --
 
 CREATE TABLE `rents` (
-  `rent_id` int(11) NOT NULL,
-  `renter_id` int(20) NOT NULL,
-  `owner_id` int(20) NOT NULL,
-  `apartman_id` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
+  `rent_id` int(5) NOT NULL,
+  `renter_id` int(5) NOT NULL,
+  `owner_id` int(5) NOT NULL,
+  `apartman_id` int(5) NOT NULL,
+  `price` int(7) NOT NULL,
   `payment_type` varchar(20) NOT NULL DEFAULT '''''''unpaid''''''',
   `card_number` int(11) DEFAULT NULL,
   `expiration` varchar(7) DEFAULT NULL,
@@ -595,14 +595,14 @@ INSERT INTO `rents` (`rent_id`, `renter_id`, `owner_id`, `apartman_id`, `price`,
 --
 
 CREATE TABLE `users` (
-  `id` int(200) NOT NULL,
+  `id` int(5) NOT NULL,
   `first_name` varchar(40) NOT NULL,
   `last_name` varchar(40) NOT NULL,
   `middle_name` varchar(40) DEFAULT NULL,
   `email` varchar(254) NOT NULL,
   `password` varchar(30) NOT NULL,
   `phone_number` varchar(40) NOT NULL,
-  `gender` varchar(1) NOT NULL,
+  `gender` char(1) NOT NULL,
   `user_type` char(1) NOT NULL DEFAULT 'U',
   `card_number` int(11) DEFAULT NULL,
   `expiration` varchar(7) DEFAULT NULL,
@@ -664,7 +664,7 @@ ALTER TABLE `apartman_details`
 --
 ALTER TABLE `city`
   ADD PRIMARY KEY (`city_id`),
-  ADD UNIQUE KEY `city_name` (`city_name`) USING HASH,
+  ADD UNIQUE KEY `city_name` (`city_name`),
   ADD KEY `country_id` (`country_id`);
 
 --
@@ -672,7 +672,7 @@ ALTER TABLE `city`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`country_id`),
-  ADD UNIQUE KEY `country_name` (`country_name`) USING HASH;
+  ADD UNIQUE KEY `country_name` (`country_name`);
 
 --
 -- A tábla indexei `experiences`
@@ -713,37 +713,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `apartmans`
 --
 ALTER TABLE `apartmans`
-  MODIFY `apartman_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `apartman_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT a táblához `city`
 --
 ALTER TABLE `city`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `city_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
 -- AUTO_INCREMENT a táblához `country`
 --
 ALTER TABLE `country`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `country_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT a táblához `experiences`
 --
 ALTER TABLE `experiences`
-  MODIFY `experience_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `experience_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT a táblához `rents`
 --
 ALTER TABLE `rents`
-  MODIFY `rent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rent_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Megkötések a kiírt táblákhoz

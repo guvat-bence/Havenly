@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Havenly
 {
@@ -27,15 +29,20 @@ namespace Havenly
         private Action<DataRowView> saveDatas;
         private DataRowView currentData;
 
+        int textBoxCounter = 0;
+        int dataCount = 0;
+        string variation = "";
+
         public Datas(object data,string operation, MainWindow mainWindow, Action<DataRowView> saveDatas)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
-            this.saveDatas = saveDatas;
             this.Closed += ClosedEvent;
+            this.saveDatas = saveDatas;
 
             this.Height = 660;
-            this.Width = 800;
+            this.Width = 400;
+
 
             if (data is DataRowView)
             {
@@ -43,8 +50,7 @@ namespace Havenly
 
                 currentData = dataRow;
 
-                int dataCount = dataRow.Row.Table.Columns.Count;
-                string variation = "";
+                dataCount = dataRow.Row.Table.Columns.Count;
                 int counter = 0;
 
                 for (int i = 0; i < dataCount; i++)
@@ -78,7 +84,7 @@ namespace Havenly
 
         public void ElementCreating(DataRowView data, string variation, int counter, int dataCount,string operation)
         {
-            int textBoxCounter = dataCount - counter;
+            textBoxCounter = dataCount - counter;
             string colName = "";
             string value = "";
 
@@ -96,7 +102,6 @@ namespace Havenly
                 Label lb = new Label();
                 lb.Width = 200;
                 lb.Margin = new Thickness(4);
-                lb.Tag = colName;
 
                 lb.Foreground = Brushes.White;
                 lb.Content = $"{colName}";
@@ -126,12 +131,57 @@ namespace Havenly
                     mainTextboxsesStackPanel.Children.Add(tb);
                     mainLabelsStackPanel.Children.Add(lb);
                 }
+
+                switch (colName)
+                {
+                    case "gender":
+                    case "user_type":
+                        tb.MaxLength = 1;
+                        break;
+
+                    case "cvv":
+                    case "apartman_size":
+                        tb.MaxLength = 3;
+                        break;
+
+                    case "expiration":
+                    case "price":
+                        tb.MaxLength = 7;
+                        break;
+
+                    case "apartman_name":
+                    case "first_name":
+                    case "last_name":
+                    case "middle_name":
+                    case "country_name":
+                    case "city_name":
+                    case "phone_number":
+                        tb.MaxLength = 40;
+                        break;
+
+                    case "name":
+                    case "payment_type":
+                        tb.MaxLength = 150;
+                        break;
+
+                    case "email":
+                        tb.MaxLength = 254;
+                        break;
+
+                    default:
+                        tb.MaxLength = 5;
+                        break;
+                }
+
+
                 mainLabelsBorder.Visibility = Visibility.Visible;
                 mainTextboxsesBorder.Visibility = Visibility.Visible;
             }
 
             if (dataCount - textBoxCounter > 0)
             {
+                this.Height = 660;
+                this.Width = 800;
 
                 for (int i = textBoxCounter; i < dataCount; i++)
                 {
@@ -146,8 +196,7 @@ namespace Havenly
                     lb.HorizontalContentAlignment = HorizontalAlignment.Center;
                     lb.Foreground = Brushes.White;
                     lb.Content = $"{colName}";
-                    lb.Tag = colName;
-
+                  
                     switch (variation)
                     {
                         case "datetime":
@@ -179,6 +228,7 @@ namespace Havenly
                             ltb.HorizontalAlignment = HorizontalAlignment.Center;
                             ltb.Text = $"{value}";
                             ltb.Tag = colName;
+                            ltb.MaxLength = 500;
                             bigTextboxStackPanel.Children.Add(ltb);
                             bigTextboxBorder.Visibility = Visibility.Visible;
 
@@ -233,21 +283,96 @@ namespace Havenly
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
 
-
-            //NIncs készen
-
-
-            // currentData a már átadott DataRowView
-            foreach (var tb in mainTextboxsesStackPanel.Children.OfType<TextBox>())
+            if (variation == "checkbox")
             {
-                string colName = tb.Tag.ToString();
-                currentData[colName] = tb.Text;
+
+                foreach (var tb in CheckBoxStackPanel.Children.OfType<TextBox>())
+                {
+                    string colName = tb.Tag.ToString();
+                   
+                    try
+                    {
+                        currentData[colName] = Convert.ToInt32(tb.Text);
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show($"Rossz tipusó adatott adott meg a(z) {colName} nevű mezőben!", "Tipus hiba", MessageBoxButton.OK);
+                    }
+                }
+                foreach (var cb in CheckBoxStackPanel.Children.OfType<CheckBox>())
+                {
+                    string colName = cb.Tag.ToString();
+                    if (cb.IsChecked == true)
+                    {
+                        currentData[colName] = 1;
+                    }
+                    else
+                    {
+                        currentData[colName] = 0;
+                    }
+                }
+                foreach (var cb in extra_checkboxsesStackPanel.Children.OfType<CheckBox>())
+                {
+                    string colName = cb.Tag.ToString();
+                    if(cb.IsChecked == true)
+                    {
+                        currentData[colName] = 1;
+                    }
+                    else
+                    {
+                        currentData[colName] = 0;
+                    }
+                }
+                this.Close();
+                mainWindow.Show();
+                saveDatas?.Invoke(currentData);
             }
+            else
+            {
+                foreach (var tb in mainTextboxsesStackPanel.Children.OfType<TextBox>())
+                {
+                    string colName = tb.Tag.ToString();
+                    try
+                    {
+                        if (colName.Contains("id") || colName.Contains("price")
+                            || colName.Contains("card_number")
+                            || colName.Contains("cvv") || colName.Contains("apartman_size"))
+                        {
+                            currentData[colName] = Convert.ToInt32(tb.Text);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show($"Rossz tipusó adatott adott meg a(z) {colName} nevű mezőben!", "Tipus hiba", MessageBoxButton.OK);
+                    }
+                }
 
-            // ... ugyanígy a többi elem
+                if(variation !="")
+                {
+                    switch (variation)
+                    {
+                        case "datetime":
+                            foreach (var dt in dateTimeStackPanel.Children.OfType<DatePicker>())
+                            {
+                                string colName = dt.Tag.ToString();
+                                currentData[colName] = Convert.ToDateTime(dt.Text);
+                            }
+                            break;
 
-            saveDatas?.Invoke(currentData);
-            this.Close();
+                        case "description":
+                            foreach (var ltb in bigTextboxStackPanel.Children.OfType<TextBox>())
+                            {
+                                string colName = ltb.Tag.ToString();
+                                currentData[colName] = ltb.Text;
+                            }
+                            break;
+                    }
+                }
+                this.Close();
+                mainWindow.Show();
+                saveDatas?.Invoke(currentData);
+            }
         }
 
         private void removeButton_Click(object sender, RoutedEventArgs e)

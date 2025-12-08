@@ -291,7 +291,7 @@ namespace Havenly
         {
             if(datagrid0.CurrentColumn != null && operation != "delete")
             {
-                Datas dataWin = new Datas(datagrid0.SelectedItem, operation, this, saveEditedRow);
+                Datas dataWin = new Datas(datagrid0.SelectedItem, operation, this,saveEditedRow);
                 dataWin.Show();
                 this.Hide();
 
@@ -304,8 +304,9 @@ namespace Havenly
         }
         public void saveEditedRow(DataRowView row)
         {
-            row.EndEdit();
-            
+
+            MessageBox.Show("MainWindow megkapta: " + row[0].ToString());
+
         }
     }
 }
