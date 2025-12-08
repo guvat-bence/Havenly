@@ -8,13 +8,15 @@ let routes = [
 </script>
 
 <template>
-	<nav class="navbar navbar-expand-md bg-body-tertiary" 
+	<nav class="navbar navbar-expand-md bg-black" 
 			 data-bs-theme="dark">
 		<div class="container-fluid">
-			<img style="height: 48px;" 
-					 class="navbar-brand d-inline-block align-text-top" 
-					 src="../image/image.png" 
-					 alt="havenly_icon">
+			<router-link to="/">			
+				<img style="height: 48px;" 
+					 	 class="navbar-brand d-inline-block align-text-top" 
+					 	 src="../image/image.png" 
+					 	 alt="havenly_icon">
+			</router-link>
 
 			<button class="navbar-toggler" 
 							type="button" 
