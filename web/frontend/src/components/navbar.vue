@@ -1,5 +1,5 @@
 <script setup>
-let routes = [
+let mainRoutes = [
 	{
 		name: "Rólunk",
 		path: "/"
@@ -11,7 +11,9 @@ let routes = [
 	{
 		name: "Élmények",
 		path: "/experience"
-	},
+	}
+]
+let sideRoutes=[
 	{
 		name: "Regisztráció",
 		path: "/register"
@@ -48,12 +50,22 @@ let routes = [
 					 id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto">
 
-					<li v-for="x in routes" 
+					<li v-for="x in mainRoutes" 
 							class="nav-item">
 
 						<router-link :to="x.path" 
 												 class="nav-link">
 							{{ x.name }}
+						</router-link>
+					</li>
+				</ul>
+				<ul class="navbar-nav ms-auto">
+					<li v-for="y in sideRoutes" 
+							class="nav-item">
+
+						<router-link :to="y.path" 
+												 class="nav-link">
+							{{ y.name }}
 						</router-link>
 					</li>
 				</ul>

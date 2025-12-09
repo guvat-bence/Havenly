@@ -6,7 +6,7 @@
       </h1>
       <form class="form mt-5 col-3 row justify-content-center bg-dark bg-opacity-50 rounded-3 shadow">
         <input  class="form-control mt-2" type="search" name="searchbar" id="searchbar">
-        <button class="btn btn-secondary col-8 my-2">Keresés</button>
+        <button class="btn btn-secondary col-11 my-2">Keresés</button>
       </form>
     </div>
   </div>
