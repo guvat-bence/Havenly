@@ -141,7 +141,6 @@
                       HorizontalContentAlignment="Center"
                       VerticalAlignment="Top"
                       Name="datagrid0"
-                      RowEditEnding="datagrid0_RowEditEnding"
                       PreviewKeyDown="datagrid0_PreviewKeyDown"
                       MouseDoubleClick="datagrid0_MouseDoubleClick"
                       HorizontalAlignment="Center" Height="499" Width="634" Margin="0,15,0,0"/>

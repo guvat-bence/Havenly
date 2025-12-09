@@ -116,6 +116,11 @@ namespace Havenly
                 tb.Text = $"{value}";
                 tb.Tag = colName;
 
+                if(i == 0)
+                {
+                    tb.IsReadOnly = true;
+                }
+
                 if (operation == "read")
                 {
                     tb.IsReadOnly = true;
@@ -125,6 +130,7 @@ namespace Havenly
                 {
                     CheckBoxStackPanel.Children.Add(tb);
                     CheckBoxLabelsStackPanel.Children.Add(lb);
+
                 }
                 else
                 {
@@ -331,10 +337,11 @@ namespace Havenly
                     }
                     if (errorType == false)
                     {
+                        MessageBox.Show("Módosítások elmentve!");
                         this.Close();
                         mainWindow.Show();
                         saveDatas?.Invoke(currentData);
-                        MessageBox.Show("Módosítások elmentve!");
+                       
                     }
                 }
                 else
@@ -349,6 +356,10 @@ namespace Havenly
                                 || (colName == "cvv" && tb.Text.Length>0) || colName == "apartman_size")
                             {
                                 currentData[colName] = Convert.ToInt32(tb.Text);
+                            }
+                            else
+                            {
+                                currentData[colName] =tb.Text;
                             }
                         }
                         catch (Exception)
@@ -381,10 +392,11 @@ namespace Havenly
                     }
                     if (errorType == false)
                     {
+                        MessageBox.Show("Módosítások elmentve!");
                         this.Close();
                         mainWindow.Show();
                         saveDatas?.Invoke(currentData);
-                        MessageBox.Show("Módosítások elmentve!");
+                       
                     }
                 }
             }

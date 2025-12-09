@@ -65,6 +65,8 @@ namespace Havenly
             editButton.IsEnabled = false;
             removeButton.IsEnabled = false;
         }
+
+        string currentTable = "";
         public void readData(string tableName)
         {
             try
@@ -87,6 +89,33 @@ namespace Havenly
             }
         }
 
+        public void executeQuery(string query) 
+        {
+            try
+            {
+                openConnection();
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                if(command.ExecuteNonQuery()>=1) 
+                {
+                    MessageBox.Show("Sikeresen végrehajtva");
+                }
+                else
+                {
+                    MessageBox.Show("NE mlett végrehajtva!");
+                }
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                closeConnection();
+            }
+        }
+
         private void enable_btns()
         {
             citybtn.IsEnabled = true;
@@ -101,6 +130,7 @@ namespace Havenly
         }
         private void experience_button_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "experience";
             readData("experience");
             enable_btns();
             experience_button.IsEnabled = false;
@@ -108,6 +138,7 @@ namespace Havenly
 
         private void citybtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "city";
             readData("city");
             enable_btns();
             citybtn.IsEnabled = false;
@@ -115,6 +146,7 @@ namespace Havenly
 
         private void detailsbtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "apartman_details";
             readData("apartman_details");
             enable_btns();
             detailsbtn.IsEnabled = false;
@@ -123,6 +155,7 @@ namespace Havenly
 
         private void countrybtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "country";
             readData("country");
             enable_btns();
             countrybtn.IsEnabled = false;
@@ -130,6 +163,7 @@ namespace Havenly
 
         private void experience_button_Click_1(object sender, RoutedEventArgs e)
         {
+            currentTable = "experiences";
             readData("experiences");
             enable_btns();
             experience_button.IsEnabled = false;
@@ -137,6 +171,7 @@ namespace Havenly
 
         private void favouritebtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "favourite";
             readData("favourite");
             enable_btns();
             favouritebtn.IsEnabled = false;
@@ -144,6 +179,7 @@ namespace Havenly
 
         private void historybtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "rents";
             readData("rents");
             enable_btns();
             historybtn.IsEnabled = false;
@@ -151,6 +187,7 @@ namespace Havenly
 
         private void usersbtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "users";
             readData("users");
             enable_btns();
             usersbtn.IsEnabled = false;
@@ -158,22 +195,19 @@ namespace Havenly
 
         private void accommodationbtn_Click(object sender, RoutedEventArgs e)
         {
+            currentTable = "apartmans";
             readData("apartmans");
             enable_btns();
             accommodationbtn.IsEnabled = false;
 
         }
-        string operation = "";
-        bool isCommitting = false;
-        int watcher = 0;
 
+        string operation = "";
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
             saveOrCancle();
-            datagrid0.IsReadOnly = false;
+            datagrid0.IsReadOnly = true;
             operation = "edit";
-            watcher = 0;
-
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
@@ -182,8 +216,7 @@ namespace Havenly
             datagrid0.IsReadOnly = false;
             datagrid0.CanUserAddRows = true;
             operation = "add";
-            watcher = 0;
-
+         
             DataTable dt = (datagrid0.ItemsSource as DataView).Table;
             dt.Rows.Clear();
         }
@@ -191,77 +224,10 @@ namespace Havenly
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
             saveOrCancle();
-            datagrid0.IsReadOnly = false;
+            datagrid0.IsReadOnly = true;
             datagrid0.CanUserDeleteRows = true;
             operation = "delete";
-            watcher = 0;
         }
-
-        
-        // AZ adatbázisba méég nem tölti fel a változtatásokat.
-
-
-        private void datagrid0_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            if (operation == "edit")
-            {
-
-                //if (!isCommitting)
-                //{
-                //    isCommitting = true;
-                //    datagrid0.CommitEdit(DataGridEditingUnit.Row, true);
-                //    isCommitting = false;
-                //    watcher += 1;
-                //}
-
-                //if (e.Row.Item is DataRowView && watcher == 1)
-                //{
-                //    DataRowView datas = (DataRowView)e.Row.Item;
-
-                //    var response = MessageBox.Show("Biztos szeretné módosítani a sort?", "Adat szerkesztő", MessageBoxButton.YesNo);
-                //    if (response == MessageBoxResult.Yes)
-                //    {
-                //        MessageBox.Show("Módosítások elmentve!");
-                //        enable_btns();
-                //    }
-                //    else
-                //    {
-                //        datas.CancelEdit();
-                //        MessageBox.Show("A módosítások nem lettek elmentve!");
-                //        enable_btns();
-                //    }
-                //}
-            }
-            else if (operation == "add")
-            {
-                if (!isCommitting)
-                {
-                    isCommitting = true;
-                    datagrid0.CommitEdit(DataGridEditingUnit.Row, true);
-                    isCommitting = false;
-                    watcher += 1;
-                }
-
-                if (e.Row.Item is DataRowView && watcher == 1)
-                {
-                    DataRowView datas = (DataRowView)e.Row.Item;
-
-                    var response = MessageBox.Show("Biztos szeretné felvinni az adatokat?", "Adat szerkesztő", MessageBoxButton.YesNo);
-                    if (response == MessageBoxResult.Yes)
-                    {
-                        MessageBox.Show("Módosítások elmentve!");
-                        enable_btns();
-                    }
-                    else
-                    {
-                        datas.CancelEdit();
-                        MessageBox.Show("A módosítások nem lettek elmentve!");
-                        enable_btns();
-                    }
-                }
-            }
-        }
-
         private void datagrid0_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (operation == "delete" && e.Key == Key.Delete)
@@ -273,13 +239,15 @@ namespace Havenly
                     var response = MessageBox.Show("Biztos szeretné kitörölni a sort?", "Adat szerkesztő", MessageBoxButton.YesNo);
                     if (response == MessageBoxResult.Yes)
                     {
-                        datas.Delete();
+                        string deletingDatas = $"DELETE FROM {currentTable} WHERE {datas.Row.Table.Columns[0].ColumnName} = {datas[0]}";
+                        executeQuery(deletingDatas);
+               
                         MessageBox.Show("Módosítások elmentve!");
                         enable_btns();
+                     
                     }
                     else
                     {
-                        e.Handled = true;
                         MessageBox.Show("A módosítások nem lettek elmentve!");
                         enable_btns();
                     }
@@ -297,7 +265,7 @@ namespace Havenly
 
                 if (operation != "read")
                 {
-                    datagrid0.ItemsSource = null;
+                    //datagrid0.ItemsSource = null;
                     enable_btns();
                 }
             }
@@ -305,8 +273,49 @@ namespace Havenly
         public void saveEditedRow(DataRowView row)
         {
 
-            MessageBox.Show("MainWindow megkapta: " + row[0].ToString());
+            List<string> columns = new List<string>();
+            List<string> values = new List<string>();
 
+            for (int i = 0; i < row.Row.Table.Columns.Count; i++)
+            {
+                columns.Add(row.Row.Table.Columns[i].ColumnName);
+                object value = row[i];
+
+                if (value == null || value == DBNull.Value)
+                {
+                    values.Add("NULL");
+                }
+                else if (value is string || value is DateTime)
+                {
+                    string converted = value.ToString().Replace("'", "''");
+                    values.Add($"'{converted}'");
+                }
+                else
+                {
+                    values.Add(value.ToString());
+                }
+            }
+            switch (operation) 
+            {
+                case "add":
+
+                    string newDatas = $"INSERT INTO {currentTable} ({string.Join(",", columns)})" +
+                                      $"VALUES ({string.Join(",", values)})";
+
+                    executeQuery(newDatas);
+
+                    break;
+
+                case "edit":
+
+                    var datasWithName = columns.Select((col, index) => $"{col} = {values[index]}");
+
+                    string editedDatas = $"UPDATE {currentTable} SET {string.Join(",", datasWithName)}" +
+                                         $"WHERE {columns[0]} = {values[0]}";
+
+                    executeQuery(editedDatas);
+                    break;
+            }
         }
     }
 }
