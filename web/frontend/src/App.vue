@@ -16,6 +16,14 @@ import Myfooter  from './components/footer.vue';
 
 <style>
 body{
-  background-color: rgb(34, 34, 34) !important;
+  background-color: hsl(0, 0%, 20%) !important;
+  user-select: none;
+}
+*:not(input):not(textarea)
+{
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  outline-style: none !important;
 }
 </style>
