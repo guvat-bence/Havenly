@@ -282,102 +282,124 @@ namespace Havenly
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-
-            if (variation == "checkbox")
+            var response = MessageBox.Show("Biztos szeretne módosítani?", "Adat szerkesztő", MessageBoxButton.YesNo);
+            if (response == MessageBoxResult.Yes)
             {
+                bool errorType = false;
 
-                foreach (var tb in CheckBoxStackPanel.Children.OfType<TextBox>())
+                if (variation == "checkbox")
                 {
-                    string colName = tb.Tag.ToString();
-                   
-                    try
-                    {
-                        currentData[colName] = Convert.ToInt32(tb.Text);
-                    }
-                    catch (Exception)
-                    {
 
-                        MessageBox.Show($"Rossz tipusó adatott adott meg a(z) {colName} nevű mezőben!", "Tipus hiba", MessageBoxButton.OK);
-                    }
-                }
-                foreach (var cb in CheckBoxStackPanel.Children.OfType<CheckBox>())
-                {
-                    string colName = cb.Tag.ToString();
-                    if (cb.IsChecked == true)
+                    foreach (var tb in CheckBoxStackPanel.Children.OfType<TextBox>())
                     {
-                        currentData[colName] = 1;
-                    }
-                    else
-                    {
-                        currentData[colName] = 0;
-                    }
-                }
-                foreach (var cb in extra_checkboxsesStackPanel.Children.OfType<CheckBox>())
-                {
-                    string colName = cb.Tag.ToString();
-                    if(cb.IsChecked == true)
-                    {
-                        currentData[colName] = 1;
-                    }
-                    else
-                    {
-                        currentData[colName] = 0;
-                    }
-                }
-                this.Close();
-                mainWindow.Show();
-                saveDatas?.Invoke(currentData);
-            }
-            else
-            {
-                foreach (var tb in mainTextboxsesStackPanel.Children.OfType<TextBox>())
-                {
-                    string colName = tb.Tag.ToString();
-                    try
-                    {
-                        if (colName.Contains("id") || colName.Contains("price")
-                            || colName.Contains("card_number")
-                            || colName.Contains("cvv") || colName.Contains("apartman_size"))
+                        string colName = tb.Tag.ToString();
+
+                        try
                         {
                             currentData[colName] = Convert.ToInt32(tb.Text);
                         }
+                        catch (Exception)
+                        {
+
+                            MessageBox.Show($"Rossz tipusó adatott adott meg a(z) {colName} nevű mezőben!", "Tipus hiba", MessageBoxButton.OK);
+                            errorType = true;
+                        }
                     }
-                    catch (Exception)
+                    foreach (var cb in CheckBoxStackPanel.Children.OfType<CheckBox>())
                     {
-                        MessageBox.Show($"Rossz tipusó adatott adott meg a(z) {colName} nevű mezőben!", "Tipus hiba", MessageBoxButton.OK);
+                        string colName = cb.Tag.ToString();
+                        if (cb.IsChecked == true)
+                        {
+                            currentData[colName] = 1;
+                        }
+                        else
+                        {
+                            currentData[colName] = 0;
+                        }
+                    }
+                    foreach (var cb in extra_checkboxsesStackPanel.Children.OfType<CheckBox>())
+                    {
+                        string colName = cb.Tag.ToString();
+                        if (cb.IsChecked == true)
+                        {
+                            currentData[colName] = 1;
+                        }
+                        else
+                        {
+                            currentData[colName] = 0;
+                        }
+                    }
+                    if (errorType == false)
+                    {
+                        this.Close();
+                        mainWindow.Show();
+                        saveDatas?.Invoke(currentData);
+                        MessageBox.Show("Módosítások elmentve!");
                     }
                 }
-
-                if(variation !="")
+                else
                 {
-                    switch (variation)
+                    foreach (var tb in mainTextboxsesStackPanel.Children.OfType<TextBox>())
                     {
-                        case "datetime":
-                            foreach (var dt in dateTimeStackPanel.Children.OfType<DatePicker>())
+                        string colName = tb.Tag.ToString();
+                        try
+                        {
+                            if ((colName.Contains("id")&& colName != "middle_name") || colName == "price"
+                                || (colName == "card_number" && tb.Text.Length>0)
+                                || (colName == "cvv" && tb.Text.Length>0) || colName == "apartman_size")
                             {
-                                string colName = dt.Tag.ToString();
-                                currentData[colName] = Convert.ToDateTime(dt.Text);
+                                currentData[colName] = Convert.ToInt32(tb.Text);
                             }
-                            break;
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show($"Rossz tipusó adatott adott meg a(z) {colName} nevű mezőben!", "Tipus hiba", MessageBoxButton.OK);
+                            errorType = true;
+                        }
+                    }
 
-                        case "description":
-                            foreach (var ltb in bigTextboxStackPanel.Children.OfType<TextBox>())
-                            {
-                                string colName = ltb.Tag.ToString();
-                                currentData[colName] = ltb.Text;
-                            }
-                            break;
+                    if (variation != "")
+                    {
+                        switch (variation)
+                        {
+                            case "datetime":
+                                foreach (var dt in dateTimeStackPanel.Children.OfType<DatePicker>())
+                                {
+                                    string colName = dt.Tag.ToString();
+                                    currentData[colName] = Convert.ToDateTime(dt.Text);
+                                }
+                                break;
+
+                            case "description":
+                                foreach (var ltb in bigTextboxStackPanel.Children.OfType<TextBox>())
+                                {
+                                    string colName = ltb.Tag.ToString();
+                                    currentData[colName] = ltb.Text;
+                                }
+                                break;
+                        }
+                    }
+                    if (errorType == false)
+                    {
+                        this.Close();
+                        mainWindow.Show();
+                        saveDatas?.Invoke(currentData);
+                        MessageBox.Show("Módosítások elmentve!");
                     }
                 }
-                this.Close();
-                mainWindow.Show();
-                saveDatas?.Invoke(currentData);
+            }
+            else
+            {
+                MessageBox.Show("A módosítások nem lettek elmentve!");
             }
         }
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Módosítások nem lettek elmentve!");
+            this.Close();
+            mainWindow.Show();
+            
         }
         private void ClosedEvent(object sender, EventArgs e)
         {
