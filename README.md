@@ -25,7 +25,7 @@
 ## 2. Backend telepítése és indítása
     A "backend" mappán belül az alábbi parancsot futassa:
     npm install
-    node app.js
+    node index.js
 
     
 
