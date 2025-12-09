@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\Havenly\\program\\Havenly\\Havenly.csproj": {}
+    "E:\\Havenly\\program\\Havenly\\Havenly.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\Havenly\\program\\Havenly\\Havenly.csproj": {
+    "E:\\Havenly\\program\\Havenly\\Havenly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\Havenly\\program\\Havenly\\Havenly.csproj",
+        "projectUniqueName": "E:\\Havenly\\program\\Havenly\\Havenly.csproj",
         "projectName": "Havenly",
-        "projectPath": "C:\\xampp\\htdocs\\Havenly\\program\\Havenly\\Havenly.csproj",
-        "packagesPath": "C:\\Users\\guvat.bence\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\Havenly\\program\\Havenly\\obj\\",
+        "projectPath": "E:\\Havenly\\program\\Havenly\\Havenly.csproj",
+        "packagesPath": "C:\\Users\\mateh\\.nuget\\packages\\",
+        "outputPath": "E:\\Havenly\\program\\Havenly\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\guvat.bence\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mateh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
