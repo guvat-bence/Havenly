@@ -1,6 +1,6 @@
 <script setup>
 import Navbar from './components/navbar.vue';
-
+import Myfooter  from './components/footer.vue';
 </script>
 
 <template>
@@ -9,6 +9,8 @@ import Navbar from './components/navbar.vue';
             vw-100 overflow-x-hidden">
     <navbar class="sticky-top"/>
     <router-view class="flex-fill"/>
+    <myfooter class="sticky-button"/>
+
 </div>
 </template>
 

@@ -1,8 +1,24 @@
 <script setup>
 let routes = [
 	{
+		name: "Rólunk",
+		path: "/"
+	},
+	{
 		name: "Szállások",
 		path: "/accommodation"
+	},
+	{
+		name: "Élmények",
+		path: "/experience"
+	},
+	{
+		name: "Regisztráció",
+		path: "/register"
+	},
+	{
+		name: "Bejelentkezés",
+		path: "/login"
 	}
 ];
 </script>
@@ -29,7 +45,7 @@ let routes = [
 			</button>
 
 			<div class="collapse navbar-collapse" 
-					 id="navbarSupportedContenet">
+					 id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto">
 
 					<li v-for="x in routes" 

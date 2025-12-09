@@ -1,5 +1,8 @@
 import Accommodation from '@/pages/accommodation.vue'
+import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
+import Login from '@/pages/login.vue'
+import Register from '@/pages/register.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 let routes = [
   {
@@ -9,6 +12,18 @@ let routes = [
   {
     path: "/accommodation",
     component: Accommodation
+  },
+  {
+    path: "/experience",
+    component: Experience
+  },
+  {
+    path: "/register",
+    component: Register
+  },
+  {
+    path: "/login",
+    component: Login
   }
 ]
 const router = createRouter({
