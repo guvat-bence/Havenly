@@ -29,7 +29,18 @@ app.listen(port, () => {
 app.get('/apartmans', (req, res) => {
   db.query('SELECT * FROM apartmans', (err,result) => {
     if(err){
-      console.error("Hiba a country beolvasásakor", err)
+      console.error("Hiba a apartmans beolvasásakor", err)
+      res.status(500).send("Adatbázis hiba")
+      return
+    }
+    res.json(result)
+  })
+})
+
+app.get('/experiences', (req, res) => {
+  db.query('SELECT * FROM experiences', (err,result) => {
+    if(err){
+      console.error("Hiba a experiences beolvasásakor", err)
       res.status(500).send("Adatbázis hiba")
       return
     }
