@@ -22,12 +22,12 @@ db.connect(err => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`app is running on port ${port}`)
 })
 
 
-app.get('/country', (req, res) => {
-  db.query('SELECT * FROM country', (err,result) => {
+app.get('/apartmans', (req, res) => {
+  db.query('SELECT * FROM apartmans', (err,result) => {
     if(err){
       console.error("Hiba a country beolvasásakor", err)
       res.status(500).send("Adatbázis hiba")
