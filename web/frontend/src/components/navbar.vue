@@ -2,7 +2,7 @@
 let mainRoutes = [
 	{
 		name: "Rólunk",
-		path: "/"
+		path: "/abaut_us"
 	},
 	{
 		name: "Szállások",

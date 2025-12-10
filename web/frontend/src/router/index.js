@@ -1,3 +1,4 @@
+import Abaut_us from '@/pages/abaut_us.vue'
 import Accommodation from '@/pages/accommodation.vue'
 import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
@@ -8,6 +9,10 @@ let routes = [
   {
     path: "/",
     component: Home 
+  },
+  {
+    path: "/abaut_us",
+    component: Abaut_us
   },
   {
     path: "/accommodation",

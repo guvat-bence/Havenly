@@ -1,4 +1,5 @@
 <script setup>
+
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
@@ -14,18 +15,15 @@ onMounted(()=>
 		.catch(error=>{console.error(error)})
 		
 })
-
-console.log(accommodations);
-
 </script>
 <template>
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div v-for="x in accommodations" x:key="apartman_id" 
-                 class="card mx-2 my-2 text-nowrap 
+                 class="card mx-2 my-2 shadow
                         col-8 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
                 <!-- <img :src="x.path" class="bg-dark mx-auto col-12"> -->
-								<div class="card-body">
+								<div class="card-body col-12">
 									<p class="text-center">{{x.apartman_name}}</p>
 								</div>
             </div>
