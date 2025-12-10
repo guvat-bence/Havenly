@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Dec 08. 21:54
+-- Létrehozás ideje: 2025. Dec 10. 21:01
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -24,25 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `apartmans`
+-- Tábla szerkezet ehhez a táblához `accommodations`
 --
 
-CREATE TABLE `apartmans` (
-  `apartman_id` int(5) NOT NULL,
-  `owner_id` int(5) NOT NULL,
-  `apartman_name` varchar(40) NOT NULL,
-  `apartman_size` int(3) NOT NULL,
-  `country_id` int(5) NOT NULL,
-  `city_id` int(5) NOT NULL,
+CREATE TABLE `accommodations` (
+  `id` int(5) NOT NULL,
+  `owner_id` int(5) DEFAULT NULL,
+  `name` varchar(40) NOT NULL,
+  `size` int(3) NOT NULL,
+  `country_id` int(5) DEFAULT NULL,
+  `city_id` int(5) DEFAULT NULL,
   `price` int(7) NOT NULL,
-  `apartman_description` text NOT NULL
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `apartmans`
+-- A tábla adatainak kiíratása `accommodations`
 --
 
-INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_size`, `country_id`, `city_id`, `price`, `apartman_description`) VALUES
+INSERT INTO `accommodations` (`id`, `owner_id`, `name`, `size`, `country_id`, `city_id`, `price`, `description`) VALUES
 (1, 2, 'Budapest Center Apartment', 55, 3, 7, 120, 'Kényelmes apartman a belváros szívében, közel a látnivalókhoz.'),
 (2, 3, 'Szeged Riverside Loft', 65, 3, 8, 90, 'Modern loft a Tisza partján, erkélyes kilátással.'),
 (3, 4, 'Debrecen Cozy Flat', 50, 3, 9, 80, 'Csendes lakás a belváros közelében, jól felszerelt konyhával.'),
@@ -72,10 +72,10 @@ INSERT INTO `apartmans` (`apartman_id`, `owner_id`, `apartman_name`, `apartman_s
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `apartman_details`
+-- Tábla szerkezet ehhez a táblához `accommodations_details`
 --
 
-CREATE TABLE `apartman_details` (
+CREATE TABLE `accommodations_details` (
   `apartman_id` int(5) NOT NULL,
   `kavefozo` tinyint(1) DEFAULT 0,
   `vizforralo` tinyint(1) DEFAULT 0,
@@ -101,10 +101,10 @@ CREATE TABLE `apartman_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `apartman_details`
+-- A tábla adatainak kiíratása `accommodations_details`
 --
 
-INSERT INTO `apartman_details` (`apartman_id`, `kavefozo`, `vizforralo`, `mikrohullamu`, `alap_fuszerek`, `edenyek`, `extra_agynemu`, `sotetito`, `ejjelilampa`, `torolkozok`, `hajszarito`, `smart_tv`, `bluetooth_hangszoro`, `usb_tolto`, `munkaasztal`, `borondtarto`, `vasalo`, `szef`, `erkely`, `tarsasjatekok`, `free_wifi`, `auto_beallo`) VALUES
+INSERT INTO `accommodations_details` (`apartman_id`, `kavefozo`, `vizforralo`, `mikrohullamu`, `alap_fuszerek`, `edenyek`, `extra_agynemu`, `sotetito`, `ejjelilampa`, `torolkozok`, `hajszarito`, `smart_tv`, `bluetooth_hangszoro`, `usb_tolto`, `munkaasztal`, `borondtarto`, `vasalo`, `szef`, `erkely`, `tarsasjatekok`, `free_wifi`, `auto_beallo`) VALUES
 (1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0),
 (2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1),
 (3, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0),
@@ -134,20 +134,20 @@ INSERT INTO `apartman_details` (`apartman_id`, `kavefozo`, `vizforralo`, `mikroh
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `city`
+-- Tábla szerkezet ehhez a táblához `cities`
 --
 
-CREATE TABLE `city` (
-  `city_id` int(5) NOT NULL,
-  `country_id` int(5) NOT NULL,
-  `city_name` varchar(40) NOT NULL
+CREATE TABLE `cities` (
+  `id` int(5) NOT NULL,
+  `country_id` int(5) DEFAULT NULL,
+  `name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `city`
+-- A tábla adatainak kiíratása `cities`
 --
 
-INSERT INTO `city` (`city_id`, `country_id`, `city_name`) VALUES
+INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 (1, 1, 'Tokyo'),
 (2, 1, 'Osaka'),
 (3, 1, 'Sapporo'),
@@ -364,19 +364,19 @@ INSERT INTO `city` (`city_id`, `country_id`, `city_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `country`
+-- Tábla szerkezet ehhez a táblához `countries`
 --
 
-CREATE TABLE `country` (
-  `country_id` int(5) NOT NULL,
-  `country_name` varchar(40) NOT NULL
+CREATE TABLE `countries` (
+  `id` int(5) NOT NULL,
+  `name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `country`
+-- A tábla adatainak kiíratása `countries`
 --
 
-INSERT INTO `country` (`country_id`, `country_name`) VALUES
+INSERT INTO `countries` (`id`, `name`) VALUES
 (31, 'Albánia'),
 (37, 'Argentína'),
 (13, 'Ausztrália'),
@@ -455,9 +455,9 @@ INSERT INTO `country` (`country_id`, `country_name`) VALUES
 --
 
 CREATE TABLE `experiences` (
-  `experience_id` int(5) NOT NULL,
-  `country_id` int(5) NOT NULL,
-  `city_id` int(5) NOT NULL,
+  `id` int(5) NOT NULL,
+  `country_id` int(5) DEFAULT NULL,
+  `city_id` int(5) DEFAULT NULL,
   `name` varchar(150) NOT NULL,
   `price` int(7) NOT NULL,
   `description` text NOT NULL
@@ -467,7 +467,7 @@ CREATE TABLE `experiences` (
 -- A tábla adatainak kiíratása `experiences`
 --
 
-INSERT INTO `experiences` (`experience_id`, `country_id`, `city_id`, `name`, `price`, `description`) VALUES
+INSERT INTO `experiences` (`id`, `country_id`, `city_id`, `name`, `price`, `description`) VALUES
 (1, 1, 1, 'Tokyo Night Food Tour', 85, 'Fedezd fel Tokyo utcai étkezésének különleges világát egy helyi idegenvezetővel.'),
 (2, 2, 4, 'Colosseum és Római Fórum séta', 50, 'Történelmi séta az ókori Róma legikonikusabb helyszínein.'),
 (3, 3, 7, 'Budapest Thermal Spa Nap', 35, 'Pihentető nap a híres Széchenyi Gyógyfürdőben, fürdők és masszázsok.'),
@@ -495,77 +495,78 @@ INSERT INTO `experiences` (`experience_id`, `country_id`, `city_id`, `name`, `pr
 --
 
 CREATE TABLE `favourite` (
-  `user_id` int(5) NOT NULL,
-  `apartman_id` int(5) NOT NULL
+  `id` int(5) NOT NULL,
+  `user_id` int(5) DEFAULT NULL,
+  `apartman_id` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `favourite`
 --
 
-INSERT INTO `favourite` (`user_id`, `apartman_id`) VALUES
-(2, 1),
-(2, 24),
-(2, 25),
-(3, 1),
-(3, 2),
-(3, 25),
-(4, 2),
-(4, 3),
-(5, 3),
-(5, 4),
-(6, 4),
-(6, 5),
-(7, 5),
-(7, 6),
-(8, 6),
-(8, 7),
-(9, 7),
-(9, 8),
-(10, 8),
-(10, 9),
-(11, 9),
-(11, 10),
-(12, 10),
-(12, 11),
-(13, 11),
-(13, 12),
-(14, 12),
-(14, 13),
-(15, 13),
-(15, 14),
-(16, 14),
-(16, 15),
-(17, 15),
-(17, 16),
-(18, 16),
-(18, 17),
-(19, 17),
-(19, 18),
-(20, 18),
-(20, 19),
-(21, 19),
-(21, 20),
-(22, 20),
-(22, 21),
-(23, 21),
-(23, 22),
-(24, 22),
-(24, 23),
-(25, 23),
-(25, 24);
+INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
+(1, 2, 1),
+(2, 2, 24),
+(3, 2, 25),
+(4, 3, 1),
+(5, 3, 2),
+(6, 3, 25),
+(7, 4, 2),
+(8, 4, 3),
+(9, 5, 3),
+(10, 5, 4),
+(11, 6, 4),
+(12, 6, 5),
+(13, 7, 5),
+(14, 7, 6),
+(15, 8, 6),
+(16, 8, 7),
+(17, 9, 7),
+(18, 9, 8),
+(19, 10, 8),
+(20, 10, 9),
+(21, 11, 9),
+(22, 11, 10),
+(23, 12, 10),
+(24, 12, 11),
+(25, 13, 11),
+(26, 13, 12),
+(27, 14, 12),
+(28, 14, 13),
+(29, 15, 13),
+(30, 15, 14),
+(31, 16, 14),
+(32, 16, 15),
+(33, 17, 15),
+(34, 17, 16),
+(35, 18, 16),
+(36, 18, 17),
+(37, 19, 17),
+(38, 19, 18),
+(39, 20, 18),
+(40, 20, 19),
+(41, 21, 19),
+(42, 21, 20),
+(43, 22, 20),
+(44, 22, 21),
+(45, 23, 21),
+(46, 23, 22),
+(47, 24, 22),
+(48, 24, 23),
+(49, 25, 23),
+(50, 25, 24);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `rents`
+-- Tábla szerkezet ehhez a táblához `history`
 --
 
-CREATE TABLE `rents` (
-  `rent_id` int(5) NOT NULL,
-  `renter_id` int(5) NOT NULL,
-  `owner_id` int(5) NOT NULL,
-  `apartman_id` int(5) NOT NULL,
+CREATE TABLE `history` (
+  `id` int(5) NOT NULL,
+  `renter_id` int(5) DEFAULT NULL,
+  `owner_id` int(5) DEFAULT NULL,
+  `accommodation_id` int(5) DEFAULT NULL,
   `price` int(7) NOT NULL,
   `payment_type` varchar(20) NOT NULL DEFAULT '''''''unpaid''''''',
   `card_number` int(11) DEFAULT NULL,
@@ -577,10 +578,10 @@ CREATE TABLE `rents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `rents`
+-- A tábla adatainak kiíratása `history`
 --
 
-INSERT INTO `rents` (`rent_id`, `renter_id`, `owner_id`, `apartman_id`, `price`, `payment_type`, `card_number`, `expiration`, `cvv`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
+INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price`, `payment_type`, `card_number`, `expiration`, `cvv`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
 (1, 3, 2, 1, 120, 'paid', 2147483647, '11/27', 241, '2025-08-06', '2025-08-12', '2025-08-19'),
 (2, 4, 20, 2, 90, 'paid', 2147483647, '04/26', 522, '2025-07-11', '2025-07-20', '2025-07-25'),
 (3, 5, 21, 3, 80, 'paid', 2147483647, '09/28', 113, '2025-05-22', '2025-06-15', '2025-06-20'),
@@ -645,40 +646,40 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 --
 
 --
--- A tábla indexei `apartmans`
+-- A tábla indexei `accommodations`
 --
-ALTER TABLE `apartmans`
-  ADD PRIMARY KEY (`apartman_id`),
+ALTER TABLE `accommodations`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `owner_id` (`owner_id`),
   ADD KEY `city_id` (`city_id`),
   ADD KEY `country_id` (`country_id`);
 
 --
--- A tábla indexei `apartman_details`
+-- A tábla indexei `accommodations_details`
 --
-ALTER TABLE `apartman_details`
+ALTER TABLE `accommodations_details`
   ADD PRIMARY KEY (`apartman_id`);
 
 --
--- A tábla indexei `city`
+-- A tábla indexei `cities`
 --
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`city_id`),
-  ADD UNIQUE KEY `city_name` (`city_name`),
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `city_name` (`name`),
   ADD KEY `country_id` (`country_id`);
 
 --
--- A tábla indexei `country`
+-- A tábla indexei `countries`
 --
-ALTER TABLE `country`
-  ADD PRIMARY KEY (`country_id`),
-  ADD UNIQUE KEY `country_name` (`country_name`);
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `country_name` (`name`);
 
 --
 -- A tábla indexei `experiences`
 --
 ALTER TABLE `experiences`
-  ADD PRIMARY KEY (`experience_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `country_id` (`country_id`),
   ADD KEY `city_name` (`city_id`);
 
@@ -686,16 +687,17 @@ ALTER TABLE `experiences`
 -- A tábla indexei `favourite`
 --
 ALTER TABLE `favourite`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`,`apartman_id`),
   ADD KEY `apartman_id` (`apartman_id`);
 
 --
--- A tábla indexei `rents`
+-- A tábla indexei `history`
 --
-ALTER TABLE `rents`
-  ADD PRIMARY KEY (`rent_id`),
-  ADD KEY `renter_id` (`renter_id`,`owner_id`,`apartman_id`),
-  ADD KEY `apartman_id` (`apartman_id`),
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `renter_id` (`renter_id`,`owner_id`,`accommodation_id`),
+  ADD KEY `apartman_id` (`accommodation_id`),
   ADD KEY `owner_id` (`owner_id`);
 
 --
@@ -710,34 +712,40 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT a táblához `apartmans`
+-- AUTO_INCREMENT a táblához `accommodations`
 --
-ALTER TABLE `apartmans`
-  MODIFY `apartman_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+ALTER TABLE `accommodations`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT a táblához `city`
+-- AUTO_INCREMENT a táblához `cities`
 --
-ALTER TABLE `city`
-  MODIFY `city_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+ALTER TABLE `cities`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
--- AUTO_INCREMENT a táblához `country`
+-- AUTO_INCREMENT a táblához `countries`
 --
-ALTER TABLE `country`
-  MODIFY `country_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+ALTER TABLE `countries`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT a táblához `experiences`
 --
 ALTER TABLE `experiences`
-  MODIFY `experience_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT a táblához `rents`
+-- AUTO_INCREMENT a táblához `favourite`
 --
-ALTER TABLE `rents`
-  MODIFY `rent_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `favourite`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT a táblához `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `users`
@@ -750,46 +758,46 @@ ALTER TABLE `users`
 --
 
 --
--- Megkötések a táblához `apartmans`
+-- Megkötések a táblához `accommodations`
 --
-ALTER TABLE `apartmans`
-  ADD CONSTRAINT `apartmans_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`),
-  ADD CONSTRAINT `apartmans_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`),
-  ADD CONSTRAINT `apartmans_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`);
+ALTER TABLE `accommodations`
+  ADD CONSTRAINT `accommodations_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `accommodations_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `accommodations_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `apartman_details`
+-- Megkötések a táblához `accommodations_details`
 --
-ALTER TABLE `apartman_details`
-  ADD CONSTRAINT `apartman_details_ibfk_1` FOREIGN KEY (`apartman_id`) REFERENCES `apartmans` (`apartman_id`);
+ALTER TABLE `accommodations_details`
+  ADD CONSTRAINT `accommodations_details_ibfk_1` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `city`
+-- Megkötések a táblához `cities`
 --
-ALTER TABLE `city`
-  ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`);
+ALTER TABLE `cities`
+  ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `experiences`
 --
 ALTER TABLE `experiences`
-  ADD CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`),
-  ADD CONSTRAINT `experiences_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`);
+  ADD CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `experiences_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `favourite`
 --
 ALTER TABLE `favourite`
-  ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`apartman_id`) REFERENCES `apartmans` (`apartman_id`);
+  ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `rents`
+-- Megkötések a táblához `history`
 --
-ALTER TABLE `rents`
-  ADD CONSTRAINT `rents_ibfk_1` FOREIGN KEY (`apartman_id`) REFERENCES `apartmans` (`apartman_id`),
-  ADD CONSTRAINT `rents_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `apartmans` (`owner_id`),
-  ADD CONSTRAINT `rents_ibfk_3` FOREIGN KEY (`renter_id`) REFERENCES `users` (`id`);
+ALTER TABLE `history`
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `accommodations` (`owner_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `history_ibfk_3` FOREIGN KEY (`renter_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
