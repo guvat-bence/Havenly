@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <h1 class="display-1 text-white text-center w-100 mt-3">
+      <h1 class="display-1 text-white text-center w-100">
         Hová szeretnél utazni?
       </h1>
       <form class="form mt-5 col-3 row justify-content-center 

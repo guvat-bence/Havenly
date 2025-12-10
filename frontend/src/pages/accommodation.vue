@@ -18,7 +18,7 @@ onMounted(()=>
 </script>
 <template>
     <div class="container">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center">
             <div v-for="x in accommodations" x:key="apartman_id" 
                  class="card mx-2 my-2 shadow
                         col-8 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">

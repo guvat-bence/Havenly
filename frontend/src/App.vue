@@ -6,9 +6,9 @@ import Myfooter  from './components/footer.vue';
 <template>
 <div class="page-container d-flex 
             flex-column min-vh-100 
-            vw-100 overflow-x-hidden">
+            w-100 overflow-x-hidden">
     <navbar class="sticky-top"/>
-    <router-view class="flex-fill"/>
+    <router-view class="flex-fill my-5"/>
     <myfooter class="sticky-button"/>
 
 </div>

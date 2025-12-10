@@ -1,13 +1,13 @@
 <template>
   <footer class="bg-dark">
-    <div class="row text-white text-center justify-content-center mt-3">
+    <div class="row text-white text-center justify-content-center mt-3 mx-3">
       <section class="col-4">
         <h3>Havenly</h3>
         <p>Az élmények határtalanok, az otthon érzése pedig mindig veled tart.</p>
       </section>
-       <section class="col-4">
+       <section class="col-4 text-white">
         <h3>Kövess minket:</h3>
-        <p></p>
+        <p> <font-awesome-icon icon="fa-solid fa-house" /></p>
         <p></p>
         <p></p>
         <p></p>
