@@ -1,4 +1,4 @@
-import about_us from '@/pages/about_us.vue'
+import aboutus from '@/pages/about_us.vue'
 import Accommodation from '@/pages/accommodation.vue'
 import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
@@ -12,7 +12,7 @@ let routes = [
   },
   {
     path: "/aboutus",
-    component: about_us
+    component: aboutus
   },
   {
     path: "/accommodation",
