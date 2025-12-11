@@ -15,35 +15,35 @@ const db = mysql.createConnection({
 
 db.connect(err => {
   if (err) {
-    console.error('Hiba a MySQL kapcsolódáskor:', err)
-    return
+    console.error('Hiba a MySQL kapcsolódáskor:', err);
+    return;
   }
-  console.log('Sikeres MySQL kapcsolat!')
+  console.log('Sikeres MySQL kapcsolat!');
 })
 
 app.listen(port, () => {
-  console.log(`app is running on port ${port}`)
+  console.log(`index.js is running on port ${port}`);
 })
 
 
 app.get('/apartmans', (req, res) => {
   db.query('SELECT * FROM apartmans', (err,result) => {
     if(err){
-      console.error("Hiba a apartmans beolvasásakor", err)
-      res.status(500).send("Adatbázis hiba")
-      return
+      console.error("Hiba a apartmans beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
     }
-    res.json(result)
+    res.json(result);
   })
 })
 
 app.get('/experiences', (req, res) => {
   db.query('SELECT * FROM experiences', (err,result) => {
     if(err){
-      console.error("Hiba a experiences beolvasásakor", err)
-      res.status(500).send("Adatbázis hiba")
-      return
+      console.error("Hiba a experiences beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
     }
-    res.json(result)
+    res.json(result);
   })
 })
