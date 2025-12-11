@@ -22,11 +22,12 @@
 
 ## 1. Adatbázis telepítés és indítása
 
-    Nyissa meg a "xampp" alkamazást, majd a "MySQL" menüpontnál kattintson a start gombra.
-    Az "Apache"  menüpontnál kattintson a start gombra, ezután attintson az admin menüpontra hogy hozzá tudja adni az adatbázist.
+    Nyissa meg a "xampp" alkamazást, majd az "Apache" menüpontnál kattintson a start gombra.
+    Az "MySQL" menüpontnál kattintson a start gombra.
+    Ezután a  "MySQL" menüpontnál kattintson az admin menüpontra hogy hozzá tudja adni az adatbázist.
     A "phpMyAdmin" oldalán kattintson bal oldalt  az "Új" menüpontra.
     Adatbázis névnek állítsa be a "havenly" nevet, majd a mellete lévő legürdülő menübeen keresse meg a "utf8_general_ci" opciót.
-    Ezután kattintson a "Létrehozás" gombra.
+    Végül kattintson a "Létrehozás" gombra.
 
 ## 2. Frontend telepítése és indítása
     A "frontend" mappán belül az alábbi parancsot futassa:
