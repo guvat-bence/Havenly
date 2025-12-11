@@ -352,3 +352,7 @@ C:\xampp\htdocs\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.g.cs
 C:\xampp\htdocs\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.baml
 E:\xampp\htdocs\html\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.g.cs
 E:\xampp\htdocs\html\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.baml
+C:\xampp\htdocs\guvat_bence\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\approve.png
+C:\xampp\htdocs\guvat_bence\Havenly\program\Havenly\bin\Debug\net8.0-windows\image\decline.png
+C:\xampp\htdocs\guvat_bence\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.g.cs
+C:\xampp\htdocs\guvat_bence\Havenly\program\Havenly\obj\Debug\net8.0-windows\Datas.baml

@@ -128,26 +128,19 @@ namespace Havenly
             accommodationbtn.IsEnabled = true;
             datagrid0.IsReadOnly = true;
         }
-        private void experience_button_Click(object sender, RoutedEventArgs e)
-        {
-            currentTable = "experience";
-            readData("experience");
-            enable_btns();
-            experience_button.IsEnabled = false;
-        }
 
         private void citybtn_Click(object sender, RoutedEventArgs e)
         {
-            currentTable = "city";
-            readData("city");
+            currentTable = "cities";
+            readData("cities");
             enable_btns();
             citybtn.IsEnabled = false;
         }
 
         private void detailsbtn_Click(object sender, RoutedEventArgs e)
         {
-            currentTable = "apartman_details";
-            readData("apartman_details");
+            currentTable = "accommodations_details";
+            readData("accommodations_details");
             enable_btns();
             detailsbtn.IsEnabled = false;
 
@@ -155,8 +148,8 @@ namespace Havenly
 
         private void countrybtn_Click(object sender, RoutedEventArgs e)
         {
-            currentTable = "country";
-            readData("country");
+            currentTable = "countries";
+            readData("countries");
             enable_btns();
             countrybtn.IsEnabled = false;
         }
@@ -179,8 +172,8 @@ namespace Havenly
 
         private void historybtn_Click(object sender, RoutedEventArgs e)
         {
-            currentTable = "rents";
-            readData("rents");
+            currentTable = "history";
+            readData("history");
             enable_btns();
             historybtn.IsEnabled = false;
         }
@@ -195,8 +188,8 @@ namespace Havenly
 
         private void accommodationbtn_Click(object sender, RoutedEventArgs e)
         {
-            currentTable = "apartmans";
-            readData("apartmans");
+            currentTable = "accommodations";
+            readData("accommodations");
             enable_btns();
             accommodationbtn.IsEnabled = false;
 
