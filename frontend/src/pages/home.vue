@@ -1,3 +1,12 @@
+<script setup>
+import { reactive } from 'vue';
+import cards from '../components/apartamancards.vue';
+
+let model = reactive({
+  searchbar: ''
+})
+</script>
+
 <template>
   <div class="container">
     <div class="row justify-content-center">
@@ -5,11 +14,23 @@
         Hová szeretnél utazni?
       </h1>
       <form class="form mt-5 col-3 row justify-content-center 
-                   bg-dark bg-opacity-50 rounded-3 shadow">
-        <input  class="form-control mt-2" type="search" 
-                name="searchbar" id="searchbar">
-        <button class="btn btn-secondary col-11 my-2">Keresés</button>
-      </form>
+                   bg-dark bg-opacity-50 rounded-3 shadow
+                   p-4 border border-1 border-white">
+
+        <!-- Keresési mező -->
+        <input  class="form-control mt-2" 
+                type="search" 
+                name="searchbar" 
+                id="searchbar"
+                placeholder="Írja be a település nevét. Pl.: Tokyo"
+                v-model="model.searchbar">
+        <!-- Keresési gomb -->
+        <button class="btn btn-outline-light col-11 my-2 mt-3"
+                :disabled="!model.searchbar">Keresés</button>
+      </form> 
+    </div>
+    <div class="row">
+      <cards/>
     </div>
   </div>
 </template>
