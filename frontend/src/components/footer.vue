@@ -25,7 +25,7 @@
       <section class="col-12 col-sm-6 col-md-4 
                       col-lg-4 col-xl-6 col-xxl-6 mb-5 mb-sm-4 mb-md-0">
         <h3>Havenly</h3>
-        <p class="mb-sm-3 mb-md-4 mb-lg-5">Az élmények határtalanok, az otthon érzése pedig mindig veled tart.</p>
+        <p class="mt-4 mb-sm-3 mb-md-4 mb-lg-5">"-Az élmények határtalanok, az otthon érzése pedig mindig veled tart."</p>
         <a class="nav-link mt-1 mt-sm-2 mt-lg-4" href="">Adatvédelem</a>
         <a class="nav-link mt-1 mt-sm-2 mt-lg-4" href="">Felhasználói feltételek</a>
       </section>
