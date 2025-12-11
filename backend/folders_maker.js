@@ -23,7 +23,25 @@ app.listen(port,()=>{
   console.log(`folders_maker is running on port ${port}`);
 })
 
-app.get('/datas',(req,res,next)=>
+app.get('/datas',(req,res)=>
 {
-  db.query()
+  db.query("SELECT `countries`.`name` AS `country_name`," + 
+                   "`cities`.`name` AS `city_name`," + 
+                   "`accommodations`.`name` AS `accommodation_name`," + 
+                   "`experiences`.`name` AS `experience_name` FROM `countries`" +
+           "INNER JOIN `cities`" +
+           "ON `cities`.`country_id` = `countries`.`id`" +
+           "INNER JOIN `accommodations`" +
+           "ON `cities`.`id` = `accommodations`.`city_id`" +
+           "LEFT JOIN `experiences`" +
+           "ON `cities`.`id` = `experiences`.`city_id`",(err, result) =>
+            {
+               if(err){
+                console.error("Hiba a apartmans beolvasásakor", err);
+                res.status(500).send("Adatbázis hiba");
+                return;
+              }
+              res.json(result);
+            })
+  
 })

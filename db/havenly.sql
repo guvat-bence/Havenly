@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Dec 10. 21:01
+-- Létrehozás ideje: 2025. Dec 11. 20:31
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -46,8 +46,8 @@ INSERT INTO `accommodations` (`id`, `owner_id`, `name`, `size`, `country_id`, `c
 (1, 2, 'Budapest Center Apartment', 55, 3, 7, 120, 'Kényelmes apartman a belváros szívében, közel a látnivalókhoz.'),
 (2, 3, 'Szeged Riverside Loft', 65, 3, 8, 90, 'Modern loft a Tisza partján, erkélyes kilátással.'),
 (3, 4, 'Debrecen Cozy Flat', 50, 3, 9, 80, 'Csendes lakás a belváros közelében, jól felszerelt konyhával.'),
-(4, 5, 'Pécs Art Apartment', 60, 3, 103, 95, 'Stílusos apartman a Pécsi belvárosban, közel a kulturális központokhoz.'),
-(5, 6, 'Győr Riverside Studio', 40, 3, 104, 70, 'Kis stúdió a Rába partján, ideális pároknak.'),
+(4, 5, 'Pécs Art Apartment', 60, 3, 213, 95, 'Stílusos apartman a Pécsi belvárosban, közel a kulturális központokhoz.'),
+(5, 6, 'Győr Riverside Studio', 40, 3, 214, 70, 'Kis stúdió a Rába partján, ideális pároknak.'),
 (6, 7, 'Tokyo Shinjuku Flat', 55, 1, 1, 150, 'Kényelmes apartman Shinjuku szívében, közel a metróhoz.'),
 (7, 8, 'Osaka Modern Studio', 45, 1, 2, 130, 'Modern stúdió Osaka központjában, ideális rövid tartózkodásra.'),
 (8, 9, 'Rome Colosseum View', 70, 2, 4, 180, 'Panorámás lakás a Colosseum közelében, erkélyes kilátással.'),
@@ -66,8 +66,8 @@ INSERT INTO `accommodations` (`id`, `owner_id`, `name`, `size`, `country_id`, `c
 (21, 22, 'Budapest Luxury Penthouse', 120, 3, 7, 350, 'Exkluzív penthouse a Duna partján, nagy terasszal.'),
 (22, 23, 'Szeged Modern Loft', 70, 3, 8, 130, 'Modern loft a belvárosban, erkélyes és világos.'),
 (23, 24, 'Debrecen Family Apartment', 80, 3, 9, 110, 'Tágas családi lakás közel a belvároshoz.'),
-(24, 25, 'Pécs Cozy Studio', 35, 3, 103, 60, 'Kis stúdió a Pécsi kulturális központban.'),
-(25, 2, 'Győr Central Apartment', 55, 3, 104, 90, 'Kényelmes lakás Győr belvárosában.');
+(24, 25, 'Pécs Cozy Studio', 35, 3, 213, 60, 'Kis stúdió a Pécsi kulturális központban.'),
+(25, 2, 'Győr Central Apartment', 55, 3, 214, 90, 'Kényelmes lakás Győr belvárosában.');
 
 -- --------------------------------------------------------
 
@@ -359,7 +359,9 @@ INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 (209, 70, 'Wellington'),
 (210, 70, 'Dunedin'),
 (211, 3, 'Makó'),
-(212, 3, 'Apátfalva');
+(212, 3, 'Apátfalva'),
+(213, 3, 'Pécs'),
+(214, 3, 'Győr');
 
 -- --------------------------------------------------------
 
@@ -484,9 +486,9 @@ INSERT INTO `experiences` (`id`, `country_id`, `city_id`, `name`, `price`, `desc
 (14, 18, 52, 'Lisbon Fado Night', 50, 'Élő Fado est vacsorával a történelmi Alfama negyedben.'),
 (15, 33, 97, 'Istanbul Bosphorus Cruise', 40, 'Fedezd fel Isztambul látképét a Boszporuszról, naplementében.'),
 (16, 3, 101, 'Szegedi Halászlé Főzőest', 25, 'Tanulj meg autentikus szegedi halászlevet készíteni helyi szakács segítségével.'),
-(17, 3, 102, 'Pécsi Borkóstoló Túra', 45, 'Barangolás a villányi borvidéken, 5 bor kóstolása és sajttálas kísérettel.'),
-(18, 3, 103, 'Debreceni Virágkarnevál Élmény', 30, 'Különleges belépő a híres virágkarneválra, helyi idegenvezetővel.'),
-(19, 3, 104, 'Győri Történelmi Városnézés', 20, 'Séta a barokk belvárosban és a Rába-parton idegenvezetővel.');
+(17, 3, 213, 'Pécsi Borkóstoló Túra', 45, 'Barangolás a villányi borvidéken, 5 bor kóstolása és sajttálas kísérettel.'),
+(18, 3, 9, 'Debreceni Virágkarnevál Élmény', 30, 'Különleges belépő a híres virágkarneválra, helyi idegenvezetővel.'),
+(19, 3, 214, 'Győri Történelmi Városnézés', 20, 'Séta a barokk belvárosban és a Rába-parton idegenvezetővel.');
 
 -- --------------------------------------------------------
 
@@ -721,7 +723,7 @@ ALTER TABLE `accommodations`
 -- AUTO_INCREMENT a táblához `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT a táblához `countries`
