@@ -26,10 +26,10 @@ app.listen(port, () => {
 })
 
 
-app.get('/apartmans', (req, res) => {
-  db.query('SELECT * FROM apartmans', (err,result) => {
+app.get('/accommodations', (req, res) => {
+  db.query('SELECT * FROM accommodations', (err,result) => {
     if(err){
-      console.error("Hiba a apartmans beolvasásakor", err);
+      console.error("Hiba a accommodations beolvasásakor", err);
       res.status(500).send("Adatbázis hiba");
       return;
     }

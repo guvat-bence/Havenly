@@ -7,7 +7,7 @@ const accommodations = ref([]);
 
 onMounted(()=>
 {
-	axios.get("http://localhost:3000/apartmans")
+	axios.get("http://localhost:3000/accommodations")
 		.then(response => 
 		{
 			accommodations.value = response.data
@@ -24,7 +24,7 @@ onMounted(()=>
                         col-8 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
                 <!-- <img :src="x.path" class="bg-dark mx-auto col-12"> -->
 								<div class="card-body col-12">
-									<p class="text-center">{{x.apartman_name}}</p>
+									<p class="text-center">{{x.name}}</p>
 								</div>
             </div>
         </div>
