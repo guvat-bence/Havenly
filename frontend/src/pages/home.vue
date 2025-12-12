@@ -13,7 +13,7 @@ let model = reactive({
       <h1 class="display-1 text-white text-center w-100">
         Hová szeretnél utazni?
       </h1>
-      <form class="form mt-5 col-3 row justify-content-center 
+      <form class="form mt-5 col-12 col-lg-4 col-md-5 row justify-content-center 
                    bg-dark bg-opacity-50 rounded-3 shadow
                    p-4 border border-1 border-white">
 

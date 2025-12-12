@@ -16,7 +16,7 @@ onMounted(() => {
 <template>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" 
-         v-for="value in items" 
+         v-for="value in items.slice(0,5)" 
          :key="value.id">
       <div class="card text-white h-100 border-light bg-transparent">
         <img src="../image/fff.png" 
