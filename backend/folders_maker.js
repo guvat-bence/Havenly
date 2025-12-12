@@ -44,8 +44,9 @@ db.query(
     
     datas = result;
     console.log(datas);
-
-    
+    fs.mkdirSync(`../frontend/src/images/countries/${datas[0].country_name}`,{recursive:true});
+   
+    process.exit(0);
   }
 )
 
