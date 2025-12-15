@@ -5,7 +5,7 @@ import { ref, onMounted } from 'vue';
 const items = ref([]);
 
 onMounted(() => {
-  axios.get('http://localhost:3000/apartmans')
+  axios.get('http://localhost:3000/accommodations')
     .then(response => {
       items.value = response.data;
     })
