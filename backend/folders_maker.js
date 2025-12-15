@@ -88,7 +88,7 @@ function putFilesToFolders(itemsDir,placeType,folderDir)
           }
           else{
             let originalFile = path.join(itemsDir,placeType,files[i]);
-            let copied = path.join(folderDir,i>10?`0${i+1}.png`:`00${i+1}.png`);
+            let copied = path.join(folderDir,i>=9?`0${i+1}.png`:`00${i+1}.png`);
 
             fs.copyFile(originalFile,copied,(err)=>
             {
@@ -118,7 +118,7 @@ function putFilesToFolders(itemsDir,placeType,folderDir)
   })
 }
 
-putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
+// putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
 
 // db.query(
 //   "SELECT `countries`.`name` AS `country_name`," +
