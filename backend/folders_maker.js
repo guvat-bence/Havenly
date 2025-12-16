@@ -1,10 +1,6 @@
-const express = require("express");
-const app = express();
 const mysql = require("mysql");
 const fs = require("node:fs");
-const { after } = require("node:test");
 const path  = require("path");
-const port = 3100;
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -15,14 +11,9 @@ const db = mysql.createConnection({
 
 db.connect(err => {
   if (err) {
-    console.error("Hiba a Mysql szerver csatlakozáskor:", err);
-    return;
+    return console.error("Hiba a Mysql szerver csatlakozáskor:", err);
   }
-  console.log("Sikeres csatlakozás!");
-})
-
-app.listen(port, () => {
-  console.log(`folders_maker is running on port ${port}`);
+  console.log("Sikeres csatlakozás az adatbázishoz!");
 })
 
 function convertStrings(str) 
@@ -33,7 +24,7 @@ function convertStrings(str)
             .toLowerCase();
 }
 
-const itemsDir ="e:/Downloads/project_images";
+const itemsDir ="c:/Users/guvat.bence/Downloads/download_images";
 
 function putFilesToFolders(itemsDir,placeType,folderDir)
 {
@@ -62,7 +53,7 @@ function putFilesToFolders(itemsDir,placeType,folderDir)
       }
       // ha nagyobb a folders length-je mint 2 vagy egyenlő 0-val akkor hibával tér vissza.
       //hiszen csak 2 mappának kellenen hogy legyen accommodations,experiences.
-      if(folders.length>2 && files.folders == 0)
+      if(folders.length>2 || folders.length == 0)
       {
         return console.log("probléma adódott a belső mappákkal, kérem ellnőrizze!" + console.log(folders));
       }
@@ -70,7 +61,7 @@ function putFilesToFolders(itemsDir,placeType,folderDir)
       // a path segítségel az adatokból össze rakjuk a kezdeti elérési útvonalat.
       let fullFolder = path.join(itemsDir,placeType);
 
-      // for ciklust állítunk a képek számolásához.
+      // for ciklust állítunk a fájlok számolásához.
       for(let i=0;i<10;i++)
       {
         // megnézzök az accommodation/experiences mappa tartalmát.
@@ -84,34 +75,35 @@ function putFilesToFolders(itemsDir,placeType,folderDir)
           // Megnézzük a files length-jét, ha nem nagyoobb mint 0 akkor ebben a mappában nincsenek fotók.
           if(files.length==0)
           {
-            return console.log("Ellenőrizze a mappa tartalmát! "+files);
+            return console.log("Ellenőrizze a mappa tartalmát! Lehetséges hogy el fogytak a fájlok. "+files);
           }
-          else{
-            let originalFile = path.join(itemsDir,placeType,files[i]);
-            let copied = path.join(folderDir,i>=9?`0${i+1}.png`:`00${i+1}.png`);
 
-            fs.copyFile(originalFile,copied,(err)=>
+          // Feldaraboljuk pontok alapján az adott fájl nevet és ebből megszerezzük a kiterjesztés nevét.
+          let fileType = files[i].split(".")[files[i].split(".").length-1];
+
+          // a path segítségel az adatokból össze rakjuk a fájlok elérési útvonalát(fájlnévvel együtt).
+          let originalFile = path.join(itemsDir,placeType,files[i]);
+          let copied = path.join(folderDir,i>=9?`0${i+1}.${fileType}`:`00${i+1}.${fileType}`);
+
+          // Lemásoljuk a másolandó fájlt és az előre meghatározott helyre, előr emeghatározott névvel raktározzuk el.
+          fs.copyFile(originalFile,copied,(err)=>
+          {
+            // Ha nem tudja másolni a fájlt akkor az errorral fog visszatérrni.
+            if(err)
             {
-              // Ha nem tudja másolni a fájlt akkor az errorral fog visszatérrni.
+              return console.log("Sikertelen másolás, ellenőrizze a fájlokat! Lehetséges hogy el fogytak a fájlok."+err);
+            }
+            
+            // Kitöröljük az eredeti fájlt ezzel meggátolva azt hogy máshol is ugyan az fájl legyen.
+            fs.unlink(originalFile,(err)=>
+            {
+              // Ha nem tudja törölni a fájlt akkor az errorral fog visszatérrni.
               if(err)
               {
-                return console.log(err);
+                return console.log("Sikertelen törlés, ellenőrizze a fájlokat! "+err);
               }
-              
-              fs.unlink(originalFile,(err)=>
-              {
-                console.log(i);
-                console.log(originalFile);
-                console.log(copied);
-                // Ha nem tudja törölni a fájlt akkor az errorral fog visszatérrni.
-                if(err)
-                {
-                  return console.log(err);
-                }
-                console.log("A művelet befejeződött.");
-              })
             })
-          }
+          })
         })
       }
     })
@@ -120,38 +112,39 @@ function putFilesToFolders(itemsDir,placeType,folderDir)
 
 // putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
 
-// db.query(
-//   "SELECT `countries`.`name` AS `country_name`," +
-//   "`cities`.`name` AS `city_name`," +
-//   "`accommodations`.`name` AS `accommodation_name`," +
-//   "`experiences`.`name` AS `experience_name` FROM `countries`" +
-//   "INNER JOIN `cities`" +
-//   "ON `cities`.`country_id` = `countries`.`id`" +
-//   "INNER JOIN `accommodations`" +
-//   "ON `cities`.`id` = `accommodations`.`city_id`" +
-//   "LEFT JOIN `experiences`" +
-//   "ON `cities`.`id` = `experiences`.`city_id`", 
-//   (err, datas) => {
-//     if (err) {
-//       console.error("Hiba a datas beolvasásakor", err);
-//       return;
-//     }
+db.query(
+  "SELECT `countries`.`name` AS `country_name`," +
+  "`cities`.`name` AS `city_name`," +
+  "`accommodations`.`name` AS `accommodation_name`," +
+  "`experiences`.`name` AS `experience_name` FROM `countries`" +
+  "INNER JOIN `cities`" +
+  "ON `cities`.`country_id` = `countries`.`id`" +
+  "INNER JOIN `accommodations`" +
+  "ON `cities`.`id` = `accommodations`.`city_id`" +
+  "LEFT JOIN `experiences`" +
+  "ON `cities`.`id` = `experiences`.`city_id`", 
+  (err, datas) => {
+    if (err) {
+      console.error("Hiba a datas beolvasásakor", err);
+      return;
+    }
 
-//     console.log(datas);
-//     for(let i=0;i<datas.length;i++)
-//     { 
-//       fs.mkdirSync(`../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-//         `/cities/${convertStrings(datas[i].city_name)}`+
-//         `/accommodations/${convertStrings(datas[i].accommodation_name)}`,{recursive:true});
+    console.log(datas);
+    for(let i=0;i<datas.length;i++)
+    { 
+      fs.mkdirSync(`../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+        `/cities/${convertStrings(datas[i].city_name)}`+
+        `/accommodations/${convertStrings(datas[i].accommodation_name)}`,{recursive:true});
+
       
-//       if(datas[i].experience_name != null)
-//       {
-//         fs.mkdirSync(`../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-//           `/cities/${convertStrings(datas[i].city_name)}`+
-//           `/experiences/${convertStrings(datas[i].experience_name)}`,{recursive:true});
-//       }
-//     }
-//     process.exit(0);
-//   }
-// )
+      if(datas[i].experience_name != null)
+      {
+        fs.mkdirSync(`../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+          `/cities/${convertStrings(datas[i].city_name)}`+
+          `/experiences/${convertStrings(datas[i].experience_name)}`,{recursive:true});
+      }
+    }
+    process.exit(0);
+  }
+)
 
