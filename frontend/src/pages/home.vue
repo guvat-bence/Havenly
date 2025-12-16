@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue';
-import cards from '../components/apartamancards.vue';
+import cards from '../components/cards.vue';
 
 let model = reactive({
   searchbar: ''

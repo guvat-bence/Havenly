@@ -1,16 +1,16 @@
 <script setup>
 let mainRoutes = [
 	{
-		name: "Rólunk",
-		path: "/aboutus"
-	},
-	{
 		name: "Szállások",
 		path: "/accommodation"
 	},
 	{
 		name: "Élmények",
 		path: "/experience"
+	},	
+	{
+		name: "Rólunk",
+		path: "/aboutus"
 	}
 ]
 let sideRoutes=[
@@ -32,7 +32,7 @@ let sideRoutes=[
 			<router-link to="/">			
 				<img style="height: 48px;" 
 					 	 class="navbar-brand d-inline-block align-text-top" 
-					 	 src="../image/image.png" 
+					 	 src="../images/image.png" 
 					 	 alt="havenly_icon">
 			</router-link>
 
