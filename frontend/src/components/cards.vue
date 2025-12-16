@@ -3,9 +3,19 @@ import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
 let items = ref([]);
+let props = defineProps({
+	tableName: {
+		type: String,
+		required: true
+	},
+	country: {
+		type: String,
+		required: false
+	}
+})
 
 onMounted(() =>{
-	axios.get('http://localhost:3000/accommodations')
+	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
 		items.value = response.data;
 	})
@@ -18,7 +28,7 @@ onMounted(() =>{
 		<div class="card mx-4 col-md-5 g-4 p-0 bg-transparent text-white border-white" style="width: 25rem;"
 			v-for="x in items">
 			<div class="position-relative">
-				<img src="../images/fff.jpg" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+				<img src="../images/fff.png" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
 				<h5 class="card-title text-white position-absolute 
 									 bottom-0 start-0 w-100 bg-dark bg-opacity-50 
 									 text-center m-0 p-2 border fw-bold ">
@@ -29,7 +39,7 @@ onMounted(() =>{
 				<p class="card-text w-100">
 					{{ x.description }}
 				</p>
-				<a class=" d-block btn btn-outline-light mx-auto">Go somewhere</a>
+				<a class=" d-block btn btn-outline-light mx-auto">Érdekel</a>
 			</div>
 		</div>
 	</div>
