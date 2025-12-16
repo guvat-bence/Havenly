@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
+import {ref} from 'vue';
 
 let items = ref([]);
 
@@ -15,20 +15,18 @@ let props = defineProps({
 	}
 })
 
-onMounted(() =>{
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
 		items.value = response.data;
 	})
 	.catch(e => console.error(e))
-})
 </script>
 
 <template>
 	<div class="row justify-content-center cardhover">
 		<div class="card mx-4 col-md-5 g-4 p-0 
 								bg-transparent text-white border-white
-								rounded-4" 
+								rounded-4 mb-3" 
 				 v-for="x in items"
 				 :key="x.id"
 					v-show="x.country_id === props.country"
