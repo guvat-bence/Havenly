@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const fs = require("node:fs");
+const fs = require("node:fs").promises;
 const path  = require("path");
 
 const db = mysql.createConnection({
@@ -24,104 +24,112 @@ function convertStrings(str)
             .toLowerCase();
 }
 
-const itemsDir ="c:/Users/guvat.bence/Downloads/download_images";
+const itemsDir ="e:/Downloads/project_images";
 
-function putFilesToFolders(itemsDir,placeType,folderDir)
-{
+// function putFilesToFolders(itemsDir,placeType,folderDir)
+// {
 
-  //Megnézzük milyenelemek vannak az adott létrehozott accommodation/experiences mappában.
-  fs.readdir(folderDir,(err,response)=>
-  {
-    // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
-    if(err)
-    {
-      return console.log(err);
-    }
-    // Megnézzük a response length-jét, ha nagyoobb mint 0 akkor ebben a mappában már vannak fotók.
-    if(response.length>0)
-    {
-      return console.log("A mappában már szerepelnek fotók! "+response.length);
-    }
+//   //Megnézzük milyenelemek vannak az adott létrehozott accommodation/experiences mappában.
+//   fs.readdir(folderDir,(err,response)=>
+//   {
+//     // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
+//     if(err)
+//     {
+//       return console.log(err);
+//     }
+//     // Megnézzük a response length-jét, ha nagyoobb mint 0 akkor ebben a mappában már vannak fotók.
+//     if(response.length>0)
+//     {
+//       return console.log("A mappában már szerepelnek fotók! "+response.length);
+//     }
 
-    //megnézzük milyen mappák vannak a másolandó elemekkel teli mappacsoprtban.
-    fs.readdir(itemsDir,(err,folders)=>
-    {
-      // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
-      if(err)
-      {
-        return console.log(err);
-      }
-      // ha nagyobb a folders length-je mint 2 vagy egyenlő 0-val akkor hibával tér vissza.
-      //hiszen csak 2 mappának kellenen hogy legyen accommodations,experiences.
-      if(folders.length>2 || folders.length == 0)
-      {
-        return console.log("probléma adódott a belső mappákkal, kérem ellnőrizze!" + console.log(folders));
-      }
+//     //megnézzük milyen mappák vannak a másolandó elemekkel teli mappacsoprtban.
+//     fs.readdir(itemsDir,(err,folders)=>
+//     {
+//       // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
+//       if(err)
+//       {
+//         return console.log(err);
+//       }
+//       // ha nagyobb a folders length-je mint 2 vagy egyenlő 0-val akkor hibával tér vissza.
+//       //hiszen csak 2 mappának kellenen hogy legyen accommodations,experiences.
+//       if(folders.length>2 || folders.length == 0)
+//       {
+//         return console.log("probléma adódott a belső mappákkal, kérem ellnőrizze!" + console.log(folders));
+//       }
 
-      // a path segítségel az adatokból össze rakjuk a kezdeti elérési útvonalat.
-      let fullFolder = path.join(itemsDir,placeType);
+//       // a path segítségel az adatokból össze rakjuk a kezdeti elérési útvonalat.
+//       let fullFolder = path.join(itemsDir,placeType);
 
-      // for ciklust állítunk a fájlok számolásához.
-      for(let i=0;i<10;i++)
-      {
-        // megnézzök az accommodation/experiences mappa tartalmát.
-        fs.readdir(fullFolder,(err,files)=>
-        {
-          // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
-          if(err)
-          {
-            return console.log(err);
-          }
-          // Megnézzük a files length-jét, ha nem nagyoobb mint 0 akkor ebben a mappában nincsenek fotók.
-          if(files.length==0)
-          {
-            return console.log("Ellenőrizze a mappa tartalmát! Lehetséges hogy el fogytak a fájlok. "+files);
-          }
+//        // megnézzök az accommodation/experiences mappa tartalmát.
+//       fs.readdir(fullFolder,(err,files)=>
+//       {
+//         // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
+//         if(err)
+//         {
+//           return console.log(err);
+//         }
+//         // Megnézzük a files length-jét, ha nem nagyoobb mint 0 akkor ebben a mappában nincsenek fotók.
+//         if(files.length==0)
+//         {
+//           return console.log("Ellenőrizze a mappa tartalmát! Lehetséges hogy el fogytak a fájlok. "+files);
+//         }
 
-          // Feldaraboljuk pontok alapján az adott fájl nevet és ebből megszerezzük a kiterjesztés nevét.
-          let fileType = files[i].split(".")[files[i].split(".").length-1];
+//         // for ciklust állítunk a fájlok számolásához.
+//         for(let i=0;i<10;i++)
+//         {
+//           // Feldaraboljuk pontok alapján az adott fájl nevet és ebből megszerezzük a kiterjesztés nevét.
+//           let fileType = files[i].split(".")[files[i].split(".").length-1];
 
-          // a path segítségel az adatokból össze rakjuk a fájlok elérési útvonalát(fájlnévvel együtt).
-          let originalFile = path.join(itemsDir,placeType,files[i]);
-          let copied = path.join(folderDir,i>=9?`0${i+1}.${fileType}`:`00${i+1}.${fileType}`);
+//           // a path segítségel az adatokból össze rakjuk a fájlok elérési útvonalát(fájlnévvel együtt).
+//           let originalFile = path.join(itemsDir,placeType,files[i]);
+//           let copied = path.join(folderDir,i>=9?`0${i+1}.${fileType}`:`00${i+1}.${fileType}`);
 
-          // Lemásoljuk a másolandó fájlt és az előre meghatározott helyre, előr emeghatározott névvel raktározzuk el.
-          fs.copyFile(originalFile,copied,(err)=>
-          {
-            // Ha nem tudja másolni a fájlt akkor az errorral fog visszatérrni.
-            if(err)
-            {
-              return console.log("Sikertelen másolás, ellenőrizze a fájlokat! Lehetséges hogy el fogytak a fájlok."+err);
-            }
+//           console.log(originalFile);
+
+//           // Lemásoljuk a másolandó fájlt és az előre meghatározott helyre, előr emeghatározott névvel raktározzuk el.
+//           fs.copyFile(originalFile,copied,(err)=>
+//           {
+//             // Ha nem tudja másolni a fájlt akkor az errorral fog visszatérrni.
+//             if(err)
+//             {
+//               return console.log("Sikertelen másolás, ellenőrizze a fájlokat! Lehetséges hogy el fogytak a fájlok."+err);
+//             }
             
-            // Kitöröljük az eredeti fájlt ezzel meggátolva azt hogy máshol is ugyan az fájl legyen.
-            fs.unlink(originalFile,(err)=>
-            {
-              // Ha nem tudja törölni a fájlt akkor az errorral fog visszatérrni.
-              if(err)
-              {
-                return console.log("Sikertelen törlés, ellenőrizze a fájlokat! "+err);
-              }
-            })
-          })
-        })
-      }
-    })
-  })
-}
+//             // Kitöröljük az eredeti fájlt ezzel meggátolva azt hogy máshol is ugyan az fájl legyen.
+//             fs.unlink(originalFile,(err)=>
+//             {
+//               // Ha nem tudja törölni a fájlt akkor az errorral fog visszatérrni.
+//               if(err)
+//               {
+//                 return console.log("Sikertelen törlés, ellenőrizze a fájlokat! "+err);
+//               }
+//             })
+//           })
+//         }
+//       })
+//     })
+//   })
+// }
+
 
 // putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
 
+async function putFilesToFolders(itemsDir,placeType,folderDir)
+{
+  
+}
+
 db.query(
-  "SELECT `countries`.`name` AS `country_name`," +
-  "`cities`.`name` AS `city_name`," +
-  "`accommodations`.`name` AS `accommodation_name`," +
-  "`experiences`.`name` AS `experience_name` FROM `countries`" +
-  "INNER JOIN `cities`" +
-  "ON `cities`.`country_id` = `countries`.`id`" +
-  "INNER JOIN `accommodations`" +
-  "ON `cities`.`id` = `accommodations`.`city_id`" +
-  "LEFT JOIN `experiences`" +
+  "SELECT `countries`.`name` AS `country_name`, "+
+  "`cities`.`name` AS `city_name`, "+
+  "`accommodations`.`name` AS `accommodation_name`, "+
+  "`experiences`.`name` AS `experience_name` FROM `countries` "+
+  "INNER JOIN `cities` "+
+  "ON `cities`.`country_id` = `countries`.`id` "+
+  "INNER JOIN `accommodations` "+
+  "ON `cities`.`id` = `accommodations`.`city_id` "+
+  "LEFT JOIN `experiences` "+
   "ON `cities`.`id` = `experiences`.`city_id`", 
   (err, datas) => {
     if (err) {
@@ -129,7 +137,7 @@ db.query(
     }
     console.log(datas);
 
-    for(let i=0;i<datas.length;i++)
+    for(let i=0;i<2;i++)
     { 
       
       let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
@@ -149,7 +157,7 @@ db.query(
           // console.log("elso: "+folderDir);
           putFilesToFolders(itemsDir,"accommodations",folderDir);
         }
-      });
+      })
       
       if(datas[i].experience_name != null)
       {
@@ -165,10 +173,11 @@ db.query(
           }
           else
           {
-            // console.log("masodik: "+folderDir);
+            // console.log("elso: "+folderDir);
             putFilesToFolders(itemsDir,"experiences",folderDir);
+           
           }
-        });
+        })
       }
     }
     // process.exit(0);
