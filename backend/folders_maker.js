@@ -125,26 +125,53 @@ db.query(
   "ON `cities`.`id` = `experiences`.`city_id`", 
   (err, datas) => {
     if (err) {
-      console.error("Hiba a datas beolvasásakor", err);
-      return;
+      return console.error("Hiba a datas beolvasásakor", err);
     }
-
     console.log(datas);
+
     for(let i=0;i<datas.length;i++)
     { 
-      fs.mkdirSync(`../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-        `/cities/${convertStrings(datas[i].city_name)}`+
-        `/accommodations/${convertStrings(datas[i].accommodation_name)}`,{recursive:true});
+      
+      let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+                  `/cities/${convertStrings(datas[i].city_name)}`+
+                  `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
 
+      console.log(": "+folderDir);
+
+      fs.mkdir(folderDir,{recursive:true},(err)=>
+      {
+        if(err)
+        {
+          console.log(err);
+        }
+        else
+        {
+          // console.log("elso: "+folderDir);
+          putFilesToFolders(itemsDir,"accommodations",folderDir);
+        }
+      });
       
       if(datas[i].experience_name != null)
       {
-        fs.mkdirSync(`../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-          `/cities/${convertStrings(datas[i].city_name)}`+
-          `/experiences/${convertStrings(datas[i].experience_name)}`,{recursive:true});
+        let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+                    `/cities/${convertStrings(datas[i].city_name)}`+
+                    `/experiences/${convertStrings(datas[i].experience_name)}`;
+
+        fs.mkdir(folderDir,{recursive:true},(err)=>
+        {
+          if(err)
+          {
+            console.log(err);
+          }
+          else
+          {
+            // console.log("masodik: "+folderDir);
+            putFilesToFolders(itemsDir,"experiences",folderDir);
+          }
+        });
       }
     }
-    process.exit(0);
+    // process.exit(0);
   }
 )
 
