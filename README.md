@@ -30,30 +30,32 @@
     A "phpMyAdmin" oldalán kattintson bal oldalt  az "Új" menüpontra.
     Adatbázis névnek állítsa be a "havenly" nevet, majd a mellete lévő legürdülő menübeen keresse meg a "utf8_general_ci" opciót.
     Végül kattintson a "Létrehozás" gombra.
+    Ezután menjen a "beszúrás" menüpontra.Itt a tallózás gombra, és válassza ki a "havenly" mappából, azon belül pedig a "db" mappából a "havenly.sql" fájlt.
+    Ezután kattintsont az oldal alján lévő importálás gombra. 
 
-### 2. Frontend telepítése és indítása
+### 2. Backend telepítése és indítása
+    A "backend" mappán belül az alábbi parancsot futassa:
+    npm install
+    node index.js
+
+### 3. Frontend telepítése és indítása
     A "frontend" mappán belül az alábbi parancsot futassa:
     npm install
     npm run dev
     Ez után másolja ki a konzolon megjelenő localhostos elérési útvonalat, és másolja bele egy böngészőbe.
 
-### 3. Backend telepítése és indítása
-    A "backend" mappán belül az alábbi parancsot futassa:
-    npm install
-    node index.js
 
-## Az első indítás utáni indításakkor:
+
+## Az első indítás utáni indításkor:
 
 ### 1. Adatbázis indítása
     Nyissa meg a "xampp" alkamazást, a "MySQL" menüpontnál kattintson a start gombra.
 
-### 2. Frontend indítása
-    A "frontend" mappán belül az alábbi parancsot futassa:
-    npm run dev
-    Ez után másolja ki a konzolon megjelenő localhostos elérési útvonalat, és másolja bele egy böngészőbe.
-
-### 3. Backend indítása
+### 2. Backend indítása
     A "backend" mappán belül az alábbi parancsot futassa:
     node index.js
 
-
+### 3. Frontend indítása
+    A "frontend" mappán belül az alábbi parancsot futassa:
+    npm run dev
+    Ez után másolja ki a konzolon megjelenő localhostos elérési útvonalat, és másolja bele egy böngészőbe.
