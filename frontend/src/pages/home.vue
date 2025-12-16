@@ -29,8 +29,5 @@ let model = reactive({
                 :disabled="!model.searchbar">Keresés</button>
       </form> 
     </div>
-    <div class="row">
-      <cards/>
-    </div>
   </div>
 </template>

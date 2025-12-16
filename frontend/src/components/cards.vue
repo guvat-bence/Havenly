@@ -3,13 +3,14 @@ import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
 let items = ref([]);
+
 let props = defineProps({
 	tableName: {
 		type: String,
 		required: true
 	},
 	country: {
-		type: String,
+		type: [String,Number],
 		required: false
 	}
 })
@@ -25,10 +26,16 @@ onMounted(() =>{
 
 <template>
 	<div class="row justify-content-center cardhover">
-		<div class="card mx-4 col-md-5 g-4 p-0 bg-transparent text-white border-white" style="width: 25rem;"
-			v-for="x in items">
+		<div class="card mx-4 col-md-5 g-4 p-0 
+								bg-transparent text-white border-white
+								rounded-4" 
+				 v-for="x in items"
+				 :key="x.id"
+					v-show="x.country_id === props.country"
+				 style="width: 21rem;">
 			<div class="position-relative">
-				<img src="../images/fff.png" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+				<img src="../images/fff.png" class="card-img-top rounded-top-4" 
+						 style="height: 200px; object-fit: cover;">
 				<h5 class="card-title text-white position-absolute 
 									 bottom-0 start-0 w-100 bg-dark bg-opacity-50 
 									 text-center m-0 p-2 border fw-bold ">
@@ -36,10 +43,13 @@ onMounted(() =>{
 				</h5>
 			</div>
 			<div class="card-body">
-				<p class="card-text w-100">
+					<p class="card-text w-100">
 					{{ x.description }}
-				</p>
-				<a class=" d-block btn btn-outline-light mx-auto">Érdekel</a>
+					{{ x.country_id }}
+					</p>
+			</div>
+			<div class="card-footer border-0">
+				<button class="btn btn-outline-light w-100">Érdekel</button>
 			</div>
 		</div>
 	</div>

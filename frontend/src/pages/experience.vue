@@ -4,5 +4,5 @@ import Cards from '@/components/cards.vue';
 </script>
 
 <template>
-    <Cards tableName="experiences"/>
+  <Cards tableName="experiences" :country="3"/>
 </template>
