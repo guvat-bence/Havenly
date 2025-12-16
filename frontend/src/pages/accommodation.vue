@@ -3,9 +3,10 @@ import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
 let items = ref([])
+const props = defineProps
 
 onMounted(() => {
-  axios.get('http://localhost:3000/accommodations')
+  axios.get('http://localhost:3000/$`{read}`')
     .then(response => {
       items.value = response.data;
     })
@@ -22,7 +23,7 @@ onMounted(() => {
       <div class="position-relative">
         <img src="../images/fff.jpg" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
         <h5 class="card-title text-white position-absolute 
-									 bottom-0 start-0 w-100 
+									 bottom-0 start-0 w-100 bg-dark bg-opacity-50 
 									 text-center m-0 p-2 border fw-bold ">
 					{{x.name}}
         </h5>
