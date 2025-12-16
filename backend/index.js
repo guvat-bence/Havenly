@@ -47,3 +47,16 @@ app.get('/experiences', (req, res) => {
     res.json(result);
   })
 })
+
+app.get('/randCountryID', (req, res) => {
+  db.query('SELECT DISTINCT country_id FROM accommodations ORDER BY RAND() LIMIT 5', (err,result) => {
+    if(err){
+      console.error("Hiba a experiences beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+    res.json(result);
+  })
+})
+
+
