@@ -1,5 +1,17 @@
 # <center> Havenly projekt
 
+## <center> A projekt rövid lírása
+
+    Vizsgaremekünk témája egy szállásfoglaló weboldal fejlesztése. Az oldalon a felhasználók szállásokat foglalhatnak, valamint saját házukat vagy apartmanjukat is feltölthetik és kiadhatják.
+
+    A foglaláshoz és a szállások feltöltéséhez regisztráció szükséges, amely során a felhasználók megadják adataikat. Bejelentkezés után szállásokat foglalhatnak, szállásokat kezelhetnek, valamint különböző élményeket és helyi látványosságokat adhatnak hozzá és értékelhetnek városokhoz, ezzel segítve mások tájékozódását és vonzóbbá téve az adott településeket.
+
+    A felhasználók szerkeszthetik fiókadataikat, beállíthatják és elmenthetik fizetési és banki adataikat, így a későbbi foglalások gyorsabbá és kényelmesebbé válnak. A feltöltött szállások módosíthatók, kiegészíthetők vagy törölhetők, valamint részletes leírással, képekkel és videókkal is bemutathatók.
+
+    A rendszer automatikusan kezeli a foglalásokat, elkerülve a dupla foglalásokat. A kiadó minden foglalásról értesítést kap, és mind a kiadó, mind a foglaló lemondhatja a foglalást, azonban bizonyos idő elteltével csak részleges visszatérítés jár.
+
+    A weboldal saját üzenetküldő funkciót biztosít a kiadók és foglalók közötti kapcsolattartáshoz, emellett e-mailen és telefonon is elérhetik egymást. Az oldal több nyelven lesz elérhető, így szélesebb felhasználói kör számára nyújt lehetőséget.
+
 ## <center> Csapat tagok
 - Projekt vezető.: Guvat Bence József
 - Projekt tag.: Herczeg Máté János 
@@ -34,12 +46,12 @@
     Ezután kattintsont az oldal alján lévő importálás gombra. 
 
 ### 2. Backend telepítése és indítása
-    A "backend" mappán belül az alábbi parancsot futassa:
+    cd backend
     npm install
     node index.js
 
 ### 3. Frontend telepítése és indítása
-    A "frontend" mappán belül az alábbi parancsot futassa:
+    cd frontend
     npm install
     npm run dev
     Ez után másolja ki a konzolon megjelenő localhostos elérési útvonalat, és másolja bele egy böngészőbe.
@@ -52,10 +64,10 @@
     Nyissa meg a "xampp" alkamazást, a "MySQL" menüpontnál kattintson a start gombra.
 
 ### 2. Backend indítása
-    A "backend" mappán belül az alábbi parancsot futassa:
+    cd backend
     node index.js
 
 ### 3. Frontend indítása
-    A "frontend" mappán belül az alábbi parancsot futassa:
+    cd frontend
     npm run dev
     Ez után másolja ki a konzolon megjelenő localhostos elérési útvonalat, és másolja bele egy böngészőbe.
