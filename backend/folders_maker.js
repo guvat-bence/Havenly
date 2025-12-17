@@ -24,163 +24,171 @@ function convertStrings(str)
             .toLowerCase();
 }
 
-const itemsDir ="e:/Downloads/project_images";
-
-// function putFilesToFolders(itemsDir,placeType,folderDir)
-// {
-
-//   //Megnézzük milyenelemek vannak az adott létrehozott accommodation/experiences mappában.
-//   fs.readdir(folderDir,(err,response)=>
-//   {
-//     // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
-//     if(err)
-//     {
-//       return console.log(err);
-//     }
-//     // Megnézzük a response length-jét, ha nagyoobb mint 0 akkor ebben a mappában már vannak fotók.
-//     if(response.length>0)
-//     {
-//       return console.log("A mappában már szerepelnek fotók! "+response.length);
-//     }
-
-//     //megnézzük milyen mappák vannak a másolandó elemekkel teli mappacsoprtban.
-//     fs.readdir(itemsDir,(err,folders)=>
-//     {
-//       // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
-//       if(err)
-//       {
-//         return console.log(err);
-//       }
-//       // ha nagyobb a folders length-je mint 2 vagy egyenlő 0-val akkor hibával tér vissza.
-//       //hiszen csak 2 mappának kellenen hogy legyen accommodations,experiences.
-//       if(folders.length>2 || folders.length == 0)
-//       {
-//         return console.log("probléma adódott a belső mappákkal, kérem ellnőrizze!" + console.log(folders));
-//       }
-
-//       // a path segítségel az adatokból össze rakjuk a kezdeti elérési útvonalat.
-//       let fullFolder = path.join(itemsDir,placeType);
-
-//        // megnézzök az accommodation/experiences mappa tartalmát.
-//       fs.readdir(fullFolder,(err,files)=>
-//       {
-//         // Ha nem tudja megnézni a mappa tartalmát akkor az errorral fog visszatérrni.
-//         if(err)
-//         {
-//           return console.log(err);
-//         }
-//         // Megnézzük a files length-jét, ha nem nagyoobb mint 0 akkor ebben a mappában nincsenek fotók.
-//         if(files.length==0)
-//         {
-//           return console.log("Ellenőrizze a mappa tartalmát! Lehetséges hogy el fogytak a fájlok. "+files);
-//         }
-
-//         // for ciklust állítunk a fájlok számolásához.
-//         for(let i=0;i<10;i++)
-//         {
-//           // Feldaraboljuk pontok alapján az adott fájl nevet és ebből megszerezzük a kiterjesztés nevét.
-//           let fileType = files[i].split(".")[files[i].split(".").length-1];
-
-//           // a path segítségel az adatokból össze rakjuk a fájlok elérési útvonalát(fájlnévvel együtt).
-//           let originalFile = path.join(itemsDir,placeType,files[i]);
-//           let copied = path.join(folderDir,i>=9?`0${i+1}.${fileType}`:`00${i+1}.${fileType}`);
-
-//           console.log(originalFile);
-
-//           // Lemásoljuk a másolandó fájlt és az előre meghatározott helyre, előr emeghatározott névvel raktározzuk el.
-//           fs.copyFile(originalFile,copied,(err)=>
-//           {
-//             // Ha nem tudja másolni a fájlt akkor az errorral fog visszatérrni.
-//             if(err)
-//             {
-//               return console.log("Sikertelen másolás, ellenőrizze a fájlokat! Lehetséges hogy el fogytak a fájlok."+err);
-//             }
-            
-//             // Kitöröljük az eredeti fájlt ezzel meggátolva azt hogy máshol is ugyan az fájl legyen.
-//             fs.unlink(originalFile,(err)=>
-//             {
-//               // Ha nem tudja törölni a fájlt akkor az errorral fog visszatérrni.
-//               if(err)
-//               {
-//                 return console.log("Sikertelen törlés, ellenőrizze a fájlokat! "+err);
-//               }
-//             })
-//           })
-//         }
-//       })
-//     })
-//   })
-// }
-
-
-// putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
+const itemsDir ="c:/Users/guvat.bence/Downloads/download_images";
 
 async function putFilesToFolders(itemsDir,placeType,folderDir)
 {
-  
-}
+  //Megpróbálja végrehatjani az utasítást.
+  try
+  {
+    //Beolvassa a létrehozott mappát, és egy változóban tárolja el az értékeket.
+    let response = await fs.readdir(folderDir);
 
-db.query(
-  "SELECT `countries`.`name` AS `country_name`, "+
-  "`cities`.`name` AS `city_name`, "+
-  "`accommodations`.`name` AS `accommodation_name`, "+
-  "`experiences`.`name` AS `experience_name` FROM `countries` "+
-  "INNER JOIN `cities` "+
-  "ON `cities`.`country_id` = `countries`.`id` "+
-  "INNER JOIN `accommodations` "+
-  "ON `cities`.`id` = `accommodations`.`city_id` "+
-  "LEFT JOIN `experiences` "+
-  "ON `cities`.`id` = `experiences`.`city_id`", 
-  (err, datas) => {
-    if (err) {
-      return console.error("Hiba a datas beolvasásakor", err);
+    //Ha a jelenlegi mappában már vannak fájlok akkor hibaüzenettel tér vissza.
+    if(response.length>0)
+    {
+      return console.log(`A jelenlegi mappában már vannak fájlok. ${response.length}`);
     }
-    console.log(datas);
+  }
+  //Ha nem tudja végrehajtani az utasítésokat akkor ezzel tér visssza:
+  catch(err)
+  {
+    return console.log(`Hiba történ létrehozott mappa beolvasása során: ${err}`);
+  }
 
-    for(let i=0;i<2;i++)
-    { 
-      
-      let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-                  `/cities/${convertStrings(datas[i].city_name)}`+
-                  `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
+  //Megpróbálja végrehatjani az utasítást.
+  try
+  {
+    //Beolvassuk a célmappát amely mapparendszerében vannak a másolandó fájlok.
+    //A megkapott értékeket el tároljuk.
+    let folders = await fs.readdir(itemsDir);
 
-      console.log(": "+folderDir);
+    //Ellenörzi hogy a fájlok közzöt megtalálhatóak-e azok a mappák ahol a másolandó fájlok vannak.
+    //Ha nem találja hibaüzenettel tér vissza:
+    if(!folders.includes("accommodations")|| !folders.includes("experiences"))
+    {
+      return console.log(`Nem található a(z) accommodations/experiences mappa.`)
+    }
+  }
+  //Ha nem tudja végrehajtani az utasítésokat akkor ezzel tér visssza:
+  catch(err)
+  {
+    return console.log(`Hiba történ a célmappa beolvasása során: ${err}`);
+  }
 
-      fs.mkdir(folderDir,{recursive:true},(err)=>
+  //Létrehozzuk a fullDirFolder változót.
+  //A path.join segítségével meghatérozzuk a célmappán belüli mappa pontos útvonalát(accommodations/experiences).
+  let fullDirFolder = path.join(itemsDir,placeType);
+
+  //Megpróbálja végrehajtani a megadott parancsokat.
+  try
+  {
+    //A files változóba eltárolja a(z) accommodations/experiences mappában lévő fáljokat.
+    let files = await fs.readdir(fullDirFolder);
+
+    //Megnézzük mennyi fálj található az adott mappában.
+    //Ha nincs elég a teljes másolás végrehajtásához akkor hibaüzenettel tér vissza: 
+    if(files.length<10)
+    {
+      return console.log(`Nincsen elég fálj a másoláshoz! ${files.length}`);
+    }
+
+    // Létrehozzuk a fileType,oroginalFile és a copiedFile változókat. 
+    let fileType  = "";
+    let oroginalFile = "";
+    let copiedFile = ""; 
+
+    //A for ciklus segíségével szabályozzuk hogy hány fájl legyen egy mappában.
+    for(let i=0;i<10;i++)
+    {
+      //Megpróbálja végrehajtani a megadott parancsokat.
+      try
       {
-        if(err)
+        fileType  = files[i].includes(".").pop();
+        oroginalFile = path.join(fullDirFolder,files[i]);
+        copiedFile = path.join(folderDir,i>9?`0${i+1}`:`00${i+1}`);
+        
+        //Megpróbálja végrehajtani a megadott parancsokat.
+        try
         {
-          console.log(err);
-        }
-        else
-        {
-          // console.log("elso: "+folderDir);
-          putFilesToFolders(itemsDir,"accommodations",folderDir);
-        }
-      })
-      
-      if(datas[i].experience_name != null)
-      {
-        let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-                    `/cities/${convertStrings(datas[i].city_name)}`+
-                    `/experiences/${convertStrings(datas[i].experience_name)}`;
+          await fs.copyFile(oroginalFile,copiedFile);
 
-        fs.mkdir(folderDir,{recursive:true},(err)=>
+          await fs.unlink(oroginalFile);
+        }
+        //Ha nem tudja végrehajtani az utasításokat akkor ezzel tér visssza:
+        catch(err)
         {
-          if(err)
-          {
-            console.log(err);
-          }
-          else
-          {
-            // console.log("elso: "+folderDir);
-            putFilesToFolders(itemsDir,"experiences",folderDir);
-           
-          }
-        })
+          return console.log(`Hiba történ az accommodations/experiences mappa beolvasása során. ${err}`);
+        }
+
+      }
+      //Ha nem tudja végrehajtani az utasítésokat akkor ezzel tér visssza:
+      catch(err)
+      {
+        return console.log(`Hiba történ az accommodations/experiences mappa beolvasása során. ${err}`);
       }
     }
-    // process.exit(0);
   }
-)
+  //Ha nem tudja végrehajtani az utasítésokat akkor ezzel tér visssza:
+  catch(err)
+  {
+    return console.log(`Hiba történ az accommodations/experiences mappa beolvasása során. ${err}`);
+  }
+}
+
+putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
+
+// db.query(
+//   "SELECT `countries`.`name` AS `country_name`, "+
+//   "`cities`.`name` AS `city_name`, "+
+//   "`accommodations`.`name` AS `accommodation_name`, "+
+//   "`experiences`.`name` AS `experience_name` FROM `countries` "+
+//   "INNER JOIN `cities` "+
+//   "ON `cities`.`country_id` = `countries`.`id` "+
+//   "INNER JOIN `accommodations` "+
+//   "ON `cities`.`id` = `accommodations`.`city_id` "+
+//   "LEFT JOIN `experiences` "+
+//   "ON `cities`.`id` = `experiences`.`city_id`", 
+//   (err, datas) => {
+//     if (err) {
+//       return console.error("Hiba a datas beolvasásakor", err);
+//     }
+//     console.log(datas);
+
+//     for(let i=0;i<datas.length;i++)
+//     { 
+      
+//       let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+//                   `/cities/${convertStrings(datas[i].city_name)}`+
+//                   `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
+
+//       console.log(": "+folderDir);
+
+//       fs.mkdir(folderDir,{recursive:true},(err)=>
+//       {
+//         if(err)
+//         {
+//           console.log(err);
+//         }
+//         else
+//         {
+//           // console.log("elso: "+folderDir);
+//           // putFilesToFolders(itemsDir,"accommodations",folderDir);
+//         }
+//       })
+      
+//       if(datas[i].experience_name != null)
+//       {
+//         let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+//                     `/cities/${convertStrings(datas[i].city_name)}`+
+//                     `/experiences/${convertStrings(datas[i].experience_name)}`;
+
+//         fs.mkdir(folderDir,{recursive:true},(err)=>
+//         {
+//           if(err)
+//           {
+//             console.log(err);
+//           }
+//           else
+//           {
+//             // console.log("elso: "+folderDir);
+//             // putFilesToFolders(itemsDir,"experiences",folderDir);
+           
+//           }
+//         })
+//       }
+//     }
+//     // process.exit(0);
+//   }
+// )
 
