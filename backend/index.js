@@ -49,7 +49,14 @@ app.get('/experiences', (req, res) => {
 })
 
 app.get('/randCountryID', (req, res) => {
-  db.query('SELECT DISTINCT country_id FROM accommodations ORDER BY RAND() LIMIT 5', (err,result) => {
+
+  const command = `SELECT DISTINCT country_id,
+                                  countries.name
+                   FROM accommodations 
+                   INNER JOIN countries 
+                   ON accommodations.country_id = countries.id ORDER BY RAND() LIMIT 5`
+
+  db.query(command,(err,result) => {
     if(err){
       console.error("Hiba a experiences beolvasásakor", err);
       res.status(500).send("Adatbázis hiba");

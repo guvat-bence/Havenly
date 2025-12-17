@@ -1,5 +1,17 @@
 <script setup>
 import Cards from '@/components/cards.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+
+let country = ref([]);
+
+onMounted(() => {
+  axios.get('http://localhost:3000/randCountryID')
+    .then(response => {
+      country.value = response.data;
+    })
+    .catch(e => console.error(e))
+})
 
 </script>
 
