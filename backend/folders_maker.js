@@ -1,7 +1,9 @@
 const mysql = require("mysql");
-const fs = require("node:fs").promises;
+const fsp = require("node:fs").promises;
+const fs = require("node:fs");
 const path  = require("path");
 
+//Adatbázis beállítása.
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -9,6 +11,7 @@ const db = mysql.createConnection({
   database: "havenly"
 })
 
+//Adatbázis kapcsolat létrehozása.
 db.connect(err => {
   if (err) {
     return console.error("Hiba a Mysql szerver csatlakozáskor:", err);
@@ -16,6 +19,7 @@ db.connect(err => {
   console.log("Sikeres csatlakozás az adatbázishoz!");
 })
 
+//Sztring általakító function.
 function convertStrings(str) 
 {  
   return str.normalize("NFD")
@@ -24,15 +28,17 @@ function convertStrings(str)
             .toLowerCase();
 }
 
-const itemsDir ="c:/Users/guvat.bence/Downloads/download_images";
+//Annak a könyvtárnak a helye ahol a másolandó képek vannak.
+const itemsDir ="e:/Downloads/project_images";
 
+//putFilesToFolders async function.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
 {
   //Megpróbálja végrehatjani az utasítást.
   try
   {
     //Beolvassa a létrehozott mappát, és egy változóban tárolja el az értékeket.
-    let response = await fs.readdir(folderDir);
+    let response = await fsp.readdir(folderDir);
 
     //Ha a jelenlegi mappában már vannak fájlok akkor hibaüzenettel tér vissza.
     if(response.length>0)
@@ -51,7 +57,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
   {
     //Beolvassuk a célmappát amely mapparendszerében vannak a másolandó fájlok.
     //A megkapott értékeket el tároljuk.
-    let folders = await fs.readdir(itemsDir);
+    let folders = await fsp.readdir(itemsDir);
 
     //Ellenörzi hogy a fájlok közzöt megtalálhatóak-e azok a mappák ahol a másolandó fájlok vannak.
     //Ha nem találja hibaüzenettel tér vissza:
@@ -74,7 +80,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
   try
   {
     //A files változóba eltárolja a(z) accommodations/experiences mappában lévő fáljokat.
-    let files = await fs.readdir(fullDirFolder);
+    let files = await fsp.readdir(fullDirFolder);
 
     //Megnézzük mennyi fálj található az adott mappában.
     //Ha nincs elég a teljes másolás végrehajtásához akkor hibaüzenettel tér vissza: 
@@ -94,16 +100,18 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
       //Megpróbálja végrehajtani a megadott parancsokat.
       try
       {
-        fileType  = files[i].includes(".").pop();
+        fileType  = files[i].split(".").pop();
         oroginalFile = path.join(fullDirFolder,files[i]);
-        copiedFile = path.join(folderDir,i>9?`0${i+1}`:`00${i+1}`);
+        copiedFile = path.join(folderDir,i>9?`0${i+1}.${fileType}`:`00${i+1}.${fileType}`);
         
         //Megpróbálja végrehajtani a megadott parancsokat.
         try
         {
-          await fs.copyFile(oroginalFile,copiedFile);
+          //lemásoljuk a lamásolandó fájlokat és a megadott helyre tesszük. 
+          await fsp.copyFile(oroginalFile,copiedFile);
 
-          await fs.unlink(oroginalFile);
+          //kitöröltük az eredeti fájlokat hogy a későbbiekben ne legyen ismétlődés. 
+          await fsp.unlink(oroginalFile);
         }
         //Ha nem tudja végrehajtani az utasításokat akkor ezzel tér visssza:
         catch(err)
@@ -126,69 +134,62 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
   }
 }
 
-putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
+// tesztsor:
+// putFilesToFolders(itemsDir,"accommodations",`../frontend/src/images/countries/india/cities/mumbai/accommodations/mumbai_sea_view_apartment`);
 
-// db.query(
-//   "SELECT `countries`.`name` AS `country_name`, "+
-//   "`cities`.`name` AS `city_name`, "+
-//   "`accommodations`.`name` AS `accommodation_name`, "+
-//   "`experiences`.`name` AS `experience_name` FROM `countries` "+
-//   "INNER JOIN `cities` "+
-//   "ON `cities`.`country_id` = `countries`.`id` "+
-//   "INNER JOIN `accommodations` "+
-//   "ON `cities`.`id` = `accommodations`.`city_id` "+
-//   "LEFT JOIN `experiences` "+
-//   "ON `cities`.`id` = `experiences`.`city_id`", 
-//   (err, datas) => {
-//     if (err) {
-//       return console.error("Hiba a datas beolvasásakor", err);
-//     }
-//     console.log(datas);
+//Lekérjük a nekünk kellő adatokat az adatbázisból.
+//Majd egy callback functionban dolgozunk tovább az adatokal.
+db.query(
+  "SELECT `countries`.`name` AS `country_name`, "+
+  "`cities`.`name` AS `city_name`, "+
+  "`accommodations`.`name` AS `accommodation_name`, "+
+  "`experiences`.`name` AS `experience_name` FROM `countries` "+
+  "INNER JOIN `cities` "+
+  "ON `cities`.`country_id` = `countries`.`id` "+
+  "INNER JOIN `accommodations` "+
+  "ON `cities`.`id` = `accommodations`.`city_id` "+
+  "LEFT JOIN `experiences` "+
+  "ON `cities`.`id` = `experiences`.`city_id`", 
+  async (err, datas) => {
+    //Ha hibába ütközik a program akkor ezzel a hiaüzenettel tér vissza:
+    if (err) {
+      return console.error("Hiba a datas beolvasásakor", err);
+    }
 
-//     for(let i=0;i<datas.length;i++)
-//     { 
+    //Létrehozzuk a folderDir változót. 
+    let folderDir = "";
+
+    //Végigmegyünk az összes adaton és mappákat készítünk hozzá.
+    for(let i=0;i<datas.length;i++)
+    { 
       
-//       let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-//                   `/cities/${convertStrings(datas[i].city_name)}`+
-//                   `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
+      //Elérési útvonal az accomodations mappához.
+      folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+                  `/cities/${convertStrings(datas[i].city_name)}`+
+                  `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
 
-//       console.log(": "+folderDir);
+      //Létrehozzuk a mappákat.
+      fs.mkdirSync(folderDir,{recursive:true});
 
-//       fs.mkdir(folderDir,{recursive:true},(err)=>
-//       {
-//         if(err)
-//         {
-//           console.log(err);
-//         }
-//         else
-//         {
-//           // console.log("elso: "+folderDir);
-//           // putFilesToFolders(itemsDir,"accommodations",folderDir);
-//         }
-//       })
-      
-//       if(datas[i].experience_name != null)
-//       {
-//         let folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
-//                     `/cities/${convertStrings(datas[i].city_name)}`+
-//                     `/experiences/${convertStrings(datas[i].experience_name)}`;
+      //Meghívjuk a fájl másolós funxctiont.
+      await putFilesToFolders(itemsDir,"accommodations",folderDir);
 
-//         fs.mkdir(folderDir,{recursive:true},(err)=>
-//         {
-//           if(err)
-//           {
-//             console.log(err);
-//           }
-//           else
-//           {
-//             // console.log("elso: "+folderDir);
-//             // putFilesToFolders(itemsDir,"experiences",folderDir);
-           
-//           }
-//         })
-//       }
-//     }
-//     // process.exit(0);
-//   }
-// )
+      //Ha vannak experiencek akkor azoknak is megcsinálja a mappát. 
+      if(datas[i].experience_name != null)
+      {
+        ///Elérési útvonal az experiences mappához.
+        folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+                    `/cities/${convertStrings(datas[i].city_name)}`+
+                    `/experiences/${convertStrings(datas[i].experience_name)}`;
 
+        //Létrehozzuk a mappákat.
+        fs.mkdirSync(folderDir,{recursive:true});
+
+         //Meghívjuk a fájl másolós functiont.
+        await putFilesToFolders(itemsDir,"experiences",folderDir);
+      }
+    }
+    //Kilép a program futásából a for ciklus végeztével.
+    process.exit(0);
+  }
+)
