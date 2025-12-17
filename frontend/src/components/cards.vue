@@ -20,6 +20,14 @@ let props = defineProps({
 		items.value = response.data;
 	})
 	.catch(e => console.error(e))
+
+function convertStrings(str) 
+	{  
+	  return str.normalize("NFD")
+	            .replace(/[\u0300-\u036f]/g, "")
+	            .replaceAll(" ","_")
+	            .toLowerCase();
+	}
 </script>
 
 <template>
