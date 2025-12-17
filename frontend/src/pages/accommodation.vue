@@ -9,6 +9,7 @@ onMounted(() => {
   axios.get('http://localhost:3000/randCountryID')
     .then(response => {
       country.value = response.data;
+      console.log(country.value)
     })
     .catch(e => console.error(e))
 })
@@ -16,7 +17,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 class="display-1 text-center text-white">Szállások</h1>
-  <Cards tableName="accommodations" 
-         :country="1"/>
+  <div v-for="x in country">
+    <h1 class="display-5 text-center text-white">Szállások amiket {{ x.name }} kínál</h1>
+    <Cards tableName="accommodations" 
+          :country="x.country_id"/>
+  </div>
 </template>

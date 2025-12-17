@@ -1,9 +1,25 @@
 <script setup>
 import Cards from '@/components/cards.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+
+let country = ref([]);
+
+onMounted(() => {
+  axios.get('http://localhost:3000/randCountryID')
+    .then(response => {
+      country.value = response.data;
+      console.log(country.value)
+    })
+    .catch(e => console.error(e))
+})
 
 </script>
 
 <template>
-	<h1 class="text-center text-white display-1">Élmények</h1>
-  <Cards tableName="experiences" :country="3"/>
+  <div v-for="x in country">
+    <h1 class="display-5 text-center text-white">Élmények amiket {{ x.name }} kínál</h1>
+    <Cards tableName="experiences" 
+          :country="x.country_id"/>
+  </div>
 </template>
