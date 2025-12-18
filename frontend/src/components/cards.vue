@@ -46,7 +46,7 @@ function convertStrings(str) {
 					v-show="x.country_id === props.country || !props.country"
 					style="width: 21rem;">
 			<div class="position-relative">
-				<img :src="`../images/countries/${convertStrings(props.country_name)}/cities/${convertStrings(x.city_name)}/${convertStrings(x.name)}/${convertStrings(props.tableName)}/001.jpg`" 
+				<img src="../../src/images/fff.png" 
  						 class="card-img-top rounded-top-4" 
 						 style="height: 200px; object-fit: cover;">
 				<h5 class="card-title text-white position-absolute 
