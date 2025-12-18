@@ -18,7 +18,9 @@ onMounted(() => {
 
 <template>
   <div v-for="x in country">
-    <h1 class="display-5 text-center text-white">Szállások amiket {{ x.name }} kínál</h1>
+    <h1 class="display-5 text-center text-white">
+      Szállások amiket {{ x.name }} kínál
+    </h1>
     <Cards tableName="accommodations" 
           :country="x.country_id"/>
   </div>
