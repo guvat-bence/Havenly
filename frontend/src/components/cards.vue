@@ -37,8 +37,8 @@ function convertStrings(str)
 								rounded-4 mb-3" 
 				 v-for="x in items"
 				 :key="x.id"
-					v-show="x.country_id === props.country"
-				 style="width: 21rem;">
+					v-show="x.country_id === props.country || !props.country"
+					style="width: 21rem;">
 			<div class="position-relative">
 				<img src="../images/fff.png" class="card-img-top rounded-top-4" 
 						 style="height: 200px; object-fit: cover;">
@@ -50,8 +50,7 @@ function convertStrings(str)
 			</div>
 			<div class="card-body">
 					<p class="card-text w-100">
-					{{ x.description }}
-					{{ x.country_id }}
+						{{ x.description }}
 					</p>
 			</div>
 			<div class="card-footer border-0">
