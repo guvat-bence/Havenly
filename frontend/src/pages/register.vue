@@ -1,6 +1,19 @@
 <template>
+
+  <div class="d-flex justify-content-center mt-4 mb-4">
+    <div class="progress w-50 bg-black border border-1 border-white" 
+       role="progressbar" 
+       aria-label="Animated striped example" 
+       aria-valuenow="0" 
+       aria-valuemin="0" 
+       aria-valuemax="100">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-white" style="width: 0%"></div>
+    </div>
+  </div>
+
   <div class="d-flex justify-content-center align-items-center">
-    <form class="border p-3 border-1 border-white text-white rounded-3 bg-dark bg-opacity-50">
+
+    <form class="border p-3 border-1 border-white text-white rounded-3 bg-dark bg-opacity-50 mb-3">
       <div>
         <h1 class="text-center text-white display-5">Regisztráció</h1>
       </div>
