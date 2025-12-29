@@ -42,7 +42,7 @@
              +36303425678
         </a>
         <a class="nav-link mb-1 mb-1 mt-md-3" 
-           href="https://www.google.com/maps/@46.9096969,19.683835,3a,77.1y,213.2h,91.18t/data=!3m7!1e1!3m5!1sJGuIwHNr92f18NEz_5t74A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%ű2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-1.1802603712099682%26panoid%3DJGuIwHNr92f18NEz_5t74A%26yaw%3D213.20307359600648!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTIwOC4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D">
+           href="https://www.google.com/maps/@46.9096969,19.683835,3a,75y,47.16h,89.48t/data=!3m7!1e1!3m5!1sJGuIwHNr92f18NEz_5t74A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.5193384297109134%26panoid%3DJGuIwHNr92f18NEz_5t74A%26yaw%3D47.15601703953956!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D">
             <font-awesome-icon icon="fa-solid fa-location-dot" size="xl"/>
              Kecskemét, József Attila u. 5
         </a>

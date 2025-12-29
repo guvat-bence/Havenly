@@ -29,7 +29,7 @@ function convertStrings(str)
 }
 
 //Annak a könyvtárnak a helye ahol a másolandó képek vannak.
-const itemsDir ="c:/Users/guvat.bence/Downloads/download_images";
+const itemsDir ="e:/Downloads/project_images";
 
 //putFilesToFolders async function.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
@@ -84,7 +84,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
 
     //Megnézzük mennyi fálj található az adott mappában.
     //Ha nincs elég a teljes másolás végrehajtásához akkor hibaüzenettel tér vissza: 
-    if(files.length<10)
+    if(files.length<1)
     {
       return console.log(`Nincsen elég fálj a másoláshoz! ${files.length}`);
     }
@@ -95,7 +95,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
     let copiedFile = ""; 
 
     //A for ciklus segíségével szabályozzuk hogy hány fájl legyen egy mappában.
-    for(let i=0;i<10;i++)
+    for(let i=0;i<1;i++)
     {
       //Megpróbálja végrehajtani a megadott parancsokat.
       try
@@ -111,7 +111,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
           await fsp.copyFile(oroginalFile,copiedFile);
 
           //kitöröltük az eredeti fájlokat hogy a későbbiekben ne legyen ismétlődés. 
-          await fsp.unlink(oroginalFile);
+          // await fsp.unlink(oroginalFile);
         }
         //Ha nem tudja végrehajtani az utasításokat akkor ezzel tér visssza:
         catch(err)
@@ -164,7 +164,7 @@ db.query(
     { 
       
       //Elérési útvonal az accomodations mappához.
-      folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+      folderDir = `../frontend/public/countries/${convertStrings(datas[i].country_name)}`+
                   `/cities/${convertStrings(datas[i].city_name)}`+
                   `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
 
@@ -178,7 +178,7 @@ db.query(
       if(datas[i].experience_name != null)
       {
         ///Elérési útvonal az experiences mappához.
-        folderDir = `../frontend/src/images/countries/${convertStrings(datas[i].country_name)}`+
+        folderDir = `../frontend/public/countries/${convertStrings(datas[i].country_name)}`+
                     `/cities/${convertStrings(datas[i].city_name)}`+
                     `/experiences/${convertStrings(datas[i].experience_name)}`;
 

@@ -45,7 +45,13 @@ app.get('/accommodations', (req, res) => {
 })
 
 app.get('/experiences', (req, res) => {
-  db.query('SELECT * FROM experiences', (err,result) => {
+  db.query('SELECT `experiences`.`id`,`experiences`.`name`,'+
+                   '`experiences`.`country_id`, `experiences`.`city_id`,'+
+                   '`experiences`.`price`, `experiences`.`description`,'+
+                   '`cities`.`name` AS `city_name`'+
+          'FROM `experiences`'+
+          'INNER JOIN `cities`'+
+          'ON `experiences`.`city_id` = `cities`.`id`', (err,result) => {
     if(err){
       console.error("Hiba a experiences beolvasásakor", err);
       res.status(500).send("Adatbázis hiba");
@@ -55,15 +61,29 @@ app.get('/experiences', (req, res) => {
   })
 })
 
-app.get('/randCountryID', (req, res) => {
+app.get('/accommodations/randCountryID', (req, res) => {
+  db.query(`SELECT DISTINCT accommodations.country_id,
+                            countries.name AS 'country_name' 
+            FROM accommodations 
+            INNER JOIN countries 
+            ON accommodations.country_id = countries.id
+            ORDER BY RAND() LIMIT 5`,(err,result) => {
+    if(err){
+      console.error("Hiba az accommodations beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+    res.json(result);
+  })
+})
 
-  const command = `SELECT DISTINCT country_id,
-                                  countries.name
-                   FROM accommodations 
-                   INNER JOIN countries 
-                   ON accommodations.country_id = countries.id ORDER BY RAND() LIMIT 5`
-
-  db.query(command,(err,result) => {
+app.get('/experiences/randCountryID', (req, res) => {
+  db.query(`SELECT DISTINCT experiences.country_id,
+                            countries.name AS 'country_name' 
+            FROM experiences 
+            INNER JOIN countries 
+            ON experiences.country_id = countries.id
+            ORDER BY RAND() LIMIT 5`,(err,result) => {
     if(err){
       console.error("Hiba a experiences beolvasásakor", err);
       res.status(500).send("Adatbázis hiba");
@@ -72,5 +92,4 @@ app.get('/randCountryID', (req, res) => {
     res.json(result);
   })
 })
-
 

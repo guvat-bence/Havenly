@@ -6,7 +6,7 @@ import { onMounted, ref } from 'vue';
 let country = ref([]);
 
 onMounted(() => {
-  axios.get('http://localhost:3000/randCountryID')
+  axios.get('http://localhost:3000/experiences/randCountryID')
     .then(response => {
       country.value = response.data;
       console.log(country.value)
@@ -17,9 +17,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-for="x in country">
-    <h1 class="display-5 text-center text-white">Élmények amiket {{ x.name }} kínál</h1>
+  <div class="experience">
+    <div v-for="x in country">
+    <h1 class="display-5 text-center text-white">Élmények amiket {{ x.country_name }} kínál</h1>
     <Cards tableName="experiences" 
-          :country="x.country_id"/>
+         :country_id="x.country_id"
+         :country_name="x.country_name"/>
+    </div>
   </div>
 </template>

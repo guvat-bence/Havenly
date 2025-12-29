@@ -14,14 +14,19 @@ let props = defineProps({
 		required: false
 	},
 	country_name: {
-		type: [String,Number],
+		type: [String],
 		required: false
 	}
 })
 
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
-		items.value = response.data;
+		items.value = response.data.filter(country=>
+		{
+			return country.country_id == props.country_id;
+		})
+		console.log(response.data);
+		console.log(items.value);
 	})
 	.catch(e => console.error(e))
 
@@ -43,10 +48,9 @@ function convertStrings(str) {
 								rounded-4 mb-3" 
 				 v-for="x in items"
 				 :key="x.id"
-					v-show="x.country_id === props.country || !props.country"
 					style="width: 21rem;">
 			<div class="position-relative">
-				<img src="../../src/images/fff.png" 
+				<img :src="`/countries/${convertStrings(props.country_name)}/cities/${convertStrings(x.city_name)}/${props.tableName}/${convertStrings(x.name)}/001.jpg`"
  						 class="card-img-top rounded-top-4" 
 						 style="height: 200px; object-fit: cover;">
 				<h5 class="card-title text-white position-absolute 

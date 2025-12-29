@@ -8,7 +8,8 @@ let model = reactive({
 </script>
 
 <template>
-  <div class="container">
+  <div class="home">
+    <div class="container">
     <div class="row justify-content-center">
       <h1 class="display-1 text-white text-center w-100">
         Hová szeretnél utazni?
@@ -28,6 +29,7 @@ let model = reactive({
         <button class="btn btn-outline-light col-11 my-2 mt-3"
                 :disabled="!model.searchbar">Keresés</button>
       </form> 
+    </div>
     </div>
   </div>
 </template>
