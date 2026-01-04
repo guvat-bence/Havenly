@@ -46,6 +46,24 @@ app.get("/accommodations", (req, res) => {
     }
   );
 });
+app.get('/accommodations', (req, res) => {
+  db.query('SELECT `accommodations`.`id`, `accommodations`.`owner_id`,'+
+                   '`accommodations`.`name`,`accommodations`.`folder_name`,'+ 
+                   '`accommodations`.`size`,'+
+                   '`accommodations`.`country_id`, `accommodations`.`city_id`,'+
+                   '`accommodations`.`price`, `accommodations`.`description`,'+
+                   '`cities`.`name` AS `city_name`'+
+          'FROM `accommodations`'+
+          'INNER JOIN `cities`'+
+          'ON `accommodations`.`city_id` = `cities`.`id`', (err,result) => {
+    if(err){
+      console.error("Hiba a accommodations beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+    res.json(result);
+  })
+})
 
 app.get("/experiences", (req, res) => {
   db.query(
