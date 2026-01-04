@@ -153,8 +153,7 @@ app.post('/register', (req, res) => {
               message: "Ez a telefonszám már foglalt"
             });
           }
-
-          // 3) Ha minden OK → INSERT
+          // Insert parancs végrehajtása ha miden rendben van
           db.query(
             'INSERT INTO users (first_name, last_name, middle_name, email, password, phone_number) VALUES (?, ?, ?, ?, ?, ?)',
             [
