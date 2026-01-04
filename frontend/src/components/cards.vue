@@ -50,7 +50,7 @@ function convertStrings(str) {
 				 :key="x.id"
 					style="width: 21rem;">
 			<div class="position-relative">
-				<img :src="`/countries/${convertStrings(props.country_name)}/cities/${convertStrings(x.city_name)}/${props.tableName}/${convertStrings(x.name)}/001.jpg`"
+				<img :src="`/countries/${convertStrings(props.country_name)}/cities/${convertStrings(x.city_name)}/${props.tableName}/${convertStrings(x.folder_name)}/001.png`"
  						 class="card-img-top rounded-top-4" 
 						 style="height: 200px; object-fit: cover;">
 				<h5 class="card-title text-white position-absolute 
@@ -61,7 +61,7 @@ function convertStrings(str) {
 			</div>
 			<div class="card-body">
 					<p class="card-text w-100">
-						{{ x.description }}
+						{{props.country_name}}, {{x.city_name}}
 					</p>
 			</div>
 			<div class="card-footer border-0">

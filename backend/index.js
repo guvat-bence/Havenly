@@ -28,7 +28,8 @@ app.listen(port, () => {
 
 app.get('/accommodations', (req, res) => {
   db.query('SELECT `accommodations`.`id`, `accommodations`.`owner_id`,'+
-                   '`accommodations`.`name`, `accommodations`.`size`,'+
+                   '`accommodations`.`name`,`accommodations`.`folder_name`,'+ 
+                   '`accommodations`.`size`,'+
                    '`accommodations`.`country_id`, `accommodations`.`city_id`,'+
                    '`accommodations`.`price`, `accommodations`.`description`,'+
                    '`cities`.`name` AS `city_name`'+

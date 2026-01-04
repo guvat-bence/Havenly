@@ -29,7 +29,7 @@ function convertStrings(str)
 }
 
 //Annak a könyvtárnak a helye ahol a másolandó képek vannak.
-const itemsDir ="e:/Downloads/project_images";
+const itemsDir ="C:/Users/Fujitsu/Downloads/project_images";
 
 //putFilesToFolders async function.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
@@ -43,7 +43,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
     //Ha a jelenlegi mappában már vannak fájlok akkor hibaüzenettel tér vissza.
     if(response.length>0)
     {
-      return console.log(`A jelenlegi mappában már vannak fájlok. ${response.length}`);
+      return console.log(`A jelenlegi mappában már vannak fájlok. ${response.length}, ${folderDir}`);
     }
   }
   //Ha nem tudja végrehajtani az utasítésokat akkor ezzel tér visssza:
@@ -84,7 +84,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
 
     //Megnézzük mennyi fálj található az adott mappában.
     //Ha nincs elég a teljes másolás végrehajtásához akkor hibaüzenettel tér vissza: 
-    if(files.length<1)
+    if(files.length<10)
     {
       return console.log(`Nincsen elég fálj a másoláshoz! ${files.length}`);
     }
@@ -95,14 +95,13 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
     let copiedFile = ""; 
 
     //A for ciklus segíségével szabályozzuk hogy hány fájl legyen egy mappában.
-    for(let i=0;i<1;i++)
+    for(let i=0;i<10;i++)
     {
       //Megpróbálja végrehajtani a megadott parancsokat.
       try
       {
-        fileType  = files[i].split(".").pop();
         oroginalFile = path.join(fullDirFolder,files[i]);
-        copiedFile = path.join(folderDir,i>9?`0${i+1}.${fileType}`:`00${i+1}.${fileType}`);
+        copiedFile = path.join(folderDir,i>9?`0${i+1}.png`:`00${i+1}.png`);
         
         //Megpróbálja végrehajtani a megadott parancsokat.
         try
@@ -110,8 +109,8 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
           //lemásoljuk a lamásolandó fájlokat és a megadott helyre tesszük. 
           await fsp.copyFile(oroginalFile,copiedFile);
 
-          //kitöröltük az eredeti fájlokat hogy a későbbiekben ne legyen ismétlődés. 
-          // await fsp.unlink(oroginalFile);
+          // kitöröltük az eredeti fájlokat hogy a későbbiekben ne legyen ismétlődés. 
+          await fsp.unlink(oroginalFile);
         }
         //Ha nem tudja végrehajtani az utasításokat akkor ezzel tér visssza:
         catch(err)
@@ -142,14 +141,15 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
 db.query(
   "SELECT `countries`.`name` AS `country_name`, "+
   "`cities`.`name` AS `city_name`, "+
-  "`accommodations`.`name` AS `accommodation_name`, "+
+  "`accommodations`.`folder_name` AS `accommodation_name`, "+
   "`experiences`.`name` AS `experience_name` FROM `countries` "+
   "INNER JOIN `cities` "+
   "ON `cities`.`country_id` = `countries`.`id` "+
   "INNER JOIN `accommodations` "+
   "ON `cities`.`id` = `accommodations`.`city_id` "+
   "LEFT JOIN `experiences` "+
-  "ON `cities`.`id` = `experiences`.`city_id`", 
+  "ON `cities`.`id` = `experiences`.`city_id`"+
+  "ORDER BY `accommodations`.`id` ASC", 
   async (err, datas) => {
     //Ha hibába ütközik a program akkor ezzel a hiaüzenettel tér vissza:
     if (err) {
