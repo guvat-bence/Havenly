@@ -13,24 +13,22 @@
 ## <center> Tesztelési Napló
     https://docs.google.com/document/d/13xlfCgZeiMwbXqxVrHEa9aWTguvcv-_yaVMEBfxccQo/edit?usp=sharing
 
-## <center> Mivel dolgozunk?
-- Bootstrap
-- ExpressJS
-- Vue
-
 ## <center> Telepítés és indítás
 
-## 1. Frontend telepítése és indítása
-    A "frontend" mappán belül az alábbi parancsot futassa:
-    npm install
-    npm run dev
+## Ezt az első indításnál kell megcsinálni:
 
-## 2. Backend telepítése és indítása
-    A "backend" mappán belül az alábbi parancsot futassa:
-    npm install
-    node index.js
+### 1. Adatbázis telepítés és indítása
 
-    
+    Nyissa meg a "xampp" alkamazást, majd az "Apache" menüpontnál kattintson a start gombra.
+    A "MySQL" menüpontnál kattintson a start gombra.
+    Ezután a  "MySQL" menüpontnál kattintson az admin menüpontra hogy hozzá tudja adni az adatbázist.
+    A "phpMyAdmin" oldalán kattintson bal oldalt  az "Új" menüpontra.
+    Adatbázis névnek állítsa be a "havenly" nevet, majd a mellete lévő legürdülő menübeen keresse meg a "utf8_general_ci" opciót.
+    Végül kattintson a "Létrehozás" gombra.
+    Ezután menjen a "beszúrás" menüpontra.Itt a tallózás gombra, és válassza ki a "havenly" mappából, azon belül pedig a "db" mappából a "havenly.sql" fájlt.
+    Ezután kattintsont az oldal alján lévő importálás gombra. 
 
+## Az első indítás utáni indításkor:
 
-
+### 1. Adatbázis indítása
+    Nyissa meg a "xampp" alkamazást, a "MySQL" menüpontnál kattintson a start gombra.
