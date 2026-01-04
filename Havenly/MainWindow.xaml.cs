@@ -130,8 +130,8 @@ namespace Havenly
         }
         private void experience_button_Click(object sender, RoutedEventArgs e)
         {
-            currentTable = "experiences";
-            readData("experiences");
+            currentTable = "experience";
+            readData("experience");
             enable_btns();
             experience_button.IsEnabled = false;
         }
