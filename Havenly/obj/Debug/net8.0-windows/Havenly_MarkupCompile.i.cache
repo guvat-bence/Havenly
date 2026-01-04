@@ -4,25 +4,16 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD:Havenly/obj/Debug/net8.0-windows/Havenly_MarkupCompile.i.cache
-E:\xampp\htdocs\html\Havenly\Havenly\obj\Debug\net8.0-windows\
-Havenly
-none
-false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-E:\xampp\htdocs\html\Havenly\Havenly\App.xaml
-=======
-C:\xampp\htdocs\guvat_bence\Havenly\program\Havenly\obj\Debug\net8.0-windows\
+E:\Havenly\Havenly\obj\Debug\net8.0-windows\
 Havenly
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\xampp\htdocs\guvat_bence\Havenly\program\Havenly\App.xaml
->>>>>>> 95287b429eeaa9d2850325cb44ae7de2507fa790:program/Havenly/obj/Debug/net8.0-windows/Havenly_MarkupCompile.i.cache
+E:\Havenly\Havenly\App.xaml
 2775132198
 13-1300245106
 7-655811016
-209926902698
+209-1325755347
 Datas.xaml;MainWindow.xaml;
 
 False

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {
+    "net9.0-windows7.0": {
       "BouncyCastle.Cryptography/2.6.2": {
         "type": "package",
         "compile": {
@@ -118,12 +118,12 @@
           "ZstdSharp.Port": "0.8.6"
         },
         "compile": {
-          "lib/net8.0/MySql.Data.dll": {
+          "lib/net9.0/MySql.Data.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/MySql.Data.dll": {
+          "lib/net9.0/MySql.Data.dll": {
             "related": ".xml"
           }
         },
@@ -157,12 +157,12 @@
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
         },
         "compile": {
-          "lib/net8.0/MySqlConnector.dll": {
+          "lib/net9.0/MySqlConnector.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/MySqlConnector.dll": {
+          "lib/net9.0/MySqlConnector.dll": {
             "related": ".xml"
           }
         }
@@ -286,10 +286,10 @@
       "ZstdSharp.Port/0.8.6": {
         "type": "package",
         "compile": {
-          "lib/net8.0/ZstdSharp.dll": {}
+          "lib/net9.0/ZstdSharp.dll": {}
         },
         "runtime": {
-          "lib/net8.0/ZstdSharp.dll": {}
+          "lib/net9.0/ZstdSharp.dll": {}
         }
       }
     }
@@ -775,50 +775,37 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": [
+    "net9.0-windows7.0": [
       "MySql.Data >= 9.5.0",
       "MySqlConnector >= 2.4.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\guvat.bence\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\mateh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD:Havenly/obj/project.assets.json
-      "projectUniqueName": "E:\\xampp\\htdocs\\html\\Havenly\\Havenly\\Havenly.csproj",
+      "projectUniqueName": "E:\\Havenly\\Havenly\\Havenly.csproj",
       "projectName": "Havenly",
-      "projectPath": "E:\\xampp\\htdocs\\html\\Havenly\\Havenly\\Havenly.csproj",
-      "packagesPath": "C:\\Users\\Bence\\.nuget\\packages\\",
-      "outputPath": "E:\\xampp\\htdocs\\html\\Havenly\\Havenly\\obj\\",
-=======
-      "projectUniqueName": "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\Havenly.csproj",
-      "projectName": "Havenly",
-      "projectPath": "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\Havenly.csproj",
-      "packagesPath": "C:\\Users\\guvat.bence\\.nuget\\packages\\",
-      "outputPath": "C:\\xampp\\htdocs\\guvat_bence\\Havenly\\program\\Havenly\\obj\\",
->>>>>>> 95287b429eeaa9d2850325cb44ae7de2507fa790:program/Havenly/obj/project.assets.json
+      "projectPath": "E:\\Havenly\\Havenly\\Havenly.csproj",
+      "packagesPath": "C:\\Users\\mateh\\.nuget\\packages\\",
+      "outputPath": "E:\\Havenly\\Havenly\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\guvat.bence\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\mateh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0-windows"
+        "net9.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows",
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows7.0",
           "projectReferences": {}
         }
       },
@@ -835,8 +822,8 @@
       "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
-      "net8.0-windows7.0": {
-        "targetAlias": "net8.0-windows",
+      "net9.0-windows7.0": {
+        "targetAlias": "net9.0-windows7.0",
         "dependencies": {
           "MySql.Data": {
             "target": "Package",
@@ -866,7 +853,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
