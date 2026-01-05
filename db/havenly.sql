@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 04. 18:37
+-- Létrehozás ideje: 2026. Jan 04. 19:33
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `accommodations` (
   `owner_id` int(5) DEFAULT NULL,
   `country_id` int(5) DEFAULT NULL,
   `city_id` int(5) DEFAULT NULL,
-  `name` varchar(40) NOT NULL,
+  `name` varchar(150) NOT NULL,
   `folder_name` varchar(40) NOT NULL,
   `size` int(3) NOT NULL,
   `price` int(7) NOT NULL,
@@ -295,7 +295,7 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 CREATE TABLE `cities` (
   `id` int(5) NOT NULL,
   `country_id` int(5) DEFAULT NULL,
-  `name` varchar(40) NOT NULL
+  `name` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -304,7 +304,7 @@ CREATE TABLE `cities` (
 
 INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 (1, 1, 'Tokió'),
-(2, 1, 'Oszaka'),
+(2, 11, 'Oszakaqaaa'),
 (3, 1, 'Szapporo'),
 (4, 2, 'Róma'),
 (5, 2, 'Milánó'),
@@ -526,7 +526,7 @@ INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 
 CREATE TABLE `countries` (
   `id` int(5) NOT NULL,
-  `name` varchar(40) NOT NULL
+  `name` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -628,7 +628,6 @@ CREATE TABLE `experiences` (
 INSERT INTO `experiences` (`id`, `country_id`, `city_id`, `name`, `folder_name`, `price`, `description`) VALUES
 (1, 1, 1, 'Budapesti városnéző séta', 'budapest_varosnezo', 50, 'Budapest történelmi városrészei a Duna két partján helyezkednek el, lenyűgöző látványt nyújtva. Fedezd fel a Budai Várnegyedet, a Halászbástyát és a Lánchidat, miközben a város múltját ismered meg. Sétálj a Váci utcán, ahol a helyi üzletek és kávézók hangulata elvarázsol. Tanuld meg a város történetét egy tapasztalt idegenvezetővel. Ez a túra a történelem, kultúra és városi élet kombinációját kínálja.'),
 (2, 1, 2, 'Budapesti gasztronómiai túra', 'budapest_gasztro', 55, 'Budapest kulináris élményei minden látogatót lenyűgöznek. Kóstold meg a hagyományos magyar ételeket, például a gulyást, lángost és kürtőskalácsot. Fedezd fel a Nagyvásárcsarnok ínycsiklandó kínálatát. Tanulj a helyi ízek és receptek történetéről egy szakértő vezetésével. Ez a túra ízek, kultúra és helyi tradíciók felfedezését kínálja.'),
-(3, 2, 3, 'Prágai történelmi séta', 'praga_tortenelmi', 60, 'Prága a középkori városok varázsát hordozza, gyönyörű építészeti remekekkel. Sétálj a Károly hídon és fedezd fel a régi város főterét, ahol a város történelmi hangulata él. Látogasd meg az Óvárosi Csillagvizsgálót és a Prágai várat. Tanulj a cseh történelemről és kultúráról egy tapasztalt idegenvezetőtől. Ez a séta a történelem és a városi élet felfedezését nyújtja.'),
 (4, 2, 4, 'Prágai gasztronómiai túra', 'praga_gasztro', 65, 'Prága kulináris élményei felfedezésre várnak minden látogatót. Kóstold meg a tradicionális cseh ételeket, például a svíčkovát és a knédliket. Fedezd fel a helyi piacokat és kézműves pékségeket. Ismerd meg a cseh sörkultúra történetét és ízeit. Ez a túra a helyi ízek és kultúra gazdag kombinációját kínálja.'),
 (5, 3, 5, 'Bécsi művészeti túra', 'bécs_muveszet', 70, 'Bécs a művészetek és zenetörténet fellegvára, ahol minden sarkon találkozhatsz kulturális értékekkel. Látogasd meg a Belvedere palotát és a Kunsthistorisches Múzeumot. Fedezd fel a város zenetörténetét, Bach, Mozart és Beethoven nyomában járva. Sétálj a Ringstraße sugárúton és élvezd az építészeti remekeket. Ez a túra a művészet, történelem és városi élet harmonikus kombinációját nyújtja.'),
 (6, 3, 6, 'Bécsi kávéházi élmény', 'bécs_kavehaz', 75, 'Bécs híres kávéházai a múlt és jelen hangulatát ötvözik. Kóstold meg a helyi süteményeket, például a Sachertortát és Apfelstrudelt. Fedezd fel a kávéházak történetét és kultúráját szakértő vezetésével. Élvezd a bécsi kávé művészetét a hangulatos belső terekben. Ez a túra a gasztronómia, kultúra és történelem élményét kínálja egyszerre.'),
@@ -888,7 +887,7 @@ CREATE TABLE `users` (
   `last_name` varchar(40) NOT NULL,
   `middle_name` varchar(40) DEFAULT NULL,
   `email` varchar(254) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(40) NOT NULL,
   `phone_number` varchar(40) NOT NULL,
   `gender` char(1) NOT NULL,
   `user_type` char(1) NOT NULL DEFAULT 'U',
