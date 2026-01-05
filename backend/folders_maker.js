@@ -29,7 +29,7 @@ function convertStrings(str)
 }
 
 //Annak a könyvtárnak a helye ahol a másolandó képek vannak.
-const itemsDir ="c:/Users/guvat.bence/Downloads/images";
+const itemsDir ="e:/Downloads/project_images";
 
 //putFilesToFolders async function.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
@@ -175,19 +175,19 @@ db.query(
       await putFilesToFolders(itemsDir,"accommodations",folderDir);
 
       //Ha vannak experiencek akkor azoknak is megcsinálja a mappát. 
-      if(datas[i].experience_name != null)
-      {
-        ///Elérési útvonal az experiences mappához.
-        folderDir = `../frontend/public/countries/${convertStrings(datas[i].country_name)}`+
-                    `/cities/${convertStrings(datas[i].city_name)}`+
-                    `/experiences/${convertStrings(datas[i].experience_name)}`;
+      // if(datas[i].experience_name != null)
+      // {
+      //   ///Elérési útvonal az experiences mappához.
+      //   folderDir = `../frontend/public/countries/${convertStrings(datas[i].country_name)}`+
+      //               `/cities/${convertStrings(datas[i].city_name)}`+
+      //               `/experiences/${convertStrings(datas[i].experience_name)}`;
 
-        //Létrehozzuk a mappákat.
-        fs.mkdirSync(folderDir,{recursive:true});
+      //   //Létrehozzuk a mappákat.
+      //   fs.mkdirSync(folderDir,{recursive:true});
 
-         //Meghívjuk a fájl másolós functiont.
-        await putFilesToFolders(itemsDir,"experiences",folderDir);
-      }
+      //    //Meghívjuk a fájl másolós functiont.
+      //   await putFilesToFolders(itemsDir,"experiences",folderDir);
+      // }
     }
     //Kilép a program futásából a for ciklus végeztével.
     process.exit(0);
