@@ -29,7 +29,7 @@ function convertStrings(str)
 }
 
 //Annak a könyvtárnak a helye ahol a másolandó képek vannak.
-const itemsDir ="C:/Users/Fujitsu/Downloads/project_images";
+const itemsDir ="c:/Users/guvat.bence/Downloads/images";
 
 //putFilesToFolders async function.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
@@ -101,7 +101,7 @@ async function putFilesToFolders(itemsDir,placeType,folderDir)
       try
       {
         oroginalFile = path.join(fullDirFolder,files[i]);
-        copiedFile = path.join(folderDir,i>9?`0${i+1}.png`:`00${i+1}.png`);
+        copiedFile = path.join(folderDir,i>8?`0${i+1}.png`:`00${i+1}.png`);
         
         //Megpróbálja végrehajtani a megadott parancsokat.
         try
