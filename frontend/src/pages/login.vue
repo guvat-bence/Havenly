@@ -1,3 +1,39 @@
+<script setup>
+import axios from 'axios';
+  let model = {
+    email: "",
+    password: ""
+  },
+  // felhasználó adatai
+  user = [
+    {
+      person: {
+        name: "",
+        email: "",
+        phoneNumber: "",
+        gender: "",
+        type: ""
+      }
+    },
+    {
+      cardData: {
+        cardNumber: "",
+        cvv: "",
+        expireData: "",
+      }
+    }
+  ],
+  // login függvény
+  login = () => {
+    axios.post('http://localhost:3000/login',
+      model
+    )
+    .then(response => {
+      
+    })
+  }  
+</script>
+
 <template>
   <div class="d-flex justify-content-center align-items-center">
     <form class="border p-3 border-1 border-white text-white rounded-3 bg-dark bg-opacity-50">
@@ -13,24 +49,27 @@
         <input type="email" 
                class="form-control bg-transparent text-white" 
                id="InputEmail1" 
-               aria-describedby="emailHelp">
+               aria-describedby="emailHelp"
+               v-model="model.email">
       </div>
 
       <div class="mb-3 my-3">
-        <label for="InputPassword1" 
+        <label for="InputPassword" 
                class="form-label">
           <span>Jelszó</span>
           <span class="text-danger">*</span>
         </label>
         <input type="password" 
                class="form-control bg-transparent text-white"  
-               id="InputPassword1">
+               id="InputPassword"
+               v-model="model.password">
       </div>
 
-      <button type="submit" 
+      <button type="button" 
               class="btn btn-outline-light 
                      text-center rounded-3 w-100
-                     w-auto d-block mx-auto ">
+                     w-auto d-block mx-auto"
+              v-on:click="login()">
         Bejelentkezés
       </button>
     </form>

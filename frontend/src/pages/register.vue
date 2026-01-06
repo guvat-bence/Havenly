@@ -78,7 +78,8 @@ let step = ref(0),
            aria-valuemin="0" 
            aria-valuemax="100">
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-white" 
-             :style="{width: progesswidth + '%'}"></div>
+             :style="{width: progesswidth + '%'}">
+        </div>
       </div>
     </div>
 
@@ -102,37 +103,26 @@ let step = ref(0),
             <!-- A név form rész -->
             <div class="mb-3" 
                  v-if="step === 0">
-              <div class="form-label text-white d-flex gap-1">
-                <span>Teljesnév:</span>
-              </div>
-
               <!-- Vezetéknév -->
-              <div class="row">
-                <div class="col-xxl-4 col-lg-4 col-md-4 
-                          col-sm-4 col-12 p-1">
+              <div class="mb-3">
+                <div class="form-text text-white text-center 
+                            d-flex justify-content-center align-items-center 
+                            gap-1">
+                  <label for="lastName">
+                    <span>vezetéknév</span>
+                    <span class="text-danger">*</span>
+                  </label>
+                </div>
+                <div>
                   <input type="text" 
                          class="form-control bg-transparent text-white" 
                          id="lastName"
                          v-model="model.lastname">
 
-                  <div class="form-text text-white text-center 
-                              d-flex justify-content-center align-items-center 
-                              gap-1">
-                    <label for="lastName">
-                      <span>vezetéknév</span>
-                      <span class="text-danger">*</span>
-                    </label>
-                  </div>
                 </div>
 
                 <!-- Keresztnév -->
-                <div class="col-xxl-4 col-lg-4 col-md-4 
-                          col-sm-4 col-12 p-1">
-                  <input type="text" 
-                         class="form-control bg-transparent text-white" 
-                         id="firstName"
-                         v-model="model.firstname">
-
+                <div>
                   <div class="form-text text-white text-center 
                           d-flex justify-content-center align-items-center 
                           gap-1">
@@ -141,14 +131,14 @@ let step = ref(0),
                       <span class="text-danger">*</span>
                     </label>
                   </div>
-                </div>
-                <!-- Harmadiknév -->
-                <div class="col-xxl-4 col-lg-4 col-md-4 
-                          col-sm-4 col-12 p-1">
                   <input type="text" 
                          class="form-control bg-transparent text-white" 
-                         id="middleName"
-                          v-model="model.middlename">
+                         id="firstName"
+                         v-model="model.firstname">
+
+                </div>
+                <!-- Harmadiknév -->
+                <div>
                   <div class="form-text text-white text-center 
                             d-flex justify-content-center align-items-center 
                             gap-1">
@@ -156,6 +146,10 @@ let step = ref(0),
                       <span>harmadiknév</span>
                     </label>
                   </div>
+                  <input type="text" 
+                         class="form-control bg-transparent text-white" 
+                         id="middleName"
+                          v-model="model.middlename">
                 </div>
               </div>
             </div>
@@ -192,7 +186,7 @@ let step = ref(0),
 
             <div class="mb-3" 
                  v-else-if="step === 2">
-              <!-- Jelszó mégegyszer -->
+              <!-- Jelszó-->
               <div>
                 <label for="InputPassword" 
                        class="form-label">
@@ -202,6 +196,7 @@ let step = ref(0),
                 <input type="password" 
                        class="form-control bg-transparent text-white" 
                        id="InputPassword"
+                       autocomplete="off"
                        v-model="model.password">
               </div>
               <!-- Jelszó mégegyszer -->
@@ -214,6 +209,7 @@ let step = ref(0),
                 <input type="password" 
                        class="form-control bg-transparent text-white" 
                        id="inputconfirmpass"
+                       autocomplete="off"
                        v-model="model.confirmpass">
               </div>
           </div>    
@@ -242,27 +238,27 @@ let step = ref(0),
 
       <!-- Gombok -->
         <div class="d-flex">
-          
+          <!-- Vissza gomb -->
           <button type="button"
                   v-if="step || step != 3" 
                   class="btn btn-outline-light text-center 
                          w-auto w-50 mx-auto" 
                   @click="transitionName = 'slide-in';step--;">
-          Vissza
-        </button>
-
-        <button type="button" 
-                class="btn btn-outline-light text-center 
-                       d-block w-auto w-50 mx-auto" 
-                @click="transitionName = 'slide-out';step++;"
-                v-if="step < 3"
-                v-bind:disabled="step === 2 && !validateForm()">
-        Következő
-      </button>
+            Vissza
+          </button>
+          <!-- Következő gomb -->
+          <button type="button" 
+                  class="btn btn-outline-light text-center 
+                         d-block w-auto w-50 mx-auto" 
+                  @click="transitionName = 'slide-out';step++;"
+                  v-if="step < 3"
+                  v-bind:disabled="step === 2 && !validateForm()">
+            Következő
+          </button>
+       </div>
+      </form>
     </div>
-  </form>
-</div>
-</div>
+  </div>
 </template>
 
 <style scoped>
@@ -279,8 +275,9 @@ input::after {
 /* Becsúszás animáció */
 .slide-in-enter-active,
 .slide-in-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.278s ease;
   width: 100%;
+  opacity: 1;
 }
 
 .slide-in-enter-from {
@@ -296,7 +293,7 @@ input::after {
 /* Ki csúszás animáció */
 .slide-out-enter-active,
 .slide-out-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.278s ease;
   width: 100%;
   opacity: 0.4;
 }
