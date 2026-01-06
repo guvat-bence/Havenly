@@ -47,7 +47,7 @@ app.get('/accommodations', (req, res) => {
 
 app.get("/experiences", (req, res) => {
   db.query(
-    "SELECT `experiences`.`id`,`experiences`.`name`," +
+    "SELECT `experiences`.`id`,`experiences`.`name`,`experiences`.`folder_name`," +
       "`experiences`.`country_id`, `experiences`.`city_id`," +
       "`experiences`.`price`, `experiences`.`description`," +
       "`cities`.`name` AS `city_name`" +
