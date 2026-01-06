@@ -134,7 +134,7 @@ app.post('/register', (req, res) => {
       if (err) return res.status(500).send("Adatbázis hiba");
 
       if (emailRows.length > 0) {
-        return res.status(409).json({
+        return res.json({
           success: false,
           message: "Ez az email már foglalt"
         });
@@ -148,7 +148,7 @@ app.post('/register', (req, res) => {
           if (err) return res.status(500).send("Adatbázis hiba");
 
           if (phoneRows.length > 0) {
-            return res.status(409).json({
+            return res.json({
               success: false,
               message: "Ez a telefonszám már foglalt"
             });

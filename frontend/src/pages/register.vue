@@ -1,4 +1,5 @@
 <script setup>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
 import { onMounted, reactive, ref, watch} from 'vue';
 
@@ -8,6 +9,7 @@ let step = ref(0),
     transitionName = ref("slide-in"),
     progesswidth = ref(0),
     message = "",
+    isSuccess,
     model = reactive({
       lastname: "",
       firstname: "",
@@ -41,8 +43,9 @@ let step = ref(0),
         model
       })
       .then(response => {
-        message = response.data.message
-        console.log(message) 
+        message = response.data.message;
+        isSuccess = response.data.success;
+        console.log(response)
       })
       .catch(e=> console.log(e))
     }
@@ -213,18 +216,35 @@ let step = ref(0),
                        id="inputconfirmpass"
                        v-model="model.confirmpass">
               </div>
-          </div>              
+          </div>    
+          <!-- A végső jelezés -->
           <div class="mb-3"
                v-else-if="step === 3">
-                 {{ message }}
+               <!-- Iconok -->
+               <div class="text-center">
+                <FontAwesomeIcon v-if="isSuccess" 
+                                 icon="fa-solid fa-check" 
+                                 class="text-success mb-3" 
+                                 size="7x"/>
+
+                <FontAwesomeIcon v-if="!isSuccess" 
+                                 icon="fa-solid fa-x" 
+                                 class="text-danger mb-3"
+                                 size="5x"/>
+               </div>
+               <!-- Üzenet -->
+               <div class="text-center">
+                <h6 class="display-6">{{ message }}</h6>
+               </div>
           </div>    
         </div>  
       </Transition>
 
+      <!-- Gombok -->
         <div class="d-flex">
           
           <button type="button"
-                  v-if="step" 
+                  v-if="step || step != 3" 
                   class="btn btn-outline-light text-center 
                          w-auto w-50 mx-auto" 
                   @click="transitionName = 'slide-in';step--;">
