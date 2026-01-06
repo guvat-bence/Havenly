@@ -45,9 +45,8 @@ let step = ref(0),
       .then(response => {
         message = response.data.message;
         isSuccess = response.data.success;
-        console.log(response)
       })
-      .catch(e=> console.log(e))
+      .catch(e=> console.error(e))
     }
 
    watch(step,() => {
@@ -55,7 +54,6 @@ let step = ref(0),
     if(progesswidth.value === 99){
       progesswidth.value = 100
       doRegister();
-      console.log(model)
     }
    })
 
@@ -240,7 +238,7 @@ let step = ref(0),
         <div class="d-flex">
           <!-- Vissza gomb -->
           <button type="button"
-                  v-if="step || step != 3" 
+                  v-if="step || step != 3 || isSuccess" 
                   class="btn btn-outline-light text-center 
                          w-auto w-50 mx-auto" 
                   @click="transitionName = 'slide-in';step--;">
