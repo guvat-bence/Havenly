@@ -165,3 +165,13 @@ app.post('/register', (req, res) => {
     }
   );
 });
+
+// Ez kell a kezdő laphoz, holnap folytatom....:}
+// SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
+// FROM `history`
+// INNER JOIN `accommodations`
+// ON `history`.`accommodation_id` = `accommodations`.`id`
+// GROUP BY `history`.`accommodation_id`
+// HAVING COUNT(*)>1
+// ORDER BY COUNT(*)
+// LIMIT 5;
