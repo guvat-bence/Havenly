@@ -29,7 +29,7 @@ function convertStrings(str)
 }
 
 //Annak a könyvtárnak a helye ahol a másolandó képek vannak.
-const itemsDir ="e:/Downloads/project_images";
+const itemsDir ="c:/Users/guvat.bence/Downloads/download_images";
 
 //putFilesToFolders async function.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
