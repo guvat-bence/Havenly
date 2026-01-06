@@ -40,7 +40,7 @@
     A "MySQL" menüpontnál kattintson a start gombra.
     Ezután a  "MySQL" menüpontnál kattintson az admin menüpontra hogy hozzá tudja adni az adatbázist.
     A "phpMyAdmin" oldalán kattintson bal oldalt  az "Új" menüpontra.
-    Adatbázis névnek állítsa be a "havenly" nevet, majd a mellete lévő legürdülő menübeen keresse meg a "utf8_general_ci" opciót.
+    Adatbázis névnek állítsa be a "havenly" nevet, majd a mellete lévő legürdülő menübeen keresse meg a "utf8mb4_general_ci" opciót.
     Végül kattintson a "Létrehozás" gombra.
     Ezután menjen a "beszúrás" menüpontra.Itt a tallózás gombra, és válassza ki a "havenly" mappából, azon belül pedig a "db" mappából a "havenly.sql" fájlt.
     Ezután kattintsont az oldal alján lévő importálás gombra. 
