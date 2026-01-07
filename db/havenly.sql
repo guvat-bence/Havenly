@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 06. 20:20
+-- Létrehozás ideje: 2026. Jan 07. 13:15
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -277,6 +277,40 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 (98, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
 (99, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (100, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `card_networks`
+--
+
+CREATE TABLE `card_networks` (
+  `id` int(11) NOT NULL,
+  `network_name` varchar(50) NOT NULL,
+  `prefix` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `card_networks`
+--
+
+INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
+(1, 'Visa', '4'),
+(2, 'Mastercard', '5'),
+(3, 'American Express', '34'),
+(4, 'American Express', '37'),
+(5, 'Diners Club', '30'),
+(6, 'Diners Club', '36'),
+(7, 'Diners Club', '38'),
+(8, 'Discover', '6'),
+(9, 'JCB', '35'),
+(10, 'UnionPay', '62'),
+(11, 'Maestro', '50'),
+(12, 'Maestro', '56'),
+(13, 'Maestro', '57'),
+(14, 'Maestro', '58'),
+(15, 'Maestro', '59'),
+(16, 'Maestro', '6');
 
 -- --------------------------------------------------------
 
@@ -968,7 +1002,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (97, 'Leon', 'Watson', NULL, 'leon.w95@gmail.com', 'LWat95', '+15120000095', 'M', 'U', '453210000000048', '07/29', 148),
 (98, 'Poppy', 'Wood', NULL, 'poppy.w96@gmail.com', 'PWoo96', '+15120000096', 'F', 'U', NULL, NULL, NULL),
 (99, 'Nathan', 'Brooks', NULL, 'nathan.b97@gmail.com', 'NBro97', '+15120000097', 'M', 'U', '453210000000049', '08/28', 149),
-(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL),
+(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL);
 (101, 'Dylan', 'Howard', NULL, 'dylan.h99@gmail.com', 'DHow99', '+15120000099', 'M', 'U', '453210000000050', '09/30', 150),
 (102, 'Luna', 'Bailey', NULL, 'luna.b100@gmail.com', 'LBai100', '+15120000100', 'F', 'U', NULL, NULL, NULL);
 
@@ -990,6 +1024,12 @@ ALTER TABLE `accommodations`
 --
 ALTER TABLE `accommodations_details`
   ADD PRIMARY KEY (`apartman_id`);
+
+--
+-- A tábla indexei `card_networks`
+--
+ALTER TABLE `card_networks`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `cities`
@@ -1049,6 +1089,12 @@ ALTER TABLE `accommodations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
+-- AUTO_INCREMENT a táblához `card_networks`
+--
+ALTER TABLE `card_networks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT a táblához `cities`
 --
 ALTER TABLE `cities`
@@ -1082,7 +1128,7 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- Megkötések a kiírt táblákhoz
