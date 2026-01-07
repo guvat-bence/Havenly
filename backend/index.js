@@ -6,6 +6,7 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+
 // Adatbázis csatlakozás
 const db = mysql.createConnection({
   host: "localhost",
@@ -25,6 +26,7 @@ db.connect((err) => {
 app.listen(port, () => {
   console.log(`index.js is running on port ${port}`);
 });
+
 // Szállások le kérdezése
 app.get('/accommodations', (req, res) => {
   db.query('SELECT `accommodations`.`id`, `accommodations`.`owner_id`,'+
@@ -44,7 +46,6 @@ app.get('/accommodations', (req, res) => {
     res.json(result);
   })
 })
-
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
   db.query(
@@ -65,7 +66,6 @@ app.get("/experiences", (req, res) => {
     }
   );
 });
-
 //random generáljon country id-t és írja ki a hozzá rendelt szállásokat
 app.get("/accommodations/randCountryID", (req, res) => {
   db.query(
