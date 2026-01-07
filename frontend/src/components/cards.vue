@@ -17,7 +17,7 @@ let props = defineProps({
 		type: [String],
 		required: false
 	},
-	city_id: {
+	accommodation_id: {
 		type: [String,Number],
 		required: false
 	}
@@ -26,13 +26,20 @@ let props = defineProps({
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
 
-		console.log(props.city_id);
+		console.log(props.accommodation_id);
 
-		if(props.city_id == undefined){}
-		items.value = response.data.filter(country=>
-		{
-			return country.country_id == props.country_id;
-		})
+		if(props.accommodation_id == undefined){
+			items.value = response.data.filter(country=>
+			{
+				return country.country_id == props.country_id;
+			})
+		}
+		else{
+			items.value = response.data.filter(accommodation=>
+			{
+				return accommodation.id == props.accommodation_id;
+			})
+		}
 		console.log(response.data);
 		console.log(items.value);
 	})

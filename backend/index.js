@@ -46,6 +46,52 @@ app.get('/accommodations', (req, res) => {
     res.json(result);
   })
 })
+
+//random generáljon country id-t és írja ki a hozzá rendelt szállásokat
+app.get("/accommodations/randCountryID", (req, res) => {
+  db.query(`SELECT DISTINCT accommodations.country_id,
+                            countries.name AS 'country_name' 
+            FROM accommodations 
+            INNER JOIN countries 
+            ON accommodations.country_id = countries.id
+            ORDER BY RAND() LIMIT 5`,
+    (err, result) => {
+      if (err) {
+        console.error("Hiba az accommodations beolvasásakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+      res.json(result);
+    }
+  );
+});
+
+//top 5 szállás le kérdezése
+app.get("/accommodations/top5", (req, res) => {
+  db.query('SELECT COUNT(`history`.`accommodation_id`) AS `rented_times`,'+
+                  '`accommodations`.`id`,'+
+                  '`accommodations`.`country_id`,'+
+                  '`countries`.`name` '+
+           'FROM `history` '+
+           'INNER JOIN `accommodations` '+
+           'ON `history`.`accommodation_id` = `accommodations`.`id` '+
+           'INNER JOIN `countries` '+
+           'ON `countries`.`id` = `accommodations`.`country_id` '+
+           'GROUP BY `history`.`accommodation_id` '+
+           'HAVING COUNT(`accommodations`.`id`) > 1 '+
+           'ORDER BY COUNT(`accommodations`.`id`) DESC '+
+           'LIMIT 5',
+    (err, result) => {
+      if (err) {
+        console.error("Hiba az accommodations beolvasásakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+      res.json(result);
+    }
+  );
+});
+
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
   db.query(
@@ -59,25 +105,6 @@ app.get("/experiences", (req, res) => {
     (err, result) => {
       if (err) {
         console.error("Hiba a experiences beolvasásakor", err);
-        res.status(500).send("Adatbázis hiba");
-        return;
-      }
-      res.json(result);
-    }
-  );
-});
-//random generáljon country id-t és írja ki a hozzá rendelt szállásokat
-app.get("/accommodations/randCountryID", (req, res) => {
-  db.query(
-    `SELECT DISTINCT accommodations.country_id,
-                            countries.name AS 'country_name' 
-            FROM accommodations 
-            INNER JOIN countries 
-            ON accommodations.country_id = countries.id
-            ORDER BY RAND() LIMIT 5`,
-    (err, result) => {
-      if (err) {
-        console.error("Hiba az accommodations beolvasásakor", err);
         res.status(500).send("Adatbázis hiba");
         return;
       }

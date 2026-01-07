@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
-import cards from '../components/cards.vue';
 import axios from 'axios';
 import Cards from '../components/cards.vue';
 
@@ -35,7 +34,7 @@ onMounted(()=>
         </h1>
         <form class="form mt-5 col-12 col-lg-4 col-md-5 row justify-content-center 
                     bg-dark bg-opacity-50 rounded-3 shadow
-                    p-4 border border-1 border-white">
+                    p-4 border border-1 border-white mb-5">
 
           <!-- Keresési mező -->
           <input  class="form-control mt-2" 
@@ -50,11 +49,14 @@ onMounted(()=>
         </form> 
       </div>
       <div v-for="x in accommodations">
+        <h1 class="display-5 text-center text-white">
+          Legnépszerűbb szállás amit {{ x.name }} kínál
+        </h1>
         <Cards 
           table-name="accommodations"
           :country_id="x.country_id"
           :country_name="x.name"
-          :city_id="x.id"
+          :accommodation_id="x.id"
         />
       </div>
     </div>
