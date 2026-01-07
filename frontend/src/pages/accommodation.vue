@@ -9,7 +9,6 @@ onMounted(() => {
   axios.get('http://localhost:3000/accommodations/randCountryID')
     .then(response => {
       country.value = response.data;
-      console.log(country.value)
     })
     .catch(e => console.error(e))
 })
