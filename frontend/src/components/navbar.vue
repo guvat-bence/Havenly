@@ -8,10 +8,10 @@ let mainRoutes = [
 		name: "Élmények",
 		path: "/experience"
 	},	
-	// {
-	// 	name: "Rólunk",
-	// 	path: "/aboutus"
-	// }
+	{
+		name: "Rólunk",
+		path: "/aboutus"
+	}
 ]
 let sideRoutes=[
 	{
