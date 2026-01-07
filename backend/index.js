@@ -178,7 +178,7 @@ app.post('/register', (req, res) => {
     }
   );
 });
-
+// Bejelentkezés route
 app.post('login', (req,res) => {
   let query = `SELECT
              id,
@@ -200,7 +200,17 @@ app.post('login', (req,res) => {
               password = ?`,
       data = req.body.model;
 
-  db.query(query, [data.email,data.password]);
+  db.query(query, [data.email,data.password] (err,account) => {
+    if(err)
+      return res.status(500).send('Adatbázis hiba');
+
+    if(!account){
+      return res.json({success: false,
+                       message: 'Sikertelen bejelentkezés',
+    }
+  )}
+);
+
 })
 
 // Ez kell a kezdő laphoz, holnap folytatom....:}
