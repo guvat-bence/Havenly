@@ -40,9 +40,7 @@ let step = ref(0),
     return true;
   },
   doRegister = () => {
-    axios.post('http://localhost:3000/register', {
-      model
-    })
+    axios.post('http://localhost:3000/register', model)
       .then(response => {
         message = response.data.message;
         isSuccess = response.data.success;

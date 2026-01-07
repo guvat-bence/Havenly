@@ -44,6 +44,7 @@ app.get('/accommodations', (req, res) => {
     res.json(result);
   })
 })
+
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
   db.query(
@@ -64,6 +65,7 @@ app.get("/experiences", (req, res) => {
     }
   );
 });
+
 //random generáljon country id-t és írja ki a hozzá rendelt szállásokat
 app.get("/accommodations/randCountryID", (req, res) => {
   db.query(
@@ -106,7 +108,7 @@ app.get("/experiences/randCountryID", (req, res) => {
 
 // Regisztréciós route
 app.post('/register', (req, res) => {
-  const data = req.body.model;
+  const data = req.body;
 
   // 1) Email ellenőrzés
   db.query(
@@ -122,22 +124,31 @@ app.post('/register', (req, res) => {
         });
       }
 
+      
       // 2) Telefonszám ellenőrzés
       db.query(
         'SELECT id FROM users WHERE phone_number = ? LIMIT 1',
         [data.phone_number],
         (err, phoneRows) => {
           if (err) return res.status(500).send("Adatbázis hiba");
-
+          
           if (phoneRows.length > 0) {
             return res.json({
               success: false,
               message: "Ez a telefonszám már foglalt"
             });
           }
+
+          let insertQuery = `INSERT INTO users (first_name, 
+                                               last_name, 
+                                               middle_name, 
+                                               email, 
+                                               password, 
+                                               phone_number) 
+                                   VALUES (?, ?, ?, ?, ?, ?)`
           // Insert parancs végrehajtása ha miden rendben van
           db.query(
-            'INSERT INTO users (first_name, last_name, middle_name, email, password, phone_number) VALUES (?, ?, ?, ?, ?, ?)',
+            insertQuery,
             [
               data.firstname,
               data.lastname,
@@ -167,6 +178,30 @@ app.post('/register', (req, res) => {
     }
   );
 });
+
+app.post('login', (req,res) => {
+  let query = `SELECT
+             id,
+             first_name,
+             last_name,
+             middle_name,
+             email,
+             password,
+             phone_number,
+             gender,
+             user_type,
+             card_number,
+             expiration,
+             cvv
+          FROM
+            users
+          WHERE
+              email = ?,
+              password = ?`,
+      data = req.body.model;
+
+  db.query(query, [data.email,data.password]);
+})
 
 // Ez kell a kezdő laphoz, holnap folytatom....:}
 // SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
