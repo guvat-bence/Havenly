@@ -16,11 +16,19 @@ let props = defineProps({
 	country_name: {
 		type: [String],
 		required: false
+	},
+	city_id: {
+		type: [String,Number],
+		required: false
 	}
 })
 
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
+
+		console.log(props.city_id);
+
+		if(props.city_id == undefined){}
 		items.value = response.data.filter(country=>
 		{
 			return country.country_id == props.country_id;

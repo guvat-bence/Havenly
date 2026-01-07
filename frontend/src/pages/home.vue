@@ -54,7 +54,7 @@ onMounted(()=>
           table-name="accommodations"
           :country_id="x.country_id"
           :country_name="x.name"
-          page="home"
+          :city_id="x.id"
         />
       </div>
     </div>
