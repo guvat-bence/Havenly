@@ -25,9 +25,7 @@ let model = {
   ],
   // login függvény
   login = () => {
-    axios.post('http://localhost:3000/login',
-      model
-    )
+    axios.post('http://localhost:3000/login',model)
       .then(response => {
         console.log(response)
       })

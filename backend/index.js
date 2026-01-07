@@ -109,7 +109,12 @@ app.get("/experiences/randCountryID", (req, res) => {
 // Regisztréciós route
 app.post('/register', (req, res) => {
   const data = req.body;
-
+  if(data.password.length > 40){
+    return res.status(400).json({
+      success: false,
+      message: 'Túl hosszú jelszót adtál meg'
+    })
+  }
   // 1) Email ellenőrzés
   db.query(
     'SELECT id FROM users WHERE email = ? LIMIT 1',
@@ -181,7 +186,7 @@ app.post('/register', (req, res) => {
 
 // Bejelentkezés route
 app.post('/login', (req, res) => {
-  const data = req.body;
+  let data = req.body;
 
   const query = `
     SELECT
