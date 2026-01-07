@@ -46,51 +46,6 @@ app.get('/accommodations', (req, res) => {
     res.json(result);
   })
 })
-
-//random generáljon country id-t és írja ki a hozzá rendelt szállásokat
-app.get("/accommodations/randCountryID", (req, res) => {
-  db.query(
-    `SELECT DISTINCT accommodations.country_id,
-                            countries.name AS 'country_name' 
-            FROM accommodations 
-            INNER JOIN countries 
-            ON accommodations.country_id = countries.id
-            ORDER BY RAND() LIMIT 5`,
-    (err, result) => {
-      if (err) {
-        console.error("Hiba az accommodations beolvasásakor", err);
-        res.status(500).send("Adatbázis hiba");
-        return;
-      }
-      res.json(result);
-    }
-  );
-});
-
-// A top 5 leglátogatottabb szállás, le kérdezése
-app.get('/accommodations/top5', (req, res) => {
-  db.query('SELECT COUNT(`history`.`id`) AS `rented_times`,'+
-            '`accommodations`.`id`,'+
-            '`accommodations`.`country_id`,'+
-            '`countries`.`name` '+
-           'FROM `history` '+
-           'INNER JOIN `accommodations` '+
-           'ON `history`.`accommodation_id` = `accommodations`.`id` '+
-           'INNER JOIN `countries` '+
-           'ON `accommodations`.`country_id` =  `countries`.`id` '+
-           'GROUP BY `accommodations`.`id` ' +
-           'HAVING COUNT(`history`.`accommodation_id`) > 1 ' +
-           'ORDER BY COUNT(`history`.`accommodation_id`)DESC '+
-           'LIMIT 5', (err,result) => {
-    if(err){
-      console.error("Hiba a accommodations beolvasásakor", err);
-      res.status(500).send("Adatbázis hiba");
-      return;
-    }
-    res.json(result);
-  })
-})
-
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
   db.query(
@@ -223,40 +178,6 @@ app.post('/register', (req, res) => {
     }
   );
 });
-// Bejelentkezés route
-app.post('login', (req,res) => {
-  let query = `SELECT
-             id,
-             first_name,
-             last_name,
-             middle_name,
-             email,
-             password,
-             phone_number,
-             gender,
-             user_type,
-             card_number,
-             expiration,
-             cvv
-          FROM
-            users
-          WHERE
-              email = ?,
-              password = ?`,
-      data = req.body.model;
-
-  db.query(query, [data.email,data.password] (err,account) => {
-    if(err)
-      return res.status(500).send('Adatbázis hiba');
-
-    if(!account){
-      return res.json({success: false,
-                       message: 'Sikertelen bejelentkezés',
-    }
-  )}
-);
-
-})
 
 // Ez kell a kezdő laphoz, holnap folytatom....:}
 // SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
