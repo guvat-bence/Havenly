@@ -6,6 +6,7 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+
 // Adatbázis csatlakozás
 const db = mysql.createConnection({
   host: "localhost",
@@ -25,6 +26,7 @@ db.connect((err) => {
 app.listen(port, () => {
   console.log(`index.js is running on port ${port}`);
 });
+
 // Szállások le kérdezése
 app.get('/accommodations', (req, res) => {
   db.query('SELECT `accommodations`.`id`, `accommodations`.`owner_id`,'+
@@ -44,6 +46,51 @@ app.get('/accommodations', (req, res) => {
     res.json(result);
   })
 })
+
+//random generáljon country id-t és írja ki a hozzá rendelt szállásokat
+app.get("/accommodations/randCountryID", (req, res) => {
+  db.query(
+    `SELECT DISTINCT accommodations.country_id,
+                            countries.name AS 'country_name' 
+            FROM accommodations 
+            INNER JOIN countries 
+            ON accommodations.country_id = countries.id
+            ORDER BY RAND() LIMIT 5`,
+    (err, result) => {
+      if (err) {
+        console.error("Hiba az accommodations beolvasásakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+      res.json(result);
+    }
+  );
+});
+
+// A top 5 leglátogatottabb szállás, le kérdezése
+app.get('/accommodations/top5', (req, res) => {
+  db.query('SELECT COUNT(`history`.`id`) AS `rented_times`,'+
+            '`accommodations`.`id`,'+
+            '`accommodations`.`country_id`,'+
+            '`countries`.`name` '+
+           'FROM `history` '+
+           'INNER JOIN `accommodations` '+
+           'ON `history`.`accommodation_id` = `accommodations`.`id` '+
+           'INNER JOIN `countries` '+
+           'ON `accommodations`.`country_id` =  `countries`.`id` '+
+           'GROUP BY `accommodations`.`id` ' +
+           'HAVING COUNT(`history`.`accommodation_id`) > 1 ' +
+           'ORDER BY COUNT(`history`.`accommodation_id`)DESC '+
+           'LIMIT 5', (err,result) => {
+    if(err){
+      console.error("Hiba a accommodations beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+    res.json(result);
+  })
+})
+
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
   db.query(
@@ -57,25 +104,6 @@ app.get("/experiences", (req, res) => {
     (err, result) => {
       if (err) {
         console.error("Hiba a experiences beolvasásakor", err);
-        res.status(500).send("Adatbázis hiba");
-        return;
-      }
-      res.json(result);
-    }
-  );
-});
-//random generáljon country id-t és írja ki a hozzá rendelt szállásokat
-app.get("/accommodations/randCountryID", (req, res) => {
-  db.query(
-    `SELECT DISTINCT accommodations.country_id,
-                            countries.name AS 'country_name' 
-            FROM accommodations 
-            INNER JOIN countries 
-            ON accommodations.country_id = countries.id
-            ORDER BY RAND() LIMIT 5`,
-    (err, result) => {
-      if (err) {
-        console.error("Hiba az accommodations beolvasásakor", err);
         res.status(500).send("Adatbázis hiba");
         return;
       }
@@ -167,13 +195,3 @@ app.post('/register', (req, res) => {
     }
   );
 });
-
-// Ez kell a kezdő laphoz, holnap folytatom....:}
-// SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
-// FROM `history`
-// INNER JOIN `accommodations`
-// ON `history`.`accommodation_id` = `accommodations`.`id`
-// GROUP BY `history`.`accommodation_id`
-// HAVING COUNT(*)>1
-// ORDER BY COUNT(*)
-// LIMIT 5;
