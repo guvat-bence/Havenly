@@ -25,8 +25,8 @@ let props = defineProps({
 		{
 			return country.country_id == props.country_id;
 		})
-		console.log(response.data);
-		console.log(items.value);
+		// console.log(response.data);
+		// console.log(items.value);
 	})
 	.catch(e => console.error(e))
 
