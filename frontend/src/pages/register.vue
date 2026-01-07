@@ -1,67 +1,74 @@
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
-import { onMounted, reactive, ref, watch} from 'vue';
+import { onMounted, reactive, ref, watch } from 'vue';
 
- 
 
+// Változók és funkciók deklarálása
 let step = ref(0),
-    transitionName = ref("slide-in"),
-    progesswidth = ref(0),
-    message = "",
-    isSuccess,
-    model = reactive({
-      lastname: "",
-      firstname: "",
-      middlename: "",
-      email: "",
-      phone_number: "",
-      password: "",
-      confirmpass: ""
-    }),
-    validateForm = () => {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
-        return false;
+  transitionName = ref("slide-in"),
+  progesswidth = ref(0),
+  message = "",
+  isSuccess,
+  model = reactive({
+    lastname: "",
+    firstname: "",
+    middlename: "",
+    email: "",
+    phone_number: "",
+    password: "",
+    confirmpass: ""
+  }),
+  // Adatokat ellenőrzése
+  validateForm = () => {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
+      return false;
 
-      if(model.firstname.length === 0 || 
-         model.lastname === 1) 
-         return false
+    if (model.firstname.length === 0 ||
+      model.lastname === 1)
+      return false
 
-      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
-        return false;
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
+      return false;
 
-      if(model.password !== model.confirmpass)
-        return false
+    if (model.password !== model.confirmpass)
+      return false
 
-      if(!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phone_number))
-        return false;
+    if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phone_number))
+      return false;
 
-  return true;
-    },
-    doRegister = () =>{
-      axios.post('http://localhost:3000/register',{
-        model
-      })
+    return true;
+  },
+  doRegister = () => {
+    axios.post('http://localhost:3000/register', {
+      model
+    })
       .then(response => {
         message = response.data.message;
         isSuccess = response.data.success;
       })
-      .catch(e=> console.error(e))
-    }
-
-   watch(step,() => {
-    progesswidth.value = step.value * 33
-    if(progesswidth.value === 99){
-      progesswidth.value = 100
-      doRegister();
-    }
-   })
-
-   watch(model, () =>{
-    validateForm();
+      .catch(e => console.error(e))
   }
+
+//A step változó változása esetén fusson ez a függvény
+watch(step, () => {
+  // A progess width-et értéke legyen step szorozva 33
+  progesswidth.value = step.value * 33
+  //Ha eléri a 99-es értéket akkor legyen 100
+  //Ha eléri a 99-et akkor hajtsa végre a do register függvényt
+  //A 99 csak abban az esetben elérhető ha már elvégezte az utolsó pontot
+  if (progesswidth.value === 99) {
+    progesswidth.value = 100
+    doRegister();
+  }
+})
+
+//Model elemek változására hajtsa validateForm függvényt
+watch(model, () => {
+  validateForm();
+}
 )
-    
+
 </script>
 
 <template>
@@ -69,14 +76,10 @@ let step = ref(0),
 
     <!-- progressbar -->
     <div class="d-flex justify-content-center mt-4 mb-4">
-      <div class="progress w-50 bg-black border border-1 border-white" 
-           role="progressbar"
-           aria-label="Animated striped example" 
-           aria-valuenow="0" 
-           aria-valuemin="0" 
-           aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-white" 
-             :style="{width: progesswidth + '%'}">
+      <div class="progress w-50 bg-black border border-1 border-white" role="progressbar"
+        aria-label="Animated striped example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-white"
+          :style="{ width: progesswidth + '%' }">
         </div>
       </div>
     </div>
@@ -87,20 +90,17 @@ let step = ref(0),
                     bg-dark bg-opacity-50 mb-3">
 
         <div>
-          <h1 class="text-center"
-              v-if="step !== 3">
-              {{ step+1 }}. lépés
+          <h1 class="text-center" v-if="step !== 3">
+            {{ step + 1 }}. lépés
           </h1>
         </div>
-
-        <Transition :name="transitionName"
-                    type="transition"
-                    mode="out-in">
+        <!-- Animációs komponens -->
+        <Transition :name="transitionName" type="transition" mode="out-in">
           <div :key="step">
 
             <!-- A név form rész -->
-            <div class="mb-3" 
-                 v-if="step === 0">
+            <div class="mb-3" v-if="step === 0">
+
               <!-- Vezetéknév -->
               <div class="mb-3">
                 <div class="form-text text-white text-center 
@@ -113,17 +113,16 @@ let step = ref(0),
                 </div>
                 <div>
                   <input type="text" 
-                         class="form-control bg-transparent text-white" 
+                         class="form-control bg-transparent text-white"
                          id="lastName"
                          v-model="model.lastname">
-
                 </div>
 
                 <!-- Keresztnév -->
                 <div>
                   <div class="form-text text-white text-center 
-                          d-flex justify-content-center align-items-center 
-                          gap-1">
+                              d-flex justify-content-center align-items-center 
+                              gap-1">
                     <label for="firstName">
                       <span>keresztnév</span>
                       <span class="text-danger">*</span>
@@ -135,11 +134,12 @@ let step = ref(0),
                          v-model="model.firstname">
 
                 </div>
+
                 <!-- Harmadiknév -->
                 <div>
                   <div class="form-text text-white text-center 
-                            d-flex justify-content-center align-items-center 
-                            gap-1">
+                              d-flex justify-content-center align-items-center 
+                              gap-1">
                     <label for="middleName">
                       <span>harmadiknév</span>
                     </label>
@@ -147,24 +147,25 @@ let step = ref(0),
                   <input type="text" 
                          class="form-control bg-transparent text-white" 
                          id="middleName"
-                          v-model="model.middlename">
+                         v-model="model.middlename">
                 </div>
               </div>
             </div>
 
             <!-- Contact információk form rész -->
-            <div class="mb-3" 
-                 v-else-if="step === 1">
+            <div class="mb-3" v-else-if="step === 1">
+
               <!-- Email cím -->
               <div>
-                <label for="InputEmail1" class="form-label">
+                <label for="InputEmail1" 
+                       class="form-label">
                   <span>Email</span>
                   <span class="text-danger">*</span>
                 </label>
                 <input type="email" 
                        class="form-control bg-transparent text-white" 
                        id="InputEmail1"
-                       aria-describedby="emailHelp"
+                       aria-describedby="emailHelp" 
                        v-model="model.email">
               </div>
 
@@ -182,8 +183,9 @@ let step = ref(0),
               </div>
             </div>
 
-            <div class="mb-3" 
-                 v-else-if="step === 2">
+            <!-- Jelszó megadása form rész -->
+            <div class="mb-3" v-else-if="step === 2">
+
               <!-- Jelszó-->
               <div>
                 <label for="InputPassword" 
@@ -194,9 +196,10 @@ let step = ref(0),
                 <input type="password" 
                        class="form-control bg-transparent text-white" 
                        id="InputPassword"
-                       autocomplete="off"
+                       autocomplete="off" 
                        v-model="model.password">
               </div>
+
               <!-- Jelszó mégegyszer -->
               <div>
                 <label for="inputconfirmpass" 
@@ -207,53 +210,55 @@ let step = ref(0),
                 <input type="password" 
                        class="form-control bg-transparent text-white" 
                        id="inputconfirmpass"
-                       autocomplete="off"
+                       autocomplete="off" 
                        v-model="model.confirmpass">
               </div>
-          </div>    
-          <!-- A végső jelezés -->
-          <div class="mb-3"
-               v-else-if="step === 3">
-               <!-- Iconok -->
-               <div class="text-center">
+            </div>
+
+            <!-- A végső jelezés -->
+            <div class="mb-3" v-else-if="step === 3">
+              <!-- Iconok -->
+              <div class="text-center">
                 <FontAwesomeIcon v-if="isSuccess" 
                                  icon="fa-solid fa-check" 
                                  class="text-success mb-3" 
-                                 size="7x"/>
+                                 size="5x" />
 
                 <FontAwesomeIcon v-if="!isSuccess" 
                                  icon="fa-solid fa-x" 
-                                 class="text-danger mb-3"
-                                 size="5x"/>
-               </div>
-               <!-- Üzenet -->
-               <div class="text-center">
+                                 class="text-danger mb-3" 
+                                 size="5x" />
+              </div>
+              <!-- Üzenet -->
+              <div class="text-center">
                 <h6 class="display-6">{{ message }}</h6>
-               </div>
-          </div>    
-        </div>  
-      </Transition>
+              </div>
+            </div>
+          </div>
+        </Transition>
 
-      <!-- Gombok -->
+        <!-- Gombok -->
         <div class="d-flex">
+
           <!-- Vissza gomb -->
-          <button type="button"
+          <button type="button" 
                   v-if="step || step != 3 || isSuccess" 
                   class="btn btn-outline-light text-center 
                          w-auto w-50 mx-auto" 
-                  @click="transitionName = 'slide-in';step--;">
+                  @click="transitionName = 'slide-in'; step--;">
             Vissza
           </button>
+
           <!-- Következő gomb -->
           <button type="button" 
                   class="btn btn-outline-light text-center 
                          d-block w-auto w-50 mx-auto" 
-                  @click="transitionName = 'slide-out';step++;"
+                  @click="transitionName = 'slide-out'; step++;" 
                   v-if="step < 3"
                   v-bind:disabled="step === 2 && !validateForm()">
             Következő
           </button>
-       </div>
+        </div>
       </form>
     </div>
   </div>
@@ -303,5 +308,4 @@ input::after {
 .slide-out-leave-to {
   transform: translateX(100%);
 }
-
 </style>
