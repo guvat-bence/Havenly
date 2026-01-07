@@ -109,7 +109,12 @@ app.get("/experiences/randCountryID", (req, res) => {
 // Regisztréciós route
 app.post('/register', (req, res) => {
   const data = req.body;
-
+  if(data.password.length > 40){
+    return res.status(400).json({
+      success: false,
+      message: 'Túl hosszú jelszót adtál meg'
+    })
+  }
   // 1) Email ellenőrzés
   db.query(
     'SELECT id FROM users WHERE email = ? LIMIT 1',
@@ -178,6 +183,49 @@ app.post('/register', (req, res) => {
     }
   );
 });
+
+// Bejelentkezés route
+app.post('/login', (req, res) => {
+  let data = req.body;
+
+  const query = `
+    SELECT
+      id,
+      first_name,
+      last_name,
+      middle_name,
+      email,
+      password,
+      phone_number,
+      gender,
+      user_type,
+      card_number,
+      expiration,
+      cvv
+    FROM users
+    WHERE email = ? AND password = ?
+    LIMIT 1
+  `;
+
+  db.query(query, [data.email, data.password], (err, account) => {
+    if (err) {
+      return res.status(500).send('Adatbázis hiba');
+    }
+
+    if (account.length === 0) {
+      return res.json({
+        success: false,
+        message: 'Sikertelen bejelentkezés'
+      });
+    }
+
+    return res.json({
+      success: true,
+      user: account[0]
+    });
+  });
+});
+
 
 // Ez kell a kezdő laphoz, holnap folytatom....:}
 // SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
