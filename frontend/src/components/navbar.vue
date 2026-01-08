@@ -1,4 +1,6 @@
 <script setup>
+import { user } from '@/store/user';
+
 let mainRoutes = [
 	{
 		name: "Szállások",
@@ -12,8 +14,8 @@ let mainRoutes = [
 		name: "Rólunk",
 		path: "/aboutus"
 	}
-]
-let sideRoutes=[
+],
+ 	authentication=[
 	{
 		name: "Regisztráció",
 		path: "/register"
@@ -22,7 +24,29 @@ let sideRoutes=[
 		name: "Bejelentkezés",
 		path: "/login"
 	}
-];
+],
+	account = [
+		{
+			name: "Felhasználó",
+			path: "/account" 
+		},
+		{
+			name: "Beállítások",
+			path: "/settings"
+		}
+	],
+	logout = () => {
+		user.id = "";
+		user.firstname = "";
+		user.lasttname = "";
+		user.middlename = "";
+		user.phone_number = "";
+		user.gender = "";
+		user.user_type = "";
+		user.cardNumber = "";
+		user.expiration = "";
+		user.cvv = "";
+	} 
 </script>
 
 <template>
@@ -60,7 +84,8 @@ let sideRoutes=[
 					</li>
 				</ul>
 				<ul class="navbar-nav ms-auto">
-					<li v-for="y in sideRoutes" 
+					<li v-for="y in authentication" 
+							v-if="!user.id"
 							class="nav-item">
 
 						<router-link :to="y.path" 
@@ -68,6 +93,22 @@ let sideRoutes=[
 							{{ y.name }}
 						</router-link>
 					</li>
+
+										
+					<li v-for="y in account" 
+							v-if="user.id"
+							class="nav-item">
+
+						<router-link :to="y.path" 
+												 class="nav-link">
+							{{ y.name }}
+						</router-link>
+					</li>
+					<button class="btn btn-outline-danger"
+									v-if="user.id"
+									v-on:click="logout()">
+							Kijelentkezés
+					</button>
 				</ul>
 			</div>
 		</div>

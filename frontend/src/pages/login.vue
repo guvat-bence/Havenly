@@ -1,4 +1,5 @@
 <script setup>
+import router from '@/router';
 import { user } from '@/store/user';
 import axios from 'axios';
 import { reactive, watch } from 'vue';
@@ -18,15 +19,17 @@ let model = reactive({
 
         else{
           user.id = response.data.user.id;
-          user.firstname = response.data.user.firstname;
-          user.lasttname = response.data.user.lasttname;
-          user.middlename = response.data.user.middlename;
+          user.firstname = response.data.user.first_name;
+          user.lasttname = response.data.user.last_name;
+          user.middlename = response.data.user.middle_name;
           user.phone_number = response.data.user.phone_number;
           user.gender = response.data.user.gender;
           user.user_type = response.data.user.user_type;
-          user.cardNumber = response.data.user.cardNumber;
+          user.cardNumber = response.data.user.card_number;
           user.expiration = response.data.user.expiration;
           user.cvv = response.data.user.cvv;
+
+          router.push('/');
         }  
       })
       .catch(e => console.error(e))
