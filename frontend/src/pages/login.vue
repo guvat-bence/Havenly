@@ -15,7 +15,6 @@ let model = reactive({
       .then(response => {
         if(!response.data.success)
           message = response.data.message;
-
         user = response.data.user
         
       })
