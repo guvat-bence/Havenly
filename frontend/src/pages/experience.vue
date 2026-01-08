@@ -20,8 +20,7 @@ onMounted(() => {
     <div v-for="x in country">
     <h1 class="display-5 text-center text-white">Élmények amiket {{ x.country_name }} kínál</h1>
     <Cards tableName="experiences" 
-         :country_id="x.country_id"
-         :country_name="x.country_name"/>
+         :country_id="x.country_id"/>
     </div>
   </div>
 </template>

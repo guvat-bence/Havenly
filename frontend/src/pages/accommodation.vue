@@ -22,8 +22,7 @@ onMounted(() => {
       Szállások amiket {{ x.country_name }} kínál
     </h1>
     <Cards tableName="accommodations" 
-          :country_id="x.country_id"
-          :country_name="x.country_name"/>
+          :country_id="x.country_id"/>
     </div>
   </div>
 </template>

@@ -34,10 +34,13 @@ app.get('/accommodations', (req, res) => {
                    '`accommodations`.`size`,'+
                    '`accommodations`.`country_id`, `accommodations`.`city_id`,'+
                    '`accommodations`.`price`, `accommodations`.`description`,'+
-                   '`cities`.`name` AS `city_name`'+
-          'FROM `accommodations`'+
-          'INNER JOIN `cities`'+
-          'ON `accommodations`.`city_id` = `cities`.`id`', (err,result) => {
+                   '`cities`.`name` AS `city_name`,'+
+                   '`countries`.`name` AS `country_name` '+
+          'FROM `accommodations` '+
+          'INNER JOIN `cities` '+
+          'ON `accommodations`.`city_id` = `cities`.`id` '+
+          'INNER JOIN `countries` '+
+          'ON `accommodations`.`country_id` = `countries`.`id`', (err,result) => {
     if(err){
       console.error("Hiba a accommodations beolvasásakor", err);
       res.status(500).send("Adatbázis hiba");
@@ -98,10 +101,13 @@ app.get("/experiences", (req, res) => {
     "SELECT `experiences`.`id`,`experiences`.`name`,`experiences`.`folder_name`," +
       "`experiences`.`country_id`, `experiences`.`city_id`," +
       "`experiences`.`price`, `experiences`.`description`," +
-      "`cities`.`name` AS `city_name`" +
+      "`cities`.`name` AS `city_name`," +
+      "`countries`.`name` AS `country_name` "+
       "FROM `experiences`" +
       "INNER JOIN `cities`" +
-      "ON `experiences`.`city_id` = `cities`.`id`",
+      "ON `experiences`.`city_id` = `cities`.`id` "+
+      "INNER JOIN `countries` "+
+      "ON `experiences`.`country_id` = `countries`.`id`",
     (err, result) => {
       if (err) {
         console.error("Hiba a experiences beolvasásakor", err);

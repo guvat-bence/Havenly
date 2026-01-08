@@ -13,17 +13,13 @@ let props = defineProps({
 		type: [String,Number],
 		required: false
 	},
-	country_name: {
-		type: [String],
-		required: false
-	},
 	accommodation_id: {
 		type: [String,Number],
 		required: false
 	}
 })
 
-	axios.get(`http://localhost:3000/${props.tableName}`)
+axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
 
 		console.log(props.accommodation_id);
@@ -63,9 +59,12 @@ function convertStrings(str) {
 				 :key="x.id"
 					style="width: 21rem;">
 			<div class="position-relative">
-				<img :src="`/countries/${convertStrings(props.country_name)}/cities/${convertStrings(x.city_name)}/${props.tableName}/${convertStrings(x.folder_name)}/001.png`"
+				<img :src="`/countries/${convertStrings(x.country_name)}
+										/cities/${convertStrings(x.city_name)}
+										/${props.tableName}/${convertStrings(x.folder_name)}/001.png`"
+										
  						 class="card-img-top rounded-top-4" 
-						 style="height: 200px; object-fit: cover;">
+						 style="height: 200px; object-fit: cover">
 				<h5 class="card-title text-white position-absolute 
 									 bottom-0 start-0 w-100 bg-dark bg-opacity-50 
 									 text-center m-0 p-2 border fw-bold ">
@@ -74,13 +73,13 @@ function convertStrings(str) {
 			</div>
 			<div class="card-body">
 					<p class="card-text w-100">
-						{{props.country_name}}, {{x.city_name}}
+						{{x.country_name}}, {{x.city_name}}
 					</p>
 			</div>
 			<div class="card-footer border-0">
 				<button class="btn btn-outline-light w-100">
 					<router-link 
-							:to="{name:'about',params:{id:x.id,name:x.name}}" <!--props_table_name-->
+							:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name}}"
 						 	class="nav-link">
 						Érdekel
 					</router-link>
