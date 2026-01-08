@@ -3,16 +3,16 @@ import { user } from '@/store/user';
 
 let mainRoutes = [
 	{
+		name: "Rólunk",
+		path: "/aboutus"
+	},
+	{
 		name: "Szállások",
 		path: "/accommodation"
 	},
 	{
 		name: "Élmények",
 		path: "/experience"
-	},	
-	{
-		name: "Rólunk",
-		path: "/aboutus"
 	}
 ],
  	authentication=[

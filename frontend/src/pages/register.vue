@@ -247,7 +247,8 @@ watch(model, () => {
                   v-if="step || step != 3 || isSuccess" 
                   class="btn btn-outline-light text-center 
                          w-auto w-50 mx-auto" 
-                  @click="transitionName = 'slide-in'; step--;">
+                  @click="transitionName = 'slide-in'; step--;"
+                  v-bind:disabled="step===0">
             Vissza
           </button>
 

@@ -46,9 +46,7 @@ let props = defineProps({
 	.catch(e => console.error(e))
 
 function convertStrings(str) {  
-  if (!str || typeof str !== "string") {
-    return ""; // vagy adhatsz vissza egy default értéket
-  }
+
   return str.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ","_")
