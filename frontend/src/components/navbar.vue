@@ -27,7 +27,7 @@ let mainRoutes = [
 ],
 	account = [
 		{
-			name: "Felhasználó",
+			name:  user.lasttname + " " + user.firstname,
 			path: "/account" 
 		},
 		{
