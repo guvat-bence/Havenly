@@ -1002,7 +1002,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (97, 'Leon', 'Watson', NULL, 'leon.w95@gmail.com', 'LWat95', '+15120000095', 'M', 'U', '453210000000048', '07/29', 148),
 (98, 'Poppy', 'Wood', NULL, 'poppy.w96@gmail.com', 'PWoo96', '+15120000096', 'F', 'U', NULL, NULL, NULL),
 (99, 'Nathan', 'Brooks', NULL, 'nathan.b97@gmail.com', 'NBro97', '+15120000097', 'M', 'U', '453210000000049', '08/28', 149),
-(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL);
+(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL),
 (101, 'Dylan', 'Howard', NULL, 'dylan.h99@gmail.com', 'DHow99', '+15120000099', 'M', 'U', '453210000000050', '09/30', 150),
 (102, 'Luna', 'Bailey', NULL, 'luna.b100@gmail.com', 'LBai100', '+15120000100', 'F', 'U', NULL, NULL, NULL);
 
