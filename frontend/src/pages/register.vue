@@ -19,6 +19,7 @@ let step = ref(0),
     password: "",
     confirmpass: ""
   }),
+
   // Adatokat ellenőrzése
   validateForm = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
@@ -34,11 +35,16 @@ let step = ref(0),
     if (model.password !== model.confirmpass)
       return false
 
+    if(model.password.length >= 40 || model.password.length <= 6)
+      return false;
+
     if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phone_number))
       return false;
 
     return true;
   },
+
+  // Regiszrációs függvény
   doRegister = () => {
     axios.post('http://localhost:3000/register', model)
       .then(response => {
@@ -64,9 +70,7 @@ watch(step, () => {
 //Model elemek változására hajtsa validateForm függvényt
 watch(model, () => {
   validateForm();
-}
-)
-
+})
 </script>
 
 <template>

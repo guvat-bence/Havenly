@@ -1,36 +1,46 @@
 <script setup>
 import axios from 'axios';
-let model = {
+import { reactive, watch } from 'vue';
+let model = reactive({
   email: "",
   password: ""
-},
+}),
+
   // felhasználó adatai
-  user = [
-    {
-      person: {
-        name: "",
-        email: "",
-        phoneNumber: "",
-        gender: "",
-        type: ""
-      }
-    },
-    {
-      cardData: {
-        cardNumber: "",
-        cvv: "",
-        expireData: "",
-      }
-    }
-  ],
+  user,
+  message,
   // login függvény
   login = () => {
     axios.post('http://localhost:3000/login',model)
       .then(response => {
-        console.log(response)
+        if(!response.data.success)
+          message = response.data.message;
+
+        user = response.data.user
+        
       })
       .catch(e => console.error(e))
-  }  
+  },
+
+  // Ellenőrzi a bevitt értéket
+  validateForm = () => {
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
+      return false;
+
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
+    return false;
+
+    if(model.password.length >= 40 || model.password.length <= 6)
+      return false;
+
+    return true;
+  }
+
+  watch(model, () => {
+    validateForm();
+  })
+
 </script>
 
 <template>
@@ -71,7 +81,8 @@ let model = {
                 class="btn btn-outline-light 
                        text-center rounded-3 w-100
                        w-auto d-block mx-auto" 
-                v-on:click="login()">
+                v-on:click="login()"
+                v-bind:disabled="!validateForm()">
           Bejelentkezés
         </button>
       </form>

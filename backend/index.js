@@ -242,7 +242,7 @@ app.post('/login', (req, res) => {
     if (account.length === 0) {
       return res.json({
         success: false,
-        message: 'Sikertelen bejelentkezés'
+        message: 'Az email-cím vagy a jelszó hibás'
       });
     }
 
