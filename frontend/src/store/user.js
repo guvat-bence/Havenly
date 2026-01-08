@@ -1,4 +1,4 @@
-const { watch } = require("vue");
+import { watch, reactive } from "vue";
 
 export let user = reactive({
   id: localStorage.getItem("id") ?? "",
@@ -13,7 +13,7 @@ export let user = reactive({
   cvv: localStorage.getItem("cvv") ?? ""
 })
 
-watch( () => user, (newUser) => { 
+watch(user,(newUser) => { 
   localStorage.setItem("id", newUser.id); 
   localStorage.setItem("first_name", newUser.firstname); 
   localStorage.setItem("last_name", newUser.lasttname); 
