@@ -36,7 +36,7 @@ let model = reactive({
 
     return true;
   }
-
+// Figyeli a bevitt értéket
   watch(model, () => {
     validateForm();
   })
