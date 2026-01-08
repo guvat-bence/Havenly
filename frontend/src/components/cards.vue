@@ -78,7 +78,13 @@ function convertStrings(str) {
 					</p>
 			</div>
 			<div class="card-footer border-0">
-				<button class="btn btn-outline-light w-100">Érdekel</button>
+				<button class="btn btn-outline-light w-100">
+					<router-link 
+							:to="{name:'about',params:{id:x.id,name:x.name}}" <!--props_table_name-->
+						 	class="nav-link">
+						Érdekel
+					</router-link>
+				</button>
 			</div>
 		</div>
 	</div>

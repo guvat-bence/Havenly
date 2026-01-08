@@ -1,3 +1,4 @@
+import About from '@/pages/about.vue'
 import aboutus from '@/pages/about_us.vue'
 import Accommodation from '@/pages/accommodation.vue'
 import Data_protection from '@/pages/data_protection.vue'
@@ -39,6 +40,12 @@ let routes = [
   {
     path: "/term_of_use",
     component: Term_of_use
+  },
+  {
+    name: "about",
+    path: "/about/:table_name:/:id/:name",
+    component: About,
+    props:true
   }
 ]
 const router = createRouter({
