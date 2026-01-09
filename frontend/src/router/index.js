@@ -5,8 +5,11 @@ import Data_protection from '@/pages/data_protection.vue'
 import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
 import Login from '@/pages/login.vue'
+import Proifle from '@/pages/proifle.vue'
 import Register from '@/pages/register.vue'
+import Settings from '@/pages/settings.vue'
 import Term_of_use from '@/pages/term_of_use.vue'
+import { user } from '@/store/user'
 import { createRouter, createWebHistory } from 'vue-router'
 let routes = [
   {
@@ -46,6 +49,14 @@ let routes = [
     path: "/about/:table_name:/:id/:name",
     component: About,
     props:true
+  },
+  {
+    path: "/settings",
+    component: Settings
+  },
+  {
+    path: "/profile",
+    component: Proifle
   }
 ]
 const router = createRouter({
