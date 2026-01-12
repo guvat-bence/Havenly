@@ -22,8 +22,6 @@ let props = defineProps({
 axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
 
-		console.log(props.accommodation_id);
-
 		if(props.accommodation_id == undefined){
 			items.value = response.data.filter(country=>
 			{
@@ -36,8 +34,7 @@ axios.get(`http://localhost:3000/${props.tableName}`)
 				return accommodation.id == props.accommodation_id;
 			})
 		}
-		console.log(response.data);
-		console.log(items.value);
+		
 	})
 	.catch(e => console.error(e))
 
