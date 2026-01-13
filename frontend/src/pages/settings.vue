@@ -1,9 +1,13 @@
 <script setup>
+import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import { reactive,ref } from 'vue';
 let currencys = ref([]),
 		setCurrency = () => {
-			
+			selectedCurrency.currencyID = currencys.value.id
+			selectedCurrency.currencyMultiplier = currencys.value.multiplier
+			selectedCurrency.currencyName = currencys.value.name
+			selectedCurrency.currencyShortedName = currencys.value.shorted_name
 		}
 
 axios.get('http://localhost:3000/getCurrency')	
@@ -26,7 +30,7 @@ axios.get('http://localhost:3000/getCurrency')
 
 			<select class="form-select bg-dark text-white 
 										 my-2 w-auto text-center mx-auto"
-							v-on:change="">
+							v-on:change="setCurrency()">
 				<option selected 
 								value='0'> 
 								Euro 

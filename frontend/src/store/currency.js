@@ -1,4 +1,4 @@
-const { reactive, watch } = require("vue");
+import { reactive,watch } from "vue"
 
 export let selectedCurrency = reactive(
 	{
