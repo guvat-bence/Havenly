@@ -75,6 +75,7 @@ let model = reactive({
                  class="form-control bg-transparent text-white" 
                  id="InputEmail1"
                  aria-describedby="emailHelp" 
+                 autocomplete="off"
                  v-model="model.email">
         </div>
 
@@ -87,6 +88,7 @@ let model = reactive({
           <input type="password" 
                  class="form-control bg-transparent text-white" 
                  id="InputPassword"
+                 autocomplete="off"
                  v-model="model.password">
         </div>
 
