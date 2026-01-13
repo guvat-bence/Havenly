@@ -264,9 +264,7 @@ function modalImgResize()
 
 <style>
 .img:hover {
-	box-shadow: 0px 0px 20px rgb(255, 255, 255);
-	transform: translateY(-10px);
-	zoom:1.05;
+	box-shadow: 0px 0px 40px rgb(255, 255, 255);
 	cursor: pointer;
 	transition: 200ms;
 }
