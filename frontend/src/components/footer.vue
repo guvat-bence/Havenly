@@ -12,28 +12,28 @@
         <h3>Gyors elérések:</h3>
 
         <!-- Fő oldal elérése -->
-        <router-link class="nav-link mb-2 mt-md-3" 
-                    to="/"> 
+        <a class="nav-link mb-2 mt-md-3" 
+           href="/"> 
           Főoldal 
-        </router-link>
+        </a>
 
         <!-- Rólunk oldal elérése -->
-        <router-link class="nav-link mb-2 mt-md-3" 
-                     to="/aboutus"> 
+        <a class="nav-link mb-2 mt-md-3" 
+           href="/aboutus"> 
           Rólunk 
-        </router-link>
+        </a>
 
         <!-- Szállások oldal elérése -->
-        <router-link class="nav-link mb-2 mt-md-3" 
-                     to="/accommodation"> 
+        <a class="nav-link mb-2 mt-md-3" 
+           href="/accommodation"> 
           Szállások
-        </router-link>
+        </a>
 
         <!-- Élmények oldal elérése -->
-        <router-link class="nav-link mb-2 mt-md-3" 
-                     to="/experience"> 
+        <a class="nav-link mb-2 mt-md-3" 
+           href="/experience"> 
           Élmények
-        </router-link>
+        </a>
       </section>
       <!-- Középső rész -->
       <section class="col-12 col-sm-6 col-md-4 
