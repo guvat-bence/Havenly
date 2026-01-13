@@ -28,13 +28,7 @@ let mainRoutes = [
 	account = [
 		{
 			name:  user.lasttname + " " + user.firstname,
-			path: "/profile",
-			
-			 
-		},
-		{
-			name: "Beállítások",
-			path: "/settings"
+			path: "/profile",	 
 		}
 	],
 	logout = () => {
@@ -96,6 +90,12 @@ let mainRoutes = [
 						</router-link>
 					</li>
 
+					<li class="nav-item">
+						<router-link 	to="/settings"
+													class="nav-link">
+							Beállítások
+						</router-link>
+					</li>
 										
 					<li v-for="y in account" 
 							v-if="user.id"
