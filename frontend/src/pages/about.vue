@@ -14,6 +14,7 @@ let currentImage = ref("");
 let counter = 0;
 let modal = null;
 let mode = "plus";
+let guest = [1,2,3,4,5,6];
 
 
 // beállítjuk a countert a prorps.table-name alapján.
@@ -173,6 +174,8 @@ function modalImgResize()
 <template>
 	<div class="about">
 		<div class="container text-white" v-if="item.length>0">
+
+			<!-- Kép megjelenítés -->
 			<div class="row justify-content-center">
 
 				<!-- Sazállás/élmény neve -->
@@ -180,15 +183,10 @@ function modalImgResize()
 					{{ item[0].name }}
     		</h1>
 
-				<!-- Szállás/élmlny leírása -->
-				<p class="display-6 text-center mb-5">
-					{{ item[0].description }}
-				</p>
-
 				<!-- Galéria -->
 				<div class="row justify-content-center">
 					<!-- Síma képek -->
-					<div v-for="img in galleryImages" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
+					<div v-for="img in galleryImages" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
 						<img height="300" :src="`/countries/${convertStrings(item[0].country_name)}
 																		/cities/${convertStrings(item[0].city_name)}
 																		/${props.table_name}/${convertStrings(item[0].folder_name)}/${img}`"
@@ -200,7 +198,7 @@ function modalImgResize()
 					<!-- Ha 3-nál több kép van,akkor ez a kép is megjelenik -->
 					 <!-- Mutatva hogy folytatódik galária(...) -->
 					<div v-if="props.table_name=='accommodations'" 
-							 class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-4">
+							 class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
 						<img height="300"
 								 src="../images/image3.png"
 								 class="img my-2 mx-2 card-img-top rounded-5 border border-white border-5"
@@ -209,7 +207,44 @@ function modalImgResize()
 					</div>
 				</div>
 			</div>
+			<!-- adatok megjelenítése -->
+			<div class="row justify-content-center mt-5">
 
+				<div class="row justify-content-center">
+					<div class="row justify-content-center col-4 text-center">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus similique quibusdam qui ab facilis quia quaerat atque pariatur animi ipsam, voluptatum iusto modi eius optio, quos, adipisci quam dolores consequuntur.</p>
+					</div>
+					<div class="row justify-content-center col-4 text-center">
+						<p>	{{ item[0].description }}</p>
+					</div>
+					<div class="row justify-content-center col-4 text-center">
+						<form class="border border-2 rounded-3 pt-4 pb-4">
+							<div class="mb-3 row">
+
+								<label for="erkezes" class="form-label col-6">Érkezés időpontja</label>
+								<label for="tavozas" class="form-label col-6">Távozás időpontja</label>
+
+								<div class="col-6">
+									<input type="date" class="form-control" id="erkezes">
+								</div>
+								<div class="col-6">
+									<input type="date" class="form-control" id="tavozas">
+								</div>
+								
+							</div>
+							<div class="mb-3 row justify-content-center">
+								<label for="exampleInputPassword1" class="form-label col-12">Személyek száma</label>
+								<div class=" col-5">
+									<select class="form-select" name="" id="">
+										<option v-for="x in guest" value="">{{ x }}fő</option>
+								</select>
+								</div>
+							</div>
+							<button class="btn btn-secondary col-6 rounded-pill">Foglalás</button>
+						</form>
+					</div>
+				</div>
+			</div>
 			<!-- Modal -->
 			<div class="modal fade col-12" id="imageShow" data-bs-keyboard="false" 
 					 data-bs-backdrop="static" tabindex="-1" aria-hidden="true">	 
