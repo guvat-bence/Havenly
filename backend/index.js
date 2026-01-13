@@ -259,7 +259,17 @@ app.post('/login', (req, res) => {
   });
 });
 
-
+app.get('/getCurrency', (req, res) => {
+  let command = 'SELECT `id`, `name`, `multiplier`, `shorted_name` FROM `currency`';
+  db.query(command, (err,result) => {
+    if(err){
+      console.error("Hiba a lekérdezéskor.:",err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+    res.json(result);
+  })
+})
 // Ez kell a kezdő laphoz, holnap folytatom....:}
 // SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
 // FROM `history`
