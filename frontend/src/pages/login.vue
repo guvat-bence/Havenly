@@ -75,7 +75,6 @@ let model = reactive({
                  class="form-control bg-transparent text-white" 
                  id="InputEmail1"
                  autocomplete="off"
-                 autofocus
                  v-model="model.email">
         </div>
 
