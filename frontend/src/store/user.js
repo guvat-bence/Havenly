@@ -10,7 +10,8 @@ export let user = reactive({
   user_type: localStorage.getItem("user_type") ?? "", 
   cardNumber: localStorage.getItem("card_number") ?? "",
   expiration: localStorage.getItem("expiration") ?? "",
-  cvv: localStorage.getItem("cvv") ?? ""
+  cvv: localStorage.getItem("cvv") ?? "",
+  websitekey:localStorage.getItem("websitekey")?? "incorrect"
 })
 
 watch(user,(newUser) => { 
@@ -23,5 +24,19 @@ watch(user,(newUser) => {
   localStorage.setItem("user_type", newUser.user_type); 
   localStorage.setItem("card_number", newUser.cardNumber); 
   localStorage.setItem("expiration", newUser.expiration); 
-  localStorage.setItem("cvv", newUser.cvv); }, 
-);
+  localStorage.setItem("cvv", newUser.cvv); 
+  localStorage.setItem("websitekey",newUser.websitekey);
+});
+
+if(user.websitekey != 'havenly'){
+  localStorage.removeItem("id")
+  localStorage.removeItem("first_name")
+  localStorage.removeItem("last_name")
+  localStorage.removeItem("middle_name")
+  localStorage.removeItem("phone_number")
+  localStorage.removeItem("gender")
+  localStorage.removeItem("user_type")
+  localStorage.removeItem("card_number")
+  localStorage.removeItem("expiration")
+  localStorage.removeItem("cvv")
+}

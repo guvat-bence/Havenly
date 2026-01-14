@@ -136,10 +136,6 @@ function closeModal() {
 
 	//kiad egy figylemezetetés a vue, mert a modalt nem preferálja
 	//azt tüntettjük el
-	setTimeout(()=>
-	{
-		console.clear();
-	},180);
 }
 
 // ezzel nagyítjuk vagy kicsinyítjük a modal képeit.

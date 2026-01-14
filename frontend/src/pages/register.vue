@@ -78,8 +78,12 @@ watch(model, () => {
 
     <!-- progressbar -->
     <div class="d-flex justify-content-center mt-4 mb-4">
-      <div class="progress w-50 bg-black border border-1 border-white" role="progressbar"
-        aria-label="Animated striped example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress w-50 bg-black border border-1 border-white" 
+           role="progressbar"
+           aria-label="Animated striped example" 
+           aria-valuenow="0" 
+           aria-valuemin="0" 
+           aria-valuemax="100">
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-white"
           :style="{ width: progesswidth + '%' }">
         </div>
@@ -97,7 +101,9 @@ watch(model, () => {
           </h1>
         </div>
         <!-- Animációs komponens -->
-        <Transition :name="transitionName" type="transition" mode="out-in">
+        <Transition :name="transitionName" 
+                     type="transition" 
+                     mode="out-in">
           <div :key="step">
 
             <!-- A név form rész -->
@@ -182,6 +188,7 @@ watch(model, () => {
                        class="form-control bg-transparent text-white" 
                        id="phoneNumber"
                        v-model="model.phone_number">
+                  <div class="form-text text-white fw-bold">Példa: +36301234567</div>
               </div>
             </div>
 
@@ -200,6 +207,12 @@ watch(model, () => {
                        id="InputPassword"
                        autocomplete="off" 
                        v-model="model.password">
+                  <div class="form-text text-white fw-bold">
+                    A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot
+                  </div>
+                  <div class="form-text text-white fw-bold">
+                    Minimum 6 karaktert kell tartalmaznia
+                  </div>
               </div>
 
               <!-- Jelszó mégegyszer -->
@@ -244,7 +257,7 @@ watch(model, () => {
 
           <!-- Vissza gomb -->
           <button type="button" 
-                  v-if="step || step != 3 || isSuccess" 
+                  v-if="!isSuccess" 
                   class="btn btn-outline-light text-center 
                          w-auto w-50 mx-auto" 
                   @click="transitionName = 'slide-in'; step--;"

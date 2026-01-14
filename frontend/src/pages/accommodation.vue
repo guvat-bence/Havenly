@@ -1,7 +1,10 @@
 <script setup>
 import Cards from '@/components/cards.vue';
+import { user } from '@/store/user';
 import axios from 'axios';
 import { ref } from 'vue';
+
+console.log(user.websitekey)
 
 let country = ref([]);
 
