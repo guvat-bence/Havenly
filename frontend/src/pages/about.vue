@@ -8,6 +8,7 @@ const props = defineProps(['id','name','table_name'])
 
 // változók létrehozása
 let item = ref([]);
+let item_details = ref([]);
 let images = [];
 let galleryImages = [];
 let currentImage = ref("");
@@ -45,12 +46,20 @@ if(counter>0)
 }
 
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
-axios.get(`http://localhost:3000/${props.table_name}`)
+axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	.then(datas=>{
-		item.value = datas.data.filter(response=>
-			{
-				return response.id == props.id;
-			})
+		item.value = datas.data;
+
+	})
+	.catch(error=>
+	{
+		console.error(error);
+	})
+
+axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.id}`)
+	.then(details=>
+	{
+		item_details.value = details.data;
 	})
 	.catch(error=>
 	{

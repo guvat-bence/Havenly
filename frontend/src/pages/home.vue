@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import axios from 'axios';
 import Cards from '../components/cards.vue';
 
@@ -9,18 +9,16 @@ let model = reactive({
 
 let accommodations = ref([])
 
-onMounted(()=>
-{
-  axios.get("http://localhost:3000/accommodations/top5")
-    .then(data=>
-    {
-      accommodations.value = data.data;
-    })
-    .catch(err=>
-    {
-      console.error(err);
-    })
-})
+axios.get("http://localhost:3000/accommodations/top5")
+  .then(data=>
+  {
+    accommodations.value = data.data;
+  })
+  .catch(err=>
+  {
+    console.error(err);
+  })
+
 
 </script>
 
