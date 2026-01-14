@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 07. 13:15
+-- Létrehozás ideje: 2026. Jan 14. 08:25
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -634,6 +634,40 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `currency`
+--
+
+CREATE TABLE `currency` (
+  `id` int(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `multiplier` varchar(50) NOT NULL,
+  `shorted_name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `currency`
+--
+
+INSERT INTO `currency` (`id`, `name`, `multiplier`, `shorted_name`) VALUES
+(1, 'Euro', '1', 'EUR'),
+(2, 'Magyar forint', '390', 'HUF'),
+(3, 'Amerikai dollár', '1.1', 'USD'),
+(4, 'Angol font', '0.85', 'GBP'),
+(5, 'Svájci frank', '0.96', 'CHF'),
+(6, 'Japán jen', '160', 'JPY'),
+(7, 'Kínai jüan', '7.8', 'CNY'),
+(8, 'Dél-koreai won', '1450', 'KRW'),
+(9, 'Indiai rúpia', '90', 'INR'),
+(10, 'Indonéz rúpia', '17000', 'IDR'),
+(11, 'Szingapúri dollár', '1.45', 'SGD'),
+(12, 'Thai baht', '39', 'THB'),
+(13, 'Fülöp-szigeteki peso', '63', 'PHP'),
+(14, 'Maláj ringgit', '5.1', 'MYR'),
+(15, 'Vietnámi dong', '27000', 'VND');
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `experiences`
 --
 
@@ -1002,9 +1036,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (97, 'Leon', 'Watson', NULL, 'leon.w95@gmail.com', 'LWat95', '+15120000095', 'M', 'U', '453210000000048', '07/29', 148),
 (98, 'Poppy', 'Wood', NULL, 'poppy.w96@gmail.com', 'PWoo96', '+15120000096', 'F', 'U', NULL, NULL, NULL),
 (99, 'Nathan', 'Brooks', NULL, 'nathan.b97@gmail.com', 'NBro97', '+15120000097', 'M', 'U', '453210000000049', '08/28', 149),
-(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL),
-(101, 'Dylan', 'Howard', NULL, 'dylan.h99@gmail.com', 'DHow99', '+15120000099', 'M', 'U', '453210000000050', '09/30', 150),
-(102, 'Luna', 'Bailey', NULL, 'luna.b100@gmail.com', 'LBai100', '+15120000100', 'F', 'U', NULL, NULL, NULL);
+(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -1045,6 +1077,13 @@ ALTER TABLE `cities`
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `country_name` (`name`);
+
+--
+-- A tábla indexei `currency`
+--
+ALTER TABLE `currency`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `shorted_name` (`shorted_name`);
 
 --
 -- A tábla indexei `experiences`
@@ -1105,6 +1144,12 @@ ALTER TABLE `cities`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
+--
+-- AUTO_INCREMENT a táblához `currency`
+--
+ALTER TABLE `currency`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT a táblához `experiences`
