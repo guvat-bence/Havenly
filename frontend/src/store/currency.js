@@ -2,7 +2,7 @@ import { reactive,watch } from "vue"
 
 export let selectedCurrency = reactive(
 	{
-		currencyID: localStorage.getItem('currencyID') ?? null,
+		currencyID: localStorage.getItem('currencyID') ?? 1,
 		currencyName: localStorage.getItem('currencyName') ?? 'Euro',
 		currencyMultiplier: localStorage.getItem('currencyMultiplier') ?? 1,
 		currencyShortedName: localStorage.getItem('currencyShortedName') ?? 'EUR' 
