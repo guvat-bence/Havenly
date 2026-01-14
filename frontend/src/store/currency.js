@@ -10,8 +10,8 @@ export let selectedCurrency = reactive(
 )
 
 watch(selectedCurrency,(value) => {
-	localStorage.setItem('currencyID',value.id)
-	localStorage.setItem('currencyName',value.name)
-	localStorage.setItem('currencyMultiplier',value.multiplier)
-	localStorage.setItem('currencyShortedName',value.shorted_name)
+	localStorage.setItem('currencyID',value.currencyID)
+	localStorage.setItem('currencyName',value.currencyName)
+	localStorage.setItem('currencyMultiplier',value.currencyMultiplier)
+	localStorage.setItem('currencyShortedName',value.currencyShortedName)
 })

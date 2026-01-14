@@ -2,12 +2,13 @@
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import { reactive,ref } from 'vue';
+let currencyOption = ref(selectedCurrency)
 let currencys = ref([]),
 		setCurrency = () => {
-			selectedCurrency.currencyID = currencys.value.id
-			selectedCurrency.currencyMultiplier = currencys.value.multiplier
-			selectedCurrency.currencyName = currencys.value.name
-			selectedCurrency.currencyShortedName = currencys.value.shorted_name
+			selectedCurrency.currencyID = currencyOption.value.id;
+			selectedCurrency.currencyMultiplier = currencyOption.value.multiplier;
+			selectedCurrency.currencyName = currencyOption.value.name;
+			selectedCurrency.currencyShortedName = currencyOption.value.shorted_name;
 		}
 
 axios.get('http://localhost:3000/getCurrency')	
@@ -30,14 +31,18 @@ axios.get('http://localhost:3000/getCurrency')
 
 			<select class="form-select bg-dark text-white 
 										 my-2 w-auto text-center mx-auto"
-							v-on:change="setCurrency()">
+							v-on:change="setCurrency()"
+							v-model="currencyOption"
+							id="currencySelector"
+							>
 				<option selected 
-								value='0'> 
-								Euro 
+								:value="selectedCurrency"
+								disabled> 
+								{{selectedCurrency.currencyName}}
 				</option>
 
 				<option v-for="x in currencys" 
-								:value="x.id">
+								:value="x">
 						{{ x.name}}
 				</option>
 			</select>

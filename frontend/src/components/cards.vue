@@ -1,4 +1,5 @@
 <script setup>
+import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import {ref} from 'vue';
 
@@ -74,7 +75,9 @@ function convertStrings(str) {
 					</p>
 			</div>
 			<div class="card-footer border-0">
-				<p class="fw-bold">{{ x.price}} / éjszaka</p>
+				<p class="fw-bold">{{Math.round(x.price * selectedCurrency.currencyMultiplier)}} 
+								 					 {{ selectedCurrency.currencyShortedName }}/ éjszaka
+				</p>
 				<button class="btn btn-outline-light w-100">
 					<router-link 
 							:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name}}"
