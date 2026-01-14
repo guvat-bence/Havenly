@@ -1,6 +1,6 @@
 <script setup>
-import router from '@/router';
 import { user } from '@/store/user';
+import router from '@/router';
 import axios from 'axios';
 import { reactive, watch } from 'vue';
 let model = reactive({
@@ -28,6 +28,7 @@ let model = reactive({
           user.cardNumber = response.data.user.card_number;
           user.expiration = response.data.user.expiration;
           user.cvv = response.data.user.cvv;
+          user.websitekey = "havenly"
 
           router.push('/');
         }  
