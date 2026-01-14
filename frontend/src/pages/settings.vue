@@ -17,7 +17,6 @@ let currencys = ref([]),
 axios.get('http://localhost:3000/getCurrency')	
 .then(response => {
 	currencys.value = response.data
-	console.log(response.data)
 })
 .catch(e => console.error(e))
 

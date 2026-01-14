@@ -74,8 +74,8 @@ let model = reactive({
           <input type="email" 
                  class="form-control bg-transparent text-white" 
                  id="InputEmail1"
-                 aria-describedby="emailHelp" 
                  autocomplete="off"
+                 autofocus
                  v-model="model.email">
         </div>
 
