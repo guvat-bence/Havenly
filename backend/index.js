@@ -48,7 +48,7 @@ app.get('/accommodations', (req, res) => {
     }
     res.json(result);
   })
-})
+});
 
 //random generáljon country id-t és írja ki a hozzá rendelt szállásokat
 app.get("/accommodations/randCountryID", (req, res) => {
@@ -95,6 +95,106 @@ app.get("/accommodations/top5", (req, res) => {
   );
 });
 
+// Egy szállás le kérdezése country id alapján
+app.get('/accommodations/country/:id', (req, res) => {
+  let country_id = req.params.id;  
+  db.query(`SELECT accommodations.id, accommodations.owner_id,
+                   accommodations.name,accommodations.folder_name, 
+                   accommodations.size,
+                   accommodations.country_id, accommodations.city_id,
+                   accommodations.price,accommodations.description,
+                   cities.name AS city_name,
+                   countries.name AS country_name
+          FROM accommodations
+          INNER JOIN cities
+          ON accommodations.city_id = cities.id
+          INNER JOIN countries
+          ON accommodations.country_id = countries.id
+          WHERE  accommodations.country_id = ?`,
+          [country_id],
+          (err,result) => {
+            if(err){
+              console.error("Hiba a accommodations beolvasásakor", err);
+              res.status(500).send("Adatbázis hiba");
+              return;
+            }
+            res.json(result);
+          }
+  );
+});
+
+// Egy szállás le kérdezése id alapján
+app.get('/accommodations/:id', (req, res) => {
+  let accommodation_id = req.params.id;  
+  db.query(`SELECT accommodations.id, accommodations.owner_id,
+                   accommodations.name,accommodations.folder_name, 
+                   accommodations.size,
+                   accommodations.country_id, accommodations.city_id,
+                   accommodations.price,accommodations.description,
+                   cities.name AS city_name,
+                   countries.name AS country_name
+          FROM accommodations
+          INNER JOIN cities
+          ON accommodations.city_id = cities.id
+          INNER JOIN countries
+          ON accommodations.country_id = countries.id
+          WHERE accommodations.id = ?`,
+          [accommodation_id],
+          (err,result) => {
+            if(err){
+              console.error("Hiba a accommodations beolvasásakor", err);
+              res.status(500).send("Adatbázis hiba");
+              return;
+            }
+            res.json(result);
+          }
+  );
+});
+
+
+//Szállások részletei le kérdezése
+app.get("/accommodations/accommodations_details/:id",(req, res) =>{
+  let accommodation_id = req.params.id;  
+  db.query(`SELECT
+              apartman_id,
+              coffee_maker,
+              kettle,
+              microwave,
+              basic_spices,
+              dishes,
+              extra_bed_linen,
+              darkening,
+              night_lamp,
+              towels,
+              hair_dryer,
+              smart_tv,
+              bluetooth_speaker,
+              usb_charger,
+              work_table,
+              suitcase_rack,
+              iron,
+              safe,
+              balcony,
+              board_games,
+              free_wifi,
+              parking_lot
+            FROM
+                accommodations_details
+            WHERE apartman_id = ?`,
+            [accommodation_id],
+          (err,result)=>{
+            if(err)
+            {
+              console.error("Hiba a accommodations_details beolvasásakor",err);
+              res.status(500).send("Adatbázis hiba");
+              return;
+            }
+            res.json(result);
+          }
+  );
+})
+
+
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
   db.query(
@@ -139,9 +239,64 @@ app.get("/experiences/randCountryID", (req, res) => {
   );
 });
 
+// Élmények le kérdezése country id alapján
+app.get("/experiences/country/:id", (req, res) => {
+  let country_id = req.params.id
+  db.query(
+    `SELECT experiences.id,experiences.name,experiences.folder_name,
+      experiences.country_id,experiences.city_id,
+      experiences.price, experiences.description,
+      cities.name AS city_name,
+      countries.name AS country_name
+      FROM experiences
+      INNER JOIN cities
+      ON experiences.city_id = cities.id
+      INNER JOIN countries
+      ON experiences.country_id = countries.id
+      WHERE experiences.country_id = ?`,
+      [country_id],
+    (err, result) => {
+      if (err) {
+        console.error("Hiba a experiences beolvasásakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+      res.json(result);
+    }
+  );
+});
+
+
+// Élmények le kérdezése
+app.get("/experiences/:id", (req, res) => {
+  let experience_id = req.params.id
+  db.query(
+    `SELECT experiences.id,experiences.name,experiences.folder_name,
+      experiences.country_id,experiences.city_id,
+      experiences.price, experiences.description,
+      cities.name AS city_name,
+      countries.name AS country_name
+      FROM experiences
+      INNER JOIN cities
+      ON experiences.city_id = cities.id
+      INNER JOIN countries
+      ON experiences.country_id = countries.id
+      WHERE experiences.id = ?`,
+      [experience_id],
+    (err, result) => {
+      if (err) {
+        console.error("Hiba a experiences beolvasásakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+      res.json(result);
+    }
+  );
+});
+
 // Regisztréciós route
 app.post('/register', (req, res) => {
-  const data = req.body;
+  let data = req.body;
   if(data.password.length > 40){
     return res.status(400).json({
       success: false,
@@ -270,12 +425,3 @@ app.get('/getCurrency', (req, res) => {
     res.json(result);
   })
 })
-// Ez kell a kezdő laphoz, holnap folytatom....:}
-// SELECT `history`.`accommodation_id` , COUNT(*) as `rented_times`, `accommodations`.`id`,  `accommodations`.`owner_id`, `accommodations`.`country_id`, `accommodations`.`city_id`, `accommodations`.`name`, `accommodations`.`folder_name`
-// FROM `history`
-// INNER JOIN `accommodations`
-// ON `history`.`accommodation_id` = `accommodations`.`id`
-// GROUP BY `history`.`accommodation_id`
-// HAVING COUNT(*)>1
-// ORDER BY COUNT(*)
-// LIMIT 5;

@@ -20,24 +20,30 @@ let props = defineProps({
 	}
 })
 
-axios.get(`http://localhost:3000/${props.tableName}`)
-	.then(response => {
-
-		if(props.accommodation_id == undefined){
-			items.value = response.data.filter(country=>
-			{
-				return country.country_id == props.country_id;
-			})
-		}
-		else{
-			items.value = response.data.filter(accommodation=>
-			{
-				return accommodation.id == props.accommodation_id;
-			})
-		}
-		
-	})
-	.catch(e => console.error(e))
+if(props.accommodation_id == undefined)
+{
+	axios.get(`http://localhost:3000/${props.tableName}/country/${props.country_id}`)
+		.then(response =>
+		{
+			items.value = response.data;
+		})
+		.catch(error=>
+		{
+			console.error(error);
+		})
+}
+else
+{
+	axios.get(`http://localhost:3000/${props.tableName}/${props.accommodation_id}`)
+		.then(response=>
+		{
+			items.value = response.data;
+		})
+		.catch(error=>
+		{
+			console.error(error);
+		})
+}
 
 function convertStrings(str) {  
 
