@@ -18,6 +18,12 @@ let mode = "plus";
 let guest = [1,2,3,4,5,6];
 
 
+
+let iconsAndTexts = {
+	balcony:`<font-awesome-icon icon="fa-solid fa-house" />`
+}
+
+
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
 {
@@ -60,6 +66,8 @@ axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.i
 	.then(details=>
 	{
 		item_details.value = details.data;
+		item_details.value = item_details.value[0]
+		console.log(item_details.value);
 	})
 	.catch(error=>
 	{
@@ -221,10 +229,33 @@ function modalImgResize()
 
 				<div class="row justify-content-center">
 					<div class="row justify-content-center col-4 text-center">
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus similique quibusdam qui ab facilis quia quaerat atque pariatur animi ipsam, voluptatum iusto modi eius optio, quos, adipisci quam dolores consequuntur.</p>
+
+						<!-- <p v-if="item_details.balcony == 1"><font-awesome-icon icon="fa-solid fa-house" /></p>
+						<p v-if="item_details.basic_spices == 1"><font-awesome-icon icon="fa-solid fa-jar" /></p>
+						<p v-if="item_details.bluetooth_speaker == 1"><font-awesome-icon icon="fa-solid fa-radio" /></p>
+						<p v-if="item_details.board_games == 1"><font-awesome-icon icon="fa-solid fa-users-rectangle" /></p>
+						<p v-if="item_details.coffee_maker == 1"><font-awesome-icon icon="fa-solid fa-mug-hot" /></p>
+						<p v-if="item_details.darkening == 1"><font-awesome-icon icon="fa-solid fa-window-maximize" /></p>
+						<p v-if="item_details.dishes == 1"><font-awesome-icon icon="fa-solid fa-plate-wheat" /></p>
+						<p v-if="item_details.extra_bed_linen == 1"><font-awesome-icon icon="fa-solid fa-bed" /></p>
+						<p v-if="item_details.free_wifi == 1"><font-awesome-icon icon="fa-solid fa-wifi" /></p>
+						<p v-if="item_details.hair_dryer == 1"><font-awesome-icon icon="fa-solid fa-wind" /></p>
+						<p v-if="item_details.iron == 1"><font-awesome-icon icon="fa-solid fa-fax" /></p>
+						<p v-if="item_details.kettle == 1"><font-awesome-icon icon="fa-solid fa-water" /></p>
+						<p v-if="item_details.microwave == 1"><font-awesome-icon icon="fa-solid fa-house-tsunami" /></p>
+						<p v-if="item_details.night_lamp == 1"><font-awesome-icon icon="fa-regular fa-lightbulb" /></p>
+						<p v-if="item_details.parking_lot == 1"><font-awesome-icon icon="fa-solid fa-car-side" /></p>
+						<p v-if="item_details.safe == 1"><font-awesome-icon icon="fa-solid fa-vault" /></p>
+						<p v-if="item_details.smart_tv == 1"><font-awesome-icon icon="fa-solid fa-tv" /></p>
+						<p v-if="item_details.suitcase_rack == 1"><font-awesome-icon icon="fa-solid fa-suitcase" /></p>
+						<p v-if="item_details.towels == 1"><font-awesome-icon icon="fa-solid fa-rug" /></p>
+						<p v-if="item_details.usb_charger == 1"><font-awesome-icon icon="fa-solid fa-bolt" /></p>
+						<p v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" /></p>
+			 -->
+						<p v-for="x in item_details" ></p>
 					</div>
-					<div class="row justify-content-center col-4 text-center">
-						<p>	{{ item[0].description }}</p>
+					<div class="row justify-content-center col-4 text-center align-items-center">
+						<p>	{{ item.description }}</p>
 					</div>
 					<div class="row justify-content-center col-4 text-center">
 						<form class="border border-2 rounded-3 pt-4 pb-4">
