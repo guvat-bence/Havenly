@@ -27,7 +27,7 @@ axios.get('http://localhost:3000/getCurrency')
 
 		<div class="row text-white border border-white 
 								border-1 mx-5 rounded-3">
-			<h1 class="display-4">Nyelv választás</h1>
+			<h1 class="display-4">Valuta választása</h1>
 
 			<select class="form-select bg-dark text-white 
 										 my-2 w-auto text-center mx-auto"
