@@ -9,6 +9,8 @@ let model = reactive({
 
 let accommodations = ref([])
 
+
+// lekérjük a top5 szállást amit a legtöbbször foglaltak.
 axios.get("http://localhost:3000/accommodations/top5")
   .then(data=>
   {
@@ -24,9 +26,13 @@ axios.get("http://localhost:3000/accommodations/top5")
   <div class="home">
     <div class="container">
       <div class="row justify-content-center">
+
+        <!-- kereső címe -->
         <h1 class="display-1 text-white text-center w-100">
           Hová szeretnél utazni?
         </h1>
+
+        <!-- kereső mező form-ja -->
         <form class="form mt-5 col-12 col-lg-4 col-md-5 row justify-content-center 
                     bg-dark bg-opacity-50 rounded-3 shadow
                     p-4 border border-1 border-white mb-5">
@@ -43,10 +49,17 @@ axios.get("http://localhost:3000/accommodations/top5")
                   :disabled="!model.searchbar">Keresés</button>
         </form> 
       </div>
+
+      <!--  5-ször ismételjük mert 5 top szállást hívunk le  -->
       <div v-for="x in accommodations">
+
+        <!-- kiegészítjük az országok neveivel a címet -->
         <h1 class="display-5 text-center text-white">
           Legnépszerűbb szállás amit {{ x.name }} kínál
         </h1>
+
+         <!-- meghívjuk hozzá a kártya.vue-t -->
+          <!-- értékeket viszünk át -->
         <Cards 
           table-name="accommodations"
           :country_id="x.country_id"

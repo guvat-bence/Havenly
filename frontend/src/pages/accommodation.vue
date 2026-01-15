@@ -6,6 +6,7 @@ import { ref } from 'vue';
 
 let country = ref([]);
 
+// véletlenszerü 5 ország beolvasása
 axios.get('http://localhost:3000/accommodations/randCountryID')
   .then(response => {
     country.value = response.data;
@@ -15,12 +16,18 @@ axios.get('http://localhost:3000/accommodations/randCountryID')
 </script>
 <template>
   <div class="accommodation">
-     <div v-for="x in country">
-    <h1 class="display-5 text-center text-white">
-      Szállások amiket {{ x.country_name }} kínál
-    </h1>
-    <Cards tableName="accommodations" 
-          :country_id="x.country_id"/>
+
+    <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
+    <div v-for="x in country">
+
+      <!-- kiegészítjük az országok neveivel a címet -->
+      <h1 class="display-5 text-center text-white">
+        Szállások amiket {{ x.country_name }} kínál
+      </h1>
+
+      <!-- meghívjuk hozzá a kártya.vue-t -->
+      <Cards tableName="accommodations" 
+            :country_id="x.country_id"/>
     </div>
   </div>
 </template>

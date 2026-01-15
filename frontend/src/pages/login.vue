@@ -64,19 +64,25 @@ let model = reactive({
 <template>
   <div class="login">
     <div class="d-flex justify-content-center align-items-center">
+
+      <!-- bejelentkezés form -->
       <form class="border p-3 border-1 border-white 
                    text-white rounded-3 bg-dark 
                    bg-opacity-50"
             name="login">
+
+        <!-- Cím és üzenet részleg -->
         <div>
+          <!-- cím -->
           <h1 class="text-center text-white display-5">Bejelentkezés</h1>
 
+          <!-- ha van valamilyen probléma akkor azt ide írja ki -->
           <p class="text-danger text-center">
             {{ message }}
           </p>
         </div>
 
-        
+        <!-- Email részleg -->
         <div class="mb-3">
           <label for="InputEmail1" 
                  class="form-label">
@@ -90,6 +96,7 @@ let model = reactive({
                  v-model="model.email">
         </div>
 
+        <!-- Jelszó részleg -->
         <div class="mb-3 my-3">
           <label for="InputPassword" 
                  class="form-label">
@@ -103,6 +110,7 @@ let model = reactive({
                  v-model="model.password">
         </div>
 
+        <!-- Bejelentkezés gomb -->
         <button type="submit" 
                 class="btn btn-outline-light 
                        text-center rounded-3 w-100
@@ -111,6 +119,7 @@ let model = reactive({
                 v-bind:disabled="!validateForm()">
           Bejelentkezés
         </button>
+
       </form>
     </div>
   </div>

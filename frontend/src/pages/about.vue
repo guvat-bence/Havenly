@@ -257,7 +257,9 @@ function modalImgResize()
 								 style="object-fit:cover">
 					</div>
 				</div>
+
 			</div>
+			
 			<!-- adatok megjelenítése -->
 			<div class="row justify-content-center mt-5">
 
@@ -265,7 +267,9 @@ function modalImgResize()
 				<div class="row justify-content-center">
 
 					<!-- iconok plusz dolgok megjelenítése -->
-					<div v-if="props.table_name=='accommodations'" class="row justify-content-center text-center py-3 col-10 border border-2 rounded-3">
+					<div v-if="props.table_name=='accommodations'" 
+              class="row justify-content-center text-center 
+              py-3 col-10 border border-2 rounded-3">
 
 						<!-- Cím -->
 						<h3 class="mb-4">Amit a szállás kínál</h3>
@@ -292,47 +296,70 @@ function modalImgResize()
 						<p class="col-4" v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" size="xl"/> munka asztal</p> -->
 			
 						<!-- iconok megjelenítése MÉG NINCS KÉSZ-->
-						<p v-for="x in iconsAndTexts" class="col-4	text-center"><font-awesome-icon :icon="x" size="xl" /></p>
+						<p v-for="x in iconsAndTexts" class="col-4	text-center">
+              <font-awesome-icon :icon="x" size="xl" />
+            </p>
+
 					</div>
 
 					<!-- Az adott szállás/élmény leírása -->
-					<div class="row justify-content-center col-5 my-3 ms-1 py-3 text-center align-items-center  border border-2 rounded-3">
+					<div class="row justify-content-center col-5 my-3 ms-1 py-3 
+                     text-center align-items-center  border border-2 rounded-3">
 						<p>	{{ item[0].description }}</p>
 					</div>
 
 					<!-- A lefoglaláshoz kellő form -->
-					<div v-if="props.table_name=='accommodations'" class="row justify-content-center col-5 text-center ms-2 my-3 ">
+					<div v-if="props.table_name=='accommodations'" 
+               class="row justify-content-center col-5 text-center ms-2 my-3 ">
+
 						<form class="border border-2 rounded-3 pt-4 pb-4">
 
 							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 row">
 
 								<!-- érkezés/távozás label -->
-								<label for="erkezes" class="form-label col-6">Érkezés időpontja</label>
-								<label for="tavozas" class="form-label col-6">Távozás időpontja</label>
+								<label for="erkezes" class="form-label col-6">
+                  Érkezés időpontja
+                </label>
+								<label for="tavozas" class="form-label col-6">
+                  Távozás időpontja
+                </label>
 
-								<!-- érkezés/távozás -->
+								<!-- érkezés/távozás inputok -->
 								<div class="col-6">
 									<input type="date" class="form-control" id="erkezes">
 								</div>
 								<div class="col-6">
 									<input type="date" class="form-control" id="tavozas">
 								</div>
-								
 							</div>
+
+							<!-- személyek száma szakasz -->
 							<div class="mb-3 row justify-content-center">
-								<label for="guest_number" class="form-label col-12">Személyek száma</label>
+
+								<!-- személyek száma szakasz label -->
+								<label for="guest_number" class="form-label col-12">
+                  Személyek száma
+                </label>
+
+                <!-- személyek száma szakasz select -->
 								<div class="col-5">
 									<select class="form-select" id="guest_number">
 										<option v-for="x in guests" value="">{{ x }}fő</option>
 								</select>
 								</div>
 							</div>
-							<button class="btn btn-secondary col-6 rounded-pill disabled">Foglalás</button>
+
+              <!-- Foglalaás gomb -->
+							<button class="btn btn-secondary col-6 
+                      rounded-pill disabled">
+                Foglalás
+              </button>
 						</form>
 					</div>
 				</div>
 			</div>
+
 			<!-- Modal -->
 			<div class="modal fade col-12" id="imageShow" data-bs-keyboard="false" 
 					 data-bs-backdrop="static" tabindex="-1" aria-hidden="true">	 
@@ -381,17 +408,21 @@ function modalImgResize()
 					</div>
 				</div>
 			</div>
+      
 		</div>
 	</div>
 </template>
 
 <style>
+
+/* szállás/élményy képeinek kiemelése */
 .img:hover {
 	box-shadow: 0px 0px 40px rgb(255, 255, 255);
 	cursor: pointer;
 	transition: 200ms;
 }
 
+/* a kép nagyításához */
 .modalImg:hover
 {
 	cursor: zoom-in;
