@@ -227,7 +227,7 @@ function modalImgResize()
 				<!-- Galéria -->
 				<div class="row justify-content-center">
 					<!-- Síma képek -->
-					<div v-for="img in galleryImages" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
+					<div v-for="img in galleryImages" class=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
 						<img height="300" :src="`/countries/${convertStrings(item[0].country_name)}
 																		/cities/${convertStrings(item[0].city_name)}
 																		/${props.table_name}/${convertStrings(item[0].folder_name)}/${img}`"
@@ -239,7 +239,7 @@ function modalImgResize()
 					<!-- Ha 3-nál több kép van,akkor ez a kép is megjelenik -->
 					 <!-- Mutatva hogy folytatódik galária(...) -->
 					<div v-if="props.table_name=='accommodations'" 
-							 class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
+							 class=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
 						<img height="300"
 								 src="../images/image3.png"
 								 class="img my-2 mx-2 card-img-top rounded-5 border border-white border-5"
@@ -259,11 +259,13 @@ function modalImgResize()
 					<!-- iconok plusz dolgok megjelenítése -->
 					<div v-if="props.table_name=='accommodations'" 
               class="row justify-content-center text-center 
-              py-3 col-10 border border-2 rounded-3">
+              			 pt-3 mx-2 my-3 border border-2 rounded-3
+										 col-12 col-md-10 col-xl-4">
 
 						<!-- Cím -->
 						<h3 class="mb-4">Amit a szállás kínál</h3>
-						<!-- iconok megjelenítése MÉG NINCS KÉSZ-->
+
+						<!-- iconok megjelenítése-->
 						<p v-for="x in item_details" class="col-4	text-center">
               <font-awesome-icon :icon="x.icon" size="xl" />
 							{{ x.text }}
@@ -272,15 +274,18 @@ function modalImgResize()
 					</div>
 
 					<!-- Az adott szállás/élmény leírása -->
-					<div class="row justify-content-center col-5 my-3 ms-1 py-3 
-                     text-center align-items-center  border border-2 rounded-3">
+					<div class="row justify-content-center my-3 mx-3 py-3 
+                     text-center align-items-center border border-2 rounded-3 
+										 col-12 col-md-5 col-xl-4">
 						<p>	{{ item[0].description }}</p>
 					</div>
 
 					<!-- A lefoglaláshoz kellő form -->
 					<div v-if="props.table_name=='accommodations'" 
-               class="row justify-content-center col-5 text-center ms-2 my-3 ">
+               class="row justify-content-center text-center mx-2 my-3
+							  col-12 col-md-5 col-xl-4">
 
+						<!-- Maga a form -->
 						<form class="border border-2 rounded-3 pt-4 pb-4">
 
 							<!-- érkezés/távozás szakas -->
