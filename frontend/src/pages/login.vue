@@ -3,6 +3,7 @@ import { user } from '@/store/user';
 import router from '@/router';
 import axios from 'axios';
 import { reactive, ref, watch } from 'vue';
+// Model dekralálása
 let model = reactive({
   email: "",
   password: ""
@@ -11,16 +12,21 @@ let model = reactive({
   //Üzenet fele
   message = ref(""),
   isSuccess,
+
   // login függvény
   login = () => {
     axios.post('http://localhost:3000/login',model)
       .then(response => {
+        // Ha sikertelen akkor a változók 
+        // legyen egyelők a visszatérő értékekkel
         if(!response.data.success){
           message.value = response.data.message;
           isSuccess = response.data.success
           console.log(response.data)
         }
 
+        // Ha sikeres akkor 
+        // a felasználó adait töltse fel a visszakapott adatokkal
         else{
           user.id = response.data.user.id;
           user.firstname = response.data.user.first_name;
@@ -33,10 +39,13 @@ let model = reactive({
           user.expiration = response.data.user.expiration;
           user.cvv = response.data.user.cvv;
           user.websitekey = "havenly"
-          
-          router.replace({path:'/'})
+
+          // Töltse újra az oldalt annak érdekében 
+          // hogy a felhasználót minden komponens érzékelni tudja
+          window.location.reload()
         }  
       })
+      // Hiba kezelés
       .catch(e => console.error(e))
   },
 
@@ -54,10 +63,15 @@ let model = reactive({
 
     return true;
   }
-// Figyeli a bevitt értéket
+
+  // Figyeli a bevitt értéket
   watch(model, () => {
     validateForm();
   })
+  
+  // Ha a felhasználó be van jelentkezve akkor dobja vissza a kezdő oldalra
+  if(user.id)
+    router.replace({path: '/'})
 
 </script>
 
