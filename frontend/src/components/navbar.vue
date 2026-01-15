@@ -30,20 +30,7 @@ let mainRoutes = [
 			name:  user.lasttname + " " + user.firstname,
 			path: "/profile",	 
 		}
-	],
-	// Logout függvény definiálása
-	logout = () => {
-		user.id = "";
-		user.firstname = "";
-		user.lasttname = "";
-		user.middlename = "";
-		user.phone_number = "";
-		user.gender = "";
-		user.user_type = "";
-		user.cardNumber = "";
-		user.expiration = "";
-		user.cvv = "";
-	} 
+	]
 </script>
 
 <template>
@@ -113,11 +100,11 @@ let mainRoutes = [
 						</router-link>
 					</li>
 					<!-- Kijelentkezés -->
-					<button class="btn btn-outline-danger"
-									v-if="user.id"
-									v-on:click="logout()">
-							Kijelentkezés
-					</button>
+					<router-link class="btn btn-outline-danger"
+											 v-if="user.id"
+											 to="/logout">
+						Kijelentkezés
+					</router-link>
 				</ul>
 			</div>
 		</div>
