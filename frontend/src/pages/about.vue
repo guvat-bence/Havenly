@@ -10,6 +10,7 @@ const props = defineProps(['id','name','table_name'])
 // változók létrehozása
 let item = ref([]);
 let item_details = ref([]);
+let iconsAndTexts = ref([]);
 let images = [];
 let galleryImages = [];
 let currentImage = ref("");
@@ -18,93 +19,7 @@ let modal = null;
 let mode = "plus";
 let guests = [];
 
-// a részletekhez kellő ikonok
-let iconsAndTexts = {
-	balcony:{
-		icon:'fa-solid fa-house',
-		text:' erkély'
-	},
-	basic_spices:{
-		icon:'fa-solid fa-jar',
-		text:' fűszerek'
-	},
-	bluetooth_speaker:{
-		icon:'fa-solid fa-radio',
-		text:' bluetooth-os hangszóró'
-	},
-	board_games:{
-		icon:'fa-solid fa-users-rectangle',
-		text:' társasjátékok'
-	},
-	coffee_maker:{
-		icon:'fa-solid fa-mug-hot',
-		text:' kávéfőző'
-	},
-	darkening:{
-		icon:'fa-solid fa-window-maximize',
-		text:' sötétítő'
-	},
-	dishes:{
-		icon:'fa-solid fa-plate-wheat',
-		text:' edények'
-	},
-	extra_bed_linen:{
-		icon:'fa-solid fa-bed',
-		text:' extra ágynemű'
-	},
-	free_wifi:{
-		icon:'fa-solid fa-wifi',
-		text:' wifi'
-	},
-	hair_dryer:{
-		icon:'fa-solid fa-wind',
-		text:' hajszárító'
-	},
-	iron:{
-		icon:'fa-solid fa-fax',
-		text:' vasaló'
-	},
-	kettle:{
-		icon:'fa-solid fa-water',
-		text:' vízforraló'
-	},
-	microwave:{
-		icon:'fa-solid fa-house-tsunami',
-		text:' mikró'
-	},
-	night_lamp:{
-		icon:'fa-regular fa-lightbulb',
-		text:' éjjeli lámpa'
-	},
-	parking_lot:{
-		icon:'fa-solid fa-car-side',
-		text:' parkoló'
-	},
-	safe:{
-		icon:'fa-solid fa-vault',
-		text:' széf'
-	},
-	smart_tv:{
-		icon:'fa-solid fa-tv',
-		text:' okos-tv'
-	},
-	suitcase_rack:{
-		icon:'fa-solid fa-suitcase',
-		text:' bőrönd tartó'
-	},
-	towels:{
-		icon:'fa-solid fa-rug',
-		text:' törölközők'
-	},
-	usb_charger:{
-		icon:'fa-solid fa-bolt',
-		text:' usb töltő'
-	},
-	work_table:{
-		icon:'fa-solid fa-table',
-		text:' munka asztal'
-	}
-}
+
 
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
@@ -159,18 +74,27 @@ if(props.table_name == "accommodations")
 		.then(details=>
 		{
 
-			console.log(details.data);
-			// item_details.value = details.data;
-			// item_details.value = item_details.value[0];
-
-			for(let x in details.data[0])
-			{
-				if(details.data[0][x] == 1)
+			axios.get('/jsons/iconsAndTexts.json')
+				.then(response=>
 				{
-					item_details.value.push(iconsAndTexts[x]);
-				}
-			}
-			console.log(item_details.value);
+					iconsAndTexts =	 response.data;
+
+					for(let x in details.data[0])
+					{
+						if(details.data[0][x] == 1)
+						{
+							item_details.value.push(iconsAndTexts[x]);
+						}
+					}
+					console.log(item_details.value);
+				})
+				.catch(error=>
+				{
+					console.error(error);
+				})
+
+			console.log(details.data);
+			
 
 		})
 		.catch(error=>
