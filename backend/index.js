@@ -158,7 +158,6 @@ app.get('/accommodations/:id', (req, res) => {
 app.get("/accommodations/accommodations_details/:id",(req, res) =>{
   let accommodation_id = req.params.id;  
   db.query(`SELECT
-              apartman_id,
               coffee_maker,
               kettle,
               microwave,
