@@ -1,4 +1,6 @@
 <script setup>
+import router from '@/router';
+import { user } from '@/store/user';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
 import { reactive, ref, watch } from 'vue';
@@ -9,7 +11,7 @@ let step = ref(0),
   transitionName = ref("slide-in"),
   progesswidth = ref(0),
   message = "",
-  isSuccess,
+  isSuccess = null,
   model = reactive({
     lastname: "",
     firstname: "",
@@ -50,6 +52,19 @@ let step = ref(0),
       .then(response => {
         message = response.data.message;
         isSuccess = response.data.success;
+        console.log(response.data)
+
+        if(isSuccess){
+          setTimeout(() => {
+            user.id = response.data.insertedId
+            user.firstname = model.firstname;
+            user.lasttname = model.lastname;
+            user.middlename = "";
+            user.phone_number = model.phone_number;
+            user.user_type = "U";
+            router.push('/');
+          }, 1500);
+        }
       })
       .catch(e => console.error(e))
   }
