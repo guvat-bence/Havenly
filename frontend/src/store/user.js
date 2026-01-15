@@ -14,6 +14,7 @@ export let user = reactive({
   websitekey:localStorage.getItem("websitekey")?? "incorrect"
 })
 
+
 watch(user,(newUser) => { 
   localStorage.setItem("id", newUser.id); 
   localStorage.setItem("first_name", newUser.firstname); 
@@ -26,17 +27,17 @@ watch(user,(newUser) => {
   localStorage.setItem("expiration", newUser.expiration); 
   localStorage.setItem("cvv", newUser.cvv); 
   localStorage.setItem("websitekey",newUser.websitekey);
-});
+},{deep:true});
 
-if(user.websitekey != 'havenly'){
-  localStorage.removeItem("id")
-  localStorage.removeItem("first_name")
-  localStorage.removeItem("last_name")
-  localStorage.removeItem("middle_name")
-  localStorage.removeItem("phone_number")
-  localStorage.removeItem("gender")
-  localStorage.removeItem("user_type")
-  localStorage.removeItem("card_number")
-  localStorage.removeItem("expiration")
-  localStorage.removeItem("cvv")
-}
+// if(user.websitekey != 'havenly'){
+//   localStorage.removeItem("id")
+//   localStorage.removeItem("first_name")
+//   localStorage.removeItem("last_name")
+//   localStorage.removeItem("middle_name")
+//   localStorage.removeItem("phone_number")
+//   localStorage.removeItem("gender")
+//   localStorage.removeItem("user_type")
+//   localStorage.removeItem("card_number")
+//   localStorage.removeItem("expiration")
+//   localStorage.removeItem("cvv")
+// }
