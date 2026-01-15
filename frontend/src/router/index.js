@@ -5,6 +5,7 @@ import Data_protection from '@/pages/data_protection.vue'
 import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
 import Login from '@/pages/login.vue'
+import Logoutconfirmation from '@/pages/logoutconfirmation.vue'
 import Proifle from '@/pages/proifle.vue'
 import Register from '@/pages/register.vue'
 import Settings from '@/pages/settings.vue'
@@ -57,6 +58,10 @@ let routes = [
   {
     path: "/profile",
     component: Proifle
+  },
+  {
+    path: "/logout",
+    component: Logoutconfirmation
   }
 ]
 const router = createRouter({
