@@ -19,7 +19,7 @@ import { user } from '@/store/user';
 		user.cvv = "";
 		router.push("/")
 	},
-	cancle = () => {
+	cancel = () => {
 		router.back()
 
 	}
@@ -30,16 +30,16 @@ import { user } from '@/store/user';
 			<div class="text-white justify-content-center text-center 
 									border border-1 border-white 
 									mx-auto w-50 rounded-4 
-									p-1 d-flex flex-column">
+									p-1">
 				<h6 class="display-6 mb-5">Biztos ki szeretnél jelentkezni?</h6>
 				
 				<div class="mt-auto">
-					<button class="btn mx-5 btn-primary"
-									v-on:click="cancle()">
+					<button class="btn mx-5 my-3 btn-primary"
+									v-on:click="cancel()">
 						Mégsem
 					</button>
 
-					<button class="btn mx-5 btn-primary"
+					<button class="btn mx-5 my-3 btn-primary"
 									v-on:click="logout()">
 						Kijelentkezés
 					</button>
