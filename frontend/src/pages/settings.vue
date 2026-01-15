@@ -24,7 +24,7 @@ axios.get('http://localhost:3000/getCurrency')
 </script>
 
 <template>
-	<div class="settings text-center">
+	<div class="settings text-center w-auto mx-auto">
 		<div>
 			<h1 class="display-1 text-center text-white">Beállítások</h1>
 		</div>
