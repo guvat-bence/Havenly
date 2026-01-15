@@ -91,7 +91,7 @@ function convertStrings(str) {
 			
 			<!-- Ki írja az árat és a valuta formátumát az árat megszorozza a valauta szorzójával -->
 			<div class="card-footer border-0">
-				<p class="fw-bold">{{Math.round(x.price * selectedCurrency.currencyMultiplier)}} 
+				<p class="fw-bold">{{(Math.round(x.price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}} 
 								 					 {{ selectedCurrency.currencyShortedName }}/ éjszaka
 				</p>
 
