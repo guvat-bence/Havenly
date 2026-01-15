@@ -382,7 +382,7 @@ function modalImgResize()
 	</div>
 </template>
 
-<style>
+<style scoped>
 
 /* szállás/élményy képeinek kiemelése */
 .img:hover {

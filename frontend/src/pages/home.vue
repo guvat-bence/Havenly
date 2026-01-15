@@ -73,3 +73,15 @@ axios.get("http://localhost:3000/accommodations/top5")
     </div>
   </div>
 </template>
+
+<style scoped>
+input:not([type="checkbox"]):focus,
+input:not([type="checkbox"]):hover,
+input:not([type="checkbox"])::after{
+  background-color: white !important;
+  box-shadow: 0px 0px 10px white !important;
+  transition: 200ms;
+  color: black !important;
+}
+
+</style>
