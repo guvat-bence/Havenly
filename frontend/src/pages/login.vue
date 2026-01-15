@@ -9,9 +9,11 @@ let model = reactive({
   password: ""
 }),
 
+
   //Üzenet fele
   message = ref(""),
   isSuccess,
+  showpasscheck = ref(false),
 
   // login függvény
   login = () => {
@@ -111,17 +113,28 @@ let model = reactive({
         </div>
 
         <!-- Jelszó részleg -->
-        <div class="mb-3 my-3">
+        <div class="mb-2 my-3">
           <label for="InputPassword" 
                  class="form-label">
             <span>Jelszó</span>
             <span class="text-danger">*</span>
           </label>
-          <input type="password" 
+          <input :type="showpasscheck ? 'text' : 'password'" 
                  class="form-control bg-transparent text-white" 
                  id="InputPassword"
                  autocomplete="off"
+                 ref="passwordInput"
                  v-model="model.password">
+        </div>
+        <!-- Jelszó megjelenítése -->
+        <div class=" mb-3">
+          <label class="form-check-label mx-1 text-start" for="flexCheckDefault">
+            Jelszó megjelenítése:
+          </label>
+          <input class="form-check-input float-end" 
+                 type="checkbox" 
+                 id="flexCheckDefault"
+                 v-model="showpasscheck">
         </div>
 
         <!-- Bejelentkezés gomb -->
@@ -140,12 +153,13 @@ let model = reactive({
 </template>
 
 <style scoped>
-input:focus,
-input:hover,
-input::after {
+input:not([type="checkbox"]):focus,
+input:not([type="checkbox"]):hover,
+input:not([type="checkbox"])::after{
   background-color: white !important;
   box-shadow: 0px 0px 10px white !important;
   transition: 200ms;
   color: black !important;
 }
+
 </style>
