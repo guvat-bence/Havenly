@@ -15,14 +15,32 @@ let currentImage = ref("");
 let counter = 0;
 let modal = null;
 let mode = "plus";
-let guest = [1,2,3,4,5,6];
+let guests = [];
 
-
-
+// a részletekhez kellő ikonok
 let iconsAndTexts = {
-	balcony:`<font-awesome-icon icon="fa-solid fa-house" />`
+	balcony:`fa-solid fa-house`,
+	basic_spices:`fa-solid fa-jar`,
+	bluetooth_speaker:`fa-solid fa-radio`,
+	board_games:`fa-solid fa-users-rectangle`,
+	coffee_maker:`fa-solid fa-mug-hot`,
+	darkening:`fa-solid fa-window-maximize`,
+	dishes:`fa-solid fa-plate-wheat`,
+	extra_bed_linen:`fa-solid fa-bed`,
+	free_wifi:`fa-solid fa-wifi`,
+	hair_dryer:`fa-solid fa-wind`,
+	iron:`fa-solid fa-fax`,
+	kettle:`fa-solid fa-water`,
+	microwave:`fa-solid fa-house-tsunami`,
+	night_lamp:`fa-regular fa-lightbulb`,
+	parking_lot:`fa-solid fa-car-side`,
+	safe:`fa-solid fa-vault`,
+	smart_tv:`fa-solid fa-tv`,
+	suitcase_rack:`fa-solid fa-suitcase`,
+	towels:`fa-solid fa-rug`,
+	usb_charger:`fa-solid fa-bolt`,
+	work_table:`fa-solid fa-table`
 }
-
 
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
@@ -55,21 +73,39 @@ if(counter>0)
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	.then(datas=>{
 		item.value = datas.data;
+	
+		console.log(item.value[0].guest_number);
 
+		if(item.value[0].guest_number)
+		{
+			for(let x=0;x<item.value[0].guest_number;x++)
+			{
+				guests.push(x+1);
+			}
+		}
 	})
 	.catch(error=>
 	{
 		console.error(error);
 	})
 
+
+// ha szállásnak a részletét szeretnénk, akkor indul el ez a szerver lehívás
 if(props.table_name == "accommodations")
 {
 	axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.id}`)
 		.then(details=>
 		{
 			item_details.value = details.data;
-			item_details.value = item_details.value[0]
-			console.log(item_details.value);
+			item_details.value = item_details.value[0];
+			
+			console.log(details.data[0]);
+
+			for(let x in details.data[0])
+			{
+				console.log(x);
+			}
+
 		})
 		.catch(error=>
 		{
@@ -185,7 +221,6 @@ function modalImgResize()
 	
 }
 
-
 </script>
 <template>
 	<div class="about">
@@ -226,10 +261,15 @@ function modalImgResize()
 			<!-- adatok megjelenítése -->
 			<div class="row justify-content-center mt-5">
 
+				<!-- részletek csoportosítása -->
 				<div class="row justify-content-center">
+
+					<!-- iconok plusz dolgok megjelenítése -->
 					<div v-if="props.table_name=='accommodations'" class="row justify-content-center text-center py-3 col-10 border border-2 rounded-3">
+
+						<!-- Cím -->
 						<h3 class="mb-4">Amit a szállás kínál</h3>
-						<p class="col-4" v-if="item_details.balcony == 1"><font-awesome-icon icon="fa-solid fa-house" size="xl" /> erkély</p>
+						<!-- <p class="col-4" v-if="item_details.balcony == 1"><font-awesome-icon icon="fa-solid fa-house" size="xl" /> erkély</p>
 						<p class="col-4" v-if="item_details.basic_spices == 1"><font-awesome-icon icon="fa-solid fa-jar" size="xl" /> fűszerek</p>
 						<p class="col-4" v-if="item_details.bluetooth_speaker == 1"><font-awesome-icon icon="fa-solid fa-radio"size="xl"/> bluetooth-os hangszóró</p>
 						<p class="col-4" v-if="item_details.board_games == 1"><font-awesome-icon icon="fa-solid fa-users-rectangle" size="xl"/> társasjátékok</p>
@@ -249,20 +289,29 @@ function modalImgResize()
 						<p class="col-4" v-if="item_details.suitcase_rack == 1"><font-awesome-icon icon="fa-solid fa-suitcase" size="xl"/> bőrönd tartó</p>
 						<p class="col-4" v-if="item_details.towels == 1"><font-awesome-icon icon="fa-solid fa-rug" size="xl"/> törölközők</p>
 						<p class="col-4" v-if="item_details.usb_charger == 1"><font-awesome-icon icon="fa-solid fa-bolt" size="xl"/> usb töltő</p>
-						<p class="col-4" v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" size="xl"/> munka asztal</p>
+						<p class="col-4" v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" size="xl"/> munka asztal</p> -->
 			
-						<p v-for="(value,key) in item_details" class="col-4	text-center"><font-awesome-icon icon="fa-solid fa-bed" v-if="value==1"/>{{ key }}</p>
+						<!-- iconok megjelenítése MÉG NINCS KÉSZ-->
+						<p v-for="x in iconsAndTexts" class="col-4	text-center"><font-awesome-icon :icon="x" size="xl" /></p>
 					</div>
+
+					<!-- Az adott szállás/élmény leírása -->
 					<div class="row justify-content-center col-5 my-3 ms-1 py-3 text-center align-items-center  border border-2 rounded-3">
 						<p>	{{ item[0].description }}</p>
 					</div>
+
+					<!-- A lefoglaláshoz kellő form -->
 					<div v-if="props.table_name=='accommodations'" class="row justify-content-center col-5 text-center ms-2 my-3 ">
 						<form class="border border-2 rounded-3 pt-4 pb-4">
+
+							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 row">
 
+								<!-- érkezés/távozás label -->
 								<label for="erkezes" class="form-label col-6">Érkezés időpontja</label>
 								<label for="tavozas" class="form-label col-6">Távozás időpontja</label>
 
+								<!-- érkezés/távozás -->
 								<div class="col-6">
 									<input type="date" class="form-control" id="erkezes">
 								</div>
@@ -275,11 +324,11 @@ function modalImgResize()
 								<label for="guest_number" class="form-label col-12">Személyek száma</label>
 								<div class="col-5">
 									<select class="form-select" id="guest_number">
-										<option v-for="x in guest" value="">{{ x }}fő</option>
+										<option v-for="x in guests" value="">{{ x }}fő</option>
 								</select>
 								</div>
 							</div>
-							<button class="btn btn-secondary col-6 rounded-pill">Foglalás</button>
+							<button class="btn btn-secondary col-6 rounded-pill disabled">Foglalás</button>
 						</form>
 					</div>
 				</div>

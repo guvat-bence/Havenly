@@ -131,6 +131,8 @@ app.get('/accommodations/:id', (req, res) => {
                    accommodations.size,
                    accommodations.country_id, accommodations.city_id,
                    accommodations.price,accommodations.description,
+                   accommodations.guest_number, accommodations.bedroom,
+                   accommodations.bed, accommodations.bathroom,
                    cities.name AS city_name,
                    countries.name AS country_name
           FROM accommodations
