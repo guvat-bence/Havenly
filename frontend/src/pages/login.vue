@@ -90,7 +90,9 @@ let model = reactive({
         <!-- Cím és üzenet részleg -->
         <div>
           <!-- cím -->
-          <h1 class="text-center text-white display-5">Bejelentkezés</h1>
+          <h1 class="text-center text-white display-5">
+            Bejelentkezés
+          </h1>
 
           <!-- ha van valamilyen probléma akkor azt ide írja ki -->
           <p class="text-danger text-center">
@@ -130,7 +132,8 @@ let model = reactive({
         </div>
         <!-- Jelszó megjelenítése -->
         <div class=" mb-3">
-          <label class="form-check-label mx-1 text-start" for="flexCheckDefault">
+          <label class="form-check-label mx-1 text-start" 
+                 for="flexCheckDefault">
             Jelszó megjelenítése:
           </label>
           <input class="form-check-input float-end" 
