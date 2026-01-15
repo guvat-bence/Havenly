@@ -251,7 +251,7 @@ function modalImgResize()
 						<p class="col-4" v-if="item_details.usb_charger == 1"><font-awesome-icon icon="fa-solid fa-bolt" size="xl"/> usb töltő</p>
 						<p class="col-4" v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" size="xl"/> munka asztal</p>
 			
-						<!-- <p v-for="x in item_details" class="col-2	text-center"><font-awesome-icon icon="fa-solid fa-bed"/> vendégágy</p> -->
+						<p v-for="(value,key) in item_details" class="col-4	text-center"><font-awesome-icon icon="fa-solid fa-bed" v-if="value==1"/>{{ key }}</p>
 					</div>
 					<div class="row justify-content-center col-5 my-3 ms-1 py-3 text-center align-items-center  border border-2 rounded-3">
 						<p>	{{ item[0].description }}</p>
@@ -272,9 +272,9 @@ function modalImgResize()
 								
 							</div>
 							<div class="mb-3 row justify-content-center">
-								<label for="exampleInputPassword1" class="form-label col-12">Személyek száma</label>
-								<div class=" col-5">
-									<select class="form-select" name="" id="">
+								<label for="guest_number" class="form-label col-12">Személyek száma</label>
+								<div class="col-5">
+									<select class="form-select" id="guest_number">
 										<option v-for="x in guest" value="">{{ x }}fő</option>
 								</select>
 								</div>
