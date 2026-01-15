@@ -33,8 +33,8 @@ let model = reactive({
           user.expiration = response.data.user.expiration;
           user.cvv = response.data.user.cvv;
           user.websitekey = "havenly"
-
-          router.push('/');
+          
+          router.replace({path:'/'})
         }  
       })
       .catch(e => console.error(e))
@@ -111,7 +111,7 @@ let model = reactive({
         </div>
 
         <!-- Bejelentkezés gomb -->
-        <button type="submit" 
+        <button type="button" 
                 class="btn btn-outline-light 
                        text-center rounded-3 w-100
                        w-auto d-block mx-auto" 

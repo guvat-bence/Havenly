@@ -107,7 +107,8 @@ let mainRoutes = [
 							class="nav-item">
 
 						<router-link :to="y.path" 
-												 class="nav-link">
+												 class="nav-link"
+												 key="users">
 							{{ y.name }}
 						</router-link>
 					</li>
