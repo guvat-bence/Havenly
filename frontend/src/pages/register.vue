@@ -28,7 +28,7 @@ let step = ref(0),
       return false;
 
     if (model.firstname.length === 0 ||
-      model.lastname === 1)
+        model.lastname === 1)
       return false
 
     if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
@@ -219,7 +219,9 @@ watch(model, () => {
                 <input type="password" 
                        class="form-control bg-transparent text-white" 
                        id="InputPassword"
-                       autocomplete="off" 
+                       autocomplete="off"
+                       minlength="6"
+                       maxlength="40" 
                        v-model="model.password">
                   <div class="form-text text-white fw-bold">
                     A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot
@@ -239,6 +241,8 @@ watch(model, () => {
                 <input type="password" 
                        class="form-control bg-transparent text-white" 
                        id="inputconfirmpass"
+                       minlength="6"
+                       maxlength="40"
                        autocomplete="off" 
                        v-model="model.confirmpass">
               </div>

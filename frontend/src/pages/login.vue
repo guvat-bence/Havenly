@@ -124,6 +124,8 @@ let model = reactive({
                  id="InputPassword"
                  autocomplete="off"
                  ref="passwordInput"
+                 minlength="6"
+                 maxlength="40"
                  v-model="model.password">
         </div>
         <!-- Jelszó megjelenítése -->
