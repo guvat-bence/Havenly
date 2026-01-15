@@ -229,27 +229,27 @@ function modalImgResize()
 				<div class="row justify-content-center">
 					<div v-if="props.table_name=='accommodations'" class="row justify-content-center text-center py-3 col-10 border border-2 rounded-3">
 						<h3 class="mb-4">Amit a szállás kínál</h3>
-						<p class="col-4" v-if="item_details.balcony == 1"><font-awesome-icon icon="fa-solid fa-house" /> erkély</p>
-						<p class="col-4" v-if="item_details.basic_spices == 1"><font-awesome-icon icon="fa-solid fa-jar" /> fűszerek</p>
-						<p class="col-4" v-if="item_details.bluetooth_speaker == 1"><font-awesome-icon icon="fa-solid fa-radio" /> bluetooth-os hangszóró</p>
-						<p class="col-4" v-if="item_details.board_games == 1"><font-awesome-icon icon="fa-solid fa-users-rectangle" /> társasjátékok</p>
-						<p class="col-4" v-if="item_details.coffee_maker == 1"><font-awesome-icon icon="fa-solid fa-mug-hot" /> kávéfőző</p>
-						<p class="col-4" v-if="item_details.darkening == 1"><font-awesome-icon icon="fa-solid fa-window-maximize" /> sötétítő</p>
-						<p class="col-4" v-if="item_details.dishes == 1"><font-awesome-icon icon="fa-solid fa-plate-wheat" /> edények</p>
-						<p class="col-4" v-if="item_details.extra_bed_linen == 1"><font-awesome-icon icon="fa-solid fa-bed" /> extra ágynemű</p>
-						<p class="col-4" v-if="item_details.free_wifi == 1"><font-awesome-icon icon="fa-solid fa-wifi" /> wif</p>
-						<p class="col-4" v-if="item_details.hair_dryer == 1"><font-awesome-icon icon="fa-solid fa-wind" /> hajszárító</p>
-						<p class="col-4" v-if="item_details.iron == 1"><font-awesome-icon icon="fa-solid fa-fax" /> vasaló</p>
-						<p class="col-4" v-if="item_details.kettle == 1"><font-awesome-icon icon="fa-solid fa-water" /> vízforraló</p>
-						<p class="col-4" v-if="item_details.microwave == 1"><font-awesome-icon icon="fa-solid fa-house-tsunami" /> mikró</p>
-						<p class="col-4" v-if="item_details.night_lamp == 1"><font-awesome-icon icon="fa-regular fa-lightbulb" /> éjjeli lámpa</p>
-						<p class="col-4" v-if="item_details.parking_lot == 1"><font-awesome-icon icon="fa-solid fa-car-side" /> parkoló</p>
-						<p class="col-4" v-if="item_details.safe == 1"><font-awesome-icon icon="fa-solid fa-vault" /> széf</p>
-						<p class="col-4" v-if="item_details.smart_tv == 1"><font-awesome-icon icon="fa-solid fa-tv" /> okos-tv</p>
-						<p class="col-4" v-if="item_details.suitcase_rack == 1"><font-awesome-icon icon="fa-solid fa-suitcase" /> bőrönd tartó</p>
-						<p class="col-4" v-if="item_details.towels == 1"><font-awesome-icon icon="fa-solid fa-rug" /> törölközők</p>
-						<p class="col-4" v-if="item_details.usb_charger == 1"><font-awesome-icon icon="fa-solid fa-bolt" /> usb töltő</p>
-						<p class="col-4" v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" /> munka asztal</p>
+						<p class="col-4" v-if="item_details.balcony == 1"><font-awesome-icon icon="fa-solid fa-house" size="xl" /> erkély</p>
+						<p class="col-4" v-if="item_details.basic_spices == 1"><font-awesome-icon icon="fa-solid fa-jar" size="xl" /> fűszerek</p>
+						<p class="col-4" v-if="item_details.bluetooth_speaker == 1"><font-awesome-icon icon="fa-solid fa-radio"size="xl"/> bluetooth-os hangszóró</p>
+						<p class="col-4" v-if="item_details.board_games == 1"><font-awesome-icon icon="fa-solid fa-users-rectangle" size="xl"/> társasjátékok</p>
+						<p class="col-4" v-if="item_details.coffee_maker == 1"><font-awesome-icon icon="fa-solid fa-mug-hot" size="xl"/> kávéfőző</p>
+						<p class="col-4" v-if="item_details.darkening == 1"><font-awesome-icon icon="fa-solid fa-window-maximize" size="xl"/> sötétítő</p>
+						<p class="col-4" v-if="item_details.dishes == 1"><font-awesome-icon icon="fa-solid fa-plate-wheat" size="xl"/> edények</p>
+						<p class="col-4" v-if="item_details.extra_bed_linen == 1"><font-awesome-icon icon="fa-solid fa-bed" size="xl"/> extra ágynemű</p>
+						<p class="col-4" v-if="item_details.free_wifi == 1"><font-awesome-icon icon="fa-solid fa-wifi" size="xl"/> wifi</p>
+						<p class="col-4" v-if="item_details.hair_dryer == 1"><font-awesome-icon icon="fa-solid fa-wind" size="xl"/> hajszárító</p>
+						<p class="col-4" v-if="item_details.iron == 1"><font-awesome-icon icon="fa-solid fa-fax" size="xl"/> vasaló</p>
+						<p class="col-4" v-if="item_details.kettle == 1"><font-awesome-icon icon="fa-solid fa-water" size="xl"/> vízforraló</p>
+						<p class="col-4" v-if="item_details.microwave == 1"><font-awesome-icon icon="fa-solid fa-house-tsunami" size="xl"/> mikró</p>
+						<p class="col-4" v-if="item_details.night_lamp == 1"><font-awesome-icon icon="fa-regular fa-lightbulb" size="xl"/> éjjeli lámpa</p>
+						<p class="col-4" v-if="item_details.parking_lot == 1"><font-awesome-icon icon="fa-solid fa-car-side" size="xl"/> parkoló</p>
+						<p class="col-4" v-if="item_details.safe == 1"><font-awesome-icon icon="fa-solid fa-vault" size="xl"/> széf</p>
+						<p class="col-4" v-if="item_details.smart_tv == 1"><font-awesome-icon icon="fa-solid fa-tv" size="xl"/> okos-tv</p>
+						<p class="col-4" v-if="item_details.suitcase_rack == 1"><font-awesome-icon icon="fa-solid fa-suitcase" size="xl"/> bőrönd tartó</p>
+						<p class="col-4" v-if="item_details.towels == 1"><font-awesome-icon icon="fa-solid fa-rug" size="xl"/> törölközők</p>
+						<p class="col-4" v-if="item_details.usb_charger == 1"><font-awesome-icon icon="fa-solid fa-bolt" size="xl"/> usb töltő</p>
+						<p class="col-4" v-if="item_details.work_table == 1"><font-awesome-icon icon="fa-solid fa-table" size="xl"/> munka asztal</p>
 			
 						<!-- <p v-for="x in item_details" class="col-2	text-center"><font-awesome-icon icon="fa-solid fa-bed"/> vendégágy</p> -->
 					</div>
