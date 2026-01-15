@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { callWithAsyncErrorHandling, reactive, ref } from 'vue';
 import axios from 'axios';
 import Cards from '../components/cards.vue';
 
@@ -50,22 +50,25 @@ axios.get("http://localhost:3000/accommodations/top5")
         </form> 
       </div>
 
-      <!--  5-ször ismételjük mert 5 top szállást hívunk le  -->
-      <div v-for="x in accommodations">
+      <!-- LEgnépszerűbb szállások,cím -->
+      <h1 class="display-5 text-center text-white">
+          Legnépszerűbb szállásaink
+      </h1>
 
-        <!-- kiegészítjük az országok neveivel a címet -->
-        <h1 class="display-5 text-center text-white">
-          Legnépszerűbb szállás amit {{ x.name }} kínál
-        </h1>
+      <div class="row justify-content-center">
 
-         <!-- meghívjuk hozzá a kártya.vue-t -->
+        <!-- 5-ször ismételjük mert 5 top szállást hívunk le  -->
+        <div v-for="x in accommodations" class="mx-2 col-12 col-sm-12 col-md-6 col-xl-3 col-xxl-3">
+
+          <!-- meghívjuk hozzá a kártya.vue-t -->
           <!-- értékeket viszünk át -->
-        <Cards 
-          table-name="accommodations"
-          :country_id="x.country_id"
-          :country_name="x.name"
-          :accommodation_id="x.id"
-        />
+          <Cards 
+            table-name="accommodations"
+            :country_id="x.country_id"
+            :country_name="x.name"
+            :accommodation_id="x.id"
+          />
+        </div>
       </div>
     </div>
   </div>

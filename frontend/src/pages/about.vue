@@ -86,16 +86,11 @@ if(props.table_name == "accommodations")
 							item_details.value.push(iconsAndTexts[x]);
 						}
 					}
-					console.log(item_details.value);
 				})
 				.catch(error=>
 				{
 					console.error(error);
 				})
-
-			console.log(details.data);
-			
-
 		})
 		.catch(error=>
 		{

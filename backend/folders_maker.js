@@ -31,7 +31,7 @@ function convertStrings(str)
 //Annak a könyvtárnak a helye ahol a másolandó képek vannak.
 const itemsDir ="e:/Downloads/project_images";
 
-//putFilesToFolders async function.
+//putFilesToFolders function, ez felel a képek megfelelő áthelyezéséért és átnevezéséért.
 async function putFilesToFolders(itemsDir,placeType,folderDir)
 {
   //Megpróbálja végrehatjani az utasítást.
