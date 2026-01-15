@@ -52,7 +52,6 @@ let step = ref(0),
       .then(response => {
         message = response.data.message;
         isSuccess = response.data.success;
-        console.log(response.data)
 
         if(isSuccess){
           setTimeout(() => {

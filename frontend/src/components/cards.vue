@@ -2,9 +2,10 @@
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import {ref} from 'vue';
-
+// items definiálása
 let items = ref([]);
 
+// Props a rugalmasság érdekében
 let props = defineProps({
 	tableName: {
 		type: String,
@@ -20,6 +21,7 @@ let props = defineProps({
 	}
 })
 
+// Ha nincs szállás id akkor hívja le a random 5 id alapján
 if(props.accommodation_id == undefined)
 {
 	axios.get(`http://localhost:3000/${props.tableName}/country/${props.country_id}`)
@@ -32,6 +34,8 @@ if(props.accommodation_id == undefined)
 			console.error(error);
 		})
 }
+
+// Ha van id akkor az alapján keressen
 else
 {
 	axios.get(`http://localhost:3000/${props.tableName}/${props.accommodation_id}`)
@@ -44,9 +48,9 @@ else
 			console.error(error);
 		})
 }
-
+// convertString függvény
 function convertStrings(str) {  
-
+	// A megadott szöveget átalakítja hogy folder alapján megtalálja
   return str.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ","_")
@@ -62,6 +66,8 @@ function convertStrings(str) {
 				 v-for="x in items"
 				 :key="x.id"
 					style="width: 21rem;">
+
+			<!-- Név és kép -->
 			<div class="position-relative">
 				<img :src="`/countries/${convertStrings(x.country_name)}
 										/cities/${convertStrings(x.city_name)}
@@ -75,15 +81,21 @@ function convertStrings(str) {
 					{{ x.name }}
 				</h5>
 			</div>
+
+			<!-- Települési adatok -->
 			<div class="card-body">
 					<p class="card-text w-100">
 						{{x.country_name}}, {{x.city_name}}
 					</p>
 			</div>
+			
+			<!-- Ki írja az árat és a valuta formátumát az árat megszorozza a valauta szorzójával -->
 			<div class="card-footer border-0">
 				<p class="fw-bold">{{Math.round(x.price * selectedCurrency.currencyMultiplier)}} 
 								 					 {{ selectedCurrency.currencyShortedName }}/ éjszaka
 				</p>
+
+				<!-- Gomb az adatokhoz ami kattintásra elküldi az adatokat -->
 				<button class="btn btn-outline-light w-100">
 					<router-link 
 							:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name}}"

@@ -18,8 +18,6 @@ axios.get("http://localhost:3000/accommodations/top5")
   {
     console.error(err);
   })
-
-
 </script>
 
 <template>

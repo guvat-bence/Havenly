@@ -2,20 +2,24 @@
 import { user } from '@/store/user';
 import router from '@/router';
 import axios from 'axios';
-import { reactive, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 let model = reactive({
   email: "",
   password: ""
 }),
 
   //Üzenet fele
-  message,
+  message = ref(""),
+  isSuccess,
   // login függvény
   login = () => {
     axios.post('http://localhost:3000/login',model)
       .then(response => {
-        if(!response.data.success)
-          message = response.data.message;
+        if(!response.data.success){
+          message.value = response.data.message;
+          isSuccess = response.data.success
+          console.log(response.data)
+        }
 
         else{
           user.id = response.data.user.id;
@@ -62,10 +66,17 @@ let model = reactive({
     <div class="d-flex justify-content-center align-items-center">
       <form class="border p-3 border-1 border-white 
                    text-white rounded-3 bg-dark 
-                   bg-opacity-50">
+                   bg-opacity-50"
+            name="login">
         <div>
           <h1 class="text-center text-white display-5">Bejelentkezés</h1>
+
+          <p class="text-danger text-center">
+            {{ message }}
+          </p>
         </div>
+
+        
         <div class="mb-3">
           <label for="InputEmail1" 
                  class="form-label">
@@ -92,7 +103,7 @@ let model = reactive({
                  v-model="model.password">
         </div>
 
-        <button type="button" 
+        <button type="submit" 
                 class="btn btn-outline-light 
                        text-center rounded-3 w-100
                        w-auto d-block mx-auto" 
