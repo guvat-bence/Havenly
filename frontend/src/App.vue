@@ -20,9 +20,6 @@ let checkforUser = () => {
 if(user)
   checkforUser();
 
-console.error("Hiba a felhasználó lekérdezésekor")
-
-
 </script>
 
 <template>
