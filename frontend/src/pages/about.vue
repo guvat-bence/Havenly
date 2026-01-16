@@ -16,22 +16,63 @@ let counter = 0;
 let modal = null;
 let mode = "plus";
 let guests = [];
+let calendar = ref([]);
+let currentDate = "";
+let currentMonth = "";
+let nextDayDate = "";
+let daysname = ["H","K","Sz","Cs","P","Sz","V"];
+
 let currentYear= new Date().getFullYear();
-let currentMonth= (new Date().getMonth()+1).toString().length != 2?`0${new Date().getMonth()+1}`:new Date().getMonth()+1;
-let currentDay= (new Date().getDate()).toString().length != 2?`0${new Date().getDate()}`:new Date().getDate();
-let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-let maxDate = `${currentYear+1}-${currentMonth}-${currentDay}`;
+const maxYear = new Date().getFullYear();
+const todayMonth = new Date().getMonth() + 1;
 
-let biggerMonths=['January','March','May','July','August','October','December'];
+makeCalendar(1)
 
-if(currentDate.length>0)
+function makeCalendar(plusmonth)
 {
-	for(let x= 0;x<30;x++)
+	if(todayMonth>0)
 	{
+		calendar.value=[];
 
+		currentYear= new Date().getFullYear();
+		currentMonth = new Date().getMonth()+plusmonth;
+
+		if(currentMonth == 13)
+		{
+			currentYear= currentYear+1;
+
+		}
+
+		let currentDay= new Date().getDate();
+		let daysInMonth = new Date(currentYear,currentMonth,0).getDate();
+		let daysInPriviousMonth = new Date(currentYear,currentMonth-1,0).getDate();
+		let daysInNextMonth = new Date(currentYear,currentMonth+1,1).getDate();
+		let lastDayinPriviousMonth  = new Date(currentYear,currentMonth-1,0).getDay();
+		let firstDayinMonth  = new Date(currentYear,currentMonth-1,1).getDay();
+		let lastDayinMonth  = new Date(currentYear,currentMonth-1,daysInMonth).getDay();
+		currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+		nextDayDate = `${currentYear}-${currentMonth}-${currentDay+1}`;
+
+		lastDayinPriviousMonth = lastDayinPriviousMonth==0?6:lastDayinPriviousMonth-1;
+		firstDayinMonth = firstDayinMonth==0?6:firstDayinMonth-1;
+		lastDayinMonth = lastDayinMonth==0?6:lastDayinMonth-1;
+
+		for(let i=0;i<lastDayinPriviousMonth+1;i++)
+		{
+			calendar.value.push(daysInPriviousMonth-(lastDayinPriviousMonth-i));
+		}
+
+		for(let x=1;x<daysInMonth+1;x++)
+		{
+			calendar.value.push(daysInMonth-(daysInMonth-x));
+		}
+
+		for(let y=1;y<(6-lastDayinMonth)+1;y++)
+		{
+			calendar.value.push(daysInNextMonth-(daysInNextMonth-y));
+		}
 	}
 }
-
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
 {
@@ -228,6 +269,19 @@ function modalImgResize()
 	
 }
 
+function monthNext()
+{
+
+	makeCalendar(currentMonth+1);
+}
+
+function monthPrevious()
+{
+
+	makeCalendar(currentMonth-1);
+
+}
+
 </script>
 <template>
 	<div class="about">
@@ -293,7 +347,7 @@ function modalImgResize()
 					<!-- Az adott szállás/élmény leírása -->
 					<div class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
                      text-center align-items-center border border-2 rounded-3 
-										 col-12 col-md-5 col-xl-4">
+										 col-12 col-md-4 col-xl-4">
 						<p>	{{ item[0].description }}</p>
 					</div>
 
@@ -301,43 +355,62 @@ function modalImgResize()
 					<div v-if="props.table_name=='accommodations'" 
                class="row justify-content-center text-center mx-2 my-3
 											border border-2 rounded-3 bg-dark bg-opacity-50
-							  			col-12 col-md-5 col-xl-4">
+							  			col-12 col-md-6 col-xl-4">
 
 						<!-- Maga a form -->
-						<form class="pt-4 pb-4">
-
+						<form v-if="calendar.length>0" class="pt-4 pb-4">
 							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 bg-white row justify-content-center rounded-3 py-3 text-dark">
-								<div class="row justify-content-center text-white bg-dark w-auto rounded-3">
-									<h6 class="col-12 m-0">{{ currentDate }} - {{ maxDate }}</h6>
-								</div>
 								<!-- <div class="row bg-dark col-10 justify-content-center align-items-center rounded-3"> -->
 								<div class="row justify-content-center">
 									<h6 class="col-6">Érkezés időpontja</h6>
 									<h6 class="col-6">Távozás időpontja</h6>
+									<h6 class="col-6">{{ currentDate }}</h6>
+									<h6 class="col-6">{{ nextDayDate }}</h6>
+								</div>
+								<!-- Balra lapozás gomb -->
+								<div class="col-2 my-2 row align-items-center z-1">
+									<button class="btn btn-secondary"
+													id="monthPrevious"
+													type="button"
+													:disabled="currentMonth === todayMonth"
+													@click="monthPrevious()">
+										&lt;
+									</button>
 								</div>
 								<!-- </div> -->
-								<div class="row bg-dark col-10 h-100  justify-content-center  align-items-center rounded-3">
-									
+								<div id="tableDiv"
+										 class="row bg-dark col-8 h-100 
+														justify-content-center align-items-center 
+														rounded-2 text-white">
+									<table>
+										<thead>
+												<tr>
+													<th v-for="day in daysname">
+														{{ day }}
+													</th>
+												</tr>
+										</thead>
+										<tbody>
+												<tr v-for="week in 5">
+													<td class="day" v-for="day in 7" >
+														{{ calendar[(week-1)*7 + (day-1)] }}
+													</td>
+												</tr>
+										</tbody>
+									</table>
 								</div>
-
-								<!-- érkezés/távozás label -->
-								<!-- <label for="erkezes" class="form-label col-6">
-                  Érkezés időpontja
-                </label>
-								<label for="tavozas" class="form-label col-6">
-                  Távozás időpontja
-                </label> -->
-
-								<!-- érkezés/távozás inputok -->
-								<!-- <div class="col-6">
-									<input type="date" class="form-control"
-												 id="erkezes" :min="currentDate" >
+								
+								<!-- Jobbra lapozás gomb -->
+								<div class="col-2 my-2 row align-items-center ">
+									<button class="btn btn-secondary"
+													id="monthNext"
+													type="button"
+													:disabled="currentYear !== maxYear"
+													@click="monthNext()">
+										&gt;
+									</button>
 								</div>
-								<div class="col-6">
-									<input type="date" class="form-control" 
-												 id="tavozas" :max="maxDate">
-								</div> -->
 							</div>
 
 							<!-- személyek száma szakasz -->
@@ -441,4 +514,14 @@ function modalImgResize()
 body.no-scroll {
   overflow: hidden;
 }
+
+.day:hover
+{
+	box-shadow: 0px 0px 10px rgb(255, 255, 255);
+	cursor: pointer;
+	transition: 200ms;
+	background-color: white;
+	color: black;
+}
+
 </style>
