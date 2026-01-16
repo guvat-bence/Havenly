@@ -1,5 +1,7 @@
 <script setup>
 import { user } from '@/store/user';
+import axios from 'axios';
+import { ref } from 'vue';
 // A navbar elemek deifiniálása
 let mainRoutes = [
 	{
@@ -31,6 +33,11 @@ let mainRoutes = [
 			path: "/profile",	 
 		}
 	]
+	
+	let searchInput = ref(""),
+			searchInDB = (value) => {
+				axios.post('',)
+			}
 </script>
 
 <template>
@@ -70,6 +77,21 @@ let mainRoutes = [
 						</router-link>
 					</li>
 				</ul>
+
+				<!-- Search bar -->
+				<form class="d-flex" 
+							role="search"
+							name="searchbar"
+							v-if="$route.fullPath !== '/'" >
+					<input class="form-control me-2" 
+								 type="search" 
+								 id="searchinput"
+								 placeholder="Search" 
+								 aria-label="Search"
+								 v-on:input="searchInDB(searchInput)"
+								 v-model="searchInput"/>
+				</form>
+
 				<!-- Bejelentkezés/regisztráció -->
 				<ul class="navbar-nav ms-auto">
 					<li v-for="y in authentication" 

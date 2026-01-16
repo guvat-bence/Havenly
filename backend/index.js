@@ -415,6 +415,7 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Currency lekérdezése
 app.get('/getCurrency', (req, res) => {
   let command = 'SELECT `id`, `name`, `multiplier`, `shorted_name` FROM `currency`';
   db.query(command, (err,result) => {
@@ -425,4 +426,10 @@ app.get('/getCurrency', (req, res) => {
     }
     res.json(result);
   })
+})
+
+//Bekért input lekérdezése
+app.post('/search',(req, res) => {
+  const query = 
+  db.query()
 })
