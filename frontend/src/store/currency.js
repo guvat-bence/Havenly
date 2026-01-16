@@ -1,5 +1,6 @@
 import { reactive,watch } from "vue"
 
+
 export let selectedCurrency = reactive(
 	{
 		currencyID: localStorage.getItem('currencyID') ?? 1,

@@ -1,6 +1,28 @@
 <script setup>
 import Navbar from './components/navbar.vue';
 import Myfooter  from './components/footer.vue';
+import { user } from './store/user';
+
+let checkforUser = () => { 
+  if(user.websitekey != 'havenly'){
+    localStorage.removeItem("id")
+    localStorage.removeItem("first_name")
+    localStorage.removeItem("last_name")
+    localStorage.removeItem("middle_name")
+    localStorage.removeItem("phone_number")
+    localStorage.removeItem("gender")
+    localStorage.removeItem("user_type")
+    localStorage.removeItem("card_number")
+    localStorage.removeItem("expiration")
+    localStorage.removeItem("cvv")
+  }
+}
+if(user)
+  checkforUser();
+
+console.error("Hiba a felhasználó lekérdezésekor")
+
+
 </script>
 
 <template>
