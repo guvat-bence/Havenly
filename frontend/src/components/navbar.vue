@@ -1,7 +1,10 @@
 <script setup>
+import { activeLocations } from '@/js/getLocation';
+import router from '@/router';
 import { user } from '@/store/user';
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { routerKey, useRoute } from 'vue-router';
 // A navbar elemek deifiniálása
 let mainRoutes = [
 	{
@@ -35,9 +38,10 @@ let mainRoutes = [
 	]
 	
 	let searchInput = ref(""),
-			searchInDB = (value) => {
-				axios.post('',)
+			searchInDB = (path,value) => {
+				axios.post('http://localhost:3000/search',{})
 			}
+	console.error(activeLocations)
 </script>
 
 <template>
@@ -88,7 +92,8 @@ let mainRoutes = [
 								 id="searchinput"
 								 placeholder="Search" 
 								 aria-label="Search"
-								 v-on:input="searchInDB(searchInput)"
+								 v-on:input=""
+								 v-on:keypress="searchInDB($route.fullPath,searchInput)"
 								 v-model="searchInput"/>
 				</form>
 

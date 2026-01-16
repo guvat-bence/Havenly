@@ -1,10 +1,10 @@
 <script setup>
 import Navbar from './components/navbar.vue';
-import Myfooter  from './components/footer.vue';
+import Myfooter from './components/footer.vue';
 import { user } from './store/user';
 
-let checkforUser = () => { 
-  if(user.websitekey != 'havenly'){
+let checkforUser = () => {
+  if (user.websitekey != 'havenly') {
     localStorage.removeItem("id")
     localStorage.removeItem("first_name")
     localStorage.removeItem("last_name")
@@ -17,28 +17,26 @@ let checkforUser = () => {
     localStorage.removeItem("cvv")
   }
 }
-if(user)
+if (user)
   checkforUser();
-
 </script>
 
 <template>
   <div class="page-container d-flex 
               flex-column min-vh-100 
               w-100 overflow-x-hidden">
-      <navbar class="sticky-top"/>
-      <router-view class="flex-fill my-5"/>
-      <myfooter/>
+    <navbar class="sticky-top" />
+    <router-view class="flex-fill my-5" />
+    <myfooter />
   </div>
 </template>
 
 <style>
-body{
+body {
   background-color: hsl(0, 0%, 20%) !important;
 }
 
-*:not(input):not(textarea)
-{
+*:not(input):not(textarea) {
   -webkit-touch-callout: none !important;
   -webkit-user-select: none !important;
   user-select: none !important;

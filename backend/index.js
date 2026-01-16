@@ -429,7 +429,20 @@ app.get('/getCurrency', (req, res) => {
 })
 
 //Bekért input lekérdezése
-app.post('/search',(req, res) => {
-  const query = 
-  db.query()
+app.get('/createLocationList',(req, res) => {
+  const query = ` SELECT DISTINCT countries.name AS country_name, 
+                  cities.name AS city_name 
+                  FROM countries 
+                  INNER JOIN cities ON cities.country_id = countries.id 
+                  INNER JOIN accommodations ON cities.id = accommodations.city_id 
+                  LEFT JOIN experiences ON cities.id = experiences.city_id `;
+  db.query(query, (err,result) => {
+    if(err){
+      res.status(401).send("Sikertelen beolvasás")
+      return;
+    }
+
+    res.send(result);
+    
+  })
 })
