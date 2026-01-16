@@ -22,6 +22,16 @@ let currentDay= (new Date().getDate()).toString().length != 2?`0${new Date().get
 let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 let maxDate = `${currentYear+1}-${currentMonth}-${currentDay}`;
 
+let biggerMonths=['January','March','May','July','August','October','December'];
+
+if(currentDate.length>0)
+{
+	for(let x= 0;x<30;x++)
+	{
+
+	}
+}
+
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
 {
@@ -294,28 +304,40 @@ function modalImgResize()
 							  			col-12 col-md-5 col-xl-4">
 
 						<!-- Maga a form -->
-						<form class=" pt-4 pb-4">
+						<form class="pt-4 pb-4">
 
 							<!-- érkezés/távozás szakas -->
-							<div class="mb-3 row">
+							<div class="mb-3 bg-white row justify-content-center rounded-3 py-3 text-dark">
+								<div class="row justify-content-center text-white bg-dark w-auto rounded-3">
+									<h6 class="col-12 m-0">{{ currentDate }} - {{ maxDate }}</h6>
+								</div>
+								<!-- <div class="row bg-dark col-10 justify-content-center align-items-center rounded-3"> -->
+								<div class="row justify-content-center">
+									<h6 class="col-6">Érkezés időpontja</h6>
+									<h6 class="col-6">Távozás időpontja</h6>
+								</div>
+								<!-- </div> -->
+								<div class="row bg-dark col-10 h-100  justify-content-center  align-items-center rounded-3">
+									
+								</div>
 
 								<!-- érkezés/távozás label -->
-								<label for="erkezes" class="form-label col-6">
+								<!-- <label for="erkezes" class="form-label col-6">
                   Érkezés időpontja
                 </label>
 								<label for="tavozas" class="form-label col-6">
                   Távozás időpontja
-                </label>
+                </label> -->
 
 								<!-- érkezés/távozás inputok -->
-								<div class="col-6">
+								<!-- <div class="col-6">
 									<input type="date" class="form-control"
 												 id="erkezes" :min="currentDate" >
 								</div>
 								<div class="col-6">
 									<input type="date" class="form-control" 
 												 id="tavozas" :max="maxDate">
-								</div>
+								</div> -->
 							</div>
 
 							<!-- személyek száma szakasz -->
