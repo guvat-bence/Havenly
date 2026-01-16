@@ -1,8 +1,6 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
-import { Modal } from 'bootstrap';
-import { icon, text } from '@fortawesome/fontawesome-svg-core';
 
 // étékek át hozása mási koldalról
 const props = defineProps(['id','name','table_name'])
@@ -18,8 +16,11 @@ let counter = 0;
 let modal = null;
 let mode = "plus";
 let guests = [];
-
-
+let currentYear= new Date().getFullYear();
+let currentMonth= (new Date().getMonth()+1).toString().length != 2?`0${new Date().getMonth()+1}`:new Date().getMonth()+1;
+let currentDay= (new Date().getDate()).toString().length != 2?`0${new Date().getDate()}`:new Date().getDate();
+let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+let maxDate = `${currentYear+1}-${currentMonth}-${currentDay}`;
 
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
@@ -51,10 +52,14 @@ if(counter>0)
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	.then(datas=>{
+
+		// tömb feltöltése
 		item.value = datas.data;
 
+		//ha léétzik a guest_number a tömben akkor bele megy
 		if(item.value[0].guest_number)
 		{
+			// annyi lelemet rak a guest-be amennyi vendég van.
 			for(let x=0;x<item.value[0].guest_number;x++)
 			{
 				guests.push(x+1);
@@ -70,17 +75,27 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 // ha szállásnak a részletét szeretnénk, akkor indul el ez a szerver lehívás
 if(props.table_name == "accommodations")
 {
+	// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
 	axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.id}`)
 		.then(details=>
 		{
 
+			//beolvassuk a iconsAndTexts.json-t 
+			//amiben az iconok és a hozzájuk tartozó szöveg van benne 
 			axios.get('/jsons/iconsAndTexts.json')
 				.then(response=>
 				{
+
+					// a tartalmát a iconsAndTexts adjuk át
 					iconsAndTexts =	 response.data;
 
+					// végigmegyünk a részleteken
 					for(let x in details.data[0])
 					{
+
+						// ha van olyan részlet amit tartalmaz a szállás
+						// akkor hozzá adjuk a item_details listához 
+						// az adott részlethez tartozó elemet az iconsAndTexts-ből
 						if(details.data[0][x] == 1)
 						{
 							item_details.value.push(iconsAndTexts[x]);
@@ -119,9 +134,10 @@ function imageShow(img)
 		}
 	}
 
-	// modal megnyitása és meghívása
-	modal = new Modal(document.querySelector("#imageShow"));
-	modal.show();
+	// modal megkeresése
+	modal = document.querySelector("#imageShowModal");
+	modal.classList.remove("invisible");
+	document.body.classList.add("no-scroll");
 	return modal;
 }
 
@@ -151,15 +167,11 @@ function imagePrevious(img)
 	}
 }
 
-// mivel functionnal nyitottuk meg  a modalt, igy egy functionnal is zárjuk be
-// hogy egységes legyen
+// Modal eltüntetése
 function closeModal() {
 
-	modal.hide();
-
-	//kiad egy figylemezetetés a vue, mert a modalt nem preferálja
-	//azt tüntettjük el
-	console.clear();
+	modal.classList.add("invisible");
+	document.body.classList.remove("no-scroll");
 }
 
 // ezzel nagyítjuk vagy kicsinyítjük a modal képeit.
@@ -182,7 +194,7 @@ function modalImgResize()
 
 			// a for ciklussal minden gombot el tüntett
 			modalbuttons.forEach(btn => {
-      	btn.style.visibility = "hidden";
+      	btn.classList.add("invisible");
     	});
 
 			return mode ="minus";
@@ -197,7 +209,7 @@ function modalImgResize()
 
 			// a for ciklussal minden gombot láthatóvá tesz
 			modalbuttons.forEach(btn => {
-      	btn.style.visibility = "visible";
+      	btn.classList.remove("invisible");
     	});
 
 			return mode ="plus";
@@ -222,7 +234,7 @@ function modalImgResize()
 				<!-- Galéria -->
 				<div class="row justify-content-center">
 					<!-- Síma képek -->
-					<div v-for="img in galleryImages" class=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
+					<div v-for="img in galleryImages" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
 						<img height="300" :src="`/countries/${convertStrings(item[0].country_name)}
 																		/cities/${convertStrings(item[0].city_name)}
 																		/${props.table_name}/${convertStrings(item[0].folder_name)}/${img}`"
@@ -255,7 +267,7 @@ function modalImgResize()
 					<div v-if="props.table_name=='accommodations'" 
               class="row justify-content-center text-center 
               			 pt-3 mx-2 my-3 border border-2 rounded-3
-										 col-12 col-md-10 col-xl-4">
+										 bg-dark bg-opacity-50 col-12 col-md-10 col-xl-4">
 
 						<!-- Cím -->
 						<h3 class="mb-4">Amit a szállás kínál</h3>
@@ -269,7 +281,7 @@ function modalImgResize()
 					</div>
 
 					<!-- Az adott szállás/élmény leírása -->
-					<div class="row justify-content-center my-3 mx-3 py-3 
+					<div class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
                      text-center align-items-center border border-2 rounded-3 
 										 col-12 col-md-5 col-xl-4">
 						<p>	{{ item[0].description }}</p>
@@ -278,10 +290,11 @@ function modalImgResize()
 					<!-- A lefoglaláshoz kellő form -->
 					<div v-if="props.table_name=='accommodations'" 
                class="row justify-content-center text-center mx-2 my-3
-							  col-12 col-md-5 col-xl-4">
+											border border-2 rounded-3 bg-dark bg-opacity-50
+							  			col-12 col-md-5 col-xl-4">
 
 						<!-- Maga a form -->
-						<form class="border border-2 rounded-3 pt-4 pb-4">
+						<form class=" pt-4 pb-4">
 
 							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 row">
@@ -296,10 +309,12 @@ function modalImgResize()
 
 								<!-- érkezés/távozás inputok -->
 								<div class="col-6">
-									<input type="date" class="form-control" id="erkezes">
+									<input type="date" class="form-control"
+												 id="erkezes" :min="currentDate" >
 								</div>
 								<div class="col-6">
-									<input type="date" class="form-control" id="tavozas">
+									<input type="date" class="form-control" 
+												 id="tavozas" :max="maxDate">
 								</div>
 							</div>
 
@@ -329,60 +344,63 @@ function modalImgResize()
 				</div>
 			</div>
 
-			<!-- Modal -->
-			<div class="modal fade col-12" id="imageShow" data-bs-keyboard="false" 
-					 data-bs-backdrop="static" tabindex="-1" aria-hidden="true">	 
-				<div class="modal-dialog modal-dialog-centered modal-xl">
-					<div class="modal-content bg-dark bg-opacity-50">
-						<div class="modal-body position-relative">
+			<!-- saját modal -->
+			<div class="bg-black bg-opacity-75 invisible 
+									d-flex justify-content-center 
+									align-items-center position-fixed"
+					 id="imageShowModal"
+					 style="z-index:1020;inset:0;">
 
-							<!-- Kép -->
-							<div class="d-flex justify-content-center">
-								<img style="max-width: 1050px; max-height: 700px;object-fit:cover;"
-										 class="col-12 modalImg"
-										 @click="modalImgResize()"
-										 :src="`/countries/${convertStrings(item[0].country_name)}`+
-										 			 `/cities/${convertStrings(item[0].city_name)}`+
-													 `/${props.table_name}/${convertStrings(item[0].folder_name)}`+
-													 `/${images[currentImage]}`">
-							</div>
+				<div class="position-relative w-75">
 
-							<!-- Kép száma -->
-							<p class="text-center text-white mt-3">{{ currentImage+1 }}/{{ images.length }}</p>
+					<!-- Kép -->
+					<div class="d-flex justify-content-center">
+						<img style="max-width:1050px; max-height:700px;object-fit:cover;"
+									class="col-12 modalImg rounded-4"
+									@click="modalImgResize()"
+									:src="`/countries/${convertStrings(item[0].country_name)}`+
+												`/cities/${convertStrings(item[0].city_name)}`+
+												`/${props.table_name}/${convertStrings(item[0].folder_name)}`+
+												`/${images[currentImage]}`">
+					</div>
 
-							<!-- Balra lapozás gomb -->
-							<div class="position-absolute top-50 start-0 translate-middle-y">
-								<button class="btn btn-secondary"
-												@click="imagePrevious(currentImage)">
-									&lt;
-								</button>
-							</div>
+					<!-- Kép száma -->
+					<p class="text-center text-white 
+										mt-3 border border-1 
+										rounded-3  mx-auto col-1 bg-dark">
+						{{ currentImage+1 }}/{{ images.length }}
+					</p>
 
-							<!-- Jobbra lapozás gomb -->
-							<div class="position-absolute top-50 end-0 translate-middle-y">
-								<button class="btn btn-secondary"
-												@click="imageNext(currentImage)">
-									&gt;
-								</button>
-							</div>
+					<!-- Balra lapozás gomb -->
+					<div class="position-absolute top-50 start-0 translate-middle-y">
+						<button class="btn btn-secondary"
+										@click="imagePrevious(currentImage)">
+							&lt;
+						</button>
+					</div>
 
-							<!-- Bazáró gomb -->
-							 <div class="position-absolute top-0 end-0">
-								<button class="btn btn-danger" 
-											  @click="closeModal()">
-									X
-								</button>
-							</div>
-						</div>
+					<!-- Jobbra lapozás gomb -->
+					<div class="position-absolute top-50 end-0 translate-middle-y">
+						<button class="btn btn-secondary"
+										@click="imageNext(currentImage)">
+							&gt;
+						</button>
+					</div>
+
+					<!-- Bazáró gomb -->
+						<div class="position-absolute top-0 end-0">
+						<button class="btn btn-danger" 
+										@click="closeModal()">
+							X
+						</button>
 					</div>
 				</div>
 			</div>
-      
 		</div>
 	</div>
 </template>
 
-<style scoped>
+<style>
 
 /* szállás/élményy képeinek kiemelése */
 .img:hover {
@@ -395,5 +413,10 @@ function modalImgResize()
 .modalImg:hover
 {
 	cursor: zoom-in;
+}
+
+/* a görgetés letiltása */
+body.no-scroll {
+  overflow: hidden;
 }
 </style>

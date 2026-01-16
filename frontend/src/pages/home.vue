@@ -23,35 +23,36 @@ axios.get("http://localhost:3000/accommodations/top5")
 </script>
 
 <template>
-  <div class="home">
-    <div class="container">
-      <div class="row justify-content-center">
-
+  <div class="home" >
+    <div class="container" >
+      <div class="row justify-content-center 
+                  align-items-center rounded-5 shadow-lg"
+           id="searchPart">
         <!-- kereső címe -->
-        <h1 class="display-1 text-white text-center w-100">
+        <h1 class="display-1 text-white text-center w-auto mt-5
+                   bg-black bg-opacity-50 rounded-3 shadow">
           Hová szeretnél utazni?
         </h1>
-
         <!-- kereső mező form-ja -->
-        <form class="form mt-5 col-12 col-lg-4 col-md-5 row justify-content-center 
-                    bg-dark bg-opacity-50 rounded-3 shadow
+        <div class="row justify-content-center">
+           <form class="form col-12 col-lg-4 col-md-5 row justify-content-center 
+                    bg-black bg-opacity-50 rounded-3 shadow
                     p-4 border border-1 border-white mb-5">
-
-          <!-- Keresési mező -->
-          <input  class="form-control mt-2" 
-                  type="search" 
-                  name="searchbar" 
-                  id="searchbar"
-                  placeholder="Írja be a település nevét. Pl.: Tokyo"
-                  v-model="model.searchbar">
-          <!-- Keresési gomb -->
-          <button class="btn btn-outline-light col-11 my-2 mt-3"
-                  :disabled="!model.searchbar">Keresés</button>
-        </form> 
+            <!-- Keresési mező -->
+            <input  class="form-control mt-2" 
+                    type="search" 
+                    name="searchbar" 
+                    id="searchbar"
+                    placeholder="Írja be a település nevét. Pl.: Tokyo"
+                    v-model="model.searchbar">
+            <!-- Keresési gomb -->
+            <button class="btn btn-outline-light col-11 my-2 mt-3 disabled"
+                    :disabled="!model.searchbar">Keresés</button>
+          </form> 
+        </div>
       </div>
-
       <!-- LEgnépszerűbb szállások,cím -->
-      <h1 class="display-5 text-center text-white">
+      <h1 class="display-5 mt-5 text-center text-white">
           Legnépszerűbb szállásaink
       </h1>
 
@@ -82,6 +83,17 @@ input:not([type="checkbox"])::after{
   box-shadow: 0px 0px 10px white !important;
   transition: 200ms;
   color: black !important;
+}
+
+#searchPart
+{
+  background-image: url("../images/gif03.gif");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+
 }
 
 </style>
