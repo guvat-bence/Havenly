@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 // étékek át hozása mási koldalról
 const props = defineProps(['id','name','table_name'])
@@ -21,9 +21,14 @@ let currentDate = "";
 let currentMonth = "";
 let nextDayDate = "";
 let daysname = ["H","K","Sz","Cs","P","Sz","V"];
+let arriveDay= ref(null); 
+let arriveDayId= ref(null); 
+let departureDay=ref(null); 
+let departureDayId=ref(null); 
+let rentedDays = ref([]);
+let rentedDayIds = ref([]);
 
 let currentYear= new Date().getFullYear();
-const maxYear = new Date().getFullYear();
 const todayMonth = new Date().getMonth() + 1;
 
 makeCalendar(1)
@@ -33,16 +38,7 @@ function makeCalendar(plusmonth)
 	if(todayMonth>0)
 	{
 		calendar.value=[];
-
-		currentYear= new Date().getFullYear();
 		currentMonth = new Date().getMonth()+plusmonth;
-
-		if(currentMonth == 13)
-		{
-			currentYear= currentYear+1;
-
-		}
-
 		let currentDay= new Date().getDate();
 		let daysInMonth = new Date(currentYear,currentMonth,0).getDate();
 		let daysInPriviousMonth = new Date(currentYear,currentMonth-1,0).getDate();
@@ -59,7 +55,8 @@ function makeCalendar(plusmonth)
 
 		for(let i=0;i<lastDayinPriviousMonth+1;i++)
 		{
-			calendar.value.push(daysInPriviousMonth-(lastDayinPriviousMonth-i));
+			// calendar.value.push(daysInPriviousMonth-(lastDayinPriviousMonth-i));
+			calendar.value.push("");
 		}
 
 		for(let x=1;x<daysInMonth+1;x++)
@@ -69,7 +66,8 @@ function makeCalendar(plusmonth)
 
 		for(let y=1;y<(6-lastDayinMonth)+1;y++)
 		{
-			calendar.value.push(daysInNextMonth-(daysInNextMonth-y));
+			// calendar.value.push(daysInNextMonth-(daysInNextMonth-y));
+			calendar.value.push("");
 		}
 	}
 }
@@ -121,7 +119,6 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	{
 		console.error(error);
 	})
-
 
 // ha szállásnak a részletét szeretnénk, akkor indul el ez a szerver lehívás
 if(props.table_name == "accommodations")
@@ -273,14 +270,124 @@ function monthNext()
 {
 
 	makeCalendar(currentMonth+1);
+
+	monthCheck();
+
+	
 }
 
 function monthPrevious()
 {
-
 	makeCalendar(currentMonth-1);
 
+
+	monthCheck();
+
 }
+
+function daySelected(month,day)
+{
+	console.log(month,day);
+
+	let currentDay = document.getElementById(`${month}.${day}`);
+
+	if(currentDay.innerText == "")
+	{
+		return;
+	}
+
+	if(arriveDay.value == currentDay)
+	{
+		arriveDay.value.style.removeProperty("background-color");
+		arriveDayId.value = null;
+		arriveDay.value = null;
+		return;
+	}
+	else if(departureDay.value  == currentDay)
+	{
+		departureDay.value.style.removeProperty("background-color");
+		departureDayId.value = null;
+		departureDay.value = null;
+		return;
+	}
+
+	if(arriveDay.value == null)
+	{
+		arriveDay.value = document.getElementById(`${month}.${day}`);
+		arriveDayId.value = `${month}.${day}`;
+		arriveDay.value.style.backgroundColor="grey";
+		return;
+	}
+	else if(departureDay.value == null && arriveDay.value != currentDay)
+	{
+		departureDay.value = document.getElementById(`${month}.${day}`);
+		departureDayId.value = `${month}.${day}`;
+		departureDay.value.style.backgroundColor="grey";
+		return;
+	}
+}
+
+function monthCheck()
+{
+
+	console.log(arriveDayId.value);
+	if(arriveDayId.value!= null){
+		if((arriveDayId.value).split(".")[0] == currentMonth){
+			arriveDay.value.style.backgroundColor="grey";
+		}
+		else
+		{
+			arriveDay.value.style.removeProperty("background-color");
+		}
+	}
+
+	if(departureDayId.value!=null){
+		if((departureDayId.value).split(".")[0] == currentMonth){
+			departureDay.value.style.backgroundColor="grey";
+		}
+		else
+		{
+			departureDay.value.style.removeProperty("background-color");
+		}
+	}
+
+	for(let x =0;x<rentedDays.value.length;x++)
+	{
+		if((rentedDayIds.value[x]).split(".")[0] == currentMonth){
+			rentedDays.value[x].style.backgroundColor="darkgray";
+		}
+		else
+		{
+			rentedDays.value[x].style.removeProperty("background-color");
+		}
+	}
+}
+
+watch([arriveDay,departureDay],()=>
+{
+	if(arriveDay.value!= null && departureDay.value != null)
+	{
+		for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
+		{
+			console.log(y);
+			let currentDay = document.getElementById(`${currentMonth}.${y}`);
+			currentDay.style.backgroundColor="darkgray";
+			rentedDays.value.push(currentDay);
+			rentedDayIds.value.push(`${currentMonth}.${y}`);
+		}
+	}
+	else{
+
+		for(let x =0;x<rentedDays.value.length;x++)
+		{
+			rentedDays.value[x].style.removeProperty("background-color");
+		}
+
+		rentedDays.value = [];
+		rentedDayIds.value = [];
+	}
+	console.log(rentedDays.value);
+})
 
 </script>
 <template>
@@ -359,15 +466,16 @@ function monthPrevious()
 
 						<!-- Maga a form -->
 						<form v-if="calendar.length>0" class="pt-4 pb-4">
+
 							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 bg-white row justify-content-center rounded-3 py-3 text-dark">
-								<!-- <div class="row bg-dark col-10 justify-content-center align-items-center rounded-3"> -->
 								<div class="row justify-content-center">
 									<h6 class="col-6">Érkezés időpontja</h6>
 									<h6 class="col-6">Távozás időpontja</h6>
 									<h6 class="col-6">{{ currentDate }}</h6>
 									<h6 class="col-6">{{ nextDayDate }}</h6>
 								</div>
+
 								<!-- Balra lapozás gomb -->
 								<div class="col-2 my-2 row align-items-center z-1">
 									<button class="btn btn-secondary"
@@ -378,7 +486,7 @@ function monthPrevious()
 										&lt;
 									</button>
 								</div>
-								<!-- </div> -->
+					
 								<div id="tableDiv"
 										 class="row bg-dark col-8 h-100 
 														justify-content-center align-items-center 
@@ -392,8 +500,11 @@ function monthPrevious()
 												</tr>
 										</thead>
 										<tbody>
-												<tr v-for="week in 5">
-													<td class="day" v-for="day in 7" >
+												<tr v-for="week in 6">
+													<td class="day"
+															:id="`${currentMonth}.${calendar[(week-1)*7 + (day-1)]}`"
+															@click="daySelected(currentMonth,calendar[(week-1)*7 + (day-1)])"
+															v-for="day in 7" >
 														{{ calendar[(week-1)*7 + (day-1)] }}
 													</td>
 												</tr>
@@ -406,7 +517,7 @@ function monthPrevious()
 									<button class="btn btn-secondary"
 													id="monthNext"
 													type="button"
-													:disabled="currentYear !== maxYear"
+													:disabled="currentMonth === 12"
 													@click="monthNext()">
 										&gt;
 									</button>
