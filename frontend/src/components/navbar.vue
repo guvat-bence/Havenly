@@ -38,6 +38,7 @@ let mainRoutes = [
 	],
 	searchInput = ref(""),
 	result = ref([]),
+	isFocus = ref(false),
 	convertStrings = (str) => {
 
 		return str.normalize("NFD")
@@ -111,16 +112,15 @@ let mainRoutes = [
 									 placeholder="Search" 
 									 aria-label="Search"
 									 v-model="searchInput"
-									 v-on:keypress="search(searchInput)"
-									 v-on:focus="isFocus = true"/>
-
-									 <!-- v-on:input="" 
-									
-									  -->
+									 v-on:input="search(searchInput)"
+									 v-on:focus="isFocus = true"
+									  v-on:blur="isFocus = false"/>
 
 						<ul class="dropdown-menu w-100 m-0 p-0"
-								:class="result.length > 0 ? 'show' : ''">
+								:class="result.length > 0 && isFocus ? 'show' : ''">
 							<li v-for="x in result"
+									v-on:click="searchInput = x.city_name;"
+									v-on:mousedown.prevent="isFocus = true"
 									class="searchresult d-flex justify-content-between m-0 p-0 rounded-2">
 								<p class="text-white">{{ x.city_name }}</p>
 								<p class="text-white-50">{{ x.country_name }}</p>
@@ -129,8 +129,7 @@ let mainRoutes = [
 					</div>
 
 					<button class="btn btn-outline-light mx-2" 
-									type="button"
-									v-on:click="console.log(result)">
+									type="button">
 						<font-awesome-icon :icon="faSearch" size="l" />
 					</button>
 				</form>
