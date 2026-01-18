@@ -178,3 +178,12 @@ let mainRoutes = [
 		</div>
 	</nav>
 </template>
+<style>
+	
+#searchinput:hover{
+	background-color: white !important;
+	box-shadow: 0px 0px 10px white !important;
+	transition: 200ms;
+	color: black !important;
+}
+</style>

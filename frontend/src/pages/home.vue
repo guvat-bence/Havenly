@@ -88,7 +88,6 @@ input:not([type="checkbox"])::after{
 #searchPart
 {
   background-image: url("../images/gif03.gif");
-  background-color: #cccccc;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
