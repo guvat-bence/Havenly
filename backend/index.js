@@ -431,7 +431,9 @@ app.get('/getCurrency', (req, res) => {
 //Bekért input lekérdezése
 app.get('/createLocationList',(req, res) => {
   const query = ` SELECT DISTINCT countries.name AS country_name, 
-                  cities.name AS city_name 
+                  countries.id AS country_id,
+                  cities.name AS city_name,
+                  cities.id AS city_ID
                   FROM countries 
                   INNER JOIN cities ON cities.country_id = countries.id 
                   INNER JOIN accommodations ON cities.id = accommodations.city_id 
