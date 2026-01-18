@@ -114,7 +114,8 @@ let mainRoutes = [
 									 v-model="searchInput"
 									 v-on:input="search(searchInput)"
 									 v-on:focus="isFocus = true"
-									  v-on:blur="isFocus = false"/>
+									 v-on:blur="isFocus = false"
+									 autocomplete="off"	/>
 
 						<ul class="dropdown-menu w-100 m-0 p-0"
 								:class="result.length > 0 && isFocus ? 'show' : ''">
