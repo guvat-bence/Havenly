@@ -17,16 +17,18 @@ let modal = null;
 let mode = "plus";
 let guests = [];
 let calendar = ref([]);
-let currentDate = "";
+let currentDate = ref("");
 let currentMonth = "";
-let nextDayDate = "";
+let nextDayDate = ref("");
 let daysname = ["H","K","Sz","Cs","P","Sz","V"];
+let monthsname = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
 let arriveDay= ref(null); 
 let arriveDayId= ref(null); 
 let departureDay=ref(null); 
 let departureDayId=ref(null); 
 let rentedDays = ref([]);
 let rentedDayIds = ref([]);
+let daysInMonth = ref("");
 
 let currentYear= new Date().getFullYear();
 const todayMonth = new Date().getMonth() + 1;
@@ -40,14 +42,14 @@ function makeCalendar(plusmonth)
 		calendar.value=[];
 		currentMonth = new Date().getMonth()+plusmonth;
 		let currentDay= new Date().getDate();
-		let daysInMonth = new Date(currentYear,currentMonth,0).getDate();
+		daysInMonth.value = new Date(currentYear,currentMonth,0).getDate();
 		let daysInPriviousMonth = new Date(currentYear,currentMonth-1,0).getDate();
 		let daysInNextMonth = new Date(currentYear,currentMonth+1,1).getDate();
 		let lastDayinPriviousMonth  = new Date(currentYear,currentMonth-1,0).getDay();
 		let firstDayinMonth  = new Date(currentYear,currentMonth-1,1).getDay();
-		let lastDayinMonth  = new Date(currentYear,currentMonth-1,daysInMonth).getDay();
-		currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-		nextDayDate = `${currentYear}-${currentMonth}-${currentDay+1}`;
+		let lastDayinMonth  = new Date(currentYear,currentMonth-1,daysInMonth.value).getDay();
+		// currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+		// nextDayDate = `${currentYear}-${currentMonth}-${currentDay+1}`;
 
 		lastDayinPriviousMonth = lastDayinPriviousMonth==0?6:lastDayinPriviousMonth-1;
 		firstDayinMonth = firstDayinMonth==0?6:firstDayinMonth-1;
@@ -59,9 +61,9 @@ function makeCalendar(plusmonth)
 			calendar.value.push("");
 		}
 
-		for(let x=1;x<daysInMonth+1;x++)
+		for(let x=1;x<daysInMonth.value+1;x++)
 		{
-			calendar.value.push(daysInMonth-(daysInMonth-x));
+			calendar.value.push(daysInMonth.value-(daysInMonth.value-x));
 		}
 
 		for(let y=1;y<(6-lastDayinMonth)+1;y++)
@@ -301,13 +303,18 @@ function daySelected(month,day)
 		arriveDay.value.style.removeProperty("background-color");
 		arriveDayId.value = null;
 		arriveDay.value = null;
+		currentDate.value = "";
 		return;
 	}
 	else if(departureDay.value  == currentDay)
 	{
 		departureDay.value.style.removeProperty("background-color");
-		departureDayId.value = null;
+		if(arriveDayId.value == null)
+		{
+			departureDayId.value = null;
+		}
 		departureDay.value = null;
+		nextDayDate.value = "";
 		return;
 	}
 
@@ -316,6 +323,7 @@ function daySelected(month,day)
 		arriveDay.value = document.getElementById(`${month}.${day}`);
 		arriveDayId.value = `${month}.${day}`;
 		arriveDay.value.style.backgroundColor="grey";
+		currentDate.value = `${currentYear}-${month}-${day}`;
 		return;
 	}
 	else if(departureDay.value == null && arriveDay.value != currentDay)
@@ -323,14 +331,63 @@ function daySelected(month,day)
 		departureDay.value = document.getElementById(`${month}.${day}`);
 		departureDayId.value = `${month}.${day}`;
 		departureDay.value.style.backgroundColor="grey";
+		nextDayDate.value = `${currentYear}-${month}-${day}`;
 		return;
 	}
 }
 
 function monthCheck()
 {
+	console.log(rentedDayIds.value);
+	let rentedDaysinCurrentMonth = [];
+	let deletingDays = [];
+	
+
+	for(let x =0;x<rentedDays.value.length;x++)
+	{
+		if((rentedDayIds.value[x]).split(".")[0] == currentMonth)
+		{
+			rentedDaysinCurrentMonth.push(rentedDayIds.value[x]);
+		}
+		else
+		{
+			deletingDays.push(rentedDayIds.value[x]);
+		}
+	}
+
+	console.log(rentedDaysinCurrentMonth);
+	console.log(deletingDays);
+
+	
+	if(deletingDays.length>0)
+	{	
+		for(let x=0;x<deletingDays.length;x++)
+		{
+			
+			let currentDay = document.getElementById(`${deletingDays[x]}`);
+			if(currentDay){
+				currentDay.style.removeProperty("background-color");
+			}
+			
+
+		}
+	}
+
+	setTimeout(()=>
+	{
+		if(rentedDaysinCurrentMonth.length>0){
+
+			for(let x=0;x<rentedDaysinCurrentMonth.length;x++)
+			{
+
+				let currentDay = document.getElementById(`${rentedDaysinCurrentMonth[x]}`);
+				currentDay.style.backgroundColor="darkgray";
+			}
+		}
+	},200)
 
 	console.log(arriveDayId.value);
+	
 	if(arriveDayId.value!= null){
 		if((arriveDayId.value).split(".")[0] == currentMonth){
 			arriveDay.value.style.backgroundColor="grey";
@@ -350,32 +407,82 @@ function monthCheck()
 			departureDay.value.style.removeProperty("background-color");
 		}
 	}
-
-	for(let x =0;x<rentedDays.value.length;x++)
-	{
-		if((rentedDayIds.value[x]).split(".")[0] == currentMonth){
-			rentedDays.value[x].style.backgroundColor="darkgray";
-		}
-		else
-		{
-			rentedDays.value[x].style.removeProperty("background-color");
-		}
-	}
 }
 
 watch([arriveDay,departureDay],()=>
 {
-	if(arriveDay.value!= null && departureDay.value != null)
+	if(arriveDay.value!=null)
 	{
-		for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
+		if(departureDay.value != null)
 		{
-			console.log(y);
-			let currentDay = document.getElementById(`${currentMonth}.${y}`);
-			currentDay.style.backgroundColor="darkgray";
-			rentedDays.value.push(currentDay);
-			rentedDayIds.value.push(`${currentMonth}.${y}`);
+			if(departureDayId.value.split(".")[0] != arriveDayId.value.split(".")[0])
+			{
+				for(let y = daysInMonth.value-(daysInMonth.value-1);y<departureDay.value.innerText;y++)
+				{
+					console.log(y);
+					
+					let currentDay = document.getElementById(`${currentMonth}.${y}`);
+					rentedDays.value.push(currentDay);
+					rentedDayIds.value.push(`${currentMonth}.${y}`);
+				}
+			}
+			else
+			{
+				rentedDays.value = [];
+				for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
+				{
+					let currentDay = document.getElementById(`${currentMonth}.${y}`);
+					currentDay.style.backgroundColor="darkgray";
+					rentedDays.value.push(currentDay);
+					rentedDayIds.value.push(`${currentMonth}.${y}`);
+				}
+			}	
+		}
+		else
+		{
+			if((departureDayId.value!=null))
+			{
+				for(let x =0;x<rentedDays.value.length;x++)
+				{
+					rentedDays.value[x].style.removeProperty("background-color");
+				}
+				rentedDays.value = [];
+				rentedDayIds.value = [];
+				departureDayId.value = null;
+
+			}
+			else
+			{
+				for(let y = parseInt(arriveDay.value.innerText)+1;y<daysInMonth.value+1;y++)
+				{
+					let currentDay = document.getElementById(`${currentMonth}.${y}`);
+					rentedDays.value.push(currentDay);
+					rentedDayIds.value.push(`${currentMonth}.${y}`);
+				}
+			}
 		}
 	}
+	// else if(arriveDay.value!= null && departureDay.value != null)
+	// {
+
+	// 	if(asd2 == 2)
+	// 	{
+	// 		for(let x =0;x<rentedDays.value.length;x++)
+	// 		{
+	// 			rentedDays.value[x].style.backgroundColor="darkgray";
+	// 		}
+	// 	}
+	// 	else{
+	// 		for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
+	// 		{
+	// 			console.log(y);
+	// 			let currentDay = document.getElementById(`${currentMonth}.${y}`);
+	// 			currentDay.style.backgroundColor="darkgray";
+	// 			rentedDays.value.push(currentDay);
+	// 			rentedDayIds.value.push(`${currentMonth}.${y}`);
+	// 		}
+	// 	}
+	// }
 	else{
 
 		for(let x =0;x<rentedDays.value.length;x++)
@@ -386,7 +493,6 @@ watch([arriveDay,departureDay],()=>
 		rentedDays.value = [];
 		rentedDayIds.value = [];
 	}
-	console.log(rentedDays.value);
 })
 
 </script>
@@ -469,6 +575,7 @@ watch([arriveDay,departureDay],()=>
 
 							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 bg-white row justify-content-center rounded-3 py-3 text-dark">
+								
 								<div class="row justify-content-center">
 									<h6 class="col-6">Érkezés időpontja</h6>
 									<h6 class="col-6">Távozás időpontja</h6>
@@ -522,6 +629,8 @@ watch([arriveDay,departureDay],()=>
 										&gt;
 									</button>
 								</div>
+
+								<p class="col-12 m-0">{{`${currentYear}.${monthsname[currentMonth-1]}`}}</p>
 							</div>
 
 							<!-- személyek száma szakasz -->
