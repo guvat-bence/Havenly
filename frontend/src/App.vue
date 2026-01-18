@@ -42,4 +42,10 @@ body {
   user-select: none !important;
   outline-style: none !important;
 }
+
+.searchresult:hover{
+  background-color: rgb(115, 115, 115) !important;
+  color: black !important;
+  transition: 300ms;
+}
 </style>

@@ -1,9 +1,9 @@
 <script setup>
 import { activeLocations } from '@/js/getLocation';
-import router from '@/router';
 import { user } from '@/store/user';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { routerKey, useRoute } from 'vue-router';
 // A navbar elemek deifiniálása
 let mainRoutes = [
@@ -20,28 +20,44 @@ let mainRoutes = [
 		path: "/aboutus"
 	}
 ],
- 	authentication=[
-	{
-		name: "Regisztráció",
-		path: "/register"
-	},
-	{
-		name: "Bejelentkezés",
-		path: "/login"
-	}
-],
+	authentication = [
+		{
+			name: "Regisztráció",
+			path: "/register"
+		},
+		{
+			name: "Bejelentkezés",
+			path: "/login"
+		}
+	],
 	account = [
 		{
-			name:  user.lasttname + " " + user.firstname,
-			path: "/profile",	 
+			name: user.lasttname + " " + user.firstname,
+			path: "/profile",
 		}
-	]
-	
-	let searchInput = ref(""),
-			searchInDB = (path,value) => {
-				axios.post('http://localhost:3000/search',{})
+	],
+	searchInput = ref(""),
+	result = ref([]),
+	convertStrings = (str) => {
+
+		return str.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replaceAll(" ", "_")
+			.toLowerCase();
+
+	},
+	search = (value) => {
+		result.value = [];
+		for (let index = 0; index < activeLocations.value.length; index++) {
+
+			if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
+				.filter(x => x.includes(convertStrings(value))).length > 0) {
+
+				result.value.push(activeLocations.value[index])
 			}
-	console.error(activeLocations)
+		}
+	};
+
 </script>
 
 <template>
@@ -83,18 +99,40 @@ let mainRoutes = [
 				</ul>
 
 				<!-- Search bar -->
-				<form class="d-flex" 
-							role="search"
-							name="searchbar"
-							v-if="$route.fullPath !== '/'" >
-					<input class="form-control me-2" 
-								 type="search" 
-								 id="searchinput"
-								 placeholder="Search" 
-								 aria-label="Search"
-								 v-on:input=""
-								 v-on:keypress="searchInDB($route.fullPath,searchInput)"
-								 v-model="searchInput"/>
+				<form class="d-flex position-relative" 
+							role="search" 
+							name="searchbar" 
+							v-if="$route.fullPath === '/accommodation' ||
+										$route.fullPath === '/experience'">
+					<div>
+						<input class="form-control me-2" 
+									 type="search" 
+									 id="searchinput" 
+									 placeholder="Search" 
+									 aria-label="Search"
+									 v-model="searchInput"
+									 v-on:keypress="search(searchInput)"
+									 v-on:focus="isFocus = true"/>
+
+									 <!-- v-on:input="" 
+									
+									  -->
+
+						<ul class="dropdown-menu w-100 m-0 p-0"
+								:class="result.length > 0 ? 'show' : ''">
+							<li v-for="x in result"
+									class="searchresult d-flex justify-content-between m-0 p-0 rounded-2">
+								<p class="text-white">{{ x.city_name }}</p>
+								<p class="text-white-50">{{ x.country_name }}</p>
+							</li>
+						</ul>
+					</div>
+
+					<button class="btn btn-outline-light mx-2" 
+									type="button"
+									v-on:click="console.log(result)">
+						<font-awesome-icon :icon="faSearch" size="l" />
+					</button>
 				</form>
 
 				<!-- Bejelentkezés/regisztráció -->
@@ -108,6 +146,7 @@ let mainRoutes = [
 							{{ y.name }}
 						</router-link>
 					</li>	
+
 					<!-- Beállítások -->
 					<li class="nav-item">
 						<router-link 	to="/settings"
@@ -115,6 +154,7 @@ let mainRoutes = [
 							Beállítások
 						</router-link>
 					</li>
+
 					<!-- Fiók -->
 					<li v-for="y in account" 
 							v-if="user.id"
@@ -126,6 +166,7 @@ let mainRoutes = [
 							{{ y.name }}
 						</router-link>
 					</li>
+
 					<!-- Kijelentkezés -->
 					<router-link class="btn btn-outline-danger"
 											 v-if="user.id"
