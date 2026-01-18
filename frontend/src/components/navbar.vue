@@ -52,7 +52,7 @@ let mainRoutes = [
 		for (let index = 0; index < activeLocations.value.length; index++) {
 
 			if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
-				.filter(x => x.includes(convertStrings(value))).length > 0) {
+				  .filter(x => x.includes(convertStrings(value))).length > 0) {
 
 				result.value.push(activeLocations.value[index])
 			}
