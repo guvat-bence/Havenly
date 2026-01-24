@@ -2,10 +2,9 @@
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import {ref} from 'vue';
-// items definiálása
+
 let items = ref([]);
 
-// Props a rugalmasság érdekében
 let props = defineProps({
 	tableName: {
 		type: String,
@@ -15,42 +14,27 @@ let props = defineProps({
 		type: [String,Number],
 		required: false
 	},
-	accommodation_id: {
-		type: [String,Number],
+	country_name: {
+		type: [String],
 		required: false
 	}
 })
 
-// Ha nincs szállás id akkor hívja le a random 5 id alapján
-if(props.accommodation_id == undefined)
-{
-	axios.get(`http://localhost:3000/${props.tableName}/country/${props.country_id}`)
-		.then(response =>
+	axios.get(`http://localhost:3000/${props.tableName}`)
+	.then(response => {
+		items.value = response.data.filter(country=>
 		{
-			items.value = response.data;
+			return country.country_id == props.country_id;
 		})
-		.catch(error=>
-		{
-			console.error(error);
-		})
-}
+		// console.log(response.data);
+		// console.log(items.value);
+	})
+	.catch(e => console.error(e))
 
-// Ha van id akkor az alapján keressen
-else
-{
-	axios.get(`http://localhost:3000/${props.tableName}/${props.accommodation_id}`)
-		.then(response=>
-		{
-			items.value = response.data;
-		})
-		.catch(error=>
-		{
-			console.error(error);
-		})
-}
-// convertString függvény
 function convertStrings(str) {  
-	// A megadott szöveget átalakítja hogy folder alapján megtalálja
+  if (!str || typeof str !== "string") {
+    return ""; // vagy adhatsz vissza egy default értéket
+  }
   return str.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ","_")
@@ -63,33 +47,26 @@ function convertStrings(str) {
 		<div class="card mx-4 col-md-5 g-4 p-0 
 								bg-transparent text-white border-white
 								rounded-4 mb-3" 
-				 v-for="x in items"
+				 v-for="x in items.slice(0,5)"
 				 :key="x.id"
 					style="width: 21rem;">
-
-			<!-- Név és kép -->
 			<div class="position-relative">
 				<img :src="`/countries/${convertStrings(x.country_name)}
 										/cities/${convertStrings(x.city_name)}
 										/${props.tableName}/${convertStrings(x.folder_name)}/001.png`"
-										
  						 class="card-img-top rounded-top-4" 
-						 style="height: 200px; object-fit: cover">
+						 style="height: 200px; object-fit: cover;">
 				<h5 class="card-title text-white position-absolute 
 									 bottom-0 start-0 w-100 bg-dark bg-opacity-50 
 									 text-center m-0 p-2 border fw-bold ">
 					{{ x.name }}
 				</h5>
 			</div>
-
-			<!-- Települési adatok -->
 			<div class="card-body">
 					<p class="card-text w-100">
 						{{x.country_name}}, {{x.city_name}}
 					</p>
 			</div>
-			
-			<!-- Ki írja az árat és a valuta formátumát az árat megszorozza a valauta szorzójával -->
 			<div class="card-footer border-0">
 				<p class="fw-bold">{{(Math.round(x.price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}} 
 								 					 {{ selectedCurrency.currencyShortedName }}
