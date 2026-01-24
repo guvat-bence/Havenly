@@ -1,39 +1,53 @@
 <script setup>
+import { searchInput } from '@/js/getLocation';
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
-import {ref} from 'vue';
+import {ref, watch} from 'vue';
 
 let items = ref([]);
+let toCard = ref([])
 
 let props = defineProps({
 	tableName: {
 		type: String,
 		required: true
 	},
-	country_id: {
-		type: [String,Number],
-		required: false
-	},
 	country_name: {
 		type: [String],
-		required: false
+		required: true
 	}
 })
 
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
-		items.value = response.data.filter(country=>
-		{
-			return country.country_id == props.country_id;
+		// Elementi az egész adatot
+		items.value = response.data
+
+		// Csak azokat teszi bele amelyek megegyeznek a props értékével
+		toCard.value = items.value.filter(country => {
+			return country.country_name.toLowerCase() === props.country_name.toLowerCase();
 		})
-		// console.log(response.data);
-		// console.log(items.value);
 	})
+
 	.catch(e => console.error(e))
 
+	// SearchInput változás esetén...
+	watch(searchInput,(value) => {
+		// Ha nincs megadott érték akkor vissza adja azokat az értékeket amelyek a propsban vannak
+		if(!value){
+			toCard.value = items.value.filter(country => {return country.country_name.toLowerCase() === 
+																													 props.country_name.toLowerCase();})
+			return
+		}
+		// Ha pedig mégis van akkor pedig azt az érétket adja vissza amelyiket a value tartalmazzas
+			toCard.value = items.value.filter(x => x.city_name.toLowerCase()
+																												.includes(value.toLowerCase()))
+	})
+
+// Convert string metódus
 function convertStrings(str) {  
   if (!str || typeof str !== "string") {
-    return ""; // vagy adhatsz vissza egy default értéket
+    return '';
   }
   return str.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
@@ -47,7 +61,7 @@ function convertStrings(str) {
 		<div class="card mx-4 col-md-5 g-4 p-0 
 								bg-transparent text-white border-white
 								rounded-4 mb-3" 
-				 v-for="x in items.slice(0,5)"
+				 v-for="x in toCard.slice(0,5)"
 				 :key="x.id"
 					style="width: 21rem;">
 			<div class="position-relative">
@@ -56,6 +70,7 @@ function convertStrings(str) {
 										/${props.tableName}/${convertStrings(x.folder_name)}/001.png`"
  						 class="card-img-top rounded-top-4" 
 						 style="height: 200px; object-fit: cover;">
+
 				<h5 class="card-title text-white position-absolute 
 									 bottom-0 start-0 w-100 bg-dark bg-opacity-50 
 									 text-center m-0 p-2 border fw-bold ">
@@ -70,8 +85,8 @@ function convertStrings(str) {
 			<div class="card-footer border-0">
 				<p class="fw-bold">{{(Math.round(x.price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}} 
 								 					 {{ selectedCurrency.currencyShortedName }}
-													 <span v-if="props.tableName == 'accommodations'">/ éjszaka</span>
-													 <span v-if="props.tableName == 'experiences'">/ fő</span>
+					<span v-if="props.tableName == 'accommodations'">/ éjszaka</span>
+					<span v-if="props.tableName == 'experiences'">/ fő</span>
 				</p>
 
 				<!-- Gomb az adatokhoz ami kattintásra elküldi az adatokat -->

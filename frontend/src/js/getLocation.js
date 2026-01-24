@@ -1,6 +1,6 @@
 import axios from "axios"
-import { reactive, ref, watch } from "vue"
-
+import { ref, watch } from "vue"
+export let searchInput = ref("")
 export let activeLocations = ref([])
 let getActiveLocations = () => {
   axios.get("http://localhost:3000/createLocationList")

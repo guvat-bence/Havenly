@@ -1,10 +1,9 @@
 <script setup>
-import { activeLocations } from '@/js/getLocation';
+import { activeLocations, searchInput } from '@/js/getLocation';
 import { user } from '@/store/user';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-import { reactive, ref, watch } from 'vue';
-import { routerKey, useRoute } from 'vue-router';
+import {ref} from 'vue';
+
 // A navbar elemek deifiniálása
 let mainRoutes = [
 	{
@@ -36,7 +35,6 @@ let mainRoutes = [
 			path: "/profile",
 		}
 	],
-	searchInput = ref(""),
 	result = ref([]),
 	isFocus = ref(false),
 	convertStrings = (str) => {
@@ -119,18 +117,19 @@ let mainRoutes = [
 
 						<ul class="dropdown-menu w-100 m-0 p-0"
 								:class="result.length > 0 && isFocus ? 'show' : ''">
-							<li v-for="x in result"
+							<li v-for="x in result.slice(0,6)"
 									v-on:click="searchInput = x.city_name;"
 									v-on:mousedown.prevent="isFocus = true"
-									class="searchresult d-flex justify-content-between m-0 p-0 rounded-2">
-								<p class="text-white">{{ x.city_name }}</p>
-								<p class="text-white-50">{{ x.country_name }}</p>
+									class="searchresult d-flex m-0 p-0 rounded-2 p-3 ">
+								<p class="text-white fs-5">{{ x.city_name }} &nbsp;</p>
+								<p class="text-white-50 fs-5">{{ x.country_name }}</p>
 							</li>
 						</ul>
 					</div>
 
 					<button class="btn btn-outline-light mx-2" 
-									type="button">
+									type="button"
+									@click="console.log(searchInput)">
 						<font-awesome-icon :icon="faSearch" size="l" />
 					</button>
 				</form>

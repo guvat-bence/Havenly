@@ -15,6 +15,7 @@ axios.get("http://localhost:3000/accommodations/top5")
   .then(data=>
   {
     accommodations.value = data.data;
+    console.log(accommodations.value)
   })
   .catch(err=>
   {
@@ -68,7 +69,7 @@ axios.get("http://localhost:3000/accommodations/top5")
 
           <!-- meghívjuk hozzá a kártya.vue-t -->
           <Cards tableName="accommodations" 
-              :country_id="x.country_id"/>
+              :country_name="x.name"/>
         </div>
       </div>
     </div>
