@@ -60,16 +60,15 @@ axios.get("http://localhost:3000/accommodations/top5")
       <div class="row justify-content-center">
 
         <!-- 5-ször ismételjük mert 5 top szállást hívunk le  -->
-        <div v-for="x in accommodations">
-
-          <!-- kiegészítjük az országok neveivel a címet -->
-          <h1 class="display-5 text-center text-white">
-            Szállások amiket {{ x.name }} kínál
-          </h1>
+        <div v-for="x in accommodations" class="mx-2 col-12 col-sm-12 col-md-4 col-xl-3 col-xxl-3">
 
           <!-- meghívjuk hozzá a kártya.vue-t -->
-          <Cards tableName="accommodations" 
-              :country_name="x.name"/>
+          <!-- értékeket viszünk át -->
+          <Cards 
+            table-name="accommodations"
+            :country_name="x.name"
+            :accommodation_id="x.id"
+          />
         </div>
       </div>
     </div>

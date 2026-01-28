@@ -127,11 +127,11 @@ let mainRoutes = [
 						</ul>
 					</div>
 
-					<button class="btn btn-outline-light mx-2" 
+					<!-- <button class="btn btn-outline-light mx-2" 
 									type="button"
 									@click="console.log(searchInput)">
-						<font-awesome-icon :icon="faSearch" size="l" />
-					</button>
+						<font-awesome-icon :icon="faSearch" size="xl" />
+					</button> -->
 				</form>
 
 				<!-- Bejelentkezés/regisztráció -->

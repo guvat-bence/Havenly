@@ -4,9 +4,11 @@ import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import {ref, watch} from 'vue';
 
+// items,toCard definiálása
 let items = ref([]);
 let toCard = ref([])
 
+// Props a rugalmasság érdekében
 let props = defineProps({
 	tableName: {
 		type: String,
@@ -15,6 +17,10 @@ let props = defineProps({
 	country_name: {
 		type: [String],
 		required: true
+	},
+	accommodation_id: {
+	type: [String,Number],
+	required: false
 	}
 })
 
@@ -24,11 +30,18 @@ let props = defineProps({
 		items.value = response.data
 
 		// Csak azokat teszi bele amelyek megegyeznek a props értékével
-		toCard.value = items.value.filter(country => {
-			return country.country_name.toLowerCase() === props.country_name.toLowerCase();
-		})
+		if(props.accommodation_id == undefined){
+			toCard.value = items.value.filter(country => {
+				return country.country_name.toLowerCase() === props.country_name.toLowerCase();
+			})
+		}
+		else
+		{
+			toCard.value = items.value.filter(accommodation => {
+				return accommodation.id == props.accommodation_id;;
+			})
+		}
 	})
-
 	.catch(e => console.error(e))
 
 	// SearchInput változás esetén...
@@ -45,10 +58,7 @@ let props = defineProps({
 	})
 
 // Convert string metódus
-function convertStrings(str) {  
-  if (!str || typeof str !== "string") {
-    return '';
-  }
+function convertStrings(str) {
   return str.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ","_")
