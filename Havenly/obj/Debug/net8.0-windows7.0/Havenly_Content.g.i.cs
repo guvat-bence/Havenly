@@ -18,6 +18,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/experience.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/favourite.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/history.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/icon.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/modify.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/szallas.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/user.png")]

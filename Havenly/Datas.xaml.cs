@@ -135,13 +135,13 @@ namespace Havenly
                 switch (colName)
                 {
                     case "gender":
-                    case "bedroom":
-                    case "bed":
-                    case "bathroom":
                     case "user_type":
                         tb.MaxLength = 1;
                         break;
 
+                    case "bedroom":
+                    case "bed":
+                    case "bathroom":
                     case "guest_number":
                         tb.MaxLength = 2;
                         break;
@@ -156,6 +156,10 @@ namespace Havenly
                         tb.MaxLength = 7;
                         break;
 
+                    case "shorted_name":
+                        tb.MaxLength = 10;
+                        break;
+
                     case "card_number":
                         tb.MaxLength = 19;
                         break;
@@ -167,6 +171,13 @@ namespace Havenly
                     case "phone_number":
                     case "password":
                         tb.MaxLength = 40;
+                        break;
+
+                    case "multiplier":
+                    case "network_name":
+                    case "prefix":
+                    case "full_name":
+                        tb.MaxLength = 50;
                         break;
 
                     case "name":
@@ -355,14 +366,20 @@ namespace Havenly
                         string colName = tb.Tag.ToString();
                         try
                         {
-                            if ( colName == "price"
-                                || colName == "size")
+                            if (colName == "id")
                             {
-                                currentData[colName] = Convert.ToInt32(tb.Text);
+                                if (tb.Text != "")
+                                {
+                                    currentData[colName] = tb.Text;
+                                }
+                            }
+                            else if(colName == "email" && !tb.Text.Contains("@"))
+                            {
+                                currentData[colName] = int.Parse(tb.Text);
                             }
                             else
                             {
-                                currentData[colName] =tb.Text;
+                                currentData[colName] = tb.Text;
                             }
                         }
                         catch (Exception)

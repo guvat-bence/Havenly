@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 04. 19:33
+-- Létrehozás ideje: 2026. Jan 28. 16:05
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -38,9 +38,9 @@ CREATE TABLE `accommodations` (
   `price` int(7) NOT NULL,
   `description` text NOT NULL,
   `guest_number` int(2) NOT NULL,
-  `bedroom` int(1) NOT NULL,
-  `bed` int(1) NOT NULL,
-  `bathroom` int(1) NOT NULL
+  `bedroom` int(2) NOT NULL,
+  `bed` int(2) NOT NULL,
+  `bathroom` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -58,8 +58,6 @@ INSERT INTO `accommodations` (`id`, `owner_id`, `country_id`, `city_id`, `name`,
 (8, 3, 3, 7, 'Belvárosi apartman', 'belvarosi_apart', 45, 74, 'Kényelmes apartman Budapest szívében, otthonos hangulattal. A modern bútorok és a praktikus elrendezés minden igényt kielégít. Ideális családoknak vagy baráti társaságoknak. A közeli éttermek, boltok és látnivalók könnyen elérhetők. Tökéletes hely a városi élményekhez és a pihenéshez.', 4, 2, 2, 1),
 (9, 4, 3, 7, 'Modern stúdió', 'modern_studio', 40, 68, 'Világos, modern stúdió Budapest központjában. Kényelmes bútorok, praktikus elrendezés és minden szükséges felszerelés. Ideális pároknak vagy üzleti utazóknak. A város nevezetességei és éttermei sétatávolságra találhatók. Tökéletes kombinációja a kényelemnek és a városi életnek.', 2, 1, 1, 1),
 (10, 5, 3, 9, 'Panorámás lakás', 'panorama_lakas', 70, 84, 'Tágas lakás gyönyörű kilátással, ideális családoknak. A modern berendezés és kényelmes bútorok minden igényt kielégítenek. Közel a város központjához és látnivalóihoz. A környék csendes, nyugodt pihenést biztosít. Élvezze a panorámás kilátást a nap minden szakában.', 6, 3, 4, 2),
-(11, 6, 23, 70, 'Történelmi apartman', 'tortenelmi_apart', 50, 79, 'Hangulatos apartman Prága óvárosában, tökéletes romantikus tartózkodásokhoz. A belső terek stílusosak és otthonosak, minden alapfelszereltséggel ellátva. Közel a történelmi látnivalókhoz és kávézókhoz. Ideális pároknak vagy kis családoknak. Élvezze a városi élet varázsát kényelmes környezetben.', 4, 2, 2, 1),
-(12, 7, 23, 70, 'Csendes stúdió', 'csendes_studio', 35, 58, 'Nyugodt stúdió Prága csendes részén. A világos és modern belső tér tökéletes pihenést biztosít. Közel a város főbb látnivalóihoz és közlekedési csomópontokhoz. Ideális rövid tartózkodáshoz vagy üzleti útra. Kényelmes és praktikus minden igény kielégítésére.', 2, 1, 1, 1),
 (13, 8, 7, 19, 'Bécsi belvárosi lakás', 'becsi_belvarosi', 60, 89, 'Elegáns lakás Bécs belvárosában, közel a látnivalókhoz. A tágas és világos belső tér ideális családoknak és pároknak. Modern bútorok és minden szükséges felszerelés. Sétatávolságra éttermek és kávézók. Kényelmes kiindulópont a város felfedezéséhez.', 5, 2, 3, 2),
 (14, 9, 7, 19, 'Kompakt stúdió', 'kompakt_studio', 30, 55, 'Kompakt stúdió Bécsben, ideális rövid tartózkodásokhoz. A praktikus elrendezés és világos belső tér minden igényt kielégít. Közel a város főbb nevezetességeihez és közlekedéshez. Tökéletes pároknak vagy egyéni utazóknak. Kényelmes és otthonos hangulat várja a vendégeket.', 2, 1, 1, 1),
 (15, 10, 5, 14, 'Tengerparti apartman', 'tengerparti_ap', 75, 100, 'Tengerparti apartman közvetlenül a strand mellett. Világos és tágas belső tér, modern bútorokkal. Ideális családoknak vagy baráti társaságoknak. A környék tele van éttermekkel és kikapcsolódási lehetőségekkel. Élvezze a nyári napfényes pihenést a part közelében.', 6, 3, 4, 2),
@@ -69,7 +67,6 @@ INSERT INTO `accommodations` (`id`, `owner_id`, `country_id`, `city_id`, `name`,
 (19, 14, 6, 16, 'Fiatalos stúdió', 'fiatalos_studio', 28, 63, 'Fiatalos stúdió Berlinben, modern felszereltséggel. Ideális pároknak és üzleti utazóknak. Világos és otthonos belső tér biztosítja a kényelmet. Közel a közlekedéshez és a helyi látnivalókhoz. Tökéletes rövid tartózkodásokhoz.', 2, 1, 1, 1),
 (20, 3, 6, 17, 'Családi lakás', 'csaladi_lakas', 80, 95, 'Tágas családi lakás Berlinben. Modern bútorok és jól felszerelt konyha. Ideális nagyobb családoknak. Közel a város nevezetességeihez és parkjaihoz. Kényelmes, otthonos hely a pihenéshez és kikapcsolódáshoz.', 6, 3, 4, 2),
 (21, 4, 18, 52, 'Tengerre néző apartman', 'tengerre_nez', 65, 87, 'Tengerre néző apartman, nyugodt környezetben. Tágas és világos belső tér, minden kényelmi felszereléssel. Ideális pároknak és családoknak. Közel a strandhoz és éttermekhez. Élvezze a nyugodt tengerparti pihenést.', 4, 2, 2, 1),
-(22, 5, 18, 55, 'Belvárosi stúdió', 'belvarosi_studio', 32, 61, 'Belvárosi stúdió a város szívében. Kompakt, jól felszerelt és világos. Ideális rövid tartózkodásokhoz vagy üzleti útra. Közel a közlekedéshez és a város látnivalóihoz. Praktikus és kényelmes választás.', 2, 1, 1, 1),
 (23, 6, 21, 61, 'Hegyi apartman', 'hegyi_apartman', 72, 74, 'Hegyi apartman, természetközeli pihenéshez. Tágas és világos, modern bútorokkal. Ideális családoknak és baráti társaságoknak. A környék tele van kirándulási lehetőségekkel és látnivalókkal. Kényelmes és otthonos hely a kikapcsolódásra.', 6, 3, 4, 2),
 (24, 7, 19, 55, 'Skandináv stúdió', 'skandinav_studio', 38, 68, 'Skandináv stúdió, letisztult dizájnnal. Modern felszereltség, kényelmes elrendezés. Ideális pároknak és üzleti utazóknak. Közel a város nevezetességeihez és éttermeihez. Praktikus és stílusos választás rövid tartózkodáshoz.', 2, 1, 1, 1),
 (25, 8, 12, 34, 'Luxus lakosztály', 'luxus_lakosztaly', 120, 145, 'Luxus lakosztály New Yorkban, prémium felszereltséggel. Tágas és elegáns belső tér, kényelmes bútorokkal. Ideális családoknak és baráti társaságoknak. Közel a város látnivalóihoz. Élvezze a prémium pihenést a metropolisz szívében.', 8, 4, 5, 3),
@@ -101,7 +98,6 @@ INSERT INTO `accommodations` (`id`, `owner_id`, `country_id`, `city_id`, `name`,
 (51, 20, 5, 14, 'Barcelona Tengerparti Lakás', 'barcelona_tengerparti', 65, 105, 'Tágas apartman Barcelona központjában, közel a tengerparthoz. Modern bútorok és teljes felszereltség. Ideális családoknak és barátoknak. Közel látnivalókhoz és éttermekhez. Élvezze a katalán városi életet és a tengerparti pihenést.', 5, 2, 3, 2),
 (52, 21, 5, 15, 'Sevilla Romantikus Lakás', 'sevilla_romantikus_lakas', 55, 90, 'Stílusos, világos apartman Sevilla történelmi részén. Kényelmes bútorok és jól felszerelt konyha. Ideális pároknak és kis családoknak. Közel a város főbb nevezetességeihez és éttermekhez. Élvezze a spanyol hangulatot minden pillanatban.', 4, 2, 2, 1),
 (53, 22, 1, 1, 'Tokió Modern Lakás', 'tokio_modern_lakas', 60, 110, 'Tágas, világos lakás Tokió központjában. Modern bútorok, kényelmes ágyak. Ideális pároknak és üzleti utazóknak. Közel éttermekhez, bevásárlóközpontokhoz és látnivalókhoz. Élvezze a japán nagyvárosi élet minden pillanatát.', 4, 2, 3, 2),
-(54, 23, 1, 2, 'Oszakai Stílus Apartman', 'oszakai_stilus_apart', 55, 95, 'Világos, modern apartman Oszaka központjában. Kényelmes bútorok és ágyak. Ideális pároknak és kis családoknak. Közel látnivalókhoz és éttermekhez. Élvezze a japán városi életet minden pillanatban.', 3, 1, 2, 1),
 (55, 24, 1, 3, 'Szapporói Tengerparti Lakás', 'szapporoi_tengerparti', 60, 100, 'Tágas, világos lakás Szapporo városában. Modern bútorok és kényelmes ágyak. Ideális családoknak és barátoknak. Közel éttermekhez és látnivalókhoz. Élvezze a japán városi és természetközeli élményeket.', 4, 2, 3, 2),
 (56, 25, 4, 10, 'Párizsi Luxus Lakás', 'parizsi_luxus_lakas', 70, 120, 'Elegáns, világos lakás Párizs központjában. Modern bútorok, teljes felszereltség. Ideális pároknak és családoknak. Közel a főbb nevezetességekhez, éttermekhez és kávézókhoz. Élvezze a romantikus francia hangulatot minden pillanatban.', 4, 2, 3, 2),
 (57, 26, 4, 11, 'Lyoni Stílus Apartman', 'lyoni_stilus_apart', 60, 95, 'Világos, modern apartman Lyon központjában. Kényelmes ágyak, teljes felszereltség. Ideális pároknak és üzleti utazóknak. Közel éttermekhez és látnivalókhoz. Élvezze a francia városi élet minden pillanatát.', 4, 2, 2, 1),
@@ -195,8 +191,6 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 (8, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0),
 (9, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (10, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1),
-(11, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
-(12, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (13, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0),
 (14, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (15, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1),
@@ -206,7 +200,6 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 (19, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (20, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1),
 (21, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1),
-(22, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (23, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
 (24, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (25, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1),
@@ -238,7 +231,6 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 (51, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (52, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (53, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
-(54, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
 (55, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (56, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (57, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
@@ -289,6 +281,40 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `card_networks`
+--
+
+CREATE TABLE `card_networks` (
+  `id` int(11) NOT NULL,
+  `network_name` varchar(50) NOT NULL,
+  `prefix` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `card_networks`
+--
+
+INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
+(1, 'Visa', '4'),
+(2, 'Mastercard', '5'),
+(3, 'American Express', '34'),
+(4, 'American Express', '37'),
+(5, 'Diners Club', '30'),
+(6, 'Diners Club', '36'),
+(7, 'Diners Club', '38'),
+(8, 'Discover', '6'),
+(9, 'JCB', '35'),
+(10, 'UnionPay', '62'),
+(11, 'Maestro', '50'),
+(12, 'Maestro', '56'),
+(13, 'Maestro', '57'),
+(14, 'Maestro', '58'),
+(15, 'Maestro', '59'),
+(16, 'Maestro', '6');
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `cities`
 --
 
@@ -304,7 +330,7 @@ CREATE TABLE `cities` (
 
 INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 (1, 1, 'Tokió'),
-(2, 11, 'Oszakaqaaa'),
+(2, 11, 'Oszaka\r\n'),
 (3, 1, 'Szapporo'),
 (4, 2, 'Róma'),
 (5, 2, 'Milánó'),
@@ -608,6 +634,66 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `currency`
+--
+
+CREATE TABLE `currency` (
+  `id` int(5) NOT NULL,
+  `full_name` varchar(50) NOT NULL,
+  `multiplier` varchar(50) NOT NULL,
+  `shorted_name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `currency`
+--
+
+INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
+(1, 'Euro', '1', 'EUR'),
+(2, 'Magyar forint', '390', 'HUF'),
+(3, 'Szerb dinár', '117', 'RSD'),
+(4, 'Amerikai dollár', '1.1', 'USD'),
+(5, 'Svájci frank', '0.96', 'CHF'),
+(6, 'Japán jen', '160', 'JPY'),
+(7, 'Kínai jüan', '7.8', 'CNY'),
+(8, 'Dél-koreai won', '1450', 'KRW'),
+(9, 'Indiai rúpia', '90', 'INR'),
+(10, 'Indonéz rúpia', '17000', 'IDR'),
+(11, 'Szingapúri dollár', '1.45', 'SGD'),
+(12, 'Thai baht', '39', 'THB'),
+(13, 'Fülöp-szigeteki peso', '63', 'PHP'),
+(14, 'Maláj ringgit', '5.1', 'MYR'),
+(15, 'Vietnámi dong', '27000', 'VND'),
+(16, 'Kanadai dollár', '1.48', 'CAD'),
+(17, 'Ausztrál dollár', '1.62', 'AUD'),
+(18, 'Új-zélandi dollár', '1.75', 'NZD'),
+(19, 'Norvég korona', '11.5', 'NOK'),
+(20, 'Svéd korona', '11.2', 'SEK'),
+(21, 'Dán korona', '7.45', 'DKK'),
+(22, 'Cseh korona', '25.5', 'CZK'),
+(23, 'Lengyel zloty', '4.4', 'PLN'),
+(24, 'Román lej', '5', 'RON'),
+(25, 'Török líra', '35', 'TRY'),
+(26, 'Brazil real', '6', 'BRL'),
+(27, 'Argentin peso', '950', 'ARS'),
+(28, 'Mexikói peso', '20', 'MXN'),
+(29, 'Dél-afrikai rand', '20.5', 'ZAR'),
+(30, 'Egyiptomi font', '50', 'EGP'),
+(31, 'Szaúdi riál', '4.1', 'SAR'),
+(32, 'Egyesült Arab Emírségek dirham', '4', 'AED'),
+(33, 'Kuvaiti dinár', '0.3', 'KWD'),
+(34, 'Katari riál', '4', 'QAR'),
+(35, 'Hongkongi dollár', '8.6', 'HKD'),
+(36, 'Taiwani új dollár', '34', 'TWD'),
+(37, 'Pakisztáni rúpia', '310', 'PKR'),
+(38, 'Bangladesi taka', '120', 'BDT'),
+(39, 'Srí Lanka-i rúpia', '360', 'LKR'),
+(40, 'Izraeli sékel', '4.2', 'ILS'),
+(41, 'Angol font', '0.85', 'GBP');
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `experiences`
 --
 
@@ -626,109 +712,88 @@ CREATE TABLE `experiences` (
 --
 
 INSERT INTO `experiences` (`id`, `country_id`, `city_id`, `name`, `folder_name`, `price`, `description`) VALUES
-(1, 1, 1, 'Budapesti városnéző séta', 'budapest_varosnezo', 50, 'Budapest történelmi városrészei a Duna két partján helyezkednek el, lenyűgöző látványt nyújtva. Fedezd fel a Budai Várnegyedet, a Halászbástyát és a Lánchidat, miközben a város múltját ismered meg. Sétálj a Váci utcán, ahol a helyi üzletek és kávézók hangulata elvarázsol. Tanuld meg a város történetét egy tapasztalt idegenvezetővel. Ez a túra a történelem, kultúra és városi élet kombinációját kínálja.'),
-(2, 1, 2, 'Budapesti gasztronómiai túra', 'budapest_gasztro', 55, 'Budapest kulináris élményei minden látogatót lenyűgöznek. Kóstold meg a hagyományos magyar ételeket, például a gulyást, lángost és kürtőskalácsot. Fedezd fel a Nagyvásárcsarnok ínycsiklandó kínálatát. Tanulj a helyi ízek és receptek történetéről egy szakértő vezetésével. Ez a túra ízek, kultúra és helyi tradíciók felfedezését kínálja.'),
-(4, 2, 4, 'Prágai gasztronómiai túra', 'praga_gasztro', 65, 'Prága kulináris élményei felfedezésre várnak minden látogatót. Kóstold meg a tradicionális cseh ételeket, például a svíčkovát és a knédliket. Fedezd fel a helyi piacokat és kézműves pékségeket. Ismerd meg a cseh sörkultúra történetét és ízeit. Ez a túra a helyi ízek és kultúra gazdag kombinációját kínálja.'),
-(5, 3, 5, 'Bécsi művészeti túra', 'bécs_muveszet', 70, 'Bécs a művészetek és zenetörténet fellegvára, ahol minden sarkon találkozhatsz kulturális értékekkel. Látogasd meg a Belvedere palotát és a Kunsthistorisches Múzeumot. Fedezd fel a város zenetörténetét, Bach, Mozart és Beethoven nyomában járva. Sétálj a Ringstraße sugárúton és élvezd az építészeti remekeket. Ez a túra a művészet, történelem és városi élet harmonikus kombinációját nyújtja.'),
-(6, 3, 6, 'Bécsi kávéházi élmény', 'bécs_kavehaz', 75, 'Bécs híres kávéházai a múlt és jelen hangulatát ötvözik. Kóstold meg a helyi süteményeket, például a Sachertortát és Apfelstrudelt. Fedezd fel a kávéházak történetét és kultúráját szakértő vezetésével. Élvezd a bécsi kávé művészetét a hangulatos belső terekben. Ez a túra a gasztronómia, kultúra és történelem élményét kínálja egyszerre.'),
-(7, 4, 7, 'London történelmi séta', 'london_tortenelmi', 80, 'London gazdag történelemmel és ikonikus látnivalókkal rendelkezik. Sétálj a Tower hídon, látogasd meg a Tower of Londont és a Westminster apátságot. Ismerd meg a brit monarchia és város történelmét. Fedezd fel a város különböző negyedeit és hangulatát. Ez a túra a történelem, kultúra és városi élet kombinált élményét nyújtja.'),
-(8, 4, 8, 'London gasztronómiai túra', 'london_gasztro', 85, 'London gasztronómiai élete rendkívül változatos és izgalmas. Kóstold meg a tradicionális angol ételeket, mint a fish and chips és a Sunday roast. Fedezd fel a város piacait, ahol nemzetközi ízekkel találkozhatsz. Tanulj a helyi ételkultúráról szakértő vezetésével. Ez a túra ízek, kultúra és városi felfedezés élményét kínálja.'),
-(9, 5, 9, 'Párizsi városnéző séta', 'parizs_varosnezo', 90, 'Párizs a romantika és művészet fővárosa, ahol minden sarkon történelmi értékek várnak. Sétálj a Szajna partján, látogasd meg a Notre-Dame-ot és a Louvre-ot. Élvezd a párizsi utcák hangulatát és a helyi kávézók báját. Ismerd meg a város történelmét és kultúráját idegenvezető segítségével. Ez a túra Párizs történelmének, kultúrájának és hangulatának felfedezését nyújtja.'),
-(10, 5, 10, 'Párizsi gasztronómiai túra', 'parizs_gasztro', 95, 'Párizs gasztronómiája világhírű, különleges ízeket kínál minden látogatónak. Kóstold meg a croissant-t, a francia sajtokat és a helyi borokat. Fedezd fel a piacokat és cukrászdákat, ahol a friss alapanyagok és édességek várnak. Tanulj a francia konyha történetéről és hagyományairól. Ez a túra ízek, kultúra és párizsi hangulat élményét adja.'),
-(11, 6, 11, 'Római történelmi séta', 'roma_tortenelmi', 100, 'Róma az ókori történelem és építészet egyik központja. Látogasd meg a Colosseumot, a Forum Romanumot és a Pantheont. Sétálj a város történelmi utcáin, miközben a múlt titkait fedezed fel. Kóstold meg az olasz specialitásokat egy helyi étteremben. Ez a túra Róma művészeti és történelmi örökségének teljes felfedezését kínálja.'),
-(12, 6, 12, 'Római gasztronómiai túra', 'roma_gasztro', 105, 'Róma gasztronómiája a világ egyik legizgalmasabb élménye. Kóstold meg a tradicionális ételeket, mint a pasta carbonara és a gelato. Fedezd fel a helyi piacokat és éttermeket, miközben a római ízek titkait tanulod. Élvezd a város hangulatát a helyi konyha tükrében. Ez a túra a római kultúra és gasztronómia harmonikus élményét nyújtja.'),
-(13, 7, 13, 'Amszterdami csatornahajózás', 'amsterdam_hajo', 110, 'Amszterdam híres csatornarendszeréről és bájos városképeiről. Hajózz végig a csatornákon, miközben a város történelmét és építészetét ismered meg. Fedezd fel a város híres múzeumait és piacait. Tanulj a helyi kultúráról és mindennapi életről idegenvezető segítségével. Ez a túra látványos, kulturális és pihentető élményt kínál.'),
-(14, 7, 14, 'Amszterdami kerékpártúra', 'amsterdam_bike', 115, 'Amszterdam a kerékpáros közlekedésről híres, így a város két keréken fedezhető fel a legjobban. Kerékpározz a csatornák mentén, látogasd meg a város legfontosabb látnivalóit. Ismerd meg a holland kultúrát és történelmet kerékpáros szemszögből. Állj meg helyi piacokon és kávézókban, hogy megkóstold a tradicionális ízeket. Ez a túra aktív kikapcsolódást és kulturális élményt nyújt egyszerre.'),
-(15, 8, 15, 'Berlini történelmi séta', 'berlin_tortenelmi', 120, 'Berlin a történelem és modern kultúra találkozása, ahol minden sarkon nyomot hagyott a múlt. Sétálj a Brandenburgi kapuhoz, látogasd meg a Reichstag épületét és a Berlini fal emlékhelyét. Ismerd meg a város történelmét a 20. század eseményein keresztül. Fedezd fel a város kulturális negyedeit és hangulatát. Ez a túra Berlin múltját, jelenét és kulturális gazdagságát mutatja be.'),
-(16, 8, 16, 'Berlini street art túra', 'berlin_streetart', 125, 'Berlin híres a street art kultúrájáról és kreatív negyedeiről. Fedezd fel a város falfestményeit és graffiti művészetét. Ismerd meg a helyi művészek történetét és a művészet társadalmi üzeneteit. Sétálj a város különböző kerületeiben, miközben a modern berlini kultúrát ismered meg. Ez a túra a művészet, kreativitás és városi élet kombinációját kínálja.'),
-(17, 9, 17, 'Athéni történelmi séta', 'athen_tortenelmi', 130, 'Athén az ókori görög kultúra központja, tele történelmi emlékekkel. Látogasd meg az Akropoliszt és a Parthenont, miközben a város múltját tanulmányozod. Sétálj a Plaka negyed hangulatos utcáin, ahol a helyi élet és kultúra ötvöződik. Kóstold meg a tradicionális görög ételeket, mint a souvlaki és tzatziki. Ez a túra a történelem, kultúra és gasztronómia felfedezését kínálja.'),
-(18, 9, 18, 'Athéni gasztronómiai túra', 'athen_gasztro', 135, 'Athén gazdag kulináris élményei minden látogatót elbűvölnek. Fedezd fel a város piacait, kóstold meg a friss alapanyagokat és tradicionális ételeket. Ismerd meg a görög konyha történelmét és jellegzetességeit. Sétálj a város hangulatos utcáin, miközben a helyi ízeket élvezed. Ez a túra Athén ízeinek és kultúrájának gazdag bemutatását kínálja.'),
-(19, 10, 19, 'Barcelona kulturális séta', 'barcelona_kultura', 140, 'Barcelona a művészet és építészet városa, ahol Gaudí alkotásai minden sarkon elvarázsolnak. Látogasd meg a Sagrada Famíliát, a Park Güellt és a gótikus negyedet. Sétálj a Rambla sugárúton, ahol a város hangulata és művészete ötvöződik. Kóstold meg a katalán ételeket és tapasokat a helyi éttermekben. Ez a túra Barcelona kultúrájának és történelmének átfogó felfedezését kínálja.'),
-(20, 10, 20, 'Barcelona gasztronómiai túra', 'barcelona_gasztro', 145, 'Fedezd fel Barcelona gazdag gasztronómiai világát, miközben a város kulturális látnivalóit is meglátogatod. Kóstold meg a tapasokat, paellát és a helyi tengeri ételeket. Ismerd meg a katalán konyha történelmét és hagyományait. Sétálj a város piacain, miközben a helyi ízeket élvezed. Ez a túra ízek, kultúra és városi élet harmonikus kombinációját kínálja.'),
-(21, 11, 21, 'Római művészeti túra', 'roma_muveszet', 150, 'Róma művészeti öröksége lenyűgöző, ahol a múzeumok és szobrok történelmet mesélnek el. Látogasd meg a Vatikán Múzeumait, a Sixtus-kápolnát és a város híres szobrait. Sétálj a történelmi utcákon, miközben a város művészeti múltja és jelenlegi életstílusa ötvöződik. Kóstold meg az olasz ételeket egy helyi étteremben, miközben a művészet és gasztronómia találkozik. Ez a túra a művészet minden aspektusát bemutatja Rómában.'),
-(22, 11, 22, 'Velencei romantikus hajózás', 'velence_romantika', 155, 'Velence romantikus hangulatát a város csatornái és történelmi épületei adják. Hajózz gondolán a Grand Canalon, miközben a város látványában gyönyörködsz. Fedezd fel a Szent Márk teret és a Dózse-palotát, ahol a történelem és kultúra ötvöződik. Kóstold meg a helyi specialitásokat, miközben a velencei élet ritmusát érzed. Ez a túra a romantika, kultúra és városi élmény tökéletes kombinációját nyújtja.'),
-(23, 12, 23, 'Velencei művészeti felfedezés', 'velence_muveszet', 160, 'Velence művészete minden látogatót lenyűgöz. Látogasd meg a város galériáit, múzeumait és történelmi épületeit. Sétálj a macskaköves utcákon, ahol a város hangulata és művészeti öröksége ötvöződik. Kóstold meg a helyi specialitásokat, miközben a velencei életstílust ismered meg. Ez a túra inspiráló élményt nyújt minden művészetkedvelő számára.'),
-(24, 13, 24, 'Madrid történelmi túra', 'madrid_tortenelmi', 125, 'Madrid gazdag történelmi és kulturális látnivalókkal várja látogatóit. Fedezd fel a Királyi Palotát, a Prado Múzeumot és a Retiro Parkot. Sétálj a város történelmi utcáin, miközben a spanyol történelem titkaiba nyersz betekintést. Kóstold meg a helyi tapasokat és édességeket, miközben élvezed a város pezsgő életét. Ez a túra Madrid múltját, kultúráját és gasztronómiáját ötvözi.'),
-(25, 13, 25, 'Madrid gasztronómiai túra', 'madrid_gasztro', 130, 'Madrid gasztronómiája izgalmas és változatos, ahol a tradicionális ízek találkoznak a modern konyhával. Kóstold meg a híres tapasokat, paellát és churrost helyi specialitásokkal. Fedezd fel a piacokat, éttermeket és cukrászdákat, miközben a spanyol ízeket élvezed. Tanulj a helyi ételek történetéről és hagyományairól idegenvezető segítségével. Ez a túra a gasztronómia, kultúra és városi élet kombinációját kínálja.'),
-(26, 14, 26, 'Lisszaboni városnéző séta', 'lisszabon_varosnezo', 140, 'Lisszabon történelmi negyedei, a dombos utcák és a tengerpart közelsége csodálatos élményt nyújt. Sétálj az Alfama és Bairro Alto negyedben, miközben a város múltját és kultúráját ismered meg. Fedezd fel a város híres kilátópontjait, ahonnan gyönyörű panorámát láthatsz. Kóstold meg a helyi ételeket, mint a pastel de nata és bacalhau. Ez a túra Lisszabon történelmének, kultúrájának és ízeinek teljes felfedezését kínálja.'),
-(27, 14, 27, 'Lisszaboni gasztronómiai túra', 'lisszabon_gasztro', 145, 'Lisszabon kulináris élete rendkívül gazdag, ahol a tenger gyümölcsei és helyi specialitások dominálnak. Kóstold meg a friss halakat, tenger gyümölcseit és a híres édességeket. Fedezd fel a piacokat és hagyományos éttermeket, miközben a portugál konyha történetét tanulod. Élvezd a város hangulatát a helyi ízek tükrében. Ez a túra a gasztronómia, kultúra és városi élmény harmonikus kombinációját kínálja.'),
-(28, 15, 28, 'Isztambuli történelmi séta', 'isztambul_tortenelmi', 150, 'Isztambul az ókori civilizációk és a kultúrák találkozási pontja, ahol kelet és nyugat keveredik. Látogasd meg a Hagia Sophiát, a Kék Mecsetet és a Topkapi palotát. Sétálj a város piacain, ahol az illatok, színek és hangulatok egyedülálló élményt nyújtanak. Tanulj a város történelméről és vallási hagyományairól. Ez a túra Isztambul történelmi és kulturális gazdagságát tárja fel.'),
-(29, 15, 29, 'Isztambuli gasztronómiai túra', 'isztambul_gasztro', 155, 'Isztambul ízvilága keleti fűszerekben és hagyományos ételekben gazdag. Kóstold meg a kebabot, baklavát, helyi édességeket és italokat. Fedezd fel a bazárokat, piacokat és helyi éttermeket, miközben a török konyha titkait ismered meg. Tanulj a helyi étkezési szokásokról és történelmükről idegenvezető segítségével. Ez a túra a gasztronómia és kultúra élményét egyaránt nyújtja.'),
-(30, 16, 30, 'Szentpétervári múzeumi túra', 'szentpetervar_muzeum', 160, 'Szentpétervár a művészet és történelem városa, tele lenyűgöző múzeumokkal és palotákkal. Látogasd meg az Ermitázst, a Téli Palotát és a Fabergé-múzeumot. Sétálj a város történelmi utcáin, miközben a cári múltat és az orosz kultúrát ismered meg. Kóstold meg a helyi ételeket, miközben a város hangulatát élvezed. Ez a túra a művészet, történelem és kultúra átfogó élményét kínálja.'),
-(31, 16, 31, 'Szentpétervári csatornahajózás', 'szentpetervar_hajo', 165, 'A város csatornái és folyói különleges perspektívát nyújtanak Szentpétervárra. Hajózz végig a Neva folyón, miközben a város ikonikus épületeit és hidjait csodálhatod. Ismerd meg a város történelmét és kulturális örökségét idegenvezető segítségével. Kóstold meg a helyi finomságokat a hajóút alatt. Ez a túra látványos, pihentető és kulturális élményt kínál egyszerre.'),
-(32, 17, 32, 'Moszkvai történelmi túra', 'moszkva_tortenelmi', 170, 'Moszkva Oroszország politikai és történelmi központja, ahol a múlt és jelen találkozik. Látogasd meg a Vörös teret, a Kremlt és a Szent Bazil székesegyházat. Sétálj a történelmi utcákon, miközben a város múltját és kultúráját ismered meg. Kóstold meg a helyi ételeket egy autentikus étteremben. Ez a túra Moszkva történelmének, kultúrájának és gasztronómiájának felfedezését kínálja.'),
-(33, 17, 33, 'Moszkvai metró- és művészeti túra', 'moszkva_metro', 175, 'Moszkva metróállomásai az orosz művészet és történelem lenyűgöző példái. Fedezd fel a város híres metróállomásait, szobrait és mozaikjait. Tanulj a város történelméről és az állomások építészeti jelentőségéről. Kóstold meg a helyi specialitásokat, miközben a városi életet tapasztalod. Ez a túra művészetet, kultúrát és városi felfedezést kínál egyszerre.'),
-(34, 18, 34, 'Koppenhágai kerékpártúra', 'koppenhaga_bike', 180, 'Koppenhága a kerékpáros közlekedés és fenntartható városi élet mintája. Kerékpározz a város híres kerékpárútjain, miközben a város látványosságait ismered meg. Fedezd fel a Nyhavn negyedet, a kis csatornákat és a helyi piacokat. Tanulj a város történelméről és kultúrájáról idegenvezető segítségével. Ez a túra aktív kikapcsolódást és városi felfedezést kínál egyszerre.'),
-(35, 18, 35, 'Koppenhágai gasztronómiai túra', 'koppenhaga_gasztro', 185, 'Koppenhága gasztronómiája a modern skandináv konyhát és tradicionális ételeket ötvözi. Kóstold meg a friss tengeri ételeket, helyi péksüteményeket és tradicionális dán fogásokat. Fedezd fel a piacokat és éttermeket, miközben a dán konyha titkait tanulod. Élvezd a város hangulatát a gasztronómiai élmények tükrében. Ez a túra a kulináris élmény és városi kultúra kombinációját kínálja.'),
-(36, 19, 36, 'Oslo fjord hajózás', 'oslo_hajo', 190, 'Az Oslo-fjord festői tájai lenyűgözőek, miközben a város történelmét és kultúráját ismerheted meg. Hajózz a fjordon, látogasd meg a közeli szigeteket és történelmi helyszíneket. Tanulj Norvégia kultúrájáról és a város múltjáról idegenvezető segítségével. Kóstold meg a helyi tengeri ételeket és specialitásokat. Ez a túra látványos, pihentető és kulturális élményt kínál egyszerre.'),
-(37, 19, 37, 'Oslo városnéző séta', 'oslo_varosnezo', 195, 'Oslo történelmi és modern látnivalókkal várja a látogatókat. Sétálj a városközpontban, látogasd meg a Vigeland szoborparkot és az Operaházat. Ismerd meg a norvég kultúrát, történelmet és építészetet. Kóstold meg a helyi ételeket a város hangulatos éttermeiben. Ez a túra Oslo történelmének, kultúrájának és gasztronómiájának felfedezését nyújtja.'),
-(38, 20, 38, 'Helsinki design túra', 'helsinki_design', 200, 'Helsinki a modern dizájn és építészet városa, tele kreatív energiával. Fedezd fel a város híres design negyedeit, múzeumait és galériáit. Ismerd meg a finn dizájn történetét és kultúráját idegenvezető segítségével. Sétálj a város hangulatos utcáin, miközben a modern művészetet és építészetet élvezed. Ez a túra a design, kultúra és városi élet kombinációját nyújtja.'),
-(39, 20, 39, 'Helsinki gasztronómiai túra', 'helsinki_gasztro', 205, 'Helsinki gasztronómiája a friss, helyi alapanyagokra és skandináv ízekre épül. Kóstold meg a tradicionális ételeket, mint a lohi és karjalanpiirakka. Fedezd fel a piacokat és éttermeket, miközben a finn konyha történelmét tanulod. Élvezd a város hangulatát a helyi ízek tükrében. Ez a túra ízek, kultúra és városi felfedezés élményét kínálja.'),
-(40, 21, 40, 'Reykjavíki geotermikus túra', 'reykjavik_geothermal', 210, 'Reykjavík környéke lenyűgöző geotermikus tájakban gazdag, ahol a természet csodái várnak. Fedezd fel a forró forrásokat, gejzíreket és vulkanikus képződményeket. Ismerd meg Izland történelmét, kultúráját és természeti jellegzetességeit idegenvezető segítségével. Kóstold meg a helyi specialitásokat, miközben a természet közelségét élvezed. Ez a túra természet, kultúra és kaland élményét kínálja.'),
-(41, 21, 41, 'Reykjavíki városnézés', 'reykjavik_varos', 215, 'Reykjavík modern városi élet és izlandi kultúra keverékét kínálja. Sétálj a város főterén, látogasd meg a Hallgrímskirkja templomot és a Harpa koncerttermet. Ismerd meg a város történelmét, kultúráját és művészetét idegenvezető segítségével. Kóstold meg a helyi ételeket, miközben a város hangulatát élvezed. Ez a túra Reykjavíki kultúra és városi élet felfedezését kínálja.'),
-(42, 22, 42, 'Edinburgh kastélytúra', 'edinburgh_kastely', 220, 'Edinburgh gazdag történelmi örökséggel rendelkezik, ahol a kastély és a középkori utcák lenyűgözőek. Látogasd meg az Edinburgh-i kastélyt, a Royal Mile-t és a város történelmi negyedeit. Ismerd meg Skócia történelmét, legendáit és kultúráját. Kóstold meg a helyi whiskyt és tradicionális ételeket. Ez a túra történelmet, kultúrát és gasztronómiát ötvöz.'),
-(43, 22, 43, 'Edinburgh kísértettúra', 'edinburgh_kiseret', 225, 'Edinburgh régi utcái és alagutai számos titkot és legendát rejtenek. Fedezd fel a város kísértetjárta helyeit és hallgasd a történeteket idegenvezető segítségével. Ismerd meg a város sötét múltját és mítoszait. Kóstold meg a helyi specialitásokat egy hangulatos kávézóban. Ez a túra izgalmas, misztikus és kulturális élményt kínál.'),
-(44, 23, 44, 'Dublini történelmi séta', 'dublin_tortenelmi', 230, 'Dublin gazdag irodalmi és történelmi örökséggel rendelkezik. Sétálj a Temple Bar negyedben, látogasd meg a Trinity College könyvtárát és a Guinness Storehouse-t. Ismerd meg Írország történelmét, kultúráját és irodalmi hagyományait. Kóstold meg a helyi ételeket és italokat a város hangulatos éttermeiben. Ez a túra történelmet, kultúrát és gasztronómiát ötvöz.'),
-(45, 23, 45, 'Dublini irodalmi séta', 'dublin_irodalom', 235, 'Dublin híres irodalmi örökségéről, ahol a város utcái híres írókról mesélnek. Fedezd fel a James Joyce, Oscar Wilde és Samuel Beckett életének nyomait. Ismerd meg a város irodalmi múltját és kultúráját idegenvezető segítségével. Kóstold meg a helyi ételeket a város hangulatos éttermeiben. Ez a túra irodalmat, kultúrát és városi felfedezést ötvöz.'),
-(46, 24, 46, 'Brüsszeli csokoládétúra', 'brusszel_csokolade', 240, 'Brüsszel híres csokoládéjáról és gasztronómiai különlegességeiről. Látogasd meg a helyi csokoládégyártókat és kóstold meg a legfinomabb csokoládékat. Ismerd meg a csokoládékészítés történelmét és hagyományait. Sétálj a város utcáin, miközben a belga kultúrát ismered meg. Ez a túra ízek, kultúra és városi élet élményét nyújtja.'),
-(47, 24, 47, 'Brüsszeli városnéző séta', 'brusszel_varosnezo', 245, 'Brüsszel gazdag történelmi és kulturális látnivalókkal vár. Fedezd fel a Nagytemplomot, a Grand Place teret és a királyi palotát. Ismerd meg a város történelmét, építészetét és kultúráját. Kóstold meg a belga specialitásokat a város hangulatos éttermeiben. Ez a túra Brüsszel történelmének, kultúrájának és gasztronómiájának felfedezését kínálja.'),
-(48, 25, 48, 'Amszterdami éjszakai túra', 'amsterdam_ejszaka', 250, 'Amszterdam éjszakai fényei és hangulata különleges élményt kínálnak. Fedezd fel a város csatornáit, kávézóit és éjszakai életét szakértő vezetésével. Ismerd meg a város történelmét és kulturális életét az esti fények tükrében. Kóstold meg a helyi ételeket és italokat egy hangulatos helyen. Ez a túra éjszakai városi élményt, kultúrát és gasztronómiát kínál.'),
-(49, 25, 49, 'Amszterdami művészeti túra', 'amsterdam_muveszet', 255, 'Amszterdam híres művészeti életéről és múzeumairól ismert. Látogasd meg a Van Gogh Múzeumot, a Rijksmuseumot és a helyi galériákat. Sétálj a város utcáin, miközben a holland művészet és kultúra titkait tanulod. Kóstold meg a helyi specialitásokat, miközben a város művészeti életét élvezed. Ez a túra művészet, kultúra és városi felfedezés élményét kínálja.'),
-(50, 26, 50, 'Amszterdami piac- és ízutazás', 'amsterdam_piac', 260, 'Amszterdam piacai a város ízeinek és kultúrájának központjai. Fedezd fel a helyi piacokat, kóstold meg a holland sajtokat, süteményeket és tengeri ételeket. Tanulj a helyi ételek történelméről és hagyományairól idegenvezető segítségével. Sétálj a város hangulatos utcáin, miközben a gasztronómiai élményt élvezed. Ez a túra ízek, kultúra és városi élet kombinált élményét nyújtja.'),
-(51, 3, 7, 'Budapest Városi Kaland', 'budapest_varosi_kaland', 45, 'Fedezze fel Budapest rejtett kincseit egy személyre szabott városi túrán. Látogassa meg a történelmi nevezetességeket, miközben ínycsiklandó helyi ételeket kóstolhat. Tapasztalja meg a Duna-parti sétány varázsát, és fedezze fel a város hangulatos kávézóit. Az út során helyi szakértők mesélnek a város múltjáról és kultúrájáról. Tökéletes program pároknak és családoknak egyaránt.'),
-(52, 23, 68, 'Brno Kulturális Felfedezés', 'brno_kulturalis_felfedezes', 38, 'Fedezze fel Brno kulturális életét helyi idegenvezetővel. Látogassa meg a város múzeumait, galériáit és történelmi helyszíneit. Élvezze a város gasztronómiáját a hangulatos éttermekben, és kóstolja meg a helyi specialitásokat. Sétáljon Brno macskaköves utcáin, miközben megismeri a város gazdag történelmét. Egyedülálló élmény a kultúra és a városi élet felfedezésére.'),
-(53, 23, 69, 'České Budějovice Történelmi Túra', 'ceske_budejovice_tortenelmi_tura', 42, 'Fedezze fel České Budějovice történelmi központját egy vezetett túra keretében. Ismerje meg a város híres épületeit és tereit, miközben érdekes történeteket hallhat a helyi múltról. Kóstolja meg a tradicionális ételeket és a híres sört a közeli éttermekben. Fedezze fel a város kulturális életét, piacait és kis üzleteit. Tökéletes választás történelem iránt érdeklődő utazóknak.'),
-(54, 7, 19, 'Bécsi Gasztronómiai Élmény', 'becsi_gasztro_elmeny', 50, 'Vegyen részt egy ízletes gasztronómiai túrán Bécs utcáin. Kóstolja meg a helyi specialitásokat, péksüteményeket és tradicionális ételeket. Ismerje meg a város híres kávéházi kultúráját, miközben élvezetes sétát tesz a történelmi utcákon. Tapasztalja meg a bécsi életstílust és hangulatot autentikus helyszíneken. Egy élmény minden érzék számára.'),
-(55, 3, 7, 'Budapesti Éjszakai Kaland', 'budapesti_ejszakai_kaland', 55, 'Fedezze fel Budapest éjszakai életét egy izgalmas túrán. Látogassa meg a város ikonikus hídjait és fényárban úszó nevezetességeit. Élvezze a helyi bárakat és éttermeket, miközben a város történelméről is hallhat érdekességeket. Tapasztalja meg a Dunai panorámát egy esti hajózás során. Tökéletes választás baráti társaságoknak és pároknak.'),
-(56, 23, 67, 'Prágai Kézműves Élmény', 'pragai_kezmuves_elmeny', 48, 'Vegyen részt egy autentikus prágai kézműves workshopon, ahol saját szuvenírt készíthet. Ismerje meg a helyi mesterségek hagyományait és technikáit. Kóstolja meg a tradicionális cseh ételeket és italokat a közeli kávézókban. Fedezze fel Prága hangulatos utcáit és történelmi tereit a workshop mellett. Élmény és kultúra egy helyen, ideális családoknak és barátoknak.'),
-(57, 23, 70, 'Prágai Óváros Felfedezés', 'pragai_ovaros_felfedezes', 52, 'Fedezze fel Prága történelmi óvárosát egy helyi idegenvezető segítségével. Látogassa meg a híres csillagvizsgálót, a régi városházát és a történelmi tereket. Ismerje meg a város múltját érdekes történetek és legendák segítségével. Élvezze a város hangulatos kávézóit és éttermeit egy rövid pihenő alatt. Tökéletes program a kultúra és történelem kedvelőinek.'),
-(58, 7, 19, 'Bécsi Zenei Élmény', 'becsi_zenei_elmeny', 45, 'Élvezze Bécs híres zenei örökségét egy interaktív túra keretében. Látogasson el a híres koncerttermekbe és operaházakba. Ismerje meg a város klasszikus zenéjének történetét és híres zeneszerzőit. Tapasztalja meg a bécsi zenei kultúrát autentikus helyszíneken. Egy felejthetetlen élmény minden zenerajongónak.'),
-(59, 3, 8, 'Szegedi Kulturális Élmény', 'szegedi_kulturalis_elmeny', 40, 'Fedezze fel Szeged kulturális életét, látogasson el múzeumokba és történelmi helyszínekre. Tapasztalja meg a város egyedülálló építészeti stílusát. Kóstolja meg a helyi ételeket és specialitásokat a város híres éttermeiben. Vegyen részt interaktív programokon és workshopokon, ahol a helyi kultúrával ismerkedhet. Tökéletes program családoknak és egyéni utazóknak.'),
-(60, 3, 7, 'Budapesti Művészeti Élmény', 'budapesti_muveszeti_elmeny', 50, 'Fedezze fel Budapest kortárs és klasszikus művészetét egy vezetett túra során. Látogasson el galériákba, múzeumokba és kiállításokra. Ismerje meg a város híres művészeit és alkotásaikat. Élvezze a város kulturális életét interaktív workshopokkal és programokkal. Egyedülálló élmény a művészet szerelmeseinek.'),
-(61, 23, 68, 'Brno Gasztronómiai Túra', 'brno_gasztro_tura', 47, 'Fedezze fel Brno ízvilágát egy helyi séf vezetésével. Kóstolja meg a tradicionális cseh ételeket és italokat autentikus helyszíneken. Ismerje meg a város kulináris történelmét és különlegességeit. Tapasztalja meg a piacok, éttermek és kávézók hangulatát. Tökéletes program ínyenceknek és családoknak.'),
-(62, 23, 69, 'České Budějovice Városi Séta', 'ceske_budejovice_varosi_seta', 43, 'Fedezze fel České Budějovice macskaköves utcáit egy vezetett városi sétán. Látogasson el történelmi helyszínekre, templomokra és terekre. Ismerje meg a város legendáit és érdekességeit. Kóstolja meg a helyi ételeket és italokat a séta során. Egy élmény minden korosztálynak.'),
-(63, 7, 20, 'Bécsi Gasztronómiai Workshop', 'becsi_gasztro_workshop', 50, 'Vegyen részt egy gasztronómiai workshopon Bécs központjában, ahol megtanulhat tradicionális recepteket. Ismerje meg a helyi ételek történetét és alapanyagait. Kóstolja meg a saját készítésű ételeket, miközben új ízeket fedez fel. Tapasztalja meg a város kulturális életét autentikus módon. Tökéletes program barátoknak és családoknak.'),
-(64, 3, 8, 'Szegedi Gasztronómiai Élmény', 'szegedi_gasztro_elmeny', 42, 'Fedezze fel Szeged ízvilágát helyi séf vezetésével. Kóstolja meg a híres helyi ételeket és specialitásokat. Ismerje meg a város kulináris történelmét és hagyományait. Vegyen részt interaktív workshopokon és főzőprogramokon. Élmény minden ínyencnek és családoknak.'),
-(65, 3, 7, 'Budapesti Történelmi Túra', 'budapesti_tortenelmi_tura', 55, 'Fedezze fel Budapest történelmi helyszíneit egy idegenvezető segítségével. Látogassa meg a híres épületeket, tereket és múzeumokat. Ismerje meg a város múltját érdekes történetek és legendák által. Tapasztalja meg a város hangulatát séták és programok során. Tökéletes program történelem iránt érdeklődő utazóknak.'),
-(66, 23, 67, 'Prágai Esti Séta', 'pragai_esti_seta', 50, 'Fedezze fel Prága esti fényárban úszó utcáit egy romantikus sétán. Látogassa meg a történelmi hidakat és tereket, miközben a város mesés hangulatát élvezi. Kóstolja meg a helyi süteményeket és italokat egy hangulatos kávézóban. Tapasztalja meg Prága éjszakai életét autentikus módon. Egy élmény pároknak és barátoknak.'),
-(67, 23, 70, 'Prágai Gasztronómiai Túra', 'pragai_gasztro_tura', 48, 'Fedezze fel Prága ízvilágát helyi szakértő vezetésével. Kóstolja meg a tradicionális cseh ételeket, süteményeket és italokat. Ismerje meg a város kulináris történelmét és helyi különlegességeit. Tapasztalja meg a piacok és éttermek hangulatát a városi felfedezés során. Egyedülálló élmény minden gasztronómia kedvelőnek.'),
-(68, 7, 19, 'Bécsi Történelmi Túra', 'becsi_tortenelmi_tura', 45, 'Fedezze fel Bécs történelmét egy helyi idegenvezetővel. Látogassa meg a város híres épületeit, tereit és múzeumait. Ismerje meg a város múltját érdekes történetek és legendák által. Élvezze a hangulatos kávézókat és helyi éttermeket a túra során. Tökéletes program történelem és kultúra iránt érdeklődőknek.'),
-(69, 3, 8, 'Szegedi Esti Élmény', 'szegedi_esti_elmeny', 40, 'Fedezze fel Szeged esti fényekben úszó utcáit egy romantikus sétán. Kóstolja meg a helyi specialitásokat hangulatos éttermekben. Tapasztalja meg a város kulturális és gasztronómiai életét autentikus módon. Élvezze a folyóparti sétát és a helyi művészeti eseményeket. Tökéletes program pároknak és családoknak.'),
-(70, 3, 7, 'Budapesti Kortárs Művészet', 'budapesti_kortars_muveszet', 50, 'Fedezze fel Budapest kortárs művészeti helyszíneit egy vezetett túrán. Látogasson el galériákba, kiállításokra és művészeti központokba. Ismerje meg a helyi művészek munkáit és alkotásait. Tapasztalja meg a város művészeti életét interaktív programokon keresztül. Egyedülálló élmény művészetkedvelőknek.'),
-(71, 23, 68, 'Brno Esti Gasztronómia', 'brno_esti_gasztro', 47, 'Fedezze fel Brno ízvilágát esti fényekben, egy gasztronómiai túra keretében. Kóstolja meg a helyi ételeket és italokat autentikus helyszíneken. Ismerje meg a város kulináris hagyományait. Élvezze a hangulatos utcák és éttermek atmoszféráját. Tökéletes program barátoknak és pároknak.'),
-(72, 23, 69, 'České Budějovice Kultúra és Történelem', 'ceske_budejovice_kultura', 42, 'Fedezze fel České Budějovice kulturális és történelmi helyszíneit egy idegenvezetővel. Látogasson el múzeumokba, templomokba és történelmi terekre. Ismerje meg a város legendáit és érdekességeit. Kóstolja meg a helyi specialitásokat a városi séták során. Élmény minden korosztálynak.'),
-(73, 7, 20, 'Bécsi Kortárs Művészeti Élmény', 'becsi_kortars_muveszet', 50, 'Fedezze fel Bécs kortárs művészeti helyszíneit egy vezetett túrán. Látogasson el galériákba és kiállításokra. Ismerje meg a helyi művészek munkáit és stílusát. Élvezze a város kulturális életét autentikus környezetben. Tökéletes program művészetkedvelőknek.'),
-(74, 3, 8, 'Szegedi Történelmi Túra', 'szegedi_tortenelmi_tura', 40, 'Fedezze fel Szeged történelmét egy idegenvezető segítségével. Látogasson el múzeumokba, történelmi épületekhez és emlékhelyekhez. Ismerje meg a város múltját érdekes történetek által. Tapasztalja meg a város kulturális életét séták és programok során. Tökéletes program történelem iránt érdeklődőknek.'),
-(75, 3, 7, 'Budapesti Gasztronómiai Élmény', 'budapesti_gasztro_elmeny', 55, 'Fedezze fel Budapest ízvilágát egy helyi séf vezetésével. Kóstolja meg a tradicionális magyar ételeket és italokat autentikus helyszíneken. Ismerje meg a város kulináris történelmét. Tapasztalja meg a piacok, éttermek és kávézók hangulatát. Egyedülálló élmény minden gasztronómia kedvelőnek.'),
-(76, 23, 67, 'Prágai Kortárs Élmény', 'pragai_kortars_elmeny', 50, 'Fedezze fel Prága kortárs művészeti helyszíneit egy vezetett túrán. Látogasson el galériákba, kiállításokra és művészeti központokba. Ismerje meg a helyi művészek munkáit és alkotásait. Tapasztalja meg a város kulturális életét interaktív programokon keresztül. Tökéletes élmény művészetkedvelőknek.'),
-(77, 23, 70, 'Prágai Éjszakai Kaland', 'pragai_ejszakai_kaland', 52, 'Fedezze fel Prága éjszakai életét egy izgalmas túra keretében. Látogassa meg a város híres tereit és hidakat este fényárban. Élvezze a helyi bárokat, kávézókat és éttermeket. Tapasztalja meg a város hangulatát esti séták során. Tökéletes program barátoknak és pároknak.'),
-(78, 7, 19, 'Bécsi Éjszakai Élmény', 'becsi_ejszakai_elmeny', 45, 'Fedezze fel Bécs éjszakai életét egy vezetett túra keretében. Látogassa meg a város híres tereit, kávézóit és bárait. Ismerje meg Bécs történelmét esti fényekben. Élvezze a város hangulatát és zenei kultúráját autentikus helyszíneken. Tökéletes élmény pároknak és barátoknak.'),
-(79, 3, 8, 'Szegedi Éjszakai Túra', 'szegedi_ejszakai_tura', 40, 'Fedezze fel Szeged éjszakai hangulatát egy romantikus vagy baráti sétán. Kóstolja meg a helyi éttermek és kávézók specialitásait. Tapasztalja meg a város kulturális életét autentikus módon. Élvezze a folyóparti sétákat és a világítással kiemelt történelmi helyszíneket. Ideális program esti kikapcsolódásra.'),
-(80, 3, 7, 'Budapesti Kortárs Művészeti Túra', 'budapesti_kortars_muveszeti_tura', 50, 'Fedezze fel Budapest kortárs művészeti helyszíneit interaktív vezetett túrán. Látogasson el galériákba, művészeti központokba és kiállításokra. Ismerje meg a helyi művészek alkotásait. Tapasztalja meg a város kulturális életét autentikus módon. Egyedülálló élmény művészetkedvelőknek.'),
-(81, 23, 71, 'Prágai Kastélylátogatás', 'pragai_kastelylatogatas', 60, 'Fedezze fel Prága híres kastélyait és történelmi épületeit egy vezetett túra keretében. Ismerje meg a kastélyok múltját és legendáit érdekes történetek segítségével. Tapasztalja meg a csodálatos építészetet és a gyönyörű parkokat. Kóstolja meg a helyi ételeket a kastély közeli éttermekben. Ideális program történelem és kultúra iránt érdeklődőknek.'),
-(82, 3, 9, 'Debreceni Kulturális Túra', 'debreceni_kulturalis_tura', 42, 'Fedezze fel Debrecen gazdag kulturális életét múzeumok és történelmi helyszínek látogatásával. Tapasztalja meg a város építészeti különlegességeit és hangulatos tereit. Kóstolja meg a helyi gasztronómiai különlegességeket. Vegyen részt interaktív programokon és workshopokon, ahol a helyi kultúrával ismerkedhet. Tökéletes program családoknak és egyéni utazóknak.'),
-(83, 7, 21, 'Bécsi Operalátogatás', 'becsi_operalatogatas', 55, 'Élvezze Bécs híres operaházainak hangulatát egy vezetett túra során. Ismerje meg a híres zeneszerzők történetét és a klasszikus zene örökségét. Tapasztalja meg a lenyűgöző építészetet és díszleteket. Látogasson el interaktív kiállításokra, ahol közelebbről is megismerkedhet a művészettel. Egyedülálló élmény minden zenerajongónak.'),
-(84, 3, 10, 'Pécsi Borút', 'pecsi_borut', 50, 'Fedezze fel Pécs borvidékeit egy vezetett túra keretében. Kóstolja meg a helyi borokat és specialitásokat autentikus pincészetekben. Ismerje meg a borok készítésének folyamatát és történelmét. Élvezze a festői tájat és a kulturális látnivalókat út közben. Ideális program ínyenceknek és borkedvelőknek.'),
-(85, 23, 72, 'Prágai Híres Terek Túrája', 'pragai_hires_terek_tura', 50, 'Fedezze fel Prága híres tereit, köztük az Óváros terét és a Hídlábat. Ismerje meg a város történelmét és legendáit érdekes történetek segítségével. Tapasztalja meg a helyi életet kávézók és éttermek között sétálva. Kóstolja meg a tradicionális cseh ételeket. Egyedülálló élmény a kultúra és történelem kedvelőinek.'),
-(86, 3, 11, 'Győri Művészeti Élmény', 'gyori_muveszeti_elmeny', 48, 'Fedezze fel Győr művészeti helyszíneit egy vezetett túrán. Látogasson el galériákba, múzeumokba és kiállításokra. Ismerje meg a helyi művészek munkáit és stílusát. Tapasztalja meg a város kulturális életét autentikus programokon keresztül. Ideális élmény művészetkedvelőknek.'),
-(87, 7, 22, 'Bécsi Kávéház Túra', 'becsi_kavehaz_tura', 45, 'Fedezze fel Bécs híres kávéházait egy vezetett sétán. Kóstolja meg a tradicionális süteményeket és kávékülönlegességeket. Ismerje meg a város irodalmi és zenei történelmét a kávéházak hangulatában. Tapasztalja meg a bécsi életstílust autentikus helyszíneken. Egyedülálló élmény minden látogatónak.'),
-(88, 3, 12, 'Soproni Történelmi Túra', 'soproni_tortenelmi_tura', 44, 'Fedezze fel Sopron történelmét és nevezetességeit egy idegenvezető segítségével. Látogasson el történelmi épületekhez, terekre és múzeumokhoz. Ismerje meg a város múltját érdekes történetek segítségével. Kóstolja meg a helyi ételeket és italokat a séta során. Tökéletes program történelem iránt érdeklődőknek.'),
-(89, 23, 73, 'Prágai Fényfesztivál Élmény', 'pragai_fenyfesztival_elmeny', 55, 'Élvezze Prága esti fényfesztiválját egy különleges túra keretében. Tapasztalja meg a város ikonikus épületeinek világítását és hangulatát. Kóstolja meg a helyi ételeket és italokat a fesztivál közben. Ismerje meg a város kulturális eseményeit és tradícióit. Ideális program barátoknak és családoknak.'),
-(90, 3, 13, 'Kecskeméti Művészeti Workshop', 'kecskemet_muveszeti_workshop', 50, 'Vegyen részt egy interaktív művészeti workshopon Kecskeméten. Tanulja meg a helyi mesterségeket és alkotási technikákat. Készítsen saját szuvenírt és tapasztalja meg a kreativitást. Fedezze fel a város kulturális életét a workshop mellett. Egyedülálló élmény művészetkedvelőknek és családoknak.'),
-(91, 7, 23, 'Bécsi Gasztronómiai Kaland', 'becsi_gasztro_kaland', 50, 'Fedezze fel Bécs ízvilágát egy gasztronómiai túra során. Kóstolja meg a tradicionális osztrák ételeket és italokat. Tapasztalja meg a város kulináris történelmét és kultúráját autentikus helyszíneken. Élvezze a hangulatos utcák és éttermek atmoszféráját. Ideális program ínyenceknek és gasztronómia kedvelőknek.'),
-(92, 3, 14, 'Eger Városi Túra', 'eger_varosi_tura', 46, 'Fedezze fel Eger történelmi központját és nevezetességeit egy vezetett séta során. Ismerje meg a város múltját érdekes történetek segítségével. Látogasson el a híres várhoz és templomokhoz. Kóstolja meg a helyi borokat és ételeket a séták során. Tökéletes program történelem és kultúra kedvelőknek.'),
-(93, 23, 74, 'Prágai Kastély és Kert Túra', 'pragai_kastely_kert_tura', 60, 'Fedezze fel Prága kastélyait és parkjait egy vezetett túra során. Ismerje meg a történelmi épületek múltját és legendáit. Tapasztalja meg a gyönyörű kerteket és panorámás kilátásokat. Kóstolja meg a helyi ételeket és italokat a közeli éttermekben. Ideális program történelem és kultúra kedvelőknek.'),
-(94, 3, 15, 'Veszprémi Művészeti Túra', 'veszpremi_muveszeti_tura', 48, 'Fedezze fel Veszprém kortárs és klasszikus művészetét egy vezetett túrán. Látogasson el galériákba és múzeumokba. Ismerje meg a helyi művészek munkáit és alkotásait. Tapasztalja meg a város kulturális életét interaktív programokon keresztül. Egyedülálló élmény művészetkedvelőknek.'),
-(95, 7, 24, 'Bécsi Zenei Est', 'becsi_zenei_est', 50, 'Élvezze Bécs híres zenei estjeit egy koncert vagy előadás keretében. Ismerje meg a klasszikus zenét és híres zeneszerzők történetét. Tapasztalja meg a bécsi zenei kultúrát autentikus helyszíneken. Kóstolja meg a helyi ételeket és italokat a koncert előtt vagy után. Egyedülálló élmény minden zenerajongónak.'),
-(96, 3, 16, 'Székesfehérvári Történelmi Túra', 'szekesfehervari_tortenelmi_tura', 44, 'Fedezze fel Székesfehérvár történelmét és nevezetességeit egy idegenvezetővel. Látogasson el múzeumokba és történelmi épületekhez. Ismerje meg a város múltját érdekes történetek és legendák által. Kóstolja meg a helyi ételeket a városi séták során. Ideális program történelem iránt érdeklődőknek.'),
-(97, 23, 75, 'Prágai Felfedező Túra', 'pragai_felfedezo_tura', 52, 'Fedezze fel Prága történelmi és kulturális helyszíneit egy vezetett túrán. Látogasson el híres terekre, múzeumokba és galériákba. Ismerje meg a város legendáit és érdekes történeteit. Kóstolja meg a helyi ételeket és italokat út közben. Egyedülálló élmény minden korosztálynak.'),
-(98, 3, 17, 'Nyíregyházi Állatkert Élmény', 'nyiregyhazi_allatkert_elmeny', 42, 'Látogasson el Nyíregyházi Állatkertbe egy családi nap keretében. Ismerje meg a különleges állatfajokat és a természetvédelmi programokat. Vegyen részt interaktív bemutatókon és etetéseken. Tapasztalja meg a város parkjainak és zöld területeinek hangulatát. Ideális program családoknak és állatbarátoknak.'),
-(99, 7, 25, 'Bécsi Történelmi Séta', 'becsi_tortenelmi_seta', 45, 'Fedezze fel Bécs történelmi központját egy idegenvezetővel. Látogasson el híres épületekhez, terekre és múzeumokhoz. Ismerje meg a város múltját érdekes történetek és legendák által. Tapasztalja meg a bécsi kultúrát és életstílust autentikus helyszíneken. Tökéletes program történelem iránt érdeklődőknek.'),
-(100, 3, 18, 'Miskolci Kulturális Élmény', 'miskolci_kulturalis_elmeny', 46, 'Fedezze fel Miskolc kulturális életét múzeumok és történelmi helyszínek látogatásával. Tapasztalja meg a város építészeti különlegességeit. Kóstolja meg a helyi gasztronómiai különlegességeket. Vegyen részt interaktív programokon és workshopokon. Ideális program családoknak és egyéni utazóknak.'),
-(101, 23, 76, 'Prágai Gasztronómiai Élmény', 'pragai_gasztro_elmeny', 50, 'Fedezze fel Prága ízvilágát egy gasztronómiai túra során. Kóstolja meg a tradicionális cseh ételeket és italokat autentikus helyszíneken. Ismerje meg a város kulináris hagyományait. Tapasztalja meg a piacok és éttermek hangulatát. Ideális program ínyenceknek és gasztronómia kedvelőknek.'),
-(102, 3, 19, 'Kaposvári Városi Túra', 'kaposvari_varosi_tura', 44, 'Fedezze fel Kaposvár történelmi központját és nevezetességeit egy vezetett túra keretében. Ismerje meg a város múltját érdekes történetek segítségével. Látogasson el múzeumokhoz és templomokhoz. Kóstolja meg a helyi ételeket a séták során. Tökéletes program történelem és kultúra kedvelőknek.'),
-(103, 7, 26, 'Bécsi Kastélylátogatás', 'becsi_kastelylatogatas', 55, 'Fedezze fel Bécs híres kastélyait és történelmi épületeit egy vezetett túra során. Ismerje meg a kastélyok múltját és legendáit. Tapasztalja meg a csodálatos építészetet és parkokat. Kóstolja meg a helyi ételeket és italokat a közeli éttermekben. Ideális program történelem és kultúra kedvelőknek.'),
-(104, 3, 20, 'Szolnoki Kulturális Túra', 'szolnoki_kulturalis_tura', 42, 'Fedezze fel Szolnok kulturális életét múzeumok és történelmi helyszínek látogatásával. Tapasztalja meg a város építészeti különlegességeit. Kóstolja meg a helyi gasztronómiai különlegességeket. Vegyen részt interaktív programokon és workshopokon. Tökéletes program családoknak és egyéni utazóknak.');
+(1, 3, 211, 'Hagymatikum Gyógyfürdő élmény', 'hagymatikum_furdo', 65, 'Fedezze fel Makó egyik legismertebb turisztikai vonzerejét, a Hagymatikum Gyógyfürdőt. A különleges Makovecz‑stílusú épület önmagában is különleges látványt nyújt. A gyógyvizes medencék és wellness részlegek egész napos kikapcsolódást kínálnak minden korosztálynak. Élvezze a wellness szolgáltatásokat, szaunaparkot és gyógyvizes fürdőket egyaránt. Tökéletes választás családoknak, pároknak és baráti társaságoknak egyaránt.'),
+(2, 23, 67, 'Prágai óvárosi városnézés', 'praga_ovaros', 45, 'Fedezze fel Prága történelmi óvárosát egy részletes séta során, ahol a macskaköves utcák és történelmi épületek mesélnek a város múltjáról. Látogassa meg az Óvárosi teret, az Orloj asztronómiai órát és a közeli falusias sikátorokat. Az élmény során helyi történeteket és legendákat ismerhet meg. Prága különleges hangulatát a kávézók és bábjátékosok teszik feledhetetlenné. A nap végén egy helyi étteremben kóstolja meg a cseh konyha specialitásait.'),
+(3, 23, 67, 'Prágai vár és Szent Vitus székesegyház', 'praga_var', 55, 'Látogassa meg Prága legismertebb történelmi komplexumát, ahol több évszázad eseményeit ismerheti meg. A Szent Vitus székesegyház impozáns gótikus építészete és részletes díszítése lenyűgöző. Sétáljon végig a vár falain, és csodálja meg a panorámát a városra. A környéken múzeumok és parkok is megtalálhatók. Az élmény különösen fotóbarát helyszínekkel gazdagítja a városnézést.'),
+(4, 23, 67, 'Vltava hajókirándulás', 'vltava_hajo', 55, 'Ugorjon fel egy folyami hajóra és élvezze a Vltava folyó látványát Prágában. A Károly híd, a városi panoráma és a parti épületek egészen új perspektívából tárulnak fel. A fedélzeti idegenvezetés érdekes történeteket mesél a városról. A naplemente különösen romantikus a fedélzetről. Érdemes vacsorával kombinálni az élményt egy teljes napos programért.'),
+(5, 7, 19, 'Bécsi klasszikus zenei est', 'becs_zene', 60, 'Merüljön el Bécs világhírű zenei életében egy klasszikus koncert során, ahol Mozart, Strauss és más nagy művészek művei csendülnek fel. A történelmi koncertterem csodás akusztikája és díszítése emlékezetes élményt nyújt. A koncert előtt sétáljon a környék bájos utcáin. A város kávéházaiban élvezheti a helyi süteményeket és kávékat. Ideális program kultúra és zene kedvelőknek.'),
+(6, 7, 19, 'Schönbrunni kastély és kert', 'schonbrunn', 50, 'Fedezze fel a Schönbrunni kastély pompás termeit, amelyek az osztrák császári család egykori rezidenciáját idézik. A barokk stílusú kertek és parkok tökéletes helyet adnak egy pihentető sétához. Látogassa meg a kastély állatkertjét is, amely Európa egyik legrégebbi. A panoráma a kertből csodás kilátást nyújt Bécsre. A program tartalmaz fotószüneteket és idegenvezetést is.'),
+(7, 7, 20, 'Linz Duna-parti séta', 'linz_duna', 30, 'Vegyen részt egy kellemes sétán a Duna partján Linz városában, ahol a modern és történelmi építészet találkozik. A Duna partja mentén kávézók és kilátópontok várják a látogatókat. A folyóparti sétány ideális piknikezéshez vagy pihenéshez. A város művészeti negyedét is érdemes felkeresni. A séta során megismerheti Linz kultúráját és hangulatát.'),
+(8, 3, 7, 'Budapesti Parlament túra', 'parlament', 40, 'Ismerje meg Budapest ikonikus Parlament épületét egy izgalmas vezetett túra során. A neogótikus stílus belső termei lenyűgöznek minden látogatót. Megtekintheti a koronázási ékszereket és ritka történelmi relikviákat. A túra során sok érdekességet tudhat meg Magyarország történelméről. Ajánlott előfoglalással érkezni a nagy érdeklődés miatt.'),
+(9, 3, 7, 'Duna esti hajózás', 'duna_hajo', 55, 'Élje át Budapest varázslatos esti panorámáját egy dunai hajókiránduláson keresztül. A kivilágított Lánchíd, Parlament és Budai Vár pazar látványt nyújtanak. A fedélzeten étel és ital is elérhető. A program romantikus hangulatot kínál pároknak vagy baráti társaságoknak egyaránt. Kiváló fotóhelyszínek minden irányban.'),
+(10, 3, 7, 'Budai Várnegyed séta', 'budai_var', 40, 'Sétáljon végig a történelmi Budai Várnegyed utcáin, ahol a középkori falak és várfalak mesélnek a múlt századokról. A kilátás a városra és a Dunára egyedülálló. A nevezetességek között található a Halászbástya és Mátyás temploma. A környék tele van múzeumokkal és hangulatos kávézókkal. Ideális kulturális és pihentető napra.'),
+(11, 3, 8, 'Szegedi belvárosi séta', 'szeged_seta', 30, 'Fedezze fel Szeged napfényes belvárosát, híres szecessziós épületeit és tágas tereit. A Dóm tér látványos katedrálisa különleges fotótémát kínál. A séta során felfedezheti a helyi kávézókat, parkokat és kulturális helyszíneket. A város gasztronómiája is megér egy próbát helyi specialitásokkal. A nyugodt utcák ideálisak egy kellemes délutáni programhoz.'),
+(12, 3, 9, 'Debreceni Nagytemplom látogatás', 'debrecen_nagytemplom', 25, 'Ismerje meg Debrecen történelmi ékességét, a Nagytemplomot, amely a város szimbóluma. A hatalmas épület belső tere lenyűgöző és gazdag vallási örökséget hordoz. A templom környéke ideális sétára és pihenésre. Fedezze fel a helyi kulturális negyedet és kávézókat. A város más nevezetességekkel is várja a látogatókat.'),
+(13, 4, 10, 'Eiffel‑torony látogatás', 'eiffel_torony', 55, 'Látogassa meg Párizs ikonikus Eiffel‑toronyját és élvezze a panorámát a városra minden szinten. A torony története több mint 130 éves és világszerte ismert. A közeli Champ de Mars park ideális piknikezéshez. A torony környezetében számos kávézó és étterem várja a látogatókat. A kilátóponton történő naplemente különösen lenyűgöző élmény.'),
+(14, 4, 10, 'Szajna parti romantikus séta', 'szajna_seta', 35, 'Élvezze a Szajna folyó menti sétát Párizs szívében, ahol hídak és történelmi épületek sorakoznak. Kávézók és kis butikok tarkítják az útvonalat. A séta során megállhat a Louvre vagy a Notre‑Dame közelében. Ideális romantikus program egy napvégi vacsorával kombinálva. A hely varázsa minden évszakban érezhető.'),
+(15, 6, 16, 'Berlin történelmi városnézés', 'berlin_tortenelem', 45, 'Fedezze fel Berlin történelmi központját, amely a modern és a múlt emlékeit egyaránt bemutatja. A Brandenburgi kapu, a berlini fal maradványai és a Reichstag épülete mind jelentős látnivalók. A város számos múzeuma és parkja egész napos programot biztosít. A helyi gasztronómia Berlin egyéni jellegét tükrözi. Ideális városlátogatás családoknak és barátoknak egyaránt.'),
+(16, 6, 17, 'München sörkultúra túra', 'munchen_sor', 50, 'Ismerje meg München híres sörkultúráját egy tradicionális sörfőzde látogatással és kóstolóval. A bajor sörök világhírűek, és az autentikus hangulatot a helyi sörkertek adják. A túra során szakértő vezető mesél a sörfőzés történetéről és hagyományairól. A város történelmi terein és parkjain keresztül sétálva még több látványosságot fedezhet fel. Kiváló élmény baráti társaságoknak vagy sörkedvelőknek.'),
+(17, 2, 4, 'Római Colosseum felfedezés', 'colosseum', 60, 'Fedezze fel az ókori Róma egyik legismertebb történelmi emlékét, a Colosseumot. A hatalmas amfiteátrum gladiátorjátékainak emlékét idézi fel. A vezetett túra során a részletes történetek még mélyebbé teszik az élményt. A közeli Forum Romanum és Palatinus domb is felfedezésre vár. Ideális program történelem iránt érdeklődőknek.'),
+(18, 2, 5, 'Milánói divatnegyed séta', 'milano_divat', 45, 'Fedezze fel Milánó világmárkák által uralt divatnegyedét, ahol a legújabb trendeket követő üzletek sorakoznak. A séta során a Dóm tér és az elegáns bevásárlóutcák is útba esnek. A helyi kávézók és designer üzletek kiváló programot kínálnak vásárlóknak és látogatóknak. A város kulturális és történelmi helyszínei egyaránt elérhetők gyalogosan vagy tömegközlekedéssel. A divat és történelem különleges keveréke minden látogatót lenyűgöz.'),
+(19, 8, 22, 'Athéni Akropolisz látogatás', 'athen_akropolisz', 55, 'Látogassa meg Athén ókori dombját, ahol az Akropolisz áll, és csodálja meg a Parthenón lenyűgöző maradványait. A helyszín több évezredes történelmet hordoz, és a városra nyíló panoráma sehol máshol nem hasonlítható. A görög mitológia nagyszerű történeteivel teli túra különösen izgalmas. A környék tele van múzeumokkal és kültéri piacokkal, ahol helyi finomságokat kóstolhat. Az élmény egész napos programot kínál művészet és történelem szerelmeseinek.'),
+(20, 8, 24, 'Rodoszi tengerparti pihenés', 'rodosz_part', 50, 'Élvezze Rodosz szigetén a homokos tengerpartok pihentető hangulatát és a kristálytiszta vizet. A strandok ideálisak úszásra, napozásra és vízi sportokra. A környéken bárok és éttermek kínálnak mediterrán ízeket és hűsítő italokat. A naplemente látványa a tenger felett felejthetetlen élmény. Ez a program tökéletes választás nyári pihenésre vágyóknak.'),
+(21, 19, 55, 'Stockholmi óvárosi séta', 'stockholm_ovaros', 45, 'Fedezze fel Stockholm történelmi óvárosát, Gamla Stant, ahol szűk utcák, színes házak és hangulatos teraszok várják. A város gazdag történelmének megismerése során múzeumok és látogatói központok is szerepelnek a programban. A parti kilátás és a skandináv stílusú kávézók különleges hangulatot adnak az élménynek. Séta közben érdemes helyi kézműves termékeket és specialitásokat kóstolni. Stockholm kulturális és természeti értékeket egyaránt kínál látogatói számára.'),
+(22, 19, 56, 'Malmö modern városnézés', 'malmo_modern', 35, 'Ismerje meg Malmö modern arcát, ahol a városfenntartó és dizájn megoldások egyedi hangulatot teremtenek. A város zöld parkjai és innovative városi terei ideálisak sétához. A helyi utcai művészetek és kávéházak hangulata különleges élményt nyújt. A város a tengerpart közelségével és kikötőivel kombinálja a fiatalos életérzést. Ideális többnapos városnézéshez vagy pihentető programhoz.'),
+(23, 20, 58, 'Oslo fjord túra', '', 60, 'Látogassa meg Oslo híres fjordját és élvezze a norvég természet közelségét a városi környezetben. Hajókiránduláson keresztül fedezheti fel a fjord nyújtotta panorámát és különleges öblöket. A fjord menti túrák során vízre néző kávézók és éttermek is várják a látogatókat. A levegő tisztasága és a hegyvidéki kilátás felejthetetlen élményt kínál. Az egész napos program alkalmas természet és városi élet kombinálására.'),
+(24, 21, 61, 'Helsinki design városnézés', 'helsinki_design', 40, 'Fedezze fel Helsinki modern designkultúráját, amely világhírű az építészet és kreatív terek terén. A város letisztult épületei, galériái és múzeumai inspiráló élményt nyújtanak. Séta közben látogassa meg a helyi dizájnboltokat és kávézókat. A tengerparti sétányok és parkok nyugodt hangulatot biztosítanak a pihenéshez. Helsinkiben a kultúra és a természet harmonikusan egyesül. '),
+(25, 22, 64, 'Varsói történelmi központ', 'varso_ovaros', 35, 'Fedezze fel Varsó történelmi belvárosát, ahol újjáépített óvárosi terek és kávézók várják a látogatókat. A város gazdag történelméről rengeteg információ található helyi múzeumokban. Séta közben fedezze fel a királyi palotát és a városfal maradványait. A lengyel konyha ízei és helyi borai remekül kiegészítik a programot. Ideális kombinált városnézéshez és pihenéshez.'),
+(26, 7, 19, 'Bécsi Prater vidámpark élmény', 'becsi_prater', 55, 'A Bécsi Prater vidámpark egy legendás szórakoztató terület Bécsben, ahol minden korosztály talál kedvére való attrakciót. A park ikonikus óriáskereke, a Riesenrad különleges panorámát nyújt a városra, melyet nem érdemes kihagyni. A vidámparkban számos hullámvasút, játék és étterem várja a látogatókat egész napos szórakozással. A hely története több mint egy évszázados, így nemcsak szórakozás, hanem történelmi élmény is. Ideális családoknak és baráti társaságoknak egyaránt, napközbeni vagy esti programnak is.'),
+(27, 7, 19, 'Bécsi karácsonyi vásár', 'becsi_karacsonyi_vasar', 45, 'Ha Bécsben jársz november végétől decemberig, ne hagyd ki a híres karácsonyi vásárokat, ahol több tucat kézműves stand vár tradicionális ajándékokkal és finomságokkal. A Rathausplatzon megrendezett vásárban helyi ételeket, forralt bort és ünnepi kézműves termékeket kóstolhatsz. A hangulatot élő zene, fények és családi programok teszik felejthetetlenné. A vásárok a város több pontján is megtalálhatók, így könnyen beilleszthetők egy szélesebb városnéző napba. A karácsonyi forgatag Bécs kulturális tradíciójának egyik csúcspontja. '),
+(28, 23, 67, 'Prágai Károly híd esti séta', 'praga_karoly_hid', 40, 'Sétálj át a történelmi Károly hídon, amely a 14. században épült és ma Prága egyik legismertebb nevezetessége. A híd felett idegenvezetés nélkül is gyönyörű kilátás nyílik a Vltava folyóra, valamint a város látképére naplementekor különösen lenyűgöző. A híd mentén utcai művészek és hangszeres zenészek adnak autentikus prágai hangulatot. A környék szűk utcái és hangulatos kávézói remek kiegészítők egy esti programhoz. Ez a séta tökéletes kezdete lehet Prága történelmi felfedezésének. '),
+(29, 23, 67, 'Prágai Nemzeti Színház estje', 'praga_nemzeti_szinhaz', 60, 'Élvezd a klasszikus cseh kultúrát a prágai Nemzeti Színház egyik előadásán, ahol opera, balett vagy dráma várja a közönséget. A történelmi épület díszes belső terei és kiváló akusztikája egyaránt hozzájárulnak az élményhez. A helyi művészek és vendégfellépők előadásai nemcsak helyiek, hanem látogatók számára is felejthetetlen élményt nyújtanak. A program egyaránt szól a művészetek iránt elkötelezetteknek és azoknak, akik új kulturális élményekre vágynak. Foglalj jegyet előre a legjobb helyekre. '),
+(30, 23, 67, 'Prágai sörkóstoló túra', 'praga_sorkostolo', 45, 'Fedezd fel a prágai sörkultúrát egy vezetett sörkóstoló túra során, ahol több helyi sörözőt is meglátogatsz. Csehország híres kiváló söréről és ez a túra lehetőséget ad megkóstolni többféle stílust egy estére egybefűzve. Az idegenvezetők mesélnek a sörfőzés történetéről és a helyi tradíciókról. A részvétel baráti társaságoknak vagy egyedi gasztroprogramnak is kiváló. A séta mellett helyi falatokat is ajánlott kóstolni. '),
+(31, 7, 19, 'Bécsi művészeti galériák', 'becsi_muveszet', 50, 'Bécs gazdag múzeumi és galériás kultúrával rendelkezik, ahol a klasszikus és modern művészetek találkoznak. Látogass el a város híres múzeumaiba, ahol többek között festmények, szobrok és kiállítások várják a látogatókat. A Kunsthistorisches és Albertina gyűjtemények kifejezetten izgalmasak a művészetek iránt érdeklődők számára. A galériák között sétálva megismerheted a Habsburg uralkodók műgyűjteményét is. A program egész napos kulturális kiegészítője lehet egy városnézésnek. '),
+(32, 3, 7, 'Széchenyi termálfürdő és wellness', 'budapest_szechenyi', 50, 'Tapasztald meg Budapest híres termálfürdőjének, a Széchenyi Fürdőnek a pihentető élményét, amely Európa egyik legnagyobb gyógyfürdő komplexuma. A neo‑barokk épület gyógyvizes medencéi és wellness szolgáltatásai egész napos pihenést kínálnak. A fürdőben szaunák, gőzfürdők és masszázs szolgáltatások is elérhetők. A hely különleges hangulatát a helyiek és a turisták egyaránt szeretik. A fürdőzés után érdemes egy tradicionális magyar éttermet is kipróbálni a környéken. '),
+(33, 3, 7, 'Budapesti városnéző biciklitúra', 'budapest_bicikli', 35, 'Fedezd fel Budapest nevezetességeit két keréken egy vezetett biciklitúra során. Az útvonal magában foglalja a Parlamentet, a Budai Várat, a Duna partot és több ikonikus helyszínt. A túra során helyi történeteket és érdekességeket is hallhatsz a város múltjáról. A bicikli lehetőséget ad arra, hogy több látnivalót fedezz fel rövidebb idő alatt. Kényelmes tempó, ideális kezdőknek és városi felfedezőknek egyaránt. '),
+(34, 3, 7, 'Budapesti gasztro piac kóstoló', 'budapest_gasztro_piac', 30, 'Látogasd meg Budapest híres Nagy Vásárcsarnokát, ahol a helyi termékek, sajtok és élelmiszerek kavalkádja vár. A piac tetején már éttermek is találhatók, ahol tradicionális magyar ételeket kóstolhatsz. Ismerd meg a helyi konyhaművészetet, valamint a tradicionális magyar ízeket. A piac környékén sétálva további helyi éttermeket és kávézókat fedezhetsz fel. Ideális gasztro élmény egy városnéző nap után. '),
+(35, 6, 16, 'Berlin Múzeum-sziget nap', 'berlin_museum_sziget', 60, 'Berlin híres Múzeum‑szigete világhírű gyűjteményekkel vár minden művészet és történelem iránt érdeklődőt. Több ikonikus múzeumot foglal magában, amelyekben műkincsek és történeti kiállítások találhatók. A helyszín egy UNESCO világarvasi terület része, így a látogatás akár egész napos program is lehet. A gyűjtemények között ókori és modern alkotások is megtalálhatók. A környék kávézóival és parkjaival együtt kiváló kulturális élmény vár. '),
+(36, 6, 16, 'Berlin street art séta', 'berlin_street_art', 40, 'Fedezd fel Berlin alternatív arcát egy vezetett street art sétán keresztül, ahol a város híres falfestményeit és graffiti kultúráját ismerheted meg. A túra során helyi művészek munkáin keresztül bepillantást nyerhetsz a kortárs berlini kultúrába. A séta olyan kerületeket is érint, ahol a kreatív közösségek és kávézók találhatók. A program interaktív és inspiráló élmény minden művészet iránt érdeklődő számára. A túra után érdemes helyi kávézóban pihenni. '),
+(37, 2, 4, 'Római Fórum és Palatinus', 'roma_forum', 50, 'Látogasd meg Róma ókori világának szívét, ahol a Fórum és a Palatinus domb maradványai várják a látogatókat. Ezek a helyszínek az ókori Róma politikai és társadalmi életének központjai voltak. A séták során megismerheted az ókori építészet és kultúra lenyűgöző részleteit. A helyszín panorámás kilátást is kínál a városra. Történelmi és kulturális élmény egyben. '),
+(38, 2, 6, 'Nápolyi tengerpart esti program', 'napoly_tengerpart', 45, 'Élvezd Nápoly tengerpartjának esti hangulatát, ahol éttermek, bárok és sétányok várnak a látogatókat. A tengerpart menti sétány különleges mediterrán hangulatot ad a városnézéshez. A naplemente látványa a Vezúv felé lenyűgöző. A környék tele van gelato bárokkal és helyi pizzériákkal, amelyek autentikus pizzát kínálnak. Ez az élmény ideális romantikus vacsora vagy baráti est programnak. '),
+(39, 2, 5, 'Milánó divatnap', 'milano_divatnap', 50, 'Látogasd meg Milánó híres divatnegyedét, ahol a világ márkái és elegáns üzletek sorakoznak egymás mellett. Ez az élmény lehetőséget kínál arra, hogy betekintést nyerj a világ divatkultúrájába. A Dóm tér és a Galleria Vittorio Emanuele II közelsége kiegészíti a programot ikonikus építészeti látványokkal. A séta után egy olasz kávézó ideális hely a pihenéshez. Ez a nap tökéletes program divatszeretőknek és stílusos városnézőknek. '),
+(40, 8, 22, 'Athén ókori kikötő és agora', 'athen_agora', 50, 'Fedezd fel Athén ókori kikötőjét és az agorát, ahol az ókor életének központjai zajlottak. A helyszín tele van történelmi romokkal, és életre kelti a görög mitológia történeteit. Az agora közösségi tere mindig pezsgő volt az üzlettel és beszélgetéssel. Ma múzeumok és kiállítások egészítik ki az élményt. A program ideális történelem iránt érdeklődőknek. '),
+(41, 8, 24, 'Rodosz óvárosi séta', 'rodosz_ovaros', 45, 'Fedezze fel Rodosz óvárosát, mely UNESCO világhagyaték része történelmi falakkal, keskeny utcákkal és gazdag múzeumi kiállításokkal. A séta során a középkori utcakép és a lovagvár maradványai különleges hangulatot adnak. A környező parkok és kávézók ideálisak pihenéshez. A helyi piacok különleges helyi termékeket kínálnak. Ez az élmény remek kombinációja a történelemnek és a pihenésnek. '),
+(42, 19, 55, 'Stockholm vízi túra', 'stockholm_vizi', 50, 'Látogasd meg Stockholm híres vízi útjait hajóval, ahol a város különleges szigetei és épületei a vízről is lenyűgöző látványt nyújtanak. A hajóút során a történelmi és modern részletek együtt alkotnak felejthetetlen panorámát. A túra ideális családoknak és barátoknak egyaránt. A kikötők mentén éttermek és kávézók kínálnak helyi finomságokat. A vízi kaland egy egész napos programhoz is kiváló kiegészítő. '),
+(43, 19, 56, 'Malmö design séta', 'malmo_design', 40, 'Fedezd fel Malmö modern építészetét és design negyedét, ahol a város letisztult stílusú terekkel és kreatív terekkel vár. A séta során kortárs művészeti létesítmények és üzletek is találhatók. A városi parkok és terek ideális helyet kínálnak egy pihentető naphoz. A helyi kávézók különleges ízeket kínálnak. Ez az élmény kombinálja a kreativitást és városnézést. '),
+(44, 20, 58, 'Oslo fjord naplemente túra', 'oslo_naplemente', 60, 'Fedezd fel Oslo híres fjordját egy hajókirándulással naplemente idején, ahol a táj és a tenger találkozása különleges hangulatot ad a túrának. A fjord mentén a norvég természet csodálatos látványa tárul fel, miközben a város panorámája is kivehető. A program ideális romantikus esti programnak vagy családi kirándulásnak. A fedélzeten kávé és helyi harapnivalók is fogyaszthatók. Ez egy izgalmas kombinációja a természeti és városi élményeknek. '),
+(45, 21, 61, 'Helsinki múzeumi nap', 'helsinki_muzeum', 40, 'Látogasd meg Helsinki művészeti és történelmi múzeumait, ahol a finn kultúra és történelem gazdag gyűjteménye várja a látogatókat. A múzeumok közel vannak egymáshoz, így könnyen teljes napot tölthetsz velük. A kiállítások interaktív elemeket és helytörténeti részleteket is tartalmaznak. A múzeumi nap kiegészíthető egy tengerparti sétával vagy helyi kávézók meglátogatásával. Ideális program rossz idő esetén is. '),
+(46, 22, 64, 'Varsói történelmi múzeum', 'varso_tortenelem', 35, 'Látogasd meg Varsó történelmi múzeumát, ahol a lengyel főváros és környékének gazdag történetét ismerheted meg. A kiállítások részletesen bemutatják a város fejlődését a középkortól napjainkig. A múzeum belső tere modern és interaktív. A környéken sétálva könnyen meglátogathatók további történelmi helyszínek. A program ideális történelem iránt érdeklődők számára. '),
+(47, 3, 7, 'Budapesti Lánchíd esti séta', 'budapest_lanchid', 30, 'Sétálj át a világhírű Széchenyi Lánchídon, amely a Duna két partját, Budát és Pestet köti össze. Ez az egyik legismertebb budapesti ikon, amely este különösen hangulatos a kivilágított várossal és folyóparttal. A híd története az 1840‑es évekre nyúlik vissza, és ma a város szimbólumaként is szolgál. Sétálj végig rajta, miközben csodálod a város panorámáját és a város fő látványosságait. A környék tele van éttermekkel és kávézókkal egy kellemes esti programhoz. '),
+(48, 3, 7, 'Budai Vár és Királyi Palota', 'budai_var_palota', 55, 'Látogass el a történelmi Budai Várba, ahol a Királyi Palota és a várnegyed gazdag történelmi emlékeket kínál. A komplexum részét képezi a Magyar Nemzeti Galéria és a Budapesti Történeti Múzeum is. A vár teraszairól csodás kilátás nyílik a Dunára és Pest városrészére. A helyszín UNESCO világörökségi része, így kulturális és történelmi élmény egyaránt. Fedezd fel a középkori és barokk kori építészetet, valamint sétálj a vár falai mentén. '),
+(49, 3, 7, 'Szent István‑bazilika & kilátó', 'budapest_bazilika', 40, 'Ismerd meg Budapest harmadik legnagyobb templomát, a Szent István‑bazilikát, amely egyben az egyik legszebb neoklasszikus épület is. A bazilika belsejében megtekinthető Magyarország első királyának, Szent Istvánnak a jobb keze is. A torony kilátójából 360°‑os panoráma nyílik a városra, különösen naplementekor látványos. A templom rendszeresen ad organikus koncerteket, amelyek hangulatát érdemes átélni. Ez a helyszín történelmi és spirituális élményt egyaránt kínál. :contentReference[oaicite:1]{index=1}'),
+(50, 3, 7, 'Memento Park szabadtéri múzeum', 'budapest_memento_park', 35, 'Fedezd fel Budapest egyik egyedi múzeumát, a Memento Parkot, ahol a kommunizmus idején állított szobrok és emlékművek várnak szabadtéri kiállítással. A park egy történelmi időszakot idéz meg, amikor a szocialista rendszer emlékeit gyűjtötték itt össze. Látogasd meg az impozáns Lenin‑ és Marx‑szobrokat is, amelyek a múlt erejét és a demokrácia jelentőségét emelik ki. A hely interaktív módon mutatja be az elmúlt korszak társadalmi történetét. Ideális program történelem iránt érdeklődők számára. :contentReference[oaicite:2]{index=2}'),
+(51, 3, 7, 'Gellért‑hegyi barlang & kilátás', 'budapest_gellert-barlang', 30, 'Látogasd meg a Gellért‑hegy barlangját, amely egy természetes barlangrendszer a város egyik legszebb panorámájú pontján. A barlang történelme egy hermita legendájához kötődik, ahol a természet gyógyító erejét is megismerheted. A hegy tetejéről csodás kilátás nyílik a Duna folyóra és a városra. A barlang mellett a Gellért fürdő és a hegy környéke is remek pihenési lehetőséget kínál. A kirándulás kombinálja a természetet, történelmet és városi panorámát. :contentReference[oaicite:3]{index=3}'),
+(52, 3, 8, 'Szegedi Dóm tér koncert & séta', 'szeged_dom_esti', 25, 'Látogass el a szegedi Dóm térre egy esti sétára és koncertre, ahol a város híres főtere különleges hangulatot kínál. A monumentális katedrális és a környék építészete egyedülálló látványt nyújt. Sokszor rendeznek klasszikus és könnyűzenei esteket a téren vagy a közelben található színpadokon. A program során élvezheted a város építészeti szépségét és a helyi kulturális életet. A tér mentén hangulatos kávézók és éttermek is várnak. '),
+(53, 3, 9, 'Debreceni Nagyerdei Élménypark', 'debrecen_nagyerdei', 30, 'Fedezd fel Debrecen zöld szívét, a Nagyerdőt, ahol szabadtéri programok és élménypark is várja a látogatókat. A parkban sétálva rengeteg pihenőhely és kulturális esemény kínálkozik. Gyermekbarát játékok és sportlehetőségek teszik különlegessé a helyet. A Nagyerdőben gyakran rendeznek zenei eseményeket és kulturális vásárokat is. Ideális hely családi vagy baráti kikapcsolódásra. '),
+(54, 4, 10, 'Louvre esti séta & kiállítás', 'parizs_louvre_esti', 55, 'Sétálj végig a világhírű Louvre Múzeum környezetében Párizsban, ahol a múzeum épülete és kertjei már önmagukban műalkotások. A világ egyik legnagyobb és leggazdagabb művészeti gyűjteménye itt található, mely festmények és szobrok sokaságát foglalja magában. Az esti kivilágítás különleges hangulatot ad a környéknek. A környező kávézók és teraszok ideális helyszínt kínálnak pihenéshez. A séta történelmi és kulturális élményt nyújt egyaránt. '),
+(55, 4, 10, 'Montmartre művészeti séta', 'parizs_montmartre', 45, 'Fedezd fel Montmartre dombjának művészeti negyedét, ahol festőművészek, galériák és hangulatos utcák várják a látogatót. A hely különleges bohém atmoszférát áraszt, és a Sacré‑Cœur bazilika panorámát nyújt Párizsra. Éttermek, kávézók és kis butikok teszik teljessé az élményt. A séta során megismerheted a város művészeti történelmét és jelenlegi kreatív életét. Ideális napközbeni vagy esti programnak. '),
+(56, 6, 16, 'Berlin Brandenburgi kapu esti fotózás', 'berlin_brandenburg', 35, 'Látogasd meg Berlin híres Brandenburgi kapuját egy esti séta során, amikor a kivilágított emlékmű különösen impozáns látványt nyújt. Ez a kapu a város egyik legismertebb szimbóluma, amely a német történelem fontos pontjait idézi fel. A környéken számos étterem és bár is található, ahol kikapcsolódhatsz. A fotózás mellett hallhatsz történeteket is a hely történelméről egy vezetett sétán. Berlin dinamikus hangulata minden időszakban érezhető. '),
+(57, 6, 16, 'Berlin panoráma kilátó', 'berlin_panorama_kilato', 40, 'Fedezd fel Berlin legjobb panorámáját egy modern kilátóteraszról, ahonnan egész városra ráláthatsz. A kilátó arról híres, hogy naplemente idején egészen különleges fényeket ad a város látképének. A program kombinálja a városnézést és fotózást, miközben megismerheted Berlin sokszínű építészetét. A kilátó környéke üzletekkel és kávézókkal is várja a látogatókat. Ideális fiataloknak és családoknak egyaránt. '),
+(58, 2, 4, 'Római Pantheon látogatás', 'roma_pantheon', 40, 'Látogasd meg Rómában a Pantheont, az ókori római építészet egyik legjobban megőrzött művét. Az épület kupolája különleges akusztikát és fényhatásokat kínál. A belső térben több történelmi síremlék is található. A Pantheon az építészeti kiválóság és az ókori kultúra emlékműve. A környék éttermei és kávézói teszik teljessé a látogatást. '),
+(59, 2, 6, 'Nápoly & Vezúv panoráma túra', 'napoly_vezuv', 50, 'Fedezd fel Nápoly városát és környékét egy panorámás túrán keresztül, ahol a híres Vezúv tűzhányóra is kilátást kapsz. A környék mediterrán hangulata és a tengerpart közelsége teszi különlegessé a programot. A túra során látogass el történelmi helyszínekhez és kilátóponthoz is. A Vezúv környéki kilátás különösen naplementekor lenyűgöző. A nap túrával és tengerparti pihenéssel egészíthető ki. '),
+(60, 2, 5, 'Milánói dóm templom', 'milano_dom', 45, 'Látogasd meg Milánó egyik legismertebb nevezetességét, a milánói dómot, amely egy hatalmas gótikus stílusú katedrális. A tetőteraszra felmenve fantasztikus kilátás nyílik a városra és a környező tájakra. A templom belső díszítése és szobrai egyaránt lenyűgözők. A környéken rengeteg kávézó és kis üzlet várja a látogatókat. Ez az élmény mind történelmi, mind kulturális szempontból emlékezetes. '),
+(61, 8, 22, 'Athéni ókori múzeum', 'athen_muzeum', 45, 'Látogasd meg Athén egyik legismertebb múzeumát, ahol az ókori görög kultúra gazdag tárgyi emlékei várják. A kiállított tárgyak részletesen bemutatják az ókor mindennapi életét és művészetét. A múzeum közelében éttermek és kávézók találhatók, így a látogatás könnyen kombinálható egy hosszabb sétával is. Ideális program művelődni vágyóknak. '),
+(62, 8, 24, 'Rodoszi vízi sport nap', 'rodosz_vizi_sport', 50, 'Élvezd Rodosz szigetén a vízi sportok kínálta izgalmakat, ahol jet ski, szörf és egyéb vizes programok várnak. A kristálytiszta tenger és a part közelsége ideális feltételeket biztosít minden korosztálynak. A program során helyi oktatók segítenek a biztonságos részvételben. A vízi sportok után pihenhetsz a parton, vagy egy helyi taverna teraszán. Ez a nap aktív pihenést kínál a tengerparti élményhez. '),
+(63, 19, 55, 'Stockholmi múzeum túra', 'stockholm_muzeum', 50, 'Fedezd fel Stockholm kulturális életét egy múzeumi és galéria túrán keresztül, ahol modern és klasszikus művészetek is várnak. A város múzeumai széles gyűjteményeket tartalmaznak több stílusban is. A túra során lehetőséged nyílik interaktív és történelmi kiállítások megtekintésére. A program ideális kültéri sétával is kombinálható. A város part menti közelsége különleges hangulatot ad az egész napos programnak. '),
+(64, 19, 56, 'Malmö éjszakai városnézés', 'malmo_ejszakai', 35, 'Fedezd fel Malmö éjszakai életét és városnézését egy esti sétán keresztül, ahol a város modern épületei, fények és kávézók különleges hangulatot kínálnak. Az éjszakai séta során a város főtere és parkjai kivilágítva még varázslatosabbak. Találj helyi éttermeket ebben a hangulatban. Ez egy kellemes esti program a városi kultúra felfedezésére. '),
+(65, 20, 58, 'Oslo Opera & fjord panoráma', 'oslo_opera_fjord', 60, 'Látogasd meg az Oslo ikonikus Operaházát, amely modern építészetével lenyűgöz és egyben panorámás kilátást kínál a fjordra. A tetőtérre felmenve csodás kilátás nyílik a fjord és a város felett. A program során sétálj a vízparti sétányok mentén is. Az opera előtti területek tökéletesek egy piknikezéshez vagy naplemente élményhez. Ez az élmény kombinálja a modern építészetet és a természeti panorámát. '),
+(66, 21, 61, 'Helsinki tengerparti séta', 'helsinki_tengerpart', 40, 'Fedezd fel Helsinki tengerparti sétányait, ahol a tengeri levegő és parkosított sétautak ideális feltételeket kínálnak a pihenéshez és a látványhoz. A vízparti sétány mentén kis éttermek és kávézók találhatók, ahol helyi specialitásokat kóstolhatsz. Ez egy kellemes napközbeni program, amely ötvözi a természetet és a városi élményt. '),
+(67, 22, 64, 'Varsói gasztro & városnézés', 'varso_gasztro', 35, 'Fedezd fel Varsó történelmi központját egy gasztro és városnéző programmal, ahol helyi éttermek, ételkóstolók és séták váltják egymást. A város történelmi tereit és parkjait is érintheted. A program során megismerheted a lengyel konyha különlegességeit és a helyi piacokat. Ez az élmény ideális kombinációja a kulináris és városi felfedezésnek. '),
+(68, 19, 55, 'Stockholmi Gamla Stan óvárosi séta', 'stockholm_gamla_stan', 45, 'Fedezd fel Stockholm történelmi óvárosát, Gamla Stan‑t, ahol kanyargó, macskaköves utcák és régi épületek találkoznak a modern városi élettel. A terület a 13. század óta játszik központi szerepet a svéd főváros építészetében és történetében, és számos ikonikus épületet foglal magába, mint a Nobel Múzeum és a Királyi Palota. Sétálj végig a Stortorget főtéren, nézd meg a régi árkádos házakat, majd kóstolj helyi svéd specialitásokat a hangulatos kávézók egyikében. Ez az élmény kombinálja a történelmet, kultúrát és a városi hangulatot egyaránt. :contentReference[oaicite:1]{index=1}'),
+(69, 19, 55, 'Stockholmi modern múzeum túra', 'stockholm_modern_muzeum', 50, 'Látogasd meg Stockholm izgalmas modern múzeumait, ahol kortárs művészeti és technikai kiállítások várnak. A város kulturális kínálata számos gyűjteményből áll, melyek között történeti, modern és interaktív kiállítások is szerepelnek. A múzeumok közötti séta jól kombinálható egy kikötői panorámaúttal vagy városi gasztro kóstolóval. Ez a program ideális városi kulturális kaland mindenkinek. '),
+(70, 19, 56, 'Malmö múzeumi és történelmi kastély látogatás', 'malmo_muzeum_kastely', 40, 'Fedezd fel Malmö kulturális oldalát a Malmö Múzeumban, amelynek kiállításai a város technikai, történelmi és természeti örökségét mutatják be. A múzeum fő helyszíne a történelmi Malmö Castle komplexum, ahol többek között a régészeti és maritime gyűjtemények is megtalálhatók. A kiállítások mellett sétálj a parkosított kastélykertben és ismerkedj a város történelmével. Malmö izgalmas kombinációja a múlt és jelen kultúrájának. :contentReference[oaicite:2]{index=2}'),
+(71, 20, 58, 'Oslo fjordparti esti séta', 'oslo_fjordparti_seta', 45, 'Élvezd az Oslo fjord menti sétány nyugodt hangulatát, ahol a tengerpart és a modern városi élet találkozik. A sétány ideális hely egy romantikus estére vagy baráti társasággal eltöltött programra, miközben a város panorámája és a víz közelsége különleges légkört ad a városi kalandnak. A környéken számos étterem és kávézó vár helyi specialitásokkal. Ez a program ötvözi a természeti szépséget és a városi élményt. '),
+(72, 20, 58, 'Oslo skandináv gasztro túra', 'oslo_gasztro', 50, 'Merülj el az oslói gasztrokultúrában egy helyi ízeket bemutató városi túra során. Kóstold meg a norvég specialitásokat, friss halételeket és tradicionális fogásokat a fjord parti éttermekben. A gasztro túra során helyi piacokat és modernebb bisztrókat is meglátogatsz. Ez a program különleges kombinációja a kulináris élménynek és a városi felfedezésnek. '),
+(73, 21, 61, 'Helsinki design séta', 'helsinki_design_seta', 40, 'Helsinki az északi design és modern építészet fellegvára, melyet érdemes gyalogosan felfedezni. A város különleges épületei és sztenderd tervezési példái megmutatják a skandináv kreativitást. A séták során megismerheted a helyi design múzeumokat, galériákat és butikokat. Ez a kulturális élmény ötvözi a kreativitást, városi parkokat és tengerparti panorámát is. '),
+(74, 21, 61, 'Helsinki naplemente hajókirándulás', 'helsinki_hajo', 55, 'Fedezd fel Helsinki tengerparti panorámáját egy naplemente hajókirándulás során, ahol a város látképe a vízről különleges élményt nyújt. A fedélzeti kávézóban helyi harapnivalókat is kóstolhatsz, miközben a lenyugvó nap fényei megvilágítják a kikötőt és a várost. Ez a program romantikus élményként és városi kiruccanásként egyaránt ideális. '),
+(75, 22, 64, 'Varsói Királyi Kastély és park', 'varso_kiralyi_kastely', 45, 'Látogasd meg a varsói Királyi Kastélyot, ahol a lengyel történelem és királyi élet lenyűgöző emlékei várnak. A kastély gyönyörű termei, díszes szobái és környező parkjai ideális helyszínt biztosítanak egy hosszabb városi sétahoz. A környéken éttermek és kávézók sora található, így könnyen egész napos programot tervezhetsz. Ez az élmény történelmi és kulturális dimenziót ad a városi túrához. '),
+(76, 22, 64, 'Varsói modern művészet galéria', 'varso_modern_galeria', 40, 'Fedezd fel Varsó vibráló modern művészeti életét egy galéria látogatás során, ahol kortárs lengyel és nemzetközi alkotások várnak. A kiállítások sokszínűsége és kreatív hangulata inspiráló élményt kínál minden művészetkedvelő számára. A környék éttermei és kávézói további kulturális felfedezést tesznek lehetővé. '),
+(77, 24, 70, 'Pozsonyi Óváros történelmi séta', 'pozsony_ovaros', 35, 'Fedezd fel Pozsony történelmi óvárosát, ahol középkori utcák, hangulatos terek és gazdag építészeti örökség vár. A Fő tér és a régi városháza különleges hangulatot ad az egész napos sétának. Ismerd meg a város történelmét és legendáit egy idegenvezetéssel vagy önállóan. A séta ideális program egy hosszabb városi kiruccanáshoz. :contentReference[oaicite:3]{index=3}'),
+(78, 24, 70, 'Pozsonyi zenei esték & kulturális program', 'pozsony_zene', 45, 'Vegyél részt egy kulturális estén Pozsonyban, ahol klasszikus zenei koncert vagy helyi jazz est vár. A program kombinálja a helyi zenészek műsorát és a város hangulatos légkörét, ideális esti kikapcsolódásra. Ez az élmény remekül illeszthető vacsorához vagy városnézéshez. '),
+(79, 23, 69, 'České Budějovice Black Tower kilátó', 'ceske_budejovice_blacktower', 30, 'Látogasd meg České Budějovice történelmi Black Tower kilátóját, amely a város egyik legjellegzetesebb látnivalója. A tornyot a 16. században építették védekező célokra és ma panorámás kilátót kínál a városra. A közeli középkori épületek és hangulatos utcák ideális környezetet adnak a városi felfedezéshez. A kilátóból lenyűgöző panoráma nyílik a város tetejéről. :contentReference[oaicite:4]{index=4}'),
+(80, 23, 69, 'České Budějovice Iron Maiden Tower', 'ceske_budejovice_ironmaiden', 35, 'Fedezd fel az Iron Maiden tornyot, egy középkori börtön és erődített rész, ahol történelmi fegyverek és kiállítások várnak. A torony egykor a város védelmében szolgált, ma pedig izgalmas kulturális programot kínál a látogatóknak. A környező óváros és kávézók ideális hely egy hosszabb délutáni sétára. :contentReference[oaicite:5]{index=5}'),
+(81, 23, 68, 'Brno gasztro & városnézés', 'brno_gasztro', 40, 'Fedezd fel Brno hangulatos éttermeit és kávézóit egy helyi gasztro túra során, miközben a város történelmi központját is megismered. A séta során helyi specialitásokat kóstolhatsz, miközben a város történelmi tereit és épületeit is megcsodálod. Ez az élmény ideális gasztronómiai és városi felfedezésre egyaránt. '),
+(82, 23, 68, 'Brno zenei & rendezvény est', 'brno_zenei_est', 45, 'Vegyél részt egy helyi zenei esten Brnóban, ahol helyi előadók koncertjei és rendezvények várnak a városi kulturális térben. A hangulatos helyszínek és bárok kombinációja ideális esti programot biztosít. Ez a helyi élmény autentikus betekintést ad Brno zenei és kulturális életébe, és felejthetetlen élményt nyújt a látogatóknak.');
 
 -- --------------------------------------------------------
 
@@ -748,7 +813,6 @@ CREATE TABLE `favourite` (
 
 INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
 (10, 2, 35),
-(23, 2, 54),
 (43, 3, 60),
 (27, 4, 30),
 (11, 6, 10),
@@ -756,7 +820,6 @@ INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
 (30, 9, 98),
 (48, 11, 56),
 (45, 12, 88),
-(13, 15, 22),
 (15, 18, 74),
 (9, 20, 31),
 (34, 21, 69),
@@ -777,7 +840,6 @@ INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
 (31, 51, 10),
 (44, 54, 55),
 (28, 59, 6),
-(37, 59, 22),
 (1, 59, 42),
 (22, 59, 93),
 (50, 61, 30),
@@ -824,56 +886,56 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price`, `payment_type`, `card_number`, `expiration`, `cvv`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
-(151, 1, 10, 1, 1200, 'paid', '4111111111111111', '12/26', 123, '2025-01-02', '2025-01-10', '2025-01-15'),
-(152, 2, 11, 2, 800, 'paid', '4222222222222222', '05/25', 234, '2025-02-05', '2025-02-10', '2025-02-12'),
-(153, 3, 12, 3, 1500, 'paid', '4333333333333333', '09/27', 345, '2025-03-01', '2025-03-10', '2025-03-15'),
-(154, 4, 13, 4, 600, 'paid', '4444444444444444', '11/25', 456, '2025-01-20', '2025-01-25', '2025-01-28'),
-(155, 5, 14, 5, 1000, 'paid', '4555555555555555', '07/26', 567, '2025-04-01', '2025-04-05', '2025-04-10'),
-(156, 6, 15, 6, 900, 'paid', '4666666666666666', '03/25', 678, '2025-05-02', '2025-05-10', '2025-05-14'),
-(157, 7, 16, 7, 1100, 'paid', '4777777777777777', '10/26', 789, '2025-06-01', '2025-06-05', '2025-06-10'),
-(158, 8, 17, 8, 750, 'paid', '4888888888888888', '01/27', 890, '2025-07-03', '2025-07-10', '2025-07-12'),
-(159, 9, 18, 9, 1300, 'paid', '4999999999999999', '08/25', 901, '2025-08-01', '2025-08-05', '2025-08-10'),
-(160, 10, 19, 10, 1400, 'paid', '4000111122223333', '06/26', 234, '2025-09-05', '2025-09-10', '2025-09-15'),
-(161, 11, 20, 11, 1600, 'paid', '4111222233334444', '12/25', 345, '2025-10-01', '2025-10-05', '2025-10-12'),
-(162, 12, 21, 12, 950, 'paid', '4222333344445555', '09/26', 456, '2025-11-01', '2025-11-05', '2025-11-08'),
-(163, 13, 22, 13, 1200, 'paid', '4333444455556666', '04/27', 567, '2025-12-01', '2025-12-05', '2025-12-10'),
-(164, 14, 23, 14, 700, 'paid', '4444555566667777', '05/26', 678, '2025-01-05', '2025-01-10', '2025-01-13'),
-(165, 15, 24, 15, 1050, 'paid', '4555666677778888', '07/25', 789, '2025-02-01', '2025-02-05', '2025-02-10'),
-(166, 16, 25, 16, 850, 'paid', '4666777788889999', '03/26', 890, '2025-03-03', '2025-03-10', '2025-03-12'),
-(167, 17, 26, 17, 1150, 'paid', '4777888899990000', '10/25', 901, '2025-04-01', '2025-04-05', '2025-04-10'),
-(168, 18, 27, 18, 780, 'paid', '4888999900001111', '01/26', 234, '2025-05-02', '2025-05-05', '2025-05-08'),
-(169, 19, 28, 19, 1320, 'paid', '4999000011112222', '08/26', 345, '2025-06-01', '2025-06-05', '2025-06-10'),
-(170, 20, 29, 20, 1450, 'paid', '4000111122223334', '06/25', 456, '2025-07-01', '2025-07-05', '2025-07-12'),
-(171, 21, 10, 21, 1250, 'paid', '4111111111115555', '12/26', 567, '2025-08-03', '2025-08-10', '2025-08-15'),
-(172, 22, 11, 22, 870, 'paid', '4222222222226666', '05/25', 678, '2025-09-01', '2025-09-05', '2025-09-08'),
-(173, 23, 12, 23, 1550, 'paid', '4333333333337777', '09/27', 789, '2025-10-02', '2025-10-05', '2025-10-12'),
-(174, 24, 13, 24, 620, 'paid', '4444444444448888', '11/25', 890, '2025-11-05', '2025-11-10', '2025-11-12'),
-(175, 25, 14, 25, 1020, 'paid', '4555555555559999', '07/26', 901, '2025-12-01', '2025-12-05', '2025-12-10'),
-(176, 26, 15, 26, 910, 'paid', '4666666666661111', '03/25', 234, '2025-01-10', '2025-01-15', '2025-01-18'),
-(177, 27, 16, 27, 1110, 'paid', '4777777777772222', '10/26', 345, '2025-02-02', '2025-02-05', '2025-02-10'),
-(178, 28, 17, 28, 760, 'paid', '4888888888883333', '01/27', 456, '2025-03-01', '2025-03-03', '2025-03-06'),
-(179, 29, 18, 29, 1340, 'paid', '4999999999994444', '08/25', 567, '2025-04-05', '2025-04-10', '2025-04-15'),
-(180, 30, 19, 30, 1420, 'paid', '4000111122225555', '06/26', 678, '2025-05-01', '2025-05-05', '2025-05-10'),
-(181, 31, 20, 31, 1610, 'paid', '4111222233336666', '12/25', 789, '2025-06-01', '2025-06-05', '2025-06-12'),
-(182, 32, 21, 32, 970, 'paid', '4222333344447777', '09/26', 890, '2025-07-01', '2025-07-05', '2025-07-08'),
-(183, 33, 22, 33, 1210, 'paid', '4333444455558888', '04/27', 901, '2025-08-01', '2025-08-05', '2025-08-10'),
-(184, 34, 23, 34, 710, 'paid', '4444555566669999', '05/26', 234, '2025-09-02', '2025-09-05', '2025-09-08'),
-(185, 35, 24, 35, 1070, 'paid', '4555666677770000', '07/25', 345, '2025-10-01', '2025-10-05', '2025-10-10'),
-(186, 36, 25, 36, 860, 'paid', '4666777788881111', '03/26', 456, '2025-11-03', '2025-11-05', '2025-11-08'),
-(187, 37, 26, 37, 1160, 'paid', '4777888899992222', '10/25', 567, '2025-12-01', '2025-12-05', '2025-12-10'),
-(188, 38, 27, 38, 790, 'paid', '4888999900003333', '01/26', 678, '2025-01-02', '2025-01-05', '2025-01-08'),
-(189, 39, 28, 39, 1330, 'paid', '4999000011114444', '08/26', 789, '2025-02-01', '2025-02-05', '2025-02-10'),
-(190, 40, 29, 40, 1460, 'paid', '4000111122226666', '06/25', 890, '2025-03-01', '2025-03-05', '2025-03-12'),
-(191, 41, 10, 41, 1260, 'paid', '4111111111117777', '12/26', 901, '2025-04-01', '2025-04-05', '2025-04-10'),
-(192, 42, 11, 42, 880, 'paid', '4222222222228888', '05/25', 234, '2025-05-01', '2025-05-05', '2025-05-08'),
-(193, 43, 12, 43, 1560, 'paid', '4333333333339999', '09/27', 345, '2025-06-01', '2025-06-05', '2025-06-12'),
-(194, 44, 13, 44, 630, 'paid', '4444444444441111', '11/25', 456, '2025-07-01', '2025-07-05', '2025-07-08'),
-(195, 45, 14, 45, 1030, 'paid', '4555555555552222', '07/26', 567, '2025-08-01', '2025-08-05', '2025-08-10'),
-(196, 46, 15, 46, 920, 'paid', '4666666666663333', '03/25', 678, '2025-09-01', '2025-09-05', '2025-09-08'),
-(197, 47, 16, 47, 1120, 'paid', '4777777777774444', '10/26', 789, '2025-10-01', '2025-10-05', '2025-10-10'),
-(198, 48, 17, 48, 770, 'paid', '4888888888885555', '01/27', 890, '2025-11-01', '2025-11-03', '2025-11-06'),
-(199, 49, 18, 49, 1350, 'paid', '4999999999996666', '08/25', 901, '2025-12-01', '2025-12-05', '2025-12-10'),
-(200, 50, 19, 50, 1430, 'paid', '4000111122227777', '06/26', 234, '2025-01-01', '2025-01-05', '2025-01-10');
+(1, 4, 3, 1, 780, 'paid', '4111111111111111', '07/27', 321, '2025-01-02', '2025-01-05', '2025-01-08'),
+(2, 5, 14, 2, 364, 'paid', '453210000000002', '09/27', 102, '2025-01-03', '2025-01-06', '2025-01-08'),
+(3, 6, 50, 3, 792, 'paid', '5555444433332222', '11/28', 654, '2025-01-05', '2025-01-09', '2025-01-12'),
+(4, 7, 22, 4, 352, 'paid', '453210000000003', '10/29', 103, '2025-01-07', '2025-01-10', '2025-01-12'),
+(5, 8, 12, 5, 328, 'paid', '4000123412341234', '06/26', 456, '2025-01-10', '2025-01-12', '2025-01-14'),
+(6, 9, 65, 6, 820, 'paid', '453210000000004', '11/28', 104, '2025-01-12', '2025-01-15', '2025-01-20'),
+(7, 10, 4, 7, 324, 'paid', '4222222222222', '08/26', 778, '2025-01-15', '2025-01-18', '2025-01-21'),
+(8, 11, 3, 8, 888, 'paid', '453210000000005', '12/27', 105, '2025-01-18', '2025-01-22', '2025-01-25'),
+(9, 12, 4, 9, 408, 'paid', '5555666677778888', '02/29', 321, '2025-01-20', '2025-01-23', '2025-01-26'),
+(10, 13, 5, 10, 1512, 'paid', '453210000000006', '01/30', 106, '2025-01-22', '2025-01-25', '2025-01-28'),
+(11, 14, 8, 13, 890, 'paid', '4012888888881881', '09/29', 741, '2025-02-01', '2025-02-04', '2025-02-07'),
+(12, 15, 9, 14, 330, 'paid', '453210000000007', '02/29', 107, '2025-02-03', '2025-02-06', '2025-02-09'),
+(13, 16, 10, 15, 1800, 'paid', '4111111111111111', '08/27', 321, '2025-02-05', '2025-02-10', '2025-02-13'),
+(14, 17, 11, 16, 396, 'paid', '453210000000008', '03/28', 108, '2025-02-07', '2025-02-11', '2025-02-14'),
+(15, 18, 12, 17, 912, 'paid', '5555555555554444', '07/26', 234, '2025-02-10', '2025-02-13', '2025-02-17'),
+(16, 19, 13, 18, 1230, 'paid', '453210000000009', '04/27', 109, '2025-02-12', '2025-02-15', '2025-02-19'),
+(17, 20, 14, 19, 378, 'paid', '4000000000000002', '12/26', 888, '2025-02-15', '2025-02-18', '2025-02-21'),
+(18, 21, 3, 20, 1710, 'paid', '453210000000010', '05/29', 110, '2025-02-18', '2025-02-22', '2025-02-27'),
+(19, 22, 4, 21, 696, 'paid', '4012333444555666', '06/28', 555, '2025-02-20', '2025-02-24', '2025-02-28'),
+(20, 23, 6, 23, 888, 'paid', '453210000000011', '06/30', 111, '2025-02-22', '2025-02-26', '2025-03-01'),
+(21, 24, 7, 24, 408, 'paid', '5555444433331111', '08/28', 654, '2025-03-01', '2025-03-04', '2025-03-07'),
+(22, 25, 8, 25, 3480, 'paid', '453210000000012', '07/28', 112, '2025-03-03', '2025-03-08', '2025-03-11'),
+(23, 26, 9, 26, 426, 'paid', '4444333322229999', '09/27', 345, '2025-03-05', '2025-03-09', '2025-03-12'),
+(24, 27, 10, 27, 984, 'paid', '453210000000013', '08/29', 113, '2025-03-07', '2025-03-11', '2025-03-14'),
+(25, 28, 11, 28, 912, 'paid', '4111222233334444', '10/28', 777, '2025-03-10', '2025-03-14', '2025-03-18'),
+(51, 21, 3, 1, 780, 'paid', '4111111111111111', '07/27', 321, '2025-01-02', '2025-01-05', '2025-01-08'),
+(52, 6, 14, 2, 364, 'paid', '453210000000002', '09/27', 102, '2025-01-06', '2025-01-10', '2025-01-12'),
+(53, 7, 50, 3, 792, 'paid', '5555444433332222', '11/28', 654, '2025-01-15', '2025-01-18', '2025-01-21'),
+(54, 9, 22, 4, 352, 'paid', '453210000000003', '10/29', 103, '2025-01-20', '2025-01-23', '2025-01-25'),
+(55, 11, 12, 5, 328, 'paid', '4222222222222', '06/26', 456, '2025-02-01', '2025-02-04', '2025-02-06'),
+(56, 14, 65, 6, 656, 'paid', '453210000000005', '12/27', 105, '2025-02-05', '2025-02-08', '2025-02-12'),
+(57, 15, 4, 7, 324, 'paid', '4444333322221111', '08/26', 778, '2025-02-10', '2025-02-13', '2025-02-16'),
+(58, 16, 3, 8, 592, 'paid', '453210000000009', '04/27', 109, '2025-02-15', '2025-02-18', '2025-02-22'),
+(59, 18, 4, 9, 272, 'paid', '453210000000007', '02/29', 107, '2025-02-20', '2025-02-22', '2025-02-24'),
+(60, 19, 5, 10, 1512, 'paid', '4012888888881881', '03/28', 889, '2025-03-01', '2025-03-04', '2025-03-07'),
+(61, 20, 8, 13, 1335, 'paid', '453210000000008', '03/28', 108, '2025-03-05', '2025-03-08', '2025-03-12'),
+(62, 22, 9, 14, 330, 'paid', '5555666677778888', '09/29', 741, '2025-03-10', '2025-03-12', '2025-03-15'),
+(63, 23, 10, 15, 1800, 'paid', '453210000000010', '05/29', 110, '2025-03-15', '2025-03-18', '2025-03-21'),
+(64, 24, 11, 16, 396, 'paid', '4000000000000002', '07/26', 234, '2025-03-20', '2025-03-23', '2025-03-26'),
+(65, 25, 12, 17, 912, 'paid', '453210000000011', '06/30', 111, '2025-03-25', '2025-03-28', '2025-04-01'),
+(66, 26, 13, 18, 1230, 'paid', '5555555555554444', '12/26', 888, '2025-04-01', '2025-04-04', '2025-04-08'),
+(67, 27, 14, 19, 378, 'paid', '453210000000004', '11/28', 104, '2025-04-05', '2025-04-07', '2025-04-10'),
+(68, 28, 3, 20, 1710, 'paid', '4111111111111111', '08/27', 321, '2025-04-10', '2025-04-13', '2025-04-17'),
+(69, 29, 4, 21, 696, 'paid', '453210000000014', '11/28', 114, '2025-04-15', '2025-04-18', '2025-04-21'),
+(70, 30, 6, 23, 888, 'paid', '5555666677779999', '06/27', 215, '2025-04-20', '2025-04-23', '2025-04-27'),
+(71, 31, 7, 24, 408, 'paid', '4111111111111111', '07/27', 321, '2025-05-01', '2025-05-03', '2025-05-06'),
+(72, 32, 8, 25, 3480, 'paid', '453210000000015', '05/29', 115, '2025-05-05', '2025-05-08', '2025-05-11'),
+(73, 33, 9, 26, 284, 'paid', '4000123412341234', '08/28', 456, '2025-05-10', '2025-05-12', '2025-05-14'),
+(74, 34, 10, 27, 1312, 'paid', '453210000000016', '09/28', 116, '2025-05-15', '2025-05-18', '2025-05-22'),
+(75, 35, 11, 28, 912, 'paid', '4012888888881881', '10/29', 889, '2025-05-20', '2025-05-23', '2025-05-26');
 
 -- --------------------------------------------------------
 
@@ -1000,9 +1062,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (97, 'Leon', 'Watson', NULL, 'leon.w95@gmail.com', 'LWat95', '+15120000095', 'M', 'U', '453210000000048', '07/29', 148),
 (98, 'Poppy', 'Wood', NULL, 'poppy.w96@gmail.com', 'PWoo96', '+15120000096', 'F', 'U', NULL, NULL, NULL),
 (99, 'Nathan', 'Brooks', NULL, 'nathan.b97@gmail.com', 'NBro97', '+15120000097', 'M', 'U', '453210000000049', '08/28', 149),
-(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL),
-(101, 'Dylan', 'Howard', NULL, 'dylan.h99@gmail.com', 'DHow99', '+15120000099', 'M', 'U', '453210000000050', '09/30', 150),
-(102, 'Luna', 'Bailey', NULL, 'luna.b100@gmail.com', 'LBai100', '+15120000100', 'F', 'U', NULL, NULL, NULL);
+(100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL, NULL);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -1024,6 +1084,12 @@ ALTER TABLE `accommodations_details`
   ADD PRIMARY KEY (`apartman_id`);
 
 --
+-- A tábla indexei `card_networks`
+--
+ALTER TABLE `card_networks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `cities`
 --
 ALTER TABLE `cities`
@@ -1037,6 +1103,13 @@ ALTER TABLE `cities`
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `country_name` (`name`);
+
+--
+-- A tábla indexei `currency`
+--
+ALTER TABLE `currency`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `shorted_name` (`shorted_name`);
 
 --
 -- A tábla indexei `experiences`
@@ -1081,6 +1154,12 @@ ALTER TABLE `accommodations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
+-- AUTO_INCREMENT a táblához `card_networks`
+--
+ALTER TABLE `card_networks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT a táblához `cities`
 --
 ALTER TABLE `cities`
@@ -1093,10 +1172,16 @@ ALTER TABLE `countries`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
+-- AUTO_INCREMENT a táblához `currency`
+--
+ALTER TABLE `currency`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
 -- AUTO_INCREMENT a táblához `experiences`
 --
 ALTER TABLE `experiences`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT a táblához `favourite`
@@ -1108,13 +1193,13 @@ ALTER TABLE `favourite`
 -- AUTO_INCREMENT a táblához `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- Megkötések a kiírt táblákhoz

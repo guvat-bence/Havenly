@@ -32,7 +32,7 @@
             Height="794"
             Padding="10"
             Background="#2f275e">
-            <UniformGrid Rows="8" Columns="1" Margin="-12,-12,177,-12">
+            <UniformGrid Rows="10" Columns="1" Margin="-12,-12,177,-12">
 
                 <Button Height="80"
                         Width="80"
@@ -121,6 +121,29 @@
                             MaxWidth="96"
                             Stretch="Uniform" />
                 </Button>
+                <Button Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80"
+                        Name="card_networks_btn" 
+                        Click="card_networks_btn_Click">
+                    <Image Source="/card_network.png"
+                            MaxHeight="93"
+                            MaxWidth="96"
+                            Stretch="Uniform" />
+                </Button>
+                <Button Height="80"
+                        Width="80"
+                        MaxHeight="80"
+                        MaxWidth="80"
+                        Name="currencybtn" 
+                        Click="currencybtn_Click">
+                    <Image Source="/currency.png"
+                            MaxHeight="93"
+                            MaxWidth="96"
+                            Stretch="Uniform" />
+                </Button>
+
             </UniformGrid>
         </Border>
 
@@ -150,7 +173,7 @@
                HorizontalAlignment="Right" 
                VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"
-               Margin="0,71,104,0" 
+               Margin="0,66,104,0" 
                VerticalAlignment="Top"
                Height="69" 
                Width="202"
@@ -160,7 +183,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,176,104,0" 
+            Margin="0,140,104,0" 
             VerticalAlignment="Top"
             Height="68" 
             Width="202"
@@ -170,7 +193,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,270,104,0" 
+            Margin="0,219,104,0" 
             VerticalAlignment="Top"
             Height="75" 
             Width="202"
@@ -180,7 +203,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,371,104,0" 
+            Margin="0,303,104,0" 
             VerticalAlignment="Top"
             Height="71" 
             Width="202"
@@ -190,7 +213,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,471,104,0" 
+            Margin="0,389,104,0" 
             VerticalAlignment="Top"
             Height="66" 
             Width="202"
@@ -200,7 +223,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,564,104,0" 
+            Margin="0,455,104,0" 
             VerticalAlignment="Top"
             Height="78" 
             Width="202"
@@ -209,7 +232,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,668,104,0" 
+            Margin="0,538,104,0" 
             VerticalAlignment="Top"
             Height="70" 
             Width="202"
@@ -218,7 +241,7 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,767,104,0" 
+            Margin="0,620,104,0" 
             VerticalAlignment="Top"
             Height="74" 
             Width="202"
@@ -281,5 +304,23 @@
                Height="56" 
                Margin="27,22,0,0" 
                VerticalAlignment="Top" Width="300"/>
+        <Label Content="Card networks" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,699,104,0" 
+            VerticalAlignment="Top"
+            Height="74" 
+            Width="202"
+            FontSize="25"/>
+        <Label Content="Currency" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,778,104,0" 
+            VerticalAlignment="Top"
+            Height="74" 
+            Width="202"
+            FontSize="25"/>
     </Grid>
 </Window>

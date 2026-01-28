@@ -5,5 +5,13 @@
     <Compile Update="Datas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

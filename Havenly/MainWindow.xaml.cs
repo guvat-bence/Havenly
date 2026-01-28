@@ -25,7 +25,6 @@ namespace Havenly
         {
             InitializeComponent();
 
-
             addButton.IsEnabled = false;
             editButton.IsEnabled = false;
             removeButton.IsEnabled = false;
@@ -64,6 +63,8 @@ namespace Havenly
             addButton.IsEnabled = false;
             editButton.IsEnabled = false;
             removeButton.IsEnabled = false;
+            card_networks_btn.IsEnabled = false;
+            currencybtn.IsEnabled = false;
         }
 
         string currentTable = "";
@@ -126,6 +127,8 @@ namespace Havenly
             historybtn.IsEnabled = true;
             experience_button.IsEnabled = true;
             accommodationbtn.IsEnabled = true;
+            card_networks_btn.IsEnabled = true;
+            currencybtn.IsEnabled = true;
             datagrid0.IsReadOnly = true;
         }
         private void experience_button_Click(object sender, RoutedEventArgs e)
@@ -201,6 +204,21 @@ namespace Havenly
             accommodationbtn.IsEnabled = false;
 
         }
+        private void card_networks_btn_Click(object sender, RoutedEventArgs e)
+        {
+            currentTable = "card_networks";
+            readData("card_networks");
+            enable_btns();
+            card_networks_btn.IsEnabled = false;
+        }
+
+        private void currencybtn_Click(object sender, RoutedEventArgs e)
+        {
+            currentTable = "currency";
+            readData("currency");
+            enable_btns();
+            currencybtn.IsEnabled = false;
+        }
 
         string operation = "";
         private void editButton_Click(object sender, RoutedEventArgs e)
@@ -244,12 +262,14 @@ namespace Havenly
                
                         MessageBox.Show("Módosítások elmentve!");
                         enable_btns();
+                        operation = "";
                      
                     }
                     else
                     {
                         MessageBox.Show("A módosítások nem lettek elmentve!");
                         enable_btns();
+                        operation = "";
                     }
                 }
             }
@@ -265,7 +285,7 @@ namespace Havenly
 
                 if (operation != "read")
                 {
-                    //datagrid0.ItemsSource = null;
+                   
                     enable_btns();
                 }
             }
@@ -285,7 +305,11 @@ namespace Havenly
                 {
                     values.Add("NULL");
                 }
-                else if (value is string || value is DateTime)
+                else if (value is DateTime dt)
+                {
+                    values.Add($"'{dt:yyyy-MM-dd}'");
+                }
+                else if (value is string)
                 {
                     string converted = value.ToString().Replace("'", "''");
                     values.Add($"'{converted}'");
@@ -299,10 +323,11 @@ namespace Havenly
             {
                 case "add":
 
-                    string newDatas = $"INSERT INTO {currentTable} ({string.Join(",", columns)})" +
+                    string newDatas = $"INSERT INTO {currentTable} ({string.Join(",", columns)}) " +
                                       $"VALUES ({string.Join(",", values)})";
 
                     executeQuery(newDatas);
+                    datagrid0.ItemsSource = null;
 
                     break;
 
@@ -310,7 +335,7 @@ namespace Havenly
 
                     var datasWithName = columns.Select((col, index) => $"{col} = {values[index]}");
 
-                    string editedDatas = $"UPDATE {currentTable} SET {string.Join(",", datasWithName)}" +
+                    string editedDatas = $"UPDATE {currentTable} SET {string.Join(",", datasWithName)} " +
                                          $"WHERE {columns[0]} = {values[0]}";
 
                     executeQuery(editedDatas);
