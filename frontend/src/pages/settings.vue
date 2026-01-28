@@ -49,7 +49,7 @@ axios.get('http://localhost:3000/getCurrency')
 				<!-- Választékok a currencyk közül -->
 				<option v-for="x in currencys" 
 								:value="x">
-						{{ x.name}}
+						{{ x.full_name}}
 				</option>
 			</select>
 		</div>

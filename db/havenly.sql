@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 14. 08:25
+-- Létrehozás ideje: 2026. Jan 28. 16:15
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -38,9 +38,9 @@ CREATE TABLE `accommodations` (
   `price` int(7) NOT NULL,
   `description` text NOT NULL,
   `guest_number` int(2) NOT NULL,
-  `bedroom` int(1) NOT NULL,
-  `bed` int(1) NOT NULL,
-  `bathroom` int(1) NOT NULL
+  `bedroom` int(2) NOT NULL,
+  `bed` int(2) NOT NULL,
+  `bathroom` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -639,7 +639,7 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 
 CREATE TABLE `currency` (
   `id` int(5) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `full_name` varchar(50) NOT NULL,
   `multiplier` varchar(50) NOT NULL,
   `shorted_name` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -648,7 +648,7 @@ CREATE TABLE `currency` (
 -- A tábla adatainak kiíratása `currency`
 --
 
-INSERT INTO `currency` (`id`, `name`, `multiplier`, `shorted_name`) VALUES
+INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
 (1, 'Euro', '1', 'EUR'),
 (2, 'Magyar forint', '390', 'HUF'),
 (3, 'Szerb dinár', '117', 'RSD'),
@@ -664,30 +664,30 @@ INSERT INTO `currency` (`id`, `name`, `multiplier`, `shorted_name`) VALUES
 (13, 'Fülöp-szigeteki peso', '63', 'PHP'),
 (14, 'Maláj ringgit', '5.1', 'MYR'),
 (15, 'Vietnámi dong', '27000', 'VND'),
-(16, 'Kanadai dollár', '1.48', 'CAD'), 
-(17, 'Ausztrál dollár', '1.62', 'AUD'), 
-(18, 'Új-zélandi dollár', '1.75', 'NZD'), 
-(19, 'Norvég korona', '11.5', 'NOK'), 
-(20, 'Svéd korona', '11.2', 'SEK'), 
-(21, 'Dán korona', '7.45', 'DKK'), 
-(22, 'Cseh korona', '25.5', 'CZK'), 
-(23, 'Lengyel zloty', '4.4', 'PLN'), 
-(24, 'Román lej', '5', 'RON'), 
-(25, 'Török líra', '35', 'TRY'), 
-(26, 'Brazil real', '6', 'BRL'), 
-(27, 'Argentin peso', '950', 'ARS'), 
-(28, 'Mexikói peso', '20', 'MXN'), 
-(29, 'Dél-afrikai rand', '20.5', 'ZAR'), 
-(30, 'Egyiptomi font', '50', 'EGP'), 
-(31, 'Szaúdi riál', '4.1', 'SAR'), 
-(32, 'Egyesült Arab Emírségek dirham', '4', 'AED'), 
-(33, 'Kuvaiti dinár', '0.3', 'KWD'), 
-(34, 'Katari riál', '4', 'QAR'), 
-(35, 'Hongkongi dollár', '8.6', 'HKD'), 
-(36, 'Taiwani új dollár', '34', 'TWD'), 
-(37, 'Pakisztáni rúpia', '310', 'PKR'), 
-(38, 'Bangladesi taka', '120', 'BDT'), 
-(39, 'Srí Lanka-i rúpia', '360', 'LKR'), 
+(16, 'Kanadai dollár', '1.48', 'CAD'),
+(17, 'Ausztrál dollár', '1.62', 'AUD'),
+(18, 'Új-zélandi dollár', '1.75', 'NZD'),
+(19, 'Norvég korona', '11.5', 'NOK'),
+(20, 'Svéd korona', '11.2', 'SEK'),
+(21, 'Dán korona', '7.45', 'DKK'),
+(22, 'Cseh korona', '25.5', 'CZK'),
+(23, 'Lengyel zloty', '4.4', 'PLN'),
+(24, 'Román lej', '5', 'RON'),
+(25, 'Török líra', '35', 'TRY'),
+(26, 'Brazil real', '6', 'BRL'),
+(27, 'Argentin peso', '950', 'ARS'),
+(28, 'Mexikói peso', '20', 'MXN'),
+(29, 'Dél-afrikai rand', '20.5', 'ZAR'),
+(30, 'Egyiptomi font', '50', 'EGP'),
+(31, 'Szaúdi riál', '4.1', 'SAR'),
+(32, 'Egyesült Arab Emírségek dirham', '4', 'AED'),
+(33, 'Kuvaiti dinár', '0.3', 'KWD'),
+(34, 'Katari riál', '4', 'QAR'),
+(35, 'Hongkongi dollár', '8.6', 'HKD'),
+(36, 'Taiwani új dollár', '34', 'TWD'),
+(37, 'Pakisztáni rúpia', '310', 'PKR'),
+(38, 'Bangladesi taka', '120', 'BDT'),
+(39, 'Srí Lanka-i rúpia', '360', 'LKR'),
 (40, 'Izraeli sékel', '4.2', 'ILS'),
 (41, 'Angol font', '0.85', 'GBP');
 
@@ -1175,7 +1175,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT a táblához `currency`
 --
 ALTER TABLE `currency`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT a táblához `experiences`

@@ -417,7 +417,7 @@ app.post('/login', (req, res) => {
 
 // Currency lekérdezése
 app.get('/getCurrency', (req, res) => {
-  let command = 'SELECT `id`, `name`, `multiplier`, `shorted_name` FROM `currency`';
+  let command = 'SELECT `id`, `full_name`, `multiplier`, `shorted_name` FROM `currency`';
   db.query(command, (err,result) => {
     if(err){
       console.error("Hiba a lekérdezéskor.:",err);
