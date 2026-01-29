@@ -2,11 +2,12 @@
 import axios from 'axios';
 import { ref, watch } from 'vue';
 
-// étékek át hozása mási koldalról
+// étékek át hozása másik oldalról
 const props = defineProps(['id','name','table_name'])
 
 // változók létrehozása
 let item = ref([]);
+let reserved_days = ref([]);
 let item_details = ref([]);
 let iconsAndTexts = ref([]);
 let images = [];
@@ -31,13 +32,12 @@ let rentedDayIds = ref([]);
 let daysInMonth = ref("");
 
 let currentYear= new Date().getFullYear();
-const todayMonth = new Date().getMonth() + 1;
+let todayMonth = new Date().getMonth() + 1;
 
 setTimeout(()=>
 {
-makeCalendar(1);
+	makeCalendar(1);
 },50)
-
 
 function makeCalendar(plusmonth)
 {
@@ -124,12 +124,27 @@ function makeCalendar(plusmonth)
 						td.innerHTML = day;
 
 						//a hónapot és a nap számát megkaja id-nak
-						td.id = `${currentMonth}.${day}`;
+						td.id = `${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${day.toString().length==1?`0${day}`:day}`;
 
-						// hozzádja a day-clast
-						td.classList.add("day");
+						let reserved = false;
 
-						td.addEventListener("click",()=>daySelected(currentMonth,day));	
+						for(let i=0;i<reserved_days.value.length;i++)
+						{
+							if(td.id == reserved_days.value[i])
+							{
+								td.classList.add("reserved_day");
+								reserved = true;
+								break;
+							}
+						}
+
+						if(reserved == false)
+						{
+							// hozzádja a day-clast
+							td.classList.add("day");
+
+							td.addEventListener("click",()=>daySelected(td.id));	
+						}
 					}
 				}
 				// tr-be bele rakaja a td-t
@@ -175,6 +190,7 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 
 		// tömb feltöltése
 		item.value = datas.data;
+		console.log(item.value);
 
 		//ha léétzik a guest_number a tömben akkor bele megy
 		if(item.value[0].guest_number)
@@ -190,6 +206,7 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	{
 		console.error(error);
 	})
+	
 
 // ha szállásnak a részletét szeretnénk, akkor indul el ez a szerver lehívás
 if(props.table_name == "accommodations")
@@ -230,6 +247,30 @@ if(props.table_name == "accommodations")
 		{
 			console.error(error);
 		})
+
+
+	//adatbázisból le kérjük a szálláshoz kapcsolatos foglalásokat
+	axios.get(`http://localhost:3000/history/${props.id}`)
+	.then(response=>
+	{
+		for(let x=0;x<response.data.length;x++){
+			let rent_beginning = response.data[x]["rent_beginning"].split("T")[0];
+			let rent_end = response.data[x]["rent_end"].split("T")[0];
+
+			for (let d = new Date(rent_beginning); d <= new Date(rent_end); d.setDate(d.getDate() + 1)) {
+				
+
+				if(d.toISOString().split("T")[0].split("-")[0] == currentYear)
+				{
+					reserved_days.value.push(`${d.toISOString().split("T")[0].split("-")[1]}.${d.toISOString().split("T")[0].split("-")[2]}`);
+				}
+			}
+		}
+		console.log(reserved_days.value);
+	})
+	.catch(error=>{
+		console.error(error);
+	})
 }
 //a fáljrendszer elnevezéseihez alakítja át az adatokat
 //hogy meg tudja majd keresni a megfelelő képet
@@ -356,10 +397,10 @@ function monthPrevious()
 
 }
 
-function daySelected(month,day)
+function daySelected(id)
 {
 
-	let currentDay = document.getElementById(`${month}.${day}`);
+	let currentDay = document.getElementById(id);
 
 	if(arriveDay.value == currentDay)
 	{
@@ -383,18 +424,18 @@ function daySelected(month,day)
 
 	if(arriveDay.value == null)
 	{
-		arriveDay.value = document.getElementById(`${month}.${day}`);
-		arriveDayId.value = `${month}.${day}`;
+		arriveDay.value = document.getElementById(id);
+		arriveDayId.value = id;
 		arriveDay.value.style.backgroundColor="grey";
-		currentDate.value = `${currentYear}-${month}-${day}`;
+		currentDate.value = `${currentYear}-${id.split(".")[0]}-${id.split(".")[1]}`;
 		return;
 	}
 	else if(departureDay.value == null && arriveDay.value != currentDay)
 	{
-		departureDay.value = document.getElementById(`${month}.${day}`);
-		departureDayId.value = `${month}.${day}`;
+		departureDay.value = document.getElementById(id);
+		departureDayId.value = id;
 		departureDay.value.style.backgroundColor="grey";
-		nextDayDate.value = `${currentYear}-${month}-${day}`;
+		nextDayDate.value = `${currentYear}-${id.split(".")[0]}-${id.split(".")[1]}`;
 		return;
 	}
 }
@@ -492,10 +533,14 @@ watch([arriveDay,departureDay],()=>
 				rentedDays.value = [];
 				for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
 				{
-					let currentDay = document.getElementById(`${currentMonth}.${y}`);
+					let currentDay = document.getElementById(`${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${y.toString().length==1?`0${y}`:y}`);
+					if(currentDay.classList	== "reserved_day")
+					{
+						break;
+					}
 					currentDay.style.backgroundColor="darkgray";
 					rentedDays.value.push(currentDay);
-					rentedDayIds.value.push(`${currentMonth}.${y}`);
+					rentedDayIds.value.push(`${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${y.toString().length==1?`0${y}`:y}`);
 				}
 			}	
 		}
@@ -803,8 +848,8 @@ body.no-scroll {
 	opacity: 0.5;
 }
 
-.reversed_day
+.reserved_day
 {
-	background-color: darkred;
+	background-color: rgb(105, 26, 26);
 }
 </style>
