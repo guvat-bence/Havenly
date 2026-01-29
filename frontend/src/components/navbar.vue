@@ -1,7 +1,6 @@
 <script setup>
 import { activeLocations, searchInput } from '@/js/getLocation';
 import { user } from '@/store/user';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import {ref} from 'vue';
 
 // A navbar elemek deifiniálása
@@ -98,7 +97,7 @@ let mainRoutes = [
 				</ul>
 
 				<!-- Search bar -->
-				<form class="d-flex position-relative" 
+				<form class="d-md-flex d-none d-sm-none position-relative" 
 							role="search" 
 							name="searchbar" 
 							v-if="$route.fullPath === '/accommodation' ||
@@ -126,12 +125,6 @@ let mainRoutes = [
 							</li>
 						</ul>
 					</div>
-
-					<!-- <button class="btn btn-outline-light mx-2" 
-									type="button"
-									@click="console.log(searchInput)">
-						<font-awesome-icon :icon="faSearch" size="xl" />
-					</button> -->
 				</form>
 
 				<!-- Bejelentkezés/regisztráció -->
@@ -177,9 +170,9 @@ let mainRoutes = [
 		</div>
 	</nav>
 </template>
-<style>
+<style scoped>
 	
-#searchinput:hover{
+.searchinput:hover{
 	background-color: white !important;
 	box-shadow: 0px 0px 10px white !important;
 	transition: 200ms;
