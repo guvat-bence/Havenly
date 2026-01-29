@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { ref, watch } from 'vue';
+import { defineCustomElement, ref, watch } from 'vue';
 
 // étékek át hozása mási koldalról
 const props = defineProps(['id','name','table_name'])
@@ -33,7 +33,11 @@ let daysInMonth = ref("");
 let currentYear= new Date().getFullYear();
 const todayMonth = new Date().getMonth() + 1;
 
-makeCalendar(1)
+setTimeout(()=>
+{
+makeCalendar(1);
+},50)
+
 
 function makeCalendar(plusmonth)
 {
@@ -71,8 +75,55 @@ function makeCalendar(plusmonth)
 			// calendar.value.push(daysInNextMonth-(daysInNextMonth-y));
 			calendar.value.push("");
 		}
+
+		// megkeressük a tbody-t
+		let tbody = document.querySelector("tbody");
+
+		// beállítjuk a innerHtml értékét ""-ra
+		tbody.innerHTML = "";
+
+		// a hónap heteinek számával indítunk egy form-ot
+		for(let x=0;x<5;x++)
+		{
+			// létrehozzuk a tr-t
+			let tr = document.createElement("tr");
+
+			// a hét napjainak számával indítunk egy form-ot
+			for(let y=0;y<7;y++)
+			{
+				// létrehozzuk a td-t
+				let td = document.createElement("td");
+
+				//létrehozzuk az indexet, a megfelelő nap kiválasztásához.
+				let index = x * 7 + y;
+
+				// az index segítségével meghatározzuk a jelenlegi napot a calendar-ból
+				let currentDay = calendar.value[index];
+
+				// ha az érétéke nem "" a nappnak akkor bele megy
+				if(calendar.value[index] != ""){
+
+					// kiiárja a jelenlegi nap számát
+					td.innerHTML = currentDay;
+
+					//a hónapot és a nap számát megkaja id-nak
+					td.id = `${currentMonth}.${currentDay}`;
+
+					// hozzádja a day-clast
+					td.classList.add("day");
+
+					td.addEventListener(onclick,daySelected(currentMonth,currentDay));
+				}
+				// tr-be bele rakaja a td-t
+				tr.append(td);
+			}
+
+			// a tbody-ba belerakja a tr-t
+			tbody.append(tr);
+		}
 	}
 }
+
 // beállítjuk a countert a prorps.table-name alapján.
 switch(props.table_name)
 {
@@ -273,7 +324,7 @@ function monthNext()
 
 	makeCalendar(currentMonth+1);
 
-	monthCheck();
+	// monthCheck();
 
 	
 }
@@ -283,13 +334,12 @@ function monthPrevious()
 	makeCalendar(currentMonth-1);
 
 
-	monthCheck();
+	// monthCheck();
 
 }
 
 function daySelected(month,day)
 {
-	console.log(month,day);
 
 	let currentDay = document.getElementById(`${month}.${day}`);
 
@@ -408,6 +458,7 @@ function monthCheck()
 		}
 	}
 }
+
 
 watch([arriveDay,departureDay],()=>
 {
@@ -571,7 +622,7 @@ watch([arriveDay,departureDay],()=>
 							  			col-12 col-md-6 col-xl-4">
 
 						<!-- Maga a form -->
-						<form v-if="calendar.length>0" class="pt-4 pb-4">
+						<form  class="pt-4 pb-4">
 
 							<!-- érkezés/távozás szakas -->
 							<div class="mb-3 bg-white row justify-content-center rounded-3 py-3 text-dark">
@@ -607,15 +658,18 @@ watch([arriveDay,departureDay],()=>
 												</tr>
 										</thead>
 										<tbody>
-												<tr v-for="week in 6">
+
+										</tbody>
+										<!-- <tbody> -->
+											 <!--@click="daySelected(currentMonth,calendar[(week-1)*7 + (day-1)])"-->
+												<!-- <tr v-for="week in 6">
 													<td class="day"
 															:id="`${currentMonth}.${calendar[(week-1)*7 + (day-1)]}`"
-															@click="daySelected(currentMonth,calendar[(week-1)*7 + (day-1)])"
-															v-for="day in 7" >
+															v-for="day in 7" > 
 														{{ calendar[(week-1)*7 + (day-1)] }}
 													</td>
-												</tr>
-										</tbody>
+												</tr> -->
+										<!-- </tbody> -->
 									</table>
 								</div>
 								
@@ -630,7 +684,7 @@ watch([arriveDay,departureDay],()=>
 									</button>
 								</div>
 
-								<p class="col-12 m-0">{{`${currentYear}.${monthsname[currentMonth-1]}`}}</p>
+								<p v-if="calendar.length>0" class="col-12 m-0">{{`${currentYear}.${monthsname[currentMonth-1]}`}}</p>
 							</div>
 
 							<!-- személyek száma szakasz -->
@@ -743,5 +797,4 @@ body.no-scroll {
 	background-color: white;
 	color: black;
 }
-
 </style>
