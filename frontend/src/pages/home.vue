@@ -32,7 +32,7 @@ axios.get("http://localhost:3000/accommodations/top5")
         <!-- kereső címe -->
         <h1 class="display-1 text-white text-center w-auto mt-5
                    bg-black bg-opacity-50 rounded-3 shadow">
-          Hová szeretnél utazni?
+          Mit keresel?
         </h1>
         <!-- kereső mező form-ja -->
         <div class="row justify-content-center">
@@ -40,15 +40,10 @@ axios.get("http://localhost:3000/accommodations/top5")
                     bg-black bg-opacity-50 rounded-3 shadow
                     p-4 border border-1 border-white mb-5">
             <!-- Keresési mező -->
-            <input  class="form-control mt-2" 
-                    type="search" 
-                    name="searchbar" 
-                    id="searchbar"
-                    placeholder="Írja be a település nevét. Pl.: Tokyo"
-                    v-model="model.searchbar">
-            <!-- Keresési gomb -->
-            <button class="btn btn-outline-light col-11 my-2 mt-3 disabled"
-                    :disabled="!model.searchbar">Keresés</button>
+            <div class="justify-content-between d-flex">
+              <RouterLink to="/accommodation" class="btn btn-outline-light w-50 mx-1">Szállások</RouterLink>
+              <RouterLink to="/experience" class="btn btn-outline-light w-50 mx-1">Élmények</RouterLink>
+            </div>
           </form> 
         </div>
       </div>
