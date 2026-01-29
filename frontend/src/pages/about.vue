@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { defineCustomElement, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 // étékek át hozása mási koldalról
 const props = defineProps(['id','name','table_name'])
@@ -82,8 +82,16 @@ function makeCalendar(plusmonth)
 		// beállítjuk a innerHtml értékét ""-ra
 		tbody.innerHTML = "";
 
+		let weeks = 5
+
+		if(calendar.value.length>35)
+		{
+			weeks = 6;
+		}
+
+
 		// a hónap heteinek számával indítunk egy form-ot
-		for(let x=0;x<5;x++)
+		for(let x=0;x<weeks;x++)
 		{
 			// létrehozzuk a tr-t
 			let tr = document.createElement("tr");
@@ -98,21 +106,31 @@ function makeCalendar(plusmonth)
 				let index = x * 7 + y;
 
 				// az index segítségével meghatározzuk a jelenlegi napot a calendar-ból
-				let currentDay = calendar.value[index];
+				let day = calendar.value[index];
 
 				// ha az érétéke nem "" a nappnak akkor bele megy
 				if(calendar.value[index] != ""){
 
-					// kiiárja a jelenlegi nap számát
-					td.innerHTML = currentDay;
+					if(currentMonth == todayMonth && calendar.value[index] < currentDay)
+					{
+						// kiiárja a jelenlegi nap számát
+						td.innerHTML = day;
+						
+							td.classList.add("past_day");
+					}
+					else
+					{
+						// kiiárja a jelenlegi nap számát
+						td.innerHTML = day;
 
-					//a hónapot és a nap számát megkaja id-nak
-					td.id = `${currentMonth}.${currentDay}`;
+						//a hónapot és a nap számát megkaja id-nak
+						td.id = `${currentMonth}.${day}`;
 
-					// hozzádja a day-clast
-					td.classList.add("day");
+						// hozzádja a day-clast
+						td.classList.add("day");
 
-					td.addEventListener(onclick,daySelected(currentMonth,currentDay));
+						td.addEventListener("click",()=>daySelected(currentMonth,day));	
+					}
 				}
 				// tr-be bele rakaja a td-t
 				tr.append(td);
@@ -343,11 +361,6 @@ function daySelected(month,day)
 
 	let currentDay = document.getElementById(`${month}.${day}`);
 
-	if(currentDay.innerText == "")
-	{
-		return;
-	}
-
 	if(arriveDay.value == currentDay)
 	{
 		arriveDay.value.style.removeProperty("background-color");
@@ -418,8 +431,6 @@ function monthCheck()
 			if(currentDay){
 				currentDay.style.removeProperty("background-color");
 			}
-			
-
 		}
 	}
 
@@ -458,7 +469,6 @@ function monthCheck()
 		}
 	}
 }
-
 
 watch([arriveDay,departureDay],()=>
 {
@@ -658,18 +668,7 @@ watch([arriveDay,departureDay],()=>
 												</tr>
 										</thead>
 										<tbody>
-
 										</tbody>
-										<!-- <tbody> -->
-											 <!--@click="daySelected(currentMonth,calendar[(week-1)*7 + (day-1)])"-->
-												<!-- <tr v-for="week in 6">
-													<td class="day"
-															:id="`${currentMonth}.${calendar[(week-1)*7 + (day-1)]}`"
-															v-for="day in 7" > 
-														{{ calendar[(week-1)*7 + (day-1)] }}
-													</td>
-												</tr> -->
-										<!-- </tbody> -->
 									</table>
 								</div>
 								
@@ -796,5 +795,16 @@ body.no-scroll {
 	transition: 200ms;
 	background-color: white;
 	color: black;
+}
+
+.past_day
+{
+	
+	opacity: 0.5;
+}
+
+.reversed_day
+{
+	background-color: darkred;
 }
 </style>
