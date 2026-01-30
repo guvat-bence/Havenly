@@ -1,5 +1,6 @@
 <script setup>
 import Cards from '@/components/cards.vue';
+import Searchbar from '@/components/searchbar.vue';
 import { activeLocations, searchInput } from '@/js/getLocation';
 import axios from 'axios';
 import { ref, watch } from 'vue';
@@ -51,41 +52,7 @@ watch(searchInput,(value) => {
 <template>
   <div class="accommodation">
 
-    <!-- Search bar -->
-		<form class="d-sm-flex d-md-none 
-                 d-lg-none position-relative 
-                 justify-content-center bg-black 
-                 p-2 w-75 mx-auto bg-opacity-25 
-                 border border-1 border-white rounded-3" 
-					role="search" 
-					name="searchbar">
-			<div>
-        <h1 class="display-1 text-white text-center">Keresés</h1>
-				<input class="form-control my-1" 
-							 type="search" 
-							 id="searchinput" 
-							 placeholder="Search" 
-							 aria-label="Search"
-							 v-model="searchInput"
-							 v-on:input="search(searchInput)"
-							 v-on:focus="isFocus = true"
-							 v-on:blur="isFocus = false"
-							 autocomplete="off"	/>
-				<ul class="dropdown-menu justify-content-center 
-                   m-0 p-0 "
-						:class="result.length > 0 && isFocus ? 'show' : ''">
-
-					<li v-for="x in result.slice(0,4)"
-							v-on:click="searchInput = x.city_name;"
-							v-on:mousedown.prevent="isFocus = true"
-							class="searchresult d-flex 
-                     m-0 p-0 p-3 bg-dark">
-						<p class="text-white fs-5 bg-transparent">{{ x.city_name }} &nbsp;</p>
-						<p class="text-white-50 fs-5">{{ x.country_name }}</p>
-					</li>
-				</ul>
-			</div>
-		</form>
+	<Searchbar class="justify-content-center"/>
 
     <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
     <div v-for="x in data">

@@ -15,7 +15,7 @@ let result = ref([]),
 
 		},
 		getActiveLocations = () => {
-			axios.get(`http://localhost:3000/active`)
+			axios.get(`http://localhost:3000/createLocationList`)
 				.then(response => {
 				 activeLocations.value = response.data
 				})
@@ -34,6 +34,8 @@ let result = ref([]),
 				}
 			}
 		}
+		
+		getActiveLocations()
 </script>
 
 <template>
