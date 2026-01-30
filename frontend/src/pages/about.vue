@@ -57,20 +57,21 @@ function makeCalendar(plusmonth)
 		firstDayinMonth = firstDayinMonth==0?6:firstDayinMonth-1;
 		lastDayinMonth = lastDayinMonth==0?6:lastDayinMonth-1;
 
+		//az előző 
 		for(let i=0;i<lastDayinPriviousMonth+1;i++)
 		{
-			// calendar.value.push(daysInPriviousMonth-(lastDayinPriviousMonth-i));
 			calendar.value.push("");
 		}
 
+		//
 		for(let x=1;x<daysInMonth.value+1;x++)
 		{
 			calendar.value.push(daysInMonth.value-(daysInMonth.value-x));
 		}
 
+		//
 		for(let y=1;y<(6-lastDayinMonth)+1;y++)
 		{
-			// calendar.value.push(daysInNextMonth-(daysInNextMonth-y));
 			calendar.value.push("");
 		}
 

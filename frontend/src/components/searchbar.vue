@@ -33,7 +33,7 @@ let result = ref([]),
 					result.value.push(activeLocations.value[index])
 				}
 			}
-		},
+		}
 </script>
 
 <template>
