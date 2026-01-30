@@ -850,6 +850,6 @@ body.no-scroll {
 
 .reserved_day
 {
-	background-color: rgb(105, 26, 26);
+	background-color:rgb(85, 80, 80);
 }
 </style>
