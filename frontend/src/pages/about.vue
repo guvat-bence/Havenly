@@ -43,18 +43,16 @@ function makeCalendar(plusmonth)
 {
 	if(todayMonth>0)
 	{
+		// változók létrehozása a naptárhoz
 		calendar.value=[];
 		currentMonth = new Date().getMonth()+plusmonth;
 		let currentDay= new Date().getDate();
 		daysInMonth.value = new Date(currentYear,currentMonth,0).getDate();
-		let daysInPriviousMonth = new Date(currentYear,currentMonth-1,0).getDate();
-		let daysInNextMonth = new Date(currentYear,currentMonth+1,1).getDate();
 		let lastDayinPriviousMonth  = new Date(currentYear,currentMonth-1,0).getDay();
 		let firstDayinMonth  = new Date(currentYear,currentMonth-1,1).getDay();
 		let lastDayinMonth  = new Date(currentYear,currentMonth-1,daysInMonth.value).getDay();
-		// currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-		// nextDayDate = `${currentYear}-${currentMonth}-${currentDay+1}`;
 
+		// Átalakítju hogy hétfővel kezdődjön a hetek számolása.
 		lastDayinPriviousMonth = lastDayinPriviousMonth==0?6:lastDayinPriviousMonth-1;
 		firstDayinMonth = firstDayinMonth==0?6:firstDayinMonth-1;
 		lastDayinMonth = lastDayinMonth==0?6:lastDayinMonth-1;
@@ -844,12 +842,12 @@ body.no-scroll {
 
 .past_day
 {
-	
 	opacity: 0.5;
 }
 
 .reserved_day
 {
-	background-color:rgb(85, 80, 80);
+	background-color:rgb(119, 70, 70);
+	opacity: 0.8;
 }
 </style>
