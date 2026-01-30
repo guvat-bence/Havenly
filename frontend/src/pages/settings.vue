@@ -10,7 +10,7 @@ let currencys = ref([]),
 			// Ha megváltozik akkor a localstorage-ba elementi az értékeket(store/currency.js)
 			selectedCurrency.currencyID = currencyOption.value.id;
 			selectedCurrency.currencyMultiplier = currencyOption.value.multiplier;
-			selectedCurrency.currencyName = currencyOption.value.name;
+			selectedCurrency.currencyName = currencyOption.value.full_name;
 			selectedCurrency.currencyShortedName = currencyOption.value.shorted_name;
 		};
 
