@@ -33,28 +33,7 @@ let mainRoutes = [
 			name: user.lasttname + " " + user.firstname,
 			path: "/profile",
 		}
-	],
-	result = ref([]),
-	isFocus = ref(false),
-	convertStrings = (str) => {
-
-		return str.normalize("NFD")
-			.replace(/[\u0300-\u036f]/g, "")
-			.replaceAll(" ", "_")
-			.toLowerCase();
-
-	},
-	search = (value) => {
-		result.value = [];
-		for (let index = 0; index < activeLocations.value.length; index++) {
-
-			if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
-				  .filter(x => x.includes(convertStrings(value))).length > 0) {
-
-				result.value.push(activeLocations.value[index])
-			}
-		}
-	};
+	];
 
 </script>
 
@@ -95,37 +74,6 @@ let mainRoutes = [
 						</router-link>
 					</li>
 				</ul>
-
-				<!-- Search bar -->
-				<form class="d-md-flex d-none d-sm-none position-relative" 
-							role="search" 
-							name="searchbar" 
-							v-if="$route.fullPath === '/accommodation' ||
-										$route.fullPath === '/experience'">
-					<div>
-						<input class="form-control me-2" 
-									 type="search" 
-									 id="searchinput" 
-									 placeholder="Search" 
-									 aria-label="Search"
-									 v-model="searchInput"
-									 v-on:input="search(searchInput)"
-									 v-on:focus="isFocus = true"
-									 v-on:blur="isFocus = false"
-									 autocomplete="off"	/>
-
-						<ul class="dropdown-menu w-100 m-0 p-0"
-								:class="result.length > 0 && isFocus ? 'show' : ''">
-							<li v-for="x in result.slice(0,6)"
-									v-on:click="searchInput = x.city_name;"
-									v-on:mousedown.prevent="isFocus = true"
-									class="searchresult d-flex m-0 p-0 rounded-2 p-3 ">
-								<p class="text-white fs-5">{{ x.city_name }} &nbsp;</p>
-								<p class="text-white-50 fs-5">{{ x.country_name }}</p>
-							</li>
-						</ul>
-					</div>
-				</form>
 
 				<!-- Bejelentkezés/regisztráció -->
 				<ul class="navbar-nav ms-auto">
