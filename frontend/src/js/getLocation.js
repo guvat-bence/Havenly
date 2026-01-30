@@ -2,14 +2,5 @@ import axios from "axios"
 import { ref, watch } from "vue"
 export let searchInput = ref("")
 export let activeLocations = ref([])
-let getActiveLocations = () => {
-  axios.get("http://localhost:3000/createLocationList")
-    .then(response => {
-     activeLocations.value = response.data
-    })
-    .catch(e => console.error(e))
-}
-
-getActiveLocations()
 
 watch(activeLocations, (value) => activeLocations.value = value)

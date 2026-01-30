@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { activeLocations, searchInput } from '@/js/getLocation';
+import axios from 'axios';
 import { ref } from 'vue';
 
 let result = ref([]),
@@ -13,6 +14,13 @@ let result = ref([]),
 				.toLowerCase();
 
 		},
+		getActiveLocations = () => {
+			axios.get(`http://localhost:3000/active`)
+				.then(response => {
+				 activeLocations.value = response.data
+				})
+				.catch(e => console.error(e))
+		},
 
 		//Search függvény
 		search = (value) => {
@@ -25,7 +33,7 @@ let result = ref([]),
 					result.value.push(activeLocations.value[index])
 				}
 			}
-		};
+		},
 </script>
 
 <template>
@@ -37,15 +45,14 @@ let result = ref([]),
 			<input class="bg-transparent p-2 border-0 border-bottom h4 me-2 text-white" 
 						 type="search" 
 						 id="searchinput" 
-						 placeholder="Search" 
-						 aria-label="Search"
+						 placeholder="Keresés"
 						 v-model="searchInput" 
 						 v-on:input="search(searchInput)" 
 						 v-on:focus="isFocus = true" 
 						 v-on:blur="isFocus = false"
 						 autocomplete="off" />
 
-			<ul class="dropdown-menu w-100 m-0 p-0" 
+			<ul class="dropdown-menu w-auto bg-dark m-0 p-0 transition" 
 					:class="result.length > 0 && isFocus ? 'show' : ''">
 
 				<li v-for="x in result.slice(0, 6)" 
@@ -53,9 +60,8 @@ let result = ref([]),
 						v-on:mousedown.prevent="isFocus = true" 
 						class="searchresult d-flex m-0 p-0 rounded-2 p-3 ">
 
-					<p class="text-white fs-5">{{ x.city_name }} &nbsp;</p>
-					<p class="text-white-50 fs-5">{{ x.country_name }}</p>
-					
+					<p class="text-white-50 fs-5">{{ x.country_name }}, &nbsp;</p>
+					<p class="text-white fs-5">{{ x.city_name }}</p>
 				</li>
 			</ul>
 		</div>
@@ -66,4 +72,14 @@ let result = ref([]),
 input[type="search"]{
 	outline: none !important;
 }
+
+.searchresult { opacity: 0; 
+								transform: translateY(8px); 
+								animation: fadeInUp 0.70s ease forwards; } 
+
+@keyframes fadeInUp {
+	 to { opacity: 1; 
+	 			transform: translateY(0); 
+			} 		
+		}
 </style>	
