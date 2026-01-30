@@ -39,8 +39,12 @@ setTimeout(()=>
 	makeCalendar(1);
 },50)
 
+
+//lehívja a dátumokat és az alapján hozza létra a naptárba kellő napokat.
+//megnézi melyik nap folglat és melyik szabad, ez alapján add neki tulajdonságot is.
 function makeCalendar(plusmonth)
 {
+	// ha a jelenlegi hónap nagyobb mint 0 akkor bele megy
 	if(todayMonth>0)
 	{
 		// változók létrehozása a naptárhoz
@@ -57,19 +61,19 @@ function makeCalendar(plusmonth)
 		firstDayinMonth = firstDayinMonth==0?6:firstDayinMonth-1;
 		lastDayinMonth = lastDayinMonth==0?6:lastDayinMonth-1;
 
-		//az előző 
+		//az előző hónap azon napjai amelyeketem a jelenlegi hónapban kell megjeleníteni
 		for(let i=0;i<lastDayinPriviousMonth+1;i++)
 		{
 			calendar.value.push("");
 		}
 
-		//
+		//az előző hónap azon napjai amelyeket kell megjeleníteni
 		for(let x=1;x<daysInMonth.value+1;x++)
 		{
 			calendar.value.push(daysInMonth.value-(daysInMonth.value-x));
 		}
 
-		//
+		//a következő hónap azon napjai amelyeketem a jelenlegi hónapban kell megjeleníteni
 		for(let y=1;y<(6-lastDayinMonth)+1;y++)
 		{
 			calendar.value.push("");
@@ -81,13 +85,14 @@ function makeCalendar(plusmonth)
 		// beállítjuk a innerHtml értékét ""-ra
 		tbody.innerHTML = "";
 
+		// beállítjuik a hónap heteit
 		let weeks = 5
 
+		// ha a calendárban több elem van mint 35 akkor át állítja a hetek számát 6-ra 
 		if(calendar.value.length>35)
 		{
 			weeks = 6;
 		}
-
 
 		// a hónap heteinek számával indítunk egy form-ot
 		for(let x=0;x<weeks;x++)
@@ -110,12 +115,14 @@ function makeCalendar(plusmonth)
 				// ha az érétéke nem "" a nappnak akkor bele megy
 				if(calendar.value[index] != ""){
 
+					// ha a naptári hónap megegyezik a jelenlegi hónappal, és a jelenlegi napnál kisebb a naptári nap, akkor megy bele.
 					if(currentMonth == todayMonth && calendar.value[index] < currentDay)
 					{
 						// kiiárja a jelenlegi nap számát
 						td.innerHTML = day;
 						
-							td.classList.add("past_day");
+						// Hozzáadjuk a megfelelő clast
+						td.classList.add("past_day");
 					}
 					else
 					{
@@ -125,23 +132,31 @@ function makeCalendar(plusmonth)
 						//a hónapot és a nap számát megkaja id-nak
 						td.id = `${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${day.toString().length==1?`0${day}`:day}`;
 
+						// beállítjuk a resevedet false-ra
 						let reserved = false;
 
+						// végigmegyünk a lefoglalt napokon
 						for(let i=0;i<reserved_days.value.length;i++)
 						{
+							// ha a naptári nap id-ja megegyezik a lefoglat nappal akkor lefoglalt nappá alakítjuk át
 							if(td.id == reserved_days.value[i])
 							{
+								// megadjuk neki a megfelelő osztályt
 								td.classList.add("reserved_day");
+
+								// a reserved-et tru ra állítju és break-elünk
 								reserved = true;
 								break;
 							}
 						}
 
+						// ha a reserved fales akkor megy bele
 						if(reserved == false)
 						{
 							// hozzádja a day-clast
 							td.classList.add("day");
 
+							// hozzáadjuk a daySelected functiont
 							td.addEventListener("click",()=>daySelected(td.id));	
 						}
 					}
@@ -168,16 +183,19 @@ switch(props.table_name)
 		break;
 }
 
-// ha nagyob mint 0 csa k akkor mrgy bele
+// ha nagyob mint 0 csa k akkor megy bele.
 if(counter>0)
 {
 	// hozáadjuk a listákhoz a képek neveit.
 	for(let i=0;i<counter;i++)
 	{
+		// bele rakja a képeket a images tömb-be.
 		images.push(i<9?`00${i+1}.png`:`0${i+1}.png`);
 
+		// ha az i nagyobb mint 3 akkor bele megy
 		if(i<3)
 		{
+			// bele rakja a képeket a galleryImages tömb-be.
 			galleryImages.push(i<9?`00${i+1}.png`:`0${i+1}.png`);
 		}
 	}
@@ -194,7 +212,7 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 		//ha léétzik a guest_number a tömben akkor bele megy
 		if(item.value[0].guest_number)
 		{
-			// annyi lelemet rak a guest-be amennyi vendég van.
+			// annyi elemet rak a guest-be amennyi vendég van.
 			for(let x=0;x<item.value[0].guest_number;x++)
 			{
 				guests.push(x+1);
@@ -252,12 +270,14 @@ if(props.table_name == "accommodations")
 	axios.get(`http://localhost:3000/history/${props.id}`)
 	.then(response=>
 	{
+		// végigmegyünk a response adatain
 		for(let x=0;x<response.data.length;x++){
+
+			// létrehozzuk a rent_beginning és a rent_end változókat 
 			let rent_beginning = response.data[x]["rent_beginning"].split("T")[0];
 			let rent_end = response.data[x]["rent_end"].split("T")[0];
 
 			for (let d = new Date(rent_beginning); d <= new Date(rent_end); d.setDate(d.getDate() + 1)) {
-				
 
 				if(d.toISOString().split("T")[0].split("-")[0] == currentYear)
 				{
