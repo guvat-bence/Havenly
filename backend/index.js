@@ -447,4 +447,23 @@ app.get('/createLocationList',(req, res) => {
     res.send(result);
     
   })
-})
+});
+
+
+//az adott szálláshoz való history elemek lehívása
+app.get("/history/:id", (req, res) => {
+  let id = req.params.id;
+  db.query(`SELECT rent_beginning, rent_end
+            FROM history 
+            WHERE accommodation_id = ?`,
+    id,
+    (err, result) => {
+      if (err) {
+        console.error("Hiba a history beolvasásakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+      res.json(result);
+    }
+  );
+});
