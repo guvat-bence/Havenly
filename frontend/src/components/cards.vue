@@ -116,4 +116,14 @@ function convertStrings(str) {
 	transform: translateY(-10px);
 	transition: 200ms;
 }
+
+.cardhover .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardhover .card:hover {
+  transform: translateY(-15px) scale(1.03);
+  animation: float 2s ease-in-out infinite;
+}
+
 </style>

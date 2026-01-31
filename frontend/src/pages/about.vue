@@ -22,23 +22,19 @@ let currentDate = ref("");
 let currentMonth = "";
 let nextDayDate = ref("");
 let daysname = ["H","K","Sz","Cs","P","Sz","V"];
-let monthsname = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
-let arriveDay= ref(null); 
+let monthsname = 
+[
+	"január","február","március","április",
+	"május","június","július","augusztus",
+	"szeptember","október","november","december"
+];
 let arriveDayId= ref(null); 
-let departureDay=ref(null); 
 let departureDayId=ref(null); 
-let rentedDays = ref([]);
 let rentedDayIds = ref([]);
 let daysInMonth = ref("");
 
 let currentYear= new Date().getFullYear();
 let todayMonth = new Date().getMonth() + 1;
-
-setTimeout(()=>
-{
-	makeCalendar(1);
-},50)
-
 
 //lehívja a dátumokat és az alapján hozza létra a naptárba kellő napokat.
 //megnézi melyik nap folglat és melyik szabad, ez alapján add neki tulajdonságot is.
@@ -207,7 +203,6 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 
 		// tömb feltöltése
 		item.value = datas.data;
-		console.log(item.value);
 
 		//ha léétzik a guest_number a tömben akkor bele megy
 		if(item.value[0].guest_number)
@@ -225,7 +220,18 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	})
 	
 
-// ha szállásnak a részletét szeretnénk, akkor indul el ez a szerver lehívás
+// meghívjuk a makeCalendar függvény a januári hónappal
+// késleltetjük az indulását,
+// így akkor fog leutni amikor már a hozzá kellő html részel is betöltődtek.
+if(props.table_name == "accommodations")
+{
+	setTimeout(()=>
+	{
+		makeCalendar(1);
+	},50);
+}
+
+// ha a table_name megegyezik az accommodationnal akkor bele megy
 if(props.table_name == "accommodations")
 {
 	// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
@@ -266,7 +272,8 @@ if(props.table_name == "accommodations")
 		})
 
 
-	//adatbázisból le kérjük a szálláshoz kapcsolatos foglalásokat
+	//adatbázisból le kérjük a szálláshoz kapcsolatos foglalásokat, és ezeket napra pontosan el tároljuk
+	// hogy a naptárban me gtudjuk őket jeleníteni.
 	axios.get(`http://localhost:3000/history/${props.id}`)
 	.then(response=>
 	{
@@ -277,20 +284,26 @@ if(props.table_name == "accommodations")
 			let rent_beginning = response.data[x]["rent_beginning"].split("T")[0];
 			let rent_end = response.data[x]["rent_end"].split("T")[0];
 
+			// az érkezésé is távozási napot dátummá alakítja,
+			// a d az érkezési nappa indul,
+			//  majd addig megy ameddig a d el nem éri a távozási napot. 
 			for (let d = new Date(rent_beginning); d <= new Date(rent_end); d.setDate(d.getDate() + 1)) {
 
+				// csak azokkal a lefoglalt napokkal foglalkozunk amelyek a jelenlegi évre vonatkoznak.
 				if(d.toISOString().split("T")[0].split("-")[0] == currentYear)
 				{
+					// átalakítjuk és szészedjük a d-t
+					// és a hónapot és a napot hozzáadjuk a reserved_days-hez.
 					reserved_days.value.push(`${d.toISOString().split("T")[0].split("-")[1]}.${d.toISOString().split("T")[0].split("-")[2]}`);
 				}
 			}
 		}
-		console.log(reserved_days.value);
 	})
 	.catch(error=>{
 		console.error(error);
 	})
 }
+
 //a fáljrendszer elnevezéseihez alakítja át az adatokat
 //hogy meg tudja majd keresni a megfelelő képet
 function convertStrings(str) {  
@@ -304,10 +317,13 @@ function convertStrings(str) {
 //amelyik képre rá megyünk, az jelenik meg a modalban elsőnek.
 function imageShow(img)
 {
+	// végigmegyünk az összes képen.
 	for(let x=0;x<images.length;x++)
 	{
+		//ha a ké megegyezik a listában szereplő képpel akkor bele megy.
 		if(images[x] === img)
 		{
+			// beállítja a jelenlegi képet, amivel indul majd a modal.
 			currentImage.value = x;
 			break;
 		}
@@ -320,26 +336,32 @@ function imageShow(img)
 	return modal;
 }
 
-// ha a > re megy akkor a következő képet tölti be
+// ha a > re megy akkor a következő képet tölti be.
 function imageNext(img)
 {
+	// ha a lista utolsó képénél van index alapján, akkor beálítja az első képre,
+	//  így újra kezdve a kört.
 	if(img === images.length-1)
 	{
 		currentImage.value = 0; 
 	}
+	// alapvetően pedig csak megnöveli az indexét, így a következő képet tölti be.
 	else
 	{
 		currentImage.value = img+1;
 	}
 }
 
-// ha a < re meg y akkor az előző képet tölti be
+// ha a < re meg y akkor az előző képet tölti be.
 function imagePrevious(img)
-{
+{	
+	// ha a lista első képénél van index alapján, akkor beálítja az utolsó képre,
+	// így újra kezdve a kört.
 	if(img === 0)
 	{
 		currentImage.value = images.length-1; 
 	}
+	// alapvetően pedig csak lecsökkenti az indexét, így a következő képet tölti be.
 	else
 	{
 		currentImage.value = img-1;
@@ -397,229 +419,193 @@ function modalImgResize()
 	
 }
 
+// a következő hónapot generáltatja ki
 function monthNext()
 {
-
+	// meghívja a makeCalendar függvényt a következő hónappal
 	makeCalendar(currentMonth+1);
 
-	// monthCheck();
-
-	
+	// meghívjuk a showDays függvényt.
+	showDays();
 }
 
+// az előző hónapot generáltatja ki
 function monthPrevious()
 {
+	// meghívja a makeCalendar függvényt az előző hónappal
 	makeCalendar(currentMonth-1);
 
-
-	// monthCheck();
-
+	// meghívjuk a showDays függvényt.
+	showDays();
 }
 
+// ezzel a függvénnyel szerezzük meg az érkezési és távozási napot és tároljuk el változókban.
+// az id-az a nap amelyre rá kattintunk.
 function daySelected(id)
 {
 
+	// definiáljuk a jelenlegi napot, ez éppen az amire rá kattintottunk.
 	let currentDay = document.getElementById(id);
 
-	if(arriveDay.value == currentDay)
+	// a reserved-et false-al definiáljuk
+	let reserved = false;
+
+	//ha a jelenlegi nap megegyezik az érkezés napjával,
+	// ergó megint rá kattintottunk az érkezési napra
+	// akkor vissza vonja róla a jelölést
+	if(arriveDayId.value == currentDay.id)
 	{
-		arriveDay.value.style.removeProperty("background-color");
+		currentDay.classList.remove("selected");
 		arriveDayId.value = null;
-		arriveDay.value = null;
 		currentDate.value = "";
 		return;
 	}
-	else if(departureDay.value  == currentDay)
+
+	//ha a jelenlegi nap megegyezik az távozás napjával,
+	// ergó megint rá kattintottunk az távozási napra
+	// akkor vissza vonja róla a jelölést
+	else if(departureDayId.value  == currentDay.id)
 	{
-		departureDay.value.style.removeProperty("background-color");
-		if(arriveDayId.value == null)
-		{
-			departureDayId.value = null;
-		}
-		departureDay.value = null;
+		currentDay.classList.remove("selected");
+		departureDayId.value = null;
 		nextDayDate.value = "";
 		return;
 	}
 
-	if(arriveDay.value == null)
+	// ha még nincsen meghatározva érkezési nap akkor bele megyy
+	// meghatározza a jelenlegi napot az érkezés napjának
+	// ennnek a pontos dátumát is beállítja a megjelenítéshez
+	if(arriveDayId.value == null)
 	{
-		arriveDay.value = document.getElementById(id);
+		let day = document.getElementById(id);
 		arriveDayId.value = id;
-		arriveDay.value.style.backgroundColor="grey";
+		day.classList.add("selected");
 		currentDate.value = `${currentYear}-${id.split(".")[0]}-${id.split(".")[1]}`;
 		return;
 	}
-	else if(departureDay.value == null && arriveDay.value != currentDay)
+
+	// ha még nincsen meghatározva távozási,
+	//  és a jelenlegi nap nem egyezik az érkezés napjával,
+	// és az érkezési nap nem nagyobb mint a jelenlegi nap akkor bele megyy.
+	// meghatározza a jelenlegi napot az érkezés napjának
+	// ennnek a pontos dátumát is beállítja a megjelenítéshez.
+	else if(departureDayId.value == null && arriveDayId.value != currentDay.id && currentDay.id > arriveDayId.value)
 	{
-		departureDay.value = document.getElementById(id);
-		departureDayId.value = id;
-		departureDay.value.style.backgroundColor="grey";
-		nextDayDate.value = `${currentYear}-${id.split(".")[0]}-${id.split(".")[1]}`;
-		return;
-	}
-}
-
-function monthCheck()
-{
-	console.log(rentedDayIds.value);
-	let rentedDaysinCurrentMonth = [];
-	let deletingDays = [];
-	
-
-	for(let x =0;x<rentedDays.value.length;x++)
-	{
-		if((rentedDayIds.value[x]).split(".")[0] == currentMonth)
+		// végigmegyünk a lefoglat időpontokon.
+		for(let x of reserved_days.value)
 		{
-			rentedDaysinCurrentMonth.push(rentedDayIds.value[x]);
-		}
-		else
-		{
-			deletingDays.push(rentedDayIds.value[x]);
-		}
-	}
-
-	console.log(rentedDaysinCurrentMonth);
-	console.log(deletingDays);
-
-	
-	if(deletingDays.length>0)
-	{	
-		for(let x=0;x<deletingDays.length;x++)
-		{
-			
-			let currentDay = document.getElementById(`${deletingDays[x]}`);
-			if(currentDay){
-				currentDay.style.removeProperty("background-color");
-			}
-		}
-	}
-
-	setTimeout(()=>
-	{
-		if(rentedDaysinCurrentMonth.length>0){
-
-			for(let x=0;x<rentedDaysinCurrentMonth.length;x++)
+			//ha az érkezési és távozási nap között akár csak 1 db foglat nap is van, akkor nem állítja be a távozási időpontot.
+			if(x>arriveDayId.value && x< currentDay.id)
 			{
-
-				let currentDay = document.getElementById(`${rentedDaysinCurrentMonth[x]}`);
-				currentDay.style.backgroundColor="darkgray";
+				reserved = true;
+				break;
 			}
 		}
-	},200)
+		// ha nincsen ilyen foglalt nap akkor pedig beállítja a távozás napját.
+		if(reserved == false){
 
-	console.log(arriveDayId.value);
-	
-	if(arriveDayId.value!= null){
-		if((arriveDayId.value).split(".")[0] == currentMonth){
-			arriveDay.value.style.backgroundColor="grey";
-		}
-		else
-		{
-			arriveDay.value.style.removeProperty("background-color");
-		}
-	}
-
-	if(departureDayId.value!=null){
-		if((departureDayId.value).split(".")[0] == currentMonth){
-			departureDay.value.style.backgroundColor="grey";
-		}
-		else
-		{
-			departureDay.value.style.removeProperty("background-color");
+			let day = document.getElementById(id);
+			departureDayId.value = id;
+			day.classList.add("selected");
+			nextDayDate.value = `${currentYear}-${id.split(".")[0]}-${id.split(".")[1]}`;
 		}
 	}
 }
 
-watch([arriveDay,departureDay],()=>
+// ezzel e fügvénnyel kiolvassuk a változókból és be állítjuk az adott érkezési és távozási napot, 
+// valamint a kettő közötti napok megjelenítéstés a hónapok között.
+function showDays()
 {
-	if(arriveDay.value!=null)
-	{
-		if(departureDay.value != null)
-		{
-			if(departureDayId.value.split(".")[0] != arriveDayId.value.split(".")[0])
-			{
-				for(let y = daysInMonth.value-(daysInMonth.value-1);y<departureDay.value.innerText;y++)
-				{
-					console.log(y);
-					
-					let currentDay = document.getElementById(`${currentMonth}.${y}`);
-					rentedDays.value.push(currentDay);
-					rentedDayIds.value.push(`${currentMonth}.${y}`);
-				}
-			}
-			else
-			{
-				rentedDays.value = [];
-				for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
-				{
-					let currentDay = document.getElementById(`${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${y.toString().length==1?`0${y}`:y}`);
-					if(currentDay.classList	== "reserved_day")
-					{
-						break;
-					}
-					currentDay.style.backgroundColor="darkgray";
-					rentedDays.value.push(currentDay);
-					rentedDayIds.value.push(`${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${y.toString().length==1?`0${y}`:y}`);
-				}
-			}	
-		}
-		else
-		{
-			if((departureDayId.value!=null))
-			{
-				for(let x =0;x<rentedDays.value.length;x++)
-				{
-					rentedDays.value[x].style.removeProperty("background-color");
-				}
-				rentedDays.value = [];
-				rentedDayIds.value = [];
-				departureDayId.value = null;
+	// formázzuk az adott hónapot az összehasonlításokhoz.
+	let formattedMonth = currentMonth.toString().length === 1 ? `0${currentMonth}` : currentMonth.toString();
 
-			}
-			else
-			{
-				for(let y = parseInt(arriveDay.value.innerText)+1;y<daysInMonth.value+1;y++)
+	// ha az arriveDayId nem null akkor bele megy.
+	if(arriveDayId.value != null)
+	{
+		// ha az érekzés időponta abban a hónapban van mint a jelenlegi hónap akkor bele megy.
+		if(arriveDayId.value.split(".")[0] == formattedMonth)
+		{
+			// beállítja az érkezési napot.
+			let day = document.getElementById(arriveDayId.value);
+			day.classList.add("selected");
+		}
+	}
+
+	// ha a departureDayId nem null akkor bele megy.
+	if(departureDayId.value != null)
+	{
+		// ha a távozási időponta abban a hónapban van mint a jelenlegi hónap akkor bele megy.
+		if(departureDayId.value.split(".")[0] == formattedMonth)
+		{
+			// beállítja a távozási napot.
+			let day = document.getElementById(departureDayId.value);
+			day.classList.add("selected");
+		}
+	}
+
+	// ha a rentedDayIds nem null akkor bele megy.
+	if(rentedDayIds != null)
+	{
+		// annyiszor ismétli magát amennyi nap van a rentedDayIds-ban.
+		for(let x=0;x<rentedDayIds.value.length;x++)
+		{
+			// ha az adott nap a jelellegi hónapban van akkor bele megy.
+			if(rentedDayIds.value[x]!=arriveDayId.value && rentedDayIds.value[x]!=departureDayId.value){
+
+				// ha az adott nap abban a hónapban van mint a jelenlegi hónap akkor bele megy.
+				if(rentedDayIds.value[x].split(".")[0] == formattedMonth)
 				{
-					let currentDay = document.getElementById(`${currentMonth}.${y}`);
-					rentedDays.value.push(currentDay);
-					rentedDayIds.value.push(`${currentMonth}.${y}`);
+					// beállítja a távozási napot.
+					let day = document.getElementById(rentedDayIds.value[x]);
+					day.classList.add("rented");
 				}
 			}
 		}
 	}
-	// else if(arriveDay.value!= null && departureDay.value != null)
-	// {
+}
 
-	// 	if(asd2 == 2)
-	// 	{
-	// 		for(let x =0;x<rentedDays.value.length;x++)
-	// 		{
-	// 			rentedDays.value[x].style.backgroundColor="darkgray";
-	// 		}
-	// 	}
-	// 	else{
-	// 		for(let y = parseInt(arriveDay.value.innerText)+1;y<parseInt(departureDay.value.innerText);y++)
-	// 		{
-	// 			console.log(y);
-	// 			let currentDay = document.getElementById(`${currentMonth}.${y}`);
-	// 			currentDay.style.backgroundColor="darkgray";
-	// 			rentedDays.value.push(currentDay);
-	// 			rentedDayIds.value.push(`${currentMonth}.${y}`);
-	// 		}
-	// 	}
-	// }
-	else{
+// figyeleli az érekezési és távozási napok változását.
+// ha mind a kettőnek van értéke akkor a kettő dátum közötti napokat hozzáadja a rentedDayIds-hez.
+// ha nincs értékük de viszont a rentedDayIds-nak van, akkor pedig törli a benne lévő napokat.
+watch([arriveDayId,departureDayId],()=>{
 
-		for(let x =0;x<rentedDays.value.length;x++)
-		{
-			rentedDays.value[x].style.removeProperty("background-color");
+	// formázzuk az adott hónapot az összehasonlításokhoz.
+	let formattedMonth = currentMonth.toString().length === 1 ? `0${currentMonth}` : currentMonth.toString();
+
+	// ha nem null az érkezési és távozási nap akkor bele megy.
+	if(arriveDayId.value != null && departureDayId.value != null)
+	{
+		// az érkezésé is távozási napot dátummá alakítja,
+		// a d az érkezési nappa indul,
+		//  majd addig megy ameddig a d el nem éri a távozási napot. 
+		for (let d = new Date(currentDate.value); d <= new Date(nextDayDate.value); d.setDate(d.getDate() + 1)) {
+
+			// átalakítjuk és szészedjük a d-t
+			// és a hónapot és a napot hozzáadjuk a rentedDayIds-hez.
+			rentedDayIds.value.push(`${d.toISOString().split("T")[0].split("-")[1]}.${d.toISOString().split("T")[0].split("-")[2]}`);
 		}
+		// meghívjuk a showDays-függvényt.
+		showDays();
+	}
 
-		rentedDays.value = [];
-		rentedDayIds.value = [];
+	// ha a lefoglalt napok száma nagyobb mint 0 akkor bele megy.
+	else if(rentedDayIds.value.length>0)
+	{
+		// annyiszor ismételi meg ahány lefoglat nap van.
+		for(let x=0;x<rentedDayIds.value.length;x++)
+		{
+			// ha az adott nap abban a hónapban van mint a jelenlegi hónap akkor bele megy.
+			if(rentedDayIds.value[x].split(".")[0] == formattedMonth)
+			{
+				// beállítja a napotm majd törli a tulajdonságát
+				let day = document.getElementById(rentedDayIds.value[x]);
+				day.classList.remove("rented");
+			}
+		}
+		// rentedDayIds listát üresre állítjuk.
+		rentedDayIds.value=[];
 	}
 })
-
 </script>
 <template>
 	<div class="about">
@@ -709,7 +695,7 @@ watch([arriveDay,departureDay],()=>
 								</div>
 
 								<!-- Balra lapozás gomb -->
-								<div class="col-2 my-2 row align-items-center z-1">
+								<div class="col-2 my-2 row align-items-center pe-0 me-1 me-sm-0 z-1">
 									<button class="btn btn-secondary"
 													id="monthPrevious"
 													type="button"
@@ -719,6 +705,7 @@ watch([arriveDay,departureDay],()=>
 									</button>
 								</div>
 					
+								<!-- maga a table -->
 								<div id="tableDiv"
 										 class="row bg-dark col-8 h-100 
 														justify-content-center align-items-center 
@@ -737,7 +724,7 @@ watch([arriveDay,departureDay],()=>
 								</div>
 								
 								<!-- Jobbra lapozás gomb -->
-								<div class="col-2 my-2 row align-items-center ">
+								<div class="col-2 my-2 row align-items-center ps-0 ms-1 z-1">
 									<button class="btn btn-secondary"
 													id="monthNext"
 													type="button"
@@ -747,7 +734,11 @@ watch([arriveDay,departureDay],()=>
 									</button>
 								</div>
 
-								<p v-if="calendar.length>0" class="col-12 m-0">{{`${currentYear}.${monthsname[currentMonth-1]}`}}</p>
+								<!-- a naptár alján lévő év és hónap -->
+								<p v-if="calendar.length>0" 
+									 class="col-12 m-0">
+									{{`${currentYear}.${monthsname[currentMonth-1]}`}}
+								</p>
 							</div>
 
 							<!-- személyek száma szakasz -->
@@ -831,7 +822,6 @@ watch([arriveDay,departureDay],()=>
 		</div>
 	</div>
 </template>
-
 <style>
 
 /* szállás/élményy képeinek kiemelése */
@@ -852,6 +842,7 @@ body.no-scroll {
   overflow: hidden;
 }
 
+/* ha egy nap fölöt van az egér */
 .day:hover
 {
 	box-shadow: 0px 0px 10px rgb(255, 255, 255);
@@ -859,13 +850,31 @@ body.no-scroll {
 	transition: 200ms;
 	background-color: white;
 	color: black;
+	border-radius: 10%;
 }
 
+/* maga a kiválaszott nap */
+.day.selected
+{
+	background-color: gray;
+	box-shadow:0px 0px 7px rgb(170, 170, 170);
+}
+
+/* két kiválasztott nap között */
+.day.rented
+{
+	background-color: darkgray;
+	box-shadow:0px 0px 5px rgb(82, 81, 81);
+	border-radius: 10%;
+}
+
+/* az elmúlt napok */
 .past_day
 {
 	opacity: 0.5;
 }
 
+/* lefoglalt napok */
 .reserved_day
 {
 	background-color:rgb(119, 70, 70);

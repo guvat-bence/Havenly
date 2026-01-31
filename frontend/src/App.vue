@@ -35,6 +35,23 @@ if (user)
 body {
   background-color: hsl(0, 0%, 20%) !important;
 }
+.experience,.accommodation,.home,.about_us{
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 *:not(input):not(textarea) {
   -webkit-touch-callout: none !important;
