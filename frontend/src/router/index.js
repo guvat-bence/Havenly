@@ -1,6 +1,7 @@
 import About from '@/pages/about.vue'
 import aboutus from '@/pages/about_us.vue'
 import Accommodation from '@/pages/accommodation.vue'
+import Basket from '@/pages/basket.vue'
 import Data_protection from '@/pages/data_protection.vue'
 import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
@@ -62,6 +63,10 @@ let routes = [
   {
     path: "/logout",
     component: Logoutconfirmation
+  },
+  {
+    path:"/basket",
+    component: Basket
   }
 ]
 const router = createRouter({

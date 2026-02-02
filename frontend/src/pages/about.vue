@@ -1,6 +1,17 @@
 <script setup>
 import axios from 'axios';
 import { ref, watch } from 'vue';
+import router from '@/router';
+import {user} from "@/store/user";
+import { selectedCurrency } from '@/store/currency';
+
+	// export let rent = reactive(
+	// {
+	// 	price:rent_price.value,
+	// 	rent_beginning:currentDate,
+	// 	rent_end:nextDayDate,
+
+	// })
 
 // étékek át hozása másik oldalról
 const props = defineProps(['id','name','table_name'])
@@ -8,6 +19,7 @@ const props = defineProps(['id','name','table_name'])
 // változók létrehozása
 let item = ref([]);
 let reserved_days = ref([]);
+let rent_price = ref(0);
 let item_details = ref([]);
 let iconsAndTexts = ref([]);
 let images = [];
@@ -21,6 +33,7 @@ let calendar = ref([]);
 let currentDate = ref("");
 let currentMonth = "";
 let nextDayDate = ref("");
+let model = ref({guests:1});
 let daysname = ["H","K","Sz","Cs","P","Sz","V"];
 let monthsname = 
 [
@@ -423,7 +436,7 @@ function modalImgResize()
 function monthNext()
 {
 	// meghívja a makeCalendar függvényt a következő hónappal
-	makeCalendar(currentMonth+1);
+	makeCalendar(currentMonth);
 
 	// meghívjuk a showDays függvényt.
 	showDays();
@@ -433,7 +446,7 @@ function monthNext()
 function monthPrevious()
 {
 	// meghívja a makeCalendar függvényt az előző hónappal
-	makeCalendar(currentMonth-1);
+	makeCalendar(currentMonth-2);
 
 	// meghívjuk a showDays függvényt.
 	showDays();
@@ -546,6 +559,9 @@ function showDays()
 	// ha a rentedDayIds nem null akkor bele megy.
 	if(rentedDayIds != null)
 	{
+
+		rent_price.value = (item.value[0].price * (rentedDayIds.value.length-1))*model.value.guests;
+
 		// annyiszor ismétli magát amennyi nap van a rentedDayIds-ban.
 		for(let x=0;x<rentedDayIds.value.length;x++)
 		{
@@ -562,6 +578,18 @@ function showDays()
 			}
 		}
 	}
+}
+
+function renting()
+{
+	console.log(rentedDayIds.value);
+	console.log(rent_price.value);
+	console.log(currentDate);
+	console.log(nextDayDate);
+	console.log(model.value.guests);
+	console.log(window.location.href);
+
+	  router.replace({path: '/basket'})
 }
 
 // figyeleli az érekezési és távozási napok változását.
@@ -739,6 +767,12 @@ watch([arriveDayId,departureDayId],()=>{
 									 class="col-12 m-0">
 									{{`${currentYear}.${monthsname[currentMonth-1]}`}}
 								</p>
+
+								<p v-if="rentedDayIds.length!=0" 
+									 class="col-12 m-0 pt-1">
+									Összesen: {{(Math.round(rent_price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}}
+													  {{ selectedCurrency.currencyShortedName }}
+								</p>
 							</div>
 
 							<!-- személyek száma szakasz -->
@@ -751,17 +785,28 @@ watch([arriveDayId,departureDayId],()=>{
 
                 <!-- személyek száma szakasz select -->
 								<div class="col-5">
-									<select class="form-select" id="guest_number">
-										<option v-for="x in guests" value="">{{ x }}fő</option>
+									<select class="form-select" id="guest_number" v-model="model.guests">
+										<option v-for="x in guests" :value="x">{{ x }}fő</option>
 								</select>
 								</div>
 							</div>
 
               <!-- Foglalaás gomb -->
-							<button class="btn btn-secondary col-6 
-                      rounded-pill disabled">
+							<button v-if="user.id!=''"
+											v-bind:disabled="rentedDayIds.length==0"
+											@click="renting()"
+											type="button"
+										  class="btn btn-secondary col-6 
+                      			 rounded-pill">
                 Foglalás
               </button>
+
+							 <!-- Bejelentkezés gomb gomb -->
+							<router-link to="/login" v-if="user.id ==''"
+										  class="btn btn-secondary col-6 
+                      				rounded-pill">
+                Bejelentkezés
+              </router-link>
 						</form>
 					</div>
 				</div>
