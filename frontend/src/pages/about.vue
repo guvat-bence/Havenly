@@ -4,14 +4,7 @@ import { ref, watch } from 'vue';
 import router from '@/router';
 import {user} from "@/store/user";
 import { selectedCurrency } from '@/store/currency';
-
-	// export let rent = reactive(
-	// {
-	// 	price:rent_price.value,
-	// 	rent_beginning:currentDate,
-	// 	rent_end:nextDayDate,
-
-	// })
+import { rent } from '@/store/current_rent';
 
 // étékek át hozása másik oldalról
 const props = defineProps(['id','name','table_name'])
@@ -582,14 +575,12 @@ function showDays()
 
 function renting()
 {
-	console.log(rentedDayIds.value);
-	console.log(rent_price.value);
-	console.log(currentDate);
-	console.log(nextDayDate);
-	console.log(model.value.guests);
-	console.log(window.location.href);
+	rent.accommodation_full_price = rent_price.value;
+	rent.rent_beginning = currentDate.value;
+	rent.rent_end = nextDayDate.value;
+	rent.accommodation_path =window.location.href;
 
-	  router.replace({path: '/basket'})
+	router.replace({path:'/basket'})
 }
 
 // figyeleli az érekezési és távozási napok változását.

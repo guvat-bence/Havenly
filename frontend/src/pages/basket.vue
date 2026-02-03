@@ -1,4 +1,7 @@
 <script setup>
+import {rent} from '@/store/current_rent';
+
+console.log(rent);
 </script>
 <template>
   <div class="container">
