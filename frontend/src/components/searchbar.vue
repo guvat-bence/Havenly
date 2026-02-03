@@ -14,6 +14,7 @@ let result = ref([]),
 				.toLowerCase();
 
 		},
+		//getActiveLocations függvény
 		getActiveLocations = () => {
 			axios.get(`http://localhost:3000/createLocationList`)
 				.then(response => {
@@ -35,6 +36,7 @@ let result = ref([]),
 			}
 		}
 		
+		//Függvény lefuttatása
 		getActiveLocations()
 </script>
 

@@ -48,7 +48,7 @@
 ### 2. Backend telepítése és indítása
     cd backend
     npm install
-    node index.js
+    npm run dev
 
 ### 3. Frontend telepítése és indítása
     cd frontend
