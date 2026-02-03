@@ -54,7 +54,8 @@ let convertStrings = (str) => {
   
   <div class="experience">
 
-    <Searchbar class="justify-content-center"/>
+    <Searchbar class="justify-content-center"
+               tablename="Expreience"/>
 
     <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
     <div v-for="x in data">

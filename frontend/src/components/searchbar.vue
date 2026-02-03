@@ -5,6 +5,13 @@ import { ref } from 'vue';
 
 let result = ref([]),
 		isFocus = ref(false),
+		props  = defineProps({
+			tablename: {
+				type: String,
+				required: true
+			}
+		}),
+		
 		//convertString függvény 
 		convertStrings = (str) => {
 
@@ -15,8 +22,8 @@ let result = ref([]),
 
 		},
 		//getActiveLocations függvény
-		getActiveLocations = () => {
-			axios.get(`http://localhost:3000/createLocationList`)
+		getActiveLocations = (x) => {
+			axios.get(`http://localhost:3000/create${x}LocationList`)
 				.then(response => {
 				 activeLocations.value = response.data
 				})
@@ -37,7 +44,7 @@ let result = ref([]),
 		}
 		
 		//Függvény lefuttatása
-		getActiveLocations()
+		getActiveLocations(props.tablename)
 </script>
 
 <template>

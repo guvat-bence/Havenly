@@ -428,8 +428,8 @@ app.get('/getCurrency', (req, res) => {
   })
 })
 
-//Bekért input lekérdezése
-app.get('/createLocationList',(req, res) => {
+//Lekérdezi az aktív szállások helyét egyszer
+app.get('/createAccomodationLocationList',(req, res) => {
   const query = ` SELECT DISTINCT countries.name AS country_name, 
                   countries.id AS country_id,
                   cities.name AS city_name,
@@ -438,6 +438,26 @@ app.get('/createLocationList',(req, res) => {
                   INNER JOIN cities ON cities.country_id = countries.id 
                   INNER JOIN accommodations ON cities.id = accommodations.city_id 
                   LEFT JOIN experiences ON cities.id = experiences.city_id `;
+  db.query(query, (err,result) => {
+    if(err){
+      res.status(401).send("Sikertelen beolvasás")
+      return;
+    }
+
+    res.send(result);
+    
+  })
+});
+
+//Lekérdezi az aktív élmények helyét egyszer
+app.get('/createExpreienceLocationList',(req, res) => {
+  const query = ` SELECT DISTINCT countries.name AS country_name, 
+                  countries.id AS country_id,
+                  cities.name AS city_name,
+                  cities.id AS city_ID
+                  FROM countries 
+                  INNER JOIN cities ON cities.country_id = countries.id 
+                  INNER JOIN experiences ON cities.id = experiences.city_id`;
   db.query(query, (err,result) => {
     if(err){
       res.status(401).send("Sikertelen beolvasás")

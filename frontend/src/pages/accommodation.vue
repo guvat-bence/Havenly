@@ -52,7 +52,8 @@ watch(searchInput,(value) => {
 <template>
   <div class="accommodation">
 
-	<Searchbar class="justify-content-center"/>
+	<Searchbar class="justify-content-center"
+             tablename="Accomodation"/>
 
     <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
     <div v-for="x in data">
