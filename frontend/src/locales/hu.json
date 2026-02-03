@@ -1,0 +1,27 @@
+{
+ "navbar":{
+  "accommodations":"Szállások",
+  "experiences":"Élmények",
+  "about_us":"Rólunk",
+  "settings":"Beállítások",
+  "login":"Bejelentkezés",
+  "registration":"Regisztráció",
+  "logout":"Kijelentkezés"
+ },
+ "footer":
+ {
+  "quick_accesses":"Gyors Elérések:",
+  "main_page":"Főoldal",
+  "about_us":"Rólunk",
+  "accommodations":"Szállások",
+  "experiences":"Élmények",
+  "havenly":"Havenly",
+  "motto":"-Az élmények határtalanok, az otthon érzése pedig mindig veled tart.",
+  "data_protection":"Adatvédelem",
+  "term_of_use":"Felhasználói Feltételek",
+  "contacts":"Elérhetőségeink",
+  "phone_number":"+36303425678",
+  "addres":"Kecskemét, József Attila u. 5",
+  "copyright":"2025-2026 Havenly"
+ }
+}

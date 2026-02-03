@@ -1,39 +1,45 @@
 <script setup>
 import { activeLocations, searchInput } from '@/js/getLocation';
 import { user } from '@/store/user';
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
+import { useI18n } from 'vue-i18n'
+
+const {locale} = useI18n();
+locale.value = "hu";
+
+const { t } = useI18n();
 
 // A navbar elemek deifiniálása
-let mainRoutes = [
+let mainRoutes = computed(()=>( [
 	{
-		name: "Szállások",
+		name: t('navbar.accommodations'),
 		path: "/accommodation"
 	},
 	{
-		name: "Élmények",
+		name: t('navbar.experiences'),
 		path: "/experience"
 	},
 	{
-		name: "Rólunk",
+		name: t("navbar.about_us"),
 		path: "/aboutus"
 	}
-],
-	authentication = [
+]));
+let	authentication = computed(()=>([
 		{
-			name: "Regisztráció",
+			name: t("navbar.registration"),
 			path: "/register"
 		},
 		{
-			name: "Bejelentkezés",
+			name: t("navbar.login"),
 			path: "/login"
 		}
-	],
-	account = [
+]));
+let	account = [
 		{
 			name: user.lasttname + " " + user.firstname,
 			path: "/profile",
 		}
-	];
+];
 
 </script>
 
@@ -111,7 +117,7 @@ let mainRoutes = [
 					<router-link class="btn btn-outline-danger"
 											 v-if="user.id"
 											 to="/logout">
-						Kijelentkezés
+						{{ $t("navbar.logout") }}
 					</router-link>
 				</ul>
 			</div>
