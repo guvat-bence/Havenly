@@ -1,15 +1,16 @@
 <script setup>
 import { user } from '@/store/user';
-import router from '@/router';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { reactive, ref, watch } from 'vue';
+
+const router = useRouter()
+
 // Model dekralálása
 let model = reactive({
   email: "",
   password: ""
 }),
-
-
   //Üzenet fele
   message = ref(""),
   isSuccess,

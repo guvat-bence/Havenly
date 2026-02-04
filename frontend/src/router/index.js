@@ -11,7 +11,6 @@ import Proifle from '@/pages/proifle.vue'
 import Register from '@/pages/register.vue'
 import Settings from '@/pages/settings.vue'
 import Term_of_use from '@/pages/term_of_use.vue'
-import { user } from '@/store/user'
 import { createRouter, createWebHistory } from 'vue-router'
 let routes = [
   {
