@@ -19,8 +19,8 @@ let props = defineProps({
 		required: true
 	},
 	accommodation_id: {
-	type: [String,Number],
-	required: false
+		type: [String,Number],
+		required: false
 	}
 })
 
@@ -38,7 +38,7 @@ let props = defineProps({
 		else
 		{
 			toCard.value = items.value.filter(accommodation => {
-				return accommodation.id == props.accommodation_id;;
+				return accommodation.id == props.accommodation_id;
 			})
 		}
 	})
@@ -54,7 +54,9 @@ let props = defineProps({
 		}
 		// Ha pedig mégis van akkor pedig azt az érétket adja vissza amelyiket a value tartalmazzas
 			toCard.value = items.value.filter(x => x.city_name.toLowerCase()
-																												.includes(value.toLowerCase()))
+																												.includes(value.toLowerCase()) || 
+																						 x.country_name.toLowerCase()
+																													 .includes(value.toLowerCase()))
 	})
 
 // Convert string metódus
@@ -71,7 +73,7 @@ function convertStrings(str) {
 		<div class="card mx-4 col-md-5 g-4 p-0 
 								bg-transparent text-white border-white
 								rounded-4 mb-3" 
-				 v-for="x in toCard.slice(0,5)"
+				 v-for="x in toCard"
 				 :key="x.id"
 					style="width: 21rem;">
 			<div class="position-relative">

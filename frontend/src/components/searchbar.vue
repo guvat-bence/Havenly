@@ -1,10 +1,14 @@
-<script setup lang="ts">
+<script setup>
 import { activeLocations, searchInput } from '@/js/getLocation';
 import axios from 'axios';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
-let result = ref([]),
-		isFocus = ref(false),
+let result = reactive({
+	city_name: [],
+	country_name: []		
+}),
+		
+		isFocus = ref(true),
 		props  = defineProps({
 			tablename: {
 				type: String,
@@ -32,15 +36,26 @@ let result = ref([]),
 
 		//Search függvény
 		search = (value) => {
-			result.value = [];
+			result.city_name = [];
+			result.country_name = [];
+			let countries = [... new Set(activeLocations.value.map(x => x.country_name))]
 			for (let index = 0; index < activeLocations.value.length; index++) {
 
 				if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
-						.filter(x => x.includes(convertStrings(value))).length > 0) {
+																																		.filter(x => x.includes(convertStrings(value))).length > 0) {
 
-					result.value.push(activeLocations.value[index])
+					result.city_name.push(activeLocations.value[index])
 				}
 			}
+			for (let i = 0; i < countries.length; i++) {
+				if ((convertStrings(countries[i])).split(" ")
+																					.filter(x => x.includes(convertStrings(value))).length > 0) {
+
+					result.country_name.push(countries[i])
+				}
+			}
+
+			console.log(result)
 		}
 		
 		//Függvény lefuttatása
@@ -64,15 +79,23 @@ let result = ref([]),
 						 autocomplete="off" />
 
 			<ul class="dropdown-menu w-auto bg-dark m-0 p-0 transition" 
-					:class="result.length > 0 && isFocus ? 'show' : ''">
+					:class="result.city_name.length > 0 || result.country_name.length > 0 && isFocus ? 'show' : ''">
 
-				<li v-for="x in result.slice(0, 6)" 
+				<li v-for="x in result.city_name.slice(0, 4)" 
 						v-on:click="searchInput = x.city_name;"
 						v-on:mousedown.prevent="isFocus = true" 
 						class="searchresult d-flex m-0 p-0 rounded-2 p-3 ">
 
 					<p class="text-white-50 fs-5">{{ x.country_name }}, &nbsp;</p>
 					<p class="text-white fs-5">{{ x.city_name }}</p>
+				</li>
+
+				<li v-for="y in result.country_name.slice(0, 2)" 
+						v-on:click="searchInput = x.city_name;"
+						v-on:mousedown.prevent="isFocus = true" 
+						class="searchresult d-flex m-0 p-0 rounded-2 p-3 ">
+
+					<p class="text-white fs-5">{{ y }}</p>
 				</li>
 			</ul>
 		</div>
