@@ -54,8 +54,6 @@ let result = reactive({
 					result.country_name.push(countries[i])
 				}
 			}
-
-			console.log(result)
 		}
 		
 		//Függvény lefuttatása
