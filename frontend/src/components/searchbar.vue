@@ -1,5 +1,6 @@
 <script setup>
 import { activeLocations, searchInput } from '@/js/getLocation';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
 import { reactive, ref } from 'vue';
 
@@ -89,10 +90,9 @@ let result = reactive({
 				</li>
 
 				<li v-for="y in result.country_name.slice(0, 2)" 
-						v-on:click="searchInput = x.city_name;"
+						v-on:click="searchInput = y;"
 						v-on:mousedown.prevent="isFocus = true" 
 						class="searchresult d-flex m-0 p-0 rounded-2 p-3 ">
-
 					<p class="text-white fs-5">{{ y }}</p>
 				</li>
 			</ul>
