@@ -15,7 +15,6 @@ axios.get("http://localhost:3000/accommodations/top5")
   .then(data=>
   {
     accommodations.value = data.data;
-    console.log(accommodations.value)
   })
   .catch(err=>
   {

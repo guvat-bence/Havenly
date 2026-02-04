@@ -24,7 +24,6 @@ let model = reactive({
         if(!response.data.success){
           message.value = response.data.message;
           isSuccess = response.data.success
-          console.log(response.data)
         }
 
         // Ha sikeres akkor 
