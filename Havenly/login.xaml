@@ -36,15 +36,14 @@
                        Margin="23,0,0,0"
                        VerticalAlignment="Center"
                        Width="100"/>
-                <TextBox HorizontalAlignment="Left"
-                         Name="passwordTextBox"
-                         Height="26"
-                         Margin="-20,0,0,0"
-                         TextWrapping="Wrap"
-                         VerticalContentAlignment="Center"
-                         VerticalAlignment="Center"
-                         Width="160" 
-                         TextChanged="passwordTextBox_TextChanged"/>
+                <PasswordBox HorizontalAlignment="Left"
+                             Name="passwordTextBox"
+                             Height="26"
+                             Margin="-20,0,0,0"
+                             VerticalAlignment="Center"
+                             Width="160"
+                             PasswordChanged="passwordTextBox_PasswordChanged"/>
+
                 <Button MaxHeight="80"
                         MaxWidth="80"
                         Name="loginButton"

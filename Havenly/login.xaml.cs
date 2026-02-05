@@ -54,7 +54,7 @@ namespace Havenly
 
             try
             {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter($"SELECT `user_type` FROM `users` WHERE `email` = '{emailTextBox.Text}' AND `password` = '{passwordTextBox.Text}'", connection);
+                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter($"SELECT `user_type` FROM `users` WHERE `email` = '{emailTextBox.Text}' AND `password` = '{passwordTextBox.Password}'", connection);
                 openConnection();
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
@@ -80,7 +80,7 @@ namespace Havenly
                 {
                     MessageBox.Show("Hibás email vagy jelszó!");
                     emailTextBox.Text = "";
-                    passwordTextBox.Text = "";
+                    passwordTextBox.Password = "";
                 }
 
             }
@@ -97,7 +97,7 @@ namespace Havenly
             {
                 counter++;
             }
-            if (email.Contains("@") && emailTextBox.Text.Count() > 0 && passwordTextBox.Text.Count() > 0)
+            if (email.Contains("@") && emailTextBox.Text.Count() > 0 && passwordTextBox.Password.Count() > 0)
             {
                 loginButton.IsEnabled = true;
             }
@@ -108,13 +108,13 @@ namespace Havenly
 
         }
 
-        private void passwordTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void passwordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (counter == 1)
             {
                 counter++;
             }
-            if (counter == 2 && emailTextBox.Text.Count() > 0 && passwordTextBox.Text.Count() > 0)
+            if (counter == 2 && emailTextBox.Text.Count() > 0 && passwordTextBox.Password.Count() > 0)
             {
                 loginButton.IsEnabled = true;
             }
