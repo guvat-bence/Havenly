@@ -23,5 +23,12 @@
   "phone_number":"+36303425678",
   "addres":"Kecskemét, József Attila u. 5",
   "copyright":"2025-2026 Havenly"
+ },
+ "home":
+ {
+  "search":"Mit keresel?",
+  "accommodations":"Szállások",
+  "experiences":"Élmények",
+  "popular_accomodations":"Legnépszerűbb szállásaink"
  }
 }

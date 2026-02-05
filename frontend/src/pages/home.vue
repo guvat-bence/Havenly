@@ -7,8 +7,7 @@ let model = reactive({
   searchbar: ''
 })
 
-let accommodations = ref([])
-
+let accommodations = ref([]);
 
 // lekérjük a top5 szállást amit a legtöbbször foglaltak.
 axios.get("http://localhost:3000/accommodations/top5")
@@ -31,7 +30,7 @@ axios.get("http://localhost:3000/accommodations/top5")
         <!-- kereső címe -->
         <h1 class="display-1 text-white text-center w-auto mt-5
                    bg-black bg-opacity-50 rounded-3 shadow">
-          Mit keresel?
+          {{ $t("home.search") }}
         </h1>
         <!-- kereső mező form-ja -->
         <div class="row justify-content-center">
@@ -40,15 +39,21 @@ axios.get("http://localhost:3000/accommodations/top5")
                     p-4 border border-1 border-white mb-5">
             <!-- Keresési mező -->
             <div class="justify-content-between d-flex">
-              <RouterLink to="/accommodation" class="btn btn-outline-light w-50 mx-1">Szállások</RouterLink>
-              <RouterLink to="/experience" class="btn btn-outline-light w-50 mx-1">Élmények</RouterLink>
+              <RouterLink to="/accommodation" 
+                          class="btn btn-outline-light w-50 mx-1">
+                {{ $t("home.accommodations") }}
+              </RouterLink>
+              <RouterLink to="/experience" 
+                          class="btn btn-outline-light w-50 mx-1">
+                {{ $t("home.experiences") }}
+              </RouterLink>
             </div>
           </form> 
         </div>
       </div>
       <!-- LEgnépszerűbb szállások,cím -->
       <h1 class="display-5 mt-5 text-center text-white">
-          Legnépszerűbb szállásaink
+          {{ $t("home.popular_accomodations") }}
       </h1>
 
       <div class="row justify-content-center">

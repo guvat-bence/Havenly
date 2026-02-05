@@ -97,7 +97,7 @@ let	account = [
 					<li class="nav-item">
 						<router-link 	to="/settings"
 													class="nav-link">
-							Beállítások
+							{{ $t("navbar.settings") }}
 						</router-link>
 					</li>
 
