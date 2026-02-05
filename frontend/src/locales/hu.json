@@ -30,5 +30,30 @@
   "accommodations":"Szállások",
   "experiences":"Élmények",
   "popular_accomodations":"Legnépszerűbb szállásaink"
+ },
+ "accommodations":
+ {
+  "search":"Keresés"
+ },
+  "experiences":
+ {
+  "search":"Keresés"
+ },
+ "about_us":
+ {
+  "about_us":"Rólunk",
+  "who_are_we":"Kik vagyunk?",
+  "who_are_we_text":"A Havenly egy modern szállásfoglaló platform, amelyet két lelkes fejlesztő, Guvat Bence József és Herczeg Máté János hozott létre azzal a céllal, hogy egyszerűbbé, átláthatóbbá és élménydúsabbá tegye a szálláskeresést és kiadást minden felhasználó számára.",
+  "havenly_mission":"A Havenly küldetése",
+  "havenly_mission_text":"Célunk egy olyan felhasználóbarát weboldal létrehozása, ahol a szállásfoglalás és a szálláskiadás gyorsan, biztonságosan és kényelmesen valósul meg. A Havenly nemcsak egy foglalási rendszer, hanem egy közösségi platform is, amely összeköti az utazókat és a szállásadókat, miközben segít felfedezni az adott települések rejtett értékeit és látványosságait.",
+  "havenly_offer_title":"Mit kínál a Havenly a felhasználóknak",
+  "havenly_offer_alt_title":"A Havenly lehetőséget biztosít arra, hogy a felhasználók:",
+  "havenly_offer":
+  {
+    "first_offer":"regisztráció után szállásokat foglaljanak vagy saját szállásukat feltöltsék és kiadják,",
+    "second_offer":"részletes szállásleírásokat, képeket és videókat töltsenek fel,",
+    "third_offer":"helyi látványosságokat és élményeket adjanak hozzá városokhoz,",
+    "fourth_offer":"értékeléseikkel segítsék más felhasználók döntését,"
+  }
  }
 }
