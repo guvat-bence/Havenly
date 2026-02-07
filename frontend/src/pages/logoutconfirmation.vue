@@ -31,17 +31,17 @@ import { user } from '@/store/user';
 									border border-1 border-white 
 									mx-auto w-50 rounded-4 
 									p-1">
-				<h6 class="display-6 mb-5">Biztos ki szeretnél jelentkezni?</h6>
+				<h6 class="display-6 mb-5">{{ $t("log_out.log_out") }}</h6>
 				
 				<div class="mt-auto">
 					<button class="btn mx-5 my-3 btn-primary"
 									v-on:click="cancel()">
-						Mégsem
+						{{ $t("log_out.no") }}
 					</button>
 
 					<button class="btn mx-5 my-3 btn-primary"
 									v-on:click="logout()">
-						Kijelentkezés
+						{{ $t("log_out.yes") }}
 					</button>
 				</div>
 			</div>

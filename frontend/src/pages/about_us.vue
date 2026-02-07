@@ -5,7 +5,7 @@
 
         <!-- Cím -->
         <h1 class="display-1  text-center">
-          Rólunk!
+          {{ $t("about_us.about_us") }}
         </h1>
 
         <!-- Fő kép -->
@@ -22,12 +22,8 @@
         <div class="mt-3">
 
           <!--Kik vagyunk rész -->
-          <h3>Kik vagyunk?</h3>
-          <p>
-            A Havenly egy modern szállásfoglaló platform, 
-            amelyet két lelkes fejlesztő, Guvat Bence József és Herczeg Máté János hozott létre azzal a céllal,
-            hogy egyszerűbbé, átláthatóbbá és élménydúsabbá tegye a szálláskeresést és kiadást minden felhasználó számára.
-          </p>
+          <h3>{{ $t("about_us.who_are_we") }}</h3>
+          <p>{{ $t("about_us.who_are_we_text") }}</p>
 
           <!-- Fotók -->
           <div class="row justify-content-center mb-3">
@@ -49,56 +45,33 @@
           </div>
 
           <!-- A Havenly küldetése rész -->
-          <h3>A Havenly küldetése</h3>
-          <p>
-            Célunk egy olyan felhasználóbarát weboldal létrehozása, 
-            ahol a szállásfoglalás és a szálláskiadás gyorsan, biztonságosan és kényelmesen valósul meg. 
-            A Havenly nemcsak egy foglalási rendszer, hanem egy közösségi platform is, amely összeköti az utazókat és a szállásadókat, 
-            miközben segít felfedezni az adott települések rejtett értékeit és látványosságait.
-          </p>
+          <h3>{{ $t("about_us.havenly_mission") }}</h3>
+          <p>{{ $t("about_us.havenly_mission_text") }}</p>
 
           <!-- Mit kínál a Havenly a felhasználóknak rész -->
-          <h3>Mit kínál a Havenly a felhasználóknak</h3>
-          <p>
-            A Havenly lehetőséget biztosít arra, hogy a felhasználók:
-          </p>
+          <h3>{{ $t("about_us.havenly_offer_title") }}</h3>
+          <p>{{ $t("about_us.havenly_offer_alt_title") }}</p>
           <!-- leírás listája -->
           <ul>
-            <li>regisztráció után szállásokat foglaljanak vagy saját szállásukat feltöltsék és kiadják,</li>
-            <li>részletes szállásleírásokat, képeket és videókat töltsenek fel,</li>
-            <li>helyi látványosságokat és élményeket adjanak hozzá városokhoz,</li>
-            <li>értékeléseikkel segítsék más felhasználók döntését,</li>
-            <li>biztonságosan kezeljék fiók- és fizetési adataikat,</li>
-            <li>egyszerűen módosítsák vagy töröljék szállásaikat és foglalásaikat.</li>
+            <li>{{ $t("about_us.havenly_offer.first_offer") }}</li>
+            <li>{{ $t("about_us.havenly_offer.second_offer") }}</li>
+            <li>{{ $t("about_us.havenly_offer.third_offer") }}</li>
+            <li>{{ $t("about_us.havenly_offer.fourth_offer") }}</li>
+            <li>{{ $t("about_us.havenly_offer.fifth_offer") }}</li>
+            <li>{{ $t("about_us.havenly_offer.sixth_offer") }}</li>
           </ul>
           
           <!--Foglalás és biztonság rész  -->
-          <h3>Foglalás és biztonság</h3>
-          <p>
-            A weboldal automatikusan kezeli a foglalásokat, 
-            így kizárva az időpontütközéseket és a dupla foglalás lehetőségét. 
-            Minden foglalásról a szállásadó azonnali értesítést kap, 
-            és mindkét fél számára biztosított a foglalás lemondásának lehetősége, 
-            előre meghatározott feltételek mellett.
-          </p>
+          <h3>{{ $t("about_us.booking_and_security_title") }}</h3>
+          <p>{{ $t("about_us.booking_and_security_text") }}</p>
 
           <!-- Kapcsolattartás és kommunikáció rész -->
-          <h3>Kapcsolattartás és kommunikáció</h3>
-          <p>
-            A Havenly saját üzenetküldő rendszerrel rendelkezik, 
-            amely lehetővé teszi a gyors és egyszerű kommunikációt a szállásadók és a foglalók között. 
-            Emellett a kapcsolatfelvétel e-mailen és telefonon keresztül is biztosított, 
-            mivel a regisztráció kizárólag érvényes elérhetőségekkel lehetséges.
-          </p>
+          <h3>{{ $t("about_us.contact_and_communication") }}</h3>
+          <p>{{ $t("about_us.contact_and_communication_text") }}</p>
 
           <!-- Többnyelvűség és jövőkép rész  -->
-          <h3>Többnyelvűség és jövőkép</h3>
-          <p>
-            Az oldal több nyelven is elérhető lesz, 
-            hogy minél szélesebb felhasználói kör számára nyújtson elérhető és kényelmes megoldást. 
-            Hosszú távú célunk, hogy a Havenly egy megbízható, folyamatosan fejlődő platformmá váljon, 
-            amely valódi értéket teremt az utazók és a szállásadók számára egyaránt.
-          </p>
+          <h3>{{ $t("about_us.multilingualism_and_future_title") }}</h3>
+          <p>{{ $t("about_us.multilingualism_and_future_text") }}</p>
         </div>
       </div>
     </div>

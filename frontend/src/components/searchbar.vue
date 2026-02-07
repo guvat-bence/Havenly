@@ -3,6 +3,9 @@ import { activeLocations, searchInput } from '@/js/getLocation';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
 import { reactive, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const {t} = useI18n();
 
 let result = reactive({
 	city_name: [],
@@ -69,8 +72,8 @@ let result = reactive({
 		<div>
 			<input class="bg-transparent p-2 border-0 border-bottom h4 me-2 text-white" 
 						 type="search" 
-						 id="searchinput" 
-						 placeholder="Keresés"
+						 id="searchinput"
+						 :placeholder="t('search')"
 						 v-model="searchInput" 
 						 v-on:input="search(searchInput)" 
 						 v-on:focus="isFocus = true" 

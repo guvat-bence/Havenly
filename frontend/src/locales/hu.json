@@ -33,11 +33,18 @@
  },
  "accommodations":
  {
-  "search":"Keresés"
+  
  },
   "experiences":
  {
-  "search":"Keresés"
+
+ },
+ "search":"Kerersés",
+ "log_out":
+ {
+  "log_out":"Biztos ki szeretnél jelentkezni?",
+  "yes":"Kijelentkezés",
+  "no":"Mégsem"
  },
  "about_us":
  {
@@ -53,7 +60,20 @@
     "first_offer":"regisztráció után szállásokat foglaljanak vagy saját szállásukat feltöltsék és kiadják,",
     "second_offer":"részletes szállásleírásokat, képeket és videókat töltsenek fel,",
     "third_offer":"helyi látványosságokat és élményeket adjanak hozzá városokhoz,",
-    "fourth_offer":"értékeléseikkel segítsék más felhasználók döntését,"
-  }
+    "fourth_offer":"értékeléseikkel segítsék más felhasználók döntését,",
+    "fifth_offer":"biztonságosan kezeljék fiók- és fizetési adataikat,",
+    "sixth_offer":"egyszerűen módosítsák vagy töröljék szállásaikat és foglalásaikat."
+  },
+  "booking_and_security_title":"Foglalás és biztonság",
+  "booking_and_security_text":"A weboldal automatikusan kezeli a foglalásokat, így kizárva az időpontütközéseket és a dupla foglalás lehetőségét. Minden foglalásról a szállásadó azonnali értesítést kap, és mindkét fél számára biztosított a foglalás lemondásának lehetősége, előre meghatározott feltételek mellett.",
+  "contact_and_communication":"Kapcsolatartás és kommunikáció",
+  "contact_and_communication_text":"A Havenly saját üzenetküldő rendszerrel rendelkezik, amely lehetővé teszi a gyors és egyszerű kommunikációt a szállásadók és a foglalók között. Emellett a kapcsolatfelvétel e-maien és telefonon keresztül is biztosított, mivel a regisztráció kizárólag érvényes elérhetőségekkel lehetséges.",
+  "multilingualism_and_future_title":"Többnyelvűség és jövőkép",
+  "multilingualism_and_future_text":"Az oldal több nyelven is elérhető lesz, hogy minél szélesebb felhasználói kör számára nyújtson elérhető és kényelmes megoldást. Hosszú távú célunk, hogy a Havenly egy megbízható, folyamatosan fejlődő platformmá váljon, amely valódi értéket teremt az utazók és a szállásadók számára egyaránt."
+ },
+ "settings":
+ {
+  "settings":"Beállítások",
+  "currency_choose":"Valuta választása"
  }
 }

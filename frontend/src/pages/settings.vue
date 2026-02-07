@@ -26,12 +26,12 @@ axios.get('http://localhost:3000/getCurrency')
 <template>
 	<div class="settings text-center w-auto mx-auto">
 		<div>
-			<h1 class="display-1 text-center text-white">Beállítások</h1>
+			<h1 class="display-1 text-center text-white">{{ $t("settings.settings") }}</h1>
 		</div>
 		<!-- Valuta választó menüpont -->
 		<div class="row text-white border border-white 
 								border-1 mx-5 rounded-3">
-			<h1 class="display-4">Valuta választása</h1>
+			<h1 class="display-4">{{ $t("settings.currency_choose") }}</h1>
 
 			<!-- Select -->
 			<select class="form-select bg-dark text-white 
