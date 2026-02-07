@@ -578,7 +578,8 @@ function renting()
 	rent.accommodation_full_price = rent_price.value;
 	rent.rent_beginning = currentDate.value;
 	rent.rent_end = nextDayDate.value;
-	rent.accommodation_path =window.location.href;
+	rent.accommodation_path = window.location.href;
+	rent.accommodation =item.value[0];
 
 	router.replace({path:'/basket'})
 }
