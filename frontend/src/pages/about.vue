@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import router from '@/router';
 import {user} from "@/store/user";
 import { selectedCurrency } from '@/store/currency';
@@ -26,7 +26,7 @@ let calendar = ref([]);
 let currentDate = ref("");
 let currentMonth = "";
 let nextDayDate = ref("");
-let model = ref({guests:1});
+let model = reactive({guests:1});
 let daysname = ["H","K","Sz","Cs","P","Sz","V"];
 let monthsname = 
 [
@@ -553,7 +553,7 @@ function showDays()
 	if(rentedDayIds != null)
 	{
 
-		rent_price.value = (item.value[0].price * (rentedDayIds.value.length-1))*model.value.guests;
+		rent_price.value = (item.value[0].price * (rentedDayIds.value.length-1))*model.guests;
 
 		// annyiszor ismétli magát amennyi nap van a rentedDayIds-ban.
 		for(let x=0;x<rentedDayIds.value.length;x++)
@@ -625,6 +625,13 @@ watch([arriveDayId,departureDayId],()=>{
 		rentedDayIds.value=[];
 	}
 })
+
+// figyeli a model értékét és hogyha a valaki megváltoztatja a fők számát akkor átírja az árát
+watch(model,()=>
+{
+	// beállítja az aktuális fizetendő összeget 
+	rent_price.value = (item.value[0].price * (rentedDayIds.value.length-1))*model.guests;
+})
 </script>
 <template>
 	<div class="about">
@@ -633,11 +640,20 @@ watch([arriveDayId,departureDayId],()=>{
 			<!-- Kép megjelenítés és a szállás/élmény címe -->
 			<div class="row justify-content-center">
 
-				<!-- Sazállás/élmény neve -->
-				<h1 class="display-1 text-center mb-5">
-					{{ item[0].name }}
-    		</h1>
+				<!-- Szállás/élmény országa,városa,neve -->
+				<div class="row justify-content-center mb-3">
 
+					<!-- Sazállás/élmény országa, városa -->
+					<h1 class=" text-start col-5 ms-1">
+						{{ item[0].country_name}}, {{ item[0].city_name}}
+					</h1>
+
+					<!-- Szállás/élmény neve -->
+					<h1 class=" text-end col-6">
+						{{ item[0].name }}
+					</h1>
+				</div>
+		
 				<!-- Galéria -->
 				<div class="row justify-content-center">
 					<!-- Síma képek -->
