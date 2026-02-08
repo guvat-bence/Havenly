@@ -1,174 +1,180 @@
 <template>
   <div class="data_protection">
     <div class="container py-5 text-white">
-     
+
       <!-- Cím -->
       <h1 class="display-3 text-white text-center mb-4">
-        Adatvédelmi nyilatkozat
+        {{ $t('data_protection.data_protection_title') }}
       </h1>
-    
-      <!-- Szöveg -->
+
+      <!-- Bevezető -->
       <div class="mb-4">
+        <p>{{ $t('data_protection.data_protection_text_first') }}</p>
+        <p>{{ $t('data_protection.data_protection_text_second') }}</p>
+      </div>
+
+      <!-- 1. Adatkezelő -->
+      <div class="mb-4">
+        <h2>{{ $t('data_protection.data_controller_datas.data_controller_datas_title') }}</h2>
         <p>
-          A Havenly (továbbiakban: „Szolgáltató”, „Mi”) elkötelezett a felhasználók személyes adatainak védelme iránt.
-          Jelen adatvédelmi nyilatkozat célja, hogy átláthatóan és érthetően bemutassa, milyen adatokat gyűjtünk,
-          hogyan kezeljük azokat, és milyen jogok illetik meg a felhasználókat a személyes adataik kapcsán.
+          <strong>{{ $t('data_protection.data_controller_datas.data_controller_name_title') }}</strong>
+          {{ $t('data_protection.data_controller_datas.data_controller_name') }}
         </p>
         <p>
-          A Havenly egy online szállásfoglaló és szállásmegosztó platform, ahol a felhasználók szállásokat foglalhatnak,
-          saját ingatlanjaikat feltölthetik, valamint helyi látványosságokat és élményeket oszthatnak meg másokkal.
+          <strong>{{ $t('data_protection.data_controller_datas.project_type_title') }}:</strong>
+          {{ $t('data_protection.data_controller_datas.project_type') }}
         </p>
-      </div>
-
-      <!-- Az adatkezelő adatai szöveg -->
-      <div class="mb-4">
-        <h2>1. Az adatkezelő adatai</h2>
-        <p><strong>Adatkezelő neve:</strong> Havenly</p>
-        <p><strong>Projekt típusa:</strong> Vizsgaremek - szállásfoglaló és szállásmegosztó webalkalmazás</p>
-        <p><strong>Elérhetőség:</strong> (később megadható e-mail cím)</p>
-      </div>
-
-      <!-- kezelt személyes adatok köre szöveg  -->
-      <div class="mb-4">
-        <h2>2. A kezelt személyes adatok köre</h2>
-
-        <h5 class="mt-3">2.1. Regisztráció során megadott adatok</h5>
-        <ul>
-          <li>Teljes név</li>
-          <li>E-mail cím</li>
-          <li>Telefonszám</li>
-          <li>Jelszó (titkosítva tárolva)</li>
-        </ul>
-
-        <h5 class="mt-3">2.2. Profiladatok</h5>
-        <ul>
-          <li>Lakcím vagy tartózkodási hely (opcionális)</li>
-          <li>Profilkép</li>
-          <li>Fizetési mód beállításai</li>
-          <li>Bankkártya-adatok (külső fizetési szolgáltató kezeli, nem a Havenly)</li>
-        </ul>
-
-        <h5 class="mt-3">2.3. Szállásfeltöltéshez kapcsolódó adatok</h5>
-        <ul>
-          <li>Ingatlan címe</li>
-          <li>Leírás</li>
-          <li>Fényképek, videók</li>
-          <li>Árazás és foglalhatósági adatok</li>
-        </ul>
-
-        <h5 class="mt-3">2.4. Foglalási adatok</h5>
-        <ul>
-          <li>Foglalás időpontja</li>
-          <li>Foglaló és kiadó adatai</li>
-          <li>Fizetési információk (összeg, tranzakciós adatok)</li>
-        </ul>
-
-        <h5 class="mt-3">2.5. Kommunikációs adatok</h5>
-        <ul>
-          <li>A weboldalon belüli üzenetváltások tartalma</li>
-          <li>E-mailes és telefonos kommunikáció metaadatai</li>
-        </ul>
-
-        <h5 class="mt-3">2.6. Technikai adatok</h5>
-        <ul>
-          <li>IP-cím</li>
-          <li>Böngésző típusa</li>
-          <li>Bejelentkezési időpontok</li>
-        </ul>
-      </div>
-
-      <!--  Az adatkezelés célja szöveg -->
-      <div class="mb-4">
-        <h4>3. Az adatkezelés célja</h4>
-        <ul>
-          <li>Felhasználói fiók létrehozása és kezelése</li>
-          <li>Szállásfoglalások lebonyolítása</li>
-          <li>Szállások és látványosságok feltöltése, szerkesztése</li>
-          <li>Fizetések kezelése</li>
-          <li>A foglaló és a kiadó közötti kommunikáció biztosítása</li>
-          <li>A weboldal működésének biztosítása és fejlesztése</li>
-          <li>Visszaélések megelőzése</li>
-          <li>Jogszabályi kötelezettségek teljesítése</li>
-        </ul>
-      </div>
-
-      <!-- Az adatkezelés jogalapja szöveg  -->
-      <div class="mb-4">
-        <h4>4. Az adatkezelés jogalapja</h4>
-        <ul>
-          <li>Felhasználó hozzájárulása</li>
-          <li>Szerződés teljesítése (foglalások, fiókkezelés)</li>
-          <li>Jogi kötelezettség teljesítése</li>
-          <li>Szolgáltató jogos érdeke (biztonság, visszaélések megelőzése)</li>
-        </ul>
-      </div>
-
-      <!-- Adattárolás időtartama szöveg -->
-      <div class="mb-4">
-        <h4>5. Adattárolás időtartama</h4>
-        <ul>
-          <li>A felhasználói fiók adatai: a fiók törléséig</li>
-          <li>Foglalási adatok: jogszabályban előírt ideig</li>
-          <li>Üzenetek: a fiók törléséig</li>
-          <li>Technikai adatok: a rendszer működéséhez szükséges ideig</li>
-        </ul>
-      </div>
-
-      <!-- Adatok továbbítása és külső szolgáltatók szöveg  -->
-      <div class="mb-4">
-        <h4>6. Adatok továbbítása és külső szolgáltatók</h4>
         <p>
-          A Havenly bizonyos adatokat külső partnereknek továbbíthat, például:
-        </p>
-        <ul>
-          <li>Fizetési szolgáltatók (bankkártya-adatok kezelése)</li>
-          <li>Tárhelyszolgáltató</li>
-          <li>E-mail küldő szolgáltató</li>
-          <li>Analitikai vagy naplózó rendszerek (amennyiben használunk ilyet)</li>
-        </ul>
-        <p>
-          A továbbított adatok mennyisége mindig a minimálisan szükségesre korlátozódik.
+          <strong>{{ $t('data_protection.data_controller_datas.contact_title') }}:</strong>
         </p>
       </div>
 
-      <!-- Felhasználói jogok szöveg -->
+      <!-- 2. Kezelt adatok -->
       <div class="mb-4">
-        <h4>7. Felhasználói jogok</h4>
-        <p>A felhasználókat az alábbi jogok illetik meg:</p>
+        <h2>{{ $t('data_protection.privacy_information.privacy_information_title') }}</h2>
+
+        <h5 class="mt-3">
+          {{ $t('data_protection.privacy_information.registration_datas.registration_datas_title') }}
+        </h5>
         <ul>
-          <li>Hozzáférés a saját adataikhoz</li>
-          <li>Adatok helyesbítése</li>
-          <li>Adatok törlése („elfeledtetés joga”)</li>
-          <li>Adatkezelés korlátozása</li>
-          <li>Adathordozhatóság</li>
-          <li>Hozzájárulás visszavonása</li>
-          <li>Panasztétel joga a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH)</li>
+          <li>{{ $t('data_protection.privacy_information.registration_datas.full_name') }}</li>
+          <li>{{ $t('data_protection.privacy_information.registration_datas.email') }}</li>
+          <li>{{ $t('data_protection.privacy_information.registration_datas.phone_number') }}</li>
+          <li>{{ $t('data_protection.privacy_information.registration_datas.password') }}</li>
+        </ul>
+
+        <h5 class="mt-3">
+          {{ $t('data_protection.privacy_information.profile_datas.profile_datas_title') }}
+        </h5>
+        <ul>
+          <li>{{ $t('data_protection.privacy_information.profile_datas.adress') }}</li>
+          <li>{{ $t('data_protection.privacy_information.profile_datas.paying_methods') }}</li>
+          <li>{{ $t('data_protection.privacy_information.profile_datas.bank_card_datas') }}</li>
+        </ul>
+
+        <h5 class="mt-3">
+          {{ $t('data_protection.privacy_information.accommodations_datas.accommodations_datas_title') }}
+        </h5>
+        <ul>
+          <li>{{ $t('data_protection.privacy_information.accommodations_datas.accommodation_addres') }}</li>
+          <li>{{ $t('data_protection.privacy_information.accommodations_datas.description') }}</li>
+          <li>{{ $t('data_protection.privacy_information.accommodations_datas.pictures') }}</li>
+          <li>{{ $t('data_protection.privacy_information.accommodations_datas.prices_and_renting') }}</li>
+        </ul>
+
+        <h5 class="mt-3">
+          {{ $t('data_protection.privacy_information.renting_datas.renting_datas_title') }}
+        </h5>
+        <ul>
+          <li>{{ $t('data_protection.privacy_information.renting_datas.renting_time') }}</li>
+          <li>{{ $t('data_protection.privacy_information.renting_datas.renter_and_owner_datas') }}</li>
+          <li>{{ $t('data_protection.privacy_information.renting_datas.payment_informations') }}</li>
+        </ul>
+
+        <h5 class="mt-3">
+          {{ $t('data_protection.privacy_information.communication_datas.communication_datas_title') }}
+        </h5>
+        <ul>
+          <li>{{ $t('data_protection.privacy_information.communication_datas.communication') }}</li>
+          <li>{{ $t('data_protection.privacy_information.communication_datas.metedatas') }}</li>
+        </ul>
+
+        <h5 class="mt-3">
+          {{ $t('data_protection.privacy_information.tech_datas.tech_datas') }}
+        </h5>
+        <ul>
+          <li>{{ $t('data_protection.privacy_information.tech_datas.ip_addres') }}</li>
+          <li>{{ $t('data_protection.privacy_information.tech_datas.browser_type') }}</li>
+          <li>{{ $t('data_protection.privacy_information.tech_datas.log_in_times') }}</li>
         </ul>
       </div>
 
-      <!--  Adatbiztonság szöveg  -->
+      <!-- 3. Cél -->
       <div class="mb-4">
-        <h4>8. Adatbiztonság</h4>
-        <p>
-          A Havenly minden ésszerű technikai és szervezési intézkedést megtesz a személyes adatok védelme érdekében:
-        </p>
+        <h4>{{ $t('data_protection.data_controlling_goal.data_controlling_goal_title') }}</h4>
         <ul>
-          <li>Titkosított adatátvitel (HTTPS)</li>
-          <li>Jelszavak biztonságos, hash-elt tárolása</li>
-          <li>Rendszeres biztonsági mentések</li>
-          <li>Jogosultságkezelés</li>
-          <li>Visszaélés-figyelő rendszerek alkalmazása</li>
+          <li>{{ $t('data_protection.data_controlling_goal.user_profile') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.renting') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.experiences_and_accommodations') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.payment') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.communications') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.webiste_working') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.scams') }}</li>
+          <li>{{ $t('data_protection.data_controlling_goal.policy') }}</li>
         </ul>
       </div>
 
-      <!-- Az adatvédelmi nyilatkozat módosítása szöveg -->
+      <!-- 4. Jogalap -->
       <div class="mb-4">
-        <h4>9. Az adatvédelmi nyilatkozat módosítása</h4>
+        <h4>{{ $t('data_protection.data_controlling_policy.data_controlling_policy_title') }}</h4>
+        <ul>
+          <li>{{ $t('data_protection.data_controlling_policy.user_agree') }}</li>
+          <li>{{ $t('data_protection.data_controlling_policy.contract') }}</li>
+          <li>{{ $t('data_protection.data_controlling_policy.law') }}</li>
+          <li>{{ $t('data_protection.data_controlling_policy.law2') }}</li>
+        </ul>
+      </div>
+
+      <!-- 5. Tárolás -->
+      <div class="mb-4">
+        <h4>{{ $t('data_protection.data_storeing.data_storeing_title') }}</h4>
+        <ul>
+          <li>{{ $t('data_protection.data_storeing.user_datas') }}</li>
+          <li>{{ $t('data_protection.data_storeing.renting_datas') }}</li>
+          <li>{{ $t('data_protection.data_storeing.messages') }}</li>
+          <li>{{ $t('data_protection.data_storeing.tech_datas') }}</li>
+        </ul>
+      </div>
+
+      <!-- 6. Továbbítás -->
+      <div class="mb-4">
+        <h4>{{ $t('data_protection.data_forwarding.data_forwarding_title') }}</h4>
+        <p>{{ $t('data_protection.data_forwarding.intro') }}</p>
+        <ul>
+          <li>{{ $t('data_protection.data_forwarding.payment_providers') }}</li>
+          <li>{{ $t('data_protection.data_forwarding.hosting_provider') }}</li>
+          <li>{{ $t('data_protection.data_forwarding.email_provider') }}</li>
+          <li>{{ $t('data_protection.data_forwarding.analytics') }}</li>
+        </ul>
+        <p>{{ $t('data_protection.data_forwarding.minimal_data') }}</p>
+      </div>
+
+      <!-- 7. Jogok -->
+      <div class="mb-4">
+        <h4>{{ $t('data_protection.user_rights.user_rights_title') }}</h4>
+        <ul>
+          <li>{{ $t('data_protection.user_rights.access') }}</li>
+          <li>{{ $t('data_protection.user_rights.correction') }}</li>
+          <li>{{ $t('data_protection.user_rights.deletion') }}</li>
+          <li>{{ $t('data_protection.user_rights.restriction') }}</li>
+          <li>{{ $t('data_protection.user_rights.portability') }}</li>
+          <li>{{ $t('data_protection.user_rights.withdraw_consent') }}</li>
+          <li>{{ $t('data_protection.user_rights.complaint') }}</li>
+        </ul>
+      </div>
+
+      <!-- 8. Biztonság -->
+      <div class="mb-4">
+        <h4>{{ $t('data_protection.data_security.data_security_title') }}</h4>
+        <p>{{ $t('data_protection.data_security.intro') }}</p>
+        <ul>
+          <li>{{ $t('data_protection.data_security.https') }}</li>
+          <li>{{ $t('data_protection.data_security.password_hash') }}</li>
+          <li>{{ $t('data_protection.data_security.backups') }}</li>
+          <li>{{ $t('data_protection.data_security.permissions') }}</li>
+          <li>{{ $t('data_protection.data_security.abuse_monitoring') }}</li>
+        </ul>
+      </div>
+
+      <!-- 9. Módosítás -->
+      <div class="mb-4">
+        <h4>{{ $t('data_protection.privacy_policy_modification.privacy_policy_modification_title') }}</h4>
         <p>
-          A Havenly fenntartja a jogot, hogy jelen adatvédelmi nyilatkozatot bármikor módosítsa.
-          A változásokról a felhasználókat a weboldalon keresztül értesítjük.
+          {{ $t('data_protection.privacy_policy_modification.modification_text') }}
+          {{ $t('data_protection.privacy_policy_modification.notification') }}
         </p>
       </div>
+
     </div>
   </div>
 </template>

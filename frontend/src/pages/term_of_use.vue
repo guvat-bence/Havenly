@@ -4,178 +4,134 @@
 
       <!-- Cím -->
       <h1 class="display-5 text-white text-center mb-4">
-          Felhasználási feltételek
+        {{ $t("term_of_use.title") }}
       </h1>
 
-      <!-- Szöveg -->
+      <!-- Bevezető -->
       <div class="mb-4">
-        <p>
-          A Havenly (továbbiakban: „Szolgáltató”, „Platform”, „Mi”) egy online szállásfoglaló és
-          szállásmegosztó webalkalmazás, amely lehetővé teszi a felhasználók számára szállások
-          foglalását, saját ingatlanok feltöltését, valamint helyi látványosságok és élmények
-          megosztását.
-        </p>
-        <p>
-          A Platform használatával a felhasználó („Felhasználó”, „Ön”) elfogadja a jelen
-          Felhasználási Feltételeket. Amennyiben nem ért egyet a feltételekkel, kérjük, ne használja
-          a szolgáltatást.
-        </p>
+        <p>{{ $t("term_of_use.intro.description_1") }}</p>
+        <p>{{ $t("term_of_use.intro.description_2") }}</p>
       </div>
 
-      <!-- A szolgáltatás jellege szöveg -->
+      <!-- 1. A szolgáltatás jellege -->
       <div class="mb-4">
-        <h2>1. A szolgáltatás jellege</h2>
-        <p>
-          A Havenly egy vizsgaremek keretében készült webalkalmazás, amely a következő funkciókat
-          biztosítja:
-        </p>
+        <h2>{{ $t("term_of_use.service_nature.service_nature_title") }}</h2>
+        <p>{{ $t("term_of_use.service_nature.intro") }}</p>
         <ul>
-          <li>szállások böngészése és foglalása</li>
-          <li>saját ingatlanok feltöltése és kezelése</li>
-          <li>helyi látványosságok és élmények megosztása</li>
-          <li>üzenetküldés a foglaló és a kiadó között</li>
-          <li>felhasználói profil létrehozása és szerkesztése</li>
-          <li>fizetési módok beállítása</li>
+          <li>{{ $t("term_of_use.service_nature.features.browse_booking") }}</li>
+          <li>{{ $t("term_of_use.service_nature.features.property_upload") }}</li>
+          <li>{{ $t("term_of_use.service_nature.features.experiences") }}</li>
+          <li>{{ $t("term_of_use.service_nature.features.messaging") }}</li>
+          <li>{{ $t("term_of_use.service_nature.features.profile") }}</li>
+          <li>{{ $t("term_of_use.service_nature.features.payments") }}</li>
         </ul>
-        <p>
-          A Platform működése oktatási célú fejlesztésen alapul, de a feltételek valós szolgáltatás
-          logikáját követik.
-        </p>
+        <p>{{ $t("term_of_use.service_nature.education_note") }}</p>
       </div>
 
-      <!-- Regisztráció és felhasználói fiók szöveg -->
+      <!-- 2. Regisztráció -->
       <div class="mb-4">
-        <h2>2. Regisztráció és felhasználói fiók</h2>
-        <p>A Platform használatához regisztráció szükséges. A Felhasználó köteles:</p>
+        <h2>{{ $t("term_of_use.registration_account.registration_account_title") }}</h2>
+        <p>{{ $t("term_of_use.registration_account.requirements_intro") }}</p>
         <ul>
-          <li>valós adatokat megadni</li>
-          <li>érvényes e-mail címet és telefonszámot használni</li>
-          <li>biztonságos jelszót választani</li>
+          <li>{{ $t("term_of_use.registration_account.requirements.real_data") }}</li>
+          <li>{{ $t("term_of_use.registration_account.requirements.valid_contact") }}</li>
+          <li>{{ $t("term_of_use.registration_account.requirements.secure_password") }}</li>
         </ul>
-        <p>
-          A Felhasználó felelős a fiókja biztonságáért, különösen a jelszó titokban tartásáért.
-          A fiók jogosulatlan használatáért a Szolgáltató nem vállal felelősséget.
-        </p>
+        <p>{{ $t("term_of_use.registration_account.responsibility") }}</p>
       </div>
 
-      <!-- A felhasználó kötelezettségei szöveg-->
+      <!-- 3. Kötelezettségek -->
       <div class="mb-4">
-        <h2>3. A felhasználó kötelezettségei</h2>
-        <p>A Felhasználó vállalja, hogy:</p>
+        <h2>{{ $t("term_of_use.user_obligations.user_obligations_title") }}</h2>
+        <p>{{ $t("term_of_use.user_obligations.intro") }}</p>
         <ul>
-          <li>nem használja a Platformot jogellenes célokra</li>
-          <li>nem tölt fel valótlan, félrevezető vagy sértő tartalmat</li>
-          <li>nem sérti mások személyiségi jogait</li>
-          <li>nem tesz közzé jogvédett tartalmat engedély nélkül</li>
-          <li>nem próbálja meg megzavarni a rendszer működését</li>
+          <li>{{ $t("term_of_use.user_obligations.rules.legal_use") }}</li>
+          <li>{{ $t("term_of_use.user_obligations.rules.truthful_content") }}</li>
+          <li>{{ $t("term_of_use.user_obligations.rules.personal_rights") }}</li>
+          <li>{{ $t("term_of_use.user_obligations.rules.copyright") }}</li>
+          <li>{{ $t("term_of_use.user_obligations.rules.system_integrity") }}</li>
         </ul>
-        <p>
-          A Szolgáltató jogosult a szabályokat megszegő felhasználók fiókját felfüggeszteni vagy
-          törölni.
-        </p>
+        <p>{{ $t("term_of_use.user_obligations.sanctions") }}</p>
       </div>
 
-      <!-- Szállások feltöltése és felelősség szöveg -->
+      <!-- 4. Szállások -->
       <div class="mb-4">
-        <h2>4. Szállások feltöltése és felelősség</h2>
-        <p>A szállást feltöltő Felhasználó („Kiadó”) felelős azért, hogy:</p>
+        <h2>{{ $t("term_of_use.property_responsibility.property_responsibility_title") }}</h2>
+        <p>{{ $t("term_of_use.property_responsibility.host_intro") }}</p>
         <ul>
-          <li>a megadott adatok valósak legyenek</li>
-          <li>a feltöltött képek és videók jogszerűen használhatók legyenek</li>
-          <li>az ingatlan valóban kiadható legyen</li>
-          <li>a foglalásokra időben reagáljon</li>
+          <li>{{ $t("term_of_use.property_responsibility.host_duties.accurate_data") }}</li>
+          <li>{{ $t("term_of_use.property_responsibility.host_duties.legal_media") }}</li>
+          <li>{{ $t("term_of_use.property_responsibility.host_duties.availability") }}</li>
+          <li>{{ $t("term_of_use.property_responsibility.host_duties.timely_response") }}</li>
         </ul>
-        <p>
-          A Szolgáltató nem vállal felelősséget a szállások minőségéért, állapotáért vagy a Kiadó és
-          a Foglaló közötti vitákért.
-        </p>
+        <p>{{ $t("term_of_use.property_responsibility.disclaimer") }}</p>
       </div>
 
-      <!-- Foglalások és lemondások szöveg -->
+      <!-- 5. Foglalások -->
       <div class="mb-4">
-        <h2>5. Foglalások és lemondások</h2>
-        <p>A foglalás menete:</p>
+        <h2>{{ $t("term_of_use.bookings_cancellations.bookings_cancellations_title") }}</h2>
+        <p>{{ $t("term_of_use.bookings_cancellations.booking_process_title") }}</p>
         <ul>
-          <li>A Felhasználó kiválasztja a szállást és az időpontot</li>
-          <li>A rendszer ellenőrzi a foglalhatóságot</li>
-          <li>A foglalás létrejön, a Kiadó értesítést kap</li>
+          <li>{{ $t("term_of_use.bookings_cancellations.booking_process.select") }}</li>
+          <li>{{ $t("term_of_use.bookings_cancellations.booking_process.check") }}</li>
+          <li>{{ $t("term_of_use.bookings_cancellations.booking_process.confirmation") }}</li>
         </ul>
 
-        <p>A foglalás lemondása:</p>
+        <p>{{ $t("term_of_use.bookings_cancellations.cancellation_title") }}</p>
         <ul>
-          <li>
-            A Foglaló a Kiadó által meghatározott feltételek szerint mondhatja le a foglalást
-          </li>
-          <li>
-            A Kiadó jogosult visszautasítani vagy lemondani a foglalást, ha az időpont nem megfelelő
-            számára
-          </li>
+          <li>{{ $t("term_of_use.bookings_cancellations.cancellation_rules.guest_rules") }}</li>
+          <li>{{ $t("term_of_use.bookings_cancellations.cancellation_rules.host_rights") }}</li>
         </ul>
 
-        <p>
-          A visszatérítések mértéke a Kiadó által meghatározott szabályoktól függ.
-        </p>
+        <p>{{ $t("term_of_use.bookings_cancellations.refunds") }}</p>
       </div>
 
-      <!--  Fizetések szöveg -->
+      <!-- 6. Fizetések -->
       <div class="mb-4">
-        <h2>6. Fizetések</h2>
-        <p>
-          A Platform lehetőséget biztosít fizetési módok beállítására. A bankkártya-adatokat nem a
-          Havenly kezeli, hanem külső fizetési szolgáltató.
-        </p>
-        <p>A Szolgáltató nem vállal felelősséget:</p>
+        <h2>{{ $t("term_of_use.payments.payments_title") }}</h2>
+        <p>{{ $t("term_of_use.payments.payment_info") }}</p>
+        <p>{{ $t("term_of_use.payments.no_liability_intro") }}</p>
         <ul>
-          <li>a fizetési szolgáltató hibáiért</li>
-          <li>a tranzakciók elutasításáért</li>
-          <li>a hibásan megadott adatokból eredő károkért</li>
+          <li>{{ $t("term_of_use.payments.no_liability.provider_errors") }}</li>
+          <li>{{ $t("term_of_use.payments.no_liability.declined_transactions") }}</li>
+          <li>{{ $t("term_of_use.payments.no_liability.incorrect_data") }}</li>
         </ul>
       </div>
 
-      <!-- Üzenetküldés szöveg  -->
+      <!-- 7. Üzenetküldés -->
       <div class="mb-4">
-        <h2>7. Üzenetküldés</h2>
-        <p>
-          A Platform üzenetküldő rendszert biztosít a Kiadó és a Foglaló között. A Felhasználó
-          vállalja, hogy nem küld zaklató, sértő vagy jogellenes üzenetet.
-        </p>
-        <p>
-          A Szolgáltató fenntartja a jogot az üzenetváltások vizsgálatára visszaélés gyanúja esetén.
-        </p>
+        <h2>{{ $t("term_of_use.messaging.messaging_title") }}</h2>
+        <p>{{ $t("term_of_use.messaging.rules") }}</p>
+        <p>{{ $t("term_of_use.messaging.monitoring") }}</p>
       </div>
 
-      <!-- Felelősségkorlátozás szöveg -->
+      <!-- 8. Felelősség -->
       <div class="mb-4">
-        <h2>8. Felelősségkorlátozás</h2>
-        <p>A Szolgáltató nem vállal felelősséget:</p>
+        <h2>{{ $t("term_of_use.liability_limitation.liability_limitation_title") }}</h2>
+        <p>{{ $t("term_of_use.liability_limitation.no_liability_intro") }}</p>
         <ul>
-          <li>a Platform esetleges hibáiért vagy leállásáért</li>
-          <li>a Felhasználók által feltöltött tartalmakért</li>
-          <li>a szállások minőségéért vagy állapotáért</li>
-          <li>a Kiadó és a Foglaló közötti vitákért</li>
-          <li>a hibás foglalásokból eredő károkért</li>
+          <li>{{ $t("term_of_use.liability_limitation.no_liability.downtime") }}</li>
+          <li>{{ $t("term_of_use.liability_limitation.no_liability.user_content") }}</li>
+          <li>{{ $t("term_of_use.liability_limitation.no_liability.property_quality") }}</li>
+          <li>{{ $t("term_of_use.liability_limitation.no_liability.disputes") }}</li>
+          <li>{{ $t("term_of_use.liability_limitation.no_liability.booking_errors") }}</li>
         </ul>
-        <p>A Platformot mindenki saját felelősségére használja.</p>
+        <p>{{ $t("term_of_use.liability_limitation.own_risk") }}</p>
       </div>
 
-      <!-- A szolgáltatás módosítása szöveg -->
+      <!-- 9. Módosítás -->
       <div class="mb-4">
-        <h2>9. A szolgáltatás módosítása</h2>
-        <p>
-          A Szolgáltató fenntartja a jogot a funkciók módosítására, a szolgáltatás bővítésére vagy
-          korlátozására, valamint a jelen Felhasználási Feltételek megváltoztatására.
-        </p>
-        <p>A változásokról a Felhasználókat a weboldalon keresztül értesítjük.</p>
+        <h2>{{ $t("term_of_use.service_modification.service_modification_title") }}</h2>
+        <p>{{ $t("term_of_use.service_modification.modification_right") }}</p>
+        <p>{{ $t("term_of_use.service_modification.notification") }}</p>
       </div>
 
-      <!-- Kapcsolat szöveg -->
+      <!-- 10. Kapcsolat -->
       <div class="mb-4">
-        <h2>10. Kapcsolat</h2>
-        <p>
-          Kérdés vagy probléma esetén a Felhasználó a megadott elérhetőségeken keresztül léphet
-          kapcsolatba velünk.
-        </p>
+        <h2>{{ $t("term_of_use.contact.contact_title") }}</h2>
+        <p>{{ $t("term_of_use.contact.contact_text") }}</p>
       </div>
+
     </div>
   </div>
 </template>
