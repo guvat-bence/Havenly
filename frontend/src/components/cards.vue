@@ -112,7 +112,7 @@ function convertStrings(str) {
 	</div>
 </template>
 
-<style>
+<style scoped>
 .card:hover {
 	box-shadow: 0px 0px 20px white;
 	transform: translateY(-10px);
