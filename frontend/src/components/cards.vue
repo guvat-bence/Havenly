@@ -105,7 +105,7 @@ function convertStrings(str) {
 				<router-link 
 						:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name}}"
 					 	class="btn btn-outline-light w-100">
-					Érdekel
+					{{ $t("card") }}
 				</router-link>
 			</div>
 		</div>

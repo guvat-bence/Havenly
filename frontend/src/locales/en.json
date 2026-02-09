@@ -1,8 +1,283 @@
 {
-  "hello": "Hello",
-  "welcome": "Welcome!",
-  "menu": {
-    "home": "Home",
-    "about": "About us"
+  "navbar": {
+    "accommodations": "Accommodations",
+    "experiences": "Experiences",
+    "about_us": "About Us",
+    "settings": "Settings",
+    "login": "Login",
+    "registration": "Registration",
+    "logout": "Logout"
+  },
+  "footer": {
+    "quick_accesses": "Quick Accesses:",
+    "main_page": "Home",
+    "about_us": "About Us",
+    "accommodations": "Accommodations",
+    "experiences": "Experiences",
+    "havenly": "Havenly",
+    "motto": "-Experiences are boundless, and the feeling of home always stays with you.",
+    "data_protection": "Privacy Policy",
+    "term_of_use": "Terms of Use",
+    "contacts": "Contacts",
+    "phone_number": "+36303425678",
+    "addres": "Kecskemét, József Attila St. 5",
+    "copyright": "2025-2026 Havenly"
+  },
+  "home": {
+    "search": "What are you looking for?",
+    "accommodations": "Accommodations",
+    "experiences": "Experiences",
+    "popular_accomodations": "Our Most Popular Accommodations"
+  },
+  "card":"I'm interested",
+  "accommodations": {},
+  "experiences": {},
+  "search": "Search",
+  "log_out": {
+    "log_out": "Are you sure you want to log out?",
+    "yes": "Log Out",
+    "no": "Cancel"
+  },
+  "about_us": {
+    "about_us": "About Us",
+    "who_are_we": "Who Are We?",
+    "who_are_we_text": "Havenly is a modern accommodation booking platform created by two passionate developers, Bence József Guvat and Máté János Herczeg, with the goal of making accommodation search and rental simpler, more transparent, and more enjoyable for all users.",
+    "havenly_mission": "The Mission of Havenly",
+    "havenly_mission_text": "Our goal is to create a user-friendly website where booking and renting accommodations are fast, secure, and convenient. Havenly is not only a booking system but also a community platform that connects travelers and hosts while helping them discover the hidden gems and attractions of different cities.",
+    "havenly_offer_title": "What Havenly Offers to Users",
+    "havenly_offer_alt_title": "Havenly enables users to:",
+    "havenly_offer": {
+      "first_offer": "book accommodations or upload and rent out their own property after registration,",
+      "second_offer": "upload detailed descriptions, photos, and videos of accommodations,",
+      "third_offer": "add local attractions and experiences to cities,",
+      "fourth_offer": "help other users make decisions by leaving reviews,",
+      "fifth_offer": "manage their account and payment data securely,",
+      "sixth_offer": "easily modify or delete their accommodations and bookings."
+    },
+    "booking_and_security_title": "Booking and Security",
+    "booking_and_security_text": "The website automatically manages bookings, preventing date conflicts and double bookings. Each booking instantly notifies the host, and both parties have the option to cancel under predefined conditions.",
+    "contact_and_communication": "Contact and Communication",
+    "contact_and_communication_text": "Havenly features an internal messaging system that enables quick and easy communication between hosts and guests. Contact via email and phone is also supported, as registration requires valid contact details.",
+    "multilingualism_and_future_title": "Multilingualism and Vision",
+    "multilingualism_and_future_text": "The website will be available in multiple languages to provide an accessible and convenient solution for as many users as possible. Our long-term vision is for Havenly to become a reliable, constantly evolving platform that creates real value for both travelers and hosts."
+  },
+  "settings": {
+    "settings": "Settings",
+    "currency_choose": "Choose Currency"
+  },
+  "data_protection": {
+    "data_protection_title": "Privacy Policy",
+    "data_protection_text_first": "Havenly is committed to protecting users’ personal data. This Privacy Policy aims to transparently and clearly explain what data we collect, how we process it, and what rights users have regarding their personal information.",
+    "data_protection_text_second": "Havenly is an online accommodation booking and sharing platform where users can book accommodations, upload their own properties, and share local attractions and experiences with others.",
+    "data_controller_datas": {
+      "data_controller_datas_title": "1. Data Controller Information",
+      "data_controller_name_title": "Name of Controller:",
+      "data_controller_name": "Havenly",
+      "project_type_title": "Project Type",
+      "project_type": "Exam Project - Accommodation Booking and Sharing Web Application",
+      "contact_title": "Contact"
+    },
+    "privacy_information": {
+      "privacy_information_title": "2. Types of Personal Data Processed",
+      "registration_datas": {
+        "registration_datas_title": "2.1. Data Provided During Registration",
+        "full_name": "Full Name",
+        "email": "Email Address",
+        "phone_number": "Phone Number",
+        "password": "Password"
+      },
+      "profile_datas": {
+        "profile_datas_title": "2.2. Profile Data",
+        "adress": "Address or Residence (optional)",
+        "paying_methods": "Payment Method Settings",
+        "bank_card_datas": "Bank Card Details (handled by an external payment provider, not Havenly)"
+      },
+      "accommodations_datas": {
+        "accommodations_datas_title": "2.3. Data Related to Uploaded Accommodations",
+        "accommodation_addres": "Property Address",
+        "description": "Description",
+        "pictures": "Photos",
+        "prices_and_renting": "Pricing and Availability Information"
+      },
+      "renting_datas": {
+        "renting_datas_title": "2.4. Booking Data",
+        "renting_time": "Booking Date",
+        "renter_and_owner_datas": "Data of Guest and Host",
+        "payment_informations": "Payment Information"
+      },
+      "communication_datas": {
+        "communication_datas_title": "2.5. Communication Data",
+        "communication": "Content of Messages Exchanged Within the Website",
+        "metedatas": "Metadata of Email and Phone Communications"
+      },
+      "tech_datas": {
+        "tech_datas": "2.6. Technical Data",
+        "ip_addres": "IP Address",
+        "browser_type": "Browser Type",
+        "log_in_times": "Login Times"
+      }
+    },
+    "data_controlling_goal": {
+      "data_controlling_goal_title": "3. Purpose of Data Processing",
+      "user_profile": "Creating and Managing User Accounts",
+      "renting": "Managing Accommodation Bookings",
+      "experiences_and_accommodations": "Uploading and Editing Accommodations and Attractions",
+      "payment": "Managing Payments",
+      "communications": "Enabling Communication Between Guest and Host",
+      "webiste_working": "Ensuring and Improving Website Functionality",
+      "scams": "Preventing Abuse",
+      "policy": "Complying with Legal Obligations"
+    },
+    "data_controlling_policy": {
+      "data_controlling_policy_title": "4. Legal Basis for Data Processing",
+      "user_agree": "User Consent",
+      "contract": "Performance of a Contract (Bookings, Account Management)",
+      "law": "Legal Obligation",
+      "law2": "Legitimate Interest of the Provider (Security, Fraud Prevention)"
+    },
+    "data_storeing": {
+      "data_storeing_title": "5. Duration of Data Storage",
+      "user_datas": "User Account Data: until the account is deleted",
+      "renting_datas": "Booking Data: for the duration required by law",
+      "messages": "Messages: until the account is deleted",
+      "tech_datas": "Technical Data: for as long as needed for system operation"
+    },
+    "data_forwarding": {
+      "data_forwarding_title": "6. Data Sharing and External Partners",
+      "intro": "Havenly may share certain data with third-party partners, such as:",
+      "payment_providers": "Payment Providers (handling of bank card data)",
+      "hosting_provider": "Hosting Provider",
+      "email_provider": "Email Service Provider",
+      "analytics": "Analytical or Logging Systems (if applicable)",
+      "minimal_data": "The shared data is always limited to the minimum necessary."
+    },
+    "user_rights": {
+      "user_rights_title": "7. User Rights",
+      "access": "Access to their own data",
+      "correction": "Correction of data",
+      "deletion": "Deletion of data (“right to be forgotten”)",
+      "restriction": "Restriction of data processing",
+      "portability": "Data portability",
+      "withdraw_consent": "Withdrawal of consent",
+      "complaint": "Right to lodge a complaint with the National Authority for Data Protection and Freedom of Information (NAIH)"
+    },
+    "data_security": {
+      "data_security_title": "8. Data Security",
+      "intro": "Havenly takes all reasonable technical and organizational measures to protect personal data.",
+      "https": "Encrypted data transmission (HTTPS)",
+      "password_hash": "Secure, hashed password storage",
+      "backups": "Regular backups",
+      "permissions": "Access control",
+      "abuse_monitoring": "Use of abuse monitoring systems"
+    },
+    "privacy_policy_modification": {
+      "privacy_policy_modification_title": "9. Modification of the Privacy Policy",
+      "modification_text": "Havenly reserves the right to modify this Privacy Policy at any time.",
+      "notification": "Users will be notified of changes through the website."
+    }
+  },
+  "term_of_use": {
+    "title": "Terms of Use",
+    "intro": {
+      "description_1": "Havenly (hereinafter: “Provider”, “Platform”, “We”) is an online accommodation booking and sharing web application that allows users to book accommodations, upload their own properties, and share local attractions and experiences.",
+      "description_2": "By using the Platform, the user (“User”, “You”) accepts these Terms of Use. If you do not agree, please do not use the service."
+    },
+    "service_nature": {
+      "service_nature_title": "1. Nature of the Service",
+      "intro": "Havenly is a web application created as part of a final exam project that provides the following features:",
+      "features": {
+        "browse_booking": "browsing and booking accommodations",
+        "property_upload": "uploading and managing own properties",
+        "experiences": "sharing local attractions and experiences",
+        "messaging": "messaging between guest and host",
+        "profile": "creating and editing user profiles",
+        "payments": "setting up payment methods"
+      },
+      "education_note": "The Platform’s operation is based on educational development, but it follows the logic of real-world service terms."
+    },
+    "registration_account": {
+      "registration_account_title": "2. Registration and User Account",
+      "requirements_intro": "Registration is required to use the Platform. The User must:",
+      "requirements": {
+        "real_data": "provide accurate information",
+        "valid_contact": "use a valid email address and phone number",
+        "secure_password": "choose a secure password"
+      },
+      "responsibility": "The User is responsible for the security of their account, especially for keeping their password confidential. The Provider is not liable for unauthorized account use."
+    },
+    "user_obligations": {
+      "user_obligations_title": "3. User Obligations",
+      "intro": "The User agrees to:",
+      "rules": {
+        "legal_use": "not use the Platform for illegal purposes",
+        "truthful_content": "not upload false, misleading, or offensive content",
+        "personal_rights": "not violate others' personal rights",
+        "copyright": "not post copyrighted content without permission",
+        "system_integrity": "not attempt to disrupt system operations"
+      },
+      "sanctions": "The Provider reserves the right to suspend or delete accounts that violate the rules."
+    },
+    "property_responsibility": {
+      "property_responsibility_title": "4. Property Upload and Responsibility",
+      "host_intro": "The User uploading a property (“Host”) is responsible for ensuring that:",
+      "host_duties": {
+        "accurate_data": "the provided information is accurate,",
+        "legal_media": "all uploaded images and videos are lawfully usable,",
+        "availability": "the property is actually available for rent,",
+        "timely_response": "booking requests are responded to in a timely manner."
+      },
+      "disclaimer": "The Provider is not responsible for the quality or condition of accommodations or disputes between Hosts and Guests."
+    },
+    "bookings_cancellations": {
+      "bookings_cancellations_title": "5. Bookings and Cancellations",
+      "booking_process_title": "Booking Process:",
+      "booking_process": {
+        "select": "The User selects accommodation and date.",
+        "check": "The system checks availability.",
+        "confirmation": "The booking is created, and the Host is notified."
+      },
+      "cancellation_title": "Booking Cancellation:",
+      "cancellation_rules": {
+        "guest_rules": "The Guest can cancel the booking according to the Host’s terms.",
+        "host_rights": "The Host may reject or cancel a booking if the time is unsuitable."
+      },
+      "refunds": "Refunds are determined according to the Host’s rules."
+    },
+    "payments": {
+      "payments_title": "6. Payments",
+      "payment_info": "The Platform allows users to set up payment methods. Bank card data are not processed by Havenly but by an external payment provider.",
+      "no_liability_intro": "The Provider is not liable for:",
+      "no_liability": {
+        "provider_errors": "errors of the payment provider,",
+        "declined_transactions": "declined transactions,",
+        "incorrect_data": "damages resulting from incorrect data entry."
+      }
+    },
+    "messaging": {
+      "messaging_title": "7. Messaging",
+      "rules": "The Platform provides a messaging system between Host and Guest. The User agrees not to send harassing, offensive, or illegal messages.",
+      "monitoring": "The Provider reserves the right to review communications in cases of suspected abuse."
+    },
+    "liability_limitation": {
+      "liability_limitation_title": "8. Limitation of Liability",
+      "no_liability_intro": "The Provider is not liable for:",
+      "no_liability": {
+        "downtime": "any errors or downtime of the Platform,",
+        "user_content": "user-generated content,",
+        "property_quality": "the quality or condition of accommodations,",
+        "disputes": "disputes between Hosts and Guests,",
+        "booking_errors": "damages arising from faulty bookings."
+      },
+      "own_risk": "Use of the Platform is at the User’s own risk."
+    },
+    "service_modification": {
+      "service_modification_title": "9. Service Modification",
+      "modification_right": "The Provider reserves the right to modify features, expand or limit services, and update these Terms of Use.",
+      "notification": "Users will be notified of changes through the website."
+    },
+    "contact": {
+      "contact_title": "10. Contact",
+      "contact_text": "In case of questions or issues, users can contact us through the provided contact details."
+    }
   }
 }

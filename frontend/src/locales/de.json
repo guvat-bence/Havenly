@@ -1,0 +1,331 @@
+{
+  "navbar":
+  {
+    "accommodations":"Unterkünfte",
+    "experiences":"Erlebnisse",
+    "about_us":"Über uns",
+    "settings":"Einstellungen",
+    "login":"Anmelden",
+    "registration":"Registrierung",
+    "logout":"Abmelden"
+  },
+  "footer":
+  {
+    "quick_accesses":"Schnellzugriffe:",
+    "main_page":"Startseite",
+    "about_us":"Über uns",
+    "accommodations":"Unterkünfte",
+    "experiences":"Erlebnisse",
+    "havenly":"Havenly",
+    "motto":"-Erlebnisse sind grenzenlos, und das Gefühl von Zuhause begleitet dich immer.",
+    "data_protection":"Datenschutz",
+    "term_of_use":"Nutzungsbedingungen",
+    "contacts":"Kontakt",
+    "phone_number":"+36303425678",
+    "addres":"Kecskemét, József Attila u. 5",
+    "copyright":"2025-2026 Havenly"
+  },
+  "home":
+  {
+    "search":"Wonach suchst du?",
+    "accommodations":"Unterkünfte",
+    "experiences":"Erlebnisse",
+    "popular_accomodations":"Unsere beliebtesten Unterkünfte"
+  },
+  "card":"Interessiert mich",
+  "accommodations":
+  {
+    
+  },
+  "experiences":
+  {
+
+  },
+  "search":"Suche",
+  "log_out":
+  {
+    "log_out":"Möchtest du dich wirklich abmelden?",
+    "yes":"Abmelden",
+    "no":"Abbrechen"
+  },
+  "about_us":
+  {
+    "about_us":"Über uns",
+    "who_are_we":"Wer sind wir?",
+    "who_are_we_text":"Havenly ist eine moderne Plattform zur Unterkunftsbuchung, die von zwei engagierten Entwicklern, Guvat Bence József und Herczeg Máté János, mit dem Ziel geschaffen wurde, die Unterkunftssuche und -vermietung für alle Nutzer einfacher, transparenter und erlebnisreicher zu gestalten.",
+    "havenly_mission":"Die Mission von Havenly",
+    "havenly_mission_text":"Unser Ziel ist es, eine benutzerfreundliche Website zu schaffen, auf der die Buchung und Vermietung von Unterkünften schnell, sicher und komfortabel abläuft. Havenly ist nicht nur ein Buchungssystem, sondern auch eine Community-Plattform, die Reisende und Gastgeber verbindet und dabei hilft, die verborgenen Werte und Sehenswürdigkeiten der jeweiligen Orte zu entdecken.",
+    "havenly_offer_title":"Was bietet Havenly den Nutzern",
+    "havenly_offer_alt_title":"Havenly bietet den Nutzern die Möglichkeit:",
+    "havenly_offer":
+    {
+      "first_offer":"nach der Registrierung Unterkünfte zu buchen oder eigene Unterkünfte hochzuladen und zu vermieten,",
+      "second_offer":"detaillierte Unterkunftsbeschreibungen, Bilder und Videos hochzuladen,",
+      "third_offer":"lokale Sehenswürdigkeiten und Erlebnisse zu Städten hinzuzufügen,",
+      "fourth_offer":"mit Bewertungen anderen Nutzern bei ihrer Entscheidung zu helfen,",
+      "fifth_offer":"Konto- und Zahlungsdaten sicher zu verwalten,",
+      "sixth_offer":"Unterkünfte und Buchungen einfach zu ändern oder zu löschen."
+    },
+    "booking_and_security_title":"Buchung und Sicherheit",
+    "booking_and_security_text":"Die Website verwaltet Buchungen automatisch und verhindert so Terminüberschneidungen und Doppelbuchungen. Über jede Buchung erhält der Gastgeber sofort eine Benachrichtigung, und beide Parteien haben die Möglichkeit, die Buchung unter vorher festgelegten Bedingungen zu stornieren.",
+    "contact_and_communication":"Kontakt und Kommunikation",
+    "contact_and_communication_text":"Havenly verfügt über ein eigenes Nachrichtensystem, das eine schnelle und einfache Kommunikation zwischen Gastgebern und Gästen ermöglicht. Darüber hinaus ist die Kontaktaufnahme per E-Mail und Telefon gewährleistet, da eine Registrierung nur mit gültigen Kontaktdaten möglich ist.",
+    "multilingualism_and_future_title":"Mehrsprachigkeit und Zukunftsvision",
+    "multilingualism_and_future_text":"Die Website wird in mehreren Sprachen verfügbar sein, um einer möglichst breiten Nutzergruppe eine zugängliche und komfortable Lösung zu bieten. Unser langfristiges Ziel ist es, Havenly zu einer zuverlässigen, sich kontinuierlich weiterentwickelnden Plattform zu machen, die sowohl für Reisende als auch für Gastgeber echten Mehrwert schafft."
+  },
+  "settings":
+  {
+    "settings":"Einstellungen",
+    "currency_choose":"Währung auswählen"
+  },
+  "data_protection":
+  {
+    "data_protection_title":"Datenschutzerklärung",
+    "data_protection_text_first":"Havenly verpflichtet sich zum Schutz der personenbezogenen Daten der Nutzer. Diese Datenschutzerklärung soll transparent und verständlich darstellen, welche Daten wir erheben, wie wir sie verarbeiten und welche Rechte den Nutzern in Bezug auf ihre personenbezogenen Daten zustehen.",
+    "data_protection_text_second":"Havenly ist eine Online-Plattform zur Buchung und gemeinsamen Nutzung von Unterkünften, auf der Nutzer Unterkünfte buchen, eigene Immobilien hochladen sowie lokale Sehenswürdigkeiten und Erlebnisse mit anderen teilen können.",
+    "data_controller_datas":{
+      "data_controller_datas_title":"1. Angaben zum Verantwortlichen",
+      "data_controller_name_title":"Name des Verantwortlichen:",
+      "data_controller_name":"Havenly",
+      "project_type_title":"Projektart",
+      "project_type":"Abschlussprojekt – Webanwendung zur Buchung und gemeinsamen Nutzung von Unterkünften",
+      "contact_title":"Kontakt"
+    },
+    "privacy_information":
+    {
+      "privacy_information_title":"2. Arten der verarbeiteten personenbezogenen Daten",
+      "registration_datas":
+      {
+        "registration_datas_title":"2.1. Bei der Registrierung angegebene Daten",
+        "full_name":"Vollständiger Name",
+        "email":"E-Mail-Adresse",
+        "phone_number":"Telefonnummer",
+        "password":"Passwort"
+      },
+      "profile_datas":
+      {
+        "profile_datas_title":"2.2. Profildaten",
+        "adress":"Wohnadresse oder Aufenthaltsort (optional)",
+        "paying_methods":"Einstellungen der Zahlungsmethoden",
+        "bank_card_datas":"Kreditkartendaten (werden von einem externen Zahlungsanbieter verarbeitet, nicht von Havenly)"
+      },
+      "accommodations_datas":
+      {
+        "accommodations_datas_title":"2.3. Daten im Zusammenhang mit dem Hochladen von Unterkünften",
+        "accommodation_addres":"Adresse der Immobilie",
+        "description":"Beschreibung",
+        "pictures":"Fotos",
+        "prices_and_renting":"Preise und Verfügbarkeitsdaten"
+      },
+      "renting_datas":
+      {
+        "renting_datas_title":"2.4. Buchungsdaten",
+        "renting_time":"Zeitraum der Buchung",
+        "renter_and_owner_datas":"Daten von Gast und Gastgeber",
+        "payment_informations":"Zahlungsinformationen"
+      },
+      "communication_datas":
+      {
+        "communication_datas_title":"2.5. Kommunikationsdaten",
+        "communication":"Inhalte der Nachrichten innerhalb der Website",
+        "metedatas":"Metadaten der E-Mail- und Telefonkommunikation"
+      },
+      "tech_datas":
+      {
+        "tech_datas":"2.6. Technische Daten",
+        "ip_addres":"IP-Adresse",
+        "browser_type":"Browsertyp",
+        "log_in_times":"Anmeldezeiten"
+      }
+    },
+    "data_controlling_goal":
+    {
+      "data_controlling_goal_title":"3. Zweck der Datenverarbeitung",
+      "user_profile":"Erstellung und Verwaltung von Benutzerkonten",
+      "renting":"Abwicklung von Unterkunftsbuchungen",
+      "experiences_and_accommodations":"Hochladen und Bearbeiten von Unterkünften und Sehenswürdigkeiten",
+      "payment":"Abwicklung von Zahlungen",
+      "communications":"Sicherstellung der Kommunikation zwischen Gast und Gastgeber",
+      "webiste_working":"Sicherstellung und Verbesserung des Websitebetriebs",
+      "scams":"Verhinderung von Missbrauch",
+      "policy":"Erfüllung gesetzlicher Verpflichtungen"
+    },
+    "data_controlling_policy":
+    {
+      "data_controlling_policy_title":"4. Rechtsgrundlage der Datenverarbeitung",
+      "user_agree":"Einwilligung des Nutzers",
+      "contract":"Erfüllung eines Vertrags (Buchungen, Kontoverwaltung)",
+      "law":"Erfüllung gesetzlicher Verpflichtungen",
+      "law2":"Berechtigtes Interesse des Anbieters (Sicherheit, Missbrauchsprävention)"
+    },
+    "data_storeing":
+    {
+      "data_storeing_title":"5. Dauer der Datenspeicherung",
+      "user_datas":"Daten des Benutzerkontos: bis zur Löschung des Kontos",
+      "renting_datas":"Buchungsdaten: für die gesetzlich vorgeschriebene Dauer",
+      "messages":"Nachrichten: bis zur Löschung des Kontos",
+      "tech_datas":"Technische Daten: für die Dauer, die für den Systembetrieb erforderlich ist"
+    },
+    "data_forwarding":
+    {
+      "data_forwarding_title":"6. Datenweitergabe und externe Dienstleister",
+      "intro":"Havenly kann bestimmte Daten an externe Partner weitergeben, zum Beispiel:",
+      "payment_providers":"Zahlungsdienstleister",
+      "hosting_provider":"Hosting-Anbieter",
+      "email_provider":"E-Mail-Versanddienst",
+      "analytics":"Analyse- oder Protokollierungssysteme (sofern verwendet)",
+      "minimal_data":"Die weitergegebenen Daten beschränken sich stets auf das notwendige Minimum"
+    },
+    "user_rights":
+    {
+      "user_rights_title":"7. Rechte der Nutzer",
+      "access":"Zugriff auf die eigenen Daten",
+      "correction":"Berichtigung der Daten",
+      "deletion":"Löschung der Daten („Recht auf Vergessenwerden“)",
+      "restriction":"Einschränkung der Datenverarbeitung",
+      "portability":"Datenübertragbarkeit",
+      "withdraw_consent":"Widerruf der Einwilligung",
+      "complaint":"Recht auf Beschwerde bei der zuständigen Datenschutzbehörde"
+    },
+    "data_security":
+    {
+      "data_security_title":"8. Datensicherheit",
+      "intro":"Havenly ergreift alle angemessenen technischen und organisatorischen Maßnahmen zum Schutz personenbezogener Daten",
+      "https":"Verschlüsselte Datenübertragung (HTTPS)",
+      "password_hash":"Sichere, gehashte Speicherung von Passwörtern",
+      "backups":"Regelmäßige Sicherheitskopien",
+      "permissions":"Rechteverwaltung",
+      "abuse_monitoring":"Einsatz von Systemen zur Missbrauchsüberwachung"
+    },
+    "privacy_policy_modification":
+    {
+      "privacy_policy_modification_title":"9. Änderung der Datenschutzerklärung",
+      "modification_text":"Havenly behält sich das Recht vor, diese Datenschutzerklärung jederzeit zu ändern",
+      "notification":"Über Änderungen werden die Nutzer über die Website informiert"
+    }
+  },
+  "term_of_use":
+  {
+    "title":"Nutzungsbedingungen",
+    "intro":
+    {
+      "description_1":"Havenly (im Folgenden: „Anbieter“, „Plattform“, „Wir“) ist eine Online-Webanwendung zur Buchung und gemeinsamen Nutzung von Unterkünften, die es Nutzern ermöglicht, Unterkünfte zu buchen, eigene Immobilien hochzuladen sowie lokale Sehenswürdigkeiten und Erlebnisse zu teilen.",
+      "description_2":"Durch die Nutzung der Plattform akzeptiert der Nutzer („Nutzer“, „Sie“) diese Nutzungsbedingungen. Wenn Sie mit den Bedingungen nicht einverstanden sind, nutzen Sie den Dienst bitte nicht."
+    },
+    "service_nature":
+    {
+      "service_nature_title":"1. Art des Dienstes",
+      "intro":"Havenly ist eine im Rahmen eines Abschlussprojekts entwickelte Webanwendung, die folgende Funktionen bietet:",
+      "features":
+      {
+        "browse_booking":"Durchsuchen und Buchen von Unterkünften",
+        "property_upload":"Hochladen und Verwalten eigener Immobilien",
+        "experiences":"Teilen lokaler Sehenswürdigkeiten und Erlebnisse",
+        "messaging":"Nachrichtenversand zwischen Gast und Gastgeber",
+        "profile":"Erstellung und Bearbeitung von Benutzerprofilen",
+        "payments":"Einrichtung von Zahlungsmethoden"
+      },
+      "education_note":"Der Betrieb der Plattform basiert auf einem Bildungsprojekt, folgt jedoch der Logik eines realen Dienstes."
+    },
+    "registration_account":
+    {
+      "registration_account_title":"2. Registrierung und Benutzerkonto",
+      "requirements_intro":"Für die Nutzung der Plattform ist eine Registrierung erforderlich. Der Nutzer ist verpflichtet:",
+      "requirements":
+      {
+        "real_data":"wahrheitsgemäße Daten anzugeben",
+        "valid_contact":"eine gültige E-Mail-Adresse und Telefonnummer zu verwenden",
+        "secure_password":"ein sicheres Passwort zu wählen"
+      },
+      "responsibility":"Der Nutzer ist für die Sicherheit seines Kontos verantwortlich, insbesondere für die Geheimhaltung des Passworts. Der Anbieter übernimmt keine Haftung für die unbefugte Nutzung des Kontos."
+    },
+    "user_obligations":
+    {
+      "user_obligations_title":"3. Pflichten des Nutzers",
+      "intro":"Der Nutzer verpflichtet sich:",
+      "rules":
+      {
+        "legal_use":"die Plattform nicht für rechtswidrige Zwecke zu nutzen",
+        "truthful_content":"keine falschen, irreführenden oder beleidigenden Inhalte hochzuladen",
+        "personal_rights":"keine Persönlichkeitsrechte Dritter zu verletzen",
+        "copyright":"keine urheberrechtlich geschützten Inhalte ohne Genehmigung zu veröffentlichen",
+        "system_integrity":"nicht zu versuchen, den Betrieb des Systems zu stören"
+      },
+      "sanctions":"Der Anbieter ist berechtigt, das Konto von Nutzern, die gegen die Regeln verstoßen, zu sperren oder zu löschen."
+    },
+    "property_responsibility":
+    {
+      "property_responsibility_title":"4. Hochladen von Unterkünften und Verantwortung",
+      "host_intro":"Der Nutzer, der eine Unterkunft hochlädt („Gastgeber“), ist verantwortlich dafür, dass:",
+      "host_duties":
+      {
+        "accurate_data":"die angegebenen Daten korrekt sind",
+        "legal_media":"hochgeladene Bilder und Videos rechtmäßig verwendet werden",
+        "availability":"die Immobilie tatsächlich vermietbar ist",
+        "timely_response":"auf Buchungen rechtzeitig reagiert wird"
+      },
+      "disclaimer":"Der Anbieter übernimmt keine Verantwortung für die Qualität oder den Zustand der Unterkünfte oder für Streitigkeiten zwischen Gastgeber und Gast."
+    },
+    "bookings_cancellations":
+    {
+      "bookings_cancellations_title":"5. Buchungen und Stornierungen",
+      "booking_process_title":"Ablauf der Buchung:",
+      "booking_process":
+      {
+        "select":"Der Nutzer wählt die Unterkunft und den Zeitraum aus",
+        "check":"Das System prüft die Verfügbarkeit",
+        "confirmation":"Die Buchung wird bestätigt und der Gastgeber erhält eine Benachrichtigung"
+      },
+      "cancellation_title":"Stornierung der Buchung:",
+      "cancellation_rules":
+      {
+        "guest_rules":"Der Gast kann die Buchung gemäß den vom Gastgeber festgelegten Bedingungen stornieren",
+        "host_rights":"Der Gastgeber ist berechtigt, die Buchung abzulehnen oder zu stornieren, wenn der Zeitraum für ihn nicht geeignet ist"
+      },
+      "refunds":"Die Höhe der Rückerstattung richtet sich nach den vom Gastgeber festgelegten Regeln."
+    },
+    "payments":
+    {
+      "payments_title":"6. Zahlungen",
+      "payment_info":"Die Plattform ermöglicht die Einrichtung von Zahlungsmethoden. Kreditkartendaten werden nicht von Havenly, sondern von einem externen Zahlungsdienstleister verarbeitet.",
+      "no_liability_intro":"Der Anbieter übernimmt keine Haftung für:",
+      "no_liability":
+      {
+        "provider_errors":"Fehler des Zahlungsdienstleisters",
+        "declined_transactions":"abgelehnte Transaktionen",
+        "incorrect_data":"Schäden aufgrund falsch eingegebener Daten"
+      }
+    },
+    "messaging":
+    {
+      "messaging_title":"7. Nachrichten",
+      "rules":"Die Plattform stellt ein Nachrichtensystem zwischen Gastgeber und Gast bereit. Der Nutzer verpflichtet sich, keine belästigenden, beleidigenden oder rechtswidrigen Nachrichten zu senden.",
+      "monitoring":"Der Anbieter behält sich das Recht vor, Nachrichten bei Verdacht auf Missbrauch zu überprüfen."
+    },
+    "liability_limitation":
+    {
+      "liability_limitation_title":"8. Haftungsbeschränkung",
+      "no_liability_intro":"Der Anbieter übernimmt keine Haftung für:",
+      "no_liability":
+      {
+        "downtime":"Fehler oder Ausfälle der Plattform",
+        "user_content":"von Nutzern hochgeladene Inhalte",
+        "property_quality":"Qualität oder Zustand der Unterkünfte",
+        "disputes":"Streitigkeiten zwischen Gastgeber und Gast",
+        "booking_errors":"Schäden aus fehlerhaften Buchungen"
+      },
+      "own_risk":"Die Nutzung der Plattform erfolgt auf eigene Verantwortung."
+    },
+    "service_modification":
+    {
+      "service_modification_title":"9. Änderung des Dienstes",
+      "modification_right":"Der Anbieter behält sich das Recht vor, Funktionen zu ändern, den Dienst zu erweitern oder einzuschränken sowie diese Nutzungsbedingungen zu aktualisieren.",
+      "notification":"Über Änderungen werden die Nutzer über die Website informiert."
+    },
+    "contact":
+    {
+      "contact_title":"10. Kontakt",
+      "contact_text":"Bei Fragen oder Problemen kann der Nutzer uns über die angegebenen Kontaktmöglichkeiten erreichen."
+    }
+  }
+}
