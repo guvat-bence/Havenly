@@ -1,0 +1,332 @@
+{
+  "navbar":
+  {
+    "accommodations":"Smeštaji",
+    "experiences":"Iskustva",
+    "about_us":"O nama",
+    "settings":"Podešavanja",
+    "login":"Prijava",
+    "registration":"Registracija",
+    "logout":"Odjava"
+  },
+  "footer":
+  {
+    "quick_accesses":"Brzi pristupi:",
+    "main_page":"Početna strana",
+    "about_us":"O nama",
+    "accommodations":"Smeštaji",
+    "experiences":"Iskustva",
+    "havenly":"Havenly",
+    "motto":"– Iskustva su bez granica, a osećaj doma je uvek uz tebe.",
+    "data_protection":"Zaštita podataka",
+    "term_of_use":"Uslovi korišćenja",
+    "contacts":"Kontakt podaci",
+    "phone_number":"+36303425678",
+    "addres":"Kečkemet, ulica Jožefa Atile 5",
+    "copyright":"2025–2026 Havenly"
+  },
+  "home":
+  {
+    "search":"Šta tražiš?",
+    "accommodations":"Smeštaji",
+    "experiences":"Iskustva",
+    "popular_accomodations":"Naši najpopularniji smeštaji"
+  },
+  "card":"Zanima me",
+  "accommodations":
+  {
+    
+  },
+  "experiences":
+  {
+
+  },
+  "search":"Pretraga",
+  "log_out":
+  {
+    "log_out":"Da li si siguran/sigurna da želiš da se odjaviš?",
+    "yes":"Odjava",
+    "no":"Otkaži"
+  },
+  "about_us":
+  {
+    "about_us":"O nama",
+    "who_are_we":"Ko smo mi?",
+    "who_are_we_text":"Havenly je moderna platforma za rezervaciju smeštaja koju su osnovala dva entuzijastična programera, Guvat Bence József i Herczeg Máté János, sa ciljem da pretragu i izdavanje smeštaja učine jednostavnijim, preglednijim i bogatijim iskustvom za sve korisnike.",
+    "havenly_mission":"Misija Havenly-ja",
+    "havenly_mission_text":"Naš cilj je da stvorimo korisnički prijateljsku veb-stranicu na kojoj se rezervacija i izdavanje smeštaja odvija brzo, bezbedno i udobno. Havenly nije samo sistem za rezervacije, već i zajednička platforma koja povezuje putnike i izdavaoce smeštaja, dok istovremeno pomaže u otkrivanju skrivenih vrednosti i znamenitosti određenih mesta.",
+    "havenly_offer_title":"Šta Havenly nudi korisnicima",
+    "havenly_offer_alt_title":"Havenly omogućava korisnicima da:",
+    "havenly_offer":
+    {
+      "first_offer":"nakon registracije rezervišu smeštaje ili postave i izdaju sopstveni smeštaj,",
+      "second_offer":"otpremaju detaljne opise smeštaja, slike i video-zapise,",
+      "third_offer":"dodaju lokalne znamenitosti i iskustva gradovima,",
+      "fourth_offer":"svojim ocenama pomognu drugim korisnicima pri donošenju odluka,",
+      "fifth_offer":"bezbedno upravljaju podacima o nalogu i plaćanju,",
+      "sixth_offer":"jednostavno izmene ili obrišu svoje smeštaje i rezervacije."
+    },
+    "booking_and_security_title":"Rezervacija i bezbednost",
+    "booking_and_security_text":"Veb-sajt automatski upravlja rezervacijama, čime se isključuju vremenski konflikti i mogućnost duplih rezervacija. O svakoj rezervaciji izdavalac smeštaja dobija trenutno obaveštenje, a obe strane imaju mogućnost otkazivanja rezervacije pod unapred definisanim uslovima.",
+    "contact_and_communication":"Kontakt i komunikacija",
+    "contact_and_communication_text":"Havenly poseduje sopstveni sistem za razmenu poruka koji omogućava brzu i jednostavnu komunikaciju između izdavalaca i gostiju. Pored toga, kontakt putem e-maila i telefona je takođe omogućen, jer je registracija moguća isključivo sa važećim kontakt podacima.",
+    "multilingualism_and_future_title":"Višejezičnost i vizija budućnosti",
+    "multilingualism_and_future_text":"Stranica će biti dostupna na više jezika kako bi pružila pristupačno i udobno rešenje što širem krugu korisnika. Naš dugoročni cilj je da Havenly postane pouzdana i kontinuirano razvijajuća platforma koja stvara stvarnu vrednost i za putnike i za izdavaoce smeštaja."
+  },
+  "settings":
+  {
+    "settings":"Podešavanja",
+    "currency_choose":"Izbor valute"
+  },
+  "data_protection":
+  {
+    "data_protection_title":"Politika zaštite podataka",
+    "data_protection_text_first":"Havenly je posvećen zaštiti ličnih podataka korisnika. Cilj ove politike zaštite podataka je da na transparentan i razumljiv način predstavi koje podatke prikupljamo, kako ih obrađujemo i koja prava korisnici imaju u vezi sa svojim ličnim podacima.",
+    "data_protection_text_second":"Havenly je online platforma za rezervaciju i deljenje smeštaja, gde korisnici mogu da rezervišu smeštaje, postavljaju sopstvene nekretnine, kao i da dele lokalne znamenitosti i iskustva.",
+    "data_controller_datas":{
+      "data_controller_datas_title":"1. Podaci o rukovaocu podataka",
+      "data_controller_name_title":"Naziv rukovaoca podataka:",
+      "data_controller_name":"Havenly",
+      "project_type_title":"Tip projekta",
+      "project_type":"Završni projekat – veb aplikacija za rezervaciju i deljenje smeštaja",
+      "contact_title":"Kontakt podaci"
+    },
+    "privacy_information":
+    {
+      "privacy_information_title":"2. Vrste ličnih podataka koji se obrađuju",
+      "registration_datas":
+      {
+        "registration_datas_title":"2.1. Podaci prikupljeni tokom registracije",
+        "full_name":"Puno ime",
+        "email":"Email adresa",
+        "phone_number":"Broj telefona",
+        "password":"Lozinka"
+      },
+      "profile_datas":
+      {
+        "profile_datas_title":"2.2. Podaci o profilu",
+        "adress":"Adresa stanovanja ili boravka (opciono)",
+        "paying_methods":"Podešavanja načina plaćanja",
+        "bank_card_datas":"Podaci o bankovnoj kartici (obrađuje ih eksterni pružalac platnih usluga, ne Havenly)"
+      },
+      "accommodations_datas":
+      {
+        "accommodations_datas_title":"2.3. Podaci u vezi sa postavljanjem smeštaja",
+        "accommodation_addres":"Adresa nekretnine",
+        "description":"Opis",
+        "pictures":"Fotografije",
+        "prices_and_renting":"Cene i podaci o dostupnosti"
+      },
+      "renting_datas":
+      {
+        "renting_datas_title":"2.4. Podaci o rezervacijama",
+        "renting_time":"Vreme rezervacije",
+        "renter_and_owner_datas":"Podaci o gostu i izdavaocu",
+        "payment_informations":"Informacije o plaćanju"
+      },
+      "communication_datas":
+      {
+        "communication_datas_title":"2.5. Komunikacioni podaci",
+        "communication":"Sadržaj poruka razmenjenih unutar platforme",
+        "metedatas":"Meta-podaci e-mail i telefonske komunikacije"
+      },
+      "tech_datas":
+      {
+        "tech_datas":"2.6. Tehnički podaci",
+        "ip_addres":"IP adresa",
+        "browser_type":"Tip pregledača",
+        "log_in_times":"Vremena prijavljivanja"
+      }
+    },
+    "data_controlling_goal":
+    {
+      "data_controlling_goal_title":"3. Svrha obrade podataka",
+      "user_profile":"Kreiranje i upravljanje korisničkim nalogom",
+      "renting":"Realizacija rezervacija smeštaja",
+      "experiences_and_accommodations":"Postavljanje i uređivanje smeštaja i znamenitosti",
+      "payment":"Obrada plaćanja",
+      "communications":"Omogućavanje komunikacije između gosta i izdavaoca",
+      "webiste_working":"Obezbeđivanje i unapređenje funkcionisanja veb-sajta",
+      "scams":"Sprečavanje zloupotreba",
+      "policy":"Ispunjavanje zakonskih obaveza"
+    },
+    "data_controlling_policy":
+    {
+      "data_controlling_policy_title":"4. Pravni osnov obrade podataka",
+      "user_agree":"Saglasnost korisnika",
+      "contract":"Izvršenje ugovora (rezervacije, upravljanje nalogom)",
+      "law":"Ispunjavanje zakonskih obaveza",
+      "law2":"Legitimni interes pružaoca usluge (bezbednost, sprečavanje zloupotreba)"
+    },
+    "data_storeing":
+    {
+      "data_storeing_title":"5. Period čuvanja podataka",
+      "user_datas":"Podaci o korisničkom nalogu: do brisanja naloga",
+      "renting_datas":"Podaci o rezervacijama: u skladu sa zakonskim propisima",
+      "messages":"Poruke: do brisanja naloga",
+      "tech_datas":"Tehnički podaci: onoliko dugo koliko je neophodno za rad sistema"
+    },
+    "data_forwarding":
+    {
+      "data_forwarding_title":"6. Prosleđivanje podataka i eksterni pružaoci usluga",
+      "intro":"Havenly može proslediti određene podatke eksternim partnerima, kao što su:",
+      "payment_providers":"Pružaoci platnih usluga",
+      "hosting_provider":"Hosting provajder",
+      "email_provider":"Servisi za slanje e-mailova",
+      "analytics":"Analitički ili sistemi za evidenciju (ukoliko se koriste)",
+      "minimal_data":"Količina prosleđenih podataka je uvek ograničena na neophodni minimum"
+    },
+    "user_rights":
+    {
+      "user_rights_title":"7. Prava korisnika",
+      "access":"Pristup sopstvenim podacima",
+      "correction":"Ispravka podataka",
+      "deletion":"Brisanje podataka (pravo na zaborav)",
+      "restriction":"Ograničenje obrade podataka",
+      "portability":"Prenosivost podataka",
+      "withdraw_consent":"Povlačenje saglasnosti",
+      "complaint":"Pravo na podnošenje žalbe nadležnom organu za zaštitu podataka"
+    },
+    "data_security":
+    {
+      "data_security_title":"8. Bezbednost podataka",
+      "intro":"Havenly preduzima sve razumne tehničke i organizacione mere radi zaštite ličnih podataka",
+      "https":"Šifrovani prenos podataka (HTTPS)",
+      "password_hash":"Bezbedno čuvanje lozinki u heširanom obliku",
+      "backups":"Redovne bezbednosne kopije",
+      "permissions":"Upravljanje pristupnim pravima",
+      "abuse_monitoring":"Primena sistema za praćenje zloupotreba"
+    },
+    "privacy_policy_modification":
+    {
+      "privacy_policy_modification_title":"9. Izmene politike privatnosti",
+      "modification_text":"Havenly zadržava pravo da u bilo kom trenutku izmeni ovu politiku privatnosti",
+      "notification":"Korisnici će biti obavešteni o izmenama putem veb-sajta"
+    }
+  },
+
+  "term_of_use":
+  {
+    "title":"Uslovi korišćenja",
+    "intro":
+    {
+      "description_1":"Havenly (u daljem tekstu: „Pružalac usluge“, „Platforma“, „Mi“) je online aplikacija za rezervaciju i deljenje smeštaja koja omogućava korisnicima rezervisanje smeštaja, postavljanje sopstvenih nekretnina i deljenje lokalnih znamenitosti i iskustava.",
+      "description_2":"Korišćenjem Platforme korisnik („Korisnik“, „Vi“) prihvata ove Uslove korišćenja. Ukoliko se ne slažete sa uslovima, molimo vas da ne koristite uslugu."
+    },
+    "service_nature":
+    {
+      "service_nature_title":"1. Priroda usluge",
+      "intro":"Havenly je veb-aplikacija razvijena u okviru završnog projekta i pruža sledeće funkcije:",
+      "features":
+      {
+        "browse_booking":"pregled i rezervaciju smeštaja",
+        "property_upload":"postavljanje i upravljanje sopstvenim nekretninama",
+        "experiences":"deljenje lokalnih znamenitosti i iskustava",
+        "messaging":"razmenu poruka između gosta i izdavaoca",
+        "profile":"kreiranje i uređivanje korisničkog profila",
+        "payments":"podešavanje načina plaćanja"
+      },
+      "education_note":"Platforma je razvijena u obrazovne svrhe, ali prati logiku realnih usluga."
+    },
+    "registration_account":
+    {
+      "registration_account_title":"2. Registracija i korisnički nalog",
+      "requirements_intro":"Za korišćenje Platforme potrebna je registracija. Korisnik je dužan da:",
+      "requirements":
+      {
+        "real_data":"unese tačne i istinite podatke",
+        "valid_contact":"koristi važeću e-mail adresu i broj telefona",
+        "secure_password":"odabere sigurnu lozinku"
+      },
+      "responsibility":"Korisnik je odgovoran za bezbednost svog naloga, posebno za čuvanje lozinke u tajnosti. Pružalac usluge ne odgovara za neovlašćenu upotrebu naloga."
+    },
+    "user_obligations":
+    {
+      "user_obligations_title":"3. Obaveze korisnika",
+      "intro":"Korisnik se obavezuje da:",
+      "rules":
+      {
+        "legal_use":"ne koristi Platformu u nezakonite svrhe",
+        "truthful_content":"ne objavljuje lažan, obmanjujući ili uvredljiv sadržaj",
+        "personal_rights":"ne krši lična prava drugih",
+        "copyright":"ne objavljuje zaštićen sadržaj bez dozvole",
+        "system_integrity":"ne pokušava da ometa rad sistema"
+      },
+      "sanctions":"Pružalac usluge ima pravo da suspenduje ili obriše naloge korisnika koji krše pravila."
+    },
+    "property_responsibility":
+    {
+      "property_responsibility_title":"4. Postavljanje smeštaja i odgovornost",
+      "host_intro":"Korisnik koji postavlja smeštaj („Izdavalac“) odgovoran je da:",
+      "host_duties":
+      {
+        "accurate_data":"podaci koje je uneo budu tačni",
+        "legal_media":"slike i video materijali budu zakonito korišćeni",
+        "availability":"nekretnina bude zaista dostupna za izdavanje",
+        "timely_response":"pravovremeno odgovori na rezervacije"
+      },
+      "disclaimer":"Pružalac usluge ne odgovara za kvalitet smeštaja, stanje ili sporove između Izdavaoca i Gosta."
+    },
+    "bookings_cancellations":
+    {
+      "bookings_cancellations_title":"5. Rezervacije i otkazivanja",
+      "booking_process_title":"Proces rezervacije:",
+      "booking_process":
+      {
+        "select":"Korisnik bira smeštaj i datum",
+        "check":"Sistem proverava dostupnost",
+        "confirmation":"Rezervacija je potvrđena, Izdavalac dobija obaveštenje"
+      },
+      "cancellation_title":"Otkazivanje rezervacije:",
+      "cancellation_rules":
+      {
+        "guest_rules":"Gost može otkazati rezervaciju u skladu sa pravilima Izdavaoca",
+        "host_rights":"Izdavalac ima pravo da odbije ili otkaže rezervaciju ako termin nije odgovarajući"
+      },
+      "refunds":"Visina povraćaja zavisi od pravila koja postavlja Izdavalac."
+    },
+    "payments":
+    {
+      "payments_title":"6. Plaćanja",
+      "payment_info":"Platforma omogućava podešavanje načina plaćanja. Podaci o kartici nisu u rukovanju Havenly-ja, već eksternog platnog provajdera.",
+      "no_liability_intro":"Pružalac usluge ne odgovara za:",
+      "no_liability":
+      {
+        "provider_errors":"greške platnog provajdera",
+        "declined_transactions":"odbijene transakcije",
+        "incorrect_data":"štetu nastalu zbog netačno unetih podataka"
+      }
+    },
+    "messaging":
+    {
+      "messaging_title":"7. Razmena poruka",
+      "rules":"Platforma omogućava razmenu poruka između Gosta i Izdavaoca. Korisnik se obavezuje da ne šalje uznemirujuće, uvredljive ili nezakonite poruke.",
+      "monitoring":"Pružalac usluge zadržava pravo da proveri poruke u slučaju sumnje na zloupotrebu."
+    },
+    "liability_limitation":
+    {
+      "liability_limitation_title":"8. Ograničenje odgovornosti",
+      "no_liability_intro":"Pružalac usluge ne odgovara za:",
+      "no_liability":
+      {
+        "downtime":"moguće greške ili nedostupnost Platforme",
+        "user_content":"sadržaj koji postavljaju korisnici",
+        "property_quality":"kvalitet ili stanje smeštaja",
+        "disputes":"sporove između Izdavaoca i Gosta",
+        "booking_errors":"štetu nastalu usled grešaka u rezervacijama"
+      },
+      "own_risk":"Platformu koristi svako na sopstvenu odgovornost."
+    },
+    "service_modification":
+    {
+      "service_modification_title":"9. Izmene usluge",
+      "modification_right":"Pružalac usluge zadržava pravo da menja funkcije, proširuje ili ograničava usluge i menja ove Uslove korišćenja.",
+      "notification":"Korisnici će biti obavešteni o izmenama putem veb-sajta."
+    },
+    "contact":
+    {
+      "contact_title":"10. Kontakt",
+      "contact_text":"U slučaju pitanja ili problema, korisnik može kontaktirati pružaoca usluge putem navedenih kontakt podataka."
+    }
+  }
+}

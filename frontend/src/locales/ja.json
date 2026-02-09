@@ -1,200 +1,331 @@
 {
-  "navbar": {
-    "accommodations": "宿泊施設",
-    "experiences": "体験",
-    "about_us": "私たちについて",
-    "settings": "設定",
-    "login": "ログイン",
-    "registration": "登録",
-    "logout": "ログアウト"
+  "navbar":
+  {
+    "accommodations":"宿泊施設",
+    "experiences":"体験",
+    "about_us":"私たちについて",
+    "settings":"設定",
+    "login":"ログイン",
+    "registration":"登録",
+    "logout":"ログアウト"
   },
-  "footer": {
-    "quick_accesses": "クイックアクセス：",
-    "main_page": "ホーム",
-    "about_us": "私たちについて",
-    "accommodations": "宿泊施設",
-    "experiences": "体験",
-    "havenly": "Havenly",
-    "motto": "― 体験は無限、安心できる居場所はいつもあなたと共に。",
-    "data_protection": "個人情報保護",
-    "term_of_use": "利用規約",
-    "contacts": "お問い合わせ",
-    "phone_number": "+36303425678",
-    "addres": "ハンガリー、ケチケメート、ヨージェフ・アッティラ通り5番",
-    "copyright": "2025–2026 Havenly"
+  "footer":
+  {
+    "quick_accesses":"クイックアクセス：",
+    "main_page":"ホーム",
+    "about_us":"私たちについて",
+    "accommodations":"宿泊施設",
+    "experiences":"体験",
+    "havenly":"Havenly",
+    "motto":"― 体験は無限、そして「我が家」の感覚はいつもあなたと共に。",
+    "data_protection":"プライバシーポリシー",
+    "term_of_use":"利用規約",
+    "contacts":"お問い合わせ",
+    "phone_number":"+36303425678",
+    "addres":"ケチケメート、ヨージェフ・アッティラ通り 5",
+    "copyright":"2025-2026 Havenly"
   },
-  "home": {
-    "search": "何をお探しですか？",
-    "accommodations": "宿泊施設",
-    "experiences": "体験",
-    "popular_accomodations": "人気の宿泊施設"
+  "home":
+  {
+    "search":"何をお探しですか？",
+    "accommodations":"宿泊施設",
+    "experiences":"体験",
+    "popular_accomodations":"人気の宿泊施設"
   },
-  "card": "興味があります",
-  "accommodations": {},
-  "experiences": {},
-  "search": "検索",
-  "log_out": {
-    "log_out": "本当にログアウトしますか？",
-    "yes": "ログアウト",
-    "no": "キャンセル"
+  "card":"詳しく見る",
+  "accommodations":
+  {
+    
   },
-  "about_us": {
-    "about_us": "私たちについて",
-    "who_are_we": "私たちは誰ですか？",
-    "who_are_we_text": "Havenlyは、宿泊施設の検索および提供をより簡単で分かりやすく、体験価値の高いものにすることを目的として、Guvat Bence JózsefとHerczeg Máté Jánosという2人の情熱的な開発者によって設立された、現代的な宿泊予約プラットフォームです。",
-    "havenly_mission": "Havenlyの使命",
-    "havenly_mission_text": "私たちの目標は、宿泊予約と宿泊提供を迅速・安全・快適に行えるユーザーフレンドリーなウェブサイトを構築することです。Havenlyは単なる予約システムではなく、旅行者とホストをつなぐコミュニティプラットフォームでもあり、地域の隠れた魅力や観光名所の発見を支援します。",
-    "havenly_offer_title": "Havenlyがユーザーに提供するもの",
-    "havenly_offer_alt_title": "Havenlyでは、ユーザーは以下のことが可能です：",
-    "havenly_offer": {
-      "first_offer": "登録後、宿泊施設を予約、または自身の宿泊施設を掲載・貸し出すこと",
-      "second_offer": "詳細な宿泊説明、写真、動画をアップロードすること",
-      "third_offer": "都市ごとに地元の観光名所や体験を追加すること",
-      "fourth_offer": "レビューを通じて他のユーザーの判断を支援すること",
-      "fifth_offer": "アカウントおよび支払い情報を安全に管理すること",
-      "sixth_offer": "宿泊施設や予約を簡単に変更または削除すること"
+  "experiences":
+  {
+
+  },
+  "search":"検索",
+  "log_out":
+  {
+    "log_out":"本当にログアウトしますか？",
+    "yes":"ログアウト",
+    "no":"キャンセル"
+  },
+  "about_us":
+  {
+    "about_us":"私たちについて",
+    "who_are_we":"私たちは誰？",
+    "who_are_we_text":"Havenlyは、宿泊検索と宿泊提供をより簡単で分かりやすく、そして体験豊かなものにすることを目的として、2人の情熱的な開発者、Guvat Bence József と Herczeg Máté János によって作られたモダンな宿泊予約プラットフォームです。",
+    "havenly_mission":"Havenlyの使命",
+    "havenly_mission_text":"私たちの目標は、宿泊予約と宿泊提供を迅速・安全・快適に行えるユーザーフレンドリーなウェブサイトを作ることです。Havenlyは単なる予約システムではなく、旅行者とホストをつなぐコミュニティプラットフォームであり、各地域の隠れた魅力や見どころの発見もサポートします。",
+    "havenly_offer_title":"Havenlyがユーザーに提供するもの",
+    "havenly_offer_alt_title":"Havenlyでは、ユーザーは以下のことが可能です：",
+    "havenly_offer":
+    {
+      "first_offer":"登録後に宿泊施設を予約、または自分の宿泊施設を掲載・貸し出すことができる",
+      "second_offer":"詳細な宿泊説明、写真、動画をアップロードできる",
+      "third_offer":"地域の観光名所や体験を都市に追加できる",
+      "fourth_offer":"レビューを通じて他のユーザーの判断を助ける",
+      "fifth_offer":"アカウントおよび支払い情報を安全に管理する",
+      "sixth_offer":"宿泊施設や予約を簡単に変更・削除できる"
     },
-    "booking_and_security_title": "予約とセキュリティ",
-    "booking_and_security_text": "当ウェブサイトは予約を自動的に管理し、日程の重複や二重予約を防止します。すべての予約についてホストには即時通知が送信され、事前に定められた条件のもと、双方が予約をキャンセルすることが可能です。",
-    "contact_and_communication": "連絡およびコミュニケーション",
-    "contact_and_communication_text": "Havenlyには独自のメッセージ機能があり、ホストとゲスト間の迅速かつ簡単なコミュニケーションを可能にします。また、登録時には有効な連絡先情報が必須であるため、メールおよび電話による連絡も可能です。",
-    "multilingualism_and_future_title": "多言語対応と将来展望",
-    "multilingualism_and_future_text": "当サイトは複数の言語に対応し、より多くのユーザーにとって利用しやすい環境を提供します。長期的には、旅行者とホストの双方に真の価値を提供する、信頼性が高く継続的に成長するプラットフォームを目指しています。"
+    "booking_and_security_title":"予約とセキュリティ",
+    "booking_and_security_text":"ウェブサイトは予約を自動的に管理し、日程の重複や二重予約を防止します。すべての予約についてホストは即時通知を受け、事前に定められた条件のもとで、双方が予約をキャンセルすることが可能です。",
+    "contact_and_communication":"連絡とコミュニケーション",
+    "contact_and_communication_text":"Havenlyには独自のメッセージシステムがあり、ホストと予約者の間で迅速かつ簡単にコミュニケーションが可能です。また、登録には有効な連絡先が必要なため、メールや電話による連絡も可能です。",
+    "multilingualism_and_future_title":"多言語対応と将来像",
+    "multilingualism_and_future_text":"本サイトはより多くのユーザーに快適な体験を提供するため、複数言語に対応する予定です。長期的には、旅行者とホストの双方にとって真の価値を生み出す、信頼性が高く成長し続けるプラットフォームを目指しています。"
   },
-  "settings": {
-    "settings": "設定",
-    "currency_choose": "通貨の選択"
+  "settings":
+  {
+    "settings":"設定",
+    "currency_choose":"通貨の選択"
   },
-  "data_protection": {
-    "data_protection_title": "プライバシーポリシー",
-    "data_protection_text_first": "Havenlyは、ユーザーの個人情報の保護を重要視しています。本プライバシーポリシーは、収集する情報の内容、その取扱方法、およびユーザーが有する権利について、分かりやすく説明することを目的としています。",
-    "data_protection_text_second": "Havenlyは、宿泊施設の予約および共有を可能にするオンラインプラットフォームであり、ユーザーは宿泊施設の予約、物件の掲載、地域の観光名所や体験の共有を行うことができます。",
-    "data_controller_datas": {
-      "data_controller_datas_title": "1. データ管理者の情報",
-      "data_controller_name_title": "データ管理者名：",
-      "data_controller_name": "Havenly",
-      "project_type_title": "プロジェクト種別",
-      "project_type": "卒業制作 ― 宿泊予約・共有Webアプリケーション",
-      "contact_title": "連絡先"
+  "data_protection":
+  {
+    "data_protection_title":"プライバシーポリシー",
+    "data_protection_text_first":"Havenlyは、ユーザーの個人情報の保護に全力で取り組んでいます。本プライバシーポリシーは、収集するデータの種類、その取り扱い方法、ならびに個人データに関してユーザーが有する権利を、分かりやすく透明に説明することを目的としています。",
+    "data_protection_text_second":"Havenlyは、ユーザーが宿泊施設を予約し、自身の物件を掲載し、さらに地域の観光名所や体験を他のユーザーと共有できるオンライン宿泊予約・宿泊共有プラットフォームです。",
+    "data_controller_datas":{
+      "data_controller_datas_title":"1. データ管理者の情報",
+      "data_controller_name_title":"データ管理者名：",
+      "data_controller_name":"Havenly",
+      "project_type_title":"プロジェクトの種類",
+      "project_type":"卒業制作 ― 宿泊予約・宿泊共有Webアプリケーション",
+      "contact_title":"連絡先"
     },
-    "privacy_information": {
-      "privacy_information_title": "2. 取り扱う個人データの範囲",
-      "registration_datas": {
-        "registration_datas_title": "2.1 登録時に提供される情報",
-        "full_name": "氏名",
-        "email": "メールアドレス",
-        "phone_number": "電話番号",
-        "password": "パスワード"
+    "privacy_information":
+    {
+      "privacy_information_title":"2. 取り扱う個人データの種類",
+      "registration_datas":
+      {
+        "registration_datas_title":"2.1 登録時に提供される情報",
+        "full_name":"氏名",
+        "email":"メールアドレス",
+        "phone_number":"電話番号",
+        "password":"パスワード"
       },
-      "profile_datas": {
-        "profile_datas_title": "2.2 プロフィール情報",
-        "adress": "住所または滞在地（任意）",
-        "paying_methods": "支払い方法の設定",
-        "bank_card_datas": "クレジットカード情報（外部決済事業者が管理）"
+      "profile_datas":
+      {
+        "profile_datas_title":"2.2 プロフィール情報",
+        "adress":"住所または滞在先（任意）",
+        "paying_methods":"支払い方法の設定",
+        "bank_card_datas":"クレジットカード情報（外部決済サービスが管理、Havenlyでは管理しません）"
       },
-      "accommodations_datas": {
-        "accommodations_datas_title": "2.3 宿泊施設掲載に関する情報",
-        "accommodation_addres": "物件の住所",
-        "description": "説明",
-        "pictures": "写真",
-        "prices_and_renting": "料金および空室情報"
+      "accommodations_datas":
+      {
+        "accommodations_datas_title":"2.3 宿泊施設掲載に関連する情報",
+        "accommodation_addres":"物件の住所",
+        "description":"説明",
+        "pictures":"写真",
+        "prices_and_renting":"料金および予約可能情報"
       },
-      "renting_datas": {
-        "renting_datas_title": "2.4 予約情報",
-        "renting_time": "予約日時",
-        "renter_and_owner_datas": "利用者および提供者の情報",
-        "payment_informations": "支払い情報"
+      "renting_datas":
+      {
+        "renting_datas_title":"2.4 予約情報",
+        "renting_time":"予約日時",
+        "renter_and_owner_datas":"予約者およびホストの情報",
+        "payment_informations":"支払い情報"
       },
-      "communication_datas": {
-        "communication_datas_title": "2.5 通信情報",
-        "communication": "サイト内メッセージ内容",
-        "metedatas": "メール・電話通信のメタデータ"
+      "communication_datas":
+      {
+        "communication_datas_title":"2.5 コミュニケーションデータ",
+        "communication":"サイト内メッセージの内容",
+        "metedatas":"メールおよび電話通信のメタデータ"
       },
-      "tech_datas": {
-        "tech_datas": "2.6 技術情報",
-        "ip_addres": "IPアドレス",
-        "browser_type": "ブラウザの種類",
-        "log_in_times": "ログイン日時"
+      "tech_datas":
+      {
+        "tech_datas":"2.6 技術的データ",
+        "ip_addres":"IPアドレス",
+        "browser_type":"ブラウザの種類",
+        "log_in_times":"ログイン日時"
       }
     },
-    "data_controlling_goal": {
-      "data_controlling_goal_title": "3. データ処理の目的",
-      "user_profile": "ユーザーアカウントの作成および管理",
-      "renting": "宿泊予約の処理",
-      "experiences_and_accommodations": "宿泊施設および体験の掲載・編集",
-      "payment": "支払い処理",
-      "communications": "利用者間の連絡手段の提供",
-      "webiste_working": "ウェブサイトの運営および改善",
-      "scams": "不正行為の防止",
-      "policy": "法的義務の履行"
+    "data_controlling_goal":
+    {
+      "data_controlling_goal_title":"3. データ処理の目的",
+      "user_profile":"ユーザーアカウントの作成および管理",
+      "renting":"宿泊予約の処理",
+      "experiences_and_accommodations":"宿泊施設および観光スポットの掲載・編集",
+      "payment":"支払いの管理",
+      "communications":"予約者とホスト間のコミュニケーション提供",
+      "webiste_working":"ウェブサイトの運営および改善",
+      "scams":"不正行為の防止",
+      "policy":"法的義務の履行"
     },
-    "data_controlling_policy": {
-      "data_controlling_policy_title": "4. データ処理の法的根拠",
-      "user_agree": "ユーザーの同意",
-      "contract": "契約の履行",
-      "law": "法的義務",
-      "law2": "正当な利益（セキュリティ、不正防止）"
+    "data_controlling_policy":
+    {
+      "data_controlling_policy_title":"4. データ処理の法的根拠",
+      "user_agree":"ユーザーの同意",
+      "contract":"契約の履行（予約、アカウント管理）",
+      "law":"法的義務の履行",
+      "law2":"正当な利益（セキュリティ、不正防止）"
     },
-    "data_storeing": {
-      "data_storeing_title": "5. データ保存期間",
-      "user_datas": "アカウント情報：アカウント削除まで",
-      "renting_datas": "予約情報：法令で定められた期間",
-      "messages": "メッセージ：アカウント削除まで",
-      "tech_datas": "技術情報：運用上必要な期間"
+    "data_storeing":
+    {
+      "data_storeing_title":"5. データ保存期間",
+      "user_datas":"ユーザーアカウント情報：アカウント削除まで",
+      "renting_datas":"予約情報：法令で定められた期間",
+      "messages":"メッセージ：アカウント削除まで",
+      "tech_datas":"技術データ：システム運用に必要な期間"
     },
-    "data_forwarding": {
-      "data_forwarding_title": "6. データの共有および外部委託",
-      "intro": "Havenlyは、以下の外部事業者にデータを提供する場合があります：",
-      "payment_providers": "決済サービス事業者",
-      "hosting_provider": "ホスティングサービス",
-      "email_provider": "メール配信サービス",
-      "analytics": "分析・ログ管理システム",
-      "minimal_data": "提供されるデータは必要最小限に限定されます"
+    "data_forwarding":
+    {
+      "data_forwarding_title":"6. データ提供および外部サービス",
+      "intro":"Havenlyは以下のような外部パートナーにデータを提供する場合があります：",
+      "payment_providers":"決済サービス提供者（クレジットカード情報処理）",
+      "hosting_provider":"ホスティングサービス提供者",
+      "email_provider":"メール配信サービス",
+      "analytics":"分析・ログ管理システム（使用する場合）",
+      "minimal_data":"提供されるデータは、常に必要最小限に制限されます"
     },
-    "user_rights": {
-      "user_rights_title": "7. ユーザーの権利",
-      "access": "個人データへのアクセス権",
-      "correction": "データの訂正",
-      "deletion": "データ削除（忘れられる権利）",
-      "restriction": "処理制限",
-      "portability": "データポータビリティ",
-      "withdraw_consent": "同意の撤回",
-      "complaint": "監督機関への苦情申立権"
+    "user_rights":
+    {
+      "user_rights_title":"7. ユーザーの権利",
+      "access":"自身のデータへのアクセス",
+      "correction":"データの訂正",
+      "deletion":"データの削除（忘れられる権利）",
+      "restriction":"データ処理の制限",
+      "portability":"データポータビリティ",
+      "withdraw_consent":"同意の撤回",
+      "complaint":"国家データ保護・情報自由機関（NAIH）への苦情申立て"
     },
-    "data_security": {
-      "data_security_title": "8. データセキュリティ",
-      "intro": "Havenlyは、個人情報保護のために適切な技術的・組織的対策を講じています。",
-      "https": "暗号化通信（HTTPS）",
-      "password_hash": "パスワードのハッシュ化保存",
-      "backups": "定期的なバックアップ",
-      "permissions": "アクセス権限管理",
-      "abuse_monitoring": "不正監視システム"
+    "data_security":
+    {
+      "data_security_title":"8. データセキュリティ",
+      "intro":"Havenlyは、個人データ保護のために合理的な技術的および組織的対策を講じています。",
+      "https":"暗号化通信（HTTPS）",
+      "password_hash":"パスワードの安全なハッシュ化保存",
+      "backups":"定期的なバックアップ",
+      "permissions":"アクセス権限管理",
+      "abuse_monitoring":"不正行為監視システムの導入"
     },
-    "privacy_policy_modification": {
-      "privacy_policy_modification_title": "9. プライバシーポリシーの変更",
-      "modification_text": "Havenlyは、本ポリシーを予告なく変更する権利を有します。",
-      "notification": "変更内容はウェブサイト上で通知されます。"
+    "privacy_policy_modification":
+    {
+      "privacy_policy_modification_title":"9. プライバシーポリシーの変更",
+      "modification_text":"Havenlyは、本プライバシーポリシーを随時変更する権利を有します。",
+      "notification":"変更内容はウェブサイト上でユーザーに通知されます。"
     }
   },
-  "term_of_use": {
-    "title": "利用規約",
-    "intro": {
-      "description_1": "Havenly（以下「当社」）は、宿泊施設の予約および共有を可能にするオンラインWebアプリケーションです。",
-      "description_2": "本サービスを利用することで、ユーザーは本利用規約に同意したものとみなされます。"
+  "term_of_use":
+  {
+    "title":"利用規約",
+    "intro":
+    {
+      "description_1":"Havenly（以下「当社」「プラットフォーム」）は、宿泊施設の予約、物件の掲載、地域の観光名所や体験の共有を可能にするオンライン宿泊予約・共有Webアプリケーションです。",
+      "description_2":"本プラットフォームを利用することにより、ユーザー（以下「ユーザー」「あなた」）は本利用規約に同意したものとみなされます。内容に同意できない場合は、サービスの利用をお控えください。"
     },
-    "service_nature": {
-      "service_nature_title": "1. サービスの性質",
-      "intro": "Havenlyは以下の機能を提供します：",
-      "features": {
-        "browse_booking": "宿泊施設の閲覧および予約",
-        "property_upload": "物件の掲載および管理",
-        "experiences": "体験・観光情報の共有",
-        "messaging": "利用者間メッセージ機能",
-        "profile": "ユーザープロフィール管理",
-        "payments": "支払い方法の設定"
+    "service_nature":
+    {
+      "service_nature_title":"1. サービスの性質",
+      "intro":"Havenlyは卒業制作として開発されたWebアプリケーションで、以下の機能を提供します：",
+      "features":
+      {
+        "browse_booking":"宿泊施設の閲覧および予約",
+        "property_upload":"物件の掲載および管理",
+        "experiences":"地域の体験・観光情報の共有",
+        "messaging":"予約者とホスト間のメッセージ機能",
+        "profile":"ユーザープロフィールの作成・編集",
+        "payments":"支払い方法の設定"
       },
-      "education_note": "本サービスは教育目的で開発されていますが、実サービスと同様の構造を持ちます。"
+      "education_note":"本プラットフォームは教育目的で開発されていますが、実際のサービスに基づいた運用ロジックを採用しています。"
+    },
+    "registration_account":
+    {
+      "registration_account_title":"2. 登録およびユーザーアカウント",
+      "requirements_intro":"プラットフォームを利用するには登録が必要です。ユーザーは以下を遵守する必要があります：",
+      "requirements":
+      {
+        "real_data":"正確な情報を提供すること",
+        "valid_contact":"有効なメールアドレスおよび電話番号を使用すること",
+        "secure_password":"安全なパスワードを設定すること"
+      },
+      "responsibility":"ユーザーは自身のアカウントの安全管理に責任を負います。特にパスワードの管理について、当社は不正使用による損害について責任を負いません。"
+    },
+    "user_obligations":
+    {
+      "user_obligations_title":"3. ユーザーの義務",
+      "intro":"ユーザーは以下を遵守するものとします：",
+      "rules":
+      {
+        "legal_use":"違法な目的でプラットフォームを使用しないこと",
+        "truthful_content":"虚偽、誤解を招く、または攻撃的な内容を投稿しないこと",
+        "personal_rights":"他者の人格権を侵害しないこと",
+        "copyright":"著作権で保護されたコンテンツを無断で投稿しないこと",
+        "system_integrity":"システムの動作を妨害しないこと"
+      },
+      "sanctions":"規約違反があった場合、当社はユーザーアカウントを停止または削除する権利を有します。"
+    },
+    "property_responsibility":
+    {
+      "property_responsibility_title":"4. 宿泊施設の掲載と責任",
+      "host_intro":"宿泊施設を掲載するユーザー（以下「ホスト」）は、以下について責任を負います：",
+      "host_duties":
+      {
+        "accurate_data":"提供する情報が正確であること",
+        "legal_media":"掲載する画像・動画が合法であること",
+        "availability":"物件が実際に貸し出し可能であること",
+        "timely_response":"予約リクエストに迅速に対応すること"
+      },
+      "disclaimer":"当社は、宿泊施設の品質、状態、またはホストと予約者間の紛争について責任を負いません。"
+    },
+    "bookings_cancellations":
+    {
+      "bookings_cancellations_title":"5. 予約およびキャンセル",
+      "booking_process_title":"予約の流れ：",
+      "booking_process":
+      {
+        "select":"ユーザーが宿泊施設と日程を選択",
+        "check":"システムが予約可否を確認",
+        "confirmation":"予約が確定し、ホストに通知される"
+      },
+      "cancellation_title":"キャンセルについて：",
+      "cancellation_rules":
+      {
+        "guest_rules":"予約者はホストが定めた条件に従ってキャンセルできます",
+        "host_rights":"ホストは都合により予約を拒否またはキャンセルする権利があります"
+      },
+      "refunds":"返金条件はホストが定めた規則に従います。"
+    },
+    "payments":
+    {
+      "payments_title":"6. 支払い",
+      "payment_info":"プラットフォームでは支払い方法の設定が可能です。クレジットカード情報はHavenlyではなく、外部決済サービスによって管理されます。",
+      "no_liability_intro":"当社は以下について責任を負いません：",
+      "no_liability":
+      {
+        "provider_errors":"決済サービス提供者の不具合",
+        "declined_transactions":"取引の拒否",
+        "incorrect_data":"誤った情報入力による損害"
+      }
+    },
+    "messaging":
+    {
+      "messaging_title":"7. メッセージ機能",
+      "rules":"プラットフォームはホストと予約者間のメッセージ機能を提供します。ユーザーは、嫌がらせ、侮辱、違法な内容のメッセージを送信しないものとします。",
+      "monitoring":"不正行為の疑いがある場合、当社はメッセージ内容を確認する権利を有します。"
+    },
+    "liability_limitation":
+    {
+      "liability_limitation_title":"8. 責任の制限",
+      "no_liability_intro":"当社は以下について責任を負いません：",
+      "no_liability":
+      {
+        "downtime":"システム障害やサービス停止",
+        "user_content":"ユーザーが投稿したコンテンツ",
+        "property_quality":"宿泊施設の品質や状態",
+        "disputes":"ホストと予約者間の紛争",
+        "booking_errors":"予約ミスによる損害"
+      },
+      "own_risk":"本プラットフォームは、ユーザー自身の責任で利用するものとします。"
+    },
+    "service_modification":
+    {
+      "service_modification_title":"9. サービス内容の変更",
+      "modification_right":"当社は、機能の変更・拡張・制限、ならびに本利用規約の変更を行う権利を有します。",
+      "notification":"変更があった場合、ウェブサイトを通じてユーザーに通知します。"
+    },
+    "contact":
+    {
+      "contact_title":"10. お問い合わせ",
+      "contact_text":"ご質問や問題がある場合は、記載された連絡先からお問い合わせください。"
     }
   }
 }
-  
