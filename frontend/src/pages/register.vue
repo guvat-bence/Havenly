@@ -91,7 +91,7 @@ watch(model, () => {
   <div class="register">
 
     <!-- progressbar -->
-    <div class="d-flex justify-content-center mt-4 mb-4 scale-in">
+    <div class="d-flex justify-content-center mt-4 mb-4">
       <div class="progress w-50 bg-black border border-1 border-white" 
            role="progressbar"
            aria-label="Animated striped example" 
@@ -107,7 +107,7 @@ watch(model, () => {
     <div class="d-flex justify-content-center align-items-center">
       <form class="border p-3 border-1 
                     border-white text-white rounded-3 
-                    bg-dark bg-opacity-50 mb-3 scale-in">
+                    bg-dark bg-opacity-50 mb-3">
 
         <div>
           <h1 class="text-center" v-if="step !== 3">

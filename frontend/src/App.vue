@@ -38,7 +38,7 @@ body {
 .experience,.accommodation,.home,.about_us{
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 1s ease forwards;
+  animation: fadeInUp 1.5s ease forwards;
 }
 
 @keyframes fadeInUp {
@@ -66,7 +66,7 @@ body {
   transition: 300ms;
 }
 
-.scale-in {
+.login,.register,.settings,.logout{
   animation: scaleIn .6s ease both;
 }
 @keyframes scaleIn {
