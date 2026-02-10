@@ -48,6 +48,44 @@
     "yes":"ログアウト",
     "no":"キャンセル"
   },
+  "about":
+  {
+    "months": "1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月",
+    "days_full": "月曜日,火曜日,水曜日,木曜日,金曜日,土曜日,日曜日",
+    "days_short": "月,火,水,木,金,土,日",
+    "accommodation_extras": "宿泊施設の提供内容",
+    "extras":
+    {
+      "balcony": "バルコニー",
+      "basic_spices": "基本のスパイス",
+      "bluetooth_speaker": "ブルートゥーススピーカー",
+      "board_games": "ボードゲーム",
+      "coffee_maker": "コーヒーメーカー",
+      "darkening": "遮光カーテン",
+      "dishes": "食器",
+      "extra_bed_linen": "追加の寝具",
+      "free_wifi": "wifi",
+      "hair_dryer": "ヘアドライヤー",
+      "iron": "アイロン",
+      "kettle": "ケトル",
+      "microwave": "電子レンジ",
+      "night_lamp": "ナイトランプ",
+      "parking_lot": "駐車場",
+      "safe": "金庫",
+      "smart_tv": "スマートテレビ",
+      "suitcase_rack": "スーツケースラック",
+      "towels": "タオル",
+      "usb_charger": "USB充電器",
+      "work_table": "作業用テーブル"
+    },
+    "arrive_time": "到着時間",
+    "departure_time": "出発時間",
+    "sum": "合計:",
+    "number_of_guest": "宿泊人数",
+    "human": "人",
+    "login": "ログイン",
+    "renting": "予約"
+  },
   "about_us":
   {
     "about_us":"私たちについて",

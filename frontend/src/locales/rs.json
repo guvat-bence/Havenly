@@ -48,6 +48,44 @@
     "yes":"Odjava",
     "no":"Otkaži"
   },
+  "about":
+  {
+    "months": "Januar,Februar,Mart,April,Maj,Jun,Jul,Avgust,Septembar,Oktobar,Novembar,Decembar",
+    "days_full": "Ponedeljak,Utorak,Sreda,Četvrtak,Petak,Subota,Nedelja",
+    "days_short": "P,U,S,Č,P,S,N",
+    "accommodation_extras": "šta smeštaj nudi",
+    "extras":
+    {
+      "balcony": "balkon",
+      "basic_spices": "osnovni začini",
+      "bluetooth_speaker": "bluetooth zvučnik",
+      "board_games": "društvene igre",
+      "coffee_maker": "aparar za kafu",
+      "darkening": "zastore za zamračenje",
+      "dishes": "posuđe",
+      "extra_bed_linen": "dodatno posteljina",
+      "free_wifi": "wifi",
+      "hair_dryer": "fen",
+      "iron": "pegle",
+      "kettle": "ketler",
+      "microwave": "mikrotalasna",
+      "night_lamp": "noćna lampa",
+      "parking_lot": "parking",
+      "safe": "sejf",
+      "smart_tv": "smart tv",
+      "suitcase_rack": "stalak za kofer",
+      "towels": "peškiri",
+      "usb_charger": "usb punjač",
+      "work_table": "radni sto"
+    },
+    "arrive_time": "vreme dolaska",
+    "departure_time": "vreme odlaska",
+    "sum": "ukupno:",
+    "number_of_guest": "broj gostiju",
+    "human": "osoba",
+    "login": "prijava",
+    "renting": "rezervacija"
+  },
   "about_us":
   {
     "about_us":"O nama",

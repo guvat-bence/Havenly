@@ -41,6 +41,44 @@
   {
 
   },
+  "about":
+  {
+    "months": "Január,Február,Március,Április,Május,Június,Július,Augusztus,Szeptember,Október,November,December",
+    "days_full":"Hétfő,Kedd,Szerda,Csütörtök,Péntek,Szombat,Vasárnap",
+    "days_short":"H,K,S,C,P,S,V",
+    "accommodation_extras":"Amit a szállás kínál",
+    "extras":
+    {
+      "balcony": "erkély",
+      "basic_spices": "fűszerek",
+      "bluetooth_speaker": "bluetooth-os hangszóró",
+      "board_games": "társasjátékok",
+      "coffee_maker": "kávéfőző",
+      "darkening": "sötétítő",
+      "dishes": "edények",
+      "extra_bed_linen": "extra ágynemű",
+      "free_wifi": "wifi",
+      "hair_dryer": "hajszárító",
+      "iron": "vasaló",
+      "kettle": "vízforraló",
+      "microwave": "mikró",
+      "night_lamp": "éjjeli lámpa",
+      "parking_lot": "parkoló",
+      "safe": "széf",
+      "smart_tv": "okos tv",
+      "suitcase_rack": "bőröndtartó",
+      "towels": "törölközők",
+      "usb_charger": "usb töltő",
+      "work_table": "munkaasztal"
+    },
+    "arrive_time":"Érkezés időpontja",
+    "departure_time":"Távozás időpontja",
+    "sum":"Összesen:",
+    "number_of_guest":"Személyek száma",
+    "human":"fő",
+    "login":"Bejelentkezés",
+    "renting":"Foglalás"
+  },
   "search":"Kerersés",
   "log_out":
   {

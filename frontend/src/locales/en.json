@@ -38,6 +38,44 @@
     "yes": "Log out",
     "no": "Cancel"
   },
+  "about":
+  {
+    "months": "January,February,March,April,May,June,July,August,September,October,November,December",
+    "days_full": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+    "days_short": "M,T,W,Th,F,S,S",
+    "accommodation_extras": "what the accommodation offers",
+    "extras":
+    {
+      "balcony": "balcony",
+      "basic_spices": "basic spices",
+      "bluetooth_speaker": "bluetooth speaker",
+      "board_games": "board games",
+      "coffee_maker": "coffee maker",
+      "darkening": "darkening curtains",
+      "dishes": "dishes",
+      "extra_bed_linen": "extra bed linen",
+      "free_wifi": "wifi",
+      "hair_dryer": "hair dryer",
+      "iron": "iron",
+      "kettle": "kettle",
+      "microwave": "microwave",
+      "night_lamp": "night lamp",
+      "parking_lot": "parking lot",
+      "safe": "safe",
+      "smart_tv": "smart tv",
+      "suitcase_rack": "suitcase rack",
+      "towels": "towels",
+      "usb_charger": "usb charger",
+      "work_table": "work table"
+    },
+    "arrive_time": "arrival time",
+    "departure_time": "departure time",
+    "sum": "total:",
+    "number_of_guest": "number of guests",
+    "human": "person",
+    "login": "login",
+    "renting": "booking"
+  },
   "about_us": {
     "about_us": "About Us",
     "who_are_we": "Who Are We?",
