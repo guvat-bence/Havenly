@@ -24,7 +24,7 @@ axios.get('http://localhost:3000/getCurrency')
 </script>
 
 <template>
-	<div class="settings text-center w-auto mx-auto">
+	<div class="settings text-center w-auto mx-auto scale-in">
 		<div>
 			<h1 class="display-1 text-center text-white">{{ $t("settings.settings") }}</h1>
 		</div>

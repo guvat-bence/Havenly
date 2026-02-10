@@ -84,7 +84,7 @@ let model = reactive({
       <!-- bejelentkezés form -->
       <form class="border p-3 border-1 border-white 
                    text-white rounded-3 bg-dark 
-                   bg-opacity-50"
+                   bg-opacity-50 scale-in"
             name="login">
 
         <!-- Cím és üzenet részleg -->
@@ -166,5 +166,4 @@ input:not([type="checkbox"])::after{
   transition: 200ms;
   color: black !important;
 }
-
 </style>

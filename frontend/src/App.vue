@@ -65,4 +65,13 @@ body {
   color: black !important;
   transition: 300ms;
 }
+
+.scale-in {
+  animation: scaleIn .6s ease both;
+}
+@keyframes scaleIn {
+    0% 	{opacity:0;transform: scale(0); }
+  25% 	{opacity:0;transform: scale(0); }
+  100% 	{opacity:1;transform: scale(1); }
+}
 </style>
