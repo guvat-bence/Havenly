@@ -61,6 +61,31 @@
     "multilingualism_and_future_title": "Multilingualism and Future Vision",
     "multilingualism_and_future_text": "The website will be available in multiple languages to provide an accessible and convenient solution for a wide range of users. Our long-term goal is for Havenly to become a reliable and continuously evolving platform that creates real value for both travelers and hosts."
   },
+  "register":
+  {
+    "title":"Step",
+    "first_name":"First name",
+    "last_name":"Last name",
+    "middle_name":"Middle name",
+    "email":"Email address",
+    "phone_number":"Phone number",
+    "example_phone_number":"Example: +36301234567",
+    "password":"Password",
+    "password_requirement":"The password must contain at least one uppercase letter and one number",
+    "password_requirement_second":"Must contain at least 6 characters",
+    "password_again":"Confirm password",
+    "show_password":"Show password:",
+    "next":"Next",
+    "previous":"Back"
+  },
+  "login":
+  {
+    "title":"Login",
+    "email":"Email address",
+    "password":"Password",
+    "show_password":"Show password:",
+    "log_in":"Log in"
+  },
   "settings": {
     "settings": "Settings",
     "currency_choose": "Choose Currency"

@@ -8,6 +8,7 @@ import { reactive, ref, watch } from 'vue';
 
 // Változók és funkciók deklarálása
 let step = ref(0),
+  showpasscheck = ref(false),
   transitionName = ref("slide-in"),
   progesswidth = ref(0),
   message = "",
@@ -111,7 +112,7 @@ watch(model, () => {
 
         <div>
           <h1 class="text-center" v-if="step !== 3">
-            {{ step + 1 }}. lépés
+            {{ step + 1 }}. {{ $t("register.title") }}
           </h1>
         </div>
         <!-- Animációs komponens -->
@@ -129,7 +130,7 @@ watch(model, () => {
                             d-flex justify-content-center align-items-center 
                             gap-1">
                   <label for="lastName">
-                    <span>vezetéknév</span>
+                    <span>{{ $t("register.last_name") }}</span>
                     <span class="text-danger">*</span>
                   </label>
                 </div>
@@ -146,7 +147,7 @@ watch(model, () => {
                               d-flex justify-content-center align-items-center 
                               gap-1">
                     <label for="firstName">
-                      <span>keresztnév</span>
+                      <span>{{ $t("register.first_name") }}</span>
                       <span class="text-danger">*</span>
                     </label>
                   </div>
@@ -163,7 +164,7 @@ watch(model, () => {
                               d-flex justify-content-center align-items-center 
                               gap-1">
                     <label for="middleName">
-                      <span>harmadiknév</span>
+                      <span>{{ $t("register.middle_name") }}</span>
                     </label>
                   </div>
                   <input type="text" 
@@ -181,7 +182,7 @@ watch(model, () => {
               <div>
                 <label for="InputEmail1" 
                        class="form-label">
-                  <span>Email</span>
+                  <span>{{ $t("register.email") }}</span>
                   <span class="text-danger">*</span>
                 </label>
                 <input type="email" 
@@ -195,14 +196,16 @@ watch(model, () => {
               <div class="mb-3">
                 <label for="phoneNumber" 
                        class="form-label">
-                  <span>Telefonszám</span>
+                  <span>{{ $t("register.phone_number") }}</span>
                   <span class="text-danger">*</span>
                 </label>
                 <input type="text" 
                        class="form-control bg-transparent text-white" 
                        id="phoneNumber"
                        v-model="model.phone_number">
-                  <div class="form-text text-white fw-bold">Példa: +36301234567</div>
+                  <div class="form-text text-white fw-bold">
+                    {{ $t("register.example_phone_number") }}
+                  </div>
               </div>
             </div>
 
@@ -213,10 +216,10 @@ watch(model, () => {
               <div>
                 <label for="InputPassword" 
                        class="form-label">
-                  <span>Jelszó</span>
+                  <span>{{ $t("register.password") }}</span>
                   <span class="text-danger">*</span>
                 </label>
-                <input type="password" 
+                <input :type="showpasscheck ? 'text' : 'password'" 
                        class="form-control bg-transparent text-white" 
                        id="InputPassword"
                        autocomplete="off"
@@ -224,10 +227,10 @@ watch(model, () => {
                        maxlength="40" 
                        v-model="model.password">
                   <div class="form-text text-white fw-bold">
-                    A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot
+                    {{ $t("register.password_requirement") }}
                   </div>
                   <div class="form-text text-white fw-bold">
-                    Minimum 6 karaktert kell tartalmaznia
+                    {{ $t("register.password_requirement_second") }}
                   </div>
               </div>
 
@@ -235,16 +238,28 @@ watch(model, () => {
               <div>
                 <label for="inputconfirmpass" 
                        class="form-label">
-                  <span>Megerősítő jelszó</span>
+                  <span>{{ $t("register.password_again") }}</span>
                   <span class="text-danger">*</span>
                 </label>
-                <input type="password" 
+                <input :type="showpasscheck ? 'text' : 'password'" 
                        class="form-control bg-transparent text-white" 
                        id="inputconfirmpass"
                        minlength="6"
                        maxlength="40"
                        autocomplete="off" 
                        v-model="model.confirmpass">
+              </div>
+
+              <!-- Jelszó megjelenítése -->
+              <div class="mb-3 mt-3">
+                <label class="form-check-label mx-1 text-start" 
+                      for="flexCheckDefault">
+                  {{ $t("register.show_password") }}
+                </label>
+                <input class="form-check-input float-end" 
+                      type="checkbox" 
+                      id="flexCheckDefault"
+                      v-model="showpasscheck">
               </div>
             </div>
 
@@ -280,7 +295,7 @@ watch(model, () => {
                          w-auto w-50 mx-auto" 
                   @click="transitionName = 'slide-in'; step--;"
                   v-bind:disabled="step===0">
-            Vissza
+            {{ $t("register.previous") }}
           </button>
 
           <!-- Következő gomb -->
@@ -290,7 +305,7 @@ watch(model, () => {
                   @click="transitionName = 'slide-out'; step++;" 
                   v-if="step < 3"
                   v-bind:disabled="step === 2 && !validateForm()">
-            Következő
+            {{ $t("register.next") }}
           </button>
         </div>
       </form>
@@ -300,9 +315,9 @@ watch(model, () => {
 
 <style scoped>
 /* Regisztrációs inputok effektusai */
-input:focus,
-input:hover,
-input::after {
+input:not([type="checkbox"]):focus,
+input:not([type="checkbox"]):hover,
+input:not([type="checkbox"])::after {
   background-color: white !important;
   box-shadow: 0px 0px 10px white !important;
   transition: 200ms;

@@ -73,6 +73,31 @@
     "multilingualism_and_future_title":"Višejezičnost i vizija budućnosti",
     "multilingualism_and_future_text":"Stranica će biti dostupna na više jezika kako bi pružila pristupačno i udobno rešenje što širem krugu korisnika. Naš dugoročni cilj je da Havenly postane pouzdana i kontinuirano razvijajuća platforma koja stvara stvarnu vrednost i za putnike i za izdavaoce smeštaja."
   },
+  "register":
+  {
+    "title":"Korak",
+    "first_name":"Ime",
+    "last_name":"Prezime",
+    "middle_name":"Srednje ime",
+    "email":"Email adresa",
+    "phone_number":"Broj telefona",
+    "example_phone_number":"Primer: +36301234567",
+    "password":"Lozinka",
+    "password_requirement":"Lozinka mora da sadrži najmanje jedno veliko slovo i jedan broj",
+    "password_requirement_second":"Mora da sadrži najmanje 6 karaktera",
+    "password_again":"Potvrda lozinke",
+    "show_password":"Prikaži lozinku:",
+    "next":"Dalje",
+    "previous":"Nazad"
+  },
+  "login":
+  {
+    "title":"Prijava",
+    "email":"Email adresa",
+    "password":"Lozinka",
+    "show_password":"Prikaži lozinku:",
+    "log_in":"Prijavi se"
+  },
   "settings":
   {
     "settings":"Podešavanja",

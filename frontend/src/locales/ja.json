@@ -73,6 +73,31 @@
     "multilingualism_and_future_title":"多言語対応と将来像",
     "multilingualism_and_future_text":"本サイトはより多くのユーザーに快適な体験を提供するため、複数言語に対応する予定です。長期的には、旅行者とホストの双方にとって真の価値を生み出す、信頼性が高く成長し続けるプラットフォームを目指しています。"
   },
+  "register":
+  {
+    "title":"ステップ",
+    "first_name":"名",
+    "last_name":"姓",
+    "middle_name":"ミドルネーム",
+    "email":"メールアドレス",
+    "phone_number":"電話番号",
+    "example_phone_number":"例: +36301234567",
+    "password":"パスワード",
+    "password_requirement":"パスワードには少なくとも1つの大文字と1つの数字を含める必要があります",
+    "password_requirement_second":"6文字以上である必要があります",
+    "password_again":"パスワード確認",
+    "show_password":"パスワードを表示:",
+    "next":"次へ",
+    "previous":"戻る"
+  },
+  "login":
+  {
+    "title":"ログイン",
+    "email":"メールアドレス",
+    "password":"パスワード",
+    "show_password":"パスワードを表示:",
+    "log_in":"ログイン"
+  },
   "settings":
   {
     "settings":"設定",

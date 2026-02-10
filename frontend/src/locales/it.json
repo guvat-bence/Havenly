@@ -73,6 +73,31 @@
     "multilingualism_and_future_title":"Multilinguismo e visione futura",
     "multilingualism_and_future_text":"Il sito sarà disponibile in più lingue per offrire una soluzione accessibile e comoda a un pubblico il più ampio possibile. Il nostro obiettivo a lungo termine è rendere Havenly una piattaforma affidabile e in continua evoluzione, capace di creare un reale valore sia per i viaggiatori che per gli host."
   },
+  "register":
+  {
+    "title":"Passaggio",
+    "first_name":"Nome",
+    "last_name":"Cognome",
+    "middle_name":"Secondo nome",
+    "email":"Indirizzo email",
+    "phone_number":"Numero di telefono",
+    "example_phone_number":"Esempio: +36301234567",
+    "password":"Password",
+    "password_requirement":"La password deve contenere almeno una lettera maiuscola e un numero",
+    "password_requirement_second":"Deve contenere almeno 6 caratteri",
+    "password_again":"Conferma password",
+    "show_password":"Mostra password:",
+    "next":"Avanti",
+    "previous":"Indietro"
+  },
+  "login":
+  {
+    "title":"Accesso",
+    "email":"Indirizzo email",
+    "password":"Password",
+    "show_password":"Mostra password:",
+    "log_in":"Accedi"
+  },
   "settings":
   {
     "settings":"Impostazioni",

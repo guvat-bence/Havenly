@@ -93,7 +93,7 @@ let model = reactive({
         <div>
           <!-- cím -->
           <h1 class="text-center text-white display-5">
-            Bejelentkezés
+            {{ $t("login.title") }}
           </h1>
 
           <!-- ha van valamilyen probléma akkor azt ide írja ki -->
@@ -106,7 +106,7 @@ let model = reactive({
         <div class="mb-3">
           <label for="InputEmail1" 
                  class="form-label">
-            <span>Email</span>
+            <span>{{ $t("login.email") }}</span>
             <span class="text-danger">*</span>
           </label>
           <input type="email" 
@@ -120,7 +120,7 @@ let model = reactive({
         <div class="mb-2 my-3">
           <label for="InputPassword" 
                  class="form-label">
-            <span>Jelszó</span>
+            <span>{{ $t("login.password") }}</span>
             <span class="text-danger">*</span>
           </label>
           <input :type="showpasscheck ? 'text' : 'password'" 
@@ -136,7 +136,7 @@ let model = reactive({
         <div class=" mb-3">
           <label class="form-check-label mx-1 text-start" 
                  for="flexCheckDefault">
-            Jelszó megjelenítése:
+           {{ $t("login.show_password") }}
           </label>
           <input class="form-check-input float-end" 
                  type="checkbox" 
@@ -151,7 +151,7 @@ let model = reactive({
                        w-auto d-block mx-auto" 
                 v-on:click="login()"
                 v-bind:disabled="!validateForm()">
-          Bejelentkezés
+          {{ $t("login.log_in") }}
         </button>
 
       </form>
