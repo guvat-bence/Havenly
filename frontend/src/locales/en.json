@@ -29,7 +29,11 @@
     "experiences": "Experiences",
     "popular_accomodations": "Our Most Popular Accommodations"
   },
-  "card": "I'm interested",
+ "card": {
+  "interest": "interested",
+  "night": "night",
+  "human": "person"
+  },
   "accommodations": {},
   "experiences": {},
   "search": "Search",

@@ -32,7 +32,11 @@
     "experiences":"Iskustva",
     "popular_accomodations":"Naši najpopularniji smeštaji"
   },
-  "card":"Zanima me",
+  "card": {
+    "interest": "zainteresovan",
+    "night": "noć",
+    "human": "osoba"
+  },
   "accommodations":
   {
     

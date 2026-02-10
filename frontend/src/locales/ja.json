@@ -32,7 +32,11 @@
     "experiences":"体験",
     "popular_accomodations":"人気の宿泊施設"
   },
-  "card":"詳しく見る",
+  "card": {
+    "interest": "興味あり",
+    "night": "夜",
+    "human": "人"
+  },
   "accommodations":
   {
     

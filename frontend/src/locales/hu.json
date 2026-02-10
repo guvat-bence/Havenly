@@ -32,7 +32,11 @@
     "experiences":"Élmények",
     "popular_accomodations":"Legnépszerűbb szállásaink"
   },
-  "card":"Érdekel",
+  "card":{
+    "interest":"Érdekel",
+    "night":"éjszaka",
+    "human":"fő"
+  },
   "accommodations":
   {
     

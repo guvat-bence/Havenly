@@ -32,7 +32,11 @@
     "experiences":"Erlebnisse",
     "popular_accomodations":"Unsere beliebtesten Unterkünfte"
   },
-  "card":"Interessiert mich",
+ "card": {
+    "interest": "interessiert",
+    "night": "nacht",
+    "human": "person"
+  },
   "accommodations":
   {
     
