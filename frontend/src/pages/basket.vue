@@ -1,9 +1,18 @@
 <script setup>
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
+import { reactive } from 'vue';
 
 console.log(rent);
 console.log(user)
+
+let model = reactive({
+  firstName: user.firstname,
+  lastName: user.lasttname,
+  middleName: user.middlename,
+  email: user.email,
+  phoneNum: user.phone_number
+})
 </script>
 <template>
   <div class="container">
@@ -36,7 +45,8 @@ console.log(user)
                 </label>
                 <input type="text" 
                        class="form-control" 
-                       id="InputFirstName">
+                       id="InputFirstName"
+                       v-model="model.firstName">
               </div>
 
               <!-- LastName -->
@@ -47,7 +57,8 @@ console.log(user)
                 </label>
                 <input type="text" 
                        class="form-control" 
-                       id="InputLastName">
+                       id="InputLastName"
+                       v-model="model.lastName">
               </div>
 
               <!-- MiddleName -->
@@ -58,7 +69,8 @@ console.log(user)
                 </label>
                 <input type="text" 
                        class="form-control" 
-                       id="InputMiddleName">
+                       id="InputMiddleName"
+                       v-model="model.middleName">
               </div>
             </div>
 
@@ -69,25 +81,27 @@ console.log(user)
               </div>
 
               <!-- Email -->
-              <div class="mb-3 col-6 col-lg-6">
+              <div class="mb-3 col-12 col-lg-6">
                 <label for="InputEmail" 
                        class="form-label">
                   Email
                 </label>
                 <input type="email" 
                        class="form-control" 
-                       id="InputEmail">
+                       id="InputEmail"
+                       v-model="model.email">
               </div>
 
               <!-- PhoneNumber -->
-              <div class="mb-3 col-6 col-lg-6">
+              <div class="mb-3 col-12 col-lg-6">
                 <label for="InputPhoneNum" 
                        class="form-label">
                   Telefonszám
                 </label>
                 <input type="text" 
                        class="form-control" 
-                       id="InputPhoneNum">
+                       id="InputPhoneNum"
+                       v-model="model.phoneNum">
               </div>
             </div>
           </form>

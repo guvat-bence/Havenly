@@ -35,12 +35,14 @@ let model = reactive({
           user.lasttname = response.data.user.last_name;
           user.middlename = response.data.user.middle_name;
           user.phone_number = response.data.user.phone_number;
+          user.email = response.data.user.email;
           user.gender = response.data.user.gender;
           user.user_type = response.data.user.user_type;
           user.cardNumber = response.data.user.card_number;
           user.expiration = response.data.user.expiration;
           user.cvv = response.data.user.cvv;
           user.websitekey = "havenly"
+          
 
           // Töltse újra az oldalt annak érdekében 
           // hogy a felhasználót minden komponens érzékelni tudja

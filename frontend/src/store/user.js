@@ -7,6 +7,7 @@ export let user = reactive({
   lasttname: localStorage.getItem("last_name") ?? "",
   middlename: localStorage.getItem("middle_name") ?? "",
   phone_number: localStorage.getItem("phone_number") ?? "",
+  email: localStorage.getItem("email") ?? "",
   gender: localStorage.getItem("gender") ?? "",
   user_type: localStorage.getItem("user_type") ?? "", 
   cardNumber: localStorage.getItem("card_number") ?? "",
@@ -22,6 +23,7 @@ watch(user,(newUser) => {
   localStorage.setItem("last_name", newUser.lasttname); 
   localStorage.setItem("middle_name", newUser.middlename); 
   localStorage.setItem("phone_number", newUser.phone_number);
+  localStorage.setItem("email", newUser.email)
   localStorage.setItem("gender", newUser.gender); 
   localStorage.setItem("user_type", newUser.user_type); 
   localStorage.setItem("card_number", newUser.cardNumber); 
