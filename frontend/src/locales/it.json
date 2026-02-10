@@ -143,6 +143,7 @@
   "settings":
   {
     "settings":"Impostazioni",
+    "language_choose": "Scegli la lingua",
     "currency_choose":"Selezione della valuta"
   },
   "data_protection":

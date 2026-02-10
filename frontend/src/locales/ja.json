@@ -143,6 +143,7 @@
   "settings":
   {
     "settings":"設定",
+    "language_choose": "言語を選択",
     "currency_choose":"通貨の選択"
   },
   "data_protection":

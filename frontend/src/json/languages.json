@@ -1,0 +1,32 @@
+{
+  "hu":
+  {
+    "full_name":"Magyar",
+    "short_name":"HU"
+  },
+  "en":
+  {
+    "full_name":"Angol",
+    "short_name":"EN"
+  },
+  "rs":
+  {
+    "full_name":"Szerb",
+    "short_name":"RS"
+  },
+  "de":
+  {
+    "full_name":"Német",
+    "short_name":"DE"
+  },
+  "it":
+  {
+    "full_name":"Olasz",
+    "short_name":"IT"
+  },
+  "ja":
+  {
+    "full_name":"Japán",
+    "short_name":"JA"
+  }
+}

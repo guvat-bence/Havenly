@@ -130,6 +130,7 @@
   },
   "settings": {
     "settings": "Settings",
+    "language_choose": "Choose language",
     "currency_choose": "Choose Currency"
   },
   "data_protection": {

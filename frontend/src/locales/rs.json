@@ -143,6 +143,7 @@
   "settings":
   {
     "settings":"Podešavanja",
+    "language_choose": "Izaberite jezik",
     "currency_choose":"Izbor valute"
   },
   "data_protection":
