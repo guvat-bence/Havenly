@@ -1,11 +1,13 @@
 <script setup>
 import axios from 'axios';
-import { reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import router from '@/router';
 import {user} from "@/store/user";
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
-
+import allIcons from '@/json/icons.json';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 // étékek át hozása másik oldalról
 const props = defineProps(['id','name','table_name'])
 
@@ -27,13 +29,8 @@ let currentDate = ref("");
 let currentMonth = "";
 let nextDayDate = ref("");
 let model = reactive({guests:1});
-let daysname = ["H","K","Sz","Cs","P","Sz","V"];
-let monthsname = 
-[
-	"január","február","március","április",
-	"május","június","július","augusztus",
-	"szeptember","október","november","december"
-];
+let daysname = computed(()=>(t('about.days_short')).split(","));
+let monthsname = computed(()=>(t('about.months')).split(","));
 let arriveDayId= ref(null); 
 let departureDayId=ref(null); 
 let rentedDayIds = ref([]);
@@ -244,33 +241,26 @@ if(props.table_name == "accommodations")
 	axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.id}`)
 		.then(details=>
 		{
+			for(let y in allIcons)
+			{
+				allIcons[y]["text"] = computed(()=>(t(`about.extras.${y}`)));
+			
+			}
 
-			//beolvassuk a iconsAndTexts.json-t 
-			//amiben az iconok és a hozzájuk tartozó szöveg van benne 
-			axios.get('/jsons/iconsAndTexts.json')
-				.then(response=>
+			iconsAndTexts = allIcons;
+
+			// végigmegyünk a részleteken
+			for(let x in details.data[0])
+			{
+
+				// ha van olyan részlet amit tartalmaz a szállás
+				// akkor hozzá adjuk a item_details listához 
+				// az adott részlethez tartozó elemet az iconsAndTexts-ből
+				if(details.data[0][x] == 1)
 				{
-
-					// a tartalmát a iconsAndTexts adjuk át
-					iconsAndTexts =	 response.data;
-
-					// végigmegyünk a részleteken
-					for(let x in details.data[0])
-					{
-
-						// ha van olyan részlet amit tartalmaz a szállás
-						// akkor hozzá adjuk a item_details listához 
-						// az adott részlethez tartozó elemet az iconsAndTexts-ből
-						if(details.data[0][x] == 1)
-						{
-							item_details.value.push(iconsAndTexts[x]);
-						}
-					}
-				})
-				.catch(error=>
-				{
-					console.error(error);
-				})
+					item_details.value.push(iconsAndTexts[x]);
+				}
+			}
 		})
 		.catch(error=>
 		{
@@ -694,7 +684,7 @@ watch(model,()=>
 										 bg-dark bg-opacity-50 col-12 col-md-10 col-xl-4">
 
 						<!-- Cím -->
-						<h3 class="mb-4">Amit a szállás kínál</h3>
+						<h3 class="mb-4">{{ $t("about.accommodation_extras") }}</h3>
 
 						<!-- iconok megjelenítése-->
 						<p v-for="x in item_details" class="col-4	text-center">
@@ -724,8 +714,8 @@ watch(model,()=>
 							<div class="mb-3 bg-white row justify-content-center rounded-3 py-3 text-dark">
 								
 								<div class="row justify-content-center">
-									<h6 class="col-6">Érkezés időpontja</h6>
-									<h6 class="col-6">Távozás időpontja</h6>
+									<h6 class="col-6">{{ $t("about.arrive_time") }}</h6>
+									<h6 class="col-6">{{ $t("about.departure_time") }}</h6>
 									<h6 class="col-6">{{ currentDate }}</h6>
 									<h6 class="col-6">{{ nextDayDate }}</h6>
 								</div>
@@ -773,12 +763,12 @@ watch(model,()=>
 								<!-- a naptár alján lévő év és hónap -->
 								<p v-if="calendar.length>0" 
 									 class="col-12 m-0">
-									{{`${currentYear}.${monthsname[currentMonth-1]}`}}
+									{{`${currentYear}. ${monthsname[currentMonth-1]}`}}
 								</p>
 
 								<p v-if="rentedDayIds.length!=0" 
 									 class="col-12 m-0 pt-1">
-									Összesen: {{(Math.round(rent_price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}}
+								{{ $t("about.sum") }} {{(Math.round(rent_price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}}
 													  {{ selectedCurrency.currencyShortedName }}
 								</p>
 							</div>
@@ -788,13 +778,13 @@ watch(model,()=>
 
 								<!-- személyek száma szakasz label -->
 								<label for="guest_number" class="form-label col-12">
-                  Személyek száma
+                 {{ $t("about.number_of_guest") }}
                 </label>
 
                 <!-- személyek száma szakasz select -->
 								<div class="col-5">
 									<select class="form-select" id="guest_number" v-model="model.guests">
-										<option v-for="x in guests" :value="x">{{ x }}fő</option>
+										<option v-for="x in guests" :value="x">{{ x }}{{ $t("about.human") }}</option>
 								</select>
 								</div>
 							</div>
@@ -806,14 +796,14 @@ watch(model,()=>
 											type="button"
 										  class="btn btn-secondary col-6 
                       			 rounded-pill">
-                Foglalás
+                {{ $t('about.renting') }}
               </button>
 
 							 <!-- Bejelentkezés gomb gomb -->
 							<router-link to="/login" v-if="user.id ==''"
 										  class="btn btn-secondary col-6 
                       				rounded-pill">
-                Bejelentkezés
+                {{ $t('about.login') }}
               </router-link>
 						</form>
 					</div>

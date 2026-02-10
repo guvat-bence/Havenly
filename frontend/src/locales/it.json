@@ -32,7 +32,11 @@
     "experiences":"Esperienze",
     "popular_accomodations":"I nostri alloggi più popolari"
   },
-  "card":"Mi interessa",
+  "card": {
+    "interest": "interessato",
+    "night": "notte",
+    "human": "persona"
+  },
   "accommodations":
   {
     
@@ -47,6 +51,44 @@
     "log_out":"Sei sicuro di voler uscire?",
     "yes":"Disconnetti",
     "no":"Annulla"
+  },
+  "about":
+  {
+    "months": "Gennaio,Febbraio,Marzo,Aprile,Maggio,Giugno,Luglio,Agosto,Settembre,Ottobre,Novembre,Dicembre",
+    "days_full": "Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato,Domenica",
+    "days_short": "L,M,M,G,V,S,D",
+    "accommodation_extras": "cosa offre la struttura",
+    "extras":
+    {
+      "balcony": "balcone",
+      "basic_spices": "spezie base",
+      "bluetooth_speaker": "altoparlante bluetooth",
+      "board_games": "giochi da tavolo",
+      "coffee_maker": "macchina del caffè",
+      "darkening": "tende oscuranti",
+      "dishes": "stoviglie",
+      "extra_bed_linen": "biancheria extra",
+      "free_wifi": "wifi",
+      "hair_dryer": "asciugacapelli",
+      "iron": "ferro da stiro",
+      "kettle": "bollitore",
+      "microwave": "microonde",
+      "night_lamp": "lampada da notte",
+      "parking_lot": "parcheggio",
+      "safe": "cassaforte",
+      "smart_tv": "smart tv",
+      "suitcase_rack": "portavaligie",
+      "towels": "asciugamani",
+      "usb_charger": "caricabatterie usb",
+      "work_table": "scrivania"
+    },
+    "arrive_time": "orario di arrivo",
+    "departure_time": "orario di partenza",
+    "sum": "totale:",
+    "number_of_guest": "numero di ospiti",
+    "human": "persona",
+    "login": "accesso",
+    "renting": "prenotazione"
   },
   "about_us":
   {

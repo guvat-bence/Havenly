@@ -97,15 +97,15 @@ function convertStrings(str) {
 			<div class="card-footer border-0">
 				<p class="fw-bold">{{(Math.round(x.price * selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}} 
 								 					 {{ selectedCurrency.currencyShortedName }}
-					<span v-if="props.tableName == 'accommodations'">/ éjszaka</span>
-					<span v-if="props.tableName == 'experiences'">/ fő</span>
+					<span v-if="props.tableName == 'accommodations'">/ {{ $t("card.night") }}</span>
+					<span v-if="props.tableName == 'experiences'">/ {{ $t("card.human") }}</span>
 				</p>
 
 				<!-- Gomb az adatokhoz ami kattintásra elküldi az adatokat -->
 				<router-link 
 						:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name}}"
 					 	class="btn btn-outline-light w-100">
-					{{ $t("card") }}
+					{{ $t("card.interest") }}
 				</router-link>
 			</div>
 		</div>
