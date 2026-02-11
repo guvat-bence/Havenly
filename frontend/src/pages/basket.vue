@@ -22,8 +22,6 @@ let convertStrings = (str) => {
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ", "_")
             .toLowerCase();}
-console.log(`/countries/${convertStrings(accommodation_data.country_name)}/cities/${convertStrings(accommodation_data.city_name)}/${convertStrings(accommodation_data.folder_name)}/001`)
-
 </script>
 <template>
   <div class="container">
