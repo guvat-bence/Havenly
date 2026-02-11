@@ -1,12 +1,15 @@
 <script setup>
+import router from '@/router';
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
 import { reactive } from 'vue';
 
-console.log(rent);
 let accommodation_data = reactive(JSON.parse(rent.accommodation));
-console.log(accommodation_data)
+
+
+if (!accommodation_data.id)
+  router.back()
 
 let model = reactive({
   firstName: user.firstname,
@@ -229,13 +232,20 @@ let convertStrings = (str) => {
                   </div>
                   <hr>
                   <div class="row">
-                    <p class="fw-bold">Összesen: 
+                    <p class="fw-bold mb-0">Összesen: 
                       {{((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) + 
                         ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
                       {{ 
                         selectedCurrency.currencyShortedName
                       }}
                   </p>
+                  </div>
+
+                  <hr>
+                  <div class="row">
+                    <button class="btn btn-outline-light w-auto mx-auto">
+                      Megerősítés
+                    </button>
                   </div>
                 </div>
               </div>
