@@ -4,6 +4,7 @@ import axios from 'axios';
 import { reactive,ref } from 'vue';
 import languages from "@/json/languages.json"
 import { useI18n } from 'vue-i18n';
+import {selectedLanguage} from '@/store/current_language.js';
 
 const {locale} = useI18n();
 
@@ -40,11 +41,14 @@ axios.get('http://localhost:3000/getCurrency')
 
 
 
+console.log(selectedLanguage.locale_name);
+
 function setLanguage()
 {
-	console.log((currentLanguage.value.short_name).toLowerCase());
-
 	locale.value = (currentLanguage.value.short_name).toLowerCase();
+
+	selectedLanguage.locale_name = locale.value;
+
 }
 
 </script>
