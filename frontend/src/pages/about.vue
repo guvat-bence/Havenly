@@ -569,6 +569,7 @@ function renting()
 	rent.rent_beginning = currentDate.value;
 	rent.rent_end = nextDayDate.value;
 	rent.accommodation_path = window.location.href;
+	rent.guests = model.guests;
 	rent.accommodation =JSON.stringify(item.value[0]);
 
 	router.replace({path:'/basket'})
