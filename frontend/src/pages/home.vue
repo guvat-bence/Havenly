@@ -38,13 +38,13 @@ axios.get("http://localhost:3000/accommodations/top5")
                     bg-black bg-opacity-50 rounded-3 shadow
                     p-4 border border-1 border-white mb-5">
             <!-- Keresési mező -->
-            <div class="justify-content-between d-flex">
+            <div class="justify-content-center d-flex">
               <RouterLink to="/accommodation" 
-                          class="btn btn-outline-light w-50 mx-1">
+                          class="btn btn-outline-light mx-1">
                 {{ $t("home.accommodations") }}
               </RouterLink>
               <RouterLink to="/experience" 
-                          class="btn btn-outline-light w-50 mx-1">
+                          class="btn btn-outline-light mx-1">
                 {{ $t("home.experiences") }}
               </RouterLink>
             </div>
