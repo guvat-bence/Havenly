@@ -2,7 +2,7 @@ import { watch, reactive } from "vue";
 
 //Hívja le a localstorage adatai
 export let user = reactive({
-  id: localStorage.getItem("id") ?? "",
+  id: localStorage.getItem("id") ?? null,
   firstname: localStorage.getItem("first_name") ?? "",
   lasttname: localStorage.getItem("last_name") ?? "",
   middlename: localStorage.getItem("middle_name") ?? "",
