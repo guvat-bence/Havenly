@@ -6,6 +6,11 @@ import { reactive, ref, watch } from 'vue';
 
 const router = useRouter()
 
+
+//securityCheck
+if(user.id)
+  router.back()
+
 // Model dekralálása
 let model = reactive({
   email: "",

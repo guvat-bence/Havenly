@@ -1,11 +1,15 @@
 <script setup>
+import router from '@/router';
+import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
 import { reactive } from 'vue';
 
-console.log(rent);
 let accommodation_data = reactive(JSON.parse(rent.accommodation));
-console.log(accommodation_data)
+
+
+if (!accommodation_data.id)
+  router.back()
 
 let model = reactive({
   firstName: user.firstname,
@@ -22,16 +26,16 @@ let convertStrings = (str) => {
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ", "_")
             .toLowerCase();}
-console.log(`/countries/${convertStrings(accommodation_data.country_name)}/cities/${convertStrings(accommodation_data.city_name)}/${convertStrings(accommodation_data.folder_name)}/001`)
-
 </script>
 <template>
   <div class="container">
     <h1 class="display-1 text-center text-white">Kosár</h1>
     <div class="row">
 
-      <!-- Billing adresses -->
-      <div class="col-6">
+      <!-- user datas -->
+      <div class="col-12 col-md-6">
+
+        <!-- Billing adresses -->
         <div class="row">
           <h4 class="text-white mx-auto w-auto mb-5 mt-3" 
               type="button" 
@@ -192,9 +196,10 @@ console.log(`/countries/${convertStrings(accommodation_data.country_name)}/citie
         </div>
       </div>
 
-      <div class="col-6">
+      <!-- Accomodation data-->
+      <div class="col-12 col-md-6">
         <div class="row">
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-center justify-content-lg-end">
             <div class="card bg-black bg-opacity-25 border-1 
                         border-white bg-opacity-25 text-white" 
                  style="width: 18rem;">
@@ -208,7 +213,40 @@ console.log(`/countries/${convertStrings(accommodation_data.country_name)}/citie
                 <h5 class="card-title">{{ accommodation_data.name }}</h5>
                 <hr>
                 <div>
-                  <p>Személyszám: {{ accommodation_data.guest_number}}</p>
+                  <h4 class="text-center mb-4">Adatok</h4>
+                  <div class="row text-center">
+                    <p>Személyszám: {{ rent.guests}}</p>
+                    <p>Ettől: {{ rent.rent_beginning }}</p>
+                    <p>Eddig: {{ rent.rent_end }}</p>
+                  </div>
+                  <hr>
+                  <h4 class="text-center">Ár</h4>
+                  <div class="row">
+                    <p>Alapár: {{ (rent.accommodation_full_price * selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
+                               {{ selectedCurrency.currencyShortedName }}</p>
+                    <p>Kezelési díj 
+                      <span class="text-danger">(8%)</span>:
+                      {{ ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.08).toLocaleString('fi-FI') }} 
+                      {{ selectedCurrency.currencyShortedName }}
+                    </p>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <p class="fw-bold mb-0">Összesen: 
+                      {{((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) + 
+                        ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
+                      {{ 
+                        selectedCurrency.currencyShortedName
+                      }}
+                  </p>
+                  </div>
+
+                  <hr>
+                  <div class="row">
+                    <button class="btn btn-outline-light w-auto mx-auto">
+                      Megerősítés
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

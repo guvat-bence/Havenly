@@ -6,6 +6,10 @@ import axios from 'axios';
 import { reactive, ref, watch } from 'vue';
 
 
+//securityCheck
+if(user.id)
+  router.back()
+
 // Változók és funkciók deklarálása
 let step = ref(0),
   showpasscheck = ref(false),
