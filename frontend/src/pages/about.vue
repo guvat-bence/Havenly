@@ -231,7 +231,7 @@ if(props.table_name == "accommodations")
 	setTimeout(()=>
 	{
 		makeCalendar(1);
-	},50);
+	},90);
 }
 
 // ha a table_name megegyezik az accommodationnal akkor bele megy
@@ -785,7 +785,7 @@ watch(model,()=>
                 <!-- személyek száma szakasz select -->
 								<div class="col-5">
 									<select class="form-select" id="guest_number" v-model="model.guests">
-										<option v-for="x in guests" :value="x">{{ x }}{{ $t("about.human") }}</option>
+										<option v-for="x in guests" :value="x">{{ x }} {{ $t("about.human") }}</option>
 								</select>
 								</div>
 							</div>

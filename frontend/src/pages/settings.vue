@@ -5,18 +5,20 @@ import { computed, reactive,ref } from 'vue';
 import languages from "@/json/languages.json"
 import { useI18n } from 'vue-i18n';
 import {selectedLanguage} from '@/store/current_language.js';
-
 const {locale} = useI18n();
 const {t} = useI18n();
 
+// meghatározzuk a currentLanguage változót 
 let currentLanguage = ref("");
 
+// beállítjuk a pénznemek szövegét a jelenlegi nyelvhez
 for(let y in languages)
 {
 	languages[y]["full_name"] = computed(()=>(t(`settings.languages.${y}`)));
 }
 
-
+// végiggmegyünk a nyelveken, és ha a jelenlegi nyelv egyenlő az éppen nézendő nyelvvel
+// akkor beálítja a currentLanguage-et az éppen nézendő nyelvével
 for(let x in languages)
 {
 	if(x == locale.value)
@@ -26,7 +28,12 @@ for(let x in languages)
 	}
 }
 
+// beállítjuk a currencyOption értékét a selectedCurrency alapján.
 let currencyOption = ref(selectedCurrency);
+
+// beállítjuk a pénznem szövegét az éppen aktuális nyelvhez.
+currencyOption.value.currencyName = t(`settings.currencys.${currencyOption.value.currencyShortedName}`);
+
 let currencys = ref([]),
 		//Definiálom a 'setCurrency' metódust
 		setCurrency = () => {
@@ -40,10 +47,19 @@ let currencys = ref([]),
 
 axios.get('http://localhost:3000/getCurrency')	
 .then(response => {
+
+	// végigmegyünk a pénznemeken, és minden pénznem szövegét beállítjuk az éppen aktuális nyelvhez 
+	for(let x in response.data)
+	{
+		response.data[x]["full_name"] = computed(()=>(t(`settings.currencys.${response.data[x]["shorted_name"]}`)));
+	}
+
+	// beállítjuk a currencys-t a response értékével
 	currencys.value = response.data
 })
 .catch(e => console.error(e))
 
+// beállítjuk a kiválasztott nyelvet az aktuális nyelvvé.
 function setLanguage()
 {
 	locale.value = (currentLanguage.value.short_name).toLowerCase();
@@ -108,7 +124,7 @@ function setLanguage()
 				<option selected 
 								:value="selectedCurrency"
 								disabled> 
-								{{selectedCurrency.currencyName}}
+								{{$t(`settings.currencys.${selectedCurrency.currencyShortedName}`)}}
 				</option>
 				<!-- Választékok a currencyk közül -->
 				<option v-for="x in currencys" 
