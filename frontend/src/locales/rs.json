@@ -144,7 +144,15 @@
   {
     "settings":"Podešavanja",
     "language_choose": "Izaberite jezik",
-    "currency_choose":"Izbor valute"
+    "currency_choose":"Izbor valute",
+    "languages": {
+      "hu": "Mađarski",
+      "en": "Engleski",
+      "rs": "Srpski",
+      "de": "Nemački",
+      "it": "Italijanski",
+      "ja": "Japanski"
+    }
   },
   "data_protection":
   {

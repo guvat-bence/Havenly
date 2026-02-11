@@ -131,7 +131,15 @@
   "settings": {
     "settings": "Settings",
     "language_choose": "Choose language",
-    "currency_choose": "Choose Currency"
+    "currency_choose": "Choose Currency",
+    "languages": {
+      "hu": "Hungarian",
+      "en": "English",
+      "rs": "Serbian",
+      "de": "German",
+      "it": "Italian",
+      "ja": "Japanese"
+    }
   },
   "data_protection": {
     "data_protection_title": "Privacy Policy",

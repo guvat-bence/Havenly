@@ -144,7 +144,15 @@
   {
     "settings":"Impostazioni",
     "language_choose": "Scegli la lingua",
-    "currency_choose":"Selezione della valuta"
+    "currency_choose":"Selezione della valuta",
+    "languages": {
+      "hu": "Ungherese",
+      "en": "Inglese",
+      "rs": "Serbo",
+      "de": "Tedesco",
+      "it": "Italiano",
+      "ja": "Giapponese"
+    }
   },
   "data_protection":
   {

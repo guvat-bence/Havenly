@@ -144,7 +144,16 @@
   {
     "settings":"Beállítások",
     "language_choose":"Nyelv választása",
-    "currency_choose":"Valuta választása"
+    "currency_choose":"Valuta választása",
+    "languages":
+    { 
+      "hu": "Magyar", 
+      "en": "Angol", 
+      "rs": "Szerb", 
+      "de": "Német", 
+      "it": "Olasz", 
+      "ja": "Japán" 
+    }
   },
   "data_protection":
   {

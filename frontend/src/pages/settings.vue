@@ -1,27 +1,32 @@
 <script setup>
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
-import { reactive,ref } from 'vue';
+import { computed, reactive,ref } from 'vue';
 import languages from "@/json/languages.json"
 import { useI18n } from 'vue-i18n';
 import {selectedLanguage} from '@/store/current_language.js';
 
 const {locale} = useI18n();
-
+const {t} = useI18n();
 
 let currentLanguage = ref("");
+
+for(let y in languages)
+{
+	languages[y]["full_name"] = computed(()=>(t(`settings.languages.${y}`)));
+}
+
 
 for(let x in languages)
 {
 	if(x == locale.value)
 	{
 		currentLanguage.value = languages[x];
-		console.log(currentLanguage.value);
 		break;
 	}
 }
 
-let currencyOption = ref(selectedCurrency)
+let currencyOption = ref(selectedCurrency);
 let currencys = ref([]),
 		//Definiálom a 'setCurrency' metódust
 		setCurrency = () => {
@@ -38,10 +43,6 @@ axios.get('http://localhost:3000/getCurrency')
 	currencys.value = response.data
 })
 .catch(e => console.error(e))
-
-
-
-console.log(selectedLanguage.locale_name);
 
 function setLanguage()
 {
