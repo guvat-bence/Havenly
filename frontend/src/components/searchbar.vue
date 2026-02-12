@@ -1,66 +1,75 @@
 <script setup>
 import { activeLocations, searchInput } from '@/js/getLocation';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 
 const {t} = useI18n();
+
 let result = reactive({
 	city_name: [],
 	country_name: []		
 }),
-		isFocus = ref(false),
-		props  = defineProps({
-			tablename: {
-				type: String,
-				required: true
-			}
-		}),
-		
-		//convertString függvény 
-		convertStrings = (str) => {
+	isFocus = ref(false),
+	props  = defineProps({
+		tablename: {
+			type: String,
+			required: true
+		}
+	}),
 
-			return str.normalize("NFD")
-				.replace(/[\u0300-\u036f]/g, "")
-				.replaceAll(" ", "_")
-				.toLowerCase();
+	//convertString függvény 
+	convertStrings = (str) => {
 
-		},
-		//getActiveLocations függvény
-		getActiveLocations = (x) => {
-			axios.get(`http://localhost:3000/create${x}LocationList`)
-				.then(response => {
-				 activeLocations.value = response.data
-				})
-				.catch(e => console.error(e))
-		},
+		return str.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replaceAll(" ", "_")
+			.toLowerCase();
 
-		//Search függvény
-		search = (value) => {
-			result.city_name = [];
-			result.country_name = [];
-			let countries = [... new Set(activeLocations.value.map(x => x.country_name))]
-			for (let index = 0; index < activeLocations.value.length; index++) {
+	},
+	//getActiveLocations függvény
+	getActiveLocations = (x) => {
+		axios.get(`http://localhost:3000/create${x}LocationList`)
+			.then(response => {
 
-				if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
-																																		.filter(x => x.includes(convertStrings(value))).length > 0) {
-
-					result.city_name.push(activeLocations.value[index])
+				for(let x in response.data)
+				{
+					response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
+					// response.data[x].city_name = t(`search.cities.${response.data[x].city_ID}`);
 				}
-			}
-			for (let i = 0; i < countries.length; i++) {
-				if ((convertStrings(countries[i])).split(" ")
-																					.filter(x => x.includes(convertStrings(value))).length > 0) {
 
-					result.country_name.push(countries[i])
-				}
+				activeLocations.value = response.data
+
+				console.log(activeLocations.value);
+			})
+			.catch(e => console.error(e))
+	},
+
+	//Search függvény
+	search = (value) => {
+		result.city_name = [];
+		result.country_name = [];
+		let countries = [... new Set(activeLocations.value.map(x => x.country_name))]
+		for (let index = 0; index < activeLocations.value.length; index++) {
+
+			if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
+																																	.filter(x => x.includes(convertStrings(value))).length > 0) {
+
+				result.city_name.push(activeLocations.value[index])
 			}
 		}
+		for (let i = 0; i < countries.length; i++) {
+			if ((convertStrings(countries[i])).split(" ")
+																				.filter(x => x.includes(convertStrings(value))).length > 0) {
+
+				result.country_name.push(countries[i])
+			}
+		}
+	};
 		
-		//Függvény lefuttatása
-		getActiveLocations(props.tablename)
+//Függvény lefuttatása
+getActiveLocations(props.tablename)
 </script>
 
 <template>
@@ -72,7 +81,7 @@ let result = reactive({
 			<input class="bg-transparent p-2 border-0 border-bottom h4 me-2 text-white" 
 						 type="search" 
 						 id="searchinput"
-						 :placeholder="t('search')"
+						 :placeholder="t('search.search_title')"
 						 v-model="searchInput" 
 						 v-on:input="search(searchInput)" 
 						 v-on:focus="isFocus = true" 
