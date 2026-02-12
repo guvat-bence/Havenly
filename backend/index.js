@@ -2,13 +2,11 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+require("dotenv").config();
 const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-require("dotenv").config();
-
-
 
 // Adatbázis csatlakozás
 const db = mysql.createConnection({
