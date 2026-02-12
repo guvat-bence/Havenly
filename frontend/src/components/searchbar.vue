@@ -5,13 +5,12 @@ import axios from 'axios';
 import { reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const {t} = useI18n();
 
+const {t} = useI18n();
 let result = reactive({
 	city_name: [],
 	country_name: []		
 }),
-		
 		isFocus = ref(false),
 		props  = defineProps({
 			tablename: {
@@ -108,9 +107,11 @@ input[type="search"]{
 	outline: none !important;
 }
 
-.searchresult { opacity: 0; 
-								transform: translateY(8px); 
-								animation: fadeInUp 0.70s ease forwards; } 
+.searchresult { 
+	opacity: 0; 
+	transform: translateY(8px); 
+	animation: fadeInUp 0.70s ease forwards;
+	} 
 
 @keyframes fadeInUp {
 	 to { opacity: 1; 
