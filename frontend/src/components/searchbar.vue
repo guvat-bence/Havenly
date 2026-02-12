@@ -48,17 +48,24 @@ let result = reactive({
 
 	//Search függvény
 	search = (value) => {
+		// Változás esetén le nullázza
 		result.city_name = [];
 		result.country_name = [];
+
+		// A változót feltöltkük a country_name-el amit elsőnek egy setbe rak majd átalakítja tömbé
 		let countries = [... new Set(activeLocations.value.map(x => x.country_name))]
 		for (let index = 0; index < activeLocations.value.length; index++) {
 
+			// Szétszedi a város nevet szóköznként(ha van), 
+			// és megnézi hogy valamelyik része tartalmazza a searchinputba beírtakat
 			if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
 																																	.filter(x => x.includes(convertStrings(value))).length > 0) {
 
+				// Ha egyezik beleteszi az értéket
 				result.city_name.push(activeLocations.value[index])
 			}
 		}
+		
 		for (let i = 0; i < countries.length; i++) {
 			if ((convertStrings(countries[i])).split(" ")
 																				.filter(x => x.includes(convertStrings(value))).length > 0) {
