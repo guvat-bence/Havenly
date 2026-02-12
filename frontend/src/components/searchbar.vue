@@ -80,6 +80,7 @@ let result = reactive({
 						 autocomplete="off" />
 
 			<ul class="dropdown-menu w-auto bg-dark m-0 p-0 transition" 
+					v-if="isFocus"
 					:class="result.city_name.length > 0 || result.country_name.length > 0 && isFocus ? 'show' : ''">
 
 				<li v-for="x in result.city_name.slice(0, 4)" 
