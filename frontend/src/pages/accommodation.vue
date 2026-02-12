@@ -7,26 +7,7 @@ import { ref, watch } from 'vue';
 let country = ref([]),
     data = ref([]),
     result = ref([]),
-    	isFocus = ref(false),
-    	convertStrings = (str) => {
-      
-    		return str.normalize("NFD")
-    			.replace(/[\u0300-\u036f]/g, "")
-    			.replaceAll(" ", "_")
-    			.toLowerCase();
-      
-    	},
-    	search = (value) => {
-    		result.value = [];
-    		for (let index = 0; index < activeLocations.value.length; index++) {
-        
-    			if ((convertStrings(activeLocations.value[index].city_name)).split(" ")
-    				  .filter(x => x.includes(convertStrings(value))).length > 0) {
-              
-    				result.value.push(activeLocations.value[index])
-    			}
-    		}
-    	};
+    	isFocus = ref(false);
 
 // véletlenszerü 5 ország beolvasása
 axios.get('http://localhost:3000/accommodations/randCountryID')

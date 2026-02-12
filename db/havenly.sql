@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 29. 20:04
+-- Létrehozás ideje: 2026. Feb 12. 13:24
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -285,7 +285,7 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 --
 
 CREATE TABLE `card_networks` (
-  `id` int(11) NOT NULL,
+  `id` int(5) NOT NULL,
   `network_name` varchar(50) NOT NULL,
   `prefix` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1011,6 +1011,19 @@ INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `translations`
+--
+
+CREATE TABLE `translations` (
+  `id` int(5) NOT NULL,
+  `language_short_name` varchar(2) NOT NULL,
+  `item_id` int(5) NOT NULL,
+  `item` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `users`
 --
 
@@ -1228,7 +1241,7 @@ ALTER TABLE `accommodations`
 -- AUTO_INCREMENT a táblához `card_networks`
 --
 ALTER TABLE `card_networks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT a táblához `cities`
