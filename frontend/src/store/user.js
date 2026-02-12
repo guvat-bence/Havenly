@@ -11,7 +11,8 @@ export let user = reactive({
   gender: localStorage.getItem("gender") ?? "",
   user_type: localStorage.getItem("user_type") ?? "", 
   cardNumber: localStorage.getItem("card_number") ?? "",
-  expiration: localStorage.getItem("expiration") ?? "",
+  expirationYear: localStorage.getItem("expirationYear") ?? "",
+  expirationMonth: localStorage.getItem("expirationMonth") ?? "",
   cvv: localStorage.getItem("cvv") ?? "",
   websitekey:localStorage.getItem("websitekey")?? "incorrect"
 })
@@ -27,7 +28,8 @@ watch(user,(newUser) => {
   localStorage.setItem("gender", newUser.gender); 
   localStorage.setItem("user_type", newUser.user_type); 
   localStorage.setItem("card_number", newUser.cardNumber); 
-  localStorage.setItem("expiration", newUser.expiration); 
+  localStorage.setItem("expirationMonth", newUser.expirationMonth); 
+  localStorage.setItem("expirationYear", newUser.expirationYear);
   localStorage.setItem("cvv", newUser.cvv); 
   localStorage.setItem("websitekey",newUser.websitekey);
 },{deep:true});
