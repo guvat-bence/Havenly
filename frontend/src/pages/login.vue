@@ -6,11 +6,8 @@ import { reactive, ref, watch } from 'vue';
 
 const router = useRouter()
 
-
-//securityCheck
 if(user.id)
-  router.back()
-
+  router.push('/')
 // Model dekralálása
 let model = reactive({
   email: "",
@@ -77,11 +74,6 @@ let model = reactive({
   watch(model, () => {
     validateForm();
   })
-  
-  // Ha a felhasználó be van jelentkezve akkor dobja vissza a kezdő oldalra
-  if(user.id)
-    router.replace({path: '/'})
-
 </script>
 
 <template>
