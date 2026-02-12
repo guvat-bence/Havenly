@@ -12,7 +12,7 @@ let result = reactive({
 	country_name: []		
 }),
 		
-		isFocus = ref(true),
+		isFocus = ref(false),
 		props  = defineProps({
 			tablename: {
 				type: String,
