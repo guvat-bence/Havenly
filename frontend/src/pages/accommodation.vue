@@ -4,6 +4,10 @@ import Searchbar from '@/components/searchbar.vue';
 import { activeLocations, searchInput } from '@/js/getLocation';
 import axios from 'axios';
 import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const {t} = useI18n();
+
 let country = ref([]),
     data = ref([]),
     result = ref([]),
@@ -12,8 +16,15 @@ let country = ref([]),
 // véletlenszerü 5 ország beolvasása
 axios.get('http://localhost:3000/accommodations/randCountryID')
   .then(response => {
+
+    for(let x in response.data)
+    {
+      response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
+    }
+
     country.value = response.data;
     data.value = country.value;
+    
   })
   .catch(e => console.error(e))
 
@@ -41,7 +52,7 @@ watch(searchInput,(value) => {
         <!-- kiegészítjük az országok neveivel a címet -->
         <h1 class="display-5 text-center text-white"
             v-if="!searchInput">
-          Szállások amiket {{ x.country_name }} kínál
+         {{ $t("accommodations.title_first_part") }} {{ x.country_name }} {{  $t("accommodations.title_second_part") }}
         </h1>
 
         <!-- meghívjuk hozzá a kártya.vue-t -->

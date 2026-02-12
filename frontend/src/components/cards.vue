@@ -3,10 +3,14 @@ import { searchInput } from '@/js/getLocation';
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
 import {ref, watch} from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const {t} = useI18n();
 // items,toCard definiálása
 let items = ref([]);
-let toCard = ref([])
+let toCard = ref([]);
+let originalData = ref([]);
+let toImage = ref([]); 
 
 // Props a rugalmasság érdekében
 let props = defineProps({
@@ -27,12 +31,21 @@ let props = defineProps({
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
 		// Elementi az egész adatot
+
+		// originalData.value = response.data;
+
+		for(let x in response.data)
+		{
+			response.data[x].country_trans_name =t(`search.countries.${response.data[x].country_id}`);
+			response.data[x].city_trans_name = t(`search.cities.${response.data[x].city_id}`);
+		}
+
 		items.value = response.data
 
 		// Csak azokat teszi bele amelyek megegyeznek a props értékével
 		if(props.accommodation_id == undefined){
 			toCard.value = items.value.filter(country => {
-				return country.country_name.toLowerCase() === props.country_name.toLowerCase();
+				return country.country_trans_name.toLowerCase() === props.country_name.toLowerCase();
 			})
 		}
 		else
@@ -48,14 +61,14 @@ let props = defineProps({
 	watch(searchInput,(value) => {
 		// Ha nincs megadott érték akkor vissza adja azokat az értékeket amelyek a propsban vannak
 		if(!value){
-			toCard.value = items.value.filter(country => {return country.country_name.toLowerCase() === 
+			toCard.value = items.value.filter(country => {return country.country_trans_name.toLowerCase() === 
 																													 props.country_name.toLowerCase();})
 			return
 		}
 		// Ha pedig mégis van akkor pedig azt az érétket adja vissza amelyiket a value tartalmazzas
-			toCard.value = items.value.filter(x => x.city_name.toLowerCase()
+			toCard.value = items.value.filter(x => x.city_trans_name.toLowerCase()
 																												.includes(value.toLowerCase()) || 
-																						 x.country_name.toLowerCase()
+																						 x.country_trans_name.toLowerCase()
 																													 .includes(value.toLowerCase()))
 	})
 
@@ -91,7 +104,7 @@ function convertStrings(str) {
 			</div>
 			<div class="card-body">
 					<p class="card-text w-100">
-						{{x.country_name}}, {{x.city_name}}
+						{{x.country_trans_name}}, {{x.city_trans_name}}
 					</p>
 			</div>
 			<div class="card-footer border-0">
@@ -103,7 +116,7 @@ function convertStrings(str) {
 
 				<!-- Gomb az adatokhoz ami kattintásra elküldi az adatokat -->
 				<router-link 
-						:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name}}"
+						:to="{name:'about',params:{table_name:props.tableName,id:x.id,name:x.name	}}"
 					 	class="btn btn-outline-light w-100">
 					{{ $t("card.interest") }}
 				</router-link>

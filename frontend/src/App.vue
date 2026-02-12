@@ -5,16 +5,27 @@ import { user } from './store/user';
 
 let checkforUser = () => {
   if (user.websitekey != 'havenly') {
-    localStorage.removeItem("id")
-    localStorage.removeItem("first_name")
-    localStorage.removeItem("last_name")
-    localStorage.removeItem("middle_name")
-    localStorage.removeItem("phone_number")
-    localStorage.removeItem("gender")
-    localStorage.removeItem("user_type")
-    localStorage.removeItem("card_number")
-    localStorage.removeItem("expiration")
-    localStorage.removeItem("cvv")
+    localStorage.removeItem("id");
+    localStorage.removeItem("first_name");
+    localStorage.removeItem("last_name");
+    localStorage.removeItem("middle_name");
+    localStorage.removeItem("phone_number");
+    localStorage.removeItem("gender");
+    localStorage.removeItem("user_type");
+    localStorage.removeItem("card_number");
+    localStorage.removeItem("expiration");
+    localStorage.removeItem("cvv");
+    localStorage.removeItem("accommodation_full_price");
+    localStorage.removeItem("rent_beginning");
+    localStorage.removeItem("rent_end");
+    localStorage.removeItem("accommodation_path");
+    localStorage.removeItem("guests_number");
+    localStorage.removeItem("accommodation");
+    localStorage.removeItem("currencyID");
+    localStorage.removeItem("currencyName");
+    localStorage.removeItem("currencyMultiplier");
+    localStorage.removeItem("currencyShortedName");
+    localStorage.removeItem("locale_name");
   }
 }
 if (user)

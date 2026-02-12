@@ -20,5 +20,3 @@ watch(rent,(datas)=>
   localStorage.setItem('accommodation',datas.accommodation);
 
 })
-
-console.log(rent.guests)

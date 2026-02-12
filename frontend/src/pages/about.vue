@@ -204,9 +204,12 @@ if(counter>0)
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	.then(datas=>{
 
+		datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
+		datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
+
 		// tömb feltöltése
 		item.value = datas.data;
-
+		
 		//ha léétzik a guest_number a tömben akkor bele megy
 		if(item.value[0].guest_number)
 		{
@@ -637,7 +640,7 @@ watch(model,()=>
 
 					<!-- Sazállás/élmény országa, városa -->
 					<h1 class=" text-start col-5 ms-1">
-						{{ item[0].country_name}}, {{ item[0].city_name}}
+						{{ item[0].country_trans_name}}, {{ item[0].city_trans_name}}
 					</h1>
 
 					<!-- Szállás/élmény neve -->

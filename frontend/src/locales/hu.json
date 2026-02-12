@@ -39,11 +39,14 @@
   },
   "accommodations":
   {
+    "title_first_part":"Szállások amiket",
+    "title_second_part":"kínál"
     
   },
     "experiences":
   {
-
+    "title_first_part":"Élmények amiket",
+    "title_second_part":"kínál"
   },
   "about":
   {

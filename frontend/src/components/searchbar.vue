@@ -35,13 +35,11 @@ let result = reactive({
 
 				for(let x in response.data)
 				{
-					// response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
-					// response.data[x].city_name = t(`search.cities.${response.data[x].city_ID}`);
+					response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
+					response.data[x].city_name = t(`search.cities.${response.data[x].city_ID}`);
 				}
 
-				activeLocations.value = response.data
-
-				console.log(activeLocations.value);
+				activeLocations.value = response.data;
 			})
 			.catch(e => console.error(e))
 	},

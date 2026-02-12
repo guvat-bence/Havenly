@@ -33,10 +33,14 @@ else
   {
     if(x == browserLanguage.split("-")[0])
     {
-      defaultLocale = browserLanguage;
+      defaultLocale = browserLanguage.split("-")[0];
       selectedLanguage.locale_name = browserLanguage.split("-")[0];
       break;
     }
+  }
+  if(defaultLocale == "en")
+  {
+    selectedLanguage.locale_name = defaultLocale;
   }
 }
 
