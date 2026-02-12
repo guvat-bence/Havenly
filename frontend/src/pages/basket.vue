@@ -1,11 +1,14 @@
 <script setup>
-import router from '@/router';
+import { useRouter } from 'vue-router';
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
 import { reactive } from 'vue';
 
-let accommodation_data = reactive(JSON.parse(rent.accommodation));
+
+let router = useRouter()
+
+let accommodation_data = JSON.parse(rent.accommodation);
 
 console.log(user.cardNumber)
 
@@ -15,10 +18,12 @@ if (!accommodation_data.id)
 let model = reactive({
   firstName: user.firstname,
   lastName: user.lasttname,
-  middleName: user.middlename,
+  middleName: user.middlename =! null ? "" : user.middlename,
   email: user.email,
-  phoneNum: user.phone_number
+  phoneNum: user.phone_number,
 })
+
+model.method = "creditcard"
 
 let card = reactive({
   cardnumber: user.cardNumber === null ? ""  : user.cardNumber,
@@ -262,9 +267,8 @@ let convertStrings = (str) => {
         </div>
 
         <div>
-          <div class="row"
-              v-if="model.method == 'creditcard' || 
-                    model.method == 'paypal'">
+          <div class="row"v-if="model.method == 'creditcard' || 
+                                model.method == 'paypal'">
               <h4 class="text-center text-white mt-4"
                   data-bs-toggle="collapse"
                   data-bs-target="#cardDataCollapse" 
@@ -320,30 +324,33 @@ let convertStrings = (str) => {
 
                     <hr>
 
-                    <!-- card data -->
                     <div class="row">
                       <!-- cardNumber -->
-                      <div class="mb-3 m-0 col-12">
+                      <div class="mb-3 col-9 col-sm-6 col-lg-8">
                         <label for="inputCardNumber" 
-                              class="form-label">
+                               class="form-label">
                           Kártyaszám
                         </label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="inputCardNumber" 
-                               v-model="card.cardnumber">
+                        <input type="text"
+                              class="form-control"
+                              id="inputCardNumber"
+                              v-model="card.cardnumber">
                       </div>
 
-                      <!-- card expirationDate and cvv  -->
-                      <div class="mb-3 m-0 col-12">
-                        <label for="inputCardNumber" 
-                              class="form-label">
-                          Kártyaszám
-                        </label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="inputCardNumber" 
-                               v-model="card.expiration">
+                      <!-- Month -->
+                      <div class="mb-3 col-1 col-sm-3 col-lg-2">
+                        <label class="form-label">Hónap</label>
+                        <select class="form-select">
+                          <option v-for="x in 12">{{ x }}</option>
+                        </select>
+                      </div>
+
+                      <!-- Year -->
+                      <div class="mb-3 col-1 col-sm-3 col-lg-2">
+                        <label class="form-label">Év</label>
+                        <select class="form-select">
+                          <option v-for="x in 12">{{ x }}</option>
+                        </select>
                       </div>
                     </div>
                   </form>
@@ -364,9 +371,4 @@ input {
   width: 100%;
 }
 
-@media (min-width: 900px) {
-  .w-md-50 {
-    width: 50% !important;
-  }
-}
 </style>
