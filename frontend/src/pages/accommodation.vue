@@ -4,7 +4,6 @@ import Searchbar from '@/components/searchbar.vue';
 import { activeLocations, searchInput } from '@/js/getLocation';
 import axios from 'axios';
 import { ref, watch } from 'vue';
-
 let country = ref([]),
     data = ref([]),
     result = ref([]),
