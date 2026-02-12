@@ -7,8 +7,8 @@ import { reactive, ref, watch } from 'vue';
 
 
 //securityCheck
-if(user.id)
-  router.back()
+  if(user.id)
+    router.push('/')
 
 // Változók és funkciók deklarálása
 let step = ref(0),

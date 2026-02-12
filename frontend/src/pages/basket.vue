@@ -28,9 +28,67 @@ let convertStrings = (str) => {
             .toLowerCase();}
 </script>
 <template>
-  <div class="container">
-    <h1 class="display-1 text-center text-white">Kosár</h1>
-    <div class="row">
+  <div class="container mt-2">
+    <h1 class="display-1 text-center text-white ">Kosár</h1>
+    <div class="row flex-row-reverse">
+
+      <!-- Accomodation data-->
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="d-flex justify-content-center justify-content-lg-end">
+            <div class="card bg-black bg-opacity-25 border-1 
+                        border-white bg-opacity-25 text-white" 
+                 style="width: 18rem;">
+              <img height="300" 
+                   :src="`/countries/${convertStrings(accommodation_data.country_name)}` +
+                         `/cities/${convertStrings(accommodation_data.city_name)}` +
+                         `/accommodations/${convertStrings(accommodation_data.folder_name)}/001.png`"
+                   class="card-img-top" 
+                   alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ accommodation_data.name }}</h5>
+                <hr>
+                <div>
+                  <h4 class="text-center mb-4">Adatok</h4>
+                  <div class="row text-center">
+                    <p>Személyszám: {{ rent.guests}}</p>
+                    <p>Ettől: {{ rent.rent_beginning }}</p>
+                    <p>Eddig: {{ rent.rent_end }}</p>
+                  </div>
+                  <hr>
+                  <h4 class="text-center">Ár</h4>
+                  <div class="row">
+                    <p>Alapár: {{ (rent.accommodation_full_price * selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
+                               {{ selectedCurrency.currencyShortedName }}</p>
+                    <p>Kezelési díj 
+                      <span class="text-danger">(8%)</span>:
+                      {{ ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.08).toLocaleString('fi-FI') }} 
+                      {{ selectedCurrency.currencyShortedName }}
+                    </p>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <p class="fw-bold mb-0">Összesen: 
+                      {{((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) + 
+                        ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
+                      {{ 
+                        selectedCurrency.currencyShortedName
+                      }}
+                  </p>
+                  </div>
+
+                  <hr>
+                  <div class="row">
+                    <button class="btn btn-outline-light w-auto mx-auto">
+                      Megerősítés
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- user datas -->
       <div class="col-12 col-md-6">
@@ -130,7 +188,7 @@ let convertStrings = (str) => {
         </div>
 
         <!-- Payment method -->
-        <div class="row">
+        <div class="row justify-content-lg-start">
           <h4 class="text-white mx-auto w-auto mb-5 mt-3" 
               type="button" 
               data-bs-toggle="collapse"
@@ -191,64 +249,6 @@ let convertStrings = (str) => {
                   </div>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Accomodation data-->
-      <div class="col-12 col-md-6">
-        <div class="row">
-          <div class="d-flex justify-content-center justify-content-lg-end">
-            <div class="card bg-black bg-opacity-25 border-1 
-                        border-white bg-opacity-25 text-white" 
-                 style="width: 18rem;">
-              <img height="300" 
-                   :src="`/countries/${convertStrings(accommodation_data.country_name)}` +
-                         `/cities/${convertStrings(accommodation_data.city_name)}` +
-                         `/accommodations/${convertStrings(accommodation_data.folder_name)}/001.png`"
-                   class="card-img-top" 
-                   alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{ accommodation_data.name }}</h5>
-                <hr>
-                <div>
-                  <h4 class="text-center mb-4">Adatok</h4>
-                  <div class="row text-center">
-                    <p>Személyszám: {{ rent.guests}}</p>
-                    <p>Ettől: {{ rent.rent_beginning }}</p>
-                    <p>Eddig: {{ rent.rent_end }}</p>
-                  </div>
-                  <hr>
-                  <h4 class="text-center">Ár</h4>
-                  <div class="row">
-                    <p>Alapár: {{ (rent.accommodation_full_price * selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
-                               {{ selectedCurrency.currencyShortedName }}</p>
-                    <p>Kezelési díj 
-                      <span class="text-danger">(8%)</span>:
-                      {{ ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.08).toLocaleString('fi-FI') }} 
-                      {{ selectedCurrency.currencyShortedName }}
-                    </p>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <p class="fw-bold mb-0">Összesen: 
-                      {{((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) + 
-                        ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
-                      {{ 
-                        selectedCurrency.currencyShortedName
-                      }}
-                  </p>
-                  </div>
-
-                  <hr>
-                  <div class="row">
-                    <button class="btn btn-outline-light w-auto mx-auto">
-                      Megerősítés
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
