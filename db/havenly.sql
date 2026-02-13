@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 12. 13:24
+-- Létrehozás ideje: 2026. Feb 13. 10:07
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -310,7 +310,65 @@ INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
 (13, 'Maestro', '57'),
 (14, 'Maestro', '58'),
 (15, 'Maestro', '59'),
-(16, 'Maestro', '6');
+(16, 'Maestro', '6'),
+(17, 'Visa', '4026'),
+(18, 'Visa', '4175'),
+(19, 'Visa', '4508'),
+(20, 'Mastercard', '51'),
+(21, 'Mastercard', '52'),
+(22, 'Mastercard', '53'),
+(23, 'American Express', '379'),
+(24, 'American Express', '349'),
+(25, 'Diners Club', '301'),
+(26, 'Diners Club', '305'),
+(27, 'Discover', '6011'),
+(28, 'Discover', '65'),
+(29, 'JCB', '3528'),
+(30, 'JCB', '3589'),
+(31, 'UnionPay', '622'),
+(32, 'UnionPay', '624'),
+(33, 'Maestro', '60'),
+(34, 'Maestro', '67'),
+(35, 'Maestro', '63'),
+(36, 'Visa', '4539'),
+(37, 'Visa', '4916'),
+(38, 'Visa', '4484'),
+(39, 'Visa', '4716'),
+(40, 'Mastercard', '54'),
+(41, 'Mastercard', '55'),
+(42, 'Mastercard', '2221'),
+(43, 'Mastercard', '2720'),
+(44, 'American Express', '3782'),
+(45, 'American Express', '3714'),
+(46, 'American Express', '3447'),
+(47, 'Diners Club', '309'),
+(48, 'Diners Club', '300'),
+(49, 'Diners Club', '302'),
+(50, 'Discover', '644'),
+(51, 'Discover', '645'),
+(52, 'Discover', '646'),
+(53, 'Discover', '6011'),
+(54, 'JCB', '3530'),
+(55, 'JCB', '3566'),
+(56, 'JCB', '3573'),
+(57, 'UnionPay', '625'),
+(58, 'UnionPay', '626'),
+(59, 'UnionPay', '627'),
+(60, 'Maestro', '66'),
+(61, 'Maestro', '68'),
+(62, 'Maestro', '69'),
+(63, 'Elo', '4011'),
+(64, 'Elo', '4312'),
+(65, 'Elo', '4389'),
+(66, 'Elo', '4576'),
+(67, 'Elo', '6277'),
+(68, 'Elo', '6504'),
+(69, 'Verve', '5061'),
+(70, 'Verve', '5078'),
+(71, 'Verve', '6500'),
+(72, 'Verve', '6501'),
+(73, 'Verve', '5079'),
+(74, 'Verve', '5062');
 
 -- --------------------------------------------------------
 
@@ -1241,7 +1299,7 @@ ALTER TABLE `accommodations`
 -- AUTO_INCREMENT a táblához `card_networks`
 --
 ALTER TABLE `card_networks`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT a táblához `cities`
