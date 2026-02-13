@@ -113,7 +113,7 @@ let convertStrings = (str) => {
       <div class="col-12 col-md-6">
         <!-- Billing adresses -->
         <div class="row">
-          <h4 class="text-white mx-auto w-auto mb-5 mt-3" 
+          <h4 class="text-white mx-auto w-auto mt-4" 
               data-bs-toggle="collapse"
               data-bs-target="#billingCollapse"
               aria-controls="billingCollapse">
@@ -206,7 +206,7 @@ let convertStrings = (str) => {
 
         <!-- Payment method -->
         <div class="row">
-          <h4 class="text-white mx-auto w-auto mb-5 mt-3" 
+          <h4 class="text-white mx-auto w-auto mt-4" 
               data-bs-toggle="collapse"
               data-bs-target="#methodCollapse" 
               aria-controls="methodCollapse">
@@ -240,7 +240,7 @@ let convertStrings = (str) => {
 
                   <!-- CreditCard -->
                   <div class="form-check d-flex justify-content-between 
-                            align-items-center">
+                              align-items-center mb-2">
                     <label class="form-check-label h5" 
                           for="radioCard">
                       Bankkártya
@@ -277,8 +277,9 @@ let convertStrings = (str) => {
 
         <!-- Card information -->
         <div>
-          <div class="row"v-if="model.method == 'creditcard' || 
-                                model.method == 'paypal'">
+          <div class="row"
+               v-if="model.method == 'creditcard' || 
+                     model.method == 'paypal'">
               <h4 class="text-center text-white mt-4"
                   data-bs-toggle="collapse"
                   data-bs-target="#cardDataCollapse" 
@@ -290,7 +291,7 @@ let convertStrings = (str) => {
                   class="collapse show">
                 <div class="bg-black bg-opacity-25 text-center 
                             text-white border-1 border-white 
-                            card w-auto mx-auto text-white p-2">
+                            card w-auto mx-auto text-white p-3">
                   <form v-if="model.method == 'creditcard'">
 
 
@@ -298,7 +299,7 @@ let convertStrings = (str) => {
                     <!-- Owner data -->
                     <div class="row">
                       <!-- FirstName -->
-                      <div class="mb-3 m-0 col-12 col-lg-4">
+                      <div class="mb-2 m-0 col-12 col-lg-4">
                         <label for="InputOwnerFirstName" 
                               class="form-label">
                           Keresztnév
@@ -310,7 +311,7 @@ let convertStrings = (str) => {
                       </div>
 
                       <!-- LastName -->
-                      <div class="mb-3 m-0 col-12 col-lg-4">
+                      <div class="mb-2 m-0 col-12 col-lg-4">
                         <label for="InputOwnerFirstName" 
                               class="form-label">
                           Vezetéknév
@@ -322,7 +323,7 @@ let convertStrings = (str) => {
                       </div>
 
                       <!-- MiddleName -->
-                      <div class="mb-3 m-0 col-12 col-lg-4">
+                      <div class="mb-2 m-0 col-12 col-lg-4">
                         <label for="InputOwnerFirstName" 
                               class="form-label">
                           Harmadiknév
@@ -334,7 +335,7 @@ let convertStrings = (str) => {
                       </div>
                     </div>
 
-                    <hr>
+                    <hr class="m-2">
                     <!-- Card data -->
                     <div class="row">
                       <!-- cardNumber -->
@@ -365,7 +366,7 @@ let convertStrings = (str) => {
                         </label>
                         <select class="form-select"
                                 id="inputMonth">
-                          <option value="" selected="">{{ card.expiration_month }}</option>
+                          <option value="" selected>{{ card.expiration_month }}</option>
                           <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
                         </select>
                       </div>

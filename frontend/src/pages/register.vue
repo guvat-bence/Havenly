@@ -110,12 +110,12 @@ watch(model, () => {
     </div>
 
     <div class="d-flex justify-content-center align-items-center">
-      <form class="border p-3 border-1 
+      <form class="border p-4 border-1 
                     border-white text-white rounded-3 
                     bg-dark bg-opacity-50 mb-3">
 
         <div>
-          <h1 class="text-center" v-if="step !== 3">
+          <h1 class="text-center h2 mb-3" v-if="step !== 3">
             {{ step + 1 }}. {{ $t("register.title") }}
           </h1>
         </div>
