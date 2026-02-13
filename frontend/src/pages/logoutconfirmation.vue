@@ -34,12 +34,12 @@ import { user } from '@/store/user';
 				<h6 class="display-6 mb-5">{{ $t("log_out.log_out") }}</h6>
 				
 				<div class="mt-auto">
-					<button class="btn mx-5 my-3 btn-primary"
+					<button class="btn mx-5 my-3 btn-outline-danger"
 									v-on:click="cancel()">
 						{{ $t("log_out.no") }}
 					</button>
 
-					<button class="btn mx-5 my-3 btn-primary"
+					<button class="btn mx-5 my-3 btn-outline-primary"
 									v-on:click="logout()">
 						{{ $t("log_out.yes") }}
 					</button>
