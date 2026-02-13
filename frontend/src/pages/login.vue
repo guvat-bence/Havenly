@@ -17,6 +17,7 @@ let model = reactive({
   message = ref(""),
   isSuccess,
   showpasscheck = ref(false),
+  expiration_sliced = ref([]),
 
   // login függvény
   login = () => {
@@ -41,7 +42,8 @@ let model = reactive({
           user.gender = response.data.user.gender;
           user.user_type = response.data.user.user_type;
           user.cardNumber = response.data.user.card_number;
-          user.expiration = response.data.user.expiration;
+          user.expirationMonth = response.data.user.expiration.split("/")[0]
+          user.expirationYear = response.data.user.expiration.split("/")[1]
           user.cvv = response.data.user.cvv;
           user.websitekey = "havenly"
           
@@ -61,8 +63,8 @@ let model = reactive({
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
       return false;
 
-    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
-    return false;
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()_\-+= \[\] {};:'",.<>/?]{6,40}$/.test(model.password)) 
+      return false
 
     if(model.password.length >= 40 || model.password.length <= 6)
       return false;

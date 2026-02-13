@@ -3,14 +3,12 @@ import { useRouter } from 'vue-router';
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 
 let router = useRouter()
 
 let accommodation_data = JSON.parse(rent.accommodation);
-
-console.log(user.cardNumber)
 
 if (!accommodation_data.id)
   router.back()
@@ -23,19 +21,25 @@ let model = reactive({
   phoneNum: user.phone_number,
 })
 
+let card = reactive({
+  cardnumber: user.cardNumber,
+  expiration_month: user.expirationMonth,
+  expirationYear: user.expirationYear,
+  cvv: user.cvv
+}) 
+
+let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
+
 model.method = "creditcard"
 
-let card = reactive({
-  cardnumber: user.cardNumber === null ? ""  : user.cardNumber,
-  expiration: user.expiration,
-}) 
+
+// Format text to readable
 let convertStrings = (str) => {
-      
-    	
   return str.normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ", "_")
-            .toLowerCase();}
+            .toLowerCase();
+            }
 </script>
 <template>
   <div class="container mt-2">
@@ -46,9 +50,13 @@ let convertStrings = (str) => {
       <div class="col-12 col-md-6">
         <div class="row">
           <div class="d-flex justify-content-center justify-content-lg-end">
+
+            <!-- Card -->
             <div class="card bg-black bg-opacity-25 border-1 
                         border-white bg-opacity-25 text-white" 
                  style="width: 18rem;">
+              
+              <!-- Image -->
               <img height="300" 
                    :src="`/countries/${convertStrings(accommodation_data.country_name)}` +
                          `/cities/${convertStrings(accommodation_data.city_name)}` +
@@ -100,6 +108,7 @@ let convertStrings = (str) => {
         </div>
       </div>
 
+      
       <!-- user datas -->
       <div class="col-12 col-md-6">
         <!-- Billing adresses -->
@@ -266,6 +275,7 @@ let convertStrings = (str) => {
           </div>
         </div>
 
+        <!-- Card information -->
         <div>
           <div class="row"v-if="model.method == 'creditcard' || 
                                 model.method == 'paypal'">
@@ -283,50 +293,52 @@ let convertStrings = (str) => {
                             card w-auto mx-auto text-white p-2">
                   <form v-if="model.method == 'creditcard'">
 
-                    <!-- FirstName -->
+
                     <h4>Kártya tulajdonos neve</h4>
+                    <!-- Owner data -->
                     <div class="row">
+                      <!-- FirstName -->
                       <div class="mb-3 m-0 col-12 col-lg-4">
-                        <label for="InputFirstName" 
+                        <label for="InputOwnerFirstName" 
                               class="form-label">
                           Keresztnév
                         </label>
                         <input type="text" 
                                class="form-control" 
-                               id="InputFirstName" 
+                               id="InputOwnerFirstName" 
                                v-model="model.firstName">
                       </div>
 
                       <!-- LastName -->
                       <div class="mb-3 m-0 col-12 col-lg-4">
-                        <label for="InputFirstName" 
+                        <label for="InputOwnerFirstName" 
                               class="form-label">
                           Vezetéknév
                         </label>
                         <input type="text" 
                                class="form-control" 
-                               id="InputFirstName" 
+                               id="InputOwnerFirstName" 
                                v-model="model.lastName">
                       </div>
 
                       <!-- MiddleName -->
                       <div class="mb-3 m-0 col-12 col-lg-4">
-                        <label for="InputFirstName" 
+                        <label for="InputOwnerFirstName" 
                               class="form-label">
                           Harmadiknév
                         </label>
                         <input type="text" 
                                class="form-control" 
-                               id="InputFirstName" 
+                               id="InputOwnerFirstName" 
                                v-model="model.middleName">
                       </div>
                     </div>
 
                     <hr>
-
+                    <!-- Card data -->
                     <div class="row">
                       <!-- cardNumber -->
-                      <div class="mb-3 col-9 col-sm-6 col-lg-8">
+                      <div class="mb-3 col-9 col-md-8 col-lg-10">
                         <label for="inputCardNumber" 
                                class="form-label">
                           Kártyaszám
@@ -337,20 +349,56 @@ let convertStrings = (str) => {
                               v-model="card.cardnumber">
                       </div>
 
+                      <!-- CardBrand -->
+                      <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
+                        <img src="/cards/mastercard.png"
+                             class="img-fluid w-auto ratio-4x3"
+                             style="height: 30px;" 
+                             alt="">
+                      </div>
+
                       <!-- Month -->
-                      <div class="mb-3 col-1 col-sm-3 col-lg-2">
-                        <label class="form-label">Hónap</label>
-                        <select class="form-select">
-                          <option v-for="x in 12">{{ x }}</option>
+                      <div class="mb-3 col-6 col-lg-4">
+                        <label class="form-label"
+                               for="inputMonth">
+                          Hónap
+                        </label>
+                        <select class="form-select"
+                                id="inputMonth">
+                          <option value="" selected="">{{ card.expiration_month }}</option>
+                          <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
                         </select>
                       </div>
 
                       <!-- Year -->
-                      <div class="mb-3 col-1 col-sm-3 col-lg-2">
-                        <label class="form-label">Év</label>
-                        <select class="form-select">
-                          <option v-for="x in 12">{{ x }}</option>
+                      <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                        <label class="form-label"
+                               for="inputYear">
+                          Év
+                        </label>
+
+                        <select class="form-select"
+                                id="inputYear">
+                          <option value=""
+                                  selected>
+                            {{  card.expirationYear }}
+                          </option>
+                          <option v-for="x in 5" >
+                            {{ parseInt(currentExpYear) + x }}
+                          </option>
                         </select>
+                      </div>
+
+                      <!-- CVV -->
+                      <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                        <label for="inputCVV" 
+                               class="form-label">
+                          CVV
+                        </label>
+                        <input type="text"
+                               class="form-control"
+                               id="inputCVV"
+                               v-model="card.cvv">
                       </div>
                     </div>
                   </form>
