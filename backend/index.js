@@ -394,8 +394,7 @@ app.post('/login', (req, res) => {
       cvv
     FROM users
     WHERE email = ? AND password = ?
-    LIMIT 1
-  `;
+    LIMIT 1`;
 
   db.query(query, [data.email, data.password], (err, account) => {
     if (err) {
@@ -488,3 +487,41 @@ app.get("/history/:id", (req, res) => {
     }
   );
 });
+
+// megnézi hogy van e az adott elemnek fordítása, ha van akkor betölti 
+// ha nincs akkor meghívja a translate.js-t és lefordíttatja az adott szöveget
+//majd ezt eltárolja az adatbázosban
+
+app.post("/translate",(req,res)=>
+{
+  let datas = req.body;
+  db.query(`SELECT
+              id,
+              language_short_name,
+              item_id,
+              item,
+              item_name
+            FROM translations
+            WHERE item_id = ? AND item_name = ? AND language_short_name = ?`,
+    [datas.item_id,datas.item_name,datas.language_short_name],
+    (err,result)=>
+    {
+      if(err)
+      {
+        console.log(err);
+        return;
+      }
+      if(result.length>0)
+      {
+        console.log("Van adat!",result);
+        res.json(result);
+        return;
+      }
+      else
+      {
+        console.log("Nincs adat!",result);
+        res.json(result);
+        return;
+      }
+    });
+})

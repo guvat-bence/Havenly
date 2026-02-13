@@ -6,10 +6,10 @@ import {ref, watch} from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const {t} = useI18n();
+const {locale} =  useI18n();
 // items,toCard definiálása
 let items = ref([]);
 let toCard = ref([]);
-let originalData = ref([]);
 let toImage = ref([]); 
 
 // Props a rugalmasság érdekében
@@ -30,12 +30,23 @@ let props = defineProps({
 
 	axios.get(`http://localhost:3000/${props.tableName}`)
 	.then(response => {
-		// Elementi az egész adatot
-
-		// originalData.value = response.data;
 
 		for(let x in response.data)
 		{
+			// axios.post(`http://localhost:3000/translate`,
+			// 	{item_id:response.data[x].id,item_name:props.tableName,language_short_name:locale.value}
+			// )
+			// .then(datas=>
+			// {
+			// 	if(datas.data.length>0)
+			// 	{
+			// 		console.log(datas.data);
+			// 	}
+			// })
+			// .catch(err=>
+			// {
+			// 	console.log(err);
+			// })
 			response.data[x].country_trans_name =t(`search.countries.${response.data[x].country_id}`);
 			response.data[x].city_trans_name = t(`search.cities.${response.data[x].city_id}`);
 		}
@@ -54,9 +65,24 @@ let props = defineProps({
 				return accommodation.id == props.accommodation_id;
 			})
 		}
+		
+		for(let x in toCard.value){
+			axios.post(`http://localhost:3000/translate`,
+				{item_id:toCard.value[x].id,item_name:props.tableName,language_short_name:locale.value})
+			.then(datas=>
+			{
+				if(datas.data.length>0)
+				{
+					console.log(datas.data);
+				}
+			})
+			.catch(err=>
+			{
+				console.log(err);
+			})
+		}
 	})
 	.catch(e => console.error(e))
-
 	// SearchInput változás esetén...
 	watch(searchInput,(value) => {
 		// Ha nincs megadott érték akkor vissza adja azokat az értékeket amelyek a propsban vannak
@@ -70,6 +96,24 @@ let props = defineProps({
 																												.includes(value.toLowerCase()) || 
 																						 x.country_trans_name.toLowerCase()
 																													 .includes(value.toLowerCase()))
+
+		for(let x in toCard.value){
+			axios.post(`http://localhost:3000/translate`,
+				{item_id:toCard.value[x].id,item_name:props.tableName,language_short_name:locale.value})
+			.then(datas=>
+			{
+				if(datas.data.length>0)
+				{
+					console.log(datas.data);
+					console.log(toCard.value[x])
+					// toCard.value[x].description = datas.data.text;
+				}
+			})
+			.catch(err=>
+			{
+				console.log(err);
+			})
+		}
 	})
 
 // Convert string metódus
