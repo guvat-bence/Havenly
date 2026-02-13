@@ -127,7 +127,7 @@ function convertStrings(str) {
 
 <template>
 	<div class="row justify-content-center cardhover">
-		<div class="card mx-4 col-md-5 g-4 p-0 
+		<div class="card mx-4 col-md-5 g-4 p-0 pb-2 
 								bg-transparent text-white border-white
 								rounded-4 mb-3" 
 				 v-for="x in toCard"

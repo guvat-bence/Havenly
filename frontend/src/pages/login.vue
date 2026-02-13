@@ -83,7 +83,7 @@ let model = reactive({
     <div class="d-flex justify-content-center align-items-center">
 
       <!-- bejelentkezés form -->
-      <form class="border p-3 border-1 border-white 
+      <form class="border p-4 border-1 border-white 
                    text-white rounded-3 bg-dark 
                    bg-opacity-50"
             name="login">
@@ -91,7 +91,7 @@ let model = reactive({
         <!-- Cím és üzenet részleg -->
         <div>
           <!-- cím -->
-          <h1 class="text-center text-white display-5">
+          <h1 class="text-center text-white h2 m-3">
             {{ $t("login.title") }}
           </h1>
 

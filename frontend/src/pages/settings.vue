@@ -80,10 +80,10 @@ function setLanguage()
 
 		<!-- Nyelv választó menüpont -->
 		<div class="row text-white border border-white 
-								border-1 mx-5 my-5 rounded-3">
+								border-1 mx-5 my-5 rounded-3 p-3">
 			
 			<!-- Cím -->
-			<h1 class="display-4">{{ $t("settings.language_choose") }}</h1>
+			<h1 class="fw-light">{{ $t("settings.language_choose") }}</h1>
 
 			<!-- Select -->
 			<select class="form-select bg-dark text-white 
@@ -108,10 +108,10 @@ function setLanguage()
 
 		<!-- Valuta választó menüpont -->
 		<div class="row text-white border border-white 
-								border-1 mx-5 rounded-3">
+								border-1 mx-5 rounded-3 p-3">
 			
 			<!-- Cím -->
-			<h1 class="display-4">{{ $t("settings.currency_choose") }}</h1>
+			<h1 class="fw-light">{{ $t("settings.currency_choose") }}</h1>
 
 			<!-- Select -->
 			<select class="form-select bg-dark text-white 
