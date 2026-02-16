@@ -7,9 +7,12 @@ import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import allIcons from '@/json/icons.json';
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
+
+
 // étékek át hozása másik oldalról
 const props = defineProps(['id','name','table_name'])
+const { t } = useI18n();
+const {locale} = useI18n();
 
 // változók létrehozása
 let item = ref([]);
@@ -207,8 +210,31 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 		datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
 		datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
 
+
 		// tömb feltöltése
-		item.value = datas.data;
+		item.value = datas.data;	
+
+		axios.post(`http://localhost:3000/translate`,
+			{item_id:item.value[0].id,item_name:props.table_name,language_short_name:locale.value})
+		.then(datas=>
+		{
+			if(datas.data.message == "translation")
+			{
+				let text  = JSON.parse(datas.data.data[0].item);
+				item.value[0].name = text["title"];
+				item.value[0].description = text["description"];
+				
+			}
+			else if(datas.data.message == "original")
+			{
+				item.value[0].name = datas.data.data[0].name;
+				item.value[0].description = datas.data.data[0].description;
+			}
+		})
+		.catch(err=>
+		{
+			console.log(err);
+		})
 		
 		//ha léétzik a guest_number a tömben akkor bele megy
 		if(item.value[0].guest_number)

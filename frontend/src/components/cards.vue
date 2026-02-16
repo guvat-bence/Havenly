@@ -40,14 +40,12 @@ function getTranslation()
 			{
 				let text  = JSON.parse(datas.data.data[0].item);
 				toCard.value[x].name = text["title"];
-				toCard.value[x].description = text["text"];
 				console.log("fordított");
 				
 			}
 			else if(datas.data.message == "original")
 			{
 				toCard.value[x].name = datas.data.data[0].name;
-				toCard.value[x].description = datas.data.data[0].description;
 				console.log("eredeti");
 			}
 		})
