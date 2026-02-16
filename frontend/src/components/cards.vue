@@ -28,93 +28,82 @@ let props = defineProps({
 	}
 })
 
-	axios.get(`http://localhost:3000/${props.tableName}`)
-	.then(response => {
-
-		for(let x in response.data)
+function getTranslation()
+{
+	for(let x in toCard.value)
+	{
+		axios.post(`http://localhost:3000/translate`,
+			{item_id:toCard.value[x].id,item_name:props.tableName,language_short_name:locale.value})
+		.then(datas=>
 		{
-			// axios.post(`http://localhost:3000/translate`,
-			// 	{item_id:response.data[x].id,item_name:props.tableName,language_short_name:locale.value}
-			// )
-			// .then(datas=>
-			// {
-			// 	if(datas.data.length>0)
-			// 	{
-			// 		console.log(datas.data);
-			// 	}
-			// })
-			// .catch(err=>
-			// {
-			// 	console.log(err);
-			// })
-			response.data[x].country_trans_name =t(`search.countries.${response.data[x].country_id}`);
-			response.data[x].city_trans_name = t(`search.cities.${response.data[x].city_id}`);
-		}
-
-		items.value = response.data
-
-		// Csak azokat teszi bele amelyek megegyeznek a props értékével
-		if(props.accommodation_id == undefined){
-			toCard.value = items.value.filter(country => {
-				return country.country_trans_name.toLowerCase() === props.country_name.toLowerCase();
-			})
-		}
-		else
+			if(datas.data.message == "translation")
+			{
+				let text  = JSON.parse(datas.data.data[0].item);
+				toCard.value[x].name = text["title"];
+				toCard.value[x].description = text["text"];
+				console.log("fordított");
+				
+			}
+			else if(datas.data.message == "original")
+			{
+				toCard.value[x].name = datas.data.data[0].name;
+				toCard.value[x].description = datas.data.data[0].description;
+				console.log("eredeti");
+			}
+		})
+		.catch(err=>
 		{
-			toCard.value = items.value.filter(accommodation => {
-				return accommodation.id == props.accommodation_id;
-			})
-		}
-		
-		for(let x in toCard.value){
-			axios.post(`http://localhost:3000/translate`,
-				{item_id:toCard.value[x].id,item_name:props.tableName,language_short_name:locale.value})
-			.then(datas=>
-			{
-				if(datas.data.length>0)
-				{
-					console.log(datas.data);
-				}
-			})
-			.catch(err=>
-			{
-				console.log(err);
-			})
-		}
-	})
-	.catch(e => console.error(e))
-	// SearchInput változás esetén...
-	watch(searchInput,(value) => {
-		// Ha nincs megadott érték akkor vissza adja azokat az értékeket amelyek a propsban vannak
-		if(!value){
-			toCard.value = items.value.filter(country => {return country.country_trans_name.toLowerCase() === 
-																													 props.country_name.toLowerCase();})
-			return
-		}
-		// Ha pedig mégis van akkor pedig azt az érétket adja vissza amelyiket a value tartalmazzas
-			toCard.value = items.value.filter(x => x.city_trans_name.toLowerCase()
-																												.includes(value.toLowerCase()) || 
-																						 x.country_trans_name.toLowerCase()
-																													 .includes(value.toLowerCase()))
+			console.log(err);
+		})
+	}
+}
 
-		for(let x in toCard.value){
-			axios.post(`http://localhost:3000/translate`,
-				{item_id:toCard.value[x].id,item_name:props.tableName,language_short_name:locale.value})
-			.then(datas=>
-			{
-				if(datas.data.length>0)
-				{
-					console.log(datas.data);
-					console.log(toCard.value[x])
-					// toCard.value[x].description = datas.data.text;
-				}
-			})
-			.catch(err=>
-			{
-				console.log(err);
-			})
-		}
-	})
+
+
+
+axios.get(`http://localhost:3000/${props.tableName}`)
+.then(response => {
+
+	for(let x in response.data)
+	{
+		response.data[x].country_trans_name =t(`search.countries.${response.data[x].country_id}`);
+		response.data[x].city_trans_name = t(`search.cities.${response.data[x].city_id}`);
+	}
+
+	items.value = response.data
+
+	// Csak azokat teszi bele amelyek megegyeznek a props értékével
+	if(props.accommodation_id == undefined){
+		toCard.value = items.value.filter(country => {
+			return country.country_trans_name.toLowerCase() === props.country_name.toLowerCase();
+		})
+	}
+	else
+	{
+		toCard.value = items.value.filter(accommodation => {
+			return accommodation.id == props.accommodation_id;
+		})
+	}
+	
+	getTranslation();
+})
+.catch(e => console.error(e))
+// SearchInput változás esetén...
+watch(searchInput,(value) => {
+	// Ha nincs megadott érték akkor vissza adja azokat az értékeket amelyek a propsban vannak
+	if(!value){
+		toCard.value = items.value.filter(country => {return country.country_trans_name.toLowerCase() === 
+																													props.country_name.toLowerCase();})
+		return
+	}
+	// Ha pedig mégis van akkor pedig azt az érétket adja vissza amelyiket a value tartalmazzas
+		toCard.value = items.value.filter(x => x.city_trans_name.toLowerCase()
+																											.includes(value.toLowerCase()) || 
+																						x.country_trans_name.toLowerCase()
+																													.includes(value.toLowerCase()))
+
+	getTranslation();
+})
 
 // Convert string metódus
 function convertStrings(str) {

@@ -513,15 +513,43 @@ app.post("/translate",(req,res)=>
       }
       if(result.length>0)
       {
-        console.log("Van adat!",result);
-        res.json(result);
+        res.json({
+          message:"translation",
+          data: result
+        });
         return;
       }
       else
       {
-        console.log("Nincs adat!",result);
-        res.json(result);
-        return;
+        db.query(`SELECT
+                    id,
+                    language_short_name,
+                    name,
+                    description
+                  FROM accommodations
+                  WHERE id = ? AND language_short_name = ?`,
+          [datas.item_id,datas.language_short_name],
+          (err,result)=>
+          {
+            if(err)
+            {
+              console.log(err);
+              return;
+            }
+
+            if(result.length>0)
+            {
+              res.json({
+                message:"original",
+                data: result
+              });
+              return;
+            }
+            else{
+              res.json(result);
+              return;
+            }
+          });
       }
     });
 })
