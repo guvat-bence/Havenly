@@ -35,6 +35,7 @@ let result = reactive({
 
 				for(let x in response.data)
 				{
+					// beállíítja az adott elemnek az éppen kiválaszott nyelvhez lefordított város és ország nevét.
 					response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
 					response.data[x].city_name = t(`search.cities.${response.data[x].city_ID}`);
 				}

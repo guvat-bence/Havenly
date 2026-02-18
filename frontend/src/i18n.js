@@ -6,19 +6,13 @@ import en from "./locales/en.json"
 import it from "./locales/it.json"
 import de from "./locales/de.json"
 import ja from "./locales/ja.json"
-import rs from "./locales/rs.json"
+import sr from "./locales/sr.json"
 
 // definiáljuk defaultLocale-t és a browserLanguage-t
 // defaultLocale az alapvető nyelv
 // browserLanguage pedig a böngésző nyelve
 let defaultLocale = "en";
 let browserLanguage = navigator.language;
-
-// ha szerb a böngésző nyelve, áát állítjuk a megfelelő formátumra
-if(browserLanguage === "sr")
-{
-  browserLanguage = "rs";
-}
 
 // ha van eltárolva nyelv akkor az lesz az alapértelmezett
 if(selectedLanguage.locale_name!=null)
@@ -56,6 +50,6 @@ export let i18n = createI18n(
     it,
     de,
     ja,
-    rs
+    sr
   }
 })

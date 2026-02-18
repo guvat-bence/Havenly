@@ -28,6 +28,14 @@ let props = defineProps({
 	}
 })
 
+
+// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
+// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
+// akkor az eredeti verzióját tölti be.
+// HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
+//  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
+// utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
+// ha esetleg hiba akana afordítással akkor a művele megszakad é kiírja a konzolbon.
 function getTranslation()
 {
 	for(let x in toCard.value)
@@ -36,17 +44,31 @@ function getTranslation()
 			{item_id:toCard.value[x].id,item_name:props.tableName,language_short_name:locale.value})
 		.then(datas=>
 		{
-			if(datas.data.message == "translation")
+			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
+			if(datas.data.message == "translationed")
 			{
+				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
 				let text  = JSON.parse(datas.data.data[0].item);
 				toCard.value[x].name = text["title"];
 				console.log("fordított");
 				
 			}
-			else if(datas.data.message == "original")
+			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
+ 			else if(datas.data.message == "original")
 			{
+				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
 				toCard.value[x].name = datas.data.data[0].name;
 				console.log("eredeti");
+			}
+			// ha az üzenet failed akkor megy bele
+			else if(datas.data.message == "failed")
+			{
+				console.log("Hiba történt az api forítás során!");
+				return false;
+			}
+			// minden ellenkező esetben pedig újra töltjük az oldalt.
+			else{
+				location.reload();
 			}
 		})
 		.catch(err=>
@@ -56,14 +78,12 @@ function getTranslation()
 	}
 }
 
-
-
-
 axios.get(`http://localhost:3000/${props.tableName}`)
 .then(response => {
 
 	for(let x in response.data)
 	{
+		// beállíítja az adott elemnek az éppen kiválaszott nyelvhez lefordított város és ország nevét.
 		response.data[x].country_trans_name =t(`search.countries.${response.data[x].country_id}`);
 		response.data[x].city_trans_name = t(`search.cities.${response.data[x].city_id}`);
 	}
@@ -86,14 +106,17 @@ axios.get(`http://localhost:3000/${props.tableName}`)
 	getTranslation();
 })
 .catch(e => console.error(e))
+
 // SearchInput változás esetén...
 watch(searchInput,(value) => {
+
 	// Ha nincs megadott érték akkor vissza adja azokat az értékeket amelyek a propsban vannak
 	if(!value){
 		toCard.value = items.value.filter(country => {return country.country_trans_name.toLowerCase() === 
 																													props.country_name.toLowerCase();})
 		return
 	}
+
 	// Ha pedig mégis van akkor pedig azt az érétket adja vissza amelyiket a value tartalmazzas
 		toCard.value = items.value.filter(x => x.city_trans_name.toLowerCase()
 																											.includes(value.toLowerCase()) || 
@@ -101,7 +124,7 @@ watch(searchInput,(value) => {
 																													.includes(value.toLowerCase()))
 
 	getTranslation();
-})
+});
 
 // Convert string metódus
 function convertStrings(str) {

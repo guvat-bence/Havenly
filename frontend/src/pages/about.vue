@@ -212,23 +212,44 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 
 
 		// tömb feltöltése
-		item.value = datas.data;	
-
+		item.value = datas.data;
+		
+		
+		// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
+		// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
+		// akkor az eredeti verzióját tölti be.
+		// HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
+		//  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
+		// utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
+		// ha esetleg hiba akadna a fordítással akkor a művele megszakad é kiírja a konzolbon.
 		axios.post(`http://localhost:3000/translate`,
 			{item_id:item.value[0].id,item_name:props.table_name,language_short_name:locale.value})
 		.then(datas=>
 		{
-			if(datas.data.message == "translation")
+			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
+			if(datas.data.message == "translationed")
 			{
+				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
 				let text  = JSON.parse(datas.data.data[0].item);
 				item.value[0].name = text["title"];
 				item.value[0].description = text["description"];
 				
 			}
+			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
 			else if(datas.data.message == "original")
 			{
+				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
 				item.value[0].name = datas.data.data[0].name;
 				item.value[0].description = datas.data.data[0].description;
+			}
+			// ha az üzenet failed akkor megy bele
+			else if(datas.data.message == "failed")
+			{
+				console.log("Hiba tölrtént az api forítás során!");
+			}
+			// minden ellenkező esetben pedig újra töltjük az oldalt.
+			else{
+				location.reload();
 			}
 		})
 		.catch(err=>

@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
-require("dotenv").config();
+const {translate} = require("./translate.js");
 const port = 3000;
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
@@ -488,12 +489,16 @@ app.get("/history/:id", (req, res) => {
   );
 });
 
-// megnézi hogy van e az adott elemnek fordítása, ha van akkor betölti 
-// ha nincs akkor meghívja a translate.js-t és lefordíttatja az adott szöveget
-//majd ezt eltárolja az adatbázosban
-
+// Mgnézi hogy van e az adott elemnek fordítása, ha van akkor betölti. 
+// Ha nincs akkor meg nézi, hogy az erdeti adatai ugyan azon a nyelven annak e feltöltve,
+// mint amilyen nyelven van az oldal, és ha megtalálta akkor betölti.
+// Ha nem talál semmit, akkor a tárgy id-ja alapján lekéri az alap információit,
+// majd meghívja a translate.js-t és lefordíttatja az adott adatokat.
+// ha nem ütközik hibába a fordítás során akkor,
+// eltárolja az adatoakt az adatbázosban.
 app.post("/translate",(req,res)=>
 {
+  // 1. szakasz, az adot tárgy fordításának megkeresése a translations táblában.
   let datas = req.body;
   db.query(`SELECT
               id,
@@ -506,37 +511,47 @@ app.post("/translate",(req,res)=>
     [datas.item_id,datas.item_name,datas.language_short_name],
     (err,result)=>
     {
+      // Hiba esetén ide jön be.
       if(err)
       {
-        console.log(err);
+        console.error("Hiba a translations beolvasásakor",err);
+        res.status(500).send("Adatbázis hiba");
         return;
       }
+      // ha megtalálja visszaküldi és vele együtt a translationed üzenetet is.
       if(result.length>0)
       {
         res.json({
-          message:"translation",
+          message:"translationed",
           data: result
         });
         return;
       }
+      // ha nem találja a fordítását akkor ide jön be.
       else
       {
+        // 2. szakasz, ha nem talált a foordítását,
+        //  akkor meg nézi hátha az eredeti adata ugyan azon a nyelven van-e írva,
+        //  mint az oldal nyelve.
         db.query(`SELECT
                     id,
                     language_short_name,
                     name,
                     description
-                  FROM accommodations
+                  FROM ${datas.item_name}
                   WHERE id = ? AND language_short_name = ?`,
           [datas.item_id,datas.language_short_name],
           (err,result)=>
           {
+            // Hib esetén ide megy be.
             if(err)
             {
-              console.log(err);
+              console.error("Hiba a(z) accommodations/experiences beolvasásakor",err);
+              res.status(500).send("Adatbázis hiba");
               return;
             }
 
+            // ha megtalálja akkor vissza köldi az adatokat és az original üzenetet.
             if(result.length>0)
             {
               res.json({
@@ -545,9 +560,88 @@ app.post("/translate",(req,res)=>
               });
               return;
             }
+           // ha nem találja így sem, akkor ide jön be.
             else{
-              res.json(result);
-              return;
+              // 3. szakasz, itt az elem azonosítójával megkeresi az elemet,
+              // ezek után pedig lefordítja az adott nyelvre,
+              // és feltölti a translations táblába.
+              db.query(`SELECT
+                          id,
+                          name,
+                          description
+                  FROM ${datas.item_name}
+                  WHERE id = ?`,
+                [datas.item_id],
+               async (err,result)=>
+                {
+                  // ha hibába ütlözik de megy bele.
+                  if(err)
+                  {
+                    console.error("Hiba a(z) accommodations/experiences beolvasásakor",err);
+                    res.status(500).send("Adatbázis hiba");
+                    return;
+                  }
+
+                  // átállítja a nyelv potos nevét a fordítás miatt.
+                  let current_language_short_name =  datas.language_short_name;
+                  if(current_language_short_name == "en")
+                  {
+                    current_language_short_name = "en-GB";
+                  }
+                
+                  // megpróbálja a fordítást elkészíteni
+                  try
+                  {
+                    // az elem nevét lefordítatjuk.
+                    let translated_name = await translate(
+                      result[0]["name"],
+                      current_language_short_name
+                    );
+
+                    // az elem szövegét is lefordítatjuk.
+                    let translated_description = await translate(
+                      result[0]["description"],
+                      current_language_short_name
+                    );
+
+                    // egy json file-t csinálunk a lefodított adatokból
+                    let item = JSON.stringify(
+                    {
+                      title:translated_name,
+                      description:translated_description
+                    });
+                    
+                    // ezek után pedig feltöltjük az új adatoakat a translatins táblába.
+                    db.query(`INSERT INTO translations(
+                                language_short_name,
+                                item_id,
+                                item_name,
+                                item)
+                              VALUES(?,?,?,?)`,
+                    [datas.language_short_name,datas.item_id,datas.item_name,item],
+                    (err,result)=>
+                      {
+                        // ha hiba vna, ide jön be.
+                        if(err)
+                        {
+                          console.error("Hiba a(z) translations-ba való feltöltéskor",err);
+                          res.status(500).send("Adatbázis hiba");
+                          return;
+                        }
+                        // visszaköldi az értéket a feltöltésről
+                        res.json(result);
+                        return;
+                      });
+                  }
+                  // ha bármi hiba adódna az api-al akkor ide lép be
+                  catch
+                  {
+                    res.json({
+                      message:"failed"
+                    });
+                    return;
+                  }
+                });
             }
           });
       }

@@ -1,33 +1,28 @@
-const express = require("express");
-const router = express.Router();
-const deepl = require('deepl-node');
+require("dotenv").config();
+const deepl = require("deepl-node");
 
+// DeepL API kulcs
 const authKey = process.env.DEEPL_API_KEY;
+
+// beállítjuk a translator, ha nincsen meg a hozzá kellő kulcs akkor nul lesz az értéke.
 const translator = authKey ? new deepl.Translator(authKey) : null;
 
-router.post("/", async (req,res) => {
-  try{
+//a translate function felel a fordításokért.
+// meg tudjuk híni a backendben, és me tudjuk hozzá adni a kellő adatokat,
+// text-> amit le szeretnénk fordítani,
+// targetLanguage-> az a nyel rövidítése amilyen nyelvre szeetnénk a rövödítést.
+// ha a kulcs rendben van ,akkor el végzi a fordítást és a kapott eredményt vissza küldi.
+async function translate(text, targetLanguage) {
 
-    let {text, targetLanguage} = req.body;
-
-    if (translator == null){
-
-      return res.status(500).json({ error: "DeepL API key not configured" });
-    }
-    let result = await translator.translateText(
-      text,
-      null,
-      targetLanguage
-    );
-
-    res.json({translation: result.text});
-  }
-  catch(err)
-  {
-    console.log(err);
-    res.status(500).json({error: "Translation failed"});
+  // ha a translator == nul-al akkor hibával tér vissza.
+  if (translator == nul) {
+    throw new Error("DeepL API key not configured");
   }
 
-});
+  // lértehozzuk a result változót és meghívjuk a fordítást a betöltött adatokkal.
+  const result = await translator.translateText(text, null, targetLanguage);
+  return result.text;
+}
 
-module.exports = router;
+// exportáljuk magát a translate functiont, hogy máshol fel tudjuk használni.
+module.exports = { translate };
