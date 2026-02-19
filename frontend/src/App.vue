@@ -77,7 +77,7 @@ body {
   transition: 300ms;
 }
 
-.login,.register,.settings,.logout,.cardhover{
+.login,.register,.settings,.logout,.cardhover,.account{
   animation: scaleIn 1s ease both;
 }
 @keyframes scaleIn {

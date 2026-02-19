@@ -67,6 +67,7 @@ let step = ref(0),
             user.phone_number = model.phone_number;
             user.user_type = "U";
             router.push('/');
+            location.reload();
           }, 1500);
         }
       })
