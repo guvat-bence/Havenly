@@ -3,20 +3,32 @@ import { useRouter } from 'vue-router';
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import axios from 'axios';
 
 
 let router = useRouter()
 
 let accommodation_data = JSON.parse(rent.accommodation);
 
-if (!accommodation_data.id)
+let cardData = ref([])
+let currentCard = ref("")
+
+// véletlenszerü 5 ország beolvasása
+axios.get('http://localhost:3000/getCardNetwork')
+  .then(response => {
+    cardData.value = response.data
+    console.log(cardData.value)
+  })
+  .catch(e => console.error(e))
+
+if (!accommodation_data.id || !user.id)
   router.back()
 
 let model = reactive({
   firstName: user.firstname,
   lastName: user.lasttname,
-  middleName: user.middlename =! null ? "" : user.middlename,
+  middleName: !user.middlename ? "" : user.middlename,
   email: user.email,
   phoneNum: user.phone_number,
 })
@@ -28,9 +40,12 @@ let card = reactive({
   cvv: user.cvv
 }) 
 
+console.log(user.middlename)
+
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
 model.method = "creditcard"
+
 
 
 // Format text to readable
@@ -39,7 +54,16 @@ let convertStrings = (str) => {
             .replace(/[\u0300-\u036f]/g, "")
             .replaceAll(" ", "_")
             .toLowerCase();
-            }
+};
+
+watch(() => card.cardnumber, (x) => {
+  currentCard.value = "";
+  for (let i = 0; i < cardData.value.length; i++) {
+    if(x.startsWith(cardData.value[i].prefix)){
+      currentCard.value = convertStrings(cardData.value[i].network_name)
+    }
+  }
+})       
 </script>
 <template>
   <div class="container mt-2">
@@ -62,7 +86,7 @@ let convertStrings = (str) => {
                          `/cities/${convertStrings(accommodation_data.city_name)}` +
                          `/accommodations/${convertStrings(accommodation_data.folder_name)}/001.png`"
                    class="card-img-top" 
-                   alt="...">
+                   alt="accomodation_image">
               <div class="card-body">
                 <h5 class="card-title">{{ accommodation_data.name }}</h5>
                 <hr>
@@ -255,7 +279,7 @@ let convertStrings = (str) => {
 
                   <hr>
 
-                  <!-- Szépcard -->
+                  <!-- Paypal -->
                   <div class="form-check d-flex justify-content-between 
                             align-items-center">
                     <label class="form-check-label h5" 
@@ -265,7 +289,7 @@ let convertStrings = (str) => {
                     <input class="form-check-input" 
                           type="radio" 
                           name="radioDefault" 
-                          id="radioPayPay"
+                          id="radioPayPal"
                           value="paypal"
                           v-model="model.method">
                   </div>
@@ -298,6 +322,7 @@ let convertStrings = (str) => {
                     <h4>Kártya tulajdonos neve</h4>
                     <!-- Owner data -->
                     <div class="row">
+
                       <!-- FirstName -->
                       <div class="mb-2 m-0 col-12 col-lg-4">
                         <label for="InputOwnerFirstName" 
@@ -312,32 +337,34 @@ let convertStrings = (str) => {
 
                       <!-- LastName -->
                       <div class="mb-2 m-0 col-12 col-lg-4">
-                        <label for="InputOwnerFirstName" 
+                        <label for="InputOwnerLastName" 
                               class="form-label">
                           Vezetéknév
                         </label>
                         <input type="text" 
                                class="form-control" 
-                               id="InputOwnerFirstName" 
+                               id="InputOwnerLastName" 
                                v-model="model.lastName">
                       </div>
 
                       <!-- MiddleName -->
                       <div class="mb-2 m-0 col-12 col-lg-4">
-                        <label for="InputOwnerFirstName" 
+                        <label for="InputOwnerMiddleName" 
                               class="form-label">
                           Harmadiknév
                         </label>
                         <input type="text" 
                                class="form-control" 
-                               id="InputOwnerFirstName" 
+                               id="InputOwnerMiddleName" 
                                v-model="model.middleName">
                       </div>
                     </div>
 
                     <hr class="m-2">
+
                     <!-- Card data -->
                     <div class="row">
+
                       <!-- cardNumber -->
                       <div class="mb-3 col-9 col-md-8 col-lg-10">
                         <label for="inputCardNumber" 
@@ -352,7 +379,7 @@ let convertStrings = (str) => {
 
                       <!-- CardBrand -->
                       <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
-                        <img src="/cards/mastercard.png"
+                        <img :src="`/cards/${currentCard}.png`"
                              class="img-fluid w-auto ratio-4x3"
                              style="height: 30px;" 
                              alt="">

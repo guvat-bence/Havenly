@@ -647,3 +647,19 @@ app.post("/translate",(req,res)=>
       }
     });
 })
+
+app.get("/getCardNetwork",(req,res) => {
+  db.query(`SELECT id, 
+                   network_name, 
+                   prefix 
+            FROM card_networks`, (err,result) => {
+    
+    if(err){
+      console.error("Hiba a history beolvasásakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    res.json(result)
+  })
+})
