@@ -340,8 +340,9 @@ app.post('/register', (req, res) => {
                                                middle_name, 
                                                email, 
                                                password, 
-                                               phone_number) 
-                                   VALUES (?, ?, ?, ?, ?, ?)`
+                                               phone_number,
+                                               gender) 
+                                   VALUES (?, ?, ?, ?, ?, ?, ?)`
           // Insert parancs végrehajtása ha miden rendben van
           db.query(
             insertQuery,
@@ -351,7 +352,8 @@ app.post('/register', (req, res) => {
               data.middlename,
               data.email,
               data.password,
-              data.phone_number
+              data.phone_number,
+              data.gender
             ],
             (err, result) => {
               if (err) {

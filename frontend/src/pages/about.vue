@@ -281,7 +281,7 @@ if(props.table_name == "accommodations")
 	setTimeout(()=>
 	{
 		makeCalendar(1);
-	},90);
+	},150);
 }
 
 // ha a table_name megegyezik az accommodationnal akkor bele megy

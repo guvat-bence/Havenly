@@ -16,7 +16,7 @@ if (!accommodation_data.id)
 let model = reactive({
   firstName: user.firstname,
   lastName: user.lasttname,
-  middleName: user.middlename =! null ? "" : user.middlename,
+  middleName: user.middlename == null ? "" : user.middlename,
   email: user.email,
   phoneNum: user.phone_number,
 })

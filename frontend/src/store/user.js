@@ -17,6 +17,8 @@ export let user = reactive({
   websitekey:localStorage.getItem("websitekey")?? "incorrect"
 })
 
+console.log(user);
+
 // Ha a user adatai változnak akkor a localstorage-be mentse el
 watch(user,(newUser) => { 
   localStorage.setItem("id", newUser.id); 

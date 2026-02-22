@@ -42,12 +42,19 @@ let model = reactive({
           user.gender = response.data.user.gender;
           user.user_type = response.data.user.user_type;
           user.cardNumber = response.data.user.card_number;
-          user.expirationMonth = response.data.user.expiration.split("/")[0]
-          user.expirationYear = response.data.user.expiration.split("/")[1]
+
+          try{
+            user.expirationMonth = response.data.user.expiration.split("/")[0];
+            user.expirationYear = response.data.user.expiration.split("/")[1];
+          }
+          catch
+          {
+            user.expirationMonth = null;
+            user.expirationYear = null;
+          }
+
           user.cvv = response.data.user.cvv;
           user.websitekey = "havenly"
-          
-
           // Töltse újra az oldalt annak érdekében 
           // hogy a felhasználót minden komponens érzékelni tudja
           window.location.reload()

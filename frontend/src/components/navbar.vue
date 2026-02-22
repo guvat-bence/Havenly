@@ -33,7 +33,7 @@ let	authentication = computed(()=>([
 ]));
 let	account = [
 		{
-			name: user.lasttname + " " + user.firstname,
+			name : (`${user.lasttname} ${user.firstname}${user.middlename!=""?' '+user.middlename:""}`),
 			path: "/profile",
 		}
 ];

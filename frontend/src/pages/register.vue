@@ -23,6 +23,7 @@ let step = ref(0),
     middlename: "",
     email: "",
     phone_number: "",
+    gender:"",
     password: "",
     confirmpass: ""
   }),
@@ -48,6 +49,9 @@ let step = ref(0),
     if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phone_number))
       return false;
 
+    if(model.gender == "")
+      return false;
+
     return true;
   },
 
@@ -63,9 +67,11 @@ let step = ref(0),
             user.id = response.data.insertedId
             user.firstname = model.firstname;
             user.lasttname = model.lastname;
-            user.middlename = "";
+            user.middlename = model.middlename;
+            user.email = model.email;
             user.phone_number = model.phone_number;
             user.user_type = "U";
+            user.gender = model.gender;
             router.push('/');
             location.reload();
           }, 1500);
@@ -184,7 +190,7 @@ watch(model, () => {
             <div class="mb-3" v-else-if="step === 1">
 
               <!-- Email cím -->
-              <div>
+              <div class="mb-3">
                 <label for="InputEmail1" 
                        class="form-label">
                   <span>{{ $t("register.email") }}</span>
@@ -211,6 +217,42 @@ watch(model, () => {
                   <div class="form-text text-white fw-bold">
                     {{ $t("register.example_phone_number") }}
                   </div>
+              </div>
+
+              <!-- Gender -->
+              <div class="mb-4">
+                <h5 class="text-center">
+                  {{ $t("register.gender") }}
+                  <span class="text-danger">*</span>
+                </h5>
+                <div class="row justify-content-center text-center">
+                  <label for="genderMale" 
+                        class="form-label col-6">
+                    <span>{{ $t("register.male") }}</span> 
+                  </label>
+                  <label for="genderFemale" 
+                        class="form-label col-6">
+                    <span>{{ $t("register.female") }}</span>
+                  </label>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="d-flex col-6 justify-content-center">
+                    <input type="radio"
+                      name="genderMale"
+                      class="form-check-input" 
+                      id="genderMale"
+                      value="M"
+                      v-model="model.gender">
+                  </div>
+                  <div class="d-flex col-6 justify-content-center">
+                    <input type="radio"
+                          name="genderFemale" 
+                          class="form-check-input" 
+                          id="genderFemale"
+                          value="F"
+                          v-model="model.gender">
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -320,9 +362,9 @@ watch(model, () => {
 
 <style scoped>
 /* Regisztrációs inputok effektusai */
-input:not([type="checkbox"]):focus,
-input:not([type="checkbox"]):hover,
-input:not([type="checkbox"])::after {
+input:not([type="checkbox"],[type="radio"]):focus,
+input:not([type="checkbox"],[type="radio"]):hover,
+input:not([type="checkbox"],[type="radio"])::after {
   background-color: white !important;
   box-shadow: 0px 0px 10px white !important;
   transition: 200ms;
