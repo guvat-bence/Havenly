@@ -10,7 +10,7 @@ if(!user.id)
 let model = reactive({
   firstName: user.firstname,
   lastName: user.lasttname,
-  middleName: user.middlename == null ? "" : user.middlename,
+  middleName: user.middlename,
   email: user.email,
   phoneNum: user.phone_number,
   gender: user.gender,
@@ -31,7 +31,7 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 <template>
   <div class="account">
     <div class="container">
-      
+
       <nav>
         <div class="nav nav-tabs justify-content-center" 
              id="nav-tab" 
@@ -68,7 +68,7 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
       </nav>
 
       <div class="tab-content text-white
-                  text-center bg-dark rounded-5 rounded-top-0 py-4" 
+                  text-center bg-dark bg-opacity-50 rounded-5 rounded-top-0 py-5 px-4" 
             id="nav-tabContent">
         <div class="tab-pane fade show active"
              id="nav-datas" 
@@ -78,18 +78,20 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
           
           <div class="row justify-content-center">
 
-       
-            <form class="w-50">
+            <form class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 col-xxl-6">
               <h4 class="text-center">Személyes adatok</h4>
               <div class="px-3 py-3 border rounded-3">
                 <!-- Names -->
-                <div class="row mb-3">
+                <div class="row justify-content-center mb-3">
                   <div>
                     <h5 class="text-center">Nevek</h5>
                   </div>
 
                   <!-- FirstName -->
-                  <div class="mb-3 m-0 col-12 col-lg-4">
+                  <div :class="model.middleName!='null'?
+                        'col-lg-4':
+                        'col-lg-6'"
+                        class="mb-3 m-0 col-12">
                     <label for="InputFirstName" 
                             class="form-label">
                       Keresztnév
@@ -100,20 +102,9 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
                             v-model="model.firstName">
                   </div>
 
-                  <!-- LastName -->
-                  <div class="mb-3 col-12 col-lg-4">
-                    <label for="InputLastName" 
-                            class="form-label">
-                      Vezetéknév
-                    </label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="InputLastName"
-                            v-model="model.lastName">
-                  </div>
-
                   <!-- MiddleName -->
-                  <div class="mb-3 col-12 col-lg-4">
+                  <div v-if="model.middleName!='null'"
+                       class="mb-3 col-12 col-lg-4">
                     <label for="InputMiddleName" 
                             class="form-label">
                       Harmadiknév
@@ -122,6 +113,21 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
                             class="form-control" 
                             id="InputMiddleName" 
                             v-model="model.middleName">
+                  </div>
+
+                  <!-- LastName -->
+                  <div :class="model.middleName!='null'?
+                        'col-lg-4':
+                        'col-lg-6'"
+                       class="mb-3 m-0 col-12">
+                    <label for="InputLastName" 
+                            class="form-label">
+                      Vezetéknév
+                    </label>
+                    <input type="text" 
+                            class="form-control" 
+                            id="InputLastName"
+                            v-model="model.lastName">
                   </div>
                 </div>
 
@@ -189,60 +195,29 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
                       </div>
                     </div>
                   </div>
+
+                <div class="row ms-1 justify-content-center">
+
+                  <button class=" mx-2 col-3 btn btn-light">asd</button>
+                  <button class="mx-2 col-3 btn btn-secondary">asd</button>
+
+                </div>
+                
                 </div>
               </div>
+            </form>
 
-              <h4 v-if="card.cardnumber!='null'"
-                  class="text-center mt-5">Kártya adatok</h4>
+            <form  v-if="card.cardnumber!='null'"
+                   class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 col-xxl-6">
+              <h4 class="text-center mt-5">
+                Kártya adatok
+              </h4>
 
-              <div v-if="card.cardnumber!='null'"
-                   class="px-3 py-3 border rounded-3">
-
-                <h4>Kártya tulajdonos neve</h4>
-                <!-- Owner data -->
-                <div class="row">
-                  <!-- FirstName -->
-                  <div class="mb-2 m-0 col-12 col-lg-4">
-                    <label for="InputOwnerFirstName" 
-                          class="form-label">
-                      Keresztnév
-                    </label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="InputOwnerFirstName" 
-                            v-model="model.firstName">
-                  </div>
-
-                  <!-- LastName -->
-                  <div class="mb-2 m-0 col-12 col-lg-4">
-                    <label for="InputOwnerFirstName" 
-                          class="form-label">
-                      Vezetéknév
-                    </label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="InputOwnerFirstName" 
-                            v-model="model.lastName">
-                  </div>
-
-                  <!-- MiddleName -->
-                  <div class="mb-2 m-0 col-12 col-lg-4">
-                    <label for="InputOwnerFirstName" 
-                          class="form-label">
-                      Harmadiknév
-                    </label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="InputOwnerFirstName" 
-                            v-model="model.middleName">
-                  </div>
-                </div>
-
-                <hr class="m-2">
+              <div class="px-3 py-3 border rounded-3">
                 <!-- Card data -->
                 <div class="row">
                   <!-- cardNumber -->
-                  <div class="mb-3 col-9 col-md-8 col-lg-10">
+                  <div class="mb-3 col-12">
                     <label for="inputCardNumber" 
                             class="form-label">
                       Kártyaszám
@@ -251,14 +226,6 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
                           class="form-control"
                           id="inputCardNumber"
                           v-model="card.cardnumber">
-                  </div>
-
-                  <!-- CardBrand -->
-                  <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
-                    <img src="/cards/mastercard.png"
-                          class="img-fluid w-auto ratio-4x3"
-                          style="height: 30px;" 
-                          alt="">
                   </div>
 
                   <!-- Month -->
@@ -280,7 +247,6 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
                             for="inputYear">
                       Év
                     </label>
-
                     <select class="form-select"
                             id="inputYear">
                       <option value=""
@@ -304,9 +270,14 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
                             id="inputCVV"
                             v-model="card.cvv">
                   </div>
+                  <div class="row ms-1 justify-content-center">
+
+                    <button class=" mx-2 col-3 btn btn-light">asd</button>
+                    <button class="mx-2 col-3 btn btn-secondary">asd</button>
+
+                </div>
                 </div>
               </div>
-
             </form>
           </div>
         </div>
@@ -330,7 +301,7 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 </template>
 <style scoped>
 
-/* Regisztrációs inputok effektusai */
+/* profile inputok effektusai */
 input:not([type="checkbox"],[type="radio"]):focus,
 input:not([type="checkbox"],[type="radio"]):hover,
 input:not([type="checkbox"],[type="radio"])::after {

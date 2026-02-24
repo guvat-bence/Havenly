@@ -28,7 +28,7 @@ if (!accommodation_data.id || !user.id)
 let model = reactive({
   firstName: user.firstname,
   lastName: user.lasttname,
-  middleName: !user.middlename ? "" : user.middlename,
+  middleName: user.middlename,
   email: user.email,
   phoneNum: user.phone_number,
 })
@@ -76,7 +76,7 @@ watch(() => card.cardnumber, (x) => {
           <div class="d-flex justify-content-center justify-content-lg-end">
 
             <!-- Card -->
-            <div class="card bg-black bg-opacity-25 border-1 
+            <div class="card bg-dark bg-opacity-50 border-1 
                         border-white bg-opacity-25 text-white" 
                  style="width: 18rem;">
               
@@ -146,18 +146,21 @@ watch(() => card.cardnumber, (x) => {
 
           <div class="collapse show" 
                id="billingCollapse">
-            <div class="card bg-black bg-opacity-25 w-75 mx-auto 
+            <div class="card bg-dark bg-opacity-50 w-75 mx-auto 
                         text-white border-white text-black card-body">
               <form>
 
                 <!-- Names -->
-                <div class="row mb-3">
+                <div class="row justify-content-center mb-3">
                   <div>
                     <h5 class="text-center">Nevek</h5>
                   </div>
 
                   <!-- FirstName -->
-                  <div class="mb-3 m-0 col-12 col-lg-4">
+                  <div :class="model.middleName!='null'?
+                          'col-lg-4':
+                          'col-lg-6'"
+                        class="mb-3 m-0 col-12">
                     <label for="InputFirstName" 
                            class="form-label">
                       Keresztnév
@@ -168,8 +171,24 @@ watch(() => card.cardnumber, (x) => {
                            v-model="model.firstName">
                   </div>
 
+                  <!-- MiddleName -->
+                  <div v-if="model.middleName!='null'"
+                       class="mb-3 col-12 col-lg-4">
+                    <label for="InputMiddleName" 
+                            class="form-label">
+                      Harmadiknév
+                    </label>
+                    <input type="text" 
+                            class="form-control" 
+                            id="InputMiddleName" 
+                            v-model="model.middleName">
+                  </div>
+
                   <!-- LastName -->
-                  <div class="mb-3 col-12 col-lg-4">
+                  <div :class="model.middleName!='null'?
+                          'col-lg-4':
+                          'col-lg-6'"
+                        class="mb-3 m-0 col-12">
                     <label for="InputLastName" 
                            class="form-label">
                       Vezetéknév
@@ -178,18 +197,6 @@ watch(() => card.cardnumber, (x) => {
                            class="form-control" 
                            id="InputLastName"
                             v-model="model.lastName">
-                  </div>
-
-                  <!-- MiddleName -->
-                  <div class="mb-3 col-12 col-lg-4">
-                    <label for="InputMiddleName" 
-                           class="form-label">
-                      Harmadiknév
-                    </label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="InputMiddleName" 
-                           v-model="model.middleName">
                   </div>
                 </div>
 
@@ -239,7 +246,7 @@ watch(() => card.cardnumber, (x) => {
 
           <div class="collapse show" 
               id="methodCollapse">
-            <div class="card bg-black bg-opacity-25 w-50 
+            <div class="card bg-dark bg-opacity-50 w-50 
                         mx-auto text-white border-white text-black 
                         card-body">
               <form>
@@ -313,7 +320,7 @@ watch(() => card.cardnumber, (x) => {
 
               <div id="cardDataCollapse"
                   class="collapse show">
-                <div class="bg-black bg-opacity-25 text-center 
+                <div class="bg-dark bg-opacity-50 text-center 
                             text-white border-1 border-white 
                             card w-auto mx-auto text-white p-3">
                   <form v-if="model.method == 'creditcard'">
@@ -321,10 +328,13 @@ watch(() => card.cardnumber, (x) => {
 
                     <h4>Kártya tulajdonos neve</h4>
                     <!-- Owner data -->
-                    <div class="row">
+                    <div class="row justify-content-center">
 
                       <!-- FirstName -->
-                      <div class="mb-2 m-0 col-12 col-lg-4">
+                      <div :class="model.middleName!='null'?
+                            'col-lg-4':
+                            'col-lg-6'"
+                            class="mb-3 m-0 col-12">
                         <label for="InputOwnerFirstName" 
                               class="form-label">
                           Keresztnév
@@ -335,8 +345,24 @@ watch(() => card.cardnumber, (x) => {
                                v-model="model.firstName">
                       </div>
 
+                      <!-- MiddleName -->
+                      <div v-if="model.middleName!='null'"
+                          class="mb-3 col-12 col-lg-4">
+                        <label for="InputMiddleName" 
+                                class="form-label">
+                          Harmadiknév
+                        </label>
+                        <input type="text" 
+                                class="form-control" 
+                                id="InputMiddleName" 
+                                v-model="model.middleName">
+                      </div>
+
                       <!-- LastName -->
-                      <div class="mb-2 m-0 col-12 col-lg-4">
+                      <div :class="model.middleName!='null'?
+                            'col-lg-4':
+                            'col-lg-6'"
+                            class="mb-3 m-0 col-12">
                         <label for="InputOwnerLastName" 
                               class="form-label">
                           Vezetéknév
@@ -345,18 +371,6 @@ watch(() => card.cardnumber, (x) => {
                                class="form-control" 
                                id="InputOwnerLastName" 
                                v-model="model.lastName">
-                      </div>
-
-                      <!-- MiddleName -->
-                      <div class="mb-2 m-0 col-12 col-lg-4">
-                        <label for="InputOwnerMiddleName" 
-                              class="form-label">
-                          Harmadiknév
-                        </label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="InputOwnerMiddleName" 
-                               v-model="model.middleName">
                       </div>
                     </div>
 

@@ -746,9 +746,10 @@ watch(model,()=>
 					</div>
 
 					<!-- Az adott szállás/élmény leírása -->
-					<div class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
+					<div  :class="props.table_name=='experiences'?'col-md-8 col-xl-8':'col-md-4 col-xl-4'"
+								class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
                      text-center align-items-center border border-2 rounded-3 
-										 col-12 col-md-4 col-xl-4">
+										 col-12">
 						<p>	{{ item[0].description }}</p>
 					</div>
 
