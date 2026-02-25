@@ -18,7 +18,6 @@ let currentCard = ref("")
 axios.get('http://localhost:3000/getCardNetwork')
   .then(response => {
     cardData.value = response.data
-    console.log(cardData.value)
   })
   .catch(e => console.error(e))
 
@@ -38,15 +37,21 @@ let card = reactive({
   expiration_month: user.expirationMonth,
   expirationYear: user.expirationYear,
   cvv: user.cvv
-}) 
-
-console.log(user.middlename)
+})
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
-model.method = "creditcard"
+let checkForValidation = (method) => {
+  switch (method) {
+    case "creditCard":
+      
+      break;
 
+    case "paypal":
 
+    break;
+  }
+}
 
 // Format text to readable
 let convertStrings = (str) => {
@@ -55,6 +60,17 @@ let convertStrings = (str) => {
             .replaceAll(" ", "_")
             .toLowerCase();
 };
+
+setTimeout(() => {
+  if(card.cardnumber){
+    for (let i = 0; i < cardData.value.length; i++) {
+      if(card.cardnumber.startsWith(cardData.value[i].prefix)){
+        currentCard.value = convertStrings(cardData.value[i].network_name)
+      }
+    }
+  }
+}, 50);
+
 
 watch(() => card.cardnumber, (x) => {
   currentCard.value = "";
@@ -87,6 +103,7 @@ watch(() => card.cardnumber, (x) => {
                          `/accommodations/${convertStrings(accommodation_data.folder_name)}/001.png`"
                    class="card-img-top" 
                    alt="accomodation_image">
+
               <div class="card-body">
                 <h5 class="card-title">{{ accommodation_data.name }}</h5>
                 <hr>
@@ -148,6 +165,8 @@ watch(() => card.cardnumber, (x) => {
                id="billingCollapse">
             <div class="card bg-dark bg-opacity-50 w-75 mx-auto 
                         text-white border-white text-black card-body">
+
+              <!-- User infos -->
               <form>
 
                 <!-- Names -->
@@ -249,6 +268,8 @@ watch(() => card.cardnumber, (x) => {
             <div class="card bg-dark bg-opacity-50 w-50 
                         mx-auto text-white border-white text-black 
                         card-body">
+
+              <!-- Pay methods -->
               <form>
                 <div class="row">
 
@@ -323,10 +344,10 @@ watch(() => card.cardnumber, (x) => {
                 <div class="bg-dark bg-opacity-50 text-center 
                             text-white border-1 border-white 
                             card w-auto mx-auto text-white p-3">
+
+                  <!-- CreditCard -->
                   <form v-if="model.method == 'creditcard'">
 
-
-                    <h4>Kártya tulajdonos neve</h4>
                     <!-- Owner data -->
                     <div class="row justify-content-center">
 
@@ -443,9 +464,37 @@ watch(() => card.cardnumber, (x) => {
                                v-model="card.cvv">
                       </div>
                     </div>
+
+                    
                   </form>
-                </div>
+
+                  <form v-if="model.method == 'paypal'">
+                    <!-- cardNumber -->
+                      <div class="mb-3 col-12 col-md-8 col-lg-12">
+                        <label for="inputCardNumber" 
+                               class="form-label">
+                          Email cím
+                        </label>
+                        <input type="email"
+                               class="form-control"
+                               id="inputCardNumber"
+                               v-model="user.email">
+                      </div>
+
+                      <!-- cardNumber -->
+                      <div class="mb-3 col-12 col-md-8 col-lg-12">
+                        <label for="inputCardNumber" 
+                               class="form-label">
+                          Jelszó
+                        </label>
+                        <input type="password"
+                               class="form-control"
+                               id="inputCardNumber"
+                               v-model="user.email">
+                      </div>
+                  </form>
               </div>
+            </div>
           </div>
         </div>
       </div>
