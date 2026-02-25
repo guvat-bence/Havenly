@@ -665,3 +665,21 @@ app.get("/getCardNetwork",(req,res) => {
     res.json(result)
   })
 })
+
+app.post("/updateUser/Privacy",(req,res)=>{
+  let asd = req.body;
+  console.log(asd);
+  res.json(asd);  
+})
+
+app.post("/updateUser/Card",(req,res)=>{
+  let asd = req.body;
+  console.log(asd);
+  res.json(asd);  
+})
+
+app.post("/updateUser",(req,res)=>{
+  let asd = req.body;
+  console.log(asd);
+  res.json(asd);  
+})
