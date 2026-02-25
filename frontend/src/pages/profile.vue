@@ -29,21 +29,28 @@ let cardCopie = {... card};
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 let changedModel = ref(false);
 let changedCard = ref(false);
-
+let messageBoxType = ref(false);
 
 console.log(card);
 
 
 function saveDatas(obj)
 {
-  if(confirm("Biztos módosítja az adatokat?"))
+  let url = "allDatas";
+  if(changedCard.value==true && changedModel.value==true)
   {
-    let url = obj == model?"Privacy":"Card";
-    axios.post(`http://localhost:3000/updateUser/${url}`,obj)
-    .then((respose)=>{console.log(respose.data);
-    })
-    .catch((err)=>{console.error(err)})
+    obj = {model,card};
+  } 
+  else
+  {
+    url = obj == model?"Privacy":"Card";
   }
+  axios.post(`http://localhost:3000/updateUser/${url}`,obj)
+  .then((respose)=>{console.log(respose.data);
+  })
+  .catch((err)=>{console.error(err)})
+
+  messageBox("close");
 }
 
 function saveAllDatas()
@@ -66,6 +73,30 @@ function restoreDatas(obj)
       changed.value = false;
       obj[x]=copie[x];
     }
+  }
+}
+
+function messageBox(type)
+{
+  document.body.classList.toggle("messageBoxShowUp");
+  if(type=="open")
+  {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+
+    messageBoxType.value = !messageBoxType.value;
+  }
+  else
+  {
+    let messageBox = document.body.querySelector(".messageBox");
+    messageBox.classList.toggle("fade-out");
+    setTimeout(()=>
+    {
+      messageBoxType.value = !messageBoxType.value;
+    },1000)
   }
 }
 
@@ -131,9 +162,11 @@ watch(card,()=>
           </button>
         </div>
       </nav>
-      <div class="row align-items-center justify-content-center">
+
+      <div class="row align-items-top justify-content-center">
         <div class="tab-content text-white
-                  text-center bg-dark bg-opacity-50 rounded-5 rounded-top-0 py-5 px-4" 
+                   text-center bg-dark bg-opacity-50 
+                   rounded-5 rounded-top-0 py-5 px-4" 
             id="nav-tabContent">
           <div class="tab-pane fade show active"
               id="nav-datas" 
@@ -143,7 +176,8 @@ watch(card,()=>
             
             <div class="row justify-content-center">
 
-              <form class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 col-xxl-6">
+              <form class="col-12 col-sm-10 col-md-8 
+                           col-lg-8 col-xl-8 col-xxl-6">
                 <h4 class="text-center">Személyes adatok</h4>
                 <div class="px-3 py-3 border rounded-3">
                   <!-- Names -->
@@ -260,23 +294,26 @@ watch(card,()=>
                         </div>
                       </div>
                     </div>
+                  </div>
 
                   <!-- Gombok -->
-                  <div class="row ms-1 justify-content-center">
+                  <div class="row mx-1 justify-content-center">
 
                     <!-- Mentés gomb -->
-                    <button  v-if="changedModel==true && changedCard!=true"
-                            @click="saveDatas(model)"
+                    <button v-if="changedModel==true && changedCard!=true"
+                            @click="messageBox('open')"
                             type="button"
-                            class=" mx-2 col-3 btn btn-light">
+                            class="col-12 col-sm-12 col-md-4 col-lg-3
+                                   mx-2 my-2 btn btn-light">
                       Mentés
                     </button>
 
                     <!-- Összes mentése gomb -->
                     <button v-if="changedModel==true && changedCard==true"
-                            @click="saveAllDatas()"
+                            @click="messageBox('open')"
                             type="button"
-                            class=" mx-2 col-3 btn btn-light">
+                            class="col-12 col-sm-12 col-md-4 col-lg-3 
+                                   mx-2 my-2 text-nowrap btn btn-light">
                       Összes mentése
                     </button>
 
@@ -284,25 +321,24 @@ watch(card,()=>
                     <button :disabled="changedModel!=true"
                             @click="restoreDatas(model)"
                             type="button" 
-                            class="mx-2 col-3 btn btn-secondary">
+                            class="col-12 col-sm-12 col-md-4 col-lg-3
+                                  mx-2 my-2 btn btn-secondary">
                       Mégsem
                     </button>
-
-                  </div>
-                  
                   </div>
                 </div>
               </form>
 
               <form  v-if="card.cardnumber!='null'"
-                    class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 col-xxl-6">
+                    class="col-12 col-sm-10 col-md-8 
+                           col-lg-8 col-xl-8 col-xxl-6">
                 <h4 class="text-center mt-5">
                   Kártya adatok
                 </h4>
 
                 <div class="px-3 py-3 border rounded-3">
                   <!-- Card data -->
-                  <div class="row">
+                  <div class="row justify-content-center">
                     <!-- cardNumber -->
                     <div class="mb-3 col-12">
                       <label for="inputCardNumber" 
@@ -363,17 +399,19 @@ watch(card,()=>
 
                       <!-- Mentés gomb -->
                       <button v-if="changedModel!=true && changedCard==true"
-                              @click="saveDatas(card)"
+                              @click="messageBox('open')"
                               type="button"
-                              class=" mx-2 col-3 btn btn-light">
+                              class="col-12 col-sm-12 col-md-4 col-lg-3
+                                     mx-2 my-2 btn btn-light">
                         Mentés
                       </button>
 
                       <!-- Összes mentése gomb -->
                       <button v-if="changedModel==true && changedCard==true"
-                              @click="saveAllDatas()"
+                              @click="messageBox('open')"
                               type="button"
-                              class=" mx-2 col-3 btn btn-light">
+                              class="col-12 col-sm-12 col-md-4 col-lg-3
+                                     text-nowrap mx-2 my-2 btn btn-light">
                         Összes mentése
                       </button>
 
@@ -381,7 +419,8 @@ watch(card,()=>
                       <button :disabled="changedCard!=true"
                               @click="restoreDatas(card)"
                               type="button" 
-                              class="mx-2 col-3 btn btn-secondary">
+                              class="col-12 col-sm-12 col-md-4 col-lg-3 
+                                     mx-2 my-2 btn btn-secondary">
                         Mégsem
                       </button>
 
@@ -406,36 +445,44 @@ watch(card,()=>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum laudantium, est qui voluptate sint tempore quasi ipsa repellendus esse mollitia quos velit fugit voluptas, perferendis, quas blanditiis neque. Optio, sit?
           </div>
         </div>
-         <div class="col-4 
-                     row position-absolute asd bg-secondary
+        <!-- messageBox -->
+        <div v-if="messageBoxType==true"
+             class="row position-absolute justify-content-center">
+          <div class="col-10 col-sm-8 col-md-7 col-lg-4
+                     messageBox fade-in bg-secondary
                      border border-3 rounded-5 py-3 px-3">
-          <h1 class="text-center">Biztos menti a változtatásokat?</h1>
+            <!-- Kérédés -->
+            <h1 class="text-center">
+              Biztos menti a változtatásokat?
+            </h1>
             <!-- Gombok -->
-                  <div class="row ms-1 justify-content-center">
+            <div class="row justify-content-center">
 
-                    <!-- Mentés gomb -->
-                    <button
-                            @click="saveDatas(model)"
-                            type="button"
-                            class=" mx-2 col-3 btn btn-light">
-                      Igen
-                    </button>
+              <!-- Mentés gomb -->
+              <button
+                      @click="saveDatas(changedModel==true?model:card)"
+                      type="button"
+                      class="col-8 col-sm-5 col-md-5 col-lg-4
+                             mx-2 my-2 btn btn-light">
+                Igen
+              </button>
 
-                    <!-- Mégse gomb -->
-                    <button
-                            @click="restoreDatas(model)"
-                            type="button" 
-                            class="mx-2 col-3 btn btn-dark">
-                      Nem
-                    </button>
-                 </div>
-
+              <!-- Mégse gomb -->
+              <button
+                      @click="messageBox('close')"
+                      type="button" 
+                      class="col-8 col-sm-5 col-md-5 col-lg-4 
+                             mx-2 my-2 btn btn-dark">
+                Nem
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-<style scoped>
+<style>
 
 /* profile inputok effektusai */
 input:not([type="checkbox"],[type="radio"]):focus,
@@ -455,13 +502,44 @@ input:not([type="checkbox"],[type="radio"])::after {
     --bs-nav-link-color:rgb(149, 158, 152);
     --bs-nav-link-hover-color: white;
 }
-
-.asd{
-  box-shadow: 0 0 100px 950px rgba(0, 0, 0, 0.8) !important;
-  z-index: 9999 !important;
+.account {
+  position: relative;
+  z-index: 1020;
 }
-/* a görgetés letiltása */
-body.no-scroll {
+
+.messageBox{
+  box-shadow: 0 0 100px 1000px rgba(0, 0, 0, 0.8) !important;
+}
+
+.messageBox,
+.messageBox *{
+  pointer-events: auto;
+  user-select: auto;
+
+}
+body.messageBoxShowUp{
+  pointer-events: none;
   overflow: hidden;
 }
+
+.fade-in {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.fade-out {
+  animation: fadeOutDown 0.5s ease both;
+}
+
+@keyframes fadeInUp {
+
+  0% 	{opacity:0;transform: scale(0); }
+  25% 	{opacity:0;transform: scale(0); }
+  100% 	{opacity:1;transform: scale(1); }
+}
+
+@keyframes fadeOutDown {
+  from { opacity:1; transform: scale(1); }
+  to   { opacity:0; transform: scale(0); }
+}
+
 </style>
