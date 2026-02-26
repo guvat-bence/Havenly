@@ -37,7 +37,7 @@ let step = ref(0),
         model.lastname === 1)
       return false
 
-    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,40}$/.test(model.password))
       return false;
 
     if (model.password !== model.confirmpass)
@@ -46,7 +46,7 @@ let step = ref(0),
     if(model.password.length >= 40 || model.password.length <= 6)
       return false;
 
-    if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phone_number))
+    if (!/^\+?[0-9\s\-\(\)]{7,40}$/.test(model.phone_number))
       return false;
 
     if(model.gender == "")

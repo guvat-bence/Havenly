@@ -15,7 +15,6 @@ let model = reactive({
   email: user.email,
   phoneNum: user.phone_number,
   gender: user.gender,
-  password :""
 })
 
 let card = reactive({
@@ -25,10 +24,23 @@ let card = reactive({
   cvv: user.cvv
 }) 
 
+let passwords = reactive({
+    userID: user.id,
+    currentPassword :"",
+    newPassword:"",
+    confirmPassword:""
+})
+
+console.log(passwords);
+
+
 let messages =
 {
   editing: "Biztos menti a változtatásokat?",
-  deleting:"Biztos törli a fiókját?"
+  deleting:"Biztos törli a fiókját?",
+  passwordError:"Hibás jelenlegi jelszót adott meg!",
+  succesEditing:"Sikeres változtatás!",
+  succesDeleting:"Siekeres törlés!"
 }
 
 let modelCopie = {... model};
@@ -40,6 +52,7 @@ let messageBoxType = ref(false);
 let messageBoxmessage = ref("");
 let messageType = ref("");
 let showpasscheck = ref(false);
+let showOkBtn = ref(false);
 
 // Adatokat ellenőrzése
 function validateUserDatas(){
@@ -61,14 +74,17 @@ function validateUserDatas(){
 
 function validatePasswords()
 {
-  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
-  return false;
 
-if (model.password !== model.confirmpass)
-  return false
+  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,40}$/.test(passwords.currentPassword))
+    return false;
 
-if(model.password.length >= 40 || model.password.length <= 6)
-  return false;
+  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,40}$/.test(passwords.newPassword))
+    return false;
+
+  if (passwords.newPassword !== passwords.confirmPassword || passwords.newPassword === passwords.currentPassword)
+    return false;
+
+  return true;
 }
 
 function changeDatas(obj)
@@ -80,6 +96,12 @@ function changeDatas(obj)
     url = "deleteUser";
     messageType.value = "";
   }
+  else if(messageType.value=="password")
+  {
+    messageType.value ="";
+    url = "updateUser/Password";
+    obj = passwords;
+  }
   else if(changedCard.value==true && changedModel.value==true)
   {
     obj = {model,card};
@@ -89,7 +111,16 @@ function changeDatas(obj)
     url = obj == model?"updateUser/Privacy":"updateUser/Card";
   }
   axios.post(`http://localhost:3000/${url}`,obj)
-  .then((respose)=>{console.log(respose.data)})
+  .then((respose)=>{
+
+    console.log(respose.data)
+    if(respose.data.message == "incorrectPassword")
+    {
+      messageBoxmessage.value = messages.passwordError;
+      showOkBtn.value = true;
+      messageBox("open");
+    }
+  })
   .catch((err)=>{console.error(err)})
 
   messageBox("close");
@@ -115,11 +146,18 @@ function deleteUser()
   messageBox("open");
 }
 
+function updatePassword()
+{
+  messageBoxmessage.value = messages.editing;
+  messageType.value = "password";
+  messageBox("open");
+}
+
 function messageBox(type)
 {
   setTimeout(() => {
     document.body.classList.toggle("messageBoxShowUp");
-  }, 300);
+  }, 200);
 
   if(type=="open")
   {
@@ -497,32 +535,32 @@ watch(card,()=>
 
                   <!-- Eredeti elszó-->
                   <div class="mb-3">
-                    <label for="InputPassword" 
+                    <label for="originalPassword" 
                           class="form-label">
                       Eredeti jelszó
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
-                          id="InputPassword"
+                          id="originalPassword"
                           autocomplete="off"
                           minlength="6"
                           maxlength="40" 
-                          v-model="model.password">
+                          v-model="passwords.currentPassword">
                   </div>
 
                   <!-- Jelszó-->
                   <div class="mb-3">
-                    <label for="InputPassword" 
+                    <label for="newPassword" 
                           class="form-label">
                       Új jelszó
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
-                          id="InputPassword"
+                          id="newPassword"
                           autocomplete="off"
                           minlength="6"
                           maxlength="40" 
-                          v-model="model.newpassword">
+                          v-model="passwords.newPassword">
                       <div class="form-text text-white fw-bold">
                         {{ $t("register.password_requirement") }}
                       </div>
@@ -543,7 +581,7 @@ watch(card,()=>
                           minlength="6"
                           maxlength="40"
                           autocomplete="off" 
-                          v-model="model.confirmpass">
+                          v-model="passwords.confirmPassword">
                   </div>
 
                   <!-- Jelszó megjelenítése -->
@@ -562,26 +600,19 @@ watch(card,()=>
                   <div class="row mx-1 justify-content-center">
 
                     <!-- Mentés gomb -->
-                    <button v-if="changedModel==true && changedCard!=true"
-                            @click="messageBox('open');messageBoxmessage = messages.editing"
+                    <button v-if="validatePasswords()!=false"
+                            @click="updatePassword()"
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                    mx-2 my-2 btn btn-light">
                       Mentés
                     </button>
 
-                    <!-- Összes mentése gomb -->
-                    <button v-if="changedModel==true && changedCard==true"
-                            @click="messageBox('open')"
-                            type="button"
-                            class="col-12 col-sm-12 col-md-4 col-lg-3 
-                                   mx-2 my-2 text-nowrap btn btn-light">
-                      Összes mentése
-                    </button>
-
                     <!-- Mégse gomb -->
-                    <button :disabled="changedModel!=true"
-                            @click="restoreDatas(model)"
+                    <button :disabled="validatePasswords()==false"
+                            @click="passwords.currentPassword='';
+                                    passwords.newPassword='';
+                                    passwords.confirmPassword=''"
                             type="button" 
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                   mx-2 my-2 btn btn-secondary">
@@ -639,7 +670,7 @@ watch(card,()=>
             <div class="row justify-content-center">
 
               <!-- Mentés gomb -->
-              <button
+              <button v-if="showOkBtn!=true"
                       @click="changeDatas(changedModel==true?model:card)"
                       type="button"
                       class="col-8 col-sm-5 col-md-5 col-lg-4
@@ -648,12 +679,22 @@ watch(card,()=>
               </button>
 
               <!-- Mégse gomb -->
-              <button
+              <button v-if="showOkBtn!=true"
                       @click="messageBox('close')"
                       type="button" 
                       class="col-8 col-sm-5 col-md-5 col-lg-4 
                              mx-2 my-2 btn btn-dark">
                 Nem
+              </button>
+
+              <!-- ok gomb -->
+              <button v-if="showOkBtn==true"
+                      @click="messageBox('close');
+                              showOkBtn = false;"
+                      type="button" 
+                      class="col-8 col-sm-5 col-md-5 col-lg-4 
+                             mx-2 my-2 btn btn-light">
+                OK
               </button>
             </div>
           </div>
