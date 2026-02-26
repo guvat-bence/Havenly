@@ -15,6 +15,7 @@ let model = reactive({
   email: user.email,
   phoneNum: user.phone_number,
   gender: user.gender,
+  password :""
 })
 
 let card = reactive({
@@ -38,21 +39,13 @@ let changedCard = ref(false);
 let messageBoxType = ref(false);
 let messageBoxmessage = ref("");
 let messageType = ref("");
+let showpasscheck = ref(false);
 
 // Adatokat ellenőrzése
-function validateForm(){
+function validateUserDatas(){
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
     return false;
-
-  // if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
-  //   return false;
-
-  // if (model.password !== model.confirmpass)
-  //   return false
-
-  // if(model.password.length >= 40 || model.password.length <= 6)
-  //   return false;
 
   if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phoneNum))
     return false;
@@ -60,8 +53,23 @@ function validateForm(){
   if(!/^[0-9]{13,19}$/.test(card.cardnumber))
     return false;
 
+  if(!/^[0-9]{0,3}$/.test(card.cvv))
+    return false;
+
   return true;
 };
+
+function validatePasswords()
+{
+  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
+  return false;
+
+if (model.password !== model.confirmpass)
+  return false
+
+if(model.password.length >= 40 || model.password.length <= 6)
+  return false;
+}
 
 function changeDatas(obj)
 {
@@ -111,7 +119,7 @@ function messageBox(type)
 {
   setTimeout(() => {
     document.body.classList.toggle("messageBoxShowUp");
-  }, 200);
+  }, 300);
 
   if(type=="open")
   {
@@ -141,7 +149,7 @@ function change(obj)
   for(let x in obj)
   {
     if(obj[x]!=copie[x]){
-      validateForm()?changed.value = true:changed.value = false;
+      validateUserDatas()?changed.value = true:changed.value = false;
       return;
     }
   }
@@ -439,6 +447,7 @@ watch(card,()=>
                       <input type="text"
                               class="form-control"
                               id="inputCVV"
+                              :maxlength="3"
                               v-model="card.cvv">
                     </div>
                     <!-- Gombok -->
@@ -476,130 +485,77 @@ watch(card,()=>
                 </div>
               </form>
 
-                <!-- Jelszó  -->
+                <!-- Jelszó  módosítás-->
               <form class="col-12 col-sm-10 col-md-8 
                            col-lg-8 col-xl-8 col-xxl-6">
 
                 <h4 class="text-center">
-                  Személyes adatok
+                  Jelszó módosítása
                 </h4>
 
                 <div class="px-3 py-3 border rounded-3">
 
-                  <!-- Names -->
-                  <div class="row justify-content-center mb-3">
-                    <div>
-                      <h5 class="text-center">Nevek</h5>
-                    </div>
-
-                    <!-- FirstName -->
-                    <div :class="model.middleName!='null'?
-                          'col-lg-4':
-                          'col-lg-6'"
-                          class="mb-3 m-0 col-12">
-                      <label for="InputFirstName" 
-                              class="form-label">
-                        Keresztnév
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputFirstName" 
-                              v-model="model.firstName">
-                    </div>
-
-                    <!-- MiddleName -->
-                    <div v-if="model.middleName!='null'"
-                        class="mb-3 col-12 col-lg-4">
-                      <label for="InputMiddleName" 
-                              class="form-label">
-                        Harmadiknév
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputMiddleName" 
-                              v-model="model.middleName">
-                    </div>
-
-                    <!-- LastName -->
-                    <div :class="model.middleName!='null'?
-                          'col-lg-4':
-                          'col-lg-6'"
-                        class="mb-3 m-0 col-12">
-                      <label for="InputLastName" 
-                              class="form-label">
-                        Vezetéknév
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputLastName"
-                              v-model="model.lastName">
-                    </div>
+                  <!-- Eredeti elszó-->
+                  <div class="mb-3">
+                    <label for="InputPassword" 
+                          class="form-label">
+                      Eredeti jelszó
+                    </label>
+                    <input :type="showpasscheck ? 'text' : 'password'" 
+                          class="form-control" 
+                          id="InputPassword"
+                          autocomplete="off"
+                          minlength="6"
+                          maxlength="40" 
+                          v-model="model.password">
                   </div>
 
-                  <!-- Contact information -->
-                  <div class="row">
-                    <div>
-                      <h5 class="text-center">Elérési módok</h5>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="mb-3 col-12 col-lg-6">
-                      <label for="InputEmail" 
-                              class="form-label">
-                        Email
-                      </label>
-                      <input type="email" 
-                              class="form-control" 
-                              id="InputEmail" 
-                              v-model="model.email">
-                    </div>
-
-                    <!-- PhoneNumber -->
-                    <div class="mb-3 col-12 col-lg-6">
-                      <label for="InputPhoneNum" 
-                              class="form-label">
-                        Telefonszám
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputPhoneNum" 
-                              v-model="model.phoneNum">
-                    </div>
-
-                    <!-- Gender -->
-                    <div class="mb-4">
-                      <h5 class="text-center">
-                        {{ $t("register.gender") }}
-                      </h5>
-                      <div class="row justify-content-center text-center">
-                        <label for="genderMale" 
-                              class="form-label col-6">
-                          <span>{{ $t("register.male") }}</span> 
-                        </label>
-                        <label for="genderFemale" 
-                              class="form-label col-6">
-                          <span>{{ $t("register.female") }}</span>
-                        </label>
+                  <!-- Jelszó-->
+                  <div class="mb-3">
+                    <label for="InputPassword" 
+                          class="form-label">
+                      Új jelszó
+                    </label>
+                    <input :type="showpasscheck ? 'text' : 'password'" 
+                          class="form-control" 
+                          id="InputPassword"
+                          autocomplete="off"
+                          minlength="6"
+                          maxlength="40" 
+                          v-model="model.newpassword">
+                      <div class="form-text text-white fw-bold">
+                        {{ $t("register.password_requirement") }}
                       </div>
-                      <div class="row justify-content-center">
-                        <div class="d-flex col-6 justify-content-center">
-                          <input type="radio"
-                            name="genderMale"
-                            class="form-check-input" 
-                            id="genderMale"
-                            value="M"
-                            v-model="model.gender">
-                        </div>
-                        <div class="d-flex col-6 justify-content-center">
-                          <input type="radio"
-                                name="genderFemale" 
-                                class="form-check-input" 
-                                id="genderFemale"
-                                value="F"
-                                v-model="model.gender">
-                        </div>
+                      <div class="form-text text-white fw-bold">
+                        {{ $t("register.password_requirement_second") }}
                       </div>
-                    </div>
+                  </div>
+
+                  <!-- Jelszó mégegyszer -->
+                  <div class="mb-3">
+                    <label for="inputconfirmpass" 
+                          class="form-label">
+                      Új jelszó mégegyszer
+                    </label>
+                    <input :type="showpasscheck ? 'text' : 'password'" 
+                          class="form-control" 
+                          id="inputconfirmpass"
+                          minlength="6"
+                          maxlength="40"
+                          autocomplete="off" 
+                          v-model="model.confirmpass">
+                  </div>
+
+                  <!-- Jelszó megjelenítése -->
+                  <div class="d-flex mb-3 mt-3 justify-content-center">
+                    <label class="w-auto form-check-label mx-1 text-start" 
+                          for="flexCheckDefault">
+                      {{ $t("register.show_password") }}
+                    </label>
+                    <input class="form-check-input float-end" 
+                          type="checkbox" 
+                          id="flexCheckDefault"
+                          v-model="showpasscheck">
                   </div>
 
                   <!-- Gombok -->
@@ -634,7 +590,6 @@ watch(card,()=>
                   </div>
                 </div>
               </form>
-
             </div>
             <div class="row justify-content-center">
               <!-- Felhasználó törlési gomb -->
@@ -748,7 +703,7 @@ body.messageBoxShowUp{
 }
 
 .fade-in {
-  animation: fadeInUp 0.6s ease both;
+  animation: fadeInUp 1s ease both;
 }
 
 .fade-out {
