@@ -680,3 +680,8 @@ app.post("/updateUser/allDatas",(req,res)=>{
   let asd = req.body;
   res.json(asd);  
 })
+
+app.post("/deleteUser",(req,res)=>{
+  let asd = req.body;
+  res.json("Deleted");  
+})

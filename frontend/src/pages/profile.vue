@@ -24,43 +24,67 @@ let card = reactive({
   cvv: user.cvv
 }) 
 
+let messages =
+{
+  editing: "Biztos menti a változtatásokat?",
+  deleting:"Biztos törli a fiókját?"
+}
+
 let modelCopie = {... model};
 let cardCopie = {... card};
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 let changedModel = ref(false);
 let changedCard = ref(false);
 let messageBoxType = ref(false);
+let messageBoxmessage = ref("");
+let messageType = ref("");
 
-console.log(card);
+// Adatokat ellenőrzése
+function validateForm(){
 
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
+    return false;
 
-function saveDatas(obj)
+  // if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(model.password))
+  //   return false;
+
+  // if (model.password !== model.confirmpass)
+  //   return false
+
+  // if(model.password.length >= 40 || model.password.length <= 6)
+  //   return false;
+
+  if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phoneNum))
+    return false;
+
+  if(!/^[0-9]{13,19}$/.test(card.cardnumber))
+    return false;
+
+  return true;
+};
+
+function changeDatas(obj)
 {
-  let url = "allDatas";
-  if(changedCard.value==true && changedModel.value==true)
+  let url = "updateUser/allDatas";
+
+  if(messageType.value =="delete")
+  {
+    url = "deleteUser";
+    messageType.value = "";
+  }
+  else if(changedCard.value==true && changedModel.value==true)
   {
     obj = {model,card};
   } 
   else
   {
-    url = obj == model?"Privacy":"Card";
+    url = obj == model?"updateUser/Privacy":"updateUser/Card";
   }
-  axios.post(`http://localhost:3000/updateUser/${url}`,obj)
-  .then((respose)=>{console.log(respose.data);
-  })
+  axios.post(`http://localhost:3000/${url}`,obj)
+  .then((respose)=>{console.log(respose.data)})
   .catch((err)=>{console.error(err)})
 
   messageBox("close");
-}
-
-function saveAllDatas()
-{
-  if(confirm("Biztos módosítja az adatokat?"))
-  {
-    axios.post('http://localhost:3000/updateUser',{model,card})
-    .then((respose)=>{console.log(respose.data)})
-    .catch((err)=>{console.error(err)})
-  }
 }
 
 function restoreDatas(obj)
@@ -76,12 +100,19 @@ function restoreDatas(obj)
   }
 }
 
+function deleteUser()
+{
+  messageBoxmessage.value = messages.deleting;
+  messageType.value = "delete";
+  messageBox("open");
+}
+
 function messageBox(type)
 {
-  
   setTimeout(() => {
     document.body.classList.toggle("messageBoxShowUp");
-  }, 399);
+  }, 200);
+
   if(type=="open")
   {
     window.scrollTo({
@@ -110,7 +141,7 @@ function change(obj)
   for(let x in obj)
   {
     if(obj[x]!=copie[x]){
-      changed.value = true;
+      validateForm()?changed.value = true:changed.value = false;
       return;
     }
   }
@@ -177,12 +208,20 @@ watch(card,()=>
               aria-labelledby="nav-datas-tab" 
               tabindex="0">
             
+              <!-- Adatok megjelenítése -->
             <div class="row justify-content-center">
 
+              <!-- Személyes adatok -->
               <form class="col-12 col-sm-10 col-md-8 
-                           col-lg-8 col-xl-8 col-xxl-6">
-                <h4 class="text-center">Személyes adatok</h4>
+                           col-lg-8 col-xl-8 col-xxl-6
+                           my-4">
+
+                <h4 class="text-center">
+                  Személyes adatok
+                </h4>
+
                 <div class="px-3 py-3 border rounded-3">
+
                   <!-- Names -->
                   <div class="row justify-content-center mb-3">
                     <div>
@@ -304,7 +343,7 @@ watch(card,()=>
 
                     <!-- Mentés gomb -->
                     <button v-if="changedModel==true && changedCard!=true"
-                            @click="messageBox('open')"
+                            @click="messageBox('open');messageBoxmessage = messages.editing"
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                    mx-2 my-2 btn btn-light">
@@ -332,16 +371,20 @@ watch(card,()=>
                 </div>
               </form>
 
+              <!-- Kártya információk -->
               <form  v-if="card.cardnumber!='null'"
                     class="col-12 col-sm-10 col-md-8 
-                           col-lg-8 col-xl-8 col-xxl-6">
+                           col-lg-8 col-xl-8 col-xxl-6
+                           my-4">
                 <h4 class="text-center mt-5">
                   Kártya adatok
                 </h4>
 
                 <div class="px-3 py-3 border rounded-3">
+
                   <!-- Card data -->
                   <div class="row justify-content-center">
+
                     <!-- cardNumber -->
                     <div class="mb-3 col-12">
                       <label for="inputCardNumber" 
@@ -349,9 +392,10 @@ watch(card,()=>
                         Kártyaszám
                       </label>
                       <input type="text"
-                            class="form-control"
-                            id="inputCardNumber"
-                            v-model="card.cardnumber">
+                             :maxlength="19"
+                             class="form-control"
+                             id="inputCardNumber"
+                             v-model="card.cardnumber">
                     </div>
 
                     <!-- Month -->
@@ -402,7 +446,7 @@ watch(card,()=>
 
                       <!-- Mentés gomb -->
                       <button v-if="changedModel!=true && changedCard==true"
-                              @click="messageBox('open')"
+                              @click="messageBox('open');messageBoxmessage = messages.editing"
                               type="button"
                               class="col-12 col-sm-12 col-md-4 col-lg-3
                                      mx-2 my-2 btn btn-light">
@@ -431,6 +475,182 @@ watch(card,()=>
                   </div>
                 </div>
               </form>
+
+                <!-- Jelszó  -->
+              <form class="col-12 col-sm-10 col-md-8 
+                           col-lg-8 col-xl-8 col-xxl-6">
+
+                <h4 class="text-center">
+                  Személyes adatok
+                </h4>
+
+                <div class="px-3 py-3 border rounded-3">
+
+                  <!-- Names -->
+                  <div class="row justify-content-center mb-3">
+                    <div>
+                      <h5 class="text-center">Nevek</h5>
+                    </div>
+
+                    <!-- FirstName -->
+                    <div :class="model.middleName!='null'?
+                          'col-lg-4':
+                          'col-lg-6'"
+                          class="mb-3 m-0 col-12">
+                      <label for="InputFirstName" 
+                              class="form-label">
+                        Keresztnév
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputFirstName" 
+                              v-model="model.firstName">
+                    </div>
+
+                    <!-- MiddleName -->
+                    <div v-if="model.middleName!='null'"
+                        class="mb-3 col-12 col-lg-4">
+                      <label for="InputMiddleName" 
+                              class="form-label">
+                        Harmadiknév
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputMiddleName" 
+                              v-model="model.middleName">
+                    </div>
+
+                    <!-- LastName -->
+                    <div :class="model.middleName!='null'?
+                          'col-lg-4':
+                          'col-lg-6'"
+                        class="mb-3 m-0 col-12">
+                      <label for="InputLastName" 
+                              class="form-label">
+                        Vezetéknév
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputLastName"
+                              v-model="model.lastName">
+                    </div>
+                  </div>
+
+                  <!-- Contact information -->
+                  <div class="row">
+                    <div>
+                      <h5 class="text-center">Elérési módok</h5>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3 col-12 col-lg-6">
+                      <label for="InputEmail" 
+                              class="form-label">
+                        Email
+                      </label>
+                      <input type="email" 
+                              class="form-control" 
+                              id="InputEmail" 
+                              v-model="model.email">
+                    </div>
+
+                    <!-- PhoneNumber -->
+                    <div class="mb-3 col-12 col-lg-6">
+                      <label for="InputPhoneNum" 
+                              class="form-label">
+                        Telefonszám
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputPhoneNum" 
+                              v-model="model.phoneNum">
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="mb-4">
+                      <h5 class="text-center">
+                        {{ $t("register.gender") }}
+                      </h5>
+                      <div class="row justify-content-center text-center">
+                        <label for="genderMale" 
+                              class="form-label col-6">
+                          <span>{{ $t("register.male") }}</span> 
+                        </label>
+                        <label for="genderFemale" 
+                              class="form-label col-6">
+                          <span>{{ $t("register.female") }}</span>
+                        </label>
+                      </div>
+                      <div class="row justify-content-center">
+                        <div class="d-flex col-6 justify-content-center">
+                          <input type="radio"
+                            name="genderMale"
+                            class="form-check-input" 
+                            id="genderMale"
+                            value="M"
+                            v-model="model.gender">
+                        </div>
+                        <div class="d-flex col-6 justify-content-center">
+                          <input type="radio"
+                                name="genderFemale" 
+                                class="form-check-input" 
+                                id="genderFemale"
+                                value="F"
+                                v-model="model.gender">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Gombok -->
+                  <div class="row mx-1 justify-content-center">
+
+                    <!-- Mentés gomb -->
+                    <button v-if="changedModel==true && changedCard!=true"
+                            @click="messageBox('open');messageBoxmessage = messages.editing"
+                            type="button"
+                            class="col-12 col-sm-12 col-md-4 col-lg-3
+                                   mx-2 my-2 btn btn-light">
+                      Mentés
+                    </button>
+
+                    <!-- Összes mentése gomb -->
+                    <button v-if="changedModel==true && changedCard==true"
+                            @click="messageBox('open')"
+                            type="button"
+                            class="col-12 col-sm-12 col-md-4 col-lg-3 
+                                   mx-2 my-2 text-nowrap btn btn-light">
+                      Összes mentése
+                    </button>
+
+                    <!-- Mégse gomb -->
+                    <button :disabled="changedModel!=true"
+                            @click="restoreDatas(model)"
+                            type="button" 
+                            class="col-12 col-sm-12 col-md-4 col-lg-3
+                                  mx-2 my-2 btn btn-secondary">
+                      Mégsem
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <div class="row justify-content-center">
+              <!-- Felhasználó törlési gomb -->
+              <div class="mx-2 row justify-content-center 
+                          border border-danger mt-4 rounded-3
+                          col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+
+                <!-- Törlés gomb -->
+                <button @click="deleteUser()"
+                        type="button" 
+                        class="col-10
+                               text-nowrap mx-3 my-3
+                               btn btn-danger">
+                  Fiók törlése
+                </button>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" 
@@ -451,19 +671,21 @@ watch(card,()=>
         <!-- messageBox -->
         <div v-if="messageBoxType==true"
              class="row position-absolute justify-content-center">
+
           <div class="col-10 col-sm-8 col-md-7 col-lg-4
                      messageBox fade-in bg-secondary
                      border border-3 rounded-5 py-3 px-3">
-            <!-- Kérédés -->
+
+            <!-- Kérdés -->
             <h1 class="text-center">
-              Biztos menti a változtatásokat?
+              {{ messageBoxmessage }}
             </h1>
             <!-- Gombok -->
             <div class="row justify-content-center">
 
               <!-- Mentés gomb -->
               <button
-                      @click="saveDatas(changedModel==true?model:card)"
+                      @click="changeDatas(changedModel==true?model:card)"
                       type="button"
                       class="col-8 col-sm-5 col-md-5 col-lg-4
                              mx-2 my-2 btn btn-light">
@@ -511,7 +733,7 @@ input:not([type="checkbox"],[type="radio"])::after {
 }
 
 .messageBox{
-  box-shadow: 0 0 100px 1000px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 100px 10000px rgba(0, 0, 0, 0.8) !important;
 }
 
 .messageBox,
@@ -526,7 +748,7 @@ body.messageBoxShowUp{
 }
 
 .fade-in {
-  animation: fadeInUp 0.5s ease both;
+  animation: fadeInUp 0.6s ease both;
 }
 
 .fade-out {
