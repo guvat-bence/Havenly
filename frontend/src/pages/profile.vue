@@ -78,7 +78,10 @@ function restoreDatas(obj)
 
 function messageBox(type)
 {
-  document.body.classList.toggle("messageBoxShowUp");
+  
+  setTimeout(() => {
+    document.body.classList.toggle("messageBoxShowUp");
+  }, 399);
   if(type=="open")
   {
     window.scrollTo({
@@ -86,7 +89,7 @@ function messageBox(type)
       left: 0,
       behavior: 'smooth'
     })
-
+    
     messageBoxType.value = !messageBoxType.value;
   }
   else
