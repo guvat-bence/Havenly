@@ -192,7 +192,7 @@ watch(() => card.cardnumber, (x) => {
                   </div>
 
                   <!-- FirstName -->
-                  <div :class="model.middleName!='null'?
+                  <div :class="model.middleName!=''?
                           'col-lg-4':
                           'col-lg-6'"
                         class="mb-3 m-0 col-12">
@@ -207,7 +207,7 @@ watch(() => card.cardnumber, (x) => {
                   </div>
 
                   <!-- MiddleName -->
-                  <div v-if="model.middleName!='null'"
+                  <div v-if="model.middleName!=''"
                        class="mb-3 col-12 col-lg-4">
                     <label for="InputMiddleName" 
                             class="form-label">
@@ -220,7 +220,7 @@ watch(() => card.cardnumber, (x) => {
                   </div>
 
                   <!-- LastName -->
-                  <div :class="model.middleName!='null'?
+                  <div :class="model.middleName!=''?
                           'col-lg-4':
                           'col-lg-6'"
                         class="mb-3 m-0 col-12">
@@ -368,7 +368,7 @@ watch(() => card.cardnumber, (x) => {
                     <div class="row justify-content-center">
 
                       <!-- FirstName -->
-                      <div :class="model.middleName!='null'?
+                      <div :class="model.middleName!=''?
                             'col-lg-4':
                             'col-lg-6'"
                             class="mb-3 m-0 col-12">
@@ -383,7 +383,7 @@ watch(() => card.cardnumber, (x) => {
                       </div>
 
                       <!-- MiddleName -->
-                      <div v-if="model.middleName!='null'"
+                      <div v-if="model.middleName!=''"
                           class="mb-3 col-12 col-lg-4">
                         <label for="InputMiddleName" 
                                 class="form-label">
@@ -396,7 +396,7 @@ watch(() => card.cardnumber, (x) => {
                       </div>
 
                       <!-- LastName -->
-                      <div :class="model.middleName!='null'?
+                      <div :class="model.middleName!=''?
                             'col-lg-4':
                             'col-lg-6'"
                             class="mb-3 m-0 col-12">

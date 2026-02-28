@@ -5,7 +5,7 @@ export let user = reactive({
   id: localStorage.getItem("id") ?? null,
   firstname: localStorage.getItem("first_name") ?? "",
   lasttname: localStorage.getItem("last_name") ?? "",
-  middlename: localStorage.getItem("middle_name") ?? "",
+  middlename: localStorage.getItem("middle_name")=="null"?"":localStorage.getItem("middle_name") ?? "",
   phone_number: localStorage.getItem("phone_number") ?? "",
   email: localStorage.getItem("email") ?? "",
   gender: localStorage.getItem("gender") ?? "",

@@ -71,6 +71,12 @@ function validateUserDatas(){
   if(!/^[0-9]{13,19}$/.test(card.cardnumber))
     return false;
 
+  if(card.expirationMonth.length==0)
+    return false;
+
+  if(card.expirationYear.length==0)
+    return false;
+
   return true;
 };
 
@@ -210,6 +216,8 @@ watch(card,()=>
 <template>
   <div class="account">
     <div class="container">
+
+      <!-- Kiválasztható opciók -->
       <nav>
         <div class="nav nav-tabs justify-content-center" 
              id="nav-tab" 
@@ -245,11 +253,14 @@ watch(card,()=>
         </div>
       </nav>
 
+      <!-- Opciókhoz megjelenítendő szövegek -->
       <div class="row align-items-top justify-content-center">
+
         <div class="tab-content text-white
                    text-center bg-dark bg-opacity-50 
                    rounded-5 rounded-top-0 py-5 px-4" 
-            id="nav-tabContent">
+             id="nav-tabContent">
+
           <div class="tab-pane fade show active"
               id="nav-datas" 
               role="tabpanel" 
@@ -259,10 +270,20 @@ watch(card,()=>
               <!-- Adatok megjelenítése -->
             <div class="row justify-content-center">
 
+              <!-- Személyes adatok form megjelenítő gomb -->
+              <div class="row justify-content-center col-12">  
+                <button class="col-3 mx-2 my-2 btn btn-outline-light"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collpasePrivacyDatas">
+                  Személyes adatok
+                </button>
+              </div>
+
               <!-- Személyes adatok -->
-              <form class="col-12 col-sm-10 col-md-8 
+              <form id="collpasePrivacyDatas"
+                    class="col-12 col-sm-10 col-md-8 
                            col-lg-8 col-xl-8 col-xxl-6
-                           my-4">
+                           collapse my-4">
 
                 <h4 class="text-center">
                   Személyes adatok
@@ -365,6 +386,7 @@ watch(card,()=>
                           <span>{{ $t("register.female") }}</span>
                         </label>
                       </div>
+
                       <div class="row justify-content-center">
                         <div class="d-flex col-6 justify-content-center">
                           <input type="radio"
@@ -374,6 +396,7 @@ watch(card,()=>
                             value="M"
                             v-model="model.gender">
                         </div>
+
                         <div class="d-flex col-6 justify-content-center">
                           <input type="radio"
                                 name="genderFemale" 
@@ -419,11 +442,22 @@ watch(card,()=>
                 </div>
               </form>
 
+              <!-- Kártya információk form megjelenítő gomb -->
+              <div class="row justify-content-center col-12">  
+                <button class="col-3 mx-2 my-2 btn btn-outline-light"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collpaseCardDatas">
+                  Kártya adatok
+                </button>
+              </div>
+
               <!-- Kártya információk -->
-              <form class="col-12 col-sm-10 col-md-8 
+              <form id="collpaseCardDatas"
+                    class="col-12 col-sm-10 col-md-8 
                            col-lg-8 col-xl-8 col-xxl-6
-                           my-4">
-                <h4 class="text-center mt-5">
+                           collapse my-4">
+
+                <h4 class="text-center">
                   Kártya adatok
                 </h4>
 
@@ -433,7 +467,7 @@ watch(card,()=>
                   <div class="row justify-content-center">
 
                     <!-- cardNumber -->
-                    <div class="mb-3 col-12">
+                    <div class="mb-3 col-10">
                       <label for="inputCardNumber" 
                               class="form-label">
                         Kártyaszám
@@ -454,7 +488,6 @@ watch(card,()=>
                       <select class="form-select"
                               id="inputMonth"
                               v-model="card.expirationMonth">
-                        <option selected>{{ card.expirationMonth }}</option>
                         <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
                       </select>
                     </div>
@@ -468,9 +501,6 @@ watch(card,()=>
                       <select class="form-select"
                               id="inputYear"
                               v-model="card.expirationYear">
-                        <option selected>
-                          {{  card.expirationYear }}
-                        </option>
                         <option v-for="x in 5" >
                           {{ parseInt(currentExpYear) + x }}
                         </option>
@@ -512,9 +542,20 @@ watch(card,()=>
                 </div>
               </form>
 
-                <!-- Jelszó  módosítás-->
-              <form class="col-12 col-sm-10 col-md-8 
-                           col-lg-8 col-xl-8 col-xxl-6">
+              <!-- Jelszó form megjelenítő gomb -->
+              <div class="row justify-content-center col-12">
+                <button class="col-3 mx-2 my-2 btn btn-outline-light"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collpasePasswords">
+                  Jelszó módosítása
+                </button>
+              </div>
+
+              <!-- Jelszó  módosítás-->
+              <form id="collpasePasswords"
+                    class="col-12 col-sm-10 col-md-8 
+                           col-lg-8 col-xl-8 col-xxl-6
+                           collapse my-4">
 
                 <h4 class="text-center">
                   Jelszó módosítása
@@ -611,7 +652,10 @@ watch(card,()=>
                 </div>
               </form>
             </div>
+
+            <!-- Törlési funkció -->
             <div class="row justify-content-center">
+
               <!-- Felhasználó törlési gomb -->
               <div class="mx-2 row justify-content-center 
                           border border-danger mt-4 rounded-3
@@ -627,7 +671,9 @@ watch(card,()=>
                 </button>
               </div>
             </div>
+
           </div>
+
           <div class="tab-pane fade" 
               id="nav-posts" 
               role="tabpanel" 
@@ -643,6 +689,7 @@ watch(card,()=>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum laudantium, est qui voluptate sint tempore quasi ipsa repellendus esse mollitia quos velit fugit voluptas, perferendis, quas blanditiis neque. Optio, sit?
           </div>
         </div>
+        
         <!-- messageBox -->
         <div v-if="messageBoxType==true"
              class="row position-absolute justify-content-center">
@@ -689,6 +736,7 @@ watch(card,()=>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
