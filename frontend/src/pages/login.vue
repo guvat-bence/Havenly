@@ -49,8 +49,8 @@ let model = reactive({
           }
           catch
           {
-            user.expirationMonth = null;
-            user.expirationYear = null;
+            user.expirationMonth = "";
+            user.expirationYear = "";
           }
 
           user.cvv = response.data.user.cvv;

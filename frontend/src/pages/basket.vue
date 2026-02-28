@@ -6,6 +6,22 @@ import { user } from '@/store/user';
 import { reactive, ref, watch } from 'vue';
 import axios from 'axios';
 
+// Adatokat ellenőrzése
+function validateUserDatas(){
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
+    return false;
+
+  if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phoneNum))
+    return false;
+
+  if(!/^[0-9]{13,19}$/.test(card.cardnumber))
+    return false;
+
+  if(!/^[0-9]{3}$/.test(card.cvv))
+
+  return true;
+};
 
 let router = useRouter()
 
@@ -36,7 +52,7 @@ let card = reactive({
   cardnumber: user.cardNumber,
   expiration_month: user.expirationMonth,
   expirationYear: user.expirationYear,
-  cvv: user.cvv
+  cvv: ""
 })
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))

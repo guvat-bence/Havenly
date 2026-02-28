@@ -10,10 +10,9 @@ export let user = reactive({
   email: localStorage.getItem("email") ?? "",
   gender: localStorage.getItem("gender") ?? "",
   user_type: localStorage.getItem("user_type") ?? "", 
-  cardNumber: localStorage.getItem("card_number") ?? "",
+  cardNumber: localStorage.getItem("card_number")=="null"?"":localStorage.getItem("card_number") ?? "",
   expirationYear: localStorage.getItem("expirationYear") ?? "",
   expirationMonth: localStorage.getItem("expirationMonth") ?? "",
-  cvv: localStorage.getItem("cvv") ?? "",
   websitekey:localStorage.getItem("websitekey")?? "incorrect"
 })
 

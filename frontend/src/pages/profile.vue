@@ -20,8 +20,7 @@ let model = reactive({
 let card = reactive({
   cardnumber: user.cardNumber,
   expirationMonth: user.expirationMonth,
-  expirationYear: user.expirationYear,
-  cvv: user.cvv
+  expirationYear: user.expirationYear
 }) 
 
 let passwords = reactive({
@@ -30,6 +29,12 @@ let passwords = reactive({
     newPassword:"",
     confirmPassword:""
 })
+
+
+console.log(model);
+
+console.log(card);
+
 
 console.log(passwords);
 
@@ -64,9 +69,6 @@ function validateUserDatas(){
     return false;
 
   if(!/^[0-9]{13,19}$/.test(card.cardnumber))
-    return false;
-
-  if(!/^[0-9]{0,3}$/.test(card.cvv))
     return false;
 
   return true;
@@ -275,7 +277,7 @@ watch(card,()=>
                     </div>
 
                     <!-- FirstName -->
-                    <div :class="model.middleName!='null'?
+                    <div :class="model.middleName!=''?
                           'col-lg-4':
                           'col-lg-6'"
                           class="mb-3 m-0 col-12">
@@ -290,7 +292,7 @@ watch(card,()=>
                     </div>
 
                     <!-- MiddleName -->
-                    <div v-if="model.middleName!='null'"
+                    <div v-if="model.middleName!=''"
                         class="mb-3 col-12 col-lg-4">
                       <label for="InputMiddleName" 
                               class="form-label">
@@ -303,7 +305,7 @@ watch(card,()=>
                     </div>
 
                     <!-- LastName -->
-                    <div :class="model.middleName!='null'?
+                    <div :class="model.middleName!=''?
                           'col-lg-4':
                           'col-lg-6'"
                         class="mb-3 m-0 col-12">
@@ -418,8 +420,7 @@ watch(card,()=>
               </form>
 
               <!-- Kártya információk -->
-              <form  v-if="card.cardnumber!='null'"
-                    class="col-12 col-sm-10 col-md-8 
+              <form class="col-12 col-sm-10 col-md-8 
                            col-lg-8 col-xl-8 col-xxl-6
                            my-4">
                 <h4 class="text-center mt-5">
@@ -476,18 +477,6 @@ watch(card,()=>
                       </select>
                     </div>
 
-                    <!-- CVV -->
-                    <div class="mb-3 col-6 col-sm-3 col-lg-4">
-                      <label for="inputCVV" 
-                              class="form-label">
-                        CVV
-                      </label>
-                      <input type="text"
-                              class="form-control"
-                              id="inputCVV"
-                              :maxlength="3"
-                              v-model="card.cvv">
-                    </div>
                     <!-- Gombok -->
                     <div class="row ms-1 justify-content-center">
 
