@@ -662,23 +662,70 @@ app.get("/getCardNetwork",(req,res) => {
       return;
     }
 
-    res.json(result)
+    res.json(result);
+    return;
   })
 })
 
 app.post("/updateUser/Privacy",(req,res)=>{
   let datas = req.body;
-  res.json(datas);  
+  datas.middleName=datas.middleName!=""?datas.middleName:null;
+  db.query(`UPDATE users
+            SET first_name = ?,
+                last_name = ?,
+                middle_name = ?,
+                email = ?,
+                phone_number = ?,
+                gender = ?
+            WHERE id = ?`,
+           [datas.firstName,datas.lastName,datas.middleName,
+            datas.email,datas.phoneNum,datas.gender,datas.userID],
+           (err,response)=>{
+    if(err)
+    {
+      console.error("Hiba a user módosításakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    if(response.affectedRows)
+    {
+      db.query(`SELECT
+                  first_name,
+                  last_name,
+                  middle_name,
+                  email,
+                  phone_number,
+                  gender,
+                  card_number,
+                  expiration
+                FROM users
+                WHERE id =?`,[datas.userID],(err,datas)=>{
+        
+        if(err)
+        {
+          console.error("Hiba a user beolvasásakor", err);
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+        res.json([response,datas]);
+        return;
+      })
+    }
+  })
 })
 
 app.post("/updateUser/Card",(req,res)=>{
   let datas = req.body;
-  res.json(datas);  
+  res.json(datas);
+  return;  
 })
 
 app.post("/updateUser/allDatas",(req,res)=>{
   let datas = req.body;
-  res.json(datas);  
+  res.json(datas);
+  return;  
 })
 
 app.post("/updateUser/Password",(req,res)=>{
@@ -692,6 +739,7 @@ app.post("/updateUser/Password",(req,res)=>{
     {
       console.error("Hiba a jelszó beolvasásakor", err);
       res.status(500).send("Adatbázis hiba");
+      return;
     }
 
     if(result.length>0)
@@ -699,25 +747,30 @@ app.post("/updateUser/Password",(req,res)=>{
       db.query(`UPDATE users
                 SET password = ?
                 WHERE id = ?`,
-                [datas.currentPassword,datas.userID],(err,response)=>{
+                [datas.newPassword,datas.userID],(err,response)=>{
 
         if(err)
         {
           console.error("Hiba a jelszó beolvasásakor", err);
           res.status(500).send("Adatbázis hiba");
+          return;
         }
 
         res.json(response);
+        return;
 
       });
       
     }
-
-    res.json({message: "incorrectPassword"})
-  })
+    else{
+      res.json({message: "incorrectPassword"});
+      return;
+    }
+    })
 })
 
 app.post("/deleteUser",(req,res)=>{
   let datas = req.body;
-  res.json("Deleted");  
+  res.json("Deleted");
+  return;  
 })

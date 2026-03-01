@@ -9,6 +9,7 @@ if(!user.id)
   router.back()
 
 let model = reactive({
+  userID: user.id,
   firstName: user.firstname,
   lastName: user.lasttname,
   middleName: user.middlename,
@@ -18,6 +19,7 @@ let model = reactive({
 })
 
 let card = reactive({
+  userID: user.id,
   cardnumber: user.cardNumber,
   expirationMonth: user.expirationMonth,
   expirationYear: user.expirationYear
@@ -30,15 +32,6 @@ let passwords = reactive({
     confirmPassword:""
 })
 
-
-console.log(model);
-
-console.log(card);
-
-
-console.log(passwords);
-
-
 let messages =
 {
   editing: "Biztos menti a változtatásokat?",
@@ -50,6 +43,7 @@ let messages =
 
 let modelCopie = {... model};
 let cardCopie = {... card};
+let passwordCopie = {... passwords};
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 let changedModel = ref(false);
 let changedCard = ref(false);
@@ -66,6 +60,15 @@ function validateUserDatas(){
     return false;
 
   if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phoneNum))
+    return false;
+
+  if(!/^[a-zA-Z]+$/.test(model.firstName))
+    return false;
+
+  if(!/^[a-zA-Z]+$/.test(model.lastName))
+    return false;
+
+  if(model.middleName!="" && !/^[a-zA-Z]+$/.test(model.middleName))
     return false;
 
   if(!/^[0-9]{13,19}$/.test(card.cardnumber))
@@ -89,7 +92,8 @@ function validatePasswords()
   if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,40}$/.test(passwords.newPassword))
     return false;
 
-  if (passwords.newPassword !== passwords.confirmPassword || passwords.newPassword === passwords.currentPassword)
+  if (passwords.newPassword !== passwords.confirmPassword ||
+       passwords.newPassword === passwords.currentPassword)
     return false;
 
   return true;
@@ -119,15 +123,49 @@ function changeDatas(obj)
     url = obj == model?"updateUser/Privacy":"updateUser/Card";
   }
   axios.post(`http://localhost:3000/${url}`,obj)
-  .then((respose)=>{
+  .then((response)=>{
 
-    console.log(respose.data)
-    if(respose.data.message == "incorrectPassword")
+    console.log(response.data);
+    if(response.data.message == "incorrectPassword")
     {
       messageBoxmessage.value = messages.passwordError;
       showOkBtn.value = true;
       messageBox("open");
     }
+
+    if(response.data.affectedRows || response.data[0]?.affectedRows)
+    {
+      try{
+        user.firstname = response.data[1].first_name;
+        user.lasttname = response.data[1].last_name;
+        user.middlename = response.data[1].middle_name;
+        user.phone_number = response.data[1].phone_number;
+        user.email = response.data.user[1].email;
+        user.gender = response.data.user[1].gender;
+        user.user_type = response.data.user[1].user_type;
+        user.cardNumber = response.data.user[1].card_number;
+
+        try{
+          user.expirationMonth = response.data[1].expiration.split("/")[0];
+          user.expirationYear = response.data[1].expiration.split("/")[1];
+        }        
+        catch
+        {
+          user.expirationMonth = "";
+          user.expirationYear = "";
+        }
+      }
+      catch
+      {
+        
+      }
+
+      messageBoxmessage.value = messages.succesEditing;
+      showOkBtn.value = true;
+      messageBox("open");
+      restoreDatas(obj);
+    }
+
   })
   .catch((err)=>{console.error(err)})
 
@@ -136,12 +174,14 @@ function changeDatas(obj)
 
 function restoreDatas(obj)
 {
-  let copie = obj == model?modelCopie:cardCopie;
-  let changed = obj == model?changedModel:changedCard;
+  let copie = obj == model?modelCopie:obj==card?cardCopie:passwordCopie;
+  let changed = obj == model?changedModel:obj==card?changedCard:null;
+
   for(let x in obj)
   {
     if(obj[x]!=copie[x]){
-      changed.value = false;
+      if(changed!=null)
+        changed.value = false;
       obj[x]=copie[x];
     }
   }
@@ -272,7 +312,8 @@ watch(card,()=>
 
               <!-- Személyes adatok form megjelenítő gomb -->
               <div class="row justify-content-center col-12">  
-                <button class="col-3 mx-2 my-2 btn btn-outline-light"
+                <button class="col-6 col-sm-5 col-md-3 
+                               text-nowrap mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePrivacyDatas">
                   Személyes adatok
@@ -444,7 +485,8 @@ watch(card,()=>
 
               <!-- Kártya információk form megjelenítő gomb -->
               <div class="row justify-content-center col-12">  
-                <button class="col-3 mx-2 my-2 btn btn-outline-light"
+                <button class="col-6 col-sm-5 col-md-3 
+                               text-nowrap mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpaseCardDatas">
                   Kártya adatok
@@ -544,7 +586,8 @@ watch(card,()=>
 
               <!-- Jelszó form megjelenítő gomb -->
               <div class="row justify-content-center col-12">
-                <button class="col-3 mx-2 my-2 btn btn-outline-light"
+                <button class="col-6 col-sm-5 col-md-3 
+                               text-nowrap mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePasswords">
                   Jelszó módosítása
@@ -596,6 +639,9 @@ watch(card,()=>
                       </div>
                       <div class="form-text text-white fw-bold">
                         {{ $t("register.password_requirement_second") }}
+                      </div>
+                      <div class="form-text text-white fw-bold">
+                        A régi és az új jelszó nem egyezhet
                       </div>
                   </div>
 

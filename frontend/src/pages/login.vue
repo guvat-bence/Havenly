@@ -52,8 +52,6 @@ let model = reactive({
             user.expirationMonth = "";
             user.expirationYear = "";
           }
-
-          user.cvv = response.data.user.cvv;
           user.websitekey = "havenly"
           // Töltse újra az oldalt annak érdekében 
           // hogy a felhasználót minden komponens érzékelni tudja
