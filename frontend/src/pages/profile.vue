@@ -37,12 +37,13 @@ let messages =
   editing: "Biztos menti a változtatásokat?",
   deleting:"Biztos törli a fiókját?",
   passwordError:"Hibás jelenlegi jelszót adott meg!",
+  emailError:"A megadott email cím már foglalt! ",
   succesEditing:"Sikeres változtatás!",
-  succesDeleting:"Siekeres törlés!"
+  succesDeleting:"Sikeresen törölte a fiókját!"
 }
 
-let modelCopie = {... model};
-let cardCopie = {... card};
+let modelCopie = reactive({... model});
+let cardCopie = reactive({... card});
 let passwordCopie = {... passwords};
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 let changedModel = ref(false);
@@ -54,6 +55,7 @@ let showpasscheck = ref(false);
 let showOkBtn = ref(false);
 
 // Adatokat ellenőrzése
+
 function validateUserDatas(){
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
@@ -62,13 +64,13 @@ function validateUserDatas(){
   if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phoneNum))
     return false;
 
-  if(!/^[a-zA-Z]+$/.test(model.firstName))
+  if(!/^[\p{L} ]+$/u.test(model.firstName))
     return false;
 
-  if(!/^[a-zA-Z]+$/.test(model.lastName))
+  if(!/^[\p{L} ]+$/u.test(model.lastName))
     return false;
 
-  if(model.middleName!="" && !/^[a-zA-Z]+$/.test(model.middleName))
+  if(model.middleName!="" && !/^[\p{L} ]+$/u.test(model.middleName))
     return false;
 
   if(!/^[0-9]{13,19}$/.test(card.cardnumber))
@@ -82,6 +84,11 @@ function validateUserDatas(){
 
   return true;
 };
+
+function deleteCardDatas()
+{
+  // Még nincs kész, össze kell kötni a changeDatas functionnal
+}
 
 function validatePasswords()
 {
@@ -97,6 +104,40 @@ function validatePasswords()
     return false;
 
   return true;
+}
+
+function removeDeletedUserValues()
+{
+  user.id = "";
+  user.firstname = "";
+  user.lasttname = "";
+  user.middlename = "";
+  user.phone_number = "";
+  user.gender = "";
+  user.user_type = "";
+  user.cardNumber = "";
+  user.expiration = "";
+  router.push("/");
+}
+
+function setNewDatas(obj)
+{
+
+  if(obj?.card)
+  {
+    Object.assign(modelCopie,model);
+    Object.assign(cardCopie,card);
+    changedModel.value = false;
+    changedCard.value = false;
+    
+  }
+  else
+  {
+    let copie = obj == model?modelCopie:cardCopie;
+    let changed = obj == model?changedModel:changedCard;
+    Object.assign(copie,obj);
+    changed.value = false;
+  }
 }
 
 function changeDatas(obj)
@@ -132,18 +173,32 @@ function changeDatas(obj)
       showOkBtn.value = true;
       messageBox("open");
     }
+    else if(response.data.message == "reservedEmail")
+    {
+      messageBoxmessage.value = messages.emailError;
+      showOkBtn.value = true;
+      messageBox("open");
+    }
+    else if(response.data.message == "deletedProfile")
+    {
 
-    if(response.data.affectedRows || response.data[0]?.affectedRows)
+      messageBoxmessage.value = messages.succesDeleting;
+      showOkBtn.value = true;
+      messageBox("open");
+    }
+
+    if(response.data?.affectedRows || response.data[0]?.affectedRows)
     {
       try{
+        response.data[1] = response.data[1][0];
         user.firstname = response.data[1].first_name;
         user.lasttname = response.data[1].last_name;
         user.middlename = response.data[1].middle_name;
         user.phone_number = response.data[1].phone_number;
-        user.email = response.data.user[1].email;
-        user.gender = response.data.user[1].gender;
-        user.user_type = response.data.user[1].user_type;
-        user.cardNumber = response.data.user[1].card_number;
+        user.email = response.data[1].email;
+        user.gender = response.data[1].gender;
+        user.user_type = response.data[1].user_type;
+        user.cardNumber = response.data[1].card_number;
 
         try{
           user.expirationMonth = response.data[1].expiration.split("/")[0];
@@ -154,16 +209,18 @@ function changeDatas(obj)
           user.expirationMonth = "";
           user.expirationYear = "";
         }
+
+        setNewDatas(obj);
+
       }
       catch
       {
-        
+        restoreDatas(obj);
       }
 
       messageBoxmessage.value = messages.succesEditing;
       showOkBtn.value = true;
       messageBox("open");
-      restoreDatas(obj);
     }
 
   })
@@ -455,7 +512,8 @@ watch(card,()=>
 
                     <!-- Mentés gomb -->
                     <button v-if="changedModel==true && changedCard!=true"
-                            @click="messageBox('open');messageBoxmessage = messages.editing"
+                            @click="messageBox('open');
+                                    messageBoxmessage = messages.editing"
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                    mx-2 my-2 btn btn-light">
@@ -464,7 +522,8 @@ watch(card,()=>
 
                     <!-- Összes mentése gomb -->
                     <button v-if="changedModel==true && changedCard==true"
-                            @click="messageBox('open')"
+                            @click="messageBox('open');
+                                    messageBoxmessage = messages.editing"
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3 
                                    mx-2 my-2 text-nowrap btn btn-light">
@@ -554,7 +613,8 @@ watch(card,()=>
 
                       <!-- Mentés gomb -->
                       <button v-if="changedModel!=true && changedCard==true"
-                              @click="messageBox('open');messageBoxmessage = messages.editing"
+                              @click="messageBox('open');
+                                      messageBoxmessage = messages.editing"
                               type="button"
                               class="col-12 col-sm-12 col-md-4 col-lg-3
                                      mx-2 my-2 btn btn-light">
@@ -563,7 +623,8 @@ watch(card,()=>
 
                       <!-- Összes mentése gomb -->
                       <button v-if="changedModel==true && changedCard==true"
-                              @click="messageBox('open')"
+                              @click="messageBox('open');
+                                      messageBoxmessage = messages.editing"
                               type="button"
                               class="col-12 col-sm-12 col-md-4 col-lg-3
                                      text-nowrap mx-2 my-2 btn btn-light">
@@ -579,6 +640,13 @@ watch(card,()=>
                         Mégsem
                       </button>
 
+                       <!-- Mégse gomb -->
+                      <button @click="deleteCardDatas(card)"
+                              type="button" 
+                              class="col-12 col-sm-12 col-md-4 col-lg-3 
+                                     mx-2 my-2 btn btn-danger">
+                        Adatok törlése
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -604,10 +672,10 @@ watch(card,()=>
                   Jelszó módosítása
                 </h4>
 
-                <div class="px-3 py-3 border rounded-3">
+                <div class="px-3 py-3 row justify-content-center border rounded-3">
 
                   <!-- Eredeti elszó-->
-                  <div class="mb-3">
+                  <div class="mb-3 col-10">
                     <label for="originalPassword" 
                           class="form-label">
                       Eredeti jelszó
@@ -622,7 +690,7 @@ watch(card,()=>
                   </div>
 
                   <!-- Jelszó-->
-                  <div class="mb-3">
+                  <div class="mb-3 col-10">
                     <label for="newPassword" 
                           class="form-label">
                       Új jelszó
@@ -646,7 +714,7 @@ watch(card,()=>
                   </div>
 
                   <!-- Jelszó mégegyszer -->
-                  <div class="mb-3">
+                  <div class="mb-3 col-10">
                     <label for="inputconfirmpass" 
                           class="form-label">
                       Új jelszó mégegyszer
@@ -771,8 +839,10 @@ watch(card,()=>
 
               <!-- ok gomb -->
               <button v-if="showOkBtn==true"
-                      @click="messageBox('close');
-                              showOkBtn = false;"
+                      @click="messageBox('close'); 
+                              messageBoxmessage == messages.succesDeleting ? 
+                                  removeDeletedUserValues() : 
+                                  showOkBtn = false;"
                       type="button" 
                       class="col-8 col-sm-5 col-md-5 col-lg-4 
                              mx-2 my-2 btn btn-light">

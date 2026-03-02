@@ -2,8 +2,8 @@
 import router from '@/router';
 import { user } from '@/store/user';
 // Ha nincs bejelentkezve a felhasználó dobja vissza az előző oldalra
-// if(!user.id)
-// 	router.back()
+if(!user.id)
+	router.back()
 
 
 	let logout = () => {
@@ -15,8 +15,9 @@ import { user } from '@/store/user';
 		user.gender = "";
 		user.user_type = "";
 		user.cardNumber = "";
-		user.expiration = "";
-		user.cvv = "";
+		user.expirationMonth = "";
+		user.expirationYear = "";
+
 		router.push("/")
 	},
 	cancel = () => {

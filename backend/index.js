@@ -683,6 +683,57 @@ app.post("/updateUser/Privacy",(req,res)=>{
            (err,response)=>{
     if(err)
     {
+      if(err.code='ER_DUP_ENTRY')
+      {
+        res.json({message: "reservedEmail"});
+        return;
+      }
+      else{
+        console.error("Hiba a user módosításakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+    }
+
+    if(response.affectedRows)
+    {
+      db.query(`SELECT
+                  first_name,
+                  last_name,
+                  middle_name,
+                  email,
+                  phone_number,
+                  gender,
+                  card_number,
+                  expiration
+                FROM users
+                WHERE id =?`,[datas.userID],(err,datas)=>{
+        
+        if(err)
+        {
+          console.error("Hiba a user beolvasásakor", err);
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+        res.json([response,datas]);
+        return;
+      })
+    }
+  })
+});
+
+app.post("/updateUser/Card",(req,res)=>{
+  let datas = req.body;
+  db.query(`UPDATE users
+            SET card_number =?,
+                expiration = ?
+            WHERE id = ?`,
+           [datas.cardnumber,`${datas.expirationMonth}/${datas.expirationYear}`,
+            datas.userID],
+           (err,response)=>{
+    if(err)
+    {
       console.error("Hiba a user módosításakor", err);
       res.status(500).send("Adatbázis hiba");
       return;
@@ -713,20 +764,67 @@ app.post("/updateUser/Privacy",(req,res)=>{
         return;
       })
     }
-  })
-})
-
-app.post("/updateUser/Card",(req,res)=>{
-  let datas = req.body;
-  res.json(datas);
-  return;  
-})
+  });  
+});
 
 app.post("/updateUser/allDatas",(req,res)=>{
   let datas = req.body;
-  res.json(datas);
-  return;  
-})
+  db.query(`UPDATE users
+            SET first_name = ?,
+                last_name = ?,
+                middle_name = ?,
+                email = ?,
+                phone_number = ?,
+                gender = ?,
+                card_number = ?,
+                expiration = ?
+            WHERE id = ?`,
+           [datas.model.firstName,datas.model.lastName,datas.model.middleName,
+            datas.model.email,datas.model.phoneNum,datas.model.gender,
+            datas.card.cardnumber,`${datas.card.expirationMonth}/${datas.card.expirationYear}`,
+            datas.model.userID],
+           (err,response)=>{
+    if(err)
+    {
+      if(err.code='ER_DUP_ENTRY')
+      {
+        res.json({message: "reservedEmail"});
+        return;
+      }
+      else{
+        console.error("Hiba a user módosításakor", err);
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+    }
+
+    if(response.affectedRows)
+    {
+      db.query(`SELECT
+                  first_name,
+                  last_name,
+                  middle_name,
+                  email,
+                  phone_number,
+                  gender,
+                  card_number,
+                  expiration
+                FROM users
+                WHERE id =?`,[datas.model.userID],(err,datas)=>{
+        
+        if(err)
+        {
+          console.error("Hiba a user beolvasásakor", err);
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+        res.json([response,datas]);
+        return;
+      })
+    }
+  });  
+});
 
 app.post("/updateUser/Password",(req,res)=>{
   let datas = req.body;
@@ -770,7 +868,19 @@ app.post("/updateUser/Password",(req,res)=>{
 })
 
 app.post("/deleteUser",(req,res)=>{
-  let datas = req.body;
-  res.json("Deleted");
-  return;  
+ let datas = req.body.userID;
+  db.query(`DELETE FROM users
+            WHERE id = ?`,
+          [datas],(err,result)=>{
+    if(err)
+    {
+     console.error("Hiba a user törlésekor", err);
+     res.status(500).send("Adatbázis hiba");
+     return;
+    }
+
+    res.json({message: "deletedProfile"});
+    return;
+
+  });  
 })

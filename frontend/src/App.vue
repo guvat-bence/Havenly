@@ -14,7 +14,6 @@ let checkforUser = () => {
     localStorage.removeItem("user_type");
     localStorage.removeItem("card_number");
     localStorage.removeItem("expiration");
-    localStorage.removeItem("cvv");
     localStorage.removeItem("accommodation_full_price");
     localStorage.removeItem("rent_beginning");
     localStorage.removeItem("rent_end");

@@ -29,6 +29,5 @@ watch(user,(newUser) => {
   localStorage.setItem("card_number", newUser.cardNumber); 
   localStorage.setItem("expirationMonth", newUser.expirationMonth); 
   localStorage.setItem("expirationYear", newUser.expirationYear);
-  localStorage.setItem("cvv", newUser.cvv); 
   localStorage.setItem("websitekey",newUser.websitekey);
 },{deep:true});
