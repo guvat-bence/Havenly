@@ -884,3 +884,45 @@ app.post("/deleteUser",(req,res)=>{
 
   });  
 })
+app.post("/deleteCardDatas",(req,res)=>{
+  let datas = req.body;
+  db.query(`UPDATE users
+            SET card_number =NULL,
+                expiration = NULL
+            WHERE id = ?`,
+           [datas.userID],
+           (err,response)=>{
+    if(err)
+    {
+      console.error("Hiba a user módosításakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    if(response.affectedRows)
+    {
+      db.query(`SELECT
+                  first_name,
+                  last_name,
+                  middle_name,
+                  email,
+                  phone_number,
+                  gender,
+                  card_number,
+                  expiration
+                FROM users
+                WHERE id =?`,[datas.userID],(err,datas)=>{
+        
+        if(err)
+        {
+          console.error("Hiba a user beolvasásakor", err);
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+          res.json({datas,message: "deletedCardDatas"});
+          return;
+      })
+    }
+  })
+});

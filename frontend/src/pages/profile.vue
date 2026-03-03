@@ -73,22 +73,17 @@ function validateUserDatas(){
   if(model.middleName!="" && !/^[\p{L} ]+$/u.test(model.middleName))
     return false;
 
-  if(!/^[0-9]{13,19}$/.test(card.cardnumber))
+  if(card.cardnumber!="" && !/^[0-9]{13,19}$/.test(card.cardnumber))
     return false;
 
-  if(card.expirationMonth.length==0)
+  if(card.expirationMonth!="" && card.expirationMonth.length==0)
     return false;
 
-  if(card.expirationYear.length==0)
+  if(card.expirationYear!="" && card.expirationYear.length==0)
     return false;
 
   return true;
 };
-
-function deleteCardDatas()
-{
-  // Még nincs kész, össze kell kötni a changeDatas functionnal
-}
 
 function validatePasswords()
 {
@@ -144,9 +139,14 @@ function changeDatas(obj)
 {
   let url = "updateUser/allDatas";
 
-  if(messageType.value =="delete")
+  if(messageType.value =="deleteUser")
   {
     url = "deleteUser";
+    messageType.value = "";
+  }
+  else if(messageType.value=="deleteCardDatas")
+  {
+    url = "deleteCardDatas";
     messageType.value = "";
   }
   else if(messageType.value=="password")
@@ -181,7 +181,6 @@ function changeDatas(obj)
     }
     else if(response.data.message == "deletedProfile")
     {
-
       messageBoxmessage.value = messages.succesDeleting;
       showOkBtn.value = true;
       messageBox("open");
@@ -247,7 +246,14 @@ function restoreDatas(obj)
 function deleteUser()
 {
   messageBoxmessage.value = messages.deleting;
-  messageType.value = "delete";
+  messageType.value = "deleteUser";
+  messageBox("open");
+}
+
+function deleteCardDatas()
+{
+  messageBoxmessage.value = messages.deleting;
+  messageType.value = "deleteCardDatas";
   messageBox("open");
 }
 
@@ -641,7 +647,10 @@ watch(card,()=>
                       </button>
 
                        <!-- Mégse gomb -->
-                      <button @click="deleteCardDatas(card)"
+                      <button v-if="card.cardnumber!=''|| 
+                                    card.expirationMonth!='' || 
+                                    card.expirationYear!=''"
+                              @click="deleteCardDatas(card)"
                               type="button" 
                               class="col-12 col-sm-12 col-md-4 col-lg-3 
                                      mx-2 my-2 btn btn-danger">
@@ -795,6 +804,7 @@ watch(card,()=>
               tabindex="0">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores cumque excepturi nemo odio qui. Quam magni odio debitis eius temporibus ex natus, alias doloribus veritatis, quasi eligendi, ratione nulla voluptates.
           </div>
+          
           <div class="tab-pane fade"
               id="nav-chats" 
               role="tabpanel" 
