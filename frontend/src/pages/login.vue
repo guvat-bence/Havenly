@@ -71,9 +71,6 @@ let model = reactive({
     if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()_\-+= \[\] {};:'",.<>/?]{6,40}$/.test(model.password)) 
       return false
 
-    if(model.password.length >= 40 || model.password.length <= 6)
-      return false;
-
     return true;
   }
 
