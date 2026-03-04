@@ -51,7 +51,7 @@ watch(searchInput,(value) => {
                     text-center align-items-center border border-2 rounded-3 
                     col-12 col-sm-12 col-md-8 col-lg-5">
           <h3>
-            Az élény leírása és ára csak tájékoztató jellegű.
+           	{{ $t("about.information_text") }}
           </h3>
         </div>
       </div>

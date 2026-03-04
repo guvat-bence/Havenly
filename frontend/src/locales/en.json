@@ -375,8 +375,9 @@
     "sum": "total:",
     "number_of_guest": "number of guests",
     "human": "person",
-    "login": "login",
-    "renting": "booking"
+    "login": "Login",
+    "renting": "Booking",
+    "information_text":"The description and price of the experience are for informational purposes only."
   },
   "about_us": {
     "about_us": "About Us",
@@ -416,7 +417,13 @@
     "password_again":"Confirm password",
     "show_password":"Show password:",
     "next":"Next",
-    "previous":"Back"
+    "previous":"Back",
+    "gender":"Gender",
+    "male":"Male",
+    "female":"Female",
+    "succes_message":"Successful registration!",
+    "email_message":"This email is already taken!",
+    "phone_number_message":"This phone number is already taken!"
   },
   "login":
   {

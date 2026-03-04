@@ -380,7 +380,8 @@
     "number_of_guest": "宿泊人数",
     "human": "人",
     "login": "ログイン",
-    "renting": "予約"
+    "renting": "予約",
+    "information_text":"体験の説明および価格は参考情報としてのみ提供されています。"
   },
   "about_us":
   {
@@ -422,7 +423,13 @@
     "password_again":"パスワード確認",
     "show_password":"パスワードを表示:",
     "next":"次へ",
-    "previous":"戻る"
+    "previous":"戻る",
+    "gender":"性別",
+    "male":"男性",
+    "female":"女性",
+    "succes_message":"登録が完了しました！",
+    "email_message":"このメールアドレスは既に使用されています！",
+    "phone_number_message":"この電話番号は既に使用されています！"
   },
   "login":
   {

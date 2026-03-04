@@ -316,7 +316,7 @@ app.post('/register', (req, res) => {
       if (emailRows.length > 0) {
         return res.json({
           success: false,
-          message: "Ez az email már foglalt"
+          message: "Ez az email már foglalt!"
         });
       }
 
@@ -331,7 +331,7 @@ app.post('/register', (req, res) => {
           if (phoneRows.length > 0) {
             return res.json({
               success: false,
-              message: "Ez a telefonszám már foglalt"
+              message: "Ez a telefonszám már foglalt!"
             });
           }
 

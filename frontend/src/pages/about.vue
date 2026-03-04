@@ -764,7 +764,7 @@ watch(model,()=>
 							<span>/ {{ $t("card.human") }}</span>
 						</p>
 						<p>
-							Az élény leírása és ára csak tájékoztató jellegű.
+							{{ $t("about.information_text") }}
 						</p>
 					</div>
 

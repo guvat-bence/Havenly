@@ -27,6 +27,12 @@ let step = ref(0),
     password: "",
     confirmpass: ""
   }),
+  messages= 
+  {
+    email:"Ez az email már foglalt!",
+    phone_number:"Ez a telefonszám már foglalt!",
+    success:"Sikeres regisztráció!"
+  },
 
   // Adatokat ellenőrzése
   validateForm = () => {
@@ -326,7 +332,8 @@ watch(model, () => {
               </div>
               <!-- Üzenet -->
               <div class="text-center">
-                <h6 class="display-6">{{ message }}</h6>
+                <h6 class="display-6">{{message==messages.success?$t("register.succes_message") :
+                                          message==messages.email?$t("register.email_message"):$t("register.phone_number_message") }}</h6>
               </div>
             </div>
           </div>
