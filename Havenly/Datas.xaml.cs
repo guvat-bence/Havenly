@@ -88,7 +88,7 @@ namespace Havenly
             string colName = "";
             string value = "";
 
-            if(operation != "read")
+            if(operation != "read" && operation != "")
             {
                 applyorDeclineBorder.Visibility = Visibility.Visible;
             }

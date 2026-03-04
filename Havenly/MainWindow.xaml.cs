@@ -99,17 +99,20 @@ namespace Havenly
 
                 if(command.ExecuteNonQuery()>=1) 
                 {
-                    MessageBox.Show("Sikeresen végrehajtva");
+                    MessageBox.Show("Sikeresen végrehajtva!");
+                    operation = "";
                 }
                 else
                 {
                     MessageBox.Show("Nem lett végrehajtva!");
+                    operation = "";
                 }
             }
             catch (Exception e)
             {
 
                 MessageBox.Show(e.Message);
+                operation = "";
             }
             finally
             {
@@ -287,7 +290,9 @@ namespace Havenly
                 {
                    
                     enable_btns();
+                    operation = "";
                 }
+                
             }
         }
         public void saveEditedRow(DataRowView row)
