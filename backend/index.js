@@ -393,8 +393,7 @@ app.post('/login', (req, res) => {
       gender,
       user_type,
       card_number,
-      expiration,
-      cvv
+      expiration
     FROM users
     WHERE email = ? AND password = ?
     LIMIT 1`;

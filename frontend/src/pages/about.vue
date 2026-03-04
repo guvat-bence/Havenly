@@ -40,18 +40,18 @@ let rentedDayIds = ref([]);
 let daysInMonth = ref("");
 
 let currentYear= new Date().getFullYear();
-let todayMonth = new Date().getMonth() + 1;
+let todayMonth = new Date().getMonth();
 
 //lehívja a dátumokat és az alapján hozza létra a naptárba kellő napokat.
 //megnézi melyik nap folglat és melyik szabad, ez alapján add neki tulajdonságot is.
 function makeCalendar(plusmonth)
 {
 	// ha a jelenlegi hónap nagyobb mint 0 akkor bele megy
-	if(todayMonth>0)
+	if(todayMonth)
 	{
 		// változók létrehozása a naptárhoz
 		calendar.value=[];
-		currentMonth = new Date().getMonth()+plusmonth;
+		currentMonth = plusmonth==0?new Date().getMonth():plusmonth;
 		let currentDay= new Date().getDate();
 		daysInMonth.value = new Date(currentYear,currentMonth,0).getDate();
 		let lastDayinPriviousMonth  = new Date(currentYear,currentMonth-1,0).getDay();
@@ -280,7 +280,7 @@ if(props.table_name == "accommodations")
 {
 	setTimeout(()=>
 	{
-		makeCalendar(1);
+		makeCalendar(0);
 	},150);
 }
 
@@ -469,7 +469,7 @@ function modalImgResize()
 function monthNext()
 {
 	// meghívja a makeCalendar függvényt a következő hónappal
-	makeCalendar(currentMonth);
+	makeCalendar(currentMonth+1);
 
 	// meghívjuk a showDays függvényt.
 	showDays();
@@ -479,7 +479,7 @@ function monthNext()
 function monthPrevious()
 {
 	// meghívja a makeCalendar függvényt az előző hónappal
-	makeCalendar(currentMonth-2);
+	makeCalendar(currentMonth-1);
 
 	// meghívjuk a showDays függvényt.
 	showDays();
@@ -753,6 +753,21 @@ watch(model,()=>
 						<p>	{{ item[0].description }}</p>
 					</div>
 
+					<!-- Élénye árai, tájékoztató jellegű szöveg -->
+					<div v-if="props.table_name=='experiences'"
+							 class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
+                     text-center align-items-center border border-2 rounded-3 
+										 col-12 col-sm-12 col-md-8 col-lg-3">
+						<p class="fw-bold">{{(Math.round(item[0].price * 
+																	selectedCurrency.currencyMultiplier)).toLocaleString('fi-FI')}} 
+								 					 {{ selectedCurrency.currencyShortedName }}
+							<span>/ {{ $t("card.human") }}</span>
+						</p>
+						<p>
+							Az élény leírása és ára csak tájékoztató jellegű.
+						</p>
+					</div>
+
 					<!-- A lefoglaláshoz kellő form -->
 					<div v-if="props.table_name=='accommodations'" 
                class="row justify-content-center text-center mx-2 my-3
@@ -806,7 +821,7 @@ watch(model,()=>
 									<button class="btn btn-secondary"
 													id="monthNext"
 													type="button"
-													:disabled="currentMonth === 12"
+													:disabled="currentMonth === 11"
 													@click="monthNext()">
 										&gt;
 									</button>
@@ -815,7 +830,7 @@ watch(model,()=>
 								<!-- a naptár alján lévő év és hónap -->
 								<p v-if="calendar.length>0" 
 									 class="col-12 m-0">
-									{{`${currentYear}. ${monthsname[currentMonth-1]}`}}
+									{{`${currentYear}. ${monthsname[currentMonth]}`}}
 								</p>
 
 								<p v-if="rentedDayIds.length!=0" 

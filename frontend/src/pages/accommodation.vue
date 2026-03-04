@@ -42,22 +42,24 @@ watch(searchInput,(value) => {
 </script>
 <template>
   <div class="accommodation">
+    <div class="container text-white">
 
-	<Searchbar class="justify-content-center"
-             tablename="Accomodation"/>
+    <Searchbar class="justify-content-center"
+              tablename="Accomodation"/>
 
-    <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
-    <div v-for="x in data">
-      <div >
-        <!-- kiegészítjük az országok neveivel a címet -->
-        <h1 class="display-5 text-center text-white"
-            v-if="!searchInput">
-         {{ $t("accommodations.title_first_part") }} {{ x.country_name }} {{  $t("accommodations.title_second_part") }}
-        </h1>
+      <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
+      <div v-for="x in data">
+        <div >
+          <!-- kiegészítjük az országok neveivel a címet -->
+          <h1 class="display-5 text-center"
+              v-if="!searchInput">
+          {{ $t("accommodations.title_first_part") }} {{ x.country_name }} {{  $t("accommodations.title_second_part") }}
+          </h1>
 
-        <!-- meghívjuk hozzá a kártya.vue-t -->
-        <Cards tableName="accommodations" 
-              :country_name="x.country_name"/>
+          <!-- meghívjuk hozzá a kártya.vue-t -->
+          <Cards tableName="accommodations" 
+                :country_name="x.country_name"/>
+        </div>
       </div>
     </div>
   </div>
