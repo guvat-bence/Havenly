@@ -43,7 +43,7 @@
     "title_second_part":"kínál"
     
   },
-    "experiences":
+  "experiences":
   {
     "title_first_part":"Élmények amiket",
     "title_second_part":"kínál"
@@ -84,7 +84,8 @@
     "number_of_guest":"Személyek száma",
     "human":"fő",
     "login":"Bejelentkezés",
-    "renting":"Foglalás"
+    "renting":"Foglalás",
+    "information_text":"Az élény leírása és ára csak tájékoztató jellegű."
   },
   "search":{
     "search_title":"Keresés",
@@ -419,16 +420,19 @@
     "email":"Email cím",
     "phone_number":"Telefonszám",
     "example_phone_number":"Példa: +36301234567",
-    "gender":"Nem",
-    "male":"férfi",
-    "female":"nő",
     "password":"Jelszó",
     "password_requirement":"A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot",
     "password_requirement_second":"Minimum 6 karaktert kell tartalmaznia",
     "password_again":"Megerősítő jelszó",
     "show_password":"Jelszó megjelenítése:",
     "next":"Következő",
-    "previous":"Vissza"
+    "previous":"Vissza",
+    "gender":"Nem",
+    "male":"férfi",
+    "female":"nő",
+    "succes_message":"Sikeres regisztráció!",
+    "email_message":"Ez az email már foglalt!",
+    "phone_number_message":"Ez a telefonszám már foglalt!"
   },
   "login":
   {

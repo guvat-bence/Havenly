@@ -380,7 +380,8 @@
     "number_of_guest": "број гостију",
     "human": "особа",
     "login": "пријава",
-    "renting": "резервација"
+    "renting": "резервација",
+    "information_text":"Опис и цена искуства служе само у информативне сврхе."
   },
   "about_us":
   {
@@ -422,7 +423,13 @@
     "password_again":"Потврда лозинке",
     "show_password":"Прикажи лозинку:",
     "next":"Даље",
-    "previous":"Назад"
+    "previous":"Назад",
+    "gender":"Пол",
+    "male":"Мушки",
+    "female":"Женски",
+    "succes_message":"Успешна регистрација!",
+    "email_message":"Овај имејл је већ заузет!",
+    "phone_number_message":"Овај број телефона је већ заузет!"
   },
   "login":
   {

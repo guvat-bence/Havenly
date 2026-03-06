@@ -40,20 +40,33 @@ watch(searchInput,(value) => {
 <template>
   
   <div class="experience">
+    <div class="container text-white">
 
-    <Searchbar class="justify-content-center"
-               tablename="Expreience"/>
+      <Searchbar class="justify-content-center"
+                tablename="Expreience"/>
 
-    <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
-    <div v-for="x in data">
-      <!-- kiegészítjük az országok neveivel a címet -->
-      <h1 class="display-5 text-center text-white" v-if="!searchInput">
-       {{ $t("experiences.title_first_part") }} {{ x.country_name }} {{  $t("experiences.title_second_part") }}
-      </h1>
+      <div class="row justify-content-center">
+        <!-- Élénye árai, tájékoztató jellegű szöveg -->
+        <div class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
+                    text-center align-items-center border border-2 rounded-3 
+                    col-12 col-sm-12 col-md-8 col-lg-5">
+          <h3>
+           	{{ $t("about.information_text") }}
+          </h3>
+        </div>
+      </div>
 
-      <!-- meghívjuk hozzá a kártya.vue-t -->
-      <Cards tableName="experiences" 
-            :country_name="x.country_name"/>
+      <!-- 5-ször ismételjük mert 5 országoz hívunk le -->
+      <div v-for="x in data">
+        <!-- kiegészítjük az országok neveivel a címet -->
+        <h1 class="display-5 text-center" v-if="!searchInput">
+        {{ $t("experiences.title_first_part") }} {{ x.country_name }} {{  $t("experiences.title_second_part") }}
+        </h1>
+
+        <!-- meghívjuk hozzá a kártya.vue-t -->
+        <Cards tableName="experiences" 
+              :country_name="x.country_name"/>
+      </div>
     </div>
   </div>
 </template>

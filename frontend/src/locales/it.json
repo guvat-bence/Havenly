@@ -379,8 +379,9 @@
     "sum": "totale:",
     "number_of_guest": "numero di ospiti",
     "human": "persona",
-    "login": "accesso",
-    "renting": "prenotazione"
+    "login": "Accesso",
+    "renting": "Prenotazione",
+    "information_text":"La descrizione e il prezzo dell'esperienza sono solo a scopo informativo."
   },
   "about_us":
   {
@@ -422,7 +423,13 @@
     "password_again":"Conferma password",
     "show_password":"Mostra password:",
     "next":"Avanti",
-    "previous":"Indietro"
+    "previous":"Indietro",
+    "gender":"Genere",
+    "male":"Maschile",
+    "female":"Femminile",
+    "succes_message":"Registrazione avvenuta con successo!",
+    "email_message":"Questa email è già in uso!",
+    "phone_number_message":"Questo numero di telefono è già in uso!"
   },
   "login":
   {

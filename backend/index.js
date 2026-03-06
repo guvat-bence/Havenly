@@ -316,7 +316,7 @@ app.post('/register', (req, res) => {
       if (emailRows.length > 0) {
         return res.json({
           success: false,
-          message: "Ez az email már foglalt"
+          message: "Ez az email már foglalt!"
         });
       }
 
@@ -331,7 +331,7 @@ app.post('/register', (req, res) => {
           if (phoneRows.length > 0) {
             return res.json({
               success: false,
-              message: "Ez a telefonszám már foglalt"
+              message: "Ez a telefonszám már foglalt!"
             });
           }
 
@@ -393,8 +393,7 @@ app.post('/login', (req, res) => {
       gender,
       user_type,
       card_number,
-      expiration,
-      cvv
+      expiration
     FROM users
     WHERE email = ? AND password = ?
     LIMIT 1`;
@@ -884,3 +883,45 @@ app.post("/deleteUser",(req,res)=>{
 
   });  
 })
+app.post("/deleteCardDatas",(req,res)=>{
+  let datas = req.body;
+  db.query(`UPDATE users
+            SET card_number =NULL,
+                expiration = NULL
+            WHERE id = ?`,
+           [datas.userID],
+           (err,response)=>{
+    if(err)
+    {
+      console.error("Hiba a user módosításakor", err);
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    if(response.affectedRows)
+    {
+      db.query(`SELECT
+                  first_name,
+                  last_name,
+                  middle_name,
+                  email,
+                  phone_number,
+                  gender,
+                  card_number,
+                  expiration
+                FROM users
+                WHERE id =?`,[datas.userID],(err,datas)=>{
+        
+        if(err)
+        {
+          console.error("Hiba a user beolvasásakor", err);
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+          res.json({datas,message: "deletedCardDatas"});
+          return;
+      })
+    }
+  })
+});
