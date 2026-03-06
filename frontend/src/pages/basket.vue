@@ -3,8 +3,25 @@ import { useRouter } from 'vue-router';
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
-import { reactive, ref, watch } from 'vue';
+import { reactive, ref, Transition, watch } from 'vue';
 import axios from 'axios';
+
+let router = useRouter()
+let accommodation_data = JSON.parse(rent.accommodation);
+let cardData = ref([])
+let currentCard = ref("")
+
+// véletlenszerü 5 ország beolvasása
+axios.get('http://localhost:3000/getCardNetwork')
+  .then(response => {
+    cardData.value = response.data
+  })
+  .catch(e => console.error(e))
+
+if (!accommodation_data.id || !user.id)
+  router.back()
+
+
 
 // Adatokat ellenőrzése
 function validateUserDatas(){
@@ -23,23 +40,6 @@ function validateUserDatas(){
   return true;
 };
 
-let router = useRouter()
-
-let accommodation_data = JSON.parse(rent.accommodation);
-
-let cardData = ref([])
-let currentCard = ref("")
-
-// véletlenszerü 5 ország beolvasása
-axios.get('http://localhost:3000/getCardNetwork')
-  .then(response => {
-    cardData.value = response.data
-  })
-  .catch(e => console.error(e))
-
-if (!accommodation_data.id || !user.id)
-  router.back()
-
 let model = reactive({
   firstName: user.firstname,
   lastName: user.lasttname,
@@ -56,18 +56,6 @@ let card = reactive({
 })
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
-
-let checkForValidation = (method) => {
-  switch (method) {
-    case "creditCard":
-      
-      break;
-
-    case "paypal":
-
-    break;
-  }
-}
 
 // Format text to readable
 let convertStrings = (str) => {
@@ -168,6 +156,11 @@ watch(() => card.cardnumber, (x) => {
       
       <!-- user datas -->
       <div class="col-12 col-md-6">
+
+        <Transition :name="transitionName" 
+                     type="transition" 
+                     mode="out-in">
+
         <!-- Billing adresses -->
         <div class="row">
           <h4 class="text-white mx-auto w-auto mt-4" 
@@ -270,84 +263,9 @@ watch(() => card.cardnumber, (x) => {
           </div>
         </div>
 
-        <!-- Payment method -->
-        <div class="row">
-          <h4 class="text-white mx-auto w-auto mt-4" 
-              data-bs-toggle="collapse"
-              data-bs-target="#methodCollapse" 
-              aria-controls="methodCollapse">
-            Fizetési mód
-          </h4>
-
-          <div class="collapse show" 
-              id="methodCollapse">
-            <div class="card bg-dark bg-opacity-50 w-50 
-                        mx-auto text-white border-white text-black 
-                        card-body">
-
-              <!-- Pay methods -->
-              <form>
-                <div class="row">
-
-                  <!-- Cash -->
-                  <div class="form-check d-flex justify-content-between 
-                              align-items-center mb-2">
-                    <label class="form-check-label h5" 
-                          for="radioCash">
-                      Készpénz
-                    </label>
-                    <input class="form-check-input" 
-                          type="radio" 
-                          name="radioDefault" 
-                          id="radioCash"
-                          value="cash"
-                          v-model="model.method">
-                  </div>
-
-                  <hr>
-
-                  <!-- CreditCard -->
-                  <div class="form-check d-flex justify-content-between 
-                              align-items-center mb-2">
-                    <label class="form-check-label h5" 
-                          for="radioCard">
-                      Bankkártya
-                    </label>
-                    <input class="form-check-input" 
-                          type="radio" 
-                          name="radioDefault" 
-                          id="radioCard"
-                          value="creditcard"
-                          v-model="model.method">
-                  </div>
-
-                  <hr>
-
-                  <!-- Paypal -->
-                  <div class="form-check d-flex justify-content-between 
-                            align-items-center">
-                    <label class="form-check-label h5" 
-                          for="radioPayPal">
-                      PayPal
-                    </label>
-                    <input class="form-check-input" 
-                          type="radio" 
-                          name="radioDefault" 
-                          id="radioPayPal"
-                          value="paypal"
-                          v-model="model.method">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
         <!-- Card information -->
         <div>
-          <div class="row"
-               v-if="model.method == 'creditcard' || 
-                     model.method == 'paypal'">
+          <div class="row">
               <h4 class="text-center text-white mt-4"
                   data-bs-toggle="collapse"
                   data-bs-target="#cardDataCollapse" 
@@ -361,158 +279,133 @@ watch(() => card.cardnumber, (x) => {
                             text-white border-1 border-white 
                             card w-auto mx-auto text-white p-3">
 
-                  <!-- CreditCard -->
-                  <form v-if="model.method == 'creditcard'">
+                <!-- CreditCard -->
+                <form>
 
-                    <!-- Owner data -->
-                    <div class="row justify-content-center">
+                  <!-- Owner data -->
+                  <div class="row justify-content-center">
 
-                      <!-- FirstName -->
-                      <div :class="model.middleName!=''?
-                            'col-lg-4':
-                            'col-lg-6'"
-                            class="mb-3 m-0 col-12">
-                        <label for="InputOwnerFirstName" 
-                              class="form-label">
-                          Keresztnév
-                        </label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="InputOwnerFirstName" 
-                               v-model="model.firstName">
-                      </div>
-
-                      <!-- MiddleName -->
-                      <div v-if="model.middleName!=''"
-                          class="mb-3 col-12 col-lg-4">
-                        <label for="InputMiddleName" 
-                                class="form-label">
-                          Harmadiknév
-                        </label>
-                        <input type="text" 
-                                class="form-control" 
-                                id="InputMiddleName" 
-                                v-model="model.middleName">
-                      </div>
-
-                      <!-- LastName -->
-                      <div :class="model.middleName!=''?
-                            'col-lg-4':
-                            'col-lg-6'"
-                            class="mb-3 m-0 col-12">
-                        <label for="InputOwnerLastName" 
-                              class="form-label">
-                          Vezetéknév
-                        </label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="InputOwnerLastName" 
-                               v-model="model.lastName">
-                      </div>
+                    <!-- FirstName -->
+                    <div :class="model.middleName!=''?
+                          'col-lg-4':
+                          'col-lg-6'"
+                          class="mb-3 m-0 col-12">
+                      <label for="InputOwnerFirstName" 
+                            class="form-label">
+                        Keresztnév
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputOwnerFirstName" 
+                              v-model="model.firstName">
                     </div>
 
-                    <hr class="m-2">
-
-                    <!-- Card data -->
-                    <div class="row">
-
-                      <!-- cardNumber -->
-                      <div class="mb-3 col-9 col-md-8 col-lg-10">
-                        <label for="inputCardNumber" 
-                               class="form-label">
-                          Kártyaszám
-                        </label>
-                        <input type="text"
-                              class="form-control"
-                              id="inputCardNumber"
-                              v-model="card.cardnumber">
-                      </div>
-
-                      <!-- CardBrand -->
-                      <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
-                        <img :src="`/cards/${currentCard}.png`"
-                             class="img-fluid w-auto ratio-4x3"
-                             style="height: 30px;" 
-                             alt="">
-                      </div>
-
-                      <!-- Month -->
-                      <div class="mb-3 col-6 col-lg-4">
-                        <label class="form-label"
-                               for="inputMonth">
-                          Hónap
-                        </label>
-                        <select class="form-select"
-                                id="inputMonth">
-                          <option value="" selected>{{ card.expiration_month }}</option>
-                          <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
-                        </select>
-                      </div>
-
-                      <!-- Year -->
-                      <div class="mb-3 col-6 col-sm-3 col-lg-4">
-                        <label class="form-label"
-                               for="inputYear">
-                          Év
-                        </label>
-
-                        <select class="form-select"
-                                id="inputYear">
-                          <option value=""
-                                  selected>
-                            {{  card.expirationYear }}
-                          </option>
-                          <option v-for="x in 5" >
-                            {{ parseInt(currentExpYear) + x }}
-                          </option>
-                        </select>
-                      </div>
-
-                      <!-- CVV -->
-                      <div class="mb-3 col-6 col-sm-3 col-lg-4">
-                        <label for="inputCVV" 
-                               class="form-label">
-                          CVV
-                        </label>
-                        <input type="text"
-                               class="form-control"
-                               id="inputCVV"
-                               v-model="card.cvv">
-                      </div>
+                    <!-- MiddleName -->
+                    <div v-if="model.middleName!=''"
+                        class="mb-3 col-12 col-lg-4">
+                      <label for="InputMiddleName" 
+                              class="form-label">
+                        Harmadiknév
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputMiddleName" 
+                              v-model="model.middleName">
                     </div>
 
-                    
-                  </form>
+                    <!-- LastName -->
+                    <div :class="model.middleName!=''?
+                          'col-lg-4':
+                          'col-lg-6'"
+                          class="mb-3 m-0 col-12">
+                      <label for="InputOwnerLastName" 
+                            class="form-label">
+                        Vezetéknév
+                      </label>
+                      <input type="text" 
+                              class="form-control" 
+                              id="InputOwnerLastName" 
+                              v-model="model.lastName">
+                    </div>
+                  </div>
 
-                  <form v-if="model.method == 'paypal'">
+                  <hr class="m-2">
+
+                  <!-- Card data -->
+                  <div class="row">
+
                     <!-- cardNumber -->
-                      <div class="mb-3 col-12 col-md-8 col-lg-12">
-                        <label for="inputCardNumber" 
-                               class="form-label">
-                          Email cím
-                        </label>
-                        <input type="email"
-                               class="form-control"
-                               id="inputCardNumber"
-                               v-model="user.email">
-                      </div>
+                    <div class="mb-3 col-9 col-md-8 col-lg-10">
+                      <label for="inputCardNumber" 
+                              class="form-label">
+                        Kártyaszám
+                      </label>
+                      <input type="text"
+                            class="form-control"
+                            id="inputCardNumber"
+                            v-model="card.cardnumber">
+                    </div>
 
-                      <!-- cardNumber -->
-                      <div class="mb-3 col-12 col-md-8 col-lg-12">
-                        <label for="inputCardNumber" 
-                               class="form-label">
-                          Jelszó
-                        </label>
-                        <input type="password"
-                               class="form-control"
-                               id="inputCardNumber"
-                               v-model="user.email">
-                      </div>
-                  </form>
+                    <!-- CardBrand -->
+                    <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
+                      <img :src="`/cards/${currentCard}.png`"
+                            class="img-fluid w-auto ratio-4x3"
+                            style="height: 30px;" 
+                            alt="">
+                    </div>
+
+                    <!-- Month -->
+                    <div class="mb-3 col-6 col-lg-4">
+                      <label class="form-label"
+                              for="inputMonth">
+                        Hónap
+                      </label>
+                      <select class="form-select"
+                              id="inputMonth">
+                        <option value="" selected>{{ card.expiration_month }}</option>
+                        <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
+                      </select>
+                    </div>
+
+                    <!-- Year -->
+                    <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                      <label class="form-label"
+                              for="inputYear">
+                        Év
+                      </label>
+
+                      <select class="form-select"
+                              id="inputYear">
+                        <option value=""
+                                selected>
+                          {{  card.expirationYear }}
+                        </option>
+                        <option v-for="x in 5" >
+                          {{ parseInt(currentExpYear) + x }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <!-- CVV -->
+                    <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                      <label for="inputCVV" 
+                              class="form-label">
+                        CVV
+                      </label>
+                      <input type="text"
+                              class="form-control"
+                              id="inputCVV"
+                              v-model="card.cvv">
+                    </div>
+                  </div>
+
+                  
+                </form>   
               </div>
             </div>
           </div>
         </div>
+        </Transition>
       </div>
     </div>
   </div>
