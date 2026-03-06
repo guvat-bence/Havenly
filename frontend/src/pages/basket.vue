@@ -21,7 +21,7 @@ axios.get('http://localhost:3000/getCardNetwork')
 if (!accommodation_data.id || !user.id)
   router.back()
 
-
+let transitionName 
 
 // Adatokat ellenőrzése
 function validateUserDatas(){
@@ -156,10 +156,6 @@ watch(() => card.cardnumber, (x) => {
       
       <!-- user datas -->
       <div class="col-12 col-md-6">
-
-        <Transition :name="transitionName" 
-                     type="transition" 
-                     mode="out-in">
 
         <!-- Billing adresses -->
         <div class="row">
@@ -405,10 +401,11 @@ watch(() => card.cardnumber, (x) => {
             </div>
           </div>
         </div>
-        </Transition>
       </div>
     </div>
   </div>
+
+  
 </template>
 <style>
 input {
