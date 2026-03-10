@@ -20,7 +20,7 @@ let model = reactive({
 
 let card = reactive({
   userID: user.id,
-  cardnumber: user.cardNumber,
+  cardNumber: user.cardNumber,
   expirationMonth: user.expirationMonth,
   expirationYear: user.expirationYear
 }) 
@@ -36,6 +36,7 @@ let messages =
 {
   editing: "Biztos menti a változtatásokat?",
   deleting:"Biztos törli a fiókját?",
+  deletingCardDatas:"Biztos törli a kártya adatokat?",
   passwordError:"Hibás jelenlegi jelszót adott meg!",
   emailError:"A megadott email cím már foglalt! ",
   succesEditing:"Sikeres változtatás!",
@@ -73,7 +74,7 @@ function validateUserDatas(){
   if(model.middleName!="" && !/^[\p{L} ]+$/u.test(model.middleName))
     return false;
 
-  if(card.cardnumber!="" && !/^[0-9]{13,19}$/.test(card.cardnumber))
+  if(card.cardNumber!="" && !/^[0-9]{13,19}$/.test(card.cardNumber))
     return false;
 
   if(card.expirationMonth!="" && card.expirationMonth.length==0)
@@ -185,6 +186,21 @@ function changeDatas(obj)
       showOkBtn.value = true;
       messageBox("open");
     }
+    else if(response.data.message == "deletedCardDatas")
+    {
+      messageBoxmessage.value = messages.succesEditing;
+      let list = [user,card,cardCopie];
+
+      for(let x of list)
+      {
+        x.cardNumber = "";
+        x.expirationMonth = "";
+        x.expirationYear = "";
+      }
+      showOkBtn.value = true;
+      messageBox("open");
+
+    }
 
     if(response.data?.affectedRows || response.data[0]?.affectedRows)
     {
@@ -196,7 +212,6 @@ function changeDatas(obj)
         user.phone_number = response.data[1].phone_number;
         user.email = response.data[1].email;
         user.gender = response.data[1].gender;
-        user.user_type = response.data[1].user_type;
         user.cardNumber = response.data[1].card_number;
 
         try{
@@ -252,7 +267,7 @@ function deleteUser()
 
 function deleteCardDatas()
 {
-  messageBoxmessage.value = messages.deleting;
+  messageBoxmessage.value = messages.deletingCardDatas;
   messageType.value = "deleteCardDatas";
   messageBox("open");
 }
@@ -356,14 +371,16 @@ watch(card,()=>
         </div>
       </nav>
 
-      <!-- Opciókhoz megjelenítendő szövegek -->
+      <!-- Opciók és a messageBox -->
       <div class="row align-items-top justify-content-center">
 
+        <!-- Opciókat összegző div -->
         <div class="tab-content text-white
                    text-center bg-dark bg-opacity-50 
                    rounded-5 rounded-top-0 py-5 px-4" 
              id="nav-tabContent">
 
+          <!-- Adatok opció -->
           <div class="tab-pane fade show active"
               id="nav-datas" 
               role="tabpanel" 
@@ -389,10 +406,12 @@ watch(card,()=>
                            col-lg-8 col-xl-8 col-xxl-6
                            collapse my-4">
 
+                <!-- Cím -->
                 <h4 class="text-center">
                   Személyes adatok
                 </h4>
 
+                <!-- Adatok és gombok -->
                 <div class="px-3 py-3 border rounded-3">
 
                   <!-- Names -->
@@ -551,7 +570,7 @@ watch(card,()=>
               <!-- Kártya információk form megjelenítő gomb -->
               <div class="row justify-content-center col-12">  
                 <button class="col-6 col-sm-5 col-md-3 
-                               text-nowrap mx-2 my-2 btn btn-outline-light"
+                                mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpaseCardDatas">
                   Kártya adatok
@@ -564,99 +583,98 @@ watch(card,()=>
                            col-lg-8 col-xl-8 col-xxl-6
                            collapse my-4">
 
+                <!-- Cím -->
                 <h4 class="text-center">
                   Kártya adatok
                 </h4>
 
-                <div class="px-3 py-3 border rounded-3">
+                <!-- Adatok és gombok -->
+                <div class="px-3 py-3 border rounded-3
+                            row justify-content-center">
 
-                  <!-- Card data -->
-                  <div class="row justify-content-center">
+                  <!-- cardNumber -->
+                  <div class="mb-3 col-10">
+                    <label for="inputcardNumber" 
+                            class="form-label">
+                      Kártyaszám
+                    </label>
+                    <input type="text"
+                            :maxlength="19"
+                            class="form-control"
+                            id="inputcardNumber"
+                            v-model="card.cardNumber">
+                  </div>
 
-                    <!-- cardNumber -->
-                    <div class="mb-3 col-10">
-                      <label for="inputCardNumber" 
-                              class="form-label">
-                        Kártyaszám
-                      </label>
-                      <input type="text"
-                             :maxlength="19"
-                             class="form-control"
-                             id="inputCardNumber"
-                             v-model="card.cardnumber">
-                    </div>
+                  <!-- Month -->
+                  <div class="mb-3 col-6 col-lg-4">
+                    <label class="form-label"
+                            for="inputMonth">
+                      Hónap
+                    </label>
+                    <select class="form-select"
+                            id="inputMonth"
+                            v-model="card.expirationMonth">
+                      <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
+                    </select>
+                  </div>
 
-                    <!-- Month -->
-                    <div class="mb-3 col-6 col-lg-4">
-                      <label class="form-label"
-                              for="inputMonth">
-                        Hónap
-                      </label>
-                      <select class="form-select"
-                              id="inputMonth"
-                              v-model="card.expirationMonth">
-                        <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
-                      </select>
-                    </div>
+                  <!-- Year -->
+                  <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                    <label class="form-label"
+                            for="inputYear">
+                      Év
+                    </label>
+                    <select class="form-select"
+                            id="inputYear"
+                            v-model="card.expirationYear">
+                      <option v-for="x in 5" >
+                        {{ parseInt(currentExpYear) + x }}
+                      </option>
+                    </select>
+                  </div>
 
-                    <!-- Year -->
-                    <div class="mb-3 col-6 col-sm-3 col-lg-4">
-                      <label class="form-label"
-                              for="inputYear">
-                        Év
-                      </label>
-                      <select class="form-select"
-                              id="inputYear"
-                              v-model="card.expirationYear">
-                        <option v-for="x in 5" >
-                          {{ parseInt(currentExpYear) + x }}
-                        </option>
-                      </select>
-                    </div>
+                  <!-- Gombok -->
+                  <div class="row ms-1 justify-content-center">
 
-                    <!-- Gombok -->
-                    <div class="row ms-1 justify-content-center">
+                    <!-- Mentés gomb -->
+                    <button v-if="changedModel!=true && changedCard==true"
+                            @click="messageBox('open');
+                                    messageBoxmessage = messages.editing"
+                            type="button"
+                            class="col-12 col-sm-12 col-md-4 col-lg-3
+                                    mx-2 my-2 btn btn-light">
+                      Mentés
+                    </button>
 
-                      <!-- Mentés gomb -->
-                      <button v-if="changedModel!=true && changedCard==true"
-                              @click="messageBox('open');
-                                      messageBoxmessage = messages.editing"
-                              type="button"
-                              class="col-12 col-sm-12 col-md-4 col-lg-3
-                                     mx-2 my-2 btn btn-light">
-                        Mentés
-                      </button>
+                    <!-- Összes mentése gomb -->
+                    <button v-if="changedModel==true && changedCard==true"
+                            @click="messageBox('open');
+                                    messageBoxmessage = messages.editing"
+                            type="button"
+                            class="col-12 col-sm-12 col-md-4 col-lg-3
+                                    text-nowrap mx-2 my-2 btn btn-light">
+                      Összes mentése
+                    </button>
 
-                      <!-- Összes mentése gomb -->
-                      <button v-if="changedModel==true && changedCard==true"
-                              @click="messageBox('open');
-                                      messageBoxmessage = messages.editing"
-                              type="button"
-                              class="col-12 col-sm-12 col-md-4 col-lg-3
-                                     text-nowrap mx-2 my-2 btn btn-light">
-                        Összes mentése
-                      </button>
+                    <!-- Mégse gomb -->
+                    <button :disabled="changedCard!=true"
+                            @click="restoreDatas(card)"
+                            type="button" 
+                            class="col-12 col-sm-12 col-md-4 col-lg-3 
+                                    mx-2 my-2 btn btn-secondary">
+                      Mégsem
+                    </button>
 
-                      <!-- Mégse gomb -->
-                      <button :disabled="changedCard!=true"
-                              @click="restoreDatas(card)"
-                              type="button" 
-                              class="col-12 col-sm-12 col-md-4 col-lg-3 
-                                     mx-2 my-2 btn btn-secondary">
-                        Mégsem
-                      </button>
-
-                       <!-- Mégse gomb -->
-                      <button v-if="card.cardnumber!=''|| 
-                                    card.expirationMonth!='' || 
-                                    card.expirationYear!=''"
-                              @click="deleteCardDatas(card)"
-                              type="button" 
-                              class="col-12 col-sm-12 col-md-4 col-lg-3 
-                                     mx-2 my-2 btn btn-danger">
-                        Adatok törlése
-                      </button>
-                    </div>
+                      <!-- Adatok tölrlése gomb -->
+                    <button v-if="cardCopie.cardNumber!=''&&
+                                  cardCopie.expirationMonth!='' && 
+                                  cardCopie.expirationYear!=''"
+                            @click="deleteCardDatas(card)"
+                            type="button" 
+                            class="col-12 col-sm-12 col-md-4 col-lg-3 
+                                    mx-2 my-2 btn btn-danger">
+                      Adatok törlése
+                    </button>
                   </div>
                 </div>
               </form>
@@ -664,7 +682,7 @@ watch(card,()=>
               <!-- Jelszó form megjelenítő gomb -->
               <div class="row justify-content-center col-12">
                 <button class="col-6 col-sm-5 col-md-3 
-                               text-nowrap mx-2 my-2 btn btn-outline-light"
+                                mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePasswords">
                   Jelszó módosítása
@@ -677,10 +695,12 @@ watch(card,()=>
                            col-lg-8 col-xl-8 col-xxl-6
                            collapse my-4">
 
+                <!-- Cím -->
                 <h4 class="text-center">
                   Jelszó módosítása
                 </h4>
 
+                <!-- Adatok és gombok -->
                 <div class="px-3 py-3 row justify-content-center border rounded-3">
 
                   <!-- Eredeti elszó-->
@@ -797,6 +817,7 @@ watch(card,()=>
 
           </div>
 
+          <!-- Közzétételek opció -->
           <div class="tab-pane fade" 
               id="nav-posts" 
               role="tabpanel" 
@@ -805,6 +826,7 @@ watch(card,()=>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores cumque excepturi nemo odio qui. Quam magni odio debitis eius temporibus ex natus, alias doloribus veritatis, quasi eligendi, ratione nulla voluptates.
           </div>
           
+          <!-- Beszélgetések opció -->
           <div class="tab-pane fade"
               id="nav-chats" 
               role="tabpanel" 
@@ -840,7 +862,9 @@ watch(card,()=>
 
               <!-- Mégse gomb -->
               <button v-if="showOkBtn!=true"
-                      @click="messageBox('close')"
+                      @click="messageBox('close'); 
+                      messageBoxmessage = messages.editing;
+                      messageType = '';"
                       type="button" 
                       class="col-8 col-sm-5 col-md-5 col-lg-4 
                              mx-2 my-2 btn btn-dark">

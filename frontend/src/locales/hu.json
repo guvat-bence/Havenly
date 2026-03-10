@@ -52,7 +52,7 @@
   {
     "months": "Január,Február,Március,Április,Május,Június,Július,Augusztus,Szeptember,Október,November,December",
     "days_full":"Hétfő,Kedd,Szerda,Csütörtök,Péntek,Szombat,Vasárnap",
-    "days_short":"H,K,S,C,P,S,V",
+    "days_short":"H,K,Sz,Cs,P,Sz,V",
     "accommodation_extras":"Amit a szállás kínál",
     "extras":
     {
@@ -85,7 +85,7 @@
     "human":"fő",
     "login":"Bejelentkezés",
     "renting":"Foglalás",
-    "information_text":"Az élény leírása és ára csak tájékoztató jellegű."
+    "information_text":"Az élmény leírása és ára csak tájékoztató jellegű."
   },
   "search":{
     "search_title":"Keresés",

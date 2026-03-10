@@ -885,6 +885,7 @@ app.post("/deleteUser",(req,res)=>{
 })
 app.post("/deleteCardDatas",(req,res)=>{
   let datas = req.body;
+  
   db.query(`UPDATE users
             SET card_number =NULL,
                 expiration = NULL
@@ -919,7 +920,7 @@ app.post("/deleteCardDatas",(req,res)=>{
           return;
         }
 
-          res.json({datas,message: "deletedCardDatas"});
+          res.json({message: "deletedCardDatas"});
           return;
       })
     }
