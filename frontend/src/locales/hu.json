@@ -442,6 +442,54 @@
     "show_password":"Jelszó megjelenítése:",
     "log_in":"Bejelentkezés"
   },
+  "profile":
+  {
+    "navbar_datas":"Adataim",
+    "nabar_posts":"Közzétételeim",
+    "navbar_messages":"Beszélgetéseim",
+    "personal_detail":"Személyes adatok",
+    "card_datas":"Kártya adatok",
+    "password_modify":"Jelszó módosítása",
+    "delete_user":"Fiól törlése",
+    "names":"Nevek",
+    "first_name":"Keresztnév",
+    "last_name":"Vezetéknév",
+    "middle_name":"Második név",
+    "contact":"Elérési módok",
+    "email":"Email cím",
+    "phone_number":"Telefonszám",
+    "gender":"Nem",
+    "male":"férfi",
+    "female":"nő",
+    "card_number":"Kártyaszám",
+    "card_month":"Hónap",
+    "card_year":"Év",
+    "original_password":"Eredeti jelszó",
+    "new_password":"Új jelszó",
+    "password_requirement":"A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot",
+    "password_requirement_second":"Minimum 6 karaktert kell tartalmaznia",
+    "password_requirement_third":"Az eredeti és az új jelszó nem egyezhet",
+    "password_again":"Új jelszó mégegyszer",
+    "show_password":"Jelszó megjelenítése:",
+    "save":"Mentés",
+    "save_all":"Összes mentése",
+    "delete_datas":"Adatok törlése",
+    "unsave":"Mégsem",
+    "yes":"Igen",
+    "no":"Nem",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "Biztos menti a változtatásokat?",
+      "deleting":"Biztos törli a fiókját?",
+      "deletingCardDatas":"Biztos törli a kártya adatokat?",
+      "passwordError":"Hibás jelenlegi jelszót adott meg!",
+      "emailError":"A megadott email cím már foglalt! ",
+      "succesEditing":"Sikeres változtatás!",
+      "succesDeleting":"Sikeresen törölte a fiókját!"
+    }
+   
+  },
   "settings":
   {
     "settings":"Beállítások",

@@ -647,7 +647,7 @@ app.post("/translate",(req,res)=>
           });
       }
     });
-})
+});
 
 app.get("/getCardNetwork",(req,res) => {
   db.query(`SELECT id, 
@@ -664,7 +664,7 @@ app.get("/getCardNetwork",(req,res) => {
     res.json(result);
     return;
   })
-})
+});
 
 app.post("/updateUser/Privacy",(req,res)=>{
   let datas = req.body;
@@ -728,7 +728,7 @@ app.post("/updateUser/Card",(req,res)=>{
             SET card_number =?,
                 expiration = ?
             WHERE id = ?`,
-           [datas.cardnumber,`${datas.expirationMonth}/${datas.expirationYear}`,
+           [datas.cardNumber,`${datas.expirationMonth}/${datas.expirationYear}`,
             datas.userID],
            (err,response)=>{
     if(err)
@@ -780,7 +780,7 @@ app.post("/updateUser/allDatas",(req,res)=>{
             WHERE id = ?`,
            [datas.model.firstName,datas.model.lastName,datas.model.middleName,
             datas.model.email,datas.model.phoneNum,datas.model.gender,
-            datas.card.cardnumber,`${datas.card.expirationMonth}/${datas.card.expirationYear}`,
+            datas.card.cardNumber,`${datas.card.expirationMonth}/${datas.card.expirationYear}`,
             datas.model.userID],
            (err,response)=>{
     if(err)
@@ -864,7 +864,7 @@ app.post("/updateUser/Password",(req,res)=>{
       return;
     }
     })
-})
+});
 
 app.post("/deleteUser",(req,res)=>{
  let datas = req.body.userID;
@@ -882,7 +882,8 @@ app.post("/deleteUser",(req,res)=>{
     return;
 
   });  
-})
+});
+
 app.post("/deleteCardDatas",(req,res)=>{
   let datas = req.body;
   

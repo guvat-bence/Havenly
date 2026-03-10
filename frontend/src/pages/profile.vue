@@ -1,8 +1,11 @@
 <script setup>
 import { user } from '@/store/user';
 import router from '@/router';
-import { reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import axios from 'axios';
+import { useI18n } from 'vue-i18n';
+
+const {t} = useI18n();
 
 //securityCheck
 if(!user.id)
@@ -34,13 +37,13 @@ let passwords = reactive({
 
 let messages =
 {
-  editing: "Biztos menti a változtatásokat?",
-  deleting:"Biztos törli a fiókját?",
-  deletingCardDatas:"Biztos törli a kártya adatokat?",
-  passwordError:"Hibás jelenlegi jelszót adott meg!",
-  emailError:"A megadott email cím már foglalt! ",
-  succesEditing:"Sikeres változtatás!",
-  succesDeleting:"Sikeresen törölte a fiókját!"
+  editing:t("profile.messages.editing"),
+  deleting:t("profile.messages.deleting"),
+  deletingCardDatas:t("profile.messages.deletingCardDatas"),
+  passwordError: t("profile.messages.passwordError"),
+  emailError: t("profile.messages.emailError"),
+  succesEditing: t("profile.messages.succesEditing"),
+  succesDeleting: t("profile.messages.succesDeleting")
 }
 
 let modelCopie = reactive({... model});
@@ -347,7 +350,7 @@ watch(card,()=>
                   type="button" role="tab"
                   aria-controls="nav-datas"
                   aria-selected="true">
-            Adataim
+            {{ $t("profile.navbar_datas") }}
           </button>
           <button class="nav-link" 
                   id="nav-posts-tab" 
@@ -356,7 +359,7 @@ watch(card,()=>
                   type="button" role="tab" 
                   aria-controls="nav-posts" 
                   aria-selected="false">
-            Közzétételeim
+            {{ $t("profile.nabar_posts") }}
           </button>
           <button class="nav-link" 
                   id="nav-chats-tab" 
@@ -366,7 +369,7 @@ watch(card,()=>
                   role="tab" 
                   aria-controls="nav-chats" 
                   aria-selected="false">
-            Beszélgetéseim
+            {{ $t("profile.navbar_messages") }}
           </button>
         </div>
       </nav>
@@ -396,7 +399,7 @@ watch(card,()=>
                                text-nowrap mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePrivacyDatas">
-                  Személyes adatok
+                  {{ $t("profile.personal_detail") }}
                 </button>
               </div>
 
@@ -408,7 +411,7 @@ watch(card,()=>
 
                 <!-- Cím -->
                 <h4 class="text-center">
-                  Személyes adatok
+                  {{ $t("profile.personal_detail") }}
                 </h4>
 
                 <!-- Adatok és gombok -->
@@ -417,7 +420,9 @@ watch(card,()=>
                   <!-- Names -->
                   <div class="row justify-content-center mb-3">
                     <div>
-                      <h5 class="text-center">Nevek</h5>
+                      <h5 class="text-center">
+                        {{ $t("profile.names") }}
+                      </h5>
                     </div>
 
                     <!-- FirstName -->
@@ -427,7 +432,7 @@ watch(card,()=>
                           class="mb-3 m-0 col-12">
                       <label for="InputFirstName" 
                               class="form-label">
-                        Keresztnév
+                        {{ $t("profile.first_name") }}
                       </label>
                       <input type="text" 
                               class="form-control" 
@@ -440,7 +445,7 @@ watch(card,()=>
                         class="mb-3 col-12 col-lg-4">
                       <label for="InputMiddleName" 
                               class="form-label">
-                        Harmadiknév
+                        {{ $t("profile.middle_name") }}
                       </label>
                       <input type="text" 
                               class="form-control" 
@@ -455,7 +460,7 @@ watch(card,()=>
                         class="mb-3 m-0 col-12">
                       <label for="InputLastName" 
                               class="form-label">
-                        Vezetéknév
+                        {{ $t("profile.last_name") }}
                       </label>
                       <input type="text" 
                               class="form-control" 
@@ -467,14 +472,16 @@ watch(card,()=>
                   <!-- Contact information -->
                   <div class="row">
                     <div>
-                      <h5 class="text-center">Elérési módok</h5>
+                      <h5 class="text-center">
+                        {{ $t("profile.contact") }}
+                      </h5>
                     </div>
 
                     <!-- Email -->
                     <div class="mb-3 col-12 col-lg-6">
                       <label for="InputEmail" 
                               class="form-label">
-                        Email
+                        {{ $t("profile.email") }}
                       </label>
                       <input type="email" 
                               class="form-control" 
@@ -486,7 +493,7 @@ watch(card,()=>
                     <div class="mb-3 col-12 col-lg-6">
                       <label for="InputPhoneNum" 
                               class="form-label">
-                        Telefonszám
+                        {{ $t("profile.phone_number") }}
                       </label>
                       <input type="text" 
                               class="form-control" 
@@ -494,22 +501,32 @@ watch(card,()=>
                               v-model="model.phoneNum">
                     </div>
 
+                  </div>
+
+                  <!-- Gender -->
+                  <div class="row">
+
                     <!-- Gender -->
                     <div class="mb-4">
+
+                      <!-- Title -->
                       <h5 class="text-center">
-                        {{ $t("register.gender") }}
+                        {{ $t("profile.gender") }}
                       </h5>
+
+                      <!-- Labels -->
                       <div class="row justify-content-center text-center">
                         <label for="genderMale" 
                               class="form-label col-6">
-                          <span>{{ $t("register.male") }}</span> 
+                          <span>{{ $t("profile.male") }}</span> 
                         </label>
                         <label for="genderFemale" 
                               class="form-label col-6">
-                          <span>{{ $t("register.female") }}</span>
+                          <span>{{ $t("profile.female") }}</span>
                         </label>
                       </div>
 
+                      <!-- Radio button -->
                       <div class="row justify-content-center">
                         <div class="d-flex col-6 justify-content-center">
                           <input type="radio"
@@ -520,6 +537,7 @@ watch(card,()=>
                             v-model="model.gender">
                         </div>
 
+                        <!-- Radio button -->
                         <div class="d-flex col-6 justify-content-center">
                           <input type="radio"
                                 name="genderFemale" 
@@ -542,7 +560,7 @@ watch(card,()=>
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                    mx-2 my-2 btn btn-light">
-                      Mentés
+                      {{ $t("profile.save") }}
                     </button>
 
                     <!-- Összes mentése gomb -->
@@ -552,7 +570,7 @@ watch(card,()=>
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3 
                                    mx-2 my-2 text-nowrap btn btn-light">
-                      Összes mentése
+                      {{ $t("profile.save_all") }}
                     </button>
 
                     <!-- Mégse gomb -->
@@ -561,7 +579,7 @@ watch(card,()=>
                             type="button" 
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                   mx-2 my-2 btn btn-secondary">
-                      Mégsem
+                      {{ $t("profile.unsave") }}
                     </button>
                   </div>
                 </div>
@@ -573,7 +591,7 @@ watch(card,()=>
                                 mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpaseCardDatas">
-                  Kártya adatok
+                 {{ $t("profile.card_datas") }}
                 </button>
               </div>
 
@@ -585,7 +603,7 @@ watch(card,()=>
 
                 <!-- Cím -->
                 <h4 class="text-center">
-                  Kártya adatok
+                  {{ $t("profile.card_datas") }}
                 </h4>
 
                 <!-- Adatok és gombok -->
@@ -596,7 +614,7 @@ watch(card,()=>
                   <div class="mb-3 col-10">
                     <label for="inputcardNumber" 
                             class="form-label">
-                      Kártyaszám
+                      {{ $t("profile.card_number") }}
                     </label>
                     <input type="text"
                             :maxlength="19"
@@ -609,7 +627,7 @@ watch(card,()=>
                   <div class="mb-3 col-6 col-lg-4">
                     <label class="form-label"
                             for="inputMonth">
-                      Hónap
+                      {{ $t("profile.card_month") }}
                     </label>
                     <select class="form-select"
                             id="inputMonth"
@@ -622,7 +640,7 @@ watch(card,()=>
                   <div class="mb-3 col-6 col-sm-3 col-lg-4">
                     <label class="form-label"
                             for="inputYear">
-                      Év
+                      {{ $t("profile.card_year") }}
                     </label>
                     <select class="form-select"
                             id="inputYear"
@@ -643,7 +661,7 @@ watch(card,()=>
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                     mx-2 my-2 btn btn-light">
-                      Mentés
+                      {{ $t("profile.save") }}
                     </button>
 
                     <!-- Összes mentése gomb -->
@@ -653,7 +671,7 @@ watch(card,()=>
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                     text-nowrap mx-2 my-2 btn btn-light">
-                      Összes mentése
+                      {{ $t("profile.save_all") }}
                     </button>
 
                     <!-- Mégse gomb -->
@@ -662,7 +680,7 @@ watch(card,()=>
                             type="button" 
                             class="col-12 col-sm-12 col-md-4 col-lg-3 
                                     mx-2 my-2 btn btn-secondary">
-                      Mégsem
+                      {{ $t("profile.unsave") }}
                     </button>
 
                       <!-- Adatok tölrlése gomb -->
@@ -673,7 +691,7 @@ watch(card,()=>
                             type="button" 
                             class="col-12 col-sm-12 col-md-4 col-lg-3 
                                     mx-2 my-2 btn btn-danger">
-                      Adatok törlése
+                      {{ $t("profile.delete_datas") }}
                     </button>
                   </div>
                 </div>
@@ -685,7 +703,7 @@ watch(card,()=>
                                 mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePasswords">
-                  Jelszó módosítása
+                  {{ $t("profile.password_modify") }}
                 </button>
               </div>
 
@@ -697,7 +715,7 @@ watch(card,()=>
 
                 <!-- Cím -->
                 <h4 class="text-center">
-                  Jelszó módosítása
+                  {{ $t("profile.password_modify") }}
                 </h4>
 
                 <!-- Adatok és gombok -->
@@ -707,7 +725,7 @@ watch(card,()=>
                   <div class="mb-3 col-10">
                     <label for="originalPassword" 
                           class="form-label">
-                      Eredeti jelszó
+                      {{ $t("profile.original_password") }}
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
@@ -718,11 +736,11 @@ watch(card,()=>
                           v-model="passwords.currentPassword">
                   </div>
 
-                  <!-- Jelszó-->
+                  <!--Új Jelszó-->
                   <div class="mb-3 col-10">
                     <label for="newPassword" 
                           class="form-label">
-                      Új jelszó
+                      {{ $t("profile.new_password") }}
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
@@ -732,21 +750,21 @@ watch(card,()=>
                           maxlength="40" 
                           v-model="passwords.newPassword">
                       <div class="form-text text-white fw-bold">
-                        {{ $t("register.password_requirement") }}
+                        {{ $t("profile.password_requirement") }}
                       </div>
                       <div class="form-text text-white fw-bold">
-                        {{ $t("register.password_requirement_second") }}
+                        {{ $t("profile.password_requirement_second") }}
                       </div>
                       <div class="form-text text-white fw-bold">
-                        A régi és az új jelszó nem egyezhet
+                        {{ $t("profile.password_requirement_third") }}
                       </div>
                   </div>
 
-                  <!-- Jelszó mégegyszer -->
+                  <!--Új Jelszó mégegyszer -->
                   <div class="mb-3 col-10">
                     <label for="inputconfirmpass" 
                           class="form-label">
-                      Új jelszó mégegyszer
+                      {{ $t("profile.password_again") }}
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
@@ -761,7 +779,7 @@ watch(card,()=>
                   <div class="d-flex mb-3 mt-3 justify-content-center">
                     <label class="w-auto form-check-label mx-1 text-start" 
                           for="flexCheckDefault">
-                      {{ $t("register.show_password") }}
+                      {{ $t("profile.show_password") }}
                     </label>
                     <input class="form-check-input float-end" 
                           type="checkbox" 
@@ -778,7 +796,7 @@ watch(card,()=>
                             type="button"
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                    mx-2 my-2 btn btn-light">
-                      Mentés
+                      {{ $t("profile.save") }}
                     </button>
 
                     <!-- Mégse gomb -->
@@ -789,7 +807,7 @@ watch(card,()=>
                             type="button" 
                             class="col-12 col-sm-12 col-md-4 col-lg-3
                                   mx-2 my-2 btn btn-secondary">
-                      Mégsem
+                      {{ $t("profile.unsave") }}
                     </button>
                   </div>
                 </div>
@@ -810,11 +828,10 @@ watch(card,()=>
                         class="col-10
                                text-nowrap mx-3 my-3
                                btn btn-danger">
-                  Fiók törlése
+                  {{ $t("profile.delete_user") }}
                 </button>
               </div>
             </div>
-
           </div>
 
           <!-- Közzétételek opció -->
@@ -840,6 +857,7 @@ watch(card,()=>
         <div v-if="messageBoxType==true"
              class="row position-absolute justify-content-center">
 
+          <!-- Tartalom -->
           <div class="col-10 col-sm-8 col-md-7 col-lg-4
                      messageBox fade-in bg-secondary
                      border border-3 rounded-5 py-3 px-3">
@@ -848,6 +866,7 @@ watch(card,()=>
             <h1 class="text-center">
               {{ messageBoxmessage }}
             </h1>
+
             <!-- Gombok -->
             <div class="row justify-content-center">
 
@@ -857,7 +876,7 @@ watch(card,()=>
                       type="button"
                       class="col-8 col-sm-5 col-md-5 col-lg-4
                              mx-2 my-2 btn btn-light">
-                Igen
+                {{ $t("profile.yes") }}
               </button>
 
               <!-- Mégse gomb -->
@@ -868,7 +887,7 @@ watch(card,()=>
                       type="button" 
                       class="col-8 col-sm-5 col-md-5 col-lg-4 
                              mx-2 my-2 btn btn-dark">
-                Nem
+                {{ $t("profile.no") }}
               </button>
 
               <!-- ok gomb -->
@@ -880,7 +899,7 @@ watch(card,()=>
                       type="button" 
                       class="col-8 col-sm-5 col-md-5 col-lg-4 
                              mx-2 my-2 btn btn-light">
-                OK
+                {{ $t("profile.ok") }}
               </button>
             </div>
           </div>

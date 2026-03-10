@@ -439,6 +439,53 @@
     "show_password":"Прикажи лозинку:",
     "log_in":"Пријави се"
   },
+  "profile":
+  {
+    "navbar_datas":"Моји подаци",
+    "nabar_posts":"Моје објаве",
+    "navbar_messages":"Моји разговори",
+    "personal_detail":"Лични подаци",
+    "card_datas":"Подаци о картици",
+    "password_modify":"Промена лозинке",
+    "delete_user":"Брисање налога",
+    "names":"Имена",
+    "first_name":"Име",
+    "last_name":"Презиме",
+    "middle_name":"Друго име",
+    "contact":"Начини контакта",
+    "email":"Имејл адреса",
+    "phone_number":"Број телефона",
+    "gender":"Пол",
+    "male":"Мушки",
+    "female":"Женски",
+    "card_number":"Број картице",
+    "card_month":"Месец",
+    "card_year":"Година",
+    "original_password":"Тренутна лозинка",
+    "new_password":"Нова лозинка",
+    "password_requirement":"Лозинка мора да садржи бар једно велико слово и један број",
+    "password_requirement_second":"Мора да садржи најмање 6 карактера",
+    "password_requirement_third":"Тренутна и нова лозинка не могу бити исте",
+    "password_again":"Поновите нову лозинку",
+    "show_password":"Прикажи лозинку:",
+    "save":"Сачувај",
+    "save_all":"Сачувај све",
+    "delete_datas":"Обриши податке",
+    "unsave":"Откажи",
+    "yes":"Да",
+    "no":"Не",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "Да ли сте сигурни да желите да сачувате измене?",
+      "deleting":"Да ли сте сигурни да желите да обришете свој налог?",
+      "deletingCardDatas":"Да ли сте сигурни да желите да обришете податке о картици?",
+      "passwordError":"Унели сте погрешну тренутну лозинку!",
+      "emailError":"Унета имејл адреса је већ заузета!",
+      "succesEditing":"Измена је успешно сачувана!",
+      "succesDeleting":"Ваш налог је успешно обрисан!"
+    }
+  },
   "settings":
   {
     "settings":"Подешавања",
