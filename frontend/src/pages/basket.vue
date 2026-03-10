@@ -22,6 +22,7 @@ if (!accommodation_data.id || !user.id)
   router.back()
 
 let transitionName 
+let step = ref(0)
 
 // Adatokat ellenőrzése
 function validateUserDatas(){
@@ -87,18 +88,17 @@ watch(() => card.cardnumber, (x) => {
 </script>
 <template>
   <div class="container mt-2">
-    <h1 class="display-1 text-center text-white ">Kosár</h1>
+    <h1 class="display-1 text-center text-white " v-on:click="step++">Kosár</h1>
     <div class="row flex-row-reverse">
 
       <!-- Accomodation data-->
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 mb-4 text-center">
         <div class="row">
           <div class="d-flex justify-content-center justify-content-lg-end">
 
             <!-- Card -->
             <div class="card bg-dark bg-opacity-50 border-1 
-                        border-white bg-opacity-25 text-white" 
-                 style="width: 18rem;">
+                        border-white text-white">
               
               <!-- Image -->
               <img height="300" 
@@ -112,15 +112,13 @@ watch(() => card.cardnumber, (x) => {
                 <h5 class="card-title">{{ accommodation_data.name }}</h5>
                 <hr>
                 <div>
-                  <h4 class="text-center mb-4">Adatok</h4>
-                  <div class="row text-center">
+                  <div class="row">
                     <p>Személyszám: {{ rent.guests}}</p>
                     <p>Ettől: {{ rent.rent_beginning }}</p>
                     <p>Eddig: {{ rent.rent_end }}</p>
                   </div>
                   <hr>
-                  <h4 class="text-center">Ár</h4>
-                  <div class="row">
+                  <div>
                     <p>Alapár: {{ (rent.accommodation_full_price * selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
                                {{ selectedCurrency.currencyShortedName }}</p>
                     <p>Kezelési díj 
@@ -130,7 +128,7 @@ watch(() => card.cardnumber, (x) => {
                     </p>
                   </div>
                   <hr>
-                  <div class="row">
+                  <div>
                     <p class="fw-bold mb-0">Összesen: 
                       {{((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) + 
                         ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
@@ -141,7 +139,7 @@ watch(() => card.cardnumber, (x) => {
                   </div>
 
                   <hr>
-                  <div class="row">
+                  <div>
                     <button class="btn btn-outline-light w-auto mx-auto">
                       Megerősítés
                     </button>
@@ -155,257 +153,304 @@ watch(() => card.cardnumber, (x) => {
 
       
       <!-- user datas -->
-      <div class="col-12 col-md-6">
-
-        <!-- Billing adresses -->
-        <div class="row">
-          <h4 class="text-white mx-auto w-auto mt-4" 
-              data-bs-toggle="collapse"
-              data-bs-target="#billingCollapse"
-              aria-controls="billingCollapse">
-            Számlázási adatok
-          </h4>
-
-          <div class="collapse show" 
-               id="billingCollapse">
-            <div class="card bg-dark bg-opacity-50 w-75 mx-auto 
-                        text-white border-white text-black card-body">
-
-              <!-- User infos -->
-              <form>
-
-                <!-- Names -->
-                <div class="row justify-content-center mb-3">
-                  <div>
-                    <h5 class="text-center">Nevek</h5>
-                  </div>
-
-                  <!-- FirstName -->
-                  <div :class="model.middleName!=''?
-                          'col-lg-4':
-                          'col-lg-6'"
-                        class="mb-3 m-0 col-12">
-                    <label for="InputFirstName" 
-                           class="form-label">
-                      Keresztnév
-                    </label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="InputFirstName" 
-                           v-model="model.firstName">
-                  </div>
-
-                  <!-- MiddleName -->
-                  <div v-if="model.middleName!=''"
-                       class="mb-3 col-12 col-lg-4">
-                    <label for="InputMiddleName" 
-                            class="form-label">
-                      Harmadiknév
-                    </label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="InputMiddleName" 
-                            v-model="model.middleName">
-                  </div>
-
-                  <!-- LastName -->
-                  <div :class="model.middleName!=''?
-                          'col-lg-4':
-                          'col-lg-6'"
-                        class="mb-3 m-0 col-12">
-                    <label for="InputLastName" 
-                           class="form-label">
-                      Vezetéknév
-                    </label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="InputLastName"
-                            v-model="model.lastName">
-                  </div>
+      <div class="col-12 col-md-6 bg-dark 
+                  bg-opacity-50 border border-1
+                   border-white p-4 rounded-3 h-50 
+                   text-white my-auto">
+        <Transition :name="transitionName"
+                    type="transition" 
+                    mode="out-in">
+          <div :key="step">
+            <!-- Personal data -->
+            <div v-if="step === 0">
+              <!-- Names -->
+              <div class="row justify-content-center mb-3">
+                <div>
+                  <h5 class="text-center">Nevek</h5>
                 </div>
 
-                <!-- Contact information -->
-                <div class="row">
-                  <div>
-                    <h5 class="text-center">Elérési módok</h5>
-                  </div>
-
-                  <!-- Email -->
-                  <div class="mb-3 col-12 col-lg-6">
-                    <label for="InputEmail" 
-                           class="form-label">
-                      Email
-                    </label>
-                    <input type="email" 
-                           class="form-control" 
-                           id="InputEmail" 
-                           v-model="model.email">
-                  </div>
-
-                  <!-- PhoneNumber -->
-                  <div class="mb-3 col-12 col-lg-6">
-                    <label for="InputPhoneNum" 
-                           class="form-label">
-                      Telefonszám
-                    </label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="InputPhoneNum" 
-                           v-model="model.phoneNum">
-                  </div>
+                <!-- FirstName -->
+                <div :class="model.middleName!=''?
+                        'col-lg-4':
+                        'col-lg-6'"
+                      class="mb-3 m-0 col-12">
+                  <label for="InputFirstName" 
+                        class="form-label">
+                    Keresztnév
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputFirstName" 
+                        v-model="model.firstName">
                 </div>
-              </form>
-            </div>
-          </div>
-        </div>
 
-        <!-- Card information -->
-        <div>
-          <div class="row">
-              <h4 class="text-center text-white mt-4"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#cardDataCollapse" 
-                  aria-controls="cardDataCollapse">
-                Kártya adatok
-              </h4>
+                <!-- MiddleName -->
+                <div v-if="model.middleName!=''"
+                    class="mb-3 col-12 col-lg-4">
+                  <label for="InputMiddleName" 
+                          class="form-label">
+                    Harmadiknév
+                  </label>
+                  <input type="text" 
+                          class="form-control" 
+                          id="InputMiddleName" 
+                          v-model="model.middleName">
+                </div>
 
-              <div id="cardDataCollapse"
-                  class="collapse show">
-                <div class="bg-dark bg-opacity-50 text-center 
-                            text-white border-1 border-white 
-                            card w-auto mx-auto text-white p-3">
+                <!-- LastName -->
+                <div :class="model.middleName!=''?
+                        'col-lg-4':
+                        'col-lg-6'"
+                      class="mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Vezetéknév
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"
+                          v-model="model.lastName">
+                </div>
+              </div>
 
-                <!-- CreditCard -->
-                <form>
+              <!-- Contact information -->
+              <div class="row">
+                <div>
+                  <h5 class="text-center">Elérési módok</h5>
+                </div>
 
-                  <!-- Owner data -->
-                  <div class="row justify-content-center">
+                <!-- Email -->
+                <div class="mb-3 col-12 col-lg-6">
+                  <label for="InputEmail" 
+                        class="form-label">
+                    Email
+                  </label>
+                  <input type="email" 
+                        class="form-control" 
+                        id="InputEmail" 
+                        v-model="model.email">
+                </div>
 
-                    <!-- FirstName -->
-                    <div :class="model.middleName!=''?
-                          'col-lg-4':
-                          'col-lg-6'"
-                          class="mb-3 m-0 col-12">
-                      <label for="InputOwnerFirstName" 
-                            class="form-label">
-                        Keresztnév
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputOwnerFirstName" 
-                              v-model="model.firstName">
-                    </div>
-
-                    <!-- MiddleName -->
-                    <div v-if="model.middleName!=''"
-                        class="mb-3 col-12 col-lg-4">
-                      <label for="InputMiddleName" 
-                              class="form-label">
-                        Harmadiknév
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputMiddleName" 
-                              v-model="model.middleName">
-                    </div>
-
-                    <!-- LastName -->
-                    <div :class="model.middleName!=''?
-                          'col-lg-4':
-                          'col-lg-6'"
-                          class="mb-3 m-0 col-12">
-                      <label for="InputOwnerLastName" 
-                            class="form-label">
-                        Vezetéknév
-                      </label>
-                      <input type="text" 
-                              class="form-control" 
-                              id="InputOwnerLastName" 
-                              v-model="model.lastName">
-                    </div>
-                  </div>
-
-                  <hr class="m-2">
-
-                  <!-- Card data -->
-                  <div class="row">
-
-                    <!-- cardNumber -->
-                    <div class="mb-3 col-9 col-md-8 col-lg-10">
-                      <label for="inputCardNumber" 
-                              class="form-label">
-                        Kártyaszám
-                      </label>
-                      <input type="text"
-                            class="form-control"
-                            id="inputCardNumber"
-                            v-model="card.cardnumber">
-                    </div>
-
-                    <!-- CardBrand -->
-                    <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
-                      <img :src="`/cards/${currentCard}.png`"
-                            class="img-fluid w-auto ratio-4x3"
-                            style="height: 30px;" 
-                            alt="">
-                    </div>
-
-                    <!-- Month -->
-                    <div class="mb-3 col-6 col-lg-4">
-                      <label class="form-label"
-                              for="inputMonth">
-                        Hónap
-                      </label>
-                      <select class="form-select"
-                              id="inputMonth">
-                        <option value="" selected>{{ card.expiration_month }}</option>
-                        <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
-                      </select>
-                    </div>
-
-                    <!-- Year -->
-                    <div class="mb-3 col-6 col-sm-3 col-lg-4">
-                      <label class="form-label"
-                              for="inputYear">
-                        Év
-                      </label>
-
-                      <select class="form-select"
-                              id="inputYear">
-                        <option value=""
-                                selected>
-                          {{  card.expirationYear }}
-                        </option>
-                        <option v-for="x in 5" >
-                          {{ parseInt(currentExpYear) + x }}
-                        </option>
-                      </select>
-                    </div>
-
-                    <!-- CVV -->
-                    <div class="mb-3 col-6 col-sm-3 col-lg-4">
-                      <label for="inputCVV" 
-                              class="form-label">
-                        CVV
-                      </label>
-                      <input type="text"
-                              class="form-control"
-                              id="inputCVV"
-                              v-model="card.cvv">
-                    </div>
-                  </div>
-
-                  
-                </form>   
+                <!-- PhoneNumber -->
+                <div class="mb-3 col-12 col-lg-6">
+                  <label for="InputPhoneNum" 
+                        class="form-label">
+                    Telefonszám
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputPhoneNum" 
+                        v-model="model.phoneNum">
+                </div>
               </div>
             </div>
+
+            <!-- Billing address -->
+            <div v-if="step === 1">
+              <!-- LastName -->
+              <div class="row">
+
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Város
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"  >
+                </div>
+
+                <!-- LastName -->
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Irányítószám
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName">
+                </div>
+
+                <!-- LastName -->
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Utca név
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName">
+                </div>
+
+                <!-- LastName -->
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Házszám
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName">
+                </div>
+
+                <!-- LastName -->
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Ajtó
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName">
+                </div>
+
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Város
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"  >
+                </div>
+
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Város
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"  >
+                </div>
+
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Város
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"  >
+                </div>
+
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Város
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"  >
+                </div>
+
+                <div class="col-lg-6 mb-3 m-0 col-12">
+                  <label for="InputLastName" 
+                        class="form-label">
+                    Város
+                  </label>
+                  <input type="text" 
+                        class="form-control" 
+                        id="InputLastName"  >
+                </div>
+              </div>
+            </div>
+            <!-- Card information -->
+            <div v-if="step === 2">
+                <!-- Card data -->
+                <div class="row">
+
+                  <!-- cardNumber -->
+                  <div class="mb-3 col-9 col-md-8 col-lg-10">
+                    <label for="inputCardNumber" 
+                            class="form-label">
+                      Kártyaszám
+                    </label>
+                    <input type="text"
+                          class="form-control"
+                          id="inputCardNumber"
+                          v-model="card.cardnumber">
+                  </div>
+
+                  <!-- CardBrand -->
+                  <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
+                    <img :src="`/cards/${currentCard}.png`"
+                          class="img-fluid w-auto ratio-4x3"
+                          style="height: 30px;" 
+                          alt="">
+                  </div>
+
+                  <!-- Month -->
+                  <div class="mb-3 col-6 col-lg-4">
+                    <label class="form-label"
+                            for="inputMonth">
+                      Hónap
+                    </label>
+                    <select class="form-select"
+                            id="inputMonth">
+                      <option value="" selected>{{ card.expiration_month }}</option>
+                      <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
+                    </select>
+                  </div>
+
+                  <!-- Year -->
+                  <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                    <label class="form-label"
+                            for="inputYear">
+                      Év
+                    </label>
+
+                    <select class="form-select"
+                            id="inputYear">
+                      <option value=""
+                              selected>
+                        {{  card.expirationYear }}
+                      </option>
+                      <option v-for="x in 5" >
+                        {{ parseInt(currentExpYear) + x }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- CVV -->
+                  <div class="mb-3 col-6 col-sm-3 col-lg-4">
+                    <label for="inputCVV" 
+                            class="form-label">
+                      CVV
+                    </label>
+                    <input type="text"
+                            class="form-control"
+                            id="inputCVV"
+                            v-model="card.cvv">
+                  </div>
+                </div>
+            </div>
           </div>
+        </Transition>
+
+        <!-- buttons -->
+        <div class="row">
+           <!-- Vissza gomb -->
+          <button type="button"  
+                  class="btn btn-outline-light text-center 
+                         w-auto w-50 mx-auto" 
+                  @click="transitionName = 'slide-in'; step--;"
+                  v-bind:disabled="step===0">
+            {{ $t("register.previous") }}
+          </button>
+
+          <!-- Következő gomb -->
+          <button type="button" 
+                  class="btn btn-outline-light text-center 
+                         d-block w-auto w-50 mx-auto py-0" 
+                  @click="transitionName = 'slide-out'; step++;" >
+            {{ step === 3 ? "Fizetés" : "Következő"  }}
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  
 </template>
 <style>
 input {
