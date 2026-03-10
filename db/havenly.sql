@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 04. 13:08
+-- Létrehozás ideje: 2026. Már 06. 08:28
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -935,7 +935,7 @@ CREATE TABLE `history` (
   `payment_type` varchar(20) NOT NULL DEFAULT '''''''unpaid''''''',
   `card_number` varchar(19) DEFAULT NULL,
   `expiration` varchar(7) DEFAULT NULL,
-  `rent_date` date DEFAULT NULL,
+  `rent_date` date DEFAULT current_timestamp(),
   `rent_beginning` date NOT NULL,
   `rent_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
