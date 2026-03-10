@@ -377,38 +377,4 @@ input:not([type="checkbox"],[type="radio"])::after {
   transition: 200ms;
   color: black !important;
 }
-
-/* Becsúszás animáció */
-.slide-in-enter-active,
-.slide-in-leave-active {
-  transition: all 0.278s ease;
-  width: 100%;
-  opacity: 1;
-}
-
-.slide-in-enter-from {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-.slide-in-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-/* Ki csúszás animáció */
-.slide-out-enter-active,
-.slide-out-leave-active {
-  transition: all 0.278s ease;
-  width: 100%;
-  opacity: 0.4;
-}
-
-.slide-out-enter-from {
-  transform: translateX(-100%);
-}
-
-.slide-out-leave-to {
-  transform: translateX(100%);
-}
 </style>
