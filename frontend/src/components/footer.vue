@@ -12,7 +12,7 @@
 
         <!-- Fő oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/havenly/"> 
+           href="/havenly"> 
           {{ $t("footer.main_page") }} 
         </a>
 

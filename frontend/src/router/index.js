@@ -14,7 +14,7 @@ import Term_of_use from '@/pages/term_of_use.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 let routes = [
   {
-    path: "/havenly/",
+    path: "/havenly",
     component: Home 
   },
   {

@@ -3,8 +3,10 @@ import Navbar from './components/navbar.vue';
 import Myfooter from './components/footer.vue';
 import { user } from './store/user';
 
+let websitekey = window.location.pathname.split("/")[1];
+
 let checkforUser = () => {
-  if (user.websitekey != 'havenly') {
+  if (websitekey != 'havenly') {
     localStorage.removeItem("id");
     localStorage.removeItem("first_name");
     localStorage.removeItem("last_name");

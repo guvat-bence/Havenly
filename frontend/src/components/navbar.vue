@@ -46,7 +46,7 @@ let	account = [
 			 data-bs-theme="dark">
 		<div class="container-fluid">
 			<!-- Home gomb -->
-			<router-link to="/havenly/">			
+			<router-link to="/havenly">			
 				<img style="height: 48px;" 
 					 	 class="navbar-brand d-inline-block align-text-top" 
 					 	 src="../images/image.png" 
