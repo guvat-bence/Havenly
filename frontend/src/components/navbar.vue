@@ -94,6 +94,7 @@ let	account = [
 					<li class="nav-item">
 						<router-link 	to="/havenly/settings"
 													class="nav-link">
+							<i class="fa-solid fa-gears fa-lg"></i>
 							{{ $t("navbar.settings") }}
 						</router-link>
 					</li>
@@ -106,14 +107,16 @@ let	account = [
 						<router-link :to="y.path" 
 												 class="nav-link"
 												 key="users">
+							<i class="fa-solid fa-circle-user fa-lg"></i>
 							{{ y.name }}
 						</router-link>
 					</li>
 
 					<!-- Kijelentkezés -->
-					<router-link class="btn btn-outline-danger"
+					<router-link class="nav-link"
 											 v-if="user.id"
 											 to="/havenly/logout">
+						<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
 						{{ $t("navbar.logout") }}
 					</router-link>
 				</ul>

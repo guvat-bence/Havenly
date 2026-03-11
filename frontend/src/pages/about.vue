@@ -739,7 +739,7 @@ watch(model,()=>
 
 						<!-- iconok megjelenítése-->
 						<p v-for="x in item_details" class="col-4	text-center">
-              <font-awesome-icon :icon="x.icon" size="xl" />
+              <i :class="x.icon +' fa-xl'"></i>
 							{{ x.text }}
             </p>
 

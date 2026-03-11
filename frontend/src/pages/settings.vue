@@ -75,7 +75,7 @@ function setLanguage()
 
 		<!-- Főcím -->
 		<div>
-			<h1 class="display-1 text-center text-white">{{ $t("settings.settings") }}</h1>
+			<h1 class="display-1 text-center text-white"><i class="fa-solid fa-gear"></i> {{ $t("settings.settings") }}</h1>
 		</div>
 
 		<!-- Nyelv választó menüpont -->
@@ -83,7 +83,7 @@ function setLanguage()
 								border-1 mx-5 my-5 rounded-3 p-3">
 			
 			<!-- Cím -->
-			<h1 class="fw-light">{{ $t("settings.language_choose") }}</h1>
+			<h1 class="fw-light"><i class="fa-solid fa-language"></i> {{ $t("settings.language_choose") }}</h1>
 
 			<!-- Select -->
 			<select class="form-select bg-dark text-white 
@@ -111,7 +111,7 @@ function setLanguage()
 								border-1 mx-5 rounded-3 p-3">
 			
 			<!-- Cím -->
-			<h1 class="fw-light">{{ $t("settings.currency_choose") }}</h1>
+			<h1 class="fw-light"><i class="fa-solid fa-money-bill-transfer"></i> {{ $t("settings.currency_choose") }}</h1>
 
 			<!-- Select -->
 			<select class="form-select bg-dark text-white 

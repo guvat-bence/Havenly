@@ -350,6 +350,7 @@ watch(card,()=>
                   type="button" role="tab"
                   aria-controls="nav-datas"
                   aria-selected="true">
+            <i class="fa-solid fa-user-pen fa-lg"></i>
             {{ $t("profile.navbar_datas") }}
           </button>
           <button class="nav-link" 
@@ -359,6 +360,7 @@ watch(card,()=>
                   type="button" role="tab" 
                   aria-controls="nav-posts" 
                   aria-selected="false">
+            <i class="fa-solid fa-upload fa-lg"></i>
             {{ $t("profile.nabar_posts") }}
           </button>
           <button class="nav-link" 
@@ -369,6 +371,7 @@ watch(card,()=>
                   role="tab" 
                   aria-controls="nav-chats" 
                   aria-selected="false">
+            <i class="fa-solid fa-comments fa-lg"></i>
             {{ $t("profile.navbar_messages") }}
           </button>
         </div>
@@ -399,6 +402,7 @@ watch(card,()=>
                                text-nowrap mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePrivacyDatas">
+                  <i class="fa-solid fa-address-card fa-xl"></i>
                   {{ $t("profile.personal_detail") }}
                 </button>
               </div>
@@ -411,6 +415,7 @@ watch(card,()=>
 
                 <!-- Cím -->
                 <h4 class="text-center">
+                  <i class="fa-solid fa-address-card"></i>
                   {{ $t("profile.personal_detail") }}
                 </h4>
 
@@ -421,6 +426,7 @@ watch(card,()=>
                   <div class="row justify-content-center mb-3">
                     <div>
                       <h5 class="text-center">
+                        <i class="fa-solid fa-id-card-clip fa-lg"></i>
                         {{ $t("profile.names") }}
                       </h5>
                     </div>
@@ -432,6 +438,7 @@ watch(card,()=>
                           class="mb-3 m-0 col-12">
                       <label for="InputFirstName" 
                               class="form-label">
+                        <i class="fa-solid fa-chalkboard-user"></i>      
                         {{ $t("profile.first_name") }}
                       </label>
                       <input type="text" 
@@ -445,6 +452,7 @@ watch(card,()=>
                         class="mb-3 col-12 col-lg-4">
                       <label for="InputMiddleName" 
                               class="form-label">
+                        <i class="fa-solid fa-chalkboard-user"></i>
                         {{ $t("profile.middle_name") }}
                       </label>
                       <input type="text" 
@@ -460,6 +468,7 @@ watch(card,()=>
                         class="mb-3 m-0 col-12">
                       <label for="InputLastName" 
                               class="form-label">
+                        <i class="fa-solid fa-chalkboard-user"></i>
                         {{ $t("profile.last_name") }}
                       </label>
                       <input type="text" 
@@ -473,6 +482,7 @@ watch(card,()=>
                   <div class="row">
                     <div>
                       <h5 class="text-center">
+                        <i class="fa-solid fa-envelope fa-lg"></i>
                         {{ $t("profile.contact") }}
                       </h5>
                     </div>
@@ -481,6 +491,7 @@ watch(card,()=>
                     <div class="mb-3 col-12 col-lg-6">
                       <label for="InputEmail" 
                               class="form-label">
+                        <i class="fa-solid fa-at"></i>
                         {{ $t("profile.email") }}
                       </label>
                       <input type="email" 
@@ -493,6 +504,7 @@ watch(card,()=>
                     <div class="mb-3 col-12 col-lg-6">
                       <label for="InputPhoneNum" 
                               class="form-label">
+                        <i class="fa-solid fa-phone"></i>
                         {{ $t("profile.phone_number") }}
                       </label>
                       <input type="text" 
@@ -511,6 +523,7 @@ watch(card,()=>
 
                       <!-- Title -->
                       <h5 class="text-center">
+                        <i class="fa-solid fa-mars-and-venus fa-lg"></i>
                         {{ $t("profile.gender") }}
                       </h5>
 
@@ -518,11 +531,17 @@ watch(card,()=>
                       <div class="row justify-content-center text-center">
                         <label for="genderMale" 
                               class="form-label col-6">
-                          <span>{{ $t("profile.male") }}</span> 
+                          <span>
+                            <i class="fa-solid fa-mars"></i>
+                            {{ $t("profile.male") }}
+                          </span> 
                         </label>
                         <label for="genderFemale" 
                               class="form-label col-6">
-                          <span>{{ $t("profile.female") }}</span>
+                          <span>
+                            <i class="fa-solid fa-venus"></i>
+                            {{ $t("profile.female") }}
+                          </span>
                         </label>
                       </div>
 
@@ -591,6 +610,7 @@ watch(card,()=>
                                 mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpaseCardDatas">
+                 <i class="fa-solid fa-credit-card fa-xl"></i>
                  {{ $t("profile.card_datas") }}
                 </button>
               </div>
@@ -603,6 +623,7 @@ watch(card,()=>
 
                 <!-- Cím -->
                 <h4 class="text-center">
+                  <i class="fa-solid fa-credit-card"></i>
                   {{ $t("profile.card_datas") }}
                 </h4>
 
@@ -614,6 +635,7 @@ watch(card,()=>
                   <div class="mb-3 col-10">
                     <label for="inputcardNumber" 
                             class="form-label">
+                      <i class="fa-solid fa-arrow-down-1-9"></i>
                       {{ $t("profile.card_number") }}
                     </label>
                     <input type="text"
@@ -627,6 +649,7 @@ watch(card,()=>
                   <div class="mb-3 col-6 col-lg-4">
                     <label class="form-label"
                             for="inputMonth">
+                      <i class="fa-solid fa-calendar-days"></i>
                       {{ $t("profile.card_month") }}
                     </label>
                     <select class="form-select"
@@ -640,6 +663,7 @@ watch(card,()=>
                   <div class="mb-3 col-6 col-sm-3 col-lg-4">
                     <label class="form-label"
                             for="inputYear">
+                      <i class="fa-solid fa-calendar"></i>
                       {{ $t("profile.card_year") }}
                     </label>
                     <select class="form-select"
@@ -703,6 +727,7 @@ watch(card,()=>
                                 mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePasswords">
+                  <i class="fa-solid fa-key fa-xl"></i>  
                   {{ $t("profile.password_modify") }}
                 </button>
               </div>
@@ -715,6 +740,7 @@ watch(card,()=>
 
                 <!-- Cím -->
                 <h4 class="text-center">
+                  <i class="fa-solid fa-key"></i>
                   {{ $t("profile.password_modify") }}
                 </h4>
 
@@ -725,6 +751,7 @@ watch(card,()=>
                   <div class="mb-3 col-10">
                     <label for="originalPassword" 
                           class="form-label">
+                      <i class="fa-solid fa-lock"></i>
                       {{ $t("profile.original_password") }}
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
@@ -740,6 +767,7 @@ watch(card,()=>
                   <div class="mb-3 col-10">
                     <label for="newPassword" 
                           class="form-label">
+                      <i class="fa-solid fa-unlock"></i>
                       {{ $t("profile.new_password") }}
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
@@ -764,6 +792,7 @@ watch(card,()=>
                   <div class="mb-3 col-10">
                     <label for="inputconfirmpass" 
                           class="form-label">
+                      <i class="fa-solid fa-unlock"></i>
                       {{ $t("profile.password_again") }}
                     </label>
                     <input :type="showpasscheck ? 'text' : 'password'" 
@@ -828,6 +857,7 @@ watch(card,()=>
                         class="col-10
                                text-nowrap mx-3 my-3
                                btn btn-danger">
+                  <i class="fa-solid fa-user-xmark fa-xl"></i>
                   {{ $t("profile.delete_user") }}
                 </button>
               </div>
