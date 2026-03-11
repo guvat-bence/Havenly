@@ -1,13 +1,10 @@
 <script setup>
-import { callWithAsyncErrorHandling, reactive, ref } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 import Cards from '../components/cards.vue';
 import { useI18n } from 'vue-i18n';
 
 const {t} = useI18n();
-let model = reactive({
-  searchbar: ''
-})
 
 let accommodations = ref([]);
 
@@ -41,11 +38,11 @@ axios.get("http://localhost:3000/accommodations/top5")
                     p-4 border border-1 border-white mb-5">
             <!-- Keresési mező -->
             <div class="justify-content-center d-flex">
-              <RouterLink to="/accommodation" 
+              <RouterLink to="/havenly/accommodation" 
                           class="btn btn-outline-light mx-1">
                 {{ $t("home.accommodations") }}
               </RouterLink>
-              <RouterLink to="/experience" 
+              <RouterLink to="/havenly/experience" 
                           class="btn btn-outline-light mx-1">
                 {{ $t("home.experiences") }}
               </RouterLink>

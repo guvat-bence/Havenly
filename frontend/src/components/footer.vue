@@ -12,25 +12,25 @@
 
         <!-- Fő oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/"> 
+           href="/havenly/"> 
           {{ $t("footer.main_page") }} 
         </a>
 
         <!-- Rólunk oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/aboutus"> 
+           href="/havenly/aboutus"> 
           {{ $t("footer.about_us") }} 
         </a>
 
         <!-- Szállások oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/accommodation"> 
+           href="/havenly/accommodation"> 
           {{ $t("footer.accommodations") }}
         </a>
 
         <!-- Élmények oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/experience"> 
+           href="/havenly/experience"> 
           {{ $t("footer.experiences") }}
         </a>
       </section>
@@ -46,12 +46,12 @@
         </p>
         <!-- Adatvédelmi oldal -->
         <a class="nav-link mt-1 mt-sm-2 mt-lg-4" 
-           href="/data_protection">
+           href="/havenly/data_protection">
           {{ $t("footer.data_protection") }}
         </a>
         <!-- Felhasználói feltételek -->
         <a class="nav-link mt-1 mt-sm-2 mt-lg-4" 
-           href="/term_of_use">
+           href="/havenly/term_of_use">
           {{ $t("footer.term_of_use") }}
         </a>
       </section>
