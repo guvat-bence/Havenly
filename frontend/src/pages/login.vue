@@ -109,6 +109,7 @@ let model = reactive({
         <div class="mb-3">
           <label for="InputEmail1" 
                  class="form-label">
+            <i class="fa-solid fa-at me-1"></i>
             <span>{{ $t("login.email") }}</span>
             <span class="text-danger">*</span>
           </label>
@@ -123,6 +124,7 @@ let model = reactive({
         <div class="mb-2 my-3">
           <label for="InputPassword" 
                  class="form-label">
+            <i class="fa-solid fa-lock me-1"></i>
             <span>{{ $t("login.password") }}</span>
             <span class="text-danger">*</span>
           </label>
@@ -139,7 +141,8 @@ let model = reactive({
         <div class=" mb-3">
           <label class="form-check-label mx-1 text-start" 
                  for="flexCheckDefault">
-           {{ $t("login.show_password") }}
+            <i class="fa-solid fa-eye"></i>
+            {{ $t("login.show_password") }}
           </label>
           <input class="form-check-input float-end" 
                  type="checkbox" 
@@ -154,6 +157,7 @@ let model = reactive({
                        w-auto d-block mx-auto" 
                 v-on:click="login()"
                 v-bind:disabled="!validateForm()">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
           {{ $t("login.log_in") }}
         </button>
 

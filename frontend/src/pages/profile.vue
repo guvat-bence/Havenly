@@ -438,7 +438,7 @@ watch(card,()=>
                           class="mb-3 m-0 col-12">
                       <label for="InputFirstName" 
                               class="form-label">
-                        <i class="fa-solid fa-chalkboard-user"></i>      
+                        <i class="fa-solid fa-chalkboard-user"></i>
                         {{ $t("profile.first_name") }}
                       </label>
                       <input type="text" 

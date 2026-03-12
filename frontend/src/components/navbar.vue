@@ -21,16 +21,20 @@ let mainRoutes = computed(()=>( [
 		path: "/havenly/aboutus"
 	}
 ]));
+
 let	authentication = computed(()=>([
 		{
 			name: t("navbar.registration"),
-			path: "/havenly/register"
+			path: "/havenly/register",
+			icon:"fa-solid fa-user-plus fa-lg"
 		},
 		{
 			name: t("navbar.login"),
-			path: "/havenly/login"
+			path: "/havenly/login",
+			icon:"fa-solid fa-user-check fa-lg"
 		}
 ]));
+
 let	account = [
 		{
 			name : (`${user.firstname}${user.middlename!="null"?' '+user.middlename+' ':" "}${user.lasttname}`),
@@ -86,6 +90,7 @@ let	account = [
 
 						<router-link :to="y.path" 
 												 class="nav-link">
+							<i :class="y.icon"></i>
 							{{ y.name }}
 						</router-link>
 					</li>	

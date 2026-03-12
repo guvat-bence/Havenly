@@ -148,6 +148,7 @@ watch(model, () => {
                             d-flex justify-content-center align-items-center 
                             gap-1">
                   <label for="lastName">
+                    <i class="fa-solid fa-chalkboard-user me-1"></i>
                     <span>{{ $t("register.last_name") }}</span>
                     <span class="text-danger">*</span>
                   </label>
@@ -165,6 +166,7 @@ watch(model, () => {
                               d-flex justify-content-center align-items-center 
                               gap-1">
                     <label for="firstName">
+                      <i class="fa-solid fa-chalkboard-user me-1"></i>
                       <span>{{ $t("register.first_name") }}</span>
                       <span class="text-danger">*</span>
                     </label>
@@ -182,6 +184,7 @@ watch(model, () => {
                               d-flex justify-content-center align-items-center 
                               gap-1">
                     <label for="middleName">
+                      <i class="fa-solid fa-chalkboard-user me-1"></i>
                       <span>{{ $t("register.middle_name") }}</span>
                     </label>
                   </div>
@@ -200,6 +203,7 @@ watch(model, () => {
               <div class="mb-3">
                 <label for="InputEmail1" 
                        class="form-label">
+                  <i class="fa-solid fa-at me-1"></i>
                   <span>{{ $t("register.email") }}</span>
                   <span class="text-danger">*</span>
                 </label>
@@ -214,6 +218,7 @@ watch(model, () => {
               <div class="mb-3">
                 <label for="phoneNumber" 
                        class="form-label">
+                  <i class="fa-solid fa-phone me-1"></i>
                   <span>{{ $t("register.phone_number") }}</span>
                   <span class="text-danger">*</span>
                 </label>
@@ -229,16 +234,19 @@ watch(model, () => {
               <!-- Gender -->
               <div class="mb-4">
                 <h5 class="text-center">
+                  <i class="fa-solid fa-mars-and-venus fa-lg"></i>
                   {{ $t("register.gender") }}
                   <span class="text-danger">*</span>
                 </h5>
                 <div class="row justify-content-center text-center">
                   <label for="genderMale" 
                         class="form-label col-6">
+                    <i class="fa-solid fa-mars me-1"></i>
                     <span>{{ $t("register.male") }}</span> 
                   </label>
                   <label for="genderFemale" 
                         class="form-label col-6">
+                    <i class="fa-solid fa-venus me-1"></i>
                     <span>{{ $t("register.female") }}</span>
                   </label>
                 </div>
@@ -270,6 +278,7 @@ watch(model, () => {
               <div>
                 <label for="InputPassword" 
                        class="form-label">
+                  <i class="fa-solid fa-lock me-1"></i>
                   <span>{{ $t("register.password") }}</span>
                   <span class="text-danger">*</span>
                 </label>
@@ -292,6 +301,7 @@ watch(model, () => {
               <div>
                 <label for="inputconfirmpass" 
                        class="form-label">
+                  <i class="fa-solid fa-lock me-1"></i>
                   <span>{{ $t("register.password_again") }}</span>
                   <span class="text-danger">*</span>
                 </label>
@@ -308,6 +318,7 @@ watch(model, () => {
               <div class="mb-3 mt-3">
                 <label class="form-check-label mx-1 text-start" 
                       for="flexCheckDefault">
+                  <i class="fa-solid fa-eye me-1"></i>
                   {{ $t("register.show_password") }}
                 </label>
                 <input class="form-check-input float-end" 
@@ -322,11 +333,11 @@ watch(model, () => {
               <!-- Iconok -->
               <div class="text-center">
                 <i v-if="isSuccess" 
-                   class="fa-solid fa-check text-success mb-3" 
+                   class="fa-solid fa-check text-success mb-3 fa-5x" 
                    size="5x"></i>
 
                 <i v-if="!isSuccess"
-                   class="fa-solid fa-x fa text-danger mb-3" 
+                   class="fa-solid fa-x fa text-danger mb-3 fa-5x" 
                    size="5x"></i>
               </div>
               <!-- Üzenet -->
@@ -348,6 +359,7 @@ watch(model, () => {
                          w-auto w-50 mx-auto" 
                   @click="transitionName = 'slide-in'; step--;"
                   v-bind:disabled="step===0">
+            <i class="fa-solid fa-arrow-left fa-lg"></i>
             {{ $t("register.previous") }}
           </button>
 
@@ -359,6 +371,7 @@ watch(model, () => {
                   v-if="step < 3"
                   v-bind:disabled="step === 2 && !validateForm()">
             {{ $t("register.next") }}
+            <i class="fa-solid fa-arrow-right fa-lg"></i>
           </button>
         </div>
       </form>
