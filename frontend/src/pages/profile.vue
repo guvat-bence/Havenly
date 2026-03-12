@@ -1,7 +1,7 @@
 <script setup>
 import { user } from '@/store/user';
 import router from '@/router';
-import { computed, reactive, ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { useI18n } from 'vue-i18n';
 
@@ -116,7 +116,7 @@ function removeDeletedUserValues()
   user.user_type = "";
   user.cardNumber = "";
   user.expiration = "";
-  router.push("/");
+  router.push("/havenly");
 }
 
 function setNewDatas(obj)

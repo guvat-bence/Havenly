@@ -17,7 +17,7 @@ export let user = reactive({
 
 // Ha a user adatai változnak akkor a localstorage-be mentse el
 watch(user,(newUser) => { 
-  localStorage.setItem("id", newUser.id); 
+  localStorage.setItem("id",newUser.id); 
   localStorage.setItem("first_name", newUser.firstname); 
   localStorage.setItem("last_name", newUser.lasttname); 
   localStorage.setItem("middle_name", newUser.middlename); 
@@ -28,4 +28,7 @@ watch(user,(newUser) => {
   localStorage.setItem("card_number", newUser.cardNumber); 
   localStorage.setItem("expirationMonth", newUser.expirationMonth); 
   localStorage.setItem("expirationYear", newUser.expirationYear);
+
+  console.log(newUser);
+  
 },{deep:true});

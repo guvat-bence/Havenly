@@ -6,6 +6,10 @@ import { reactive, ref, watch } from 'vue';
 
 const router = useRouter()
 
+let websitekey = window.location.pathname.split("/")[1];
+
+console.log(websitekey);
+
 if(user.id)
   router.push("/havenly")
 // Model dekralálása
@@ -33,7 +37,7 @@ let model = reactive({
         // Ha sikeres akkor 
         // a felasználó adait töltse fel a visszakapott adatokkal
         else{
-          user.id = response.data.user.id;
+          user.id = `${response.data.user.id} ${websitekey}`;
           user.firstname = response.data.user.first_name;
           user.lasttname = response.data.user.last_name;
           user.middlename = response.data.user.middle_name;

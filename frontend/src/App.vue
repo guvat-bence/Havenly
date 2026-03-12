@@ -2,11 +2,31 @@
 import Navbar from './components/navbar.vue';
 import Myfooter from './components/footer.vue';
 import { user } from './store/user';
+import router from './router';
 
 let websitekey = window.location.pathname.split("/")[1];
 
+let id = "";
+
+if(user.id != null)
+{
+  user.id = user.id.split(" ");
+
+  if(user.id.length>1)
+  {
+    id = user.id[1]=="havenly"?user.id[1]:user.id[0];
+    user.id = user.id =="havenly"?user.id.split(" ")[0]:null;
+  }
+  
+  console.log(id);
+}
+ 
+if(websitekey != 'havenly')
+  router.push("/havenly")
+
+
 let checkforUser = () => {
-  if (websitekey != 'havenly') {
+  if (id != 'havenly') {
     localStorage.removeItem("id");
     localStorage.removeItem("first_name");
     localStorage.removeItem("last_name");
@@ -27,6 +47,9 @@ let checkforUser = () => {
     localStorage.removeItem("currencyMultiplier");
     localStorage.removeItem("currencyShortedName");
     localStorage.removeItem("locale_name");
+  }
+  else{
+    
   }
 }
 if (user)

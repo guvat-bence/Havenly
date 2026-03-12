@@ -1,7 +1,6 @@
 <script setup>
 import router from '@/router';
 import { user } from '@/store/user';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
 import { reactive, ref, watch } from 'vue';
 
@@ -320,15 +319,13 @@ watch(model, () => {
             <div class="mb-3" v-else-if="step === 3">
               <!-- Iconok -->
               <div class="text-center">
-                <FontAwesomeIcon v-if="isSuccess" 
-                                 icon="fa-solid fa-check" 
-                                 class="text-success mb-3" 
-                                 size="5x" />
+                <i v-if="isSuccess" 
+                   class="fa-solid fa-check text-success mb-3" 
+                   size="5x"></i>
 
-                <FontAwesomeIcon v-if="!isSuccess" 
-                                 icon="fa-solid fa-x" 
-                                 class="text-danger mb-3" 
-                                 size="5x" />
+                <i v-if="!isSuccess"
+                   class="fa-solid fa-x fa text-danger mb-3" 
+                   size="5x"></i>
               </div>
               <!-- Üzenet -->
               <div class="text-center">
