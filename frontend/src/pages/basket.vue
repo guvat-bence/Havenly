@@ -11,6 +11,9 @@ let accommodation_data = JSON.parse(rent.accommodation);
 let cardData = ref([])
 let currentCard = ref("")
 
+if(!user.id)
+  router.back()
+
 // véletlenszerü 5 ország beolvasása
 axios.get('http://localhost:3000/getCardNetwork')
   .then(response => {
