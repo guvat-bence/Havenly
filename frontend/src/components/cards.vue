@@ -50,7 +50,6 @@ function getTranslation()
 				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
 				let text  = JSON.parse(datas.data.data[0].item);
 				toCard.value[x].name = text["title"];
-				console.log("fordított");
 				
 			}
 			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
@@ -58,7 +57,6 @@ function getTranslation()
 			{
 				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
 				toCard.value[x].name = datas.data.data[0].name;
-				console.log("eredeti");
 			}
 			// ha az üzenet failed akkor megy bele
 			else if(datas.data.message == "failed")
