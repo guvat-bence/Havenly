@@ -12,7 +12,7 @@ if(!user.id)
   router.back()
 
 let model = reactive({
-  userID: user.id,
+  userID: user.id.split(" ")[0],
   firstName: user.firstname,
   lastName: user.lasttname,
   middleName: user.middlename,
@@ -22,14 +22,14 @@ let model = reactive({
 })
 
 let card = reactive({
-  userID: user.id,
+  userID: user.id.split(" ")[0],
   cardNumber: user.cardNumber,
   expirationMonth: user.expirationMonth,
   expirationYear: user.expirationYear
 }) 
 
 let passwords = reactive({
-    userID: user.id,
+    userID: user.id.split(" ")[0],
     currentPassword :"",
     newPassword:"",
     confirmPassword:""

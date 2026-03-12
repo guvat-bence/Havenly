@@ -27,8 +27,5 @@ watch(user,(newUser) => {
   localStorage.setItem("user_type", newUser.user_type); 
   localStorage.setItem("card_number", newUser.cardNumber); 
   localStorage.setItem("expirationMonth", newUser.expirationMonth); 
-  localStorage.setItem("expirationYear", newUser.expirationYear);
-
-  console.log(newUser);
-  
+  localStorage.setItem("expirationYear", newUser.expirationYear)
 },{deep:true});

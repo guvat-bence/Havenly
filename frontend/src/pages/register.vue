@@ -9,6 +9,8 @@ import { reactive, ref, watch } from 'vue';
   if(user.id)
     router.push("/havenly")
 
+let websitekey = window.location.pathname.split("/")[1];
+
 // Változók és funkciók deklarálása
 let step = ref(0),
   showpasscheck = ref(false),
@@ -69,7 +71,7 @@ let step = ref(0),
 
         if(isSuccess){
           setTimeout(() => {
-            user.id = response.data.insertedId
+            user.id = `${response.data.insertedId} ${websitekey}`
             user.firstname = model.firstname;
             user.lasttname = model.lastname;
             user.middlename = model.middlename;

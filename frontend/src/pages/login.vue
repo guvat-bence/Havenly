@@ -8,8 +8,6 @@ const router = useRouter()
 
 let websitekey = window.location.pathname.split("/")[1];
 
-console.log(websitekey);
-
 if(user.id)
   router.push("/havenly")
 // Model dekralálása
