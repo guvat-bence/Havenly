@@ -12,8 +12,7 @@ export let user = reactive({
   user_type: localStorage.getItem("user_type") ?? "", 
   cardNumber: localStorage.getItem("card_number")=="null"?"":localStorage.getItem("card_number") ?? "",
   expirationYear: localStorage.getItem("expirationYear") ?? "",
-  expirationMonth: localStorage.getItem("expirationMonth") ?? "",
-  websitekey:localStorage.getItem("websitekey")?? "incorrect"
+  expirationMonth: localStorage.getItem("expirationMonth") ?? ""
 })
 
 // Ha a user adatai változnak akkor a localstorage-be mentse el
@@ -29,5 +28,4 @@ watch(user,(newUser) => {
   localStorage.setItem("card_number", newUser.cardNumber); 
   localStorage.setItem("expirationMonth", newUser.expirationMonth); 
   localStorage.setItem("expirationYear", newUser.expirationYear);
-  localStorage.setItem("websitekey",newUser.websitekey);
 },{deep:true});

@@ -431,6 +431,53 @@
     "email_message":"このメールアドレスは既に使用されています！",
     "phone_number_message":"この電話番号は既に使用されています！"
   },
+  "profile":
+  {
+    "navbar_datas":"私のデータ",
+    "nabar_posts":"私の投稿",
+    "navbar_messages":"私の会話",
+    "personal_detail":"個人情報",
+    "card_datas":"カード情報",
+    "password_modify":"パスワード変更",
+    "delete_user":"アカウント削除",
+    "names":"名前",
+    "first_name":"名",
+    "last_name":"姓",
+    "middle_name":"ミドルネーム",
+    "contact":"連絡方法",
+    "email":"メールアドレス",
+    "phone_number":"電話番号",
+    "gender":"性別",
+    "male":"男性",
+    "female":"女性",
+    "card_number":"カード番号",
+    "card_month":"月",
+    "card_year":"年",
+    "original_password":"現在のパスワード",
+    "new_password":"新しいパスワード",
+    "password_requirement":"パスワードには少なくとも1つの大文字と1つの数字を含める必要があります",
+    "password_requirement_second":"少なくとも6文字である必要があります",
+    "password_requirement_third":"現在のパスワードと新しいパスワードは同じにできません",
+    "password_again":"新しいパスワードをもう一度",
+    "show_password":"パスワードを表示:",
+    "save":"保存",
+    "save_all":"すべて保存",
+    "delete_datas":"データ削除",
+    "unsave":"キャンセル",
+    "yes":"はい",
+    "no":"いいえ",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "変更を保存してもよろしいですか？",
+      "deleting":"アカウントを削除してもよろしいですか？",
+      "deletingCardDatas":"カード情報を削除してもよろしいですか？",
+      "passwordError":"現在のパスワードが正しくありません！",
+      "emailError":"入力されたメールアドレスは既に使用されています！",
+      "succesEditing":"変更が成功しました！",
+      "succesDeleting":"アカウントが正常に削除されました！"
+    }
+  },
   "login":
   {
     "title":"ログイン",

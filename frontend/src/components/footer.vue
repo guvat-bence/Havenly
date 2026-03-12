@@ -12,25 +12,25 @@
 
         <!-- Fő oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/"> 
+           href="/havenly"> 
           {{ $t("footer.main_page") }} 
         </a>
 
         <!-- Rólunk oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/aboutus"> 
+           href="/havenly/aboutus"> 
           {{ $t("footer.about_us") }} 
         </a>
 
         <!-- Szállások oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/accommodation"> 
+           href="/havenly/accommodation"> 
           {{ $t("footer.accommodations") }}
         </a>
 
         <!-- Élmények oldal elérése -->
         <a class="nav-link mb-2 mt-md-3" 
-           href="/experience"> 
+           href="/havenly/experience"> 
           {{ $t("footer.experiences") }}
         </a>
       </section>
@@ -46,12 +46,12 @@
         </p>
         <!-- Adatvédelmi oldal -->
         <a class="nav-link mt-1 mt-sm-2 mt-lg-4" 
-           href="/data_protection">
+           href="/havenly/data_protection">
           {{ $t("footer.data_protection") }}
         </a>
         <!-- Felhasználói feltételek -->
         <a class="nav-link mt-1 mt-sm-2 mt-lg-4" 
-           href="/term_of_use">
+           href="/havenly/term_of_use">
           {{ $t("footer.term_of_use") }}
         </a>
       </section>
@@ -65,21 +65,21 @@
         <!-- Email cím -->
         <a class="nav-link mb-1 mb-1 mt-md-3" 
            href="mailto:guvat.bence-2021@keri.mako.hu">
-            <font-awesome-icon icon="fa-solid fa-envelope" size="xl"/>
+            <i class="fa-solid fa-envelope fa-xl"></i>
             havenly@gmail.com
         </a>
 
         <!-- Telefonszám -->
         <a class="nav-link mb-1 mb-1 mt-md-3" 
            href="tel:+36304583453">
-            <font-awesome-icon icon="fa-solid fa-phone" size="xl"/> 
+            <i class="fa-solid fa-phone fa-xl"></i> 
              {{ $t("footer.phone_number") }}
         </a>
 
         <!-- Cím -->
         <a class="nav-link mb-1 mb-1 mt-md-3" 
            href="https://www.google.com/maps/@46.9096969,19.683835,3a,75y,47.16h,89.48t/data=!3m7!1e1!3m5!1sJGuIwHNr92f18NEz_5t74A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.5193384297109134%26panoid%3DJGuIwHNr92f18NEz_5t74A%26yaw%3D47.15601703953956!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D">
-            <font-awesome-icon icon="fa-solid fa-location-dot" size="xl"/>
+            <i class="fa-solid fa-location-dot fa-xl"></i>
             {{ $t("footer.addres") }}
         </a>
         <!-- Social Media -->
@@ -88,19 +88,19 @@
           <!-- Facebook -->
           <a class="nav-link" 
              href="">
-              <font-awesome-icon icon="fa-brands fa-square-facebook" size="xl"/>
+              <i class="fa-brands fa-square-facebook fa-xl"></i>
             </a>
 
           <!-- Instagram -->
           <a class="nav-link"
              href="">
-              <font-awesome-icon icon="fa-brands fa-instagram" size="xl"/>
+              <i class="fa-brands fa-instagram fa-xl"></i>
           </a>
 
           <!-- Twitter -->
           <a class="nav-link" 
              href="">
-              <font-awesome-icon icon="fa-brands fa-x-twitter" size="xl"/>
+              <i class="fa-brands fa-x-twitter fa-xl"></i>
           </a>
         </div>
       </section>

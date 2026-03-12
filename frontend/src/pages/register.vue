@@ -8,7 +8,7 @@ import { reactive, ref, watch } from 'vue';
 
 //securityCheck
   if(user.id)
-    router.push('/')
+    router.push("/havenly")
 
 // Változók és funkciók deklarálása
 let step = ref(0),
@@ -78,7 +78,7 @@ let step = ref(0),
             user.phone_number = model.phone_number;
             user.user_type = "U";
             user.gender = model.gender;
-            router.push('/');
+            router.push("/havenly");
             location.reload();
           }, 1500);
         }

@@ -439,6 +439,53 @@
     "show_password":"Mostra password:",
     "log_in":"Accedi"
   },
+  "profile":
+  {
+    "navbar_datas":"I miei dati",
+    "nabar_posts":"I miei post",
+    "navbar_messages":"Le mie conversazioni",
+    "personal_detail":"Dati personali",
+    "card_datas":"Dati della carta",
+    "password_modify":"Modifica password",
+    "delete_user":"Elimina account",
+    "names":"Nomi",
+    "first_name":"Nome",
+    "last_name":"Cognome",
+    "middle_name":"Secondo nome",
+    "contact":"Metodi di contatto",
+    "email":"Indirizzo email",
+    "phone_number":"Numero di telefono",
+    "gender":"Genere",
+    "male":"Maschile",
+    "female":"Femminile",
+    "card_number":"Numero della carta",
+    "card_month":"Mese",
+    "card_year":"Anno",
+    "original_password":"Password attuale",
+    "new_password":"Nuova password",
+    "password_requirement":"La password deve contenere almeno una lettera maiuscola e un numero",
+    "password_requirement_second":"Deve contenere almeno 6 caratteri",
+    "password_requirement_third":"La password attuale e quella nuova non possono essere uguali",
+    "password_again":"Ripeti la nuova password",
+    "show_password":"Mostra password:",
+    "save":"Salva",
+    "save_all":"Salva tutto",
+    "delete_datas":"Elimina dati",
+    "unsave":"Annulla",
+    "yes":"Sì",
+    "no":"No",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "Sei sicuro di voler salvare le modifiche?",
+      "deleting":"Sei sicuro di voler eliminare il tuo account?",
+      "deletingCardDatas":"Sei sicuro di voler eliminare i dati della carta?",
+      "passwordError":"Hai inserito una password attuale errata!",
+      "emailError":"L'indirizzo email fornito è già in uso!",
+      "succesEditing":"Modifica riuscita!",
+      "succesDeleting":"Il tuo account è stato eliminato con successo!"
+    }
+  },
   "settings":
   {
     "settings":"Impostazioni",

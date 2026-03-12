@@ -10,31 +10,31 @@ const { t } = useI18n();
 let mainRoutes = computed(()=>( [
 	{
 		name: t('navbar.accommodations'),
-		path: "/accommodation"
+		path: "/havenly/accommodation"
 	},
 	{
 		name: t('navbar.experiences'),
-		path: "/experience"
+		path: "/havenly/experience"
 	},
 	{
 		name: t("navbar.about_us"),
-		path: "/aboutus"
+		path: "/havenly/aboutus"
 	}
 ]));
 let	authentication = computed(()=>([
 		{
 			name: t("navbar.registration"),
-			path: "/register"
+			path: "/havenly/register"
 		},
 		{
 			name: t("navbar.login"),
-			path: "/login"
+			path: "/havenly/login"
 		}
 ]));
 let	account = [
 		{
 			name : (`${user.firstname}${user.middlename!="null"?' '+user.middlename+' ':" "}${user.lasttname}`),
-			path: "/profile",
+			path: "/havenly/profile",
 		}
 ];
 
@@ -46,7 +46,7 @@ let	account = [
 			 data-bs-theme="dark">
 		<div class="container-fluid">
 			<!-- Home gomb -->
-			<router-link to="/">			
+			<router-link to="/havenly">			
 				<img style="height: 48px;" 
 					 	 class="navbar-brand d-inline-block align-text-top" 
 					 	 src="../images/image.png" 
@@ -92,8 +92,9 @@ let	account = [
 
 					<!-- Beállítások -->
 					<li class="nav-item">
-						<router-link 	to="/settings"
+						<router-link 	to="/havenly/settings"
 													class="nav-link">
+							<i class="fa-solid fa-gears fa-lg"></i>
 							{{ $t("navbar.settings") }}
 						</router-link>
 					</li>
@@ -106,14 +107,16 @@ let	account = [
 						<router-link :to="y.path" 
 												 class="nav-link"
 												 key="users">
+							<i class="fa-solid fa-circle-user fa-lg"></i>
 							{{ y.name }}
 						</router-link>
 					</li>
 
 					<!-- Kijelentkezés -->
-					<router-link class="btn btn-outline-danger"
+					<router-link class="nav-link"
 											 v-if="user.id"
-											 to="/logout">
+											 to="/havenly/logout">
+						<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
 						{{ $t("navbar.logout") }}
 					</router-link>
 				</ul>

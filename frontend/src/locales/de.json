@@ -439,6 +439,53 @@
     "show_password":"Passwort anzeigen:",
     "log_in":"Anmelden"
   },
+  "profile":
+  {
+    "navbar_datas":"Meine Daten",
+    "nabar_posts":"Meine Beiträge",
+    "navbar_messages":"Meine Gespräche",
+    "personal_detail":"Persönliche Daten",
+    "card_datas":"Kartendaten",
+    "password_modify":"Passwort ändern",
+    "delete_user":"Konto löschen",
+    "names":"Namen",
+    "first_name":"Vorname",
+    "last_name":"Nachname",
+    "middle_name":"Zweiter Vorname",
+    "contact":"Kontaktmöglichkeiten",
+    "email":"E-Mail-Adresse",
+    "phone_number":"Telefonnummer",
+    "gender":"Geschlecht",
+    "male":"männlich",
+    "female":"weiblich",
+    "card_number":"Kartennummer",
+    "card_month":"Monat",
+    "card_year":"Jahr",
+    "original_password":"Aktuelles Passwort",
+    "new_password":"Neues Passwort",
+    "password_requirement":"Das Passwort muss mindestens einen Großbuchstaben und eine Zahl enthalten",
+    "password_requirement_second":"Es muss mindestens 6 Zeichen enthalten",
+    "password_requirement_third":"Das aktuelle und das neue Passwort dürfen nicht identisch sein",
+    "password_again":"Neues Passwort erneut",
+    "show_password":"Passwort anzeigen:",
+    "save":"Speichern",
+    "save_all":"Alles speichern",
+    "delete_datas":"Daten löschen",
+    "unsave":"Abbrechen",
+    "yes":"Ja",
+    "no":"Nein",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "Sind Sie sicher, dass Sie die Änderungen speichern möchten?",
+      "deleting":"Sind Sie sicher, dass Sie Ihr Konto löschen möchten?",
+      "deletingCardDatas":"Sind Sie sicher, dass Sie die Kartendaten löschen möchten?",
+      "passwordError":"Sie haben ein falsches aktuelles Passwort eingegeben!",
+      "emailError":"Die angegebene E-Mail-Adresse ist bereits vergeben!",
+      "succesEditing":"Änderung erfolgreich!",
+      "succesDeleting":"Ihr Konto wurde erfolgreich gelöscht!"
+    }
+  },
   "settings":
   {
     "settings":"Einstellungen",

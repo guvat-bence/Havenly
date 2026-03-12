@@ -622,7 +622,7 @@ function renting()
 	rent.guests = model.guests;
 	rent.accommodation =JSON.stringify(item.value[0]);
 
-	router.replace({path:'/basket'})
+	router.replace({path:'/havenly/basket'})
 }
 
 // figyeleli az érekezési és távozási napok változását.
@@ -739,7 +739,7 @@ watch(model,()=>
 
 						<!-- iconok megjelenítése-->
 						<p v-for="x in item_details" class="col-4	text-center">
-              <font-awesome-icon :icon="x.icon" size="xl" />
+              <i :class="x.icon +' fa-xl'"></i>
 							{{ x.text }}
             </p>
 
@@ -867,7 +867,7 @@ watch(model,()=>
               </button>
 
 							 <!-- Bejelentkezés gomb gomb -->
-							<router-link to="/login" v-if="user.id ==''"
+							<router-link to="/havenly/login" v-if="user.id ==''"
 										  class="btn btn-secondary col-6 
                       				rounded-pill">
                 {{ $t('about.login') }}

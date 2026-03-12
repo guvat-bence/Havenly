@@ -7,7 +7,7 @@ import { reactive, ref, watch } from 'vue';
 const router = useRouter()
 
 if(user.id)
-  router.push('/')
+  router.push("/havenly")
 // Model dekralálása
 let model = reactive({
   email: "",
@@ -52,7 +52,7 @@ let model = reactive({
             user.expirationMonth = "";
             user.expirationYear = "";
           }
-          user.websitekey = "havenly"
+
           // Töltse újra az oldalt annak érdekében 
           // hogy a felhasználót minden komponens érzékelni tudja
           window.location.reload()
