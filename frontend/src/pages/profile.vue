@@ -7,10 +7,11 @@ import { useI18n } from 'vue-i18n';
 
 const {t} = useI18n();
 
-//securityCheck
+//securityCheck.
 if(!user.id)
   router.back()
 
+// A felhasználó alap adatai.
 let model = reactive({
   userID: user.id.split(" ")[0],
   firstName: user.firstname,
@@ -21,6 +22,7 @@ let model = reactive({
   gender: user.gender,
 })
 
+// A felhasználó kártya adatai.
 let card = reactive({
   userID: user.id.split(" ")[0],
   cardNumber: user.cardNumber,
@@ -28,6 +30,7 @@ let card = reactive({
   expirationYear: user.expirationYear
 }) 
 
+// A felhasználó jelszavai
 let passwords = reactive({
     userID: user.id.split(" ")[0],
     currentPassword :"",
@@ -35,6 +38,7 @@ let passwords = reactive({
     confirmPassword:""
 })
 
+// A messagebox üzenetei.
 let messages =
 {
   editing:t("profile.messages.editing"),
@@ -46,6 +50,7 @@ let messages =
   succesDeleting: t("profile.messages.succesDeleting")
 }
 
+// Változók definiállása.
 let modelCopie = reactive({... model});
 let cardCopie = reactive({... card});
 let passwordCopie = {... passwords};
@@ -58,8 +63,7 @@ let messageType = ref("");
 let showpasscheck = ref(false);
 let showOkBtn = ref(false);
 
-// Adatokat ellenőrzése
-
+// Adatokat ellenőrzése.
 function validateUserDatas(){
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
@@ -89,6 +93,7 @@ function validateUserDatas(){
   return true;
 };
 
+// Jelszavak ellenőrzése.
 function validatePasswords()
 {
 
@@ -105,6 +110,8 @@ function validatePasswords()
   return true;
 }
 
+// ha a fiók törlését válasszuk ki, 
+// az adatbázisból való törlés után a localstorage adatait is töröljük.
 function removeDeletedUserValues()
 {
   user.id = "";
@@ -119,6 +126,7 @@ function removeDeletedUserValues()
   router.push("/havenly");
 }
 
+// Az újként megadott adatokat állítjuk be alapértelmezetre.
 function setNewDatas(obj)
 {
 
@@ -139,8 +147,13 @@ function setNewDatas(obj)
   }
 }
 
+// Ez a function felelős az összes profil adatának módosításáért,
+// beállyytja a megfelelő útvonalat és megfelelő adatokat az adatbázishoz,
+// majd ezek után a visszajövő értékekkel elvégzi az adott kiválaszott folyamatott.
 function changeDatas(obj)
 {
+  // Létrehozzuk az urlt,
+  // és beállítjuk az url-t alapértelmezetten az összes opcióra.
   let url = "updateUser/allDatas";
 
   if(messageType.value =="deleteUser")
@@ -167,10 +180,17 @@ function changeDatas(obj)
   {
     url = obj == model?"updateUser/Privacy":"updateUser/Card";
   }
+
+  // meghíjva az aktuális adatbázis hívást a kiválasztott értékekkel.
   axios.post(`http://localhost:3000/${url}`,obj)
   .then((response)=>{
 
-    console.log(response.data);
+    // attól függően, hogy milyen adatokkal tér vissza a hivás,
+    // az alapján fut tovább a program.
+
+    // ha van data.message akkor megnézi hogy melyik falytát kapja vissza belőle,
+    // ezek után elvégzi az aktuális folyamatokat és a végén tályékoztatja az usert.
+
     if(response.data.message == "incorrectPassword")
     {
       messageBoxmessage.value = messages.passwordError;
@@ -204,6 +224,9 @@ function changeDatas(obj)
       messageBox("open");
 
     }
+
+    // ha nincsen data.message, akkor a  data.affectedRows-t foglya nézi az adatok frissítéséhez,
+    // ezek utén minden adatott meg próbál frissíteni, ha valahol akadályba ütközik akkor magától lekezeli.
 
     if(response.data?.affectedRows || response.data[0]?.affectedRows)
     {
@@ -246,6 +269,7 @@ function changeDatas(obj)
   messageBox("close");
 }
 
+// Ez a function vissza állítja az adatok az eredeti változatukra.
 function restoreDatas(obj)
 {
   let copie = obj == model?modelCopie:obj==card?cardCopie:passwordCopie;
@@ -261,6 +285,8 @@ function restoreDatas(obj)
   }
 }
 
+// HA a fiók törlése opciót válasszuk, akkor ez a function fut le először,
+// és állytja be a szükségs dolgokat a fiók kitörlésének folytatásához.
 function deleteUser()
 {
   messageBoxmessage.value = messages.deleting;
@@ -268,6 +294,8 @@ function deleteUser()
   messageBox("open");
 }
 
+// ha a kártya adatok törlése opciót válasszuk, akkor ez a function fut le először,
+// és állítja be a szükségs dolgokat a kártya adatok kitörlésének folytatásához.
 function deleteCardDatas()
 {
   messageBoxmessage.value = messages.deletingCardDatas;
@@ -275,6 +303,8 @@ function deleteCardDatas()
   messageBox("open");
 }
 
+// ha a jelszó módosíása opciót válasszuk, akkor ez a function fut le először,
+// és állítja be a szükségs dolgokat a jelszó módosításának folytatásához.
 function updatePassword()
 {
   messageBoxmessage.value = messages.editing;
@@ -282,6 +312,7 @@ function updatePassword()
   messageBox("open");
 }
 
+// Ez a function kezeli a messageBox megjelenését és eltünésést
 function messageBox(type)
 {
   setTimeout(() => {
@@ -309,6 +340,9 @@ function messageBox(type)
   }
 }
 
+// Ha valamilyen változsá törtéánik akkor ez a function nézi meg,
+// hogy a mostani adat tényleg különbözik e az alapértelmezettől,
+// és azt is, hogy megfelelő formátumú-e. 
 function change(obj)
 {
   let copie = obj == model?modelCopie:cardCopie;
@@ -323,11 +357,15 @@ function change(obj)
   changed.value = false;
 }
 
+// ezzel a watch-al a model adatait figyeljük,
+// amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
 watch(model,()=>
 {
  change(model); 
 },{deep:true})
 
+// ezzel a watch-al a card adatait figyeljük,
+// amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
 watch(card,()=>
 {
  change(card);
@@ -340,9 +378,12 @@ watch(card,()=>
 
       <!-- Kiválasztható opciók -->
       <nav>
+        <!-- opciók összesége -->
         <div class="nav nav-tabs justify-content-center" 
              id="nav-tab" 
              role="tablist">
+
+          <!-- Adataim opció -->
           <button class="nav-link active"
                   id="nav-datas-tab"
                   data-bs-toggle="tab"
@@ -353,6 +394,8 @@ watch(card,()=>
             <i class="fa-solid fa-user-pen fa-lg"></i>
             {{ $t("profile.navbar_datas") }}
           </button>
+
+          <!-- Közzétételeim opcció -->
           <button class="nav-link" 
                   id="nav-posts-tab" 
                   data-bs-toggle="tab" 
@@ -363,6 +406,8 @@ watch(card,()=>
             <i class="fa-solid fa-upload fa-lg"></i>
             {{ $t("profile.nabar_posts") }}
           </button>
+
+          <!-- Beszélgetéseim opció -->
           <button class="nav-link" 
                   id="nav-chats-tab" 
                   data-bs-toggle="tab" 
@@ -386,7 +431,7 @@ watch(card,()=>
                    rounded-5 rounded-top-0 py-5 px-4" 
              id="nav-tabContent">
 
-          <!-- Adatok opció -->
+          <!-- Adatim opció -->
           <div class="tab-pane fade show active"
               id="nav-datas" 
               role="tabpanel" 
@@ -397,7 +442,9 @@ watch(card,()=>
             <div class="row justify-content-center">
 
               <!-- Személyes adatok form megjelenítő gomb -->
-              <div class="row justify-content-center col-12">  
+              <div class="row justify-content-center col-12">
+                
+                <!-- Maga a gomb -->
                 <button class="col-6 col-sm-5 col-md-3 
                                text-nowrap mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
@@ -422,55 +469,67 @@ watch(card,()=>
                 <!-- Adatok és gombok -->
                 <div class="px-3 py-3 border rounded-3">
 
-                  <!-- Names -->
+                  <!-- Nevek -->
                   <div class="row justify-content-center mb-3">
-                    <div>
-                      <h5 class="text-center">
-                        <i class="fa-solid fa-id-card-clip fa-lg"></i>
-                        {{ $t("profile.names") }}
-                      </h5>
-                    </div>
 
-                    <!-- FirstName -->
+                    <!-- Cím -->
+                    <h5 class="text-center">
+                      <i class="fa-solid fa-id-card-clip fa-lg"></i>
+                      {{ $t("profile.names") }}
+                    </h5>
+                  
+                    <!-- Keresztnév -->
                     <div :class="model.middleName!=''?
                           'col-lg-4':
                           'col-lg-6'"
                           class="mb-3 m-0 col-12">
+
+                      <!-- Label -->
                       <label for="InputFirstName" 
                               class="form-label">
                         <i class="fa-solid fa-chalkboard-user"></i>
                         {{ $t("profile.first_name") }}
                       </label>
+
+                      <!-- Input -->
                       <input type="text" 
                               class="form-control" 
                               id="InputFirstName" 
                               v-model="model.firstName">
                     </div>
 
-                    <!-- MiddleName -->
+                    <!-- Második név -->
                     <div v-if="model.middleName!=''"
                         class="mb-3 col-12 col-lg-4">
+
+                      <!-- Label -->
                       <label for="InputMiddleName" 
                               class="form-label">
                         <i class="fa-solid fa-chalkboard-user"></i>
                         {{ $t("profile.middle_name") }}
                       </label>
+
+                      <!-- Input -->
                       <input type="text" 
                               class="form-control" 
                               id="InputMiddleName" 
                               v-model="model.middleName">
                     </div>
 
-                    <!-- LastName -->
+                    <!-- Vezetéknév -->
                     <div :class="model.middleName!=''?
                           'col-lg-4':
                           'col-lg-6'"
                         class="mb-3 m-0 col-12">
+
+                      <!-- Label -->
                       <label for="InputLastName" 
                               class="form-label">
                         <i class="fa-solid fa-chalkboard-user"></i>
                         {{ $t("profile.last_name") }}
                       </label>
+
+                      <!-- Input -->
                       <input type="text" 
                               class="form-control" 
                               id="InputLastName"
@@ -478,93 +537,102 @@ watch(card,()=>
                     </div>
                   </div>
 
-                  <!-- Contact information -->
+                  <!-- elérhetőségek -->
                   <div class="row">
-                    <div>
-                      <h5 class="text-center">
-                        <i class="fa-solid fa-envelope fa-lg"></i>
-                        {{ $t("profile.contact") }}
-                      </h5>
-                    </div>
+
+                    <!-- Cím -->
+                    <h5 class="text-center">
+                      <i class="fa-solid fa-envelope fa-lg"></i>
+                      {{ $t("profile.contact") }}
+                    </h5>
 
                     <!-- Email -->
                     <div class="mb-3 col-12 col-lg-6">
+
+                      <!-- Label -->
                       <label for="InputEmail" 
                               class="form-label">
                         <i class="fa-solid fa-at"></i>
                         {{ $t("profile.email") }}
                       </label>
+
+                      <!-- Input -->
                       <input type="email" 
                               class="form-control" 
                               id="InputEmail" 
                               v-model="model.email">
                     </div>
 
-                    <!-- PhoneNumber -->
+                    <!-- Telefonszán -->
                     <div class="mb-3 col-12 col-lg-6">
+
+                      <!-- Label -->
                       <label for="InputPhoneNum" 
                               class="form-label">
                         <i class="fa-solid fa-phone"></i>
                         {{ $t("profile.phone_number") }}
                       </label>
+
+                      <!-- Input -->
                       <input type="text" 
                               class="form-control" 
                               id="InputPhoneNum" 
                               v-model="model.phoneNum">
                     </div>
-
                   </div>
 
-                  <!-- Gender -->
-                  <div class="row">
+                  <!-- Nem -->
+                  <div class="row mb-4">   
 
-                    <!-- Gender -->
-                    <div class="mb-4">
+                    <!-- Cím -->
+                    <h5 class="text-center">
+                      <i class="fa-solid fa-mars-and-venus fa-lg"></i>
+                      {{ $t("profile.gender") }}
+                    </h5>
 
-                      <!-- Title -->
-                      <h5 class="text-center">
-                        <i class="fa-solid fa-mars-and-venus fa-lg"></i>
-                        {{ $t("profile.gender") }}
-                      </h5>
+                    <!-- Nekem label-je -->
+                    <div class="row justify-content-center text-center">
 
-                      <!-- Labels -->
-                      <div class="row justify-content-center text-center">
-                        <label for="genderMale" 
-                              class="form-label col-6">
-                          <span>
-                            <i class="fa-solid fa-mars"></i>
-                            {{ $t("profile.male") }}
-                          </span> 
-                        </label>
-                        <label for="genderFemale" 
-                              class="form-label col-6">
-                          <span>
-                            <i class="fa-solid fa-venus"></i>
-                            {{ $t("profile.female") }}
-                          </span>
-                        </label>
+                      <!-- Férfi -->
+                      <label for="genderMale" 
+                            class="form-label col-6">
+                        <span>
+                          <i class="fa-solid fa-mars"></i>
+                          {{ $t("profile.male") }}
+                        </span> 
+                      </label>
+
+                      <!-- Nő -->
+                      <label for="genderFemale" 
+                            class="form-label col-6">
+                        <span>
+                          <i class="fa-solid fa-venus"></i>
+                          {{ $t("profile.female") }}
+                        </span>
+                      </label>
+                    </div>
+
+                    <!-- Nemek gombjai -->
+                    <div class="row justify-content-center">
+
+                      <!-- Férfi -->
+                      <div class="d-flex col-6 justify-content-center">
+                        <input type="radio"
+                          name="genderMale"
+                          class="form-check-input" 
+                          id="genderMale"
+                          value="M"
+                          v-model="model.gender">
                       </div>
 
-                      <!-- Radio button -->
-                      <div class="row justify-content-center">
-                        <div class="d-flex col-6 justify-content-center">
-                          <input type="radio"
-                            name="genderMale"
-                            class="form-check-input" 
-                            id="genderMale"
-                            value="M"
-                            v-model="model.gender">
-                        </div>
-
-                        <!-- Radio button -->
-                        <div class="d-flex col-6 justify-content-center">
-                          <input type="radio"
-                                name="genderFemale" 
-                                class="form-check-input" 
-                                id="genderFemale"
-                                value="F"
-                                v-model="model.gender">
-                        </div>
+                      <!--Nő -->
+                      <div class="d-flex col-6 justify-content-center">
+                        <input type="radio"
+                              name="genderFemale" 
+                              class="form-check-input" 
+                              id="genderFemale"
+                              value="F"
+                              v-model="model.gender">
                       </div>
                     </div>
                   </div>
@@ -606,6 +674,8 @@ watch(card,()=>
 
               <!-- Kártya információk form megjelenítő gomb -->
               <div class="row justify-content-center col-12">  
+
+                <!-- Maga a gomb -->
                 <button class="col-6 col-sm-5 col-md-3 
                                 mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
@@ -631,13 +701,17 @@ watch(card,()=>
                 <div class="px-3 py-3 border rounded-3
                             row justify-content-center">
 
-                  <!-- cardNumber -->
+                  <!-- Kártyaszám -->
                   <div class="mb-3 col-10">
+
+                    <!-- Label -->
                     <label for="inputcardNumber" 
                             class="form-label">
                       <i class="fa-solid fa-arrow-down-1-9"></i>
                       {{ $t("profile.card_number") }}
                     </label>
+
+                    <!-- Input -->
                     <input type="text"
                             :maxlength="19"
                             class="form-control"
@@ -645,13 +719,17 @@ watch(card,()=>
                             v-model="card.cardNumber">
                   </div>
 
-                  <!-- Month -->
+                  <!-- Hónap -->
                   <div class="mb-3 col-6 col-lg-4">
+
+                    <!-- Label -->
                     <label class="form-label"
                             for="inputMonth">
                       <i class="fa-solid fa-calendar-days"></i>
                       {{ $t("profile.card_month") }}
                     </label>
+
+                    <!-- Select -->
                     <select class="form-select"
                             id="inputMonth"
                             v-model="card.expirationMonth">
@@ -659,13 +737,17 @@ watch(card,()=>
                     </select>
                   </div>
 
-                  <!-- Year -->
+                  <!-- ÉV -->
                   <div class="mb-3 col-6 col-sm-3 col-lg-4">
+
+                    <!-- Label -->
                     <label class="form-label"
                             for="inputYear">
                       <i class="fa-solid fa-calendar"></i>
                       {{ $t("profile.card_year") }}
                     </label>
+
+                    <!-- Select -->
                     <select class="form-select"
                             id="inputYear"
                             v-model="card.expirationYear">
@@ -707,7 +789,7 @@ watch(card,()=>
                       {{ $t("profile.unsave") }}
                     </button>
 
-                      <!-- Adatok tölrlése gomb -->
+                    <!-- Adatok tölrlése gomb -->
                     <button v-if="cardCopie.cardNumber!=''&&
                                   cardCopie.expirationMonth!='' && 
                                   cardCopie.expirationYear!=''"
@@ -723,6 +805,8 @@ watch(card,()=>
 
               <!-- Jelszó form megjelenítő gomb -->
               <div class="row justify-content-center col-12">
+
+                <!-- Maga a gomb -->
                 <button class="col-6 col-sm-5 col-md-3 
                                 mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
@@ -749,11 +833,15 @@ watch(card,()=>
 
                   <!-- Eredeti elszó-->
                   <div class="mb-3 col-10">
+
+                    <!-- LAbel -->
                     <label for="originalPassword" 
                           class="form-label">
                       <i class="fa-solid fa-lock"></i>
                       {{ $t("profile.original_password") }}
                     </label>
+
+                    <!-- Input -->
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
                           id="originalPassword"
@@ -765,11 +853,15 @@ watch(card,()=>
 
                   <!--Új Jelszó-->
                   <div class="mb-3 col-10">
+
+                    <!-- Label -->
                     <label for="newPassword" 
                           class="form-label">
                       <i class="fa-solid fa-unlock"></i>
                       {{ $t("profile.new_password") }}
                     </label>
+
+                    <!-- Input -->
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
                           id="newPassword"
@@ -777,24 +869,26 @@ watch(card,()=>
                           minlength="6"
                           maxlength="40" 
                           v-model="passwords.newPassword">
+                      
+                      <!-- Jelszó követelmények -->
                       <div class="form-text text-white fw-bold">
-                        {{ $t("profile.password_requirement") }}
-                      </div>
-                      <div class="form-text text-white fw-bold">
-                        {{ $t("profile.password_requirement_second") }}
-                      </div>
-                      <div class="form-text text-white fw-bold">
+                        {{ $t("profile.password_requirement")}}<br>
+                        {{ $t("profile.password_requirement_second") }}<br>           
                         {{ $t("profile.password_requirement_third") }}
                       </div>
                   </div>
 
                   <!--Új Jelszó mégegyszer -->
                   <div class="mb-3 col-10">
+
+                    <!-- LAbel -->
                     <label for="inputconfirmpass" 
                           class="form-label">
                       <i class="fa-solid fa-unlock"></i>
                       {{ $t("profile.password_again") }}
                     </label>
+
+                    <!-- Input -->
                     <input :type="showpasscheck ? 'text' : 'password'" 
                           class="form-control" 
                           id="inputconfirmpass"
@@ -806,10 +900,14 @@ watch(card,()=>
 
                   <!-- Jelszó megjelenítése -->
                   <div class="d-flex mb-3 mt-3 justify-content-center">
+
+                    <!-- label -->
                     <label class="w-auto form-check-label mx-1 text-start" 
                           for="flexCheckDefault">
                       {{ $t("profile.show_password") }}
                     </label>
+
+                    <!-- Input -->
                     <input class="form-check-input float-end" 
                           type="checkbox" 
                           id="flexCheckDefault"
@@ -934,8 +1032,8 @@ watch(card,()=>
             </div>
           </div>
         </div>
+        
       </div>
-
     </div>
   </div>
 </template>
