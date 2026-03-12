@@ -883,6 +883,7 @@ app.post("/deleteUser",(req,res)=>{
 
   });  
 })
+
 app.post("/deleteCardDatas",(req,res)=>{
   let datas = req.body;
   db.query(`UPDATE users
@@ -925,3 +926,51 @@ app.post("/deleteCardDatas",(req,res)=>{
     }
   })
 });
+
+app.post("/rentAccomodation", (req, res) => {
+  let data = req.body;
+
+  db.query(`SELECT id FROM history
+                      WHERE accommodation_id = ? AND(
+                            rent_beginning = ? OR rent_end = ? 
+                                               OR( rent_beginning < ? AND rent_end > ?))`,
+    [data.accommodation_id,
+     data.rent_beginning,
+     data.rent_end,
+     data.rent_beginning,
+     data.rent_end], (err, result) => {
+      if (err) {
+        res.status(500).send('Adatbázis hiba')
+        return;
+      }
+      if (result.length > 0) {
+        res.send('Találtam adatot bibi')
+      }
+      else {
+        db.query(`INSERT INTO history (renter_id, 
+                                 owner_id, 
+                                 accommodation_id, 
+                                 price,
+                                 rent_beginning, 
+                                 rent_end) VALUES (?,?,?,?,?,?)`,
+          [data.id,
+          data.owner_id,
+          data.accommodation_id,
+          data.price,
+          data.rent_beginning,
+          data.rent_end], (err, result) => {
+            if (err) {
+              res.status(500).send("Adatbázis hiba");
+              return;
+            }
+            else {
+              res.send('Sikeres foglalás')
+            }
+
+          })
+      }
+
+
+    }
+  )
+})
