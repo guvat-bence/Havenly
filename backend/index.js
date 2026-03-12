@@ -882,8 +882,7 @@ app.post("/deleteUser",(req,res)=>{
     return;
 
   });  
-});
-
+})
 app.post("/deleteCardDatas",(req,res)=>{
   let datas = req.body;
   

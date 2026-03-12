@@ -4,7 +4,7 @@ import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
 import { reactive, ref, Transition, watch } from 'vue';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 
 let router = useRouter()
 let accommodation_data = JSON.parse(rent.accommodation);
@@ -24,37 +24,32 @@ if (!accommodation_data.id || !user.id)
 let transitionName 
 let step = ref(0)
 
-// Adatokat ellenőrzése
-function validateUserDatas(){
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
-    return false;
-
-  if (!/^\+?[0-9\s\-\(\)]{7,20}$/.test(model.phoneNum))
-    return false;
-
-  if(!/^[0-9]{13,19}$/.test(card.cardnumber))
-    return false;
-
-  if(!/^[0-9]{3}$/.test(card.cvv))
-
-  return true;
-};
+let accommodationData = JSON.parse(rent.accommodation);
 
 let model = reactive({
+  owner_id: accommodationData.owner_id,
+  accommodation_id: accommodationData.id,
+  rent_beginning: rent.rent_beginning,
+  rent_end: rent.rent_end,
+  price: (rent.accommodation_full_price) + ((rent.accommodation_full_price) * 0.1),
+  id: parseInt(user.id),
   firstName: user.firstname,
   lastName: user.lasttname,
   middleName: user.middlename,
   email: user.email,
   phoneNum: user.phone_number,
-})
-
-let card = reactive({
   cardnumber: user.cardNumber,
   expiration_month: user.expirationMonth,
   expirationYear: user.expirationYear,
-  cvv: ""
+  cvv: null,
+  city: null,
+  postalCode: null,
+  address: null,
+  door: null
 })
+
+console.log(model)
+console.log(accommodationData)
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
@@ -66,10 +61,18 @@ let convertStrings = (str) => {
             .toLowerCase();
 };
 
+let payForAccomadtion = () => {
+  axios.post('http://localhost:3000/rentAccomodation', model)
+  .then(response => {
+    console.log(response.data)
+  })
+  .catch(e => console.error(e))
+}
+
 setTimeout(() => {
-  if(card.cardnumber){
+  if(model.cardnumber){
     for (let i = 0; i < cardData.value.length; i++) {
-      if(card.cardnumber.startsWith(cardData.value[i].prefix)){
+      if(model.cardnumber.startsWith(cardData.value[i].prefix)){
         currentCard.value = convertStrings(cardData.value[i].network_name)
       }
     }
@@ -77,7 +80,7 @@ setTimeout(() => {
 }, 50);
 
 
-watch(() => card.cardnumber, (x) => {
+watch(() => model.cardnumber, (x) => {
   currentCard.value = "";
   for (let i = 0; i < cardData.value.length; i++) {
     if(x.startsWith(cardData.value[i].prefix)){
@@ -98,7 +101,7 @@ watch(() => card.cardnumber, (x) => {
 
             <!-- Card -->
             <div class="card bg-dark bg-opacity-50 border-1 
-                        border-white text-white">
+                        border-white text-white w-50">
               
               <!-- Image -->
               <img height="300" 
@@ -137,13 +140,6 @@ watch(() => card.cardnumber, (x) => {
                       }}
                   </p>
                   </div>
-
-                  <hr>
-                  <div>
-                    <button class="btn btn-outline-light w-auto mx-auto">
-                      Megerősítés
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -157,6 +153,9 @@ watch(() => card.cardnumber, (x) => {
                   bg-opacity-50 border border-1
                    border-white p-4 rounded-3 h-50 
                    text-white my-auto">
+
+        <h4 class="display-5 mb-4 text-center">Számlázási adatok</h4>
+        
         <Transition :name="transitionName"
                     type="transition" 
                     mode="out-in">
@@ -180,7 +179,8 @@ watch(() => card.cardnumber, (x) => {
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputFirstName" 
+                        id="InputFirstName"
+                        placeholder="Keresztnév" 
                         v-model="model.firstName">
                 </div>
 
@@ -193,7 +193,8 @@ watch(() => card.cardnumber, (x) => {
                   </label>
                   <input type="text" 
                           class="form-control" 
-                          id="InputMiddleName" 
+                          id="InputMiddleName"
+                          placeholder="Harmadiknév" 
                           v-model="model.middleName">
                 </div>
 
@@ -209,7 +210,8 @@ watch(() => card.cardnumber, (x) => {
                   <input type="text" 
                         class="form-control" 
                         id="InputLastName"
-                          v-model="model.lastName">
+                        placeholder="Vezetéknév"
+                        v-model="model.lastName">
                 </div>
               </div>
 
@@ -227,7 +229,8 @@ watch(() => card.cardnumber, (x) => {
                   </label>
                   <input type="email" 
                         class="form-control" 
-                        id="InputEmail" 
+                        id="InputEmail"
+                        placeholder="Email cím" 
                         v-model="model.email">
                 </div>
 
@@ -240,6 +243,7 @@ watch(() => card.cardnumber, (x) => {
                   <input type="text" 
                         class="form-control" 
                         id="InputPhoneNum" 
+                        placeholder="Telefonszám"
                         v-model="model.phoneNum">
                 </div>
               </div>
@@ -257,7 +261,9 @@ watch(() => card.cardnumber, (x) => {
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName"  >
+                        id="InputLastName"
+                        v-model="model.city"
+                        placeholder="Város">
                 </div>
 
                 <!-- LastName -->
@@ -268,93 +274,39 @@ watch(() => card.cardnumber, (x) => {
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName">
+                        id="InputLastName"
+                        placeholder="Irányítószám"
+                        v-model="model.postalCode">
                 </div>
 
-                <!-- LastName -->
-                <div class="col-lg-6 mb-3 m-0 col-12">
+                <!-- Address -->
+                <div class="col-lg-12 mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
-                    Utca név
+                    Számlázási cím
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName">
+                        id="InputLastName"
+                        placeholder="Számlázási cím 1. sor"
+                        v-model="model.address1">
                 </div>
 
-                <!-- LastName -->
-                <div class="col-lg-6 mb-3 m-0 col-12">
+                <!-- Address -->
+                <div class="col-lg-12 mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
-                    Házszám
+                    Számlázási cím
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName">
-                </div>
-
-                <!-- LastName -->
-                <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
-                        class="form-label">
-                    Ajtó
-                  </label>
-                  <input type="text" 
-                        class="form-control" 
-                        id="InputLastName">
-                </div>
-
-                <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
-                        class="form-label">
-                    Város
-                  </label>
-                  <input type="text" 
-                        class="form-control" 
-                        id="InputLastName"  >
-                </div>
-
-                <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
-                        class="form-label">
-                    Város
-                  </label>
-                  <input type="text" 
-                        class="form-control" 
-                        id="InputLastName"  >
-                </div>
-
-                <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
-                        class="form-label">
-                    Város
-                  </label>
-                  <input type="text" 
-                        class="form-control" 
-                        id="InputLastName"  >
-                </div>
-
-                <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
-                        class="form-label">
-                    Város
-                  </label>
-                  <input type="text" 
-                        class="form-control" 
-                        id="InputLastName"  >
-                </div>
-
-                <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
-                        class="form-label">
-                    Város
-                  </label>
-                  <input type="text" 
-                        class="form-control" 
-                        id="InputLastName"  >
+                        id="InputLastName"
+                        placeholder="Számlázási cím 2. sor"
+                        v-model="model.address2">
                 </div>
               </div>
             </div>
+
             <!-- Card information -->
             <div v-if="step === 2">
                 <!-- Card data -->
@@ -369,7 +321,8 @@ watch(() => card.cardnumber, (x) => {
                     <input type="text"
                           class="form-control"
                           id="inputCardNumber"
-                          v-model="card.cardnumber">
+                          placeholder="Kártyaszám"
+                          v-model="model.cardnumber">
                   </div>
 
                   <!-- CardBrand -->
@@ -388,7 +341,7 @@ watch(() => card.cardnumber, (x) => {
                     </label>
                     <select class="form-select"
                             id="inputMonth">
-                      <option value="" selected>{{ card.expiration_month }}</option>
+                      <option value="" selected>{{ model.expiration_month }}</option>
                       <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
                     </select>
                   </div>
@@ -404,7 +357,7 @@ watch(() => card.cardnumber, (x) => {
                             id="inputYear">
                       <option value=""
                               selected>
-                        {{  card.expirationYear }}
+                        {{  model.expirationYear }}
                       </option>
                       <option v-for="x in 5" >
                         {{ parseInt(currentExpYear) + x }}
@@ -421,7 +374,8 @@ watch(() => card.cardnumber, (x) => {
                     <input type="text"
                             class="form-control"
                             id="inputCVV"
-                            v-model="card.cvv">
+                            placeholder="CVV"
+                            v-model="model.cvv">
                   </div>
                 </div>
             </div>
@@ -443,8 +397,9 @@ watch(() => card.cardnumber, (x) => {
           <button type="button" 
                   class="btn btn-outline-light text-center 
                          d-block w-auto w-50 mx-auto py-0" 
-                  @click="transitionName = 'slide-out'; step++;" >
-            {{ step === 3 ? "Fizetés" : "Következő"  }}
+                  @click="step === 2 ? payForAccomadtion() 
+                                     : (transitionName = 'slide-out',step++) " >
+            {{ step === 2 ? "Fizetés" : "Következő"  }}
           </button>
         </div>
       </div>
