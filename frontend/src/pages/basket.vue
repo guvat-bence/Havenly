@@ -114,9 +114,12 @@ watch(() => model.cardnumber, (x) => {
                    class="card-img-top" 
                    alt="accomodation_image">
 
+              <!-- Accomodation informations -->
               <div class="card-body">
                 <h5 class="card-title">{{ accommodation_data.name }}</h5>
                 <hr>
+
+                <!-- Details -->
                 <div>
                   <div class="row">
                     <p>Személyszám: {{ rent.guests}}</p>
@@ -124,20 +127,28 @@ watch(() => model.cardnumber, (x) => {
                     <p>Eddig: {{ rent.rent_end }}</p>
                   </div>
                   <hr>
+
+                  <!-- Prices -->
                   <div>
-                    <p>Alapár: {{ (rent.accommodation_full_price * selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
+                    <p>Alapár: {{ (rent.accommodation_full_price * 
+                                   selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
                                {{ selectedCurrency.currencyShortedName }}</p>
                     <p>Kezelési díj 
                       <span class="text-danger">(8%)</span>:
-                      {{ ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.08).toLocaleString('fi-FI') }} 
+                      {{ ((rent.accommodation_full_price * 
+                           selectedCurrency.currencyMultiplier) * 0.08).toLocaleString('fi-FI') }} 
                       {{ selectedCurrency.currencyShortedName }}
                     </p>
                   </div>
                   <hr>
+
+                  <!-- Overall price -->
                   <div>
                     <p class="fw-bold mb-0">Összesen: 
-                      {{((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) + 
-                        ((rent.accommodation_full_price * selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
+                      {{((rent.accommodation_full_price * 
+                          selectedCurrency.currencyMultiplier) + 
+                        ((rent.accommodation_full_price * 
+                          selectedCurrency.currencyMultiplier) * 0.1)).toLocaleString('fi-FI')}}
                       {{ 
                         selectedCurrency.currencyShortedName
                       }}
