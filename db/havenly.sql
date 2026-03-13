@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 13. 08:19
+-- Létrehozás ideje: 2026. Már 13. 09:33
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -1089,6 +1089,20 @@ INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price
 (125, NULL, 13, 18, 5773, '2026-03-12', '2026-02-12', '2026-02-28'),
 (126, NULL, 12, 5, 180, '2026-03-12', '2026-02-13', '2026-02-15'),
 (127, NULL, 22, 53, 7744, '2026-03-12', '2026-02-12', '2026-02-28');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `opinions`
+--
+
+CREATE TABLE `opinions` (
+  `id` int(5) NOT NULL,
+  `user_id` int(5) NOT NULL,
+  `accommodation_id` int(5) NOT NULL,
+  `opinion` text NOT NULL,
+  `rate` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
