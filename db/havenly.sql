@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 13. 09:33
+-- Létrehozás ideje: 2026. Már 13. 10:26
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -2252,6 +2252,12 @@ ALTER TABLE `history`
   ADD KEY `owner_id` (`owner_id`);
 
 --
+-- A tábla indexei `opinions`
+--
+ALTER TABLE `opinions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `report`
 --
 ALTER TABLE `report`
@@ -2328,6 +2334,12 @@ ALTER TABLE `favourite`
 --
 ALTER TABLE `history`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
+--
+-- AUTO_INCREMENT a táblához `opinions`
+--
+ALTER TABLE `opinions`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `report`
