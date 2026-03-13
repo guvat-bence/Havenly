@@ -875,6 +875,13 @@ watch(model,()=>
 						</form>
 					</div>
 				</div>
+
+				<!-- Hozzászólások --> 
+				 <div class="row justify-content-center">
+						<div class="col-5 border border-3 border-light rounded-3 bg-secondary">
+							<p class="text-center p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel rem numquam hic. Quia dolorem molestiae impedit fugiat voluptatibus ab officia animi itaque! Asperiores, ab. Reprehenderit quaerat officia eius pariatur unde.</p>
+						</div>
+				 </div>
 			</div>
 
 			<!-- saját modal -->
