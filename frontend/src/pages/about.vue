@@ -877,11 +877,29 @@ watch(model,()=>
 				</div>
 
 				<!-- Hozzászólások --> 
-				 <div class="row justify-content-center">
-						<div class="col-5 border border-3 border-light rounded-3 bg-secondary">
-							<p class="text-center p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel rem numquam hic. Quia dolorem molestiae impedit fugiat voluptatibus ab officia animi itaque! Asperiores, ab. Reprehenderit quaerat officia eius pariatur unde.</p>
+					<div class="row col-12 col-md-5 m-3 
+											border-black rounded-3 bg-white text-dark">
+
+						<h5 class="mt-2 col-6">KIS JÓzsef</h5>
+						
+						<div class="mt-2 col-6 text-end text-warning">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
 						</div>
-				 </div>
+
+						<p class="p-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi veniam, ratione temporibus esse commodi itaque ad aliquid voluptate soluta quas dolor sapiente perspiciatis alias provident dignissimos nemo numquam culpa neque.
+						</p>
+
+						<button class="my-2 btn col-6 rounded-3 
+													 ms-auto btn-outline-danger">
+							Hozzászólás jelentése!
+						</button>
+
+					</div>
+				
 			</div>
 
 			<!-- saját modal -->
