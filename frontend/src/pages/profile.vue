@@ -968,7 +968,38 @@ watch(card,()=>
               role="tabpanel" 
               aria-labelledby="nav-posts-tab" 
               tabindex="0">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores cumque excepturi nemo odio qui. Quam magni odio debitis eius temporibus ex natus, alias doloribus veritatis, quasi eligendi, ratione nulla voluptates.
+
+            <div class="card mb-3 col-5">
+              <div class="row g-0">
+
+                <div class=" col-xl-6">
+                  <img src="../images/fff.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+
+                <div class="col-xl-6">
+                  <div class="card-body">
+
+                    <h5 class="card-title">
+                      Card title
+                    </h5>
+
+                    <div class="row justify-content-center">
+                      <button class="btn btn-secondary m-1 col-4">
+                        Megnéz
+                      </button>
+                      <button class="btn btn-info  m-1  col-4">
+                        Módosít
+                      </button>
+                      <button class="btn btn-danger  m-1  col-4">
+                        Töröl
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           
           <!-- Beszélgetések opció -->

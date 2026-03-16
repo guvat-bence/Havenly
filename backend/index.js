@@ -502,11 +502,8 @@ app.post("/translate",(req,res)=>
   // 1. szakasz, az adot tárgy fordításának megkeresése a translations táblában.
   let datas = req.body;
   db.query(`SELECT
-              id,
-              language_short_name,
               item_id,
-              item,
-              item_name
+              item
             FROM translations
             WHERE item_id = ? AND item_name = ? AND language_short_name = ?`,
     [datas.item_id,datas.item_name,datas.language_short_name],
@@ -646,7 +643,7 @@ app.post("/translate",(req,res)=>
             }
           });
       }
-    });
+  });
 });
 
 app.get("/getCardNetwork",(req,res) => {
@@ -882,7 +879,7 @@ app.post("/deleteUser",(req,res)=>{
     return;
 
   });  
-})
+});
 
 app.post("/deleteCardDatas",(req,res)=>{
   let datas = req.body;
@@ -968,10 +965,39 @@ app.post("/rentAccomodation", (req, res) => {
               res.send('Sikeres foglalás')
             }
 
-          })
+        })
       }
 
 
     }
   )
-})
+});
+
+// Vélemények lekérdezése
+app.post("/opinions",(req,res) =>{
+
+  let datas = req.body;
+
+  db.query(`SELECT  opinions.opinion,
+                    opinions.rate,
+                    users.first_name,
+                    users.last_name, 
+                    IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
+            FROM opinions
+            INNER JOIN users
+            ON opinions.user_id = users.id
+            WHERE opinions.item_id = ? 
+                  AND opinions.item_type = ?
+                  AND language_short_name = ?`,
+            [datas.item_id,datas.item_type,datas.language_short_name],(err,result)=>{
+
+    if (err) {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    res.json(result);
+  });
+});
+
+// 

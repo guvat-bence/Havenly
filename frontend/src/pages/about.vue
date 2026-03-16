@@ -16,6 +16,7 @@ const {locale} = useI18n();
 
 // változók létrehozása
 let item = ref([]);
+let opinions = ref([]);
 let reserved_days = ref([]);
 let rent_price = ref(0);
 let item_details = ref([]);
@@ -203,75 +204,91 @@ if(counter>0)
 	}
 }
 
+axios.post(`http://localhost:3000/opinions`,
+	{item_id:props.id,item_type:props.table_name,
+		language_short_name:locale.value})
+.then(datas=>{
+
+	console.log(datas.data);
+	
+
+	opinions.value = datas.data;
+	
+})
+.catch(error=>{
+	console.error(error);
+})
+
+
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
-	.then(datas=>{
+.then(datas=>{
 
-		datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
-		datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
+	datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
+	datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
 
 
-		// tömb feltöltése
-		item.value = datas.data;
-		
-		
-		// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
-		// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
-		// akkor az eredeti verzióját tölti be.
-		// HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
-		//  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
-		// utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
-		// ha esetleg hiba akadna a fordítással akkor a művele megszakad é kiírja a konzolbon.
-		axios.post(`http://localhost:3000/translate`,
-			{item_id:item.value[0].id,item_name:props.table_name,language_short_name:locale.value})
-		.then(datas=>
+	// tömb feltöltése
+	item.value = datas.data;
+	
+	
+	// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
+	// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
+	// akkor az eredeti verzióját tölti be.
+	// HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
+	//  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
+	// utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
+	// ha esetleg hiba akadna a fordítással akkor a művele megszakad é kiírja a konzolbon.
+	axios.post(`http://localhost:3000/translate`,
+		{item_id:item.value[0].id,item_name:props.table_name,language_short_name:locale.value})
+	.then(datas=>
+	{
+		// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
+		if(datas.data.message == "translationed")
 		{
-			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
-			if(datas.data.message == "translationed")
-			{
-				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
-				let text  = JSON.parse(datas.data.data[0].item);
-				item.value[0].name = text["title"];
-				item.value[0].description = text["description"];
-				
-			}
-			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
-			else if(datas.data.message == "original")
-			{
-				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
-				item.value[0].name = datas.data.data[0].name;
-				item.value[0].description = datas.data.data[0].description;
-			}
-			// ha az üzenet failed akkor megy bele
-			else if(datas.data.message == "failed")
-			{
-				console.log("Hiba tölrtént az api forítás során!");
-			}
-			// minden ellenkező esetben pedig újra töltjük az oldalt.
-			else{
-				location.reload();
-			}
-		})
-		.catch(err=>
+			// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
+			let text  = JSON.parse(datas.data.data[0].item);
+			item.value[0].name = text["title"];
+			item.value[0].description = text["description"];
+			
+		}
+		// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
+		else if(datas.data.message == "original")
 		{
-			console.log(err);
-		})
-		
-		//ha léétzik a guest_number a tömben akkor bele megy
-		if(item.value[0].guest_number)
+			// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
+			item.value[0].name = datas.data.data[0].name;
+			item.value[0].description = datas.data.data[0].description;
+		}
+		// ha az üzenet failed akkor megy bele
+		else if(datas.data.message == "failed")
 		{
-			// annyi elemet rak a guest-be amennyi vendég van.
-			for(let x=0;x<item.value[0].guest_number;x++)
-			{
-				guests.push(x+1);
-			}
+			console.log("Hiba tölrtént az api forítás során!");
+		}
+		// minden ellenkező esetben pedig újra töltjük az oldalt.
+		else{
+			location.reload();
 		}
 	})
-	.catch(error=>
+	.catch(err=>
 	{
-		console.error(error);
+		console.log(err);
 	})
 	
+	//ha léétzik a guest_number a tömben akkor bele megy
+	if(item.value[0].guest_number)
+	{
+		// annyi elemet rak a guest-be amennyi vendég van.
+		for(let x=0;x<item.value[0].guest_number;x++)
+		{
+			guests.push(x+1);
+		}
+	}
+})
+.catch(error=>
+{
+	console.error(error);
+})
+
 
 // meghívjuk a makeCalendar függvény a januári hónappal
 // késleltetjük az indulását,
@@ -876,26 +893,28 @@ watch(model,()=>
 					</div>
 				</div>
 
-				<!-- Hozzászólások --> 
-					<div class="row col-12 col-md-5 m-3 
+				<h4 v-if="opinions.length!=0"
+						class="my-3 text-center">Mások véleményei
+					<span>({{ opinions.length }} vélemény)</span>
+				</h4>
+
+				<!-- Vélemény --> 
+					<div  v-for="opinion in opinions"
+								class="row col-12 col-md-5 m-3 
 											border-black rounded-3 bg-white text-dark">
 
-						<h5 class="mt-2 col-6">KIS JÓzsef</h5>
+						<h5 class="mt-2 col-6">{{ `${opinion["first_name"]} ${opinion["middle_name"]} ${opinion["last_name"]}`}}</h5>
 						
 						<div class="mt-2 col-6 text-end text-warning">
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
+							<i v-for="x in opinion['rate']"
+								 class="fa-solid fa-star"></i>
 						</div>
 
-						<p class="p-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi veniam, ratione temporibus esse commodi itaque ad aliquid voluptate soluta quas dolor sapiente perspiciatis alias provident dignissimos nemo numquam culpa neque.
-						</p>
+						<p class="p-2">{{opinion["opinion"] }}</p>
 
 						<button class="my-2 btn col-6 rounded-3 
 													 ms-auto btn-outline-danger">
-							Hozzászólás jelentése!
+							Vélemény jelentése!
 						</button>
 
 					</div>
