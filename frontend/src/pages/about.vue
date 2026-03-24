@@ -16,7 +16,6 @@ const {locale} = useI18n();
 
 // változók létrehozása
 let item = ref([]);
-let opinions = ref([]);
 let reserved_days = ref([]);
 let rent_price = ref(0);
 let item_details = ref([]);
@@ -203,22 +202,6 @@ if(counter>0)
 		}
 	}
 }
-
-axios.post(`http://localhost:3000/opinions`,
-	{item_id:props.id,item_type:props.table_name,
-		language_short_name:locale.value})
-.then(datas=>{
-
-	console.log(datas.data);
-	
-
-	opinions.value = datas.data;
-	
-})
-.catch(error=>{
-	console.error(error);
-})
-
 
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
@@ -892,33 +875,6 @@ watch(model,()=>
 						</form>
 					</div>
 				</div>
-
-				<h4 v-if="opinions.length!=0"
-						class="my-3 text-center">Mások véleményei
-					<span>({{ opinions.length }} vélemény)</span>
-				</h4>
-
-				<!-- Vélemény --> 
-					<div  v-for="opinion in opinions"
-								class="row col-12 col-md-5 m-3 
-											border-black rounded-3 bg-white text-dark">
-
-						<h5 class="mt-2 col-6">{{ `${opinion["first_name"]} ${opinion["middle_name"]} ${opinion["last_name"]}`}}</h5>
-						
-						<div class="mt-2 col-6 text-end text-warning">
-							<i v-for="x in opinion['rate']"
-								 class="fa-solid fa-star"></i>
-						</div>
-
-						<p class="p-2">{{opinion["opinion"] }}</p>
-
-						<button class="my-2 btn col-6 rounded-3 
-													 ms-auto btn-outline-danger">
-							Vélemény jelentése!
-						</button>
-
-					</div>
-				
 			</div>
 
 			<!-- saját modal -->
