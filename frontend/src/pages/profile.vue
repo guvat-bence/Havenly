@@ -62,6 +62,7 @@ let messageBoxmessage = ref("");
 let messageType = ref("");
 let showpasscheck = ref(false);
 let showOkBtn = ref(false);
+let talkingWith = ref("");
 
 // Adatokat ellenőrzése.
 function validateUserDatas(){
@@ -355,6 +356,12 @@ function change(obj)
     }
   }
   changed.value = false;
+}
+
+function openMessages(data)
+{
+  talkingWith.value = data;
+  
 }
 
 // ezzel a watch-al a model adatait figyeljük,
@@ -1008,7 +1015,42 @@ watch(card,()=>
               role="tabpanel" 
               aria-labelledby="nav-chats-tab" 
               tabindex="0">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum laudantium, est qui voluptate sint tempore quasi ipsa repellendus esse mollitia quos velit fugit voluptas, perferendis, quas blanditiis neque. Optio, sit?
+
+              <div class="row justify-content-center" style="min-height: 360px;">
+              
+                <div class="row border border-1 border-white rounded-start col-4 p-0">
+                  <span class="people d-flex align-items-center border-bottom border-secondary"  
+                        v-for="x in model" style="max-height: 50px;"
+                        @click="openMessages(x)">
+                    {{ x }}
+                  </span>
+                </div>
+                <div class="row justify-content-center bg-white rounded-end col-8 text-black p-0">
+                  
+                  <div class="col-12 d-flex align-items-center 
+                              border-bottom border-secondary 
+                              bg-secondary bg-opacity-25" 
+                        style="height: 40px;">
+                    <span>
+                      {{ talkingWith }}
+                    </span>
+                  </div>
+                  <div class="col-12 bg-secondary bg-opacity-50"
+                       style="height: 300px">
+                    <span>
+                      asd
+                    </span>
+                  </div>
+                  <div class="col-12 py-2 bg-secondary">
+                    <input class="form-control col-8" 
+                           type="search" 
+                           name="asd" 
+                           id="asd">
+                  </div>
+                  
+                </div>
+              </div>
+
           </div>
         </div>
         
@@ -1078,6 +1120,12 @@ input:not([type="checkbox"],[type="radio"])::after {
   box-shadow: 0px 0px 10px white !important;
   transition: 200ms;
   color: black !important;
+}
+
+.people:hover{
+
+  background-color: hsl(210, 5%, 25%);
+  cursor: pointer;
 }
 
 .nav-tabs {
