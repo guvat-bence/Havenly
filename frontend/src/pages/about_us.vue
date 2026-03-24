@@ -12,7 +12,7 @@
         <div class="col-12 col-sm-12 col-md-12 
                     col-lg-10 col-xl-10 col-xxl-10">
 						<img height="400"
-								 src="../images/image3.png"
+								 src="../images/big_logo.png"
 								 class="my-2 mx-2 card-img-top rounded-5 
                         border border-white border-5"
 								 style="object-fit:cover">
@@ -29,16 +29,16 @@
           <div class="row justify-content-center mb-3">
             <!-- Máté fotó -->
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-              <img height="400"
-                  src="../images/image3.png"
+              <img height="800"
+                  src="../images/mate.jpg"
                   class="my-2 mx-2 card-img-top rounded-5 border border-white border-5"
                   style="object-fit:cover">
             </div>
 
             <!-- Bence fotó -->
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-              <img height="400"
-                  src="../images/image3.png"
+              <img height="800"
+                  src="../images/bence.jpg"
                   class="my-2 mx-2 card-img-top rounded-5 border border-white border-5"
                   style="object-fit:cover">
             </div>
