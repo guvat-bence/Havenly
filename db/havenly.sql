@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 24. 13:18
+-- Létrehozás ideje: 2026. Már 25. 07:50
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -1100,6 +1100,7 @@ CREATE TABLE `messages` (
   `id` int(5) NOT NULL,
   `from_user_id` int(5) NOT NULL,
   `to_user_id` int(5) NOT NULL,
+  `sended_time` datetime NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

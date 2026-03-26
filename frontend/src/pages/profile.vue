@@ -1035,13 +1035,13 @@ watch(card,()=>
                       {{ talkingWith }}
                     </span>
                   </div>
-                  <div class="col-12 bg-secondary bg-opacity-50"
+                  <div class="col-12"
                        style="height: 300px">
                     <span>
                       asd
                     </span>
                   </div>
-                  <div class="col-12 py-2 bg-secondary">
+                  <div class="col-12 py-2 bg-secondary rounded-end">
                     <input class="form-control col-8" 
                            type="search" 
                            name="asd" 

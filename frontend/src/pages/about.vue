@@ -883,7 +883,7 @@ watch(model,()=>
 									align-items-center position-fixed"
 					 id="imageShowModal"
 					 style="z-index:1020;inset:0;">
-
+					 
 				<div class="position-relative w-75">
 
 					<!-- Kép -->
