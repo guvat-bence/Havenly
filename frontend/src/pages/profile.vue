@@ -4,6 +4,7 @@ import router from '@/router';
 import { reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { useI18n } from 'vue-i18n';
+import { selectedCurrency } from '@/store/currency';
 
 const {t} = useI18n();
 
@@ -405,6 +406,29 @@ axios.get(`http://localhost:3000/getCardNetwork`)
     console.error(error);
   })
 
+  // Format text to readable
+  let convertStrings = (str) => {
+    return str.normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replaceAll(" ", "_")
+              .toLowerCase();
+  };
+
+  let history = ref([])
+
+  let getHistory = (id) => {
+    axios.post('http://localhost:3000/getHistory',{id:id})
+    .then(x => {
+      history.value = x.data
+      console.log(history.value)
+    })
+    .catch(e => console.error(e))
+  }
+
+  let convertDateTime = (x) => {
+    return new Date(x).toISOString().split("T")[0]
+  }
+
 </script>
 <template>
   <div class="account">
@@ -452,6 +476,20 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                   aria-selected="false">
             <i class="fa-solid fa-comments fa-lg"></i>
             {{ $t("profile.navbar_messages") }}
+          </button>
+
+          <!-- Előzmények opció -->
+          <button class="nav-link" 
+                  id="nav-chats-tab" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#nav-history" 
+                  type="button" 
+                  role="tab" 
+                  aria-controls="nav-chats" 
+                  aria-selected="false"
+                  v-on:click="getHistory(user.id)">
+            <i class="fa-solid fa-clock fa-lg"></i>
+             Előzmények 
           </button>
         </div>
       </nav>
@@ -1038,10 +1076,10 @@ axios.get(`http://localhost:3000/getCardNetwork`)
           
           <!-- Beszélgetések opció -->
           <div class="tab-pane fade"
-              id="nav-chats" 
-              role="tabpanel" 
-              aria-labelledby="nav-chats-tab" 
-              tabindex="0">
+               id="nav-chats" 
+               role="tabpanel" 
+               aria-labelledby="nav-chats-tab" 
+               tabindex="0">
 
               <!-- Maga az egész beszélgetés -->
               <div class="row justify-content-center 
@@ -1114,6 +1152,36 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                 </div>
               </div>
           </div>
+
+          <div class="tab-pane fade"
+               id="nav-history" 
+               role="tabpanel" 
+               aria-labelledby="nav-chats-tab" 
+               tabindex="0">
+
+               <div class="w-100 d-flex text-white 
+                           mb-4 bg-black bg-opacity-25 
+                           rounded-3 p-2 border border-1 
+                           border-white"
+                    v-for="x in history">
+                <img  style="height: 170px; width: 170px;"
+                      :src="`/countries/${convertStrings(x.country_name)}` +
+                           `/cities/${convertStrings(x.city_name)}` +
+                           `/accommodations/${convertStrings(x.accommodation_folder_name)}/001.png`"
+                     class="justify-content-start rounded-3 img-fluid" 
+                     alt="accomodation_image">
+                <div class="mx-auto">
+                  <h3 class="text-white text-center fw-light">{{ x.accommodation_name }}</h3>
+                  <p>Ár: {{ x.price * selectedCurrency.currencyMultiplier }} {{ selectedCurrency.currencyShortedName }}</p>
+                  <p class="text-white-50">Bérlés: {{ convertDateTime(x.rent_date) }}</p>
+                  <div class="row">
+                    <p class="text-white-50 col-12 col-md-6 text-nowrap">Kezdés: {{ convertDateTime(x.rent_beginning) }}</p>
+                    <p class="text-white-50 col-12 col-md-6 text-nowrap">Vége: {{ convertDateTime(x.rent_end) }}</p>
+                  </div>
+                </div>
+               </div>
+          </div>
+
         </div>
         
         <!-- messageBox -->

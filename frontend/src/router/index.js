@@ -7,7 +7,7 @@ import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
 import Login from '@/pages/login.vue'
 import Logoutconfirmation from '@/pages/logoutconfirmation.vue'
-import Proifle from '@/pages/profile.vue'
+import Profile from '@/pages/profile.vue'
 import Register from '@/pages/register.vue'
 import Settings from '@/pages/settings.vue'
 import Term_of_use from '@/pages/term_of_use.vue'
@@ -57,7 +57,7 @@ let routes = [
   },
   {
     path: "/havenly/profile",
-    component: Proifle
+    component: Profile
   },
   {
     path: "/havenly/logout",

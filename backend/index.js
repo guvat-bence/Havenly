@@ -972,3 +972,38 @@ app.post("/rentAccomodation", (req, res) => {
     }
   )
 });
+
+app.post("/getHistory", (req,res) => {
+
+  const id = req.body.id;
+
+  db.query(`SELECT  h.id,
+                    h.renter_id,
+                    h.owner_id,
+                    a.name AS accommodation_name,
+                    a.folder_name AS accommodation_folder_name,
+                    c.name AS city_name,
+                    co.name AS country_name,
+                    h.accommodation_id,
+                    h.price,
+                    h.rent_date,
+                    h.rent_beginning,
+                    h.rent_end
+                FROM
+                    history h
+                INNER JOIN accommodations a
+                ON h.accommodation_id = a.id 
+                INNER JOIN cities c 
+                ON a.city_id = c.id
+                INNER JOIN countries co 
+                ON a.country_id = co.id
+                WHERE
+                    renter_id = ?`,[id],(err,result) => {
+    if(err){
+      res.status(500).send(err)
+      return
+    }
+
+    res.send(result)
+  })
+})
