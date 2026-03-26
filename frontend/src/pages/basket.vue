@@ -36,23 +36,22 @@ let model = reactive({
   rent_end: rent.rent_end,
   price: (rent.accommodation_full_price) + ((rent.accommodation_full_price) * 0.1),
   id: parseInt(user.id),
-  firstName: user.firstname,
-  lastName: user.lasttname,
-  middleName: user.middlename,
-  email: user.email,
-  phoneNum: user.phone_number,
-  cardnumber: user.cardNumber,
-  expiration_month: user.expirationMonth,
-  expirationYear: user.expirationYear,
+  firstName: null,
+  lastName: null,
+  middleName: null,
+  email: null,
+  phoneNum: null,
+  cardnumber: null,
+  expiration_month: null,
+  expirationYear: null,
+  address1: null,
+  address2: null,
   cvv: null,
   city: null,
   postalCode: null,
   address: null,
   door: null
 })
-
-console.log(model)
-console.log(accommodationData)
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
@@ -90,7 +89,31 @@ watch(() => model.cardnumber, (x) => {
       currentCard.value = convertStrings(cardData.value[i].network_name)
     }
   }
-})       
+})  
+
+let validateData = () => {
+  if(!model.firstName || !model.lastName)
+    return false
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(model.email))
+    return false;
+
+  if (!/^\+?[0-9\s\-\(\)]{7,40}$/.test(model.phoneNum))
+    return false;
+
+  if(!model.city || 
+     !model.postalCode || 
+     !model.address1)
+    return false
+
+  if(!model.cvv || !model.expirationYear || !model.expiration_month)
+    return false
+
+  if(!model.cardnumber || !/^[0-9]{13,24}$/.test(model.cardnumber) || !currentCard.value)
+    return false;
+
+  return true
+}  
 </script>
 <template>
   <div class="container mt-2">
@@ -265,9 +288,10 @@ watch(() => model.cardnumber, (x) => {
 
             <!-- Billing address -->
             <div v-if="step === 1">
-              <!-- LastName -->
-              <div class="row">
 
+              <div class="row">
+                
+                <!-- city -->
                 <div class="col-lg-6 mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
@@ -280,20 +304,20 @@ watch(() => model.cardnumber, (x) => {
                         placeholder="Város">
                 </div>
 
-                <!-- LastName -->
+                <!-- postal code -->
                 <div class="col-lg-6 mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
                     Irányítószám
                   </label>
-                  <input type="text" 
+                  <input type="number" 
                         class="form-control" 
                         id="InputLastName"
                         placeholder="Irányítószám"
                         v-model="model.postalCode">
                 </div>
 
-                <!-- Address -->
+                <!-- Address1 -->
                 <div class="col-lg-12 mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
@@ -306,7 +330,7 @@ watch(() => model.cardnumber, (x) => {
                         v-model="model.address1">
                 </div>
 
-                <!-- Address -->
+                <!-- Address2 -->
                 <div class="col-lg-12 mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
@@ -336,7 +360,8 @@ watch(() => model.cardnumber, (x) => {
                           class="form-control"
                           id="inputCardNumber"
                           placeholder="Kártyaszám"
-                          v-model="model.cardnumber">
+                          v-model="model.cardnumber"
+                          maxlength="24">
                   </div>
 
                   <!-- CardBrand -->
@@ -354,9 +379,20 @@ watch(() => model.cardnumber, (x) => {
                       Hónap
                     </label>
                     <select class="form-select"
-                            id="inputMonth">
-                      <option value="" selected>{{ model.expiration_month }}</option>
-                      <option v-for="x in 12">{{ x.toString().padStart(2,'0') }}</option>
+                            id="inputMonth"
+                            v-model="model.expiration_month">
+
+                      <option value="null"
+                              :selected="!model.expiration_month"
+                              class="d-none"
+                              disabled="true">
+                        hónap
+                      </option>
+
+                      <option v-for="x in 12"
+                              :value="{x}">
+                        {{ x.toString().padStart(2,'0') }}
+                      </option>
                     </select>
                   </div>
 
@@ -368,12 +404,17 @@ watch(() => model.cardnumber, (x) => {
                     </label>
 
                     <select class="form-select"
-                            id="inputYear">
-                      <option value=""
-                              selected>
-                        {{  model.expirationYear }}
+                            id="inputYear"
+                            v-model="model.expirationYear">
+
+                      <option value="null"
+                              :selected="!model.expirationYear"
+                              class="d-none">
+                        év
                       </option>
-                      <option v-for="x in 5" >
+
+                      <option v-for="x in 5"
+                              :value="x">
                         {{ parseInt(currentExpYear) + x }}
                       </option>
                     </select>
@@ -389,7 +430,8 @@ watch(() => model.cardnumber, (x) => {
                             class="form-control"
                             id="inputCVV"
                             placeholder="CVV"
-                            v-model="model.cvv">
+                            v-model="model.cvv"
+                            maxlength="3">
                   </div>
                 </div>
             </div>
@@ -412,7 +454,8 @@ watch(() => model.cardnumber, (x) => {
                   class="btn btn-outline-light text-center 
                          d-block w-auto w-50 mx-auto py-0" 
                   @click="step === 2 ? payForAccomadtion() 
-                                     : (transitionName = 'slide-out',step++) " >
+                                     : (transitionName = 'slide-out',step++) "
+                    v-bind:disabled="step === 2  && !validateData()" >
             {{ step === 2 ? "Fizetés" : "Következő"  }}
           </button>
         </div>
