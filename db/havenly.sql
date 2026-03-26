@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 25. 07:50
+-- Létrehozás ideje: 2026. Már 26. 13:04
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -1103,6 +1103,178 @@ CREATE TABLE `messages` (
   `sended_time` datetime NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `opinions`
+--
+
+CREATE TABLE `opinions` (
+  `id` int(5) NOT NULL,
+  `user_id` int(5) DEFAULT NULL,
+  `item_id` int(5) DEFAULT NULL,
+  `item_type` varchar(50) NOT NULL,
+  `opinion` text NOT NULL,
+  `rate` tinyint(1) NOT NULL,
+  `language_short_name` varchar(2) NOT NULL DEFAULT 'hu'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `opinions`
+--
+
+INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rate`, `language_short_name`) VALUES
+(1, 5, 1, 'accommodations', 'Nagyon hangulatos lakás, a belváros pár perc sétára.', 5, 'hu'),
+(2, 12, 2, 'accommodations', 'Szép kis stúdió, az erkély különösen tetszett.', 4, 'hu'),
+(3, 21, 3, 'accommodations', 'Kényelmes lakás, jó elhelyezkedéssel.', 4, 'hu'),
+(4, 33, 4, 'accommodations', 'Csendes környék és modern berendezés.', 5, 'hu'),
+(5, 44, 1, 'accommodations', 'Nagyon tiszta és rendezett apartman.', 5, 'hu'),
+(6, 18, 2, 'accommodations', 'Rövid tartózkodásra tökéletes.', 4, 'hu'),
+(7, 27, 3, 'accommodations', 'Ár-érték arányban teljesen rendben volt.', 4, 'hu'),
+(8, 62, 4, 'accommodations', 'Kellemes, nyugodt szállás.', 4, 'hu'),
+(9, 7, 1, 'accommodations', 'A lakás felszereltsége kiváló volt.', 5, 'hu'),
+(10, 54, 2, 'accommodations', 'Modern és világos stúdió.', 4, 'hu'),
+(11, 36, 3, 'accommodations', 'Kényelmes ágyak és tiszta fürdőszoba.', 5, 'hu'),
+(12, 49, 4, 'accommodations', 'Ideális pároknak.', 4, 'hu'),
+(13, 15, 1, 'accommodations', 'Nagyon jó elhelyezkedés a városnézéshez.', 5, 'hu'),
+(14, 66, 2, 'accommodations', 'Barátságos hangulatú szállás.', 4, 'hu'),
+(15, 23, 3, 'accommodations', 'Egyszerű, de kényelmes.', 3, 'hu'),
+(16, 91, 4, 'accommodations', 'Szép és jól felszerelt lakás.', 5, 'hu'),
+(17, 73, 1, 'accommodations', 'Kellemes apartman, jó közlekedéssel.', 4, 'hu'),
+(18, 8, 2, 'accommodations', 'A kilátás az erkélyről nagyon jó.', 5, 'hu'),
+(19, 39, 3, 'accommodations', 'Tiszta és rendezett szállás.', 4, 'hu'),
+(20, 59, 4, 'accommodations', 'Jó választás egy hétvégi kiruccanáshoz.', 4, 'hu'),
+(21, 20, 1, 'accommodations', 'Nagyon hangulatos lakás.', 5, 'hu'),
+(22, 31, 2, 'accommodations', 'Kis stúdió, de minden megvan benne.', 4, 'hu'),
+(23, 77, 3, 'accommodations', 'Kényelmes tartózkodás volt.', 4, 'hu'),
+(24, 10, 4, 'accommodations', 'Nyugodt környék és jó felszereltség.', 5, 'hu'),
+(25, 88, 1, 'accommodations', 'Nagyon elégedettek voltunk a szállással.', 5, 'hu'),
+(26, 6, 1, 'experiences', 'A Hagymatikum fürdő fantasztikus élmény volt.', 5, 'hu'),
+(27, 17, 2, 'experiences', 'Nagyon érdekes városnézés Prágában.', 5, 'hu'),
+(28, 29, 3, 'experiences', 'A vár és a székesegyház lenyűgöző.', 5, 'hu'),
+(29, 40, 4, 'experiences', 'Szép kilátás a hajóról.', 4, 'hu'),
+(30, 52, 5, 'experiences', 'A koncert hangulata felejthetetlen.', 5, 'hu'),
+(31, 64, 6, 'experiences', 'Gyönyörű kastély és park.', 5, 'hu'),
+(32, 76, 7, 'experiences', 'Kellemes séta a Duna partján.', 4, 'hu'),
+(33, 87, 8, 'experiences', 'Nagyon érdekes parlamenti túra.', 5, 'hu'),
+(34, 3, 9, 'experiences', 'A dunai hajózás este különösen szép.', 5, 'hu'),
+(35, 14, 10, 'experiences', 'A várnegyed nagyon hangulatos.', 4, 'hu'),
+(36, 26, 13, 'experiences', 'Az Eiffel-toronyból csodás a kilátás.', 5, 'hu'),
+(37, 38, 14, 'experiences', 'Romantikus séta a Szajna partján.', 5, 'hu'),
+(38, 50, 15, 'experiences', 'Berlin történelme nagyon érdekes.', 4, 'hu'),
+(39, 61, 16, 'experiences', 'A sörkóstoló túra remek volt.', 5, 'hu'),
+(40, 72, 17, 'experiences', 'A Colosseum látogatása nagy élmény.', 5, 'hu'),
+(41, 84, 18, 'experiences', 'Milánó divatnegyede nagyon elegáns.', 4, 'hu'),
+(42, 95, 19, 'experiences', 'Az Akropolisz lenyűgöző.', 5, 'hu'),
+(43, 11, 20, 'experiences', 'Nagyon szép tengerpart.', 5, 'hu'),
+(44, 22, 21, 'experiences', 'Hangulatos óvárosi séta.', 4, 'hu'),
+(45, 34, 23, 'experiences', 'A fjord túra csodás volt.', 5, 'hu'),
+(46, 45, 24, 'experiences', 'Nagyon inspiráló design séta.', 4, 'hu'),
+(47, 56, 25, 'experiences', 'Varsó történelmi központja érdekes.', 4, 'hu'),
+(48, 67, 26, 'experiences', 'A Prater vidámpark nagyon szórakoztató.', 5, 'hu'),
+(49, 78, 27, 'experiences', 'A karácsonyi vásár hangulata varázslatos.', 5, 'hu'),
+(50, 89, 28, 'experiences', 'A Károly híd esti sétája gyönyörű.', 5, 'hu'),
+(51, 5, 1, 'accommodations', 'Nagyon hangulatos lakás volt, tiszta és jól felszerelt. A belváros gyalog is könnyen elérhető, így tökéletes választás volt a város felfedezéséhez.', 5, 'hu'),
+(52, 14, 2, 'accommodations', 'Kényelmes kis stúdió, minden szükséges dolog megtalálható benne. Az erkély különösen tetszett, reggelente ott ittuk a kávét.', 4, 'hu'),
+(53, 23, 3, 'accommodations', 'Szép apartman, modern berendezéssel. A környék csendes volt, ezért nagyon jól tudtunk pihenni.', 5, 'hu'),
+(54, 31, 4, 'accommodations', 'Ár-érték arányban teljesen megfelelő szállás. A tisztaság rendben volt, bár a fürdő lehetne egy kicsit felújítottabb.', 4, 'hu'),
+(55, 44, 5, 'accommodations', 'Nagyon barátságos és világos lakás. A tulajdonos gyorsan válaszolt minden kérdésünkre.', 5, 'hu'),
+(56, 9, 6, 'accommodations', 'Jó elhelyezkedésű apartman, közel a tömegközlekedéshez. Rövid tartózkodásra ideális.', 4, 'hu'),
+(57, 62, 7, 'accommodations', 'Kellemes hangulatú szállás, tiszta szobákkal és kényelmes ággyal. Összességében elégedettek voltunk.', 4, 'hu'),
+(58, 18, 8, 'accommodations', 'A lakás felszereltsége nagyon jó volt, minden megtalálható benne. A konyha különösen praktikus.', 5, 'hu'),
+(59, 71, 9, 'accommodations', 'Egyszerű, de kényelmes apartman. Egy hétvégére teljesen megfelelő volt.', 3, 'hu'),
+(60, 52, 10, 'accommodations', 'Nagyon jó elhelyezkedés, a legtöbb látnivaló gyalog is elérhető. Szívesen visszatérnénk.', 5, 'hu'),
+(61, 38, 13, 'accommodations', 'A lakás tiszta és rendezett volt, a check-in gyorsan ment. Kellemes élmény volt itt megszállni.', 4, 'hu'),
+(62, 41, 14, 'accommodations', 'Hangulatos szállás egy nyugodt környéken. A berendezés modern és ízléses.', 5, 'hu'),
+(63, 67, 15, 'accommodations', 'Az apartman tágas és világos, az ágyak nagyon kényelmesek voltak.', 5, 'hu'),
+(64, 28, 16, 'accommodations', 'Összességében jó szállás, bár a parkolás kicsit nehézkes volt a környéken.', 3, 'hu'),
+(65, 12, 17, 'accommodations', 'Szép lakás, jó felszereltséggel. A házigazda nagyon segítőkész volt.', 4, 'hu'),
+(66, 84, 18, 'accommodations', 'Nagyon tiszta és modern apartman. Külön tetszett a nagy nappali.', 5, 'hu'),
+(67, 96, 19, 'accommodations', 'Kellemes, otthonos hangulatú szállás. Jó választás pároknak.', 4, 'hu'),
+(68, 47, 20, 'accommodations', 'A környék nyugodt, a lakás pedig jól felszerelt. Minden rendben volt.', 4, 'hu'),
+(69, 25, 21, 'accommodations', 'Szép apartman, jó közlekedéssel. Könnyen eljutottunk minden fontos helyre.', 4, 'hu'),
+(70, 78, 23, 'accommodations', 'A kilátás az ablakból nagyon szép volt. Hangulatos szállás.', 5, 'hu'),
+(71, 33, 24, 'accommodations', 'Egyszerű, de tiszta és rendezett apartman. Jó ár-érték arány.', 4, 'hu'),
+(72, 54, 25, 'accommodations', 'Nagyon kellemes tartózkodás volt, a lakás modern és kényelmes.', 5, 'hu'),
+(73, 16, 26, 'accommodations', 'Kis stúdió, de minden szükséges dolog megvan benne. Rövid tartózkodásra tökéletes.', 4, 'hu'),
+(74, 75, 27, 'accommodations', 'A lakás jól felszerelt és tiszta volt. A bejelentkezés egyszerűen ment.', 4, 'hu'),
+(75, 81, 28, 'accommodations', 'Nagyon hangulatos szállás, jó elhelyezkedéssel. Ajánlom másoknak is.', 5, 'hu'),
+(76, 6, 29, 'accommodations', 'Szép apartman, bár kissé zajos az utca este.', 3, 'hu'),
+(77, 49, 30, 'accommodations', 'Modern berendezésű lakás, kényelmes ágyakkal.', 5, 'hu'),
+(78, 92, 31, 'accommodations', 'A szállás tiszta volt és könnyen megközelíthető.', 4, 'hu'),
+(79, 57, 32, 'accommodations', 'Nagyon jó ár-érték arányú apartman.', 4, 'hu'),
+(80, 63, 33, 'accommodations', 'Hangulatos lakás, jó felszereltséggel.', 5, 'hu'),
+(81, 8, 34, 'accommodations', 'Kellemes apartman, de a wifi néha lassú volt.', 3, 'hu'),
+(82, 27, 35, 'accommodations', 'Nagyon tiszta és jól karbantartott szállás.', 5, 'hu'),
+(83, 36, 36, 'accommodations', 'A lakás kényelmes és tágas volt.', 4, 'hu'),
+(84, 59, 37, 'accommodations', 'Szép kilátás és csendes környék.', 5, 'hu'),
+(85, 70, 38, 'accommodations', 'Egyszerű szállás, de minden működött.', 3, 'hu'),
+(86, 45, 39, 'accommodations', 'A tulajdonos nagyon kedves és segítőkész volt.', 5, 'hu'),
+(87, 88, 40, 'accommodations', 'Nagyon jó helyen van, közel sok étteremhez.', 4, 'hu'),
+(88, 19, 41, 'accommodations', 'Kényelmes apartman, tiszta szobákkal.', 4, 'hu'),
+(89, 97, 42, 'accommodations', 'Szép és világos lakás.', 5, 'hu'),
+(90, 13, 43, 'accommodations', 'Átlagos szállás, de ár-érték arányban rendben.', 3, 'hu'),
+(91, 21, 44, 'accommodations', 'Nagyon jó elhelyezkedés és modern berendezés.', 5, 'hu'),
+(92, 60, 45, 'accommodations', 'A lakás felszereltsége kiváló.', 5, 'hu'),
+(93, 73, 46, 'accommodations', 'Tiszta, rendezett és jól felszerelt apartman.', 4, 'hu'),
+(94, 82, 47, 'accommodations', 'Nyugodt környék, kényelmes szállás.', 4, 'hu'),
+(95, 94, 48, 'accommodations', 'Nagyon hangulatos lakás, jól éreztük magunkat.', 5, 'hu'),
+(96, 11, 49, 'accommodations', 'Korrekt szállás rövid tartózkodásra.', 4, 'hu'),
+(97, 24, 50, 'accommodations', 'Szép apartman, jó közlekedéssel.', 4, 'hu'),
+(98, 37, 51, 'accommodations', 'Nagyon kellemes szállásélmény volt.', 5, 'hu'),
+(99, 58, 52, 'accommodations', 'Kényelmes ágy és tiszta szoba.', 4, 'hu'),
+(100, 99, 53, 'accommodations', 'Jó elhelyezkedésű és hangulatos apartman.', 5, 'hu'),
+(101, 5, 1, 'accommodations', 'Nagyon jó elhelyezkedés, tiszta lakás.', 5, 'hu'),
+(102, 12, 1, 'accommodations', 'Szép apartman, de a wifi néha lassú volt.', 4, 'hu'),
+(103, 33, 1, 'accommodations', 'Átlagos szállás, egy hétvégére megfelelt.', 3, 'hu'),
+(104, 47, 1, 'accommodations', 'A lakás tiszta volt, de zajos a környék.', 3, 'hu'),
+(105, 61, 1, 'accommodations', 'Nagyon hangulatos és jól felszerelt.', 5, 'hu'),
+(106, 72, 1, 'accommodations', 'Kicsit drága a méretéhez képest.', 3, 'hu'),
+(107, 8, 2, 'accommodations', 'Kényelmes stúdió, az erkély nagy plusz.', 5, 'hu'),
+(108, 19, 2, 'accommodations', 'Rendben volt, de lehetne tisztább.', 3, 'hu'),
+(109, 28, 2, 'accommodations', 'A szállás megfelelt az elvárásoknak.', 4, 'hu'),
+(110, 39, 2, 'accommodations', 'Kicsi szoba, de jó helyen van.', 3, 'hu'),
+(111, 55, 2, 'accommodations', 'Nagyon barátságos tulajdonos.', 5, 'hu'),
+(112, 63, 2, 'accommodations', 'A fürdőszoba felújításra szorul.', 2, 'hu'),
+(113, 7, 3, 'accommodations', 'Nagyon jó lokáció a városnézéshez.', 5, 'hu'),
+(114, 16, 3, 'accommodations', 'Tiszta és rendezett lakás.', 4, 'hu'),
+(115, 29, 3, 'accommodations', 'Semmi extra, de korrekt.', 3, 'hu'),
+(116, 41, 3, 'accommodations', 'A konyha felszereltsége hiányos.', 2, 'hu'),
+(117, 52, 3, 'accommodations', 'Nagyon kényelmes ágy.', 5, 'hu'),
+(118, 67, 3, 'accommodations', 'Nem volt parkolóhely a közelben.', 2, 'hu'),
+(119, 10, 4, 'accommodations', 'Nagyon hangulatos stúdió.', 5, 'hu'),
+(120, 23, 4, 'accommodations', 'Szép lakás, de kicsit zajos.', 3, 'hu'),
+(121, 35, 4, 'accommodations', 'Kiváló helyen van, közel mindenhez.', 5, 'hu'),
+(122, 49, 4, 'accommodations', 'A tisztaság hagyott kívánnivalót.', 2, 'hu'),
+(123, 74, 4, 'accommodations', 'Jó ár-érték arány.', 4, 'hu'),
+(124, 86, 4, 'accommodations', 'A szoba kisebb volt mint a képeken.', 2, 'hu'),
+(125, 97, 4, 'accommodations', 'Teljesen elégedett voltam.', 5, 'hu'),
+(126, 3, 1, 'experiences', 'Nagyon kellemes fürdő élmény volt.', 5, 'hu'),
+(127, 14, 2, 'experiences', 'Szép városnézés, sok érdekes történettel.', 4, 'hu'),
+(128, 26, 3, 'experiences', 'A kilátás fantasztikus volt.', 5, 'hu'),
+(129, 31, 4, 'experiences', 'Romantikus hajózás a folyón.', 5, 'hu'),
+(130, 45, 5, 'experiences', 'A koncert nagyon hangulatos volt.', 5, 'hu'),
+(131, 57, 6, 'experiences', 'Szép kastély, de nagyon sok turista.', 3, 'hu'),
+(132, 68, 7, 'experiences', 'Kellemes séta a Duna partján.', 4, 'hu'),
+(133, 79, 8, 'experiences', 'Érdekes parlament túra.', 4, 'hu'),
+(134, 91, 9, 'experiences', 'Nagyon szép esti panoráma.', 5, 'hu'),
+(135, 2, 10, 'experiences', 'Szép történelmi környezet.', 4, 'hu'),
+(136, 17, 13, 'experiences', 'Az Eiffel-torony fantasztikus élmény.', 5, 'hu'),
+(137, 24, 14, 'experiences', 'Romantikus séta, de sok a turista.', 3, 'hu'),
+(138, 36, 15, 'experiences', 'Nagyon informatív városnézés.', 4, 'hu'),
+(139, 48, 16, 'experiences', 'A sörkóstoló szórakoztató volt.', 5, 'hu'),
+(140, 59, 17, 'experiences', 'Érdekes történelmi helyszín.', 4, 'hu'),
+(141, 64, 18, 'experiences', 'Jó program volt vásárlással kombinálva.', 4, 'hu'),
+(142, 70, 19, 'experiences', 'Az Akropolisz lenyűgöző.', 5, 'hu'),
+(143, 82, 20, 'experiences', 'Gyönyörű tengerpart.', 5, 'hu'),
+(144, 90, 21, 'experiences', 'Hangulatos óváros.', 4, 'hu'),
+(145, 95, 23, 'experiences', 'A fjord látványa csodálatos.', 5, 'hu'),
+(146, 11, 24, 'experiences', 'Érdekes design városnézés.', 4, 'hu'),
+(147, 22, 25, 'experiences', 'Szép város, de a program rövid volt.', 3, 'hu'),
+(148, 37, 26, 'experiences', 'Nagyon szórakoztató vidámpark.', 5, 'hu'),
+(149, 53, 27, 'experiences', 'A vásár hangulatos, de nagyon zsúfolt.', 3, 'hu'),
+(150, 76, 28, 'experiences', 'A híd esti fényei gyönyörűek.', 5, 'hu');
 
 -- --------------------------------------------------------
 
@@ -2252,6 +2424,14 @@ ALTER TABLE `history`
   ADD KEY `owner_id` (`owner_id`);
 
 --
+-- A tábla indexei `opinions`
+--
+ALTER TABLE `opinions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `accommodation_id` (`item_id`);
+
+--
 -- A tábla indexei `report`
 --
 ALTER TABLE `report`
@@ -2330,6 +2510,12 @@ ALTER TABLE `history`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
+-- AUTO_INCREMENT a táblához `opinions`
+--
+ALTER TABLE `opinions`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+
+--
 -- AUTO_INCREMENT a táblához `report`
 --
 ALTER TABLE `report`
@@ -2399,6 +2585,13 @@ ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `accommodations` (`owner_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `history_ibfk_3` FOREIGN KEY (`renter_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `history_ibfk_4` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `opinions`
+--
+ALTER TABLE `opinions`
+  ADD CONSTRAINT `opinions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `opinions_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
