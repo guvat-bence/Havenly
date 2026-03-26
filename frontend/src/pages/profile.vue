@@ -274,8 +274,17 @@ function changeDatas(obj)
 // Ez a function vissza állítja az adatok az eredeti változatukra.
 function restoreDatas(obj)
 {
-  let copie = obj == model?modelCopie:obj==card?cardCopie:passwordCopie;
-  let changed = obj == model?changedModel:obj==card?changedCard:null;
+  let copie = obj == model 
+                     ? modelCopie 
+                     : obj==card 
+                     ? cardCopie 
+                     : passwordCopie;
+
+  let changed = obj == model 
+                       ? changedModel 
+                       : obj==card 
+                       ? changedCard 
+                       : null;
 
   for(let x in obj)
   {
@@ -347,12 +356,18 @@ function messageBox(type)
 // és azt is, hogy megfelelő formátumú-e. 
 function change(obj)
 {
-  let copie = obj == model?modelCopie:cardCopie;
-  let changed = obj == model?changedModel:changedCard;
+  let copie = obj == model 
+                     ? modelCopie 
+                     : cardCopie;
+
+  let changed = obj == model 
+                       ? changedModel 
+                       : changedCard;
   for(let x in obj)
   {
     if(obj[x]!=copie[x]){
-      validateUserDatas()?changed.value = true:changed.value = false;
+      validateUserDatas() ? changed.value = true 
+                          : changed.value = false;
       return;
     }
   }
@@ -1157,6 +1172,7 @@ axios.get(`http://localhost:3000/getCardNetwork`)
     </div>
   </div>
 </template>
+
 <style>
 
 /* profile inputok effektusai */
