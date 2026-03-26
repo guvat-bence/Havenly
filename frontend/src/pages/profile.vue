@@ -63,6 +63,7 @@ let messageType = ref("");
 let showpasscheck = ref(false);
 let showOkBtn = ref(false);
 let talkingWith = ref("");
+let userMessages = ref(""); 
 
 // Adatokat ellenőrzése.
 function validateUserDatas(){
@@ -377,6 +378,17 @@ watch(card,()=>
 {
  change(card);
 },{deep:true})
+
+// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+axios.get(`http://localhost:3000/getCardNetwork`)
+  .then(details=>
+  {
+    userMessages.value = details.data;
+  })
+  .catch(error=>
+  {
+    console.error(error);
+  })
 
 </script>
 <template>
@@ -1016,41 +1028,76 @@ watch(card,()=>
               aria-labelledby="nav-chats-tab" 
               tabindex="0">
 
-              <div class="row justify-content-center" style="min-height: 360px;">
+              <!-- Maga az egész beszélgetés -->
+              <div class="row justify-content-center 
+                          overflow-y-hidden" 
+                   style="height:600px;">
               
-                <div class="row border border-1 border-white rounded-start col-4 p-0">
-                  <span class="people d-flex align-items-center border-bottom border-secondary"  
-                        v-for="x in model" style="max-height: 50px;"
-                        @click="openMessages(x)">
-                    {{ x }}
-                  </span>
+                <!-- Bal oldali emberek megjelenítése -->
+                <div class="col-5 col-sm-4 border 
+                            border-1 border-white 
+                            rounded-start p-0 h-100">
+
+                  <!-- Beszélgető partnerek -->
+                  <div class="h-100 overflow-y-auto">
+
+                    <!-- Beszélgető partnerek -->
+                    <span class="people d-flex 
+                                 align-items-center 
+                                 border-bottom border-secondary 
+                                 ps-2"  
+                          v-for="x in userMessages"
+                          style="min-height: 55px;"
+                          @click="openMessages(x)">
+                      {{ x.network_name }}
+                    </span>
+                  </div>
                 </div>
-                <div class="row justify-content-center bg-white rounded-end col-8 text-black p-0">
+
+                <!-- Jobb oldali üzenet megjelenítés -->
+                <div class="col-7 col-sm-8 
+                            d-flex flex-column bg-white 
+                            rounded-end text-black p-0" 
+                      style="height: 600px;">
                   
-                  <div class="col-12 d-flex align-items-center 
+                  <!-- Címzett kiírása -->
+                  <div class="d-flex w-100 align-items-center 
                               border-bottom border-secondary 
                               bg-secondary bg-opacity-25" 
                         style="height: 40px;">
+
+                    <!-- Címzett -->
                     <span>
                       {{ talkingWith }}
                     </span>
                   </div>
-                  <div class="col-12"
-                       style="height: 300px">
-                    <span>
-                      asd
-                    </span>
+
+                  <!-- Üzenet rész -->
+                  <div class="flex-grow-1 
+                              overflow-y-auto 
+                              overflow-x-hidden">
+
+                    <!-- Üzenetek -->
+                    <div class="text-end p-3" 
+                         style="height: 40px;" 
+                         v-for="x in userMessages">
+
+                      <!-- Üzenet -->
+                      <span class="bg-dark text-white rounded-3 p-2">
+                      {{ x.network_name }}
+                      </span>
+                    </div>
                   </div>
-                  <div class="col-12 py-2 bg-secondary rounded-end">
+
+                  <!-- messageBar -->
+                  <div class=" py-2 bg-secondary rounded-end">
                     <input class="form-control col-8" 
                            type="search" 
-                           name="asd" 
-                           id="asd">
+                           name="messageBar" 
+                           id="messageBar">
                   </div>
-                  
                 </div>
               </div>
-
           </div>
         </div>
         
