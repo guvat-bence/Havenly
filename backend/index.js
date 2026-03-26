@@ -942,7 +942,7 @@ app.post("/rentAccomodation", (req, res) => {
         return;
       }
       if (result.length > 0) {
-        res.send('Találtam adatot bibi')
+        res.status(500).send('Már van lefoglalva erre az időpontra')
       }
       else {
         db.query(`INSERT INTO history (renter_id, 
