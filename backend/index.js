@@ -972,3 +972,31 @@ app.post("/rentAccomodation", (req, res) => {
     }
   )
 });
+
+
+// Vélemények lekérdezése
+app.post("/opinions",(req,res) =>{
+
+  let datas = req.body;
+
+  db.query(`SELECT  opinions.opinion,
+                    opinions.rate,
+                    users.first_name,
+                    users.last_name, 
+                    IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
+            FROM opinions
+            INNER JOIN users
+            ON opinions.user_id = users.id
+            WHERE opinions.item_id = ? 
+                  AND opinions.item_type = ?
+                  AND language_short_name = ?`,
+            [datas.item_id,datas.item_type,datas.language_short_name],(err,result)=>{
+
+    if (err) {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    res.json(result);
+  });
+})
