@@ -5,6 +5,7 @@ import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
 import { reactive, ref, Transition, watch } from 'vue';
 import axios, { Axios } from 'axios';
+import { convertStrings } from '@/common';
 
 let router = useRouter()
 let accommodation_data = JSON.parse(rent.accommodation);
@@ -55,14 +56,6 @@ let model = reactive({
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
-// Format text to readable
-let convertStrings = (str) => {
-  return str.normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replaceAll(" ", "_")
-            .toLowerCase();
-};
-
 let payForAccomadtion = () => {
   axios.post('http://localhost:3000/rentAccomodation', model)
   .then(response => {
@@ -80,7 +73,6 @@ setTimeout(() => {
     }
   }
 }, 50);
-
 
 watch(() => model.cardnumber, (x) => {
   currentCard.value = "";

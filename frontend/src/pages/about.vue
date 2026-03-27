@@ -7,6 +7,7 @@ import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import allIcons from '@/json/icons.json';
 import { useI18n } from 'vue-i18n';
+import { convertStrings } from '@/common';
 
 // étékek át hozása másik oldalról
 const props = defineProps(['id','name','table_name'])
@@ -366,16 +367,6 @@ if(props.table_name == "accommodations")
 		console.error(error);
 	})
 }
-
-//a fáljrendszer elnevezéseihez alakítja át az adatokat
-//hogy meg tudja majd keresni a megfelelő képet
-function convertStrings(str) {  
-
-  return str.normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replaceAll(" ","_")
-            .toLowerCase();
-}	
 
 //amelyik képre rá megyünk, az jelenik meg a modalban elsőnek.
 function imageShow(img)

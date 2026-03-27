@@ -1,4 +1,5 @@
 <script setup>
+import { convertStrings } from '@/common';
 import { activeLocations, searchInput } from '@/js/getLocation';
 import axios from 'axios';
 import { computed, reactive, ref } from 'vue';
@@ -19,15 +20,6 @@ let result = reactive({
 		}
 	}),
 
-	//convertString függvény 
-	convertStrings = (str) => {
-
-		return str.normalize("NFD")
-			.replace(/[\u0300-\u036f]/g, "")
-			.replaceAll(" ", "_")
-			.toLowerCase();
-
-	},
 	//getActiveLocations függvény
 	getActiveLocations = (x) => {
 		axios.get(`http://localhost:3000/create${x}LocationList`)
