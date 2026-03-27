@@ -1159,25 +1159,35 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                aria-labelledby="nav-chats-tab" 
                tabindex="0">
 
-               <div class="w-100 d-flex text-white 
-                           mb-4 bg-black bg-opacity-25 
-                           rounded-3 p-2 border border-1 
-                           border-white"
-                    v-for="x in history">
-                <img  style="height: 170px; width: 170px;"
-                      :src="`/countries/${convertStrings(x.country_name)}` +
-                           `/cities/${convertStrings(x.city_name)}` +
-                           `/accommodations/${convertStrings(x.accommodation_folder_name)}/001.png`"
-                     class="justify-content-start rounded-3 img-fluid" 
-                     alt="accomodation_image">
-                <div class="mx-auto">
-                  <h3 class="text-white text-center fw-light">{{ x.accommodation_name }}</h3>
-                  <p>Ár: {{ x.price * selectedCurrency.currencyMultiplier }} {{ selectedCurrency.currencyShortedName }}</p>
-                  <p class="text-white-50">Bérlés: {{ convertDateTime(x.rent_date) }}</p>
-                  <div class="row">
-                    <p class="text-white-50 col-12 col-md-6 text-nowrap">Kezdés: {{ convertDateTime(x.rent_beginning) }}</p>
-                    <p class="text-white-50 col-12 col-md-6 text-nowrap">Vége: {{ convertDateTime(x.rent_end) }}</p>
-                  </div>
+               <div class="overflow-y-scroll py-2" style="height: 400px !important;">
+
+                  <div class="d-flex text-white 
+                              mb-4 bg-black bg-opacity-25 
+                              rounded-3 p-2 border border-1 
+                              border-white"
+                       v-for="x in history">
+                    <img  style="height: 170px; width: 170px;"
+                          :src="`/countries/${convertStrings(x.country_name)}` +
+                              `/cities/${convertStrings(x.city_name)}` +
+                              `/accommodations/${convertStrings(x.accommodation_folder_name)}/001.png`"
+                        class="justify-content-start rounded-3 img-fluid" 
+                        alt="accomodation_image">
+                    <div class="mx-auto">
+
+                      <div class="row">
+                        <h3 class="text-white mx-auto text-center fw-light col-12">{{ x.accommodation_name }}</h3>
+                      </div>
+
+                      <div>
+                        <p>Ár: {{ x.price * selectedCurrency.currencyMultiplier }} {{ selectedCurrency.currencyShortedName }}</p>
+                        <p class="text-white-50">Bérlés: {{ convertDateTime(x.rent_date) }}</p>
+                      </div>
+                      
+                      <div class="row">
+                        <p class="text-white-50 col-12 col-md-6 text-nowrap">Kezdés: {{ convertDateTime(x.rent_beginning) }}</p>
+                        <p class="text-white-50 col-12 col-md-6 text-nowrap">Vége: {{ convertDateTime(x.rent_end) }}</p>
+                      </div>
+                    </div>
                 </div>
                </div>
           </div>
