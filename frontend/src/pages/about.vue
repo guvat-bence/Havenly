@@ -16,6 +16,7 @@ const {locale} = useI18n();
 // változók létrehozása
 let item = ref([]);
 let opinions = ref([]);
+let modalType = ref("gallery");
 let reserved_days = ref([]);
 let rent_price = ref(0);
 let item_details = ref([]);
@@ -391,7 +392,14 @@ function imageShow(img)
 		}
 	}
 
+	modalType.value = "gallery";
+
 	// modal megkeresése
+	openModal();
+}
+
+function openModal()
+{
 	modal = document.querySelector("#imageShowModal");
 	modal.classList.remove("invisible");
 	document.body.classList.add("no-scroll");
@@ -641,12 +649,14 @@ function renting()
 	router.replace({path:'/havenly/basket'})
 }
 
-function reportingmodal()
+function setReportModal(type)
 {
-	// modalElement.addEventListener('hide.bs.modal', () => {
-  //       if (document.activeElement instanceof HTMLElement)
-  //         document.activeElement.blur();
-  //   });
+
+	modalType.value = "report";
+	openModal();
+
+	console.log(type);
+	
 }
 
 // figyeleli az érekezési és távozási napok változását.
@@ -900,47 +910,54 @@ watch(model,()=>
 					</div>
 				</div>
 
+				<!-- Probléma jelentése rész -->
 				<div class="row justify-content-center text-center mx-2 my-3
 										border border-2 rounded-3 bg-dark bg-opacity-50
 										col-12 col-sm-6 col-md-4 p-2">
 					<h4>Valami problémát talált?</h4>
 					<h4> Jelentsd nekünk:</h4>
-					<button class="my-2 btn w-auto rounded-3 btn-danger">
-							Probléma jelentése!
+					<button @click=" setReportModal(item[0])"
+									class="my-2 btn w-auto rounded-3 btn-danger">
+						Probléma jelentése!
 					</button>
 
 				</div>
 		
+				<!-- Vélemény címe -->
 				<h4 v-if="opinions.length!=0"
 						class="my-3 text-center">Mások véleményei:
 					<span>({{ opinions.length }} vélemény)</span>
 				</h4>
 
 				<!-- Vélemény --> 
-					<div  v-for="opinion in opinions"
-								class="row col-12 col-md-5 m-3 
-											 border-black rounded-3 bg-white 
-											 bg-opacity-50 text-white border border-white">
+				<div  v-for="opinion in opinions"
+							class="row col-12 col-md-5 m-3 
+											border-black rounded-3 bg-white 
+											bg-opacity-50 text-white border border-white">
 
-						<h5 class="mt-2 col-6">
-							{{ `${opinion["first_name"]} 
-								  ${opinion["middle_name"]} 
-									${opinion["last_name"]}`}}
-						</h5>
+					<!-- Vélémy író neve -->
+					<h5 class="mt-2 col-6">
+						{{ `${opinion["first_name"]} 
+								${opinion["middle_name"]} 
+								${opinion["last_name"]}`}}
+					</h5>
 
-						<div class="mt-2 ms-auto col-6 text-end text-warning">
-							<i v-for="x in opinion['rate']"
-									class="fa-solid fa-star"></i>
-						</div>
-
-						<p class="p-2">{{opinion["opinion"] }}</p>
-
-						<button class="my-2 btn w-auto rounded-4 
-														ms-auto btn-danger">
-							Vélemény jelentése!
-						</button>
-
+					<!-- értékelési szintje -->
+					<div class="mt-2 ms-auto col-6 text-end text-warning">
+						<i v-for="x in opinion['rate']"
+								class="fa-solid fa-star"></i>
 					</div>
+
+					<!-- maga a vélemény -->
+					<p class="p-2">{{opinion["opinion"] }}</p>
+
+					<!-- Vélemény jelentés gomb -->
+					<button @click=" setReportModal(opinion)"
+									class="my-2 btn w-auto rounded-4 
+													ms-auto btn-danger">
+						Vélemény jelentése!
+				</button>
+				</div>
 			</div>
 
 			<!-- saját modal -->
@@ -949,8 +966,10 @@ watch(model,()=>
 									align-items-center position-fixed"
 					 id="imageShowModal"
 					 style="z-index:1020;inset:0;">
-					 
-				<div class="position-relative w-75">
+				
+				<!-- galéria modal rész -->
+				<div v-if="modalType == 'gallery'"
+						 class="position-relative w-75">
 
 					<!-- Kép -->
 					<div class="d-flex justify-content-center">
@@ -989,11 +1008,50 @@ watch(model,()=>
 					<!-- Bazáró gomb -->
 						<div class="position-absolute top-0 end-0">
 						<button class="btn btn-danger" 
-										@click="closeModal()">
+										@click="closeModal()"
+										type="button">
 							X
 						</button>
 					</div>
 				</div>
+
+				<div v-if="modalType == 'report'"
+						 class="row justify-content-center">
+					
+					<!-- Probléma jelentés form -->
+					<form class= "row p-0 m-0 justify-content-center 
+												bg-dark bg-opacity-75 rounded-3 col-10">
+						
+						<!-- Bezáró gomb -->
+						<div class="d-flex justify-content-end p-0 m-0">
+							<button type="button"
+											class="btn btn-danger"
+											@click="closeModal()">
+								X
+							</button>
+						</div>
+
+						<div class="mb-3 col-10">
+							<label for="exampleInputEmail1" class="form-label">Email address</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+							<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+						</div>
+
+						<div class="mb-3 col-10">
+							<label for="exampleInputPassword1" class="form-label">Password</label>
+							<input type="password" class="form-control" id="exampleInputPassword1">
+						</div>
+						<div class="mb-3 form-check">
+							<input type="checkbox" class="form-check-input" id="exampleCheck1">
+							<label class="form-check-label" for="exampleCheck1">Check me out</label>
+						</div>
+
+						<button type="button"
+										class="btn btn-primary"
+										@click="closeModal()">Submit</button>
+					</form>
+				</div>
+
 			</div>
 		</div>
 	</div>
