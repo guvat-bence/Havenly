@@ -1022,24 +1022,50 @@ watch(model,()=>
 							</button>
 						</div>
 
+						<!-- Probléma fajtája -->
 						<div class="mb-3 col-10">
-							<label for="exampleInputEmail1" class="form-label">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-							<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+							<!-- Label -->
+							<label for="problem_type" 
+										 class="form-label">
+								Probléma fajtája
+							</label>
+
+							<!-- Select -->
+							<select class="form-control"
+											name="problem_type" 
+											id="problem_type">
+
+								<!-- alapvető válasz -->
+								<option value="" 
+												selected>
+									-- Válasszon -- 
+								</option>
+							</select>
 						</div>
 
+						<!-- Probléma részletei -->
 						<div class="mb-3 col-10">
-							<label for="exampleInputPassword1" class="form-label">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1">
-						</div>
-						<div class="mb-3 form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+							<!-- Label -->
+							<label for="problem_description" 
+										 class="form-label">
+								Probléma részletei
+							</label>
+
+							<!-- Textarea -->
+							<textarea class="form-control" 
+												name="problem_description" 
+												id="problem_description">
+							</textarea>
 						</div>
 
+						<!-- Beküldés gomb -->
 						<button type="button"
 										class="btn btn-primary"
-										@click="closeModal()">Submit</button>
+										@click="closeModal()">
+							Beküldés
+						</button>
 					</form>
 				</div>
 
