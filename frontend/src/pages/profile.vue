@@ -5,6 +5,7 @@ import { reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { useI18n } from 'vue-i18n';
 import { selectedCurrency } from '@/store/currency';
+import { convertStrings } from '@/common';
 
 const {t} = useI18n();
 
@@ -407,15 +408,15 @@ axios.get(`http://localhost:3000/getCardNetwork`)
   })
 
   // Format text to readable
-  let convertStrings = (str) => {
-    return str.normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .replaceAll(" ", "_")
-              .toLowerCase();
-  };
+  
 
+  // History változó
   let history = ref([])
 
+  /**
+   * @param {int} id - felhasználó id
+   * Lekéri az adott id alapján a felhasználóhoz rendelet előzményeket
+   */
   let getHistory = (id) => {
     axios.post('http://localhost:3000/getHistory',{id:id})
     .then(x => {
@@ -1159,7 +1160,8 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                aria-labelledby="nav-chats-tab" 
                tabindex="0">
 
-               <div class="overflow-y-scroll py-2" style="height: 400px !important;">
+               <div class="overflow-y-scroll py-2" 
+                    style="height: 400px !important;">
 
                   <div class="d-flex text-white 
                               mb-4 bg-black bg-opacity-25 
@@ -1170,22 +1172,39 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                           :src="`/countries/${convertStrings(x.country_name)}` +
                               `/cities/${convertStrings(x.city_name)}` +
                               `/accommodations/${convertStrings(x.accommodation_folder_name)}/001.png`"
-                        class="justify-content-start rounded-3 img-fluid" 
-                        alt="accomodation_image">
+                          class="justify-content-start rounded-3 img-fluid" 
+                          alt="accomodation_image">
                     <div class="mx-auto">
 
                       <div class="row">
-                        <h3 class="text-white mx-auto text-center fw-light col-12">{{ x.accommodation_name }}</h3>
+                        <h3 class="text-white mx-auto 
+                                   text-center fw-light 
+                                   col-12">
+                          {{ x.accommodation_name }}
+                        </h3>
                       </div>
 
                       <div>
-                        <p>Ár: {{ x.price * selectedCurrency.currencyMultiplier }} {{ selectedCurrency.currencyShortedName }}</p>
-                        <p class="text-white-50">Bérlés: {{ convertDateTime(x.rent_date) }}</p>
+                        <p>Ár: 
+                          {{ x.price * selectedCurrency.currencyMultiplier }} 
+                          {{ selectedCurrency.currencyShortedName }}
+                        </p>
+
+                        <p class="text-white-50">
+                          Bérlés: {{ convertDateTime(x.rent_date) }}
+                        </p>
                       </div>
                       
                       <div class="row">
-                        <p class="text-white-50 col-12 col-md-6 text-nowrap">Kezdés: {{ convertDateTime(x.rent_beginning) }}</p>
-                        <p class="text-white-50 col-12 col-md-6 text-nowrap">Vége: {{ convertDateTime(x.rent_end) }}</p>
+                        <p class="text-white-50 col-12 
+                                  col-md-6 text-nowrap">
+                          Kezdés: {{ convertDateTime(x.rent_beginning) }}
+                        </p>
+
+                        <p class="text-white-50 col-12 
+                                  col-md-6 text-nowrap">
+                          Vége: {{ convertDateTime(x.rent_end) }}
+                        </p>
                       </div>
                     </div>
                 </div>
