@@ -6,6 +6,7 @@ import {user} from "@/store/user";
 import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import allIcons from '@/json/icons.json';
+import allProblemTypes from '@/json/problemTypes.json';
 import { useI18n } from 'vue-i18n';
 import { convertStrings } from '@/common';
 
@@ -16,6 +17,7 @@ const {locale} = useI18n();
 
 // változók létrehozása
 let item = ref([]);
+let problemTypes = ref([]);
 let opinions = ref([]);
 let modalType = ref("gallery");
 let reserved_days = ref([]);
@@ -34,6 +36,14 @@ let currentDate = ref("");
 let currentMonth = "";
 let nextDayDate = ref("");
 let model = reactive({guests:1});
+let problemModel = reactive({
+	user_id:user.id.split(" ")[0],
+	item_id:"",
+	name:"",
+	description:"",
+	type:"",
+});
+let problemModelEmty = {... problemModel};
 let daysname = computed(()=>(t('about.days_short')).split(","));
 let monthsname = computed(()=>(t('about.months')).split(","));
 let arriveDayId= ref(null); 
@@ -209,10 +219,6 @@ axios.post(`http://localhost:3000/opinions`,
 	{item_id:props.id,item_type:props.table_name,
 		language_short_name:locale.value})
 .then(datas=>{
-
-	console.log(datas.data);
-	
-
 	opinions.value = datas.data;
 	
 })
@@ -640,14 +646,40 @@ function renting()
 	router.replace({path:'/havenly/basket'})
 }
 
-function setReportModal(type)
+function setReportModal(datas)
 {
+	Object.assign(problemModel,problemModelEmty);
+
+	if(datas?.owner_id){
+		problemTypes.value = allProblemTypes["itemsProblemTypes"];
+		problemModel.type = props.table_name;
+		problemModel.item_id = datas.id;
+	}
+	else{
+		problemTypes.value = allProblemTypes["reviewProblemTypes"];
+		problemModel.type = "opinions";
+		problemModel.item_id = datas.id;
+	}
 
 	modalType.value = "report";
-	openModal();
 
-	console.log(type);
+	openModal();
+}
+
+function sendProblem(){
+
+	console.log(problemModel);
 	
+	axios.post("http://localhost:3000/sendProblem",problemModel)
+	.then(response=>{
+		console.log(response.data);
+	})
+	.catch(err=>{
+		console.log(err);
+	})
+
+
+	closeModal();
 }
 
 // figyeleli az érekezési és távozási napok változását.
@@ -923,8 +955,8 @@ watch(model,()=>
 				<!-- Vélemény --> 
 				<div  v-for="opinion in opinions"
 							class="row col-12 col-md-5 m-3 
-											border-black rounded-3 bg-white 
-											bg-opacity-50 text-white border border-white">
+										 rounded-3 bg-white 
+										 text-dark border border-white">
 
 					<!-- Vélémy író neve -->
 					<h5 class="mt-2 col-6">
@@ -1006,13 +1038,14 @@ watch(model,()=>
 					</div>
 				</div>
 
+				<!-- probléma jelentése rész -->
 				<div v-if="modalType == 'report'"
 						 class="row justify-content-center">
 					
 					<!-- Probléma jelentés form -->
 					<form class= "row p-0 m-0 justify-content-center 
-												bg-dark bg-opacity-75 rounded-3 col-10">
-						
+												bg-white rounded-3 col-10 text-dark">
+
 						<!-- Bezáró gomb -->
 						<div class="d-flex justify-content-end p-0 m-0">
 							<button type="button"
@@ -1032,7 +1065,8 @@ watch(model,()=>
 							</label>
 
 							<!-- Select -->
-							<select class="form-control"
+							<select v-model="problemModel.name"
+											class="form-control text-center"
 											name="problem_type" 
 											id="problem_type">
 
@@ -1040,6 +1074,10 @@ watch(model,()=>
 								<option value="" 
 												selected>
 									-- Válasszon -- 
+								</option>
+								<option v-for="item in problemTypes"
+												:value="item.value">
+									{{ item.label }}
 								</option>
 							</select>
 						</div>
@@ -1054,16 +1092,21 @@ watch(model,()=>
 							</label>
 
 							<!-- Textarea -->
-							<textarea class="form-control" 
+							<textarea v-model="problemModel.description"
+							          class="form-control" 
 												name="problem_description" 
-												id="problem_description">
+												id="problem_description"
+												rows="5"
+												value=""
+												maxlength="200">
 							</textarea>
 						</div>
 
 						<!-- Beküldés gomb -->
-						<button type="button"
-										class="btn btn-primary"
-										@click="closeModal()">
+						<button :disabled="problemModel.description==''|| problemModel.name==''"
+										type="button"
+										class="btn btn-dark w-auto mb-2"
+										@click="sendProblem()">
 							Beküldés
 						</button>
 					</form>

@@ -973,13 +973,13 @@ app.post("/rentAccomodation", (req, res) => {
   )
 });
 
-
 // Vélemények lekérdezése
 app.post("/opinions",(req,res) =>{
 
   let datas = req.body;
 
-  db.query(`SELECT  opinions.opinion,
+  db.query(`SELECT  opinions.id,
+                    opinions.opinion,
                     opinions.rate,
                     users.first_name,
                     users.last_name, 
@@ -1033,5 +1033,30 @@ app.post("/getHistory", (req,res) => {
     }
 
     res.send(result)
+  })
+})
+
+app.post("/sendProblem",(req,res) =>{
+  let datas = req.body;
+
+  db.query(
+    `INSERT INTO report(
+          user_id,
+          message,
+          message_type,
+          item_type,
+          item_id)
+      VALUES(?,?,?,?,?)`,
+      [datas.user_id,datas.description,
+       datas.name,datas.type,datas.item_id],
+       (err,result)=>{
+    if(err){
+      res.status(500).send(err);
+      return;
+    }
+    if(result.affectedRows){
+      res.json(result);
+      return;
+    }
   })
 })
