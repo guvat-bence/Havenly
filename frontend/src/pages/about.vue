@@ -17,7 +17,9 @@ const {locale} = useI18n();
 
 // változók létrehozása
 let item = ref([]);
+let reserved_once = ref(false);
 let problemTypes = ref([]);
+let sendedProblem = ref(false);
 let opinions = ref([]);
 let modalType = ref("gallery");
 let reserved_days = ref([]);
@@ -37,12 +39,21 @@ let currentMonth = "";
 let nextDayDate = ref("");
 let model = reactive({guests:1});
 let problemModel = reactive({
-	user_id:user.id.split(" ")[0],
+	user_id:"",
 	item_id:"",
 	name:"",
 	description:"",
 	type:"",
 });
+let opinionModel = reactive({
+	user_id:"",
+	item_id:"",
+	item_type:props.table_name,
+	message:"",
+	rate:0,
+	language_short_name:locale.value
+})
+let opinionModelEmty = {... opinionModel};
 let problemModelEmty = {... problemModel};
 let daysname = computed(()=>(t('about.days_short')).split(","));
 let monthsname = computed(()=>(t('about.months')).split(","));
@@ -220,7 +231,6 @@ axios.post(`http://localhost:3000/opinions`,
 		language_short_name:locale.value})
 .then(datas=>{
 	opinions.value = datas.data;
-	
 })
 .catch(error=>{
 	console.error(error);
@@ -297,7 +307,7 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 })
 
 
-// meghívjuk a makeCalendar függvény a januári hónappal
+// meghívjuk a makeCalendar függvényt
 // késleltetjük az indulását,
 // így akkor fog leutni amikor már a hozzá kellő html részel is betöltődtek.
 if(props.table_name == "accommodations")
@@ -305,7 +315,7 @@ if(props.table_name == "accommodations")
 	setTimeout(()=>
 	{
 		makeCalendar(0);
-	},150);
+	},500);
 }
 
 // ha a table_name megegyezik az accommodationnal akkor bele megy
@@ -313,33 +323,48 @@ if(props.table_name == "accommodations")
 {
 	// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
 	axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.id}`)
-		.then(details=>
+	.then(details=>
+	{
+		for(let y in allIcons)
 		{
-			for(let y in allIcons)
+			allIcons[y]["text"] = computed(()=>(t(`about.extras.${y}`)));
+		
+		}
+
+		iconsAndTexts = allIcons;
+
+		// végigmegyünk a részleteken
+		for(let x in details.data[0])
+		{
+
+			// ha van olyan részlet amit tartalmaz a szállás
+			// akkor hozzá adjuk a item_details listához 
+			// az adott részlethez tartozó elemet az iconsAndTexts-ből
+			if(details.data[0][x] == 1)
 			{
-				allIcons[y]["text"] = computed(()=>(t(`about.extras.${y}`)));
-			
+				item_details.value.push(iconsAndTexts[x]);
 			}
+		}
+	})
+	.catch(error=>
+	{
+		console.error(error);
+	})
 
-			iconsAndTexts = allIcons;
-
-			// végigmegyünk a részleteken
-			for(let x in details.data[0])
+	axios.post('http://localhost:3000/getHistory',{id:user.id})
+    .then(datas => {
+		
+			for(let x of datas.data)
 			{
-
-				// ha van olyan részlet amit tartalmaz a szállás
-				// akkor hozzá adjuk a item_details listához 
-				// az adott részlethez tartozó elemet az iconsAndTexts-ből
-				if(details.data[0][x] == 1)
+				if(x.accommodation_id == item?.value[0]?.id)
 				{
-					item_details.value.push(iconsAndTexts[x]);
+					reserved_once.value = true;
+					break;
 				}
 			}
-		})
-		.catch(error=>
-		{
-			console.error(error);
-		})
+
+    })
+    .catch(e => console.error(e))
 
 
 	//adatbázisból le kérjük a szálláshoz kapcsolatos foglalásokat, és ezeket napra pontosan el tároljuk
@@ -648,38 +673,89 @@ function renting()
 
 function setReportModal(datas)
 {
+
+	sendedProblem.value = false;
+
 	Object.assign(problemModel,problemModelEmty);
 
 	if(datas?.owner_id){
 		problemTypes.value = allProblemTypes["itemsProblemTypes"];
 		problemModel.type = props.table_name;
-		problemModel.item_id = datas.id;
+	
 	}
 	else{
 		problemTypes.value = allProblemTypes["reviewProblemTypes"];
 		problemModel.type = "opinions";
-		problemModel.item_id = datas.id;
 	}
 
 	modalType.value = "report";
+	problemModel.item_id = datas.id;
+	problemModel.user_id = user.id.split(" ")[0];
 
 	openModal();
 }
 
 function sendProblem(){
-
-	console.log(problemModel);
 	
 	axios.post("http://localhost:3000/sendProblem",problemModel)
 	.then(response=>{
-		console.log(response.data);
+
+		if(response.data.affectedRows)
+		{
+			sendedProblem.value = true;
+		}
 	})
 	.catch(err=>{
 		console.log(err);
 	})
 
+}
 
-	closeModal();
+function selectStar(x)
+{
+	let star = document.getElementById(x);
+	star.classList.toggle("text-warning");
+	star.classList.toggle("text-secondary");
+	star.classList.contains("text-warning")?opinionModel.rate++:opinionModel.rate--;
+	
+}
+
+function sendOpinion()
+{
+	opinionModel.item_id = item.value[0].id;
+	opinionModel.user_id = user.id.split(" ")[0];
+
+	axios.post('http://localhost:3000/sendOpinion',opinionModel)
+	.then(response=>{
+		if(response.data.affectedRows)
+		{
+			modalType.value = 'report';
+			sendedProblem.value = true;
+			Object.assign(opinionModel,opinionModelEmty);
+			let star = document.querySelectorAll(".opinion-star");
+
+			star.forEach(item=>{
+				item.classList.remove("text-warning");
+				item.classList.add("text-secondary");
+			})
+
+			openModal();
+
+			axios.post(`http://localhost:3000/opinions`,
+			{item_id:props.id,item_type:props.table_name,
+			 language_short_name:locale.value})
+			.then(datas=>{
+
+				opinions.value = datas.data;
+			})
+			.catch(error=>{
+				console.error(error);
+			})
+		}
+	})
+	.catch(err=>{
+		console.log(err);
+	})
 }
 
 // figyeleli az érekezési és távozási napok változását.
@@ -940,6 +1016,7 @@ watch(model,()=>
 					<h4>Valami problémát talált?</h4>
 					<h4> Jelentsd nekünk:</h4>
 					<button @click=" setReportModal(item[0])"
+									:disabled="user.id==null"
 									class="my-2 btn w-auto rounded-3 btn-danger">
 						Probléma jelentése!
 					</button>
@@ -951,6 +1028,52 @@ watch(model,()=>
 						class="my-3 text-center">Mások véleményei:
 					<span>({{ opinions.length }} vélemény)</span>
 				</h4>
+
+				<!-- Vélemény írása --> 
+				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null)"
+						 class="row justify-content-center">
+					<div class="row justify-content-center 
+											col-12 col-md-5 m-3 
+											rounded-3 bg-white 
+											text-dark border border-white">
+
+						<div class="row mb-3 mt-3">
+
+							<!-- Label -->
+							<label class="form-label col-5" 
+										 for="asd">
+								Írja meg a saját véleményét!
+							</label>
+
+							<!-- értékelési szintje -->
+							<div class="ms-auto col-7 text-end text-secondary">
+								<i v-for="x in 5"
+									 @click="selectStar(x)"
+									 :id="x"
+									 class="fa-solid fa-star opinion-star"></i>
+							</div>
+
+							<!-- Vélemény -->
+							<textarea class="form-control col-10" 
+										 id="asd" 
+										 type="text"
+										 value=""
+										 rows="5"
+										 maxlength="200"
+										 v-model="opinionModel.message">
+							</textarea>
+						</div>
+					
+						<!-- Vélemény beküldése gomb -->
+						<button @click="sendOpinion()"
+										class="my-2 btn w-auto rounded-4 
+													 btn-primary"
+										:disabled="opinionModel.message==''|| opinionModel.rate==0">
+							Vélemény beküldése!
+						</button>
+
+					</div>
+				</div>
 
 				<!-- Vélemény --> 
 				<div  v-for="opinion in opinions"
@@ -976,10 +1099,11 @@ watch(model,()=>
 
 					<!-- Vélemény jelentés gomb -->
 					<button @click=" setReportModal(opinion)"
+									:disabled="user.id==null"
 									class="my-2 btn w-auto rounded-4 
 													ms-auto btn-danger">
 						Vélemény jelentése!
-				</button>
+					</button>
 				</div>
 			</div>
 
@@ -1055,63 +1179,71 @@ watch(model,()=>
 							</button>
 						</div>
 
-						<!-- Probléma fajtája -->
-						<div class="mb-3 col-10">
+						<div v-if="sendedProblem!= true"
+								 class="row justify-content-center">
 
-							<!-- Label -->
-							<label for="problem_type" 
-										 class="form-label">
-								Probléma fajtája
-							</label>
+							<!-- Probléma fajtája -->
+							<div class="mb-3 col-10">
 
-							<!-- Select -->
-							<select v-model="problemModel.name"
-											class="form-control text-center"
-											name="problem_type" 
-											id="problem_type">
+								<!-- Label -->
+								<label for="problem_type" 
+											class="form-label">
+									Probléma fajtája
+								</label>
 
-								<!-- alapvető válasz -->
-								<option value="" 
-												selected>
-									-- Válasszon -- 
-								</option>
-								<option v-for="item in problemTypes"
-												:value="item.value">
-									{{ item.label }}
-								</option>
-							</select>
+								<!-- Select -->
+								<select v-model="problemModel.name"
+												class="form-control text-center"
+												name="problem_type" 
+												id="problem_type">
+
+									<!-- alapvető válasz -->
+									<option value="" 
+													selected>
+										-- Válasszon -- 
+									</option>
+									<option v-for="item in problemTypes"
+													:value="item.value">
+										{{ item.label }}
+									</option>
+								</select>
+							</div>
+
+							<!-- Probléma részletei -->
+							<div class="mb-3 col-10">
+
+								<!-- Label -->
+								<label for="problem_description" 
+											class="form-label">
+									Probléma részletei
+								</label>
+
+								<!-- Textarea -->
+								<textarea v-model="problemModel.description"
+													class="form-control" 
+													name="problem_description" 
+													id="problem_description"
+													rows="5"
+													value=""
+													maxlength="200">
+								</textarea>
+							</div>
+
+							<!-- Beküldés gomb -->
+							<button :disabled="problemModel.description==''|| problemModel.name==''"
+											type="button"
+											class="btn btn-dark w-auto mb-2"
+											@click="sendProblem()">
+								Beküldés
+							</button>
 						</div>
 
-						<!-- Probléma részletei -->
-						<div class="mb-3 col-10">
-
-							<!-- Label -->
-							<label for="problem_description" 
-										 class="form-label">
-								Probléma részletei
-							</label>
-
-							<!-- Textarea -->
-							<textarea v-model="problemModel.description"
-							          class="form-control" 
-												name="problem_description" 
-												id="problem_description"
-												rows="5"
-												value=""
-												maxlength="200">
-							</textarea>
+						<div v-if="sendedProblem" 
+								 class="row justify-content-center">
+							<h1 class="text-center m-4">Sikeres beküldés!</h1>
 						</div>
-
-						<!-- Beküldés gomb -->
-						<button :disabled="problemModel.description==''|| problemModel.name==''"
-										type="button"
-										class="btn btn-dark w-auto mb-2"
-										@click="sendProblem()">
-							Beküldés
-						</button>
 					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>

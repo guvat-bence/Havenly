@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Ápr 09. 18:45
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Apr 12, 2026 at 10:53 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `havenly`
+-- Database: `havenly`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `accommodations`
+-- Table structure for table `accommodations`
 --
 
 CREATE TABLE `accommodations` (
@@ -45,7 +45,7 @@ CREATE TABLE `accommodations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `accommodations`
+-- Dumping data for table `accommodations`
 --
 
 INSERT INTO `accommodations` (`id`, `language_short_name`, `owner_id`, `country_id`, `city_id`, `name`, `folder_name`, `size`, `price`, `guest_number`, `bedroom`, `bed`, `bathroom`, `description`) VALUES
@@ -149,7 +149,7 @@ INSERT INTO `accommodations` (`id`, `language_short_name`, `owner_id`, `country_
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `accommodations_details`
+-- Table structure for table `accommodations_details`
 --
 
 CREATE TABLE `accommodations_details` (
@@ -178,7 +178,7 @@ CREATE TABLE `accommodations_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `accommodations_details`
+-- Dumping data for table `accommodations_details`
 --
 
 INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `microwave`, `basic_spices`, `dishes`, `extra_bed_linen`, `darkening`, `night_lamp`, `towels`, `hair_dryer`, `smart_tv`, `bluetooth_speaker`, `usb_charger`, `work_table`, `suitcase_rack`, `iron`, `safe`, `balcony`, `board_games`, `free_wifi`, `parking_lot`) VALUES
@@ -282,7 +282,7 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `billing_address`
+-- Table structure for table `billing_address`
 --
 
 CREATE TABLE `billing_address` (
@@ -302,7 +302,7 @@ CREATE TABLE `billing_address` (
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `card_networks`
+-- Table structure for table `card_networks`
 --
 
 CREATE TABLE `card_networks` (
@@ -312,7 +312,7 @@ CREATE TABLE `card_networks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `card_networks`
+-- Dumping data for table `card_networks`
 --
 
 INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
@@ -394,7 +394,7 @@ INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `cities`
+-- Table structure for table `cities`
 --
 
 CREATE TABLE `cities` (
@@ -404,7 +404,7 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `cities`
+-- Dumping data for table `cities`
 --
 
 INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
@@ -626,7 +626,7 @@ INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `countries`
+-- Table structure for table `countries`
 --
 
 CREATE TABLE `countries` (
@@ -635,7 +635,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `countries`
+-- Dumping data for table `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`) VALUES
@@ -713,7 +713,7 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `currency`
+-- Table structure for table `currency`
 --
 
 CREATE TABLE `currency` (
@@ -724,7 +724,7 @@ CREATE TABLE `currency` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `currency`
+-- Dumping data for table `currency`
 --
 
 INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
@@ -773,7 +773,7 @@ INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `experiences`
+-- Table structure for table `experiences`
 --
 
 CREATE TABLE `experiences` (
@@ -788,7 +788,7 @@ CREATE TABLE `experiences` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `experiences`
+-- Dumping data for table `experiences`
 --
 
 INSERT INTO `experiences` (`id`, `language_short_name`, `country_id`, `city_id`, `name`, `folder_name`, `price`, `description`) VALUES
@@ -878,7 +878,7 @@ INSERT INTO `experiences` (`id`, `language_short_name`, `country_id`, `city_id`,
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `favourite`
+-- Table structure for table `favourite`
 --
 
 CREATE TABLE `favourite` (
@@ -888,7 +888,7 @@ CREATE TABLE `favourite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `favourite`
+-- Dumping data for table `favourite`
 --
 
 INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
@@ -943,7 +943,7 @@ INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `history`
+-- Table structure for table `history`
 --
 
 CREATE TABLE `history` (
@@ -958,7 +958,7 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `history`
+-- Dumping data for table `history`
 --
 
 INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
@@ -1093,7 +1093,7 @@ INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
@@ -1107,7 +1107,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `opinions`
+-- Table structure for table `opinions`
 --
 
 CREATE TABLE `opinions` (
@@ -1121,7 +1121,7 @@ CREATE TABLE `opinions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `opinions`
+-- Dumping data for table `opinions`
 --
 
 INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rate`, `language_short_name`) VALUES
@@ -1274,12 +1274,13 @@ INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rat
 (147, 22, 25, 'experiences', 'Szép város, de a program rövid volt.', 3, 'hu'),
 (148, 37, 26, 'experiences', 'Nagyon szórakoztató vidámpark.', 5, 'hu'),
 (149, 53, 27, 'experiences', 'A vásár hangulatos, de nagyon zsúfolt.', 3, 'hu'),
-(150, 76, 28, 'experiences', 'A híd esti fényei gyönyörűek.', 5, 'hu');
+(150, 76, 28, 'experiences', 'A híd esti fényei gyönyörűek.', 5, 'hu'),
+(151, 2, 3, 'experiences', 'szép.', 3, 'hu');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `report`
+-- Table structure for table `report`
 --
 
 CREATE TABLE `report` (
@@ -1294,7 +1295,7 @@ CREATE TABLE `report` (
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `translations`
+-- Table structure for table `translations`
 --
 
 CREATE TABLE `translations` (
@@ -1306,7 +1307,7 @@ CREATE TABLE `translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `translations`
+-- Dumping data for table `translations`
 --
 
 INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
@@ -1728,9 +1729,9 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 (414, 'ja', 20, 'experiences', '{\"title\":\"ロードス島の海辺での休暇\",\"description\":\"ロードス島で、砂浜のビーチのくつろいだ雰囲気と透き通った海をお楽しみください。ビーチは、水泳、日光浴、ウォータースポーツに最適です。 周辺には、地中海料理や冷たい飲み物を楽しめるバーやレストランがあります。海に沈む夕日は、忘れられない体験となるでしょう。このプログラムは、夏の休暇を過ごすのに最適な選択肢です。\"}'),
 (415, 'ja', 61, 'experiences', '{\"title\":\"アテネ古代博物館\",\"description\":\"アテネで最も有名な博物館のひとつを訪れて、古代ギリシャ文化の豊かな遺物を鑑賞しましょう。 展示品は、古代の日常生活や芸術を詳しく紹介しています。博物館の近くにはレストランやカフェがあるので、長い散歩と組み合わせても楽しめます。教養を深めたい方にぴったりのプログラムです。\"}'),
 (416, 'ja', 41, 'experiences', '{\"title\":\"ロードス旧市街の散策\",\"description\":\"ユネスコの世界遺産に登録されている、歴史的な城壁、狭い通り、そして豊富な博物館の展示品があるロードス旧市街を探索しましょう。散策中は、中世の街並みや騎士団の城跡が特別な雰囲気を醸し出しています。周辺の公園やカフェは、くつろぐのに最適です。 地元の市場では、特別な地元産品が販売されています。この体験は、歴史とリラクゼーションが見事に融合したものです。\"}'),
-(417, 'ja', 40, 'experiences', '{\"title\":\"アテネの古代港とアゴラ\",\"description\":\"古代アテネの港と、古代の生活の中心地であったアゴラを探索しましょう。この場所は歴史的な遺跡でいっぱいで、ギリシャ神話の物語を生き生きと伝えています。アゴラの公共広場は、常に商売や会話で賑わっていました。今日では、博物館や展示が体験をさらに充実させています。 このプログラムは、歴史に興味のある方に最適です。\"}');
+(417, 'ja', 40, 'experiences', '{\"title\":\"アテネの古代港とアゴラ\",\"description\":\"古代アテネの港と、古代の生活の中心地であったアゴラを探索しましょう。この場所は歴史的な遺跡でいっぱいで、ギリシャ神話の物語を生き生きと伝えています。アゴラの公共広場は、常に商売や会話で賑わっていました。今日では、博物館や展示が体験をさらに充実させています。 このプログラムは、歴史に興味のある方に最適です。\"}'),
+(418, 'ja', 62, 'experiences', '{\"title\":\"ロードス島ウォータースポーツの日\",\"description\":\"ロードス島では、ジェットスキー、サーフィン、その他のウォータースポーツなど、ウォータースポーツのスリルをお楽しみいただけます。透き通った海と海岸の近さは、あらゆる年齢層の方に理想的な条件を提供しています。プログラムでは、地元のインストラクターが安全に参加できるようサポートします。 ウォータースポーツの後は、海岸や地元のタベルナのテラスでくつろぐことができます。この日は、海辺でのアクティブなリラクゼーションをお楽しみいただけます。\"}');
 INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
-(418, 'ja', 62, 'experiences', '{\"title\":\"ロードス島ウォータースポーツの日\",\"description\":\"ロードス島では、ジェットスキー、サーフィン、その他のウォータースポーツなど、ウォータースポーツのスリルをお楽しみいただけます。透き通った海と海岸の近さは、あらゆる年齢層の方に理想的な条件を提供しています。プログラムでは、地元のインストラクターが安全に参加できるようサポートします。 ウォータースポーツの後は、海岸や地元のタベルナのテラスでくつろぐことができます。この日は、海辺でのアクティブなリラクゼーションをお楽しみいただけます。\"}'),
 (419, 'ja', 13, 'experiences', '{\"title\":\"エッフェル塔訪問\",\"description\":\"パリの象徴であるエッフェル塔を訪れ、各階から街のパノラマビューをお楽しみください。130年以上の歴史を持つこの塔は世界的に有名です。近くのシャン・ド・マルス公園はピクニックに最適です。塔の周辺には、数多くのカフェやレストランがあります。 展望台からの夕日は、特に素晴らしい体験です。\"}'),
 (420, 'ja', 14, 'experiences', '{\"title\":\"セーヌ川沿いのロマンチックな散歩\",\"description\":\"パリの中心部、橋や歴史的建造物が立ち並ぶセーヌ川沿いの散歩をお楽しみください。カフェや小さなブティックが道沿いに点在しています。散歩の途中で、ルーブル美術館やノートルダム大聖堂の近くで立ち寄ることもできます。夕方のディナーと組み合わせれば、理想的なロマンチックなプログラムになります。この場所の魅力は、どの季節でも感じることができます。\"}'),
 (421, 'ja', 54, 'experiences', '{\"title\":\"ルーブル美術館の夜の散歩＆展示会\",\"description\":\"世界的に有名なルーブル美術館の周辺をパリで散策しましょう。美術館の建物と庭園はそれ自体が芸術作品です。世界最大かつ最も豊富な美術コレクションがここにあり、数多くの絵画や彫刻が収蔵されています。 夕方のイルミネーションは、この周辺に特別な雰囲気を醸し出しています。周辺のカフェやテラスは、くつろぐのに理想的な場所です。この散歩は、歴史と文化の両方を体験できるものです。\"}'),
@@ -1906,9 +1907,9 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 (591, 'sr', 69, 'experiences', '{\"title\":\"Облазак Музеја модерне у Стокхолму\",\"description\":\"Посетите узбудљиве савремене музеје Стокхолма, где вас очекују изложбе савремене уметности и технологије. Градска културна понуда обухвата бројне збирке, укључујући историјске, модерне и интерактивне изложбе. Шетња између музеја може се лако комбиновати са панорамском туром луке или гастрономском дегустацијском туром града. Овај програм је идеална урбана културна авантура за све. \"}'),
 (592, 'sr', 68, 'experiences', '{\"title\":\"Шетња старим градом Гамла Станом у Стокхолму\",\"description\":\"Истражите историјску Стару тврђаву Стокхолма, Гамла Стан, где се кривудаве калдрмисане улице и старе зграде спајају са модерним градским животом. Ово подручје има централну улогу у архитектури и историји шведске престонице од 13. века и обухвата многе иконичне објекте као што су Музеј Нобела и Краљевска палата. Прошетајте главном пијацом, Сторторгетом, диви се старим кућама са луковима, а затим пробајте локалне шведске специјалитете у једном од пријатних кафића. Ово искуство спаја историју, културу и урбану атмосферу. \"}'),
 (593, 'sr', 9, 'experiences', '{\"title\":\"Дунавска вечерња шетња\",\"description\":\"Доживите магичну вечерњу панораму Будимпеште на крстарењу Дунавом. Осветљени ланчани мост, парламент и будимска тврђава пружају величанствен призор. На броду су доступни храна и пића. Програм нуди романтичну атмосферу и за парове и за групе пријатеља. Одличне могућности за фотографисање у сваком правцу.\"}'),
-(594, 'sr', 8, 'experiences', '{\"title\":\"Тура по парламенту Будимпеште\",\"description\":\"Откријте иконичну зграду Парламента у Будимпешти на узбудљивој обилазици са водичем. Његов нео-готички ентеријер импресионира сваког посетиоца. Можете видети крунске драгуље и ретке историјске реликвије. Током обиласке сазнаћете много занимљивих чињеница о мађарској историји. Због велике потражње, препоручује се претходна резервација.\"}');
+(594, 'sr', 8, 'experiences', '{\"title\":\"Тура по парламенту Будимпеште\",\"description\":\"Откријте иконичну зграду Парламента у Будимпешти на узбудљивој обилазици са водичем. Његов нео-готички ентеријер импресионира сваког посетиоца. Можете видети крунске драгуље и ретке историјске реликвије. Током обиласке сазнаћете много занимљивих чињеница о мађарској историји. Због велике потражње, препоручује се претходна резервација.\"}'),
+(595, 'sr', 30, 'experiences', '{\"title\":\"Прашка тура дегустације пива\",\"description\":\"Откријте пивску културу Прага на вођеној дегустацији пива, где ћете посетити неколико локалних пабова. Чешка Република је позната по свом одличном пиву, а ова тура вам пружа прилику да у једној вечери пробате неколико различитих стилова. Водитељи ће вам испричати о историји пивоварства и локалним традицијама. Турнеја је идеална за групе пријатеља или као јединствено гастрономско искуство. Поред шетње, препоручујемо и дегустацију неких локалних деликатеса. \"}');
 INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
-(595, 'sr', 30, 'experiences', '{\"title\":\"Прашка тура дегустације пива\",\"description\":\"Откријте пивску културу Прага на вођеној дегустацији пива, где ћете посетити неколико локалних пабова. Чешка Република је позната по свом одличном пиву, а ова тура вам пружа прилику да у једној вечери пробате неколико различитих стилова. Водитељи ће вам испричати о историји пивоварства и локалним традицијама. Турнеја је идеална за групе пријатеља или као јединствено гастрономско искуство. Поред шетње, препоручујемо и дегустацију неких локалних деликатеса. \"}'),
 (596, 'sr', 29, 'experiences', '{\"title\":\"Вече у Прашком националном театру\",\"description\":\"Уживајте у класичној чешкој култури на једној од представа у Националном театру у Прагу, где публику очекују опера, балет и драма. Раскошни ентеријери и изврсна акустика историјске зграде доприносе уживању. Наступи домаћих уметника и гостујућих извођача пружају незаборавно искуство и мештанима и посетиоцима. Програм је намењен и онима посвећеним уметности и онима који траже нова културна искуства. Купите улазнице унапред за најбоља места. \"}'),
 (597, 'sr', 3, 'experiences', '{\"title\":\"Прашки дворец и катедрала Светог Вита\",\"description\":\"Посетите најпознатији историјски комплекс у Прагу, где можете сазнати о вековима историје. Импозантна готичка архитектура и детаљна декорација катедрале Светог Вита су импресивне. Прошетајте дуж зидова замка и диви се панорамском погледу на град. У околини се такође налазе музеји и паркови. Искуство је обогаћено локацијама погодним за фотографисање које чине разгледање још пријатнијим.\"}'),
 (598, 'sr', 2, 'experiences', '{\"title\":\"Разгледање Старог града у Прагу\",\"description\":\"Откријте историјску Стару градску четврт у Прагу на детаљној пешачкој тури, где калдрмисане улице и историјске зграде приповедају причу о прошлости града. Посетите Староградски трг, астрономски сат Орлој и оближње улице које подсећају на сеоце. Током обиласка сазнаћете локалне приче и легенде. Јединствену атмосферу Прага чине незаборавном њени кафићи и луткари. На крају дана уживајте у специјалитетима чешке кухиње у локалном ресторану.\"}'),
@@ -2000,10 +2001,10 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 (684, 'de', 26, 'experiences', '{\"title\":\"Erlebnis im Wiener Prater Vergnügungspark\",\"description\":\"Der Wiener Prater ist ein legendärer Vergnügungspark in Wien, in dem jedes Alter etwas Passendes findet. Das Riesenrad, das Wahrzeichen des Parks, bietet einen einzigartigen Panoramablick auf die Stadt, den man sich nicht entgehen lassen sollte. Im Vergnügungspark erwarten die Besucher zahlreiche Achterbahnen, Spielgeräte und Restaurants, die den ganzen Tag lang für Unterhaltung sorgen. Der Park blickt auf eine mehr als hundertjährige Geschichte zurück und bietet somit nicht nur Unterhaltung, sondern auch ein historisches Erlebnis. Er ist ideal für Familien und Freundesgruppen, sowohl für Tages- als auch für Abendprogramme.\"}'),
 (685, 'de', 4, 'experiences', '{\"title\":\"Bootsfahrt auf der Moldau\",\"description\":\"Steigen Sie auf ein Flussschiff und genießen Sie die Aussicht auf die Moldau in Prag. Die Karlsbrücke, das Stadtpanorama und die Gebäude am Ufer eröffnen sich Ihnen aus einer ganz neuen Perspektive. Der Reiseleiter an Bord erzählt Ihnen interessante Geschichten über die Stadt. Der Sonnenuntergang ist vom Deck aus besonders romantisch. Kombinieren Sie dieses Erlebnis mit einem Abendessen für ein ganztägiges Programm.\"}'),
 (686, 'de', 29, 'experiences', '{\"title\":\"Abend im Prager Nationaltheater\",\"description\":\"Genießen Sie klassische tschechische Kultur bei einer Aufführung im Prager Nationaltheater, wo Oper, Ballett oder Theater das Publikum erwarten. Die prächtigen Innenräume des historischen Gebäudes und die hervorragende Akustik tragen ebenfalls zum Erlebnis bei. Die Aufführungen lokaler Künstler und Gastdarsteller bieten nicht nur Einheimischen, sondern auch Besuchern ein unvergessliches Erlebnis. Das Programm richtet sich sowohl an Kunstliebhaber als auch an diejenigen, die neue kulturelle Erfahrungen suchen. Reservieren Sie Ihre Tickets im Voraus, um die besten Plätze zu bekommen. \"}'),
-(687, 'de', 81, 'experiences', '{\"title\":\"Brno Gastronomie & Stadtbesichtigung\",\"description\":\"Entdecken Sie die gemütlichen Restaurants und Cafés von Brünn bei einer lokalen Gastronomietour und lernen Sie dabei das historische Zentrum der Stadt kennen. Während des Spaziergangs können Sie lokale Spezialitäten probieren und gleichzeitig die historischen Plätze und Gebäude der Stadt bewundern. Dieses Erlebnis ist ideal für eine gastronomische und städtische Entdeckungsreise. \"}');
-INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
+(687, 'de', 81, 'experiences', '{\"title\":\"Brno Gastronomie & Stadtbesichtigung\",\"description\":\"Entdecken Sie die gemütlichen Restaurants und Cafés von Brünn bei einer lokalen Gastronomietour und lernen Sie dabei das historische Zentrum der Stadt kennen. Während des Spaziergangs können Sie lokale Spezialitäten probieren und gleichzeitig die historischen Plätze und Gebäude der Stadt bewundern. Dieses Erlebnis ist ideal für eine gastronomische und städtische Entdeckungsreise. \"}'),
 (688, 'de', 82, 'experiences', '{\"title\":\"Brno Musik- & Veranstaltungsabend\",\"description\":\"Nehmen Sie an einem lokalen Musikabend in Brünn teil, wo Sie Konzerte und Veranstaltungen lokaler Künstler im kulturellen Raum der Stadt erwarten. Die Kombination aus stimmungsvollen Locations und Bars sorgt für ein ideales Abendprogramm. Dieses lokale Erlebnis bietet einen authentischen Einblick in das Musik- und Kulturleben von Brünn und ist für Besucher ein unvergessliches Erlebnis.\"}'),
-(689, 'de', 28, 'experiences', '{\"title\":\"Abendspaziergang auf der Karlsbrücke in Prag\",\"description\":\"Spazieren Sie über die historische Karlsbrücke, die im 14. Jahrhundert erbaut wurde und heute eine der bekanntesten Sehenswürdigkeiten Prags ist. Auch ohne Stadtführer bietet die Brücke einen wunderschönen Blick auf die Moldau und die Stadt, der bei Sonnenuntergang besonders beeindruckend ist. Entlang der Brücke sorgen Straßenkünstler und Musiker für authentische Prager Atmosphäre. Die engen Gassen und gemütlichen Cafés der Umgebung sind eine hervorragende Ergänzung für ein Abendprogramm. Dieser Spaziergang ist der perfekte Start für eine historische Entdeckungstour durch Prag. \"}'),
+(689, 'de', 28, 'experiences', '{\"title\":\"Abendspaziergang auf der Karlsbrücke in Prag\",\"description\":\"Spazieren Sie über die historische Karlsbrücke, die im 14. Jahrhundert erbaut wurde und heute eine der bekanntesten Sehenswürdigkeiten Prags ist. Auch ohne Stadtführer bietet die Brücke einen wunderschönen Blick auf die Moldau und die Stadt, der bei Sonnenuntergang besonders beeindruckend ist. Entlang der Brücke sorgen Straßenkünstler und Musiker für authentische Prager Atmosphäre. Die engen Gassen und gemütlichen Cafés der Umgebung sind eine hervorragende Ergänzung für ein Abendprogramm. Dieser Spaziergang ist der perfekte Start für eine historische Entdeckungstour durch Prag. \"}');
+INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
 (690, 'de', 80, 'experiences', '{\"title\":\"České Budějovice Iron Maiden Tower\",\"description\":\"Entdecken Sie den Iron Maiden Tower, ein mittelalterliches Gefängnis und eine Festungsanlage, in der historische Waffen und Ausstellungen auf Sie warten. Der Turm diente einst der Verteidigung der Stadt und bietet heute Besuchern ein spannendes Kulturprogramm. Die umliegende Altstadt und die Cafés sind ideal für einen längeren Nachmittagsspaziergang.\"}'),
 (691, 'de', 30, 'experiences', '{\"title\":\"Bierverkostungstour in Prag\",\"description\":\"Entdecken Sie die Prager Bierkultur bei einer geführten Bierverkostungstour, bei der Sie mehrere lokale Bierlokale besuchen. Die Tschechische Republik ist für ihr ausgezeichnetes Bier bekannt, und diese Tour bietet Ihnen die Möglichkeit, an einem Abend verschiedene Biersorten zu probieren. Die Reiseleiter erzählen Ihnen etwas über die Geschichte des Bierbrauens und die lokalen Traditionen. Die Teilnahme eignet sich hervorragend für Freundesgruppen oder als einzigartiges gastronomisches Programm. Neben dem Spaziergang empfiehlt es sich, auch lokale Spezialitäten zu probieren. \"}'),
 (692, 'de', 79, 'experiences', '{\"title\":\"České Budějovice Schwarzer Turm Kilátó\",\"description\":\"Besuchen Sie den historischen Aussichtsturm Black Tower in České Budějovice, eine der charakteristischsten Sehenswürdigkeiten der Stadt. Der Turm wurde im 16. Jahrhundert zu Verteidigungszwecken erbaut und bietet heute einen Panoramablick über die Stadt. Die nahe gelegenen mittelalterlichen Gebäude und malerischen Straßen bieten eine ideale Umgebung, um die Stadt zu erkunden. Vom Aussichtsturm aus hat man einen atemberaubenden Panoramablick über die Stadt.\"}'),
@@ -2120,12 +2121,12 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 (803, 'it', 79, 'accommodations', '{\"title\":\"Appartamento storico a Cracovia\",\"description\":\"Spazioso e luminoso appartamento nella parte storica di Cracovia. Arredamento moderno e letti comodi. Ideale per famiglie e coppie. Vicino alle attrazioni turistiche e ai ristoranti. Goditi il fascino della vita cittadina polacca dalla comodità di casa tua.\"}'),
 (804, 'it', 75, 'accommodations', '{\"title\":\"Appartamento Helsinki Design\",\"description\":\"Appartamento luminoso e moderno nel centro di Helsinki. Letti comodi e ampio soggiorno. Ideale per famiglie e coppie. Vicino a ristoranti, caffè e musei. Goditi ogni momento della vita urbana finlandese.\"}'),
 (805, 'it', 76, 'accommodations', '{\"title\":\"Appartamento con vista panoramica a Tampere\",\"description\":\"Appartamento spazioso e luminoso nel centro di Tampere. Arredamento moderno e letti comodi. Ideale per famiglie e coppie. Vicino alle attrazioni della città e ai ristoranti. Goditi la vita cittadina finlandese dalla comodità della tua casa.\"}'),
-(806, 'it', 23, 'accommodations', '{\"title\":\"Appartamento di montagna\",\"description\":\"Appartamento in montagna, per un soggiorno a contatto con la natura. Spazioso e luminoso, con arredi moderni. Ideale per famiglie e gruppi di amici. La zona offre numerose possibilità di escursioni e attrazioni turistiche. Un luogo confortevole e accogliente dove rilassarsi.\"}');
-INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
+(806, 'it', 23, 'accommodations', '{\"title\":\"Appartamento di montagna\",\"description\":\"Appartamento in montagna, per un soggiorno a contatto con la natura. Spazioso e luminoso, con arredi moderni. Ideale per famiglie e gruppi di amici. La zona offre numerose possibilità di escursioni e attrazioni turistiche. Un luogo confortevole e accogliente dove rilassarsi.\"}'),
 (807, 'it', 77, 'accommodations', '{\"title\":\"Appartamento Oulu Arctic\",\"description\":\"Appartamento luminoso e moderno nel centro di Oulu. Ampio soggiorno, letti comodi. Ideale per coppie e famiglie. Vicino alle attrazioni turistiche e ai ristoranti. Goditi la vita cittadina finlandese e l\'atmosfera nordica come se fossi a casa tua.\"}'),
 (808, 'it', 50, 'accommodations', '{\"title\":\"Appartamento elegante a Madrid\",\"description\":\"Appartamento luminoso ed elegante nel centro di Madrid. Arredamento moderno e letti comodi. Ideale per coppie e famiglie. Vicino alle principali attrazioni della città e ai ristoranti. Goditi ogni momento della vita urbana spagnola.\"}'),
 (809, 'it', 52, 'accommodations', '{\"title\":\"Appartamento romantico a Siviglia\",\"description\":\"Elegante e luminoso appartamento nella zona storica di Siviglia. Arredamento confortevole e cucina ben attrezzata. Ideale per coppie e piccole famiglie. Vicino alle principali attrazioni della città e ai ristoranti. Goditi l\'atmosfera spagnola in ogni momento.\"}'),
-(810, 'it', 51, 'accommodations', '{\"title\":\"Appartamento sul mare a Barcellona\",\"description\":\"Spazioso appartamento nel centro di Barcellona, vicino alla spiaggia. Arredamento moderno e completamente attrezzato. Ideale per famiglie e gruppi di amici. Vicino alle attrazioni turistiche e ai ristoranti. Goditi la vita cittadina catalana e il relax sulla spiaggia.\"}'),
+(810, 'it', 51, 'accommodations', '{\"title\":\"Appartamento sul mare a Barcellona\",\"description\":\"Spazioso appartamento nel centro di Barcellona, vicino alla spiaggia. Arredamento moderno e completamente attrezzato. Ideale per famiglie e gruppi di amici. Vicino alle attrazioni turistiche e ai ristoranti. Goditi la vita cittadina catalana e il relax sulla spiaggia.\"}');
+INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
 (811, 'it', 16, 'accommodations', '{\"title\":\"Studio urbano\",\"description\":\"Moderno monolocale urbano nel centro di Madrid. Luminoso e funzionale, dotato di tutto il necessario. Ideale per coppie e viaggiatori d\'affari. Vicino alle principali attrazioni turistiche e ai nodi di trasporto. Soggiorno confortevole ed elegante in città.\"}'),
 (812, 'it', 59, 'accommodations', '{\"title\":\"Appartamento Elegancia a Madrid\",\"description\":\"Appartamento luminoso ed elegante nel centro di Madrid. Letti comodi, arredamento moderno. Ideale per coppie e famiglie. Vicino alle attrazioni turistiche e ai ristoranti. Goditi ogni momento della vita cittadina spagnola.\"}'),
 (813, 'it', 60, 'accommodations', '{\"title\":\"Appartamento Panorama Barcellona\",\"description\":\"Appartamento spazioso e luminoso nel centro di Barcellona. Arredamento confortevole, completamente attrezzato. Ideale per famiglie e coppie. Vicino alle attrazioni turistiche e ai ristoranti. Goditi ogni momento della vita mediterranea.\"}'),
@@ -2219,7 +2220,7 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -2237,7 +2238,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- A tábla adatainak kiíratása `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `password`, `phone_number`, `gender`, `user_type`, `card_number`, `expiration`) VALUES
@@ -2343,11 +2344,11 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL);
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `accommodations`
+-- Indexes for table `accommodations`
 --
 ALTER TABLE `accommodations`
   ADD PRIMARY KEY (`id`),
@@ -2356,13 +2357,13 @@ ALTER TABLE `accommodations`
   ADD KEY `country_id` (`country_id`);
 
 --
--- A tábla indexei `accommodations_details`
+-- Indexes for table `accommodations_details`
 --
 ALTER TABLE `accommodations_details`
   ADD PRIMARY KEY (`apartman_id`);
 
 --
--- A tábla indexei `billing_address`
+-- Indexes for table `billing_address`
 --
 ALTER TABLE `billing_address`
   ADD PRIMARY KEY (`id`),
@@ -2370,13 +2371,13 @@ ALTER TABLE `billing_address`
   ADD KEY `user_id` (`user_id`);
 
 --
--- A tábla indexei `card_networks`
+-- Indexes for table `card_networks`
 --
 ALTER TABLE `card_networks`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `cities`
+-- Indexes for table `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`),
@@ -2384,21 +2385,21 @@ ALTER TABLE `cities`
   ADD KEY `country_id` (`country_id`);
 
 --
--- A tábla indexei `countries`
+-- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `country_name` (`name`);
 
 --
--- A tábla indexei `currency`
+-- Indexes for table `currency`
 --
 ALTER TABLE `currency`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `shorted_name` (`shorted_name`);
 
 --
--- A tábla indexei `experiences`
+-- Indexes for table `experiences`
 --
 ALTER TABLE `experiences`
   ADD PRIMARY KEY (`id`),
@@ -2406,7 +2407,7 @@ ALTER TABLE `experiences`
   ADD KEY `city_name` (`city_id`);
 
 --
--- A tábla indexei `favourite`
+-- Indexes for table `favourite`
 --
 ALTER TABLE `favourite`
   ADD PRIMARY KEY (`id`),
@@ -2414,7 +2415,7 @@ ALTER TABLE `favourite`
   ADD KEY `apartman_id` (`apartman_id`);
 
 --
--- A tábla indexei `history`
+-- Indexes for table `history`
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`),
@@ -2423,7 +2424,7 @@ ALTER TABLE `history`
   ADD KEY `owner_id` (`owner_id`);
 
 --
--- A tábla indexei `opinions`
+-- Indexes for table `opinions`
 --
 ALTER TABLE `opinions`
   ADD PRIMARY KEY (`id`),
@@ -2431,113 +2432,113 @@ ALTER TABLE `opinions`
   ADD KEY `accommodation_id` (`item_id`);
 
 --
--- A tábla indexei `report`
+-- Indexes for table `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- A tábla indexei `translations`
+-- Indexes for table `translations`
 --
 ALTER TABLE `translations`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `accommodations`
+-- AUTO_INCREMENT for table `accommodations`
 --
 ALTER TABLE `accommodations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
--- AUTO_INCREMENT a táblához `billing_address`
+-- AUTO_INCREMENT for table `billing_address`
 --
 ALTER TABLE `billing_address`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `card_networks`
+-- AUTO_INCREMENT for table `card_networks`
 --
 ALTER TABLE `card_networks`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT a táblához `cities`
+-- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
--- AUTO_INCREMENT a táblához `countries`
+-- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT a táblához `currency`
+-- AUTO_INCREMENT for table `currency`
 --
 ALTER TABLE `currency`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT a táblához `experiences`
+-- AUTO_INCREMENT for table `experiences`
 --
 ALTER TABLE `experiences`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT a táblához `favourite`
+-- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT a táblához `history`
+-- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
--- AUTO_INCREMENT a táblához `opinions`
+-- AUTO_INCREMENT for table `opinions`
 --
 ALTER TABLE `opinions`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
--- AUTO_INCREMENT a táblához `report`
+-- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `translations`
+-- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=900;
 
 --
--- AUTO_INCREMENT a táblához `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
--- Megkötések a kiírt táblákhoz
+-- Constraints for dumped tables
 --
 
 --
--- Megkötések a táblához `accommodations`
+-- Constraints for table `accommodations`
 --
 ALTER TABLE `accommodations`
   ADD CONSTRAINT `accommodations_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -2545,40 +2546,40 @@ ALTER TABLE `accommodations`
   ADD CONSTRAINT `accommodations_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `accommodations_details`
+-- Constraints for table `accommodations_details`
 --
 ALTER TABLE `accommodations_details`
   ADD CONSTRAINT `accommodations_details_ibfk_1` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `billing_address`
+-- Constraints for table `billing_address`
 --
 ALTER TABLE `billing_address`
   ADD CONSTRAINT `billing_address_ibfk_1` FOREIGN KEY (`history_id`) REFERENCES `history` (`id`),
   ADD CONSTRAINT `billing_address_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Megkötések a táblához `cities`
+-- Constraints for table `cities`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `experiences`
+-- Constraints for table `experiences`
 --
 ALTER TABLE `experiences`
   ADD CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `experiences_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `favourite`
+-- Constraints for table `favourite`
 --
 ALTER TABLE `favourite`
   ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `history`
+-- Constraints for table `history`
 --
 ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `accommodations` (`owner_id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -2586,11 +2587,17 @@ ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_4` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `opinions`
+-- Constraints for table `opinions`
 --
 ALTER TABLE `opinions`
   ADD CONSTRAINT `opinions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `opinions_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `report`
+--
+ALTER TABLE `report`
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

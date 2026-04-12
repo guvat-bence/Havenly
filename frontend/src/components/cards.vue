@@ -47,9 +47,14 @@ function getTranslation()
 			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
 			if(datas.data.message == "translationed")
 			{
-				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
-				let text  = JSON.parse(datas.data.data[0].item);
-				toCard.value[x].name = text["title"];
+				try{
+					// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
+					let text  = JSON.parse(datas.data.data[0].item);
+					toCard.value[x].name = text["title"];
+				}
+				catch{
+					return;
+				}
 				
 			}
 			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.

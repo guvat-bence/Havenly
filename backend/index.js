@@ -155,7 +155,6 @@ app.get('/accommodations/:id', (req, res) => {
   );
 });
 
-
 //Szállások részletei le kérdezése
 app.get("/accommodations/accommodations_details/:id",(req, res) =>{
   let accommodation_id = req.params.id;  
@@ -196,7 +195,6 @@ app.get("/accommodations/accommodations_details/:id",(req, res) =>{
           }
   );
 })
-
 
 // Élmények le kérdezése
 app.get("/experiences", (req, res) => {
@@ -1001,6 +999,7 @@ app.post("/opinions",(req,res) =>{
   });
 })
 
+// Foglalási előzmények lekérése egy adott felhasználóhoz
 app.post("/getHistory", (req,res) => {
 
   const id = req.body.id;
@@ -1036,6 +1035,7 @@ app.post("/getHistory", (req,res) => {
   })
 })
 
+// Probléma küldése
 app.post("/sendProblem",(req,res) =>{
   let datas = req.body;
 
@@ -1049,6 +1049,34 @@ app.post("/sendProblem",(req,res) =>{
       VALUES(?,?,?,?,?)`,
       [datas.user_id,datas.description,
        datas.name,datas.type,datas.item_id],
+       (err,result)=>{
+    if(err){
+      res.status(500).send(err);
+      return;
+    }
+    if(result.affectedRows){
+      res.json(result);
+      return;
+    }
+  })
+})
+
+// Vélemény küldése
+app.post("/sendOpinion",(req,res) =>{
+  let datas = req.body;
+
+  db.query(
+    `INSERT INTO opinions(
+          user_id,
+          item_id,
+          item_type,
+          opinion,
+          rate,
+          language_short_name)
+      VALUES(?,?,?,?,?,?)`,
+      [datas.user_id,datas.item_id,
+       datas.item_type,datas.message,
+       datas.rate,datas.language_short_name],
        (err,result)=>{
     if(err){
       res.status(500).send(err);

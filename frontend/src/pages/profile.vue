@@ -8,7 +8,7 @@ import { selectedCurrency } from '@/store/currency';
 import { convertStrings } from '@/common';
 
 const {t} = useI18n();
-
+const {locale} = useI18n();
 //securityCheck.
 if(!user.id)
   router.back()
@@ -53,6 +53,7 @@ let messages =
 }
 
 // Változók definiállása.
+let history = ref([])
 let modelCopie = reactive({... model});
 let cardCopie = reactive({... card});
 let passwordCopie = {... passwords};
@@ -382,6 +383,84 @@ function openMessages(data)
   
 }
 
+// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+axios.get(`http://localhost:3000/getCardNetwork`)
+  .then(details=>
+  {
+    userMessages.value = details.data;
+  })
+  .catch(error=>
+  {
+    console.error(error);
+  })
+
+// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
+// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
+// akkor az eredeti verzióját tölti be.
+// HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
+//  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
+// utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
+// ha esetleg hiba akana afordítással akkor a művele megszakad é kiírja a konzolbon.
+function getTranslation()
+{
+	for(let x in history.value)
+	{
+		axios.post(`http://localhost:3000/translate`,
+			{item_id:history.value[x].accommodation_id,item_name:'accommodations',language_short_name:locale.value})
+		.then(datas=>
+		{
+			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
+			if(datas.data.message == "translationed")
+			{
+				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
+				let text  = JSON.parse(datas.data.data[0].item);
+				history.value[x].accommodation_name = text["title"];
+				
+			}
+			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
+ 			else if(datas.data.message == "original")
+			{
+				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
+				history.value[x].accommodation_name = datas.data.data[0].name;
+			}
+			// ha az üzenet failed akkor megy bele
+			else if(datas.data.message == "failed")
+			{
+				console.log("Hiba történt az api forítás során!");
+				return false;
+			}
+			// minden ellenkező esetben pedig újra töltjük az oldalt.
+			else{
+				location.reload();
+			}
+		})
+		.catch(err=>
+		{
+			console.log(err);
+		})
+	}
+}
+
+  /**
+   * @param {int} id - felhasználó id
+   * Lekéri az adott id alapján a felhasználóhoz rendelet előzményeket
+   */
+  let getHistory = (id) => {
+    axios.post('http://localhost:3000/getHistory',{id:id})
+    .then(datas => {
+
+      // tömb feltöltése
+      history.value = datas.data;
+
+      getTranslation();
+    })
+    .catch(e => console.error(e))
+  }
+
+  let convertDateTime = (x) => {
+    return new Date(x).toISOString().split("T")[0]
+  }
+
 // ezzel a watch-al a model adatait figyeljük,
 // amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
 watch(model,()=>
@@ -396,39 +475,6 @@ watch(card,()=>
  change(card);
 },{deep:true})
 
-// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
-axios.get(`http://localhost:3000/getCardNetwork`)
-  .then(details=>
-  {
-    userMessages.value = details.data;
-  })
-  .catch(error=>
-  {
-    console.error(error);
-  })
-
-  // Format text to readable
-  
-
-  // History változó
-  let history = ref([])
-
-  /**
-   * @param {int} id - felhasználó id
-   * Lekéri az adott id alapján a felhasználóhoz rendelet előzményeket
-   */
-  let getHistory = (id) => {
-    axios.post('http://localhost:3000/getHistory',{id:id})
-    .then(x => {
-      history.value = x.data
-      console.log(history.value)
-    })
-    .catch(e => console.error(e))
-  }
-
-  let convertDateTime = (x) => {
-    return new Date(x).toISOString().split("T")[0]
-  }
 
 </script>
 <template>
@@ -519,7 +565,7 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                 
                 <!-- Maga a gomb -->
                 <button class="col-6 col-sm-5 col-md-3 
-                               text-nowrap mx-2 my-2 btn btn-outline-light"
+                               mx-2 my-2 btn btn-outline-light"
                       data-bs-toggle="collapse"
                       data-bs-target="#collpasePrivacyDatas">
                   <i class="fa-solid fa-address-card fa-xl"></i>
@@ -1154,28 +1200,38 @@ axios.get(`http://localhost:3000/getCardNetwork`)
               </div>
           </div>
 
+          <!-- Előzmények opció -->
           <div class="tab-pane fade"
                id="nav-history" 
                role="tabpanel" 
                aria-labelledby="nav-chats-tab" 
                tabindex="0">
 
-               <div class="overflow-y-scroll py-2" 
+               <!-- előzmények rész -->
+               <div class="overflow-y-auto py-2" 
                     style="height: 400px !important;">
 
-                  <div class="d-flex text-white 
+                  <!-- Lefoglat szállások -->
+                  <RouterLink :to="{name:'about',params:{table_name:'accommodations',id:x.accommodation_id,name:x.accommodation_name}}"
+                       v-if="history.length!=0"
+                       v-for="x in history"
+                       class="d-flex nav-link text-white 
                               mb-4 bg-black bg-opacity-25 
                               rounded-3 p-2 border border-1 
-                              border-white"
-                       v-for="x in history">
+                              border-white">
+
+                    <!-- Szállás képe -->
                     <img  style="height: 170px; width: 170px;"
                           :src="`/countries/${convertStrings(x.country_name)}` +
                               `/cities/${convertStrings(x.city_name)}` +
                               `/accommodations/${convertStrings(x.accommodation_folder_name)}/001.png`"
                           class="justify-content-start rounded-3 img-fluid" 
                           alt="accomodation_image">
+
+                    <!-- Foglalás adatai -->
                     <div class="mx-auto">
 
+                      <!-- szállás neve -->
                       <div class="row">
                         <h3 class="text-white mx-auto 
                                    text-center fw-light 
@@ -1184,33 +1240,44 @@ axios.get(`http://localhost:3000/getCardNetwork`)
                         </h3>
                       </div>
 
+                      <!-- szállás ára és bérlési dátuma -->
                       <div>
                         <p>Ár: 
                           {{ x.price * selectedCurrency.currencyMultiplier }} 
                           {{ selectedCurrency.currencyShortedName }}
                         </p>
 
+                        <!-- Bérlés dátuma -->
                         <p class="text-white-50">
                           Bérlés: {{ convertDateTime(x.rent_date) }}
                         </p>
                       </div>
                       
+                      <!-- Bérlés kezdete és vége -->
                       <div class="row">
+
+                        <!-- Bérlés kezdete -->
                         <p class="text-white-50 col-12 
                                   col-md-6 text-nowrap">
                           Kezdés: {{ convertDateTime(x.rent_beginning) }}
                         </p>
 
+                        <!-- Bérlés vége -->
                         <p class="text-white-50 col-12 
                                   col-md-6 text-nowrap">
                           Vége: {{ convertDateTime(x.rent_end) }}
                         </p>
                       </div>
                     </div>
-                </div>
+                  </RouterLink>
+
+                  <!-- Nincs még lefoglalt szállás szöveg -->
+                  <div v-if="history.length==0"
+                       class="text-center">
+                    <h2>Még nincsen előzetesen lefoglalt szállása!</h2>
+                  </div>
                </div>
           </div>
-
         </div>
         
         <!-- messageBox -->
