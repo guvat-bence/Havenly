@@ -46,6 +46,7 @@ let problemModel = reactive({
 	type:"",
 });
 let opinionModel = reactive({
+	opinion_id:"",
 	user_id:"",
 	item_id:"",
 	item_type:props.table_name,
@@ -54,7 +55,11 @@ let opinionModel = reactive({
 	language_short_name:locale.value
 })
 let opinionModelEmty = {... opinionModel};
+let opinionModelCopie = {... opinionModel};
+let deleteType= ref(false);
+let choosedType= ref(false);
 let problemModelEmty = {... problemModel};
+let responseModalText = ref("");
 let daysname = computed(()=>(t('about.days_short')).split(","));
 let monthsname = computed(()=>(t('about.months')).split(","));
 let arriveDayId= ref(null); 
@@ -226,16 +231,8 @@ if(counter>0)
 	}
 }
 
-axios.post(`http://localhost:3000/opinions`,
-	{item_id:props.id,item_type:props.table_name,
-		language_short_name:locale.value})
-.then(datas=>{
-	opinions.value = datas.data;
-})
-.catch(error=>{
-	console.error(error);
-})
-
+// Az összes véleményy lehívása
+getAllOpinions();
 
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
@@ -305,7 +302,6 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 {
 	console.error(error);
 })
-
 
 // meghívjuk a makeCalendar függvényt
 // késleltetjük az indulását,
@@ -673,7 +669,6 @@ function renting()
 
 function setReportModal(datas)
 {
-
 	sendedProblem.value = false;
 
 	Object.assign(problemModel,problemModelEmty);
@@ -717,15 +712,39 @@ function selectStar(x)
 	star.classList.toggle("text-warning");
 	star.classList.toggle("text-secondary");
 	star.classList.contains("text-warning")?opinionModel.rate++:opinionModel.rate--;
-	
+}
+
+function getAllOpinions()
+{
+	axios.post(`http://localhost:3000/opinions`,
+			{item_id:props.id,item_type:props.table_name,
+			 language_short_name:locale.value})
+	.then(datas=>{
+		opinions.value = datas.data;
+	})
+	.catch(error=>{
+		console.error(error);
+	})
 }
 
 function sendOpinion()
 {
 	opinionModel.item_id = item.value[0].id;
 	opinionModel.user_id = user.id.split(" ")[0];
+	
+	let url = "";
 
-	axios.post('http://localhost:3000/sendOpinion',opinionModel)
+	switch(opinionModelCopie.opinion_id)
+	{
+		case '':
+			url = 'sendOpinion';
+			break;
+		default:
+			url = 'editOpinion';
+			break;
+	}
+
+	axios.post(`http://localhost:3000/${url}`,opinionModel)
 	.then(response=>{
 		if(response.data.affectedRows)
 		{
@@ -740,22 +759,85 @@ function sendOpinion()
 			})
 
 			openModal();
-
-			axios.post(`http://localhost:3000/opinions`,
-			{item_id:props.id,item_type:props.table_name,
-			 language_short_name:locale.value})
-			.then(datas=>{
-
-				opinions.value = datas.data;
-			})
-			.catch(error=>{
-				console.error(error);
-			})
+			getAllOpinions();
 		}
 	})
 	.catch(err=>{
 		console.log(err);
 	})
+}
+
+function editOpinion(x)
+{
+	opinionModel.opinion_id=x.id;
+	opinionModel.user_id=x.user_id;
+	opinionModel.item_id=x.item_id;
+	opinionModel.message=x.opinion;
+	opinionModel.rate=x.rate;
+	Object.assign(opinionModelCopie,opinionModel);
+
+	let star = document.querySelectorAll(".opinion-star");
+
+	for(let x = 0;x<opinionModel.rate;x++)
+	{
+		if(star[x].id == x+1)
+		{
+			star[x].classList.add("text-warning");
+		}
+	}
+
+}
+
+function resetOpinion()
+{
+	Object.assign(opinionModel,opinionModelEmty);
+	Object.assign(opinionModelCopie,opinionModelEmty);
+	let star = document.querySelectorAll(".opinion-star");
+
+	star.forEach(item=>{
+		item.classList.remove("text-warning");
+		item.classList.add("text-secondary");
+	})
+}
+
+function deleteOpinion(x)
+{
+	axios.post(`http://localhost:3000/deleteOpinion`,x)
+	.then(response=>{
+		if(response.data.affectedRows)
+		{
+			modalType.value = 'report';
+			sendedProblem.value = true;
+			opinionModel.opinion_id = "";
+			Object.assign(opinionModel,opinionModelEmty);
+			let star = document.querySelectorAll(".opinion-star");
+
+			star.forEach(item=>{
+				item.classList.remove("text-warning");
+				item.classList.add("text-secondary");
+			})
+
+			openModal();
+			getAllOpinions();
+		}
+	})
+	.catch(err=>{
+		console.log(err);
+	})
+}
+
+function opinionsOptions(value)
+{
+	choosedType.value = true;
+	
+	if(deleteType.value == true)
+	{
+		deleteOpinion(value);	
+	}
+	else
+	{
+		sendOpinion();
+	}
 }
 
 // figyeleli az érekezési és távozási napok változását.
@@ -1018,6 +1100,7 @@ watch(model,()=>
 					<button @click=" setReportModal(item[0])"
 									:disabled="user.id==null"
 									class="my-2 btn w-auto rounded-3 btn-danger">
+						<i class="fa-solid fa-ban"></i>
 						Probléma jelentése!
 					</button>
 
@@ -1065,11 +1148,22 @@ watch(model,()=>
 						</div>
 					
 						<!-- Vélemény beküldése gomb -->
-						<button @click="sendOpinion()"
+						<button @click="modalType = 'report';
+										 				deleteType = false;
+														sendedProblem = true;openModal();"
 										class="my-2 btn w-auto rounded-4 
 													 btn-primary"
-										:disabled="opinionModel.message==''|| opinionModel.rate==0">
+										:disabled="opinionModel.message==''|| opinionModel.rate==0
+											|| JSON.stringify(opinionModel)==JSON.stringify(opinionModelCopie)">
 							Vélemény beküldése!
+						</button>
+
+						<!-- Mégsem gomb -->
+						<button @click="resetOpinion()"
+										class="my-2 ms-1 btn w-auto rounded-4 
+													 btn-secondary"
+										:disabled="JSON.stringify(opinionModel)==JSON.stringify(opinionModelEmty)">
+							Mégsem
 						</button>
 
 					</div>
@@ -1097,11 +1191,37 @@ watch(model,()=>
 					<!-- maga a vélemény -->
 					<p class="p-2">{{opinion["opinion"] }}</p>
 
+					<!-- Vélemény szerkesztése gomb -->
+					<button v-if="user.id.split(' ')[0] == opinion.user_id"
+									@click="deleteType = false;
+													editOpinion(opinion);"
+									:disabled="user.id==null"
+									class="my-2 btn w-auto rounded-4 
+												 me-1 btn-primary">
+						<i class="fa-regular fa-pen-to-square"></i>
+						Szerkesztés
+					</button>
+					
+					<!-- Vélemény törlése gomb -->
+					<button v-if="user.user_type=='A'"
+									@click="modalType = 'report';
+													sendedProblem = true;
+													deleteType = true;
+													opinionModel.opinion_id = opinion.id;
+													openModal();"
+									:disabled="user.id==null"
+									class="my-2 btn w-auto rounded-4 
+												  me-auto btn-secondary">
+						<i class="fa-solid fa-trash-can"></i>
+						Törlés
+					</button>
+
 					<!-- Vélemény jelentés gomb -->
 					<button @click=" setReportModal(opinion)"
 									:disabled="user.id==null"
 									class="my-2 btn w-auto rounded-4 
-													ms-auto btn-danger">
+												 ms-auto btn-danger">
+						<i class="fa-solid fa-ban"></i>
 						Vélemény jelentése!
 					</button>
 				</div>
@@ -1174,7 +1294,7 @@ watch(model,()=>
 						<div class="d-flex justify-content-end p-0 m-0">
 							<button type="button"
 											class="btn btn-danger"
-											@click="closeModal()">
+											@click="closeModal();choosedType = false;">
 								X
 							</button>
 						</div>
@@ -1240,7 +1360,27 @@ watch(model,()=>
 
 						<div v-if="sendedProblem" 
 								 class="row justify-content-center">
-							<h1 class="text-center m-4">Sikeres beküldés!</h1>
+							<h1 class="text-center m-4">
+								{{ choosedType
+										?responseModalText='Sikeres művelet!':
+										responseModalText='Kivánja folytatni a műveletett?' }}
+							</h1>
+
+							<!-- Beküldés gomb -->
+							<button v-if="choosedType!=true"
+											type="button"
+											class="btn btn-primary w-auto mb-2"
+											@click="opinionsOptions(opinionModel)">
+								Igen
+							</button>
+
+							<!-- Beküldés gomb -->
+							<button v-if="choosedType!=true"
+											type="button"
+											class="btn btn-secondary w-auto mb-2 mx-1"
+											@click="closeModal()">
+								Nem
+							</button>
 						</div>
 					</form>
 				</div>

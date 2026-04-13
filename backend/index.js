@@ -977,6 +977,8 @@ app.post("/opinions",(req,res) =>{
   let datas = req.body;
 
   db.query(`SELECT  opinions.id,
+                    opinions.user_id,
+                    opinions.item_id,
                     opinions.opinion,
                     opinions.rate,
                     users.first_name,
@@ -1077,6 +1079,57 @@ app.post("/sendOpinion",(req,res) =>{
       [datas.user_id,datas.item_id,
        datas.item_type,datas.message,
        datas.rate,datas.language_short_name],
+       (err,result)=>{
+    if(err){
+      res.status(500).send(err);
+      return;
+    }
+    if(result.affectedRows){
+      res.json(result);
+      return;
+    }
+  })
+})
+
+
+// Vélemény módosítása
+app.post("/editOpinion",(req,res) =>{
+  let datas = req.body;
+
+  db.query(
+    ` UPDATE opinions
+      SET
+          user_id = ?,
+          item_id = ?,
+          item_type =?,
+          opinion = ?,
+          rate = ?,
+          language_short_name = ?
+      WHERE id = ?`,
+      [datas.user_id,datas.item_id,
+       datas.item_type,datas.message,
+       datas.rate,datas.language_short_name,
+       datas.opinion_id],
+       (err,result)=>{
+    if(err){
+      res.status(500).send(err);
+      return;
+    }
+    if(result.affectedRows){
+      res.json(result);
+      return;
+    }
+  })
+})
+
+// Vélemény törlése
+app.post("/deleteOpinion",(req,res) =>{
+  let datas = req.body;
+  
+  db.query(
+    ` DELETE FROM opinions
+      WHERE id = ?`,
+      [datas.opinion_id],
        (err,result)=>{
     if(err){
       res.status(500).send(err);
