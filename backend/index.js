@@ -469,6 +469,21 @@ app.get('/createExpreienceLocationList',(req, res) => {
   })
 });
 
+app.get("/getReports", (req,res) => {
+  db.query(`SELECT id, 
+                   user_id, 
+                   message, 
+                   message_type, 
+                   item_type, 
+                   item_id 
+              FROM report`),(err,result) => {
+                if(err){
+                  res.status(500).send('Sikertelen lekérdezés')
+                  return;
+                }
+                res.send(result);
+              }
+})
 
 //az adott szálláshoz való history elemek lehívása
 app.get("/history/:id", (req, res) => {

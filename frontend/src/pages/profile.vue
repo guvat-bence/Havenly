@@ -67,6 +67,7 @@ let showpasscheck = ref(false);
 let showOkBtn = ref(false);
 let talkingWith = ref("");
 let userMessages = ref(""); 
+let reports = ref([]);
 
 // Adatokat ellenőrzése.
 function validateUserDatas(){
@@ -454,7 +455,19 @@ function getTranslation()
 
       getTranslation();
     })
-    .catch(e => console.error(e))
+    .catch(e => console.error(e.response))
+  }
+
+  let getReports = () => {
+    axios.get('http://localhost:3000/getReports ')
+    .then(datas => {
+
+      // tömb feltöltése
+      reports.value = datas.data;
+
+      getTranslation();
+    })
+    .catch(e => console.error(e.response))
   }
 
   let convertDateTime = (x) => {
@@ -510,6 +523,19 @@ watch(card,()=>
                   aria-selected="false">
             <i class="fa-solid fa-upload fa-lg"></i>
             {{ $t("profile.nabar_posts") }}
+          </button>
+
+          <!-- Adminisztráció opció -->
+          <button class="nav-link" 
+                  id="nav-posts-tab" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#nav-admin" 
+                  type="button" role="tab" 
+                  aria-controls="nav-posts" 
+                  aria-selected="false"
+                  @click="getReports()">
+            <i class="fa-solid fa-user-tie fa-lg"></i>
+            Adminisztáció
           </button>
 
           <!-- Beszélgetéseim opció -->
@@ -1119,6 +1145,16 @@ watch(card,()=>
               </div>
             </div>
 
+          </div>
+          <!-- Adminisztráció opció -->
+          <div  class="tab-pane fade" 
+                id="nav-admin" 
+                role="tabpanel" 
+                aria-labelledby="nav-posts-tab" 
+                tabindex="0">
+            <div class="row">
+
+            </div>
           </div>
           
           <!-- Beszélgetések opció -->
