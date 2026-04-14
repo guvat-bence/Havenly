@@ -1458,4 +1458,8 @@ body.no-scroll {
 	background-color:rgb(119, 70, 70);
 	opacity: 0.8;
 }
+
+.opinion-star:hover{
+	cursor: pointer;
+}
 </style>

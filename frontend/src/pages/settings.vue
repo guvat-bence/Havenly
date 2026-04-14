@@ -95,7 +95,7 @@ function setLanguage()
 				<!-- Frissítés esetén írja a kiválaszott language-t -->
 				<option selected 
 								:value="currentLanguage"
-								disabled> 
+								hidden> 
 					{{currentLanguage.short_name}} {{ currentLanguage.full_name }}
 				</option>
 				<!-- Választékok a currencyk közül -->
@@ -123,7 +123,7 @@ function setLanguage()
 				<!-- Frissítés esetén írja a kiválaszott currency-t -->
 				<option selected 
 								:value="selectedCurrency"
-								disabled> 
+								hidden> 
 								{{$t(`settings.currencys.${selectedCurrency.currencyShortedName}`)}}
 				</option>
 				<!-- Választékok a currencyk közül -->
