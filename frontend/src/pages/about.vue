@@ -697,7 +697,9 @@ function sendProblem(){
 
 		if(response.data.affectedRows)
 		{
+			choosedType.value = true;
 			sendedProblem.value = true;
+			
 		}
 	})
 	.catch(err=>{
@@ -708,10 +710,21 @@ function sendProblem(){
 
 function selectStar(x)
 {
-	let star = document.getElementById(x);
-	star.classList.toggle("text-warning");
-	star.classList.toggle("text-secondary");
-	star.classList.contains("text-warning")?opinionModel.rate++:opinionModel.rate--;
+	let star = document.querySelectorAll(".opinion-star");
+	opinionModel.rate = 0;
+
+	star.forEach(item=>{
+		item.classList.remove("text-warning");
+		item.classList.add("text-secondary");
+	})
+
+	for(let y = 0;y<x;y++)
+	{
+		star = document.getElementById(y+1);
+		star.classList.toggle("text-warning");
+		star.classList.toggle("text-secondary");
+		star.classList.contains("text-warning")?opinionModel.rate++:opinionModel.rate--;
+	}
 }
 
 function getAllOpinions()
@@ -729,6 +742,10 @@ function getAllOpinions()
 
 function sendOpinion()
 {
+
+	console.log(opinionModel.rate);
+	
+
 	opinionModel.item_id = item.value[0].id;
 	opinionModel.user_id = user.id.split(" ")[0];
 	
@@ -883,12 +900,7 @@ watch([arriveDayId,departureDayId],()=>{
 	}
 })
 
-// figyeli a model értékét és hogyha a valaki megváltoztatja a fők számát akkor átírja az árát
-watch(model,()=>
-{
-	// beállítja az aktuális fizetendő összeget 
-	rent_price.value = (item.value[0].price * (rentedDayIds.value.length-1))*model.guests;
-})
+
 </script>
 <template>
 	<div class="about">
