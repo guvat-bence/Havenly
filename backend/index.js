@@ -476,13 +476,14 @@ app.get("/getReports", (req,res) => {
                    message_type, 
                    item_type, 
                    item_id 
-              FROM report`),(err,result) => {
+              FROM report`,(err,result) => {
                 if(err){
                   res.status(500).send('Sikertelen lekérdezés')
                   return;
                 }
+
                 res.send(result);
-              }
+              })
 })
 
 //az adott szálláshoz való history elemek lehívása

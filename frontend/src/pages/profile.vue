@@ -533,7 +533,8 @@ watch(card,()=>
                   type="button" role="tab" 
                   aria-controls="nav-posts" 
                   aria-selected="false"
-                  @click="getReports()">
+                  @click="getReports()"
+                  v-if="user.user_type === 'A'">
             <i class="fa-solid fa-user-tie fa-lg"></i>
             Adminisztáció
           </button>
@@ -1152,8 +1153,9 @@ watch(card,()=>
                 role="tabpanel" 
                 aria-labelledby="nav-posts-tab" 
                 tabindex="0">
-            <div class="row">
-
+            <div class="row"
+                  v-for="x in reports">
+              <h1>{{ x.id }}</h1>
             </div>
           </div>
           
