@@ -510,7 +510,7 @@ app.get("/getReports", (req, res) => {
 });
 
 
-//az adott szálláshoz való history elemek lehívása
+//az adott szálláshoz való history elemek lehívása.
 app.get("/history/:id", (req, res) => {
   let id = req.params.id;
   db.query(`SELECT rent_beginning, rent_end
@@ -528,8 +528,10 @@ app.get("/history/:id", (req, res) => {
   );
 });
 
+// Ennek segítségével fordítjuk le a hozzáaszólásokat az adott szállás/élménynél.
 function getOpinions(item_id,item_type,language_short_name,callback)
 {
+  // Lehívjuk az összes véleményt a a megadott elemhez .
   db.query(`SELECT
                 id,
                 opinion
@@ -538,8 +540,16 @@ function getOpinions(item_id,item_type,language_short_name,callback)
     [item_id,item_type],
     (err,result)=>
     {
+      // Hiba estén vissza küldjük a hibát.
+      if(err)
+      {
+        callback(err);
+        return;
+      }
+      // Végigmegyünk az összes véleményen.
       for(let x of result)
       {
+        // megnézzük, hogy az adott véleményke van e már fórdítása.
         db.query(`SELECT
                       language_short_name,
                       item_id,
@@ -549,11 +559,13 @@ function getOpinions(item_id,item_type,language_short_name,callback)
           [x.id,'opinions',language_short_name],
           async (err,response)=>
           {
+            // Hiba estén vissza küldjük a hibát.
             if(err){
               callback(err);
               return;
             }
 
+            // Ha van fordítása akkor csak vissza térünk
             if(response.length>0)
             {
               return;
@@ -577,7 +589,7 @@ function getOpinions(item_id,item_type,language_short_name,callback)
                   current_language_short_name
                 );
 
-                // egy json file-t csinálunk a lefodított adatokból
+                // egy json file-t csinálunk a lefodított adatból
                 let item = JSON.stringify(
                 {
                   opinion:translated_opinion
@@ -645,17 +657,14 @@ app.post("/translate",(req,res)=>
       if(result.length>0)
       {
 
+        // Meghívjuk az adott szállás/élmény fordítását
         getOpinions(datas.item_id,datas.item_name,datas.language_short_name,(err,result)=>
         {
+          // Ha hiba van kiíratjuk.
           if(err)
           {
             console.log(err);
-            return;
           }
-
-          console.log(result);
-          return;
-
         })
 
         res.json({
@@ -1117,6 +1126,27 @@ app.post("/opinions",(req,res) =>{
 
   let datas = req.body;
 
+  db.query(``,[],(err,response)=>{
+
+//     SELECT
+//     opinions.id,
+//     opinions.user_id,
+//     opinions.item_id,
+//     opinions.opinion,
+//     translations.item AS trans_opinion,
+//     opinions.rate,
+//     users.first_name,
+//     users.last_name,
+//     IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
+// FROM opinions
+// INNER JOIN users 
+// ON opinions.user_id = users.id
+// INNER JOIN translations
+// ON translations.item_id = opinions.id
+// WHERE opinions.item_id = 2 AND opinions.item_type = 'experiences' AND translations.language_short_name = "en" AND translations.item_name = "opinions"
+
+  })
+
   db.query(`SELECT  opinions.id,
                     opinions.user_id,
                     opinions.item_id,
@@ -1231,7 +1261,6 @@ app.post("/sendOpinion",(req,res) =>{
     }
   })
 })
-
 
 // Vélemény módosítása
 app.post("/editOpinion",(req,res) =>{
