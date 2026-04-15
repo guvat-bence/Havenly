@@ -464,6 +464,7 @@ function getTranslation()
 
       // tömb feltöltése
       reports.value = datas.data;
+      console.log(reports.value)
 
       getTranslation();
     })
@@ -1153,9 +1154,11 @@ watch(card,()=>
                 role="tabpanel" 
                 aria-labelledby="nav-posts-tab" 
                 tabindex="0">
-            <div class="row"
+            <div class="row my-2"
                   v-for="x in reports">
-              <h1>{{ x.id }}</h1>
+              <div class="bg-black bg-opacity-25 rounded-3">
+                <h1>{{ x.data }}</h1>
+              </div>
             </div>
           </div>
           
