@@ -15,6 +15,13 @@ const db = mysql.createConnection({
   user: "root",
   password: "",
   database: "havenly",
+
+  typeCast: function (field, next) {
+    if (field.type === "DATE" || field.type === "DATETIME") {
+      return field.string();
+    }
+    return next();
+  }
 });
 
 db.connect((err) => {
@@ -267,7 +274,6 @@ app.get("/experiences/country/:id", (req, res) => {
   );
 });
 
-
 // Élmények le kérdezése
 app.get("/experiences/:id", (req, res) => {
   let experience_id = req.params.id
@@ -509,12 +515,13 @@ app.get("/getReports", (req, res) => {
   });
 });
 
-
 //az adott szálláshoz való history elemek lehívása.
 app.get("/history/:id", (req, res) => {
   let id = req.params.id;
-  db.query(`SELECT rent_beginning, rent_end
-            FROM history 
+  db.query(`SELECT 
+              rent_beginning,
+              rent_end
+            FROM history
             WHERE accommodation_id = ?`,
     id,
     (err, result) => {
@@ -589,12 +596,6 @@ function getOpinions(item_id,item_type,language_short_name,callback)
                   current_language_short_name
                 );
 
-                // egy json file-t csinálunk a lefodított adatból
-                let item = JSON.stringify(
-                {
-                  opinion:translated_opinion
-                });
-
                 // ezek után pedig feltöltjük az új adatoakat a translatins táblába.
                 db.query(`INSERT INTO translations(
                             language_short_name,
@@ -602,7 +603,7 @@ function getOpinions(item_id,item_type,language_short_name,callback)
                             item_name,
                             item)
                           VALUES(?,?,?,?)`,
-                [language_short_name,x.id,'opinions',item],
+                [language_short_name,x.id,'opinions',translated_opinion],
                 (err,result)=>
                   {
                     // ha hiba vna, ide jön be.
@@ -1090,7 +1091,7 @@ app.post("/rentAccomodation", (req, res) => {
         return;
       }
       if (result.length > 0) {
-        res.status(500).send('Már van lefoglalva erre az időpontra')
+        res.status(500).send('Már van lefoglalva erre az időpontra');
       }
       else {
         db.query(`INSERT INTO history (renter_id, 
@@ -1105,18 +1106,36 @@ app.post("/rentAccomodation", (req, res) => {
           data.price,
           data.rent_beginning,
           data.rent_end], (err, result) => {
+            
             if (err) {
               res.status(500).send("Adatbázis hiba");
               return;
             }
             else {
-              res.send('Sikeres foglalás')
-            }
 
+              db.query(`INSERT INTO messages(
+                          from_user_id,
+                          to_user_id,
+                          message)
+                        VALUES(?,?,?)`,
+                        [data.owner_id,data.id,data.message],
+                        (err,result)=>{
+
+                if(err)
+                {
+                  res.status(500).send("Adatbázis hiba");
+                  return;
+                }
+
+                if(result.affectedRows>0)
+                {
+                  res.send('Sikeres foglalás')
+                  return;
+                }
+              })
+            }
         })
       }
-
-
     }
   )
 });
@@ -1126,50 +1145,64 @@ app.post("/opinions",(req,res) =>{
 
   let datas = req.body;
 
-  db.query(``,[],(err,response)=>{
-
-//     SELECT
-//     opinions.id,
-//     opinions.user_id,
-//     opinions.item_id,
-//     opinions.opinion,
-//     translations.item AS trans_opinion,
-//     opinions.rate,
-//     users.first_name,
-//     users.last_name,
-//     IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
-// FROM opinions
-// INNER JOIN users 
-// ON opinions.user_id = users.id
-// INNER JOIN translations
-// ON translations.item_id = opinions.id
-// WHERE opinions.item_id = 2 AND opinions.item_type = 'experiences' AND translations.language_short_name = "en" AND translations.item_name = "opinions"
-
-  })
-
-  db.query(`SELECT  opinions.id,
-                    opinions.user_id,
-                    opinions.item_id,
-                    opinions.opinion,
-                    opinions.rate,
-                    users.first_name,
-                    users.last_name, 
-                    IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
+  db.query(`SELECT
+              opinions.id,
+              opinions.user_id,
+              opinions.item_id,
+              translations.item AS opinion,
+              opinions.rate,
+              users.first_name,
+              users.last_name,
+              IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
             FROM opinions
-            INNER JOIN users
+            INNER JOIN users 
             ON opinions.user_id = users.id
+            INNER JOIN translations
+            ON translations.item_id = opinions.id
             WHERE opinions.item_id = ? 
                   AND opinions.item_type = ?
-                  AND language_short_name = ?`,
-            [datas.item_id,datas.item_type,datas.language_short_name],(err,result)=>{
+                  AND translations.language_short_name = ? 
+                  AND translations.item_name = ?`,
+            [datas.item_id,datas.item_type,datas.language_short_name,'opinions'],(err,response)=>{
 
-    if (err) {
+    if(err)
+    {
       res.status(500).send("Adatbázis hiba");
       return;
     }
 
-    res.json(result);
-  });
+    if(response.length >0)
+    {
+      res.json(response);
+      return;
+    }
+    else
+    {
+      db.query(`SELECT  opinions.id,
+                        opinions.user_id,
+                        opinions.item_id,
+                        opinions.opinion,
+                        opinions.rate,
+                        users.first_name,
+                        users.last_name, 
+                        IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name
+                FROM opinions
+                INNER JOIN users
+                ON opinions.user_id = users.id
+                WHERE opinions.item_id = ? 
+                      AND opinions.item_type = ?
+                      AND language_short_name = ?`,
+                  [datas.item_id,datas.item_type,datas.language_short_name],(err,result)=>{
+
+          if (err) {
+            res.status(500).send("Adatbázis hiba");
+            return;
+          }
+
+          res.json(result);
+      });
+    }
+  })
 })
 
 // Foglalási előzmények lekérése egy adott felhasználóhoz
@@ -1309,5 +1342,56 @@ app.post("/deleteOpinion",(req,res) =>{
       res.json(result);
       return;
     }
+  })
+})
+
+// Üzenetek lekérezése
+app.get("/getMessages/:id",(req,res)=>{
+  let id = req.params.id;
+
+  db.query(`SELECT DISTINCT
+              messages.from_user_id,
+              users.first_name,
+              users.last_name, 
+              IF(users.middle_name IS NOT NULL,users.middle_name,'') AS middle_name,
+              messages.to_user_id
+            FROM messages
+            INNER JOIN users
+            ON users.id = messages.from_user_id
+            WHERE messages.to_user_id = ?
+            ORDER BY users.first_name`,
+            [id],(err,contacts)=>{
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    if(contacts.length==0)
+    {
+      res.json(contacts);
+      return;
+    }
+    
+    db.query(`SELECT 
+                messages.from_user_id,
+                messages.to_user_id,
+                messages.sended_time,
+                messages.message
+              FROM messages
+              INNER JOIN users
+              ON users.id = messages.from_user_id
+              WHERE messages.to_user_id = ? OR messages.from_user_id = ?
+              ORDER BY messages.sended_time`,
+            [id,id],(err,messages)=>{
+      if(err)
+      {
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+
+      res.json({contacts,messages});
+      return;
+    })
   })
 })

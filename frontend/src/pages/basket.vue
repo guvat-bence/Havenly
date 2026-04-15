@@ -51,15 +51,21 @@ let model = reactive({
   city: null,
   postalCode: null,
   address: null,
-  door: null
+  door: null,
+  message:"",
 })
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
 let payForAccomadtion = () => {
+
+  model.message = "Köszönöm a foglalását! Bármilyen kérdéssel kapcsolatban forduljon bátran hozzám!";
+
   axios.post('http://localhost:3000/rentAccomodation', model)
   .then(response => {
     console.log(response.data)
+    alert(response.data);
+    router.push("/havenly");
   })
   .catch(e => console.error(e))
 }
@@ -119,7 +125,7 @@ let validateData = () => {
 
             <!-- Card -->
             <div class="card bg-dark bg-opacity-50 border-1 
-                        border-white text-white w-50">
+                        border-white text-white w-75">
               
               <!-- Image -->
               <img height="300" 

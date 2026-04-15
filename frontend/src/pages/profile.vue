@@ -67,6 +67,7 @@ let showpasscheck = ref(false);
 let showOkBtn = ref(false);
 let talkingWith = ref("");
 let userMessages = ref(""); 
+let userContacts = ref(""); 
 let reports = ref([]);
 
 // Adatokat ellenőrzése.
@@ -380,15 +381,18 @@ function change(obj)
 
 function openMessages(data)
 {
-  talkingWith.value = data;
+  talkingWith.value = `${data.first_name} ${data.middle_name} ${data.last_name}` ;
   
 }
 
 // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
-axios.get(`http://localhost:3000/getCardNetwork`)
+axios.get(`http://localhost:3000/getMessages/${user.id.split(' ')[0]}`)
   .then(details=>
   {
-    userMessages.value = details.data;
+    console.log(details.data);
+    
+    userMessages.value = details.data.messages;
+    userContacts.value = details.data.contacts;
   })
   .catch(error=>
   {
@@ -1148,6 +1152,7 @@ watch(card,()=>
             </div>
 
           </div>
+
           <!-- Adminisztráció opció -->
           <div  class="tab-pane fade" 
                 id="nav-admin" 
@@ -1170,7 +1175,7 @@ watch(card,()=>
                tabindex="0">
 
               <!-- Maga az egész beszélgetés -->
-              <div class="row justify-content-center 
+              <div v-if="userContacts!=''" class="row justify-content-center 
                           overflow-y-hidden" 
                    style="height:600px;">
               
@@ -1187,16 +1192,16 @@ watch(card,()=>
                                  align-items-center 
                                  border-bottom border-secondary 
                                  ps-2"  
-                          v-for="x in userMessages"
+                          v-for="x in userContacts"
                           style="min-height: 55px;"
                           @click="openMessages(x)">
-                      {{ x.network_name }}
+                      {{ `${x.first_name} ${x.middle_name} ${x.last_name}`  }}
                     </span>
                   </div>
                 </div>
 
                 <!-- Jobb oldali üzenet megjelenítés -->
-                <div class="col-7 col-sm-8 
+                <div v-if="talkingWith!=''" class="col-7 col-sm-8 
                             d-flex flex-column bg-white 
                             rounded-end text-black p-0" 
                       style="height: 600px;">
@@ -1208,7 +1213,7 @@ watch(card,()=>
                         style="height: 40px;">
 
                     <!-- Címzett -->
-                    <span>
+                    <span class="ms-1">
                       {{ talkingWith }}
                     </span>
                   </div>
@@ -1219,14 +1224,22 @@ watch(card,()=>
                               overflow-x-hidden">
 
                     <!-- Üzenetek -->
-                    <div class="text-end p-3" 
-                         style="height: 40px;" 
-                         v-for="x in userMessages">
+                    <div class="row p-3 col-12"
+                         style="min-height: 40px;" 
+                         v-for="x in userMessages"
+                        :class="x.from_user_id == user.id.split(' ')[0]?'justify-content-end':'justify-content-start'" >
 
-                      <!-- Üzenet -->
-                      <span class="bg-dark text-white rounded-3 p-2">
-                      {{ x.network_name }}
+                      <span>
+                        {{ x.sended_time }}
                       </span>
+
+                      <div class="text-white rounded-3 col-10 col-sm-8 col-md-6"
+                           :class="x.from_user_id == user.id.split(' ')[0]?'bg-dark ':'bg-secondary'">
+                        <!-- Üzenet -->
+                        <span class="w-auto">
+                        {{ x.message }}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -1238,6 +1251,10 @@ watch(card,()=>
                            id="messageBar">
                   </div>
                 </div>
+              </div>
+              <div v-if="userContacts==''"
+                   class="text-center">
+                <h2>Még nincsenek beszélgetései! Foglaljon le egy szállást, hogy ezt a funkciót használni tudja!</h2>
               </div>
           </div>
 

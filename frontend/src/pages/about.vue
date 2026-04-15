@@ -81,32 +81,29 @@ function makeCalendar(plusmonth)
 		calendar.value=[];
 		currentMonth = plusmonth==0?new Date().getMonth():plusmonth;
 		let currentDay= new Date().getDate();
-		daysInMonth.value = new Date(currentYear,currentMonth,0).getDate();
-		let lastDayinPriviousMonth  = new Date(currentYear,currentMonth-1,0).getDay();
-		let firstDayinMonth  = new Date(currentYear,currentMonth-1,1).getDay();
-		let lastDayinMonth  = new Date(currentYear,currentMonth-1,daysInMonth.value).getDay();
+		daysInMonth.value = new Date(currentYear,currentMonth+1,0).getDate();
+		let firstDayinMonth  = new Date(currentYear,currentMonth,1).getDay();
+		let lastDayinMonth  = new Date(currentYear,currentMonth,daysInMonth.value).getDay();
 
 		// Átalakítju hogy hétfővel kezdődjön a hetek számolása.
-		lastDayinPriviousMonth = lastDayinPriviousMonth==0?6:lastDayinPriviousMonth-1;
-		firstDayinMonth = firstDayinMonth==0?6:firstDayinMonth-1;
-		lastDayinMonth = lastDayinMonth==0?6:lastDayinMonth-1;
+		firstDayinMonth = (firstDayinMonth+6)%7;
+		lastDayinMonth = (lastDayinMonth+6)%7;
 
 		//az előző hónap azon napjai amelyeketem a jelenlegi hónapban kell megjeleníteni
-		for(let i=0;i<lastDayinPriviousMonth+1;i++)
+		for(let i=0;i<firstDayinMonth;i++)
 		{
 			calendar.value.push("");
 		}
 
 		//az előző hónap azon napjai amelyeket kell megjeleníteni
-		for(let x=1;x<daysInMonth.value+1;x++)
+		for(let x=1;x<=daysInMonth.value;x++)
 		{
-			calendar.value.push(daysInMonth.value-(daysInMonth.value-x));
+			calendar.value.push(x);
 		}
 
 		//a következő hónap azon napjai amelyeketem a jelenlegi hónapban kell megjeleníteni
-		for(let y=1;y<(6-lastDayinMonth)+1;y++)
-		{
-			calendar.value.push("");
+		for (let i = calendar.value.length; i < 42; i++) {
+ 			calendar.value.push("");
 		}
 
 		// megkeressük a tbody-t
@@ -160,7 +157,7 @@ function makeCalendar(plusmonth)
 						td.innerHTML = day;
 
 						//a hónapot és a nap számát megkaja id-nak
-						td.id = `${currentMonth.toString().length==1?`0${currentMonth}`:currentMonth}.${day.toString().length==1?`0${day}`:day}`;
+						td.id = `${currentMonth.toString().length==1?`0${currentMonth+1}`:currentMonth+1}.${day.toString().length==1?`0${day}`:day}`;
 
 						// beállítjuk a resevedet false-ra
 						let reserved = false;
@@ -310,7 +307,15 @@ if(props.table_name == "accommodations")
 {
 	setTimeout(()=>
 	{
-		makeCalendar(0);
+		try{
+			makeCalendar(0);
+		}
+		catch{
+			setTimeout(()=>
+			{
+				makeCalendar(0);
+			},200)
+		}
 	},500);
 }
 
@@ -372,8 +377,8 @@ if(props.table_name == "accommodations")
 		for(let x=0;x<response.data.length;x++){
 
 			// létrehozzuk a rent_beginning és a rent_end változókat 
-			let rent_beginning = response.data[x]["rent_beginning"].split("T")[0];
-			let rent_end = response.data[x]["rent_end"].split("T")[0];
+			let rent_beginning = response.data[x]["rent_beginning"];
+			let rent_end = response.data[x]["rent_end"];
 
 			// az érkezésé is távozási napot dátummá alakítja,
 			// a d az érkezési nappa indul,
@@ -605,7 +610,7 @@ function daySelected(id)
 function showDays()
 {
 	// formázzuk az adott hónapot az összehasonlításokhoz.
-	let formattedMonth = currentMonth.toString().length === 1 ? `0${currentMonth}` : currentMonth.toString();
+	let formattedMonth = currentMonth.toString().length === 1 ? `0${currentMonth+1}` : (currentMonth+1).toString();
 
 	// ha az arriveDayId nem null akkor bele megy.
 	if(arriveDayId.value != null)
@@ -863,7 +868,7 @@ function opinionsOptions(value)
 watch([arriveDayId,departureDayId],()=>{
 
 	// formázzuk az adott hónapot az összehasonlításokhoz.
-	let formattedMonth = currentMonth.toString().length === 1 ? `0${currentMonth}` : currentMonth.toString();
+	let formattedMonth = currentMonth.toString().length === 1 ? `0${currentMonth+1}` : (currentMonth+1).toString();
 
 	// ha nem null az érkezési és távozási nap akkor bele megy.
 	if(arriveDayId.value != null && departureDayId.value != null)
@@ -900,7 +905,12 @@ watch([arriveDayId,departureDayId],()=>{
 	}
 })
 
-
+// figyeli a model értékét és hogyha a valaki megváltoztatja a fők számát akkor átírja az árát
+watch(model,()=>
+{
+	// beállítja az aktuális fizetendő összeget 
+	rent_price.value = (item.value[0].price * (rentedDayIds.value.length-1))*model.guests;
+})
 </script>
 <template>
 	<div class="about">
@@ -1201,7 +1211,7 @@ watch([arriveDayId,departureDayId],()=>{
 					</div>
 
 					<!-- maga a vélemény -->
-					<p class="p-2">{{opinion["opinion"] }}</p>
+					<p class="p-2 text-break">{{opinion["opinion"] }}</p>
 
 					<!-- Vélemény szerkesztése gomb -->
 					<button v-if="user.id.split(' ')[0] == opinion.user_id"
