@@ -528,6 +528,93 @@ app.get("/history/:id", (req, res) => {
   );
 });
 
+function getOpinions(item_id,item_type,language_short_name,callback)
+{
+  db.query(`SELECT
+                id,
+                opinion
+            FROM opinions
+            WHERE item_id = ? AND item_type = ?`,
+    [item_id,item_type],
+    (err,result)=>
+    {
+      for(let x of result)
+      {
+        db.query(`SELECT
+                      language_short_name,
+                      item_id,
+                      item_name
+                  FROM translations
+                  WHERE item_id = ? AND item_name = ? AND language_short_name = ?`,
+          [x.id,'opinions',language_short_name],
+          async (err,response)=>
+          {
+            if(err){
+              callback(err);
+              return;
+            }
+
+            if(response.length>0)
+            {
+              return;
+            }
+            else
+            {
+              // átállítja a nyelv potos nevét a fordítás miatt.
+              let current_language_short_name =  language_short_name;
+              if(current_language_short_name == "en")
+              {
+                current_language_short_name = "en-GB";
+              }
+            
+              // megpróbálja a fordítást elkészíteni
+              try
+              {
+                
+                // az elem véleményét lefordítatjuk.
+                let translated_opinion = await translate(
+                  x.opinion,
+                  current_language_short_name
+                );
+
+                // egy json file-t csinálunk a lefodított adatokból
+                let item = JSON.stringify(
+                {
+                  opinion:translated_opinion
+                });
+
+                // ezek után pedig feltöltjük az új adatoakat a translatins táblába.
+                db.query(`INSERT INTO translations(
+                            language_short_name,
+                            item_id,
+                            item_name,
+                            item)
+                          VALUES(?,?,?,?)`,
+                [language_short_name,x.id,'opinions',item],
+                (err,result)=>
+                  {
+                    // ha hiba vna, ide jön be.
+                    if(err)
+                    {
+                      callback(`Hiba a(z) translations-ba való feltöltéskor: ${err}`);
+                      return;
+                    }
+
+                    return;
+                });
+              }
+              // ha bármi hiba adódna az api-al akkor ide lép be
+              catch(err)
+              {
+                callback(`Sikertelen vélemény fordítás. ${err}`);
+                return;
+              }
+            }
+        })
+      }
+  })
+}
+
 // Mgnézi hogy van e az adott elemnek fordítása, ha van akkor betölti. 
 // Ha nincs akkor meg nézi, hogy az erdeti adatai ugyan azon a nyelven annak e feltöltve,
 // mint amilyen nyelven van az oldal, és ha megtalálta akkor betölti.
@@ -557,6 +644,20 @@ app.post("/translate",(req,res)=>
       // ha megtalálja visszaküldi és vele együtt a translationed üzenetet is.
       if(result.length>0)
       {
+
+        getOpinions(datas.item_id,datas.item_name,datas.language_short_name,(err,result)=>
+        {
+          if(err)
+          {
+            console.log(err);
+            return;
+          }
+
+          console.log(result);
+          return;
+
+        })
+
         res.json({
           message:"translationed",
           data: result
@@ -677,7 +778,7 @@ app.post("/translate",(req,res)=>
                     });
                     return;
                   }
-                });
+              });
             }
           });
       }

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 12, 2026 at 10:53 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2026. Ápr 14. 23:30
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `havenly`
+-- Adatbázis: `havenly`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accommodations`
+-- Tábla szerkezet ehhez a táblához `accommodations`
 --
 
 CREATE TABLE `accommodations` (
@@ -45,7 +45,7 @@ CREATE TABLE `accommodations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `accommodations`
+-- A tábla adatainak kiíratása `accommodations`
 --
 
 INSERT INTO `accommodations` (`id`, `language_short_name`, `owner_id`, `country_id`, `city_id`, `name`, `folder_name`, `size`, `price`, `guest_number`, `bedroom`, `bed`, `bathroom`, `description`) VALUES
@@ -149,7 +149,7 @@ INSERT INTO `accommodations` (`id`, `language_short_name`, `owner_id`, `country_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accommodations_details`
+-- Tábla szerkezet ehhez a táblához `accommodations_details`
 --
 
 CREATE TABLE `accommodations_details` (
@@ -178,7 +178,7 @@ CREATE TABLE `accommodations_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `accommodations_details`
+-- A tábla adatainak kiíratása `accommodations_details`
 --
 
 INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `microwave`, `basic_spices`, `dishes`, `extra_bed_linen`, `darkening`, `night_lamp`, `towels`, `hair_dryer`, `smart_tv`, `bluetooth_speaker`, `usb_charger`, `work_table`, `suitcase_rack`, `iron`, `safe`, `balcony`, `board_games`, `free_wifi`, `parking_lot`) VALUES
@@ -282,7 +282,7 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `billing_address`
+-- Tábla szerkezet ehhez a táblához `billing_address`
 --
 
 CREATE TABLE `billing_address` (
@@ -302,7 +302,7 @@ CREATE TABLE `billing_address` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `card_networks`
+-- Tábla szerkezet ehhez a táblához `card_networks`
 --
 
 CREATE TABLE `card_networks` (
@@ -312,7 +312,7 @@ CREATE TABLE `card_networks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `card_networks`
+-- A tábla adatainak kiíratása `card_networks`
 --
 
 INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
@@ -394,7 +394,7 @@ INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Tábla szerkezet ehhez a táblához `cities`
 --
 
 CREATE TABLE `cities` (
@@ -404,7 +404,7 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cities`
+-- A tábla adatainak kiíratása `cities`
 --
 
 INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
@@ -626,7 +626,7 @@ INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Tábla szerkezet ehhez a táblához `countries`
 --
 
 CREATE TABLE `countries` (
@@ -635,7 +635,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `countries`
+-- A tábla adatainak kiíratása `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`) VALUES
@@ -713,7 +713,7 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currency`
+-- Tábla szerkezet ehhez a táblához `currency`
 --
 
 CREATE TABLE `currency` (
@@ -724,7 +724,7 @@ CREATE TABLE `currency` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `currency`
+-- A tábla adatainak kiíratása `currency`
 --
 
 INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
@@ -773,7 +773,7 @@ INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `experiences`
+-- Tábla szerkezet ehhez a táblához `experiences`
 --
 
 CREATE TABLE `experiences` (
@@ -788,7 +788,7 @@ CREATE TABLE `experiences` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `experiences`
+-- A tábla adatainak kiíratása `experiences`
 --
 
 INSERT INTO `experiences` (`id`, `language_short_name`, `country_id`, `city_id`, `name`, `folder_name`, `price`, `description`) VALUES
@@ -878,7 +878,7 @@ INSERT INTO `experiences` (`id`, `language_short_name`, `country_id`, `city_id`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favourite`
+-- Tábla szerkezet ehhez a táblához `favourite`
 --
 
 CREATE TABLE `favourite` (
@@ -888,7 +888,7 @@ CREATE TABLE `favourite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `favourite`
+-- A tábla adatainak kiíratása `favourite`
 --
 
 INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
@@ -943,7 +943,7 @@ INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- Tábla szerkezet ehhez a táblához `history`
 --
 
 CREATE TABLE `history` (
@@ -958,7 +958,7 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `history`
+-- A tábla adatainak kiíratása `history`
 --
 
 INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
@@ -1093,7 +1093,7 @@ INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Tábla szerkezet ehhez a táblához `messages`
 --
 
 CREATE TABLE `messages` (
@@ -1107,7 +1107,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opinions`
+-- Tábla szerkezet ehhez a táblához `opinions`
 --
 
 CREATE TABLE `opinions` (
@@ -1121,7 +1121,7 @@ CREATE TABLE `opinions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `opinions`
+-- A tábla adatainak kiíratása `opinions`
 --
 
 INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rate`, `language_short_name`) VALUES
@@ -1280,7 +1280,7 @@ INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `report`
+-- Tábla szerkezet ehhez a táblához `report`
 --
 
 CREATE TABLE `report` (
@@ -1295,7 +1295,7 @@ CREATE TABLE `report` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `translations`
+-- Tábla szerkezet ehhez a táblához `translations`
 --
 
 CREATE TABLE `translations` (
@@ -1307,7 +1307,7 @@ CREATE TABLE `translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `translations`
+-- A tábla adatainak kiíratása `translations`
 --
 
 INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
@@ -2215,12 +2215,769 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 (896, 'it', 54, 'experiences', '{\"title\":\"Passeggiata serale al Louvre ed esposizione\",\"description\":\"Passeggiate nei dintorni del famoso Museo del Louvre a Parigi, dove l\'edificio e i giardini del museo sono essi stessi opere d\'arte. Qui si trova una delle collezioni d\'arte più grandi e ricche al mondo, che comprende una grande quantità di dipinti e sculture. L\'illuminazione serale conferisce all\'area un\'atmosfera speciale. I caffè e le terrazze circostanti offrono il luogo ideale per rilassarsi. La passeggiata offre un\'esperienza sia storica che culturale. \"}'),
 (897, 'it', 55, 'experiences', '{\"title\":\"Passeggiata artistica a Montmartre\",\"description\":\"Scopri il quartiere artistico della collina di Montmartre, dove pittori, gallerie e strade suggestive attendono i visitatori. Il luogo emana una speciale atmosfera bohémienne e la basilica del Sacré-Cœur offre una vista panoramica su Parigi. Ristoranti, caffè e piccole boutique completano l\'esperienza. Durante la passeggiata potrai conoscere la storia artistica della città e la sua attuale vita creativa. Ideale come programma diurno o serale. \"}'),
 (898, 'it', 13, 'experiences', '{\"title\":\"Visita alla Torre Eiffel\",\"description\":\"Visita l\'iconica Torre Eiffel di Parigi e goditi la vista panoramica della città da ogni piano. La torre ha più di 130 anni di storia ed è famosa in tutto il mondo. Il vicino parco Champ de Mars è perfetto per un picnic. Nei dintorni della torre ci sono tanti bar e ristoranti che aspettano i visitatori. Il tramonto dal belvedere è un\'esperienza particolarmente suggestiva.\"}'),
-(899, 'it', 14, 'experiences', '{\"title\":\"Romantica passeggiata lungo la Senna\",\"description\":\"Goditi una passeggiata lungo la Senna nel cuore di Parigi, dove si susseguono ponti ed edifici storici. Caffè e piccole boutique costellano il percorso. Durante la passeggiata puoi fermarti vicino al Louvre o a Notre-Dame. Un programma romantico ideale da abbinare a una cena a fine giornata. Il fascino del luogo è percepibile in ogni stagione.\"}');
+(899, 'it', 14, 'experiences', '{\"title\":\"Romantica passeggiata lungo la Senna\",\"description\":\"Goditi una passeggiata lungo la Senna nel cuore di Parigi, dove si susseguono ponti ed edifici storici. Caffè e piccole boutique costellano il percorso. Durante la passeggiata puoi fermarti vicino al Louvre o a Notre-Dame. Un programma romantico ideale da abbinare a una cena a fine giornata. Il fascino del luogo è percepibile in ogni stagione.\"}'),
+(900, 'en', 9, 'opinions', '{\"opinion\":\"The apartment was very well equipped.\"}'),
+(901, 'en', 21, 'opinions', '{\"opinion\":\"A very cosy flat.\"}'),
+(902, 'en', 96, 'opinions', '{\"opinion\":\"Decent accommodation for a short stay.\"}'),
+(903, 'en', 5, 'opinions', '{\"opinion\":\"A very clean and tidy flat.\"}'),
+(904, 'en', 76, 'opinions', '{\"opinion\":\"A nice flat, though the street is a bit noisy in the evening.\"}'),
+(905, 'en', 77, 'opinions', '{\"opinion\":\"A modernly furnished flat with comfortable beds.\"}'),
+(906, 'en', 17, 'opinions', '{\"opinion\":\"A pleasant flat with good transport links.\"}'),
+(907, 'en', 94, 'opinions', '{\"opinion\":\"A peaceful neighbourhood, comfortable accommodation.\"}'),
+(908, 'en', 101, 'opinions', '{\"opinion\":\"Great location, clean flat.\"}'),
+(909, 'en', 13, 'opinions', '{\"opinion\":\"It\'s in a great location for sightseeing.\"}'),
+(910, 'en', 1, 'opinions', '{\"opinion\":\"A very cosy flat, just a few minutes\' walk from the city centre.\"}'),
+(911, 'en', 95, 'opinions', '{\"opinion\":\"A really cosy flat; we had a lovely time.\"}'),
+(912, 'en', 106, 'opinions', '{\"opinion\":\"It\'s a bit pricey for its size.\"}'),
+(913, 'en', 25, 'opinions', '{\"opinion\":\"We were very happy with the accommodation.\"}'),
+(914, 'en', 103, 'opinions', '{\"opinion\":\"Average accommodation; it was fine for a weekend.\"}'),
+(915, 'en', 104, 'opinions', '{\"opinion\":\"The flat was clean, but the neighbourhood was noisy.\"}'),
+(916, 'en', 105, 'opinions', '{\"opinion\":\"It’s very cosy and well-equipped.\"}'),
+(917, 'en', 2, 'opinions', '{\"opinion\":\"A lovely little studio; I particularly liked the balcony.\"}'),
+(918, 'en', 102, 'opinions', '{\"opinion\":\"It was a lovely flat, but the Wi-Fi was a bit slow at times.\"}'),
+(919, 'en', 51, 'opinions', '{\"opinion\":\"It was a really cosy flat, clean and well-equipped. The city centre is within easy walking distance, so it was the perfect choice for exploring the city.\"}'),
+(920, 'en', 10, 'opinions', '{\"opinion\":\"A modern and bright studio.\"}'),
+(921, 'en', 6, 'opinions', '{\"opinion\":\"Perfect for a short stay.\"}'),
+(922, 'en', 14, 'opinions', '{\"opinion\":\"A friendly place to stay.\"}'),
+(923, 'en', 18, 'opinions', '{\"opinion\":\"The view from the balcony is lovely.\"}'),
+(924, 'en', 70, 'opinions', '{\"opinion\":\"The view from the window was lovely. A cosy place to stay.\"}'),
+(925, 'en', 109, 'opinions', '{\"opinion\":\"The accommodation met our expectations.\"}'),
+(926, 'en', 108, 'opinions', '{\"opinion\":\"It was fine, but it could be cleaner.\"}'),
+(927, 'en', 112, 'opinions', '{\"opinion\":\"The bathroom is in need of renovation.\"}'),
+(928, 'en', 22, 'opinions', '{\"opinion\":\"It’s a small studio, but it has everything you need.\"}'),
+(929, 'en', 111, 'opinions', '{\"opinion\":\"The owner is very friendly.\"}'),
+(930, 'en', 107, 'opinions', '{\"opinion\":\"A cosy studio; the balcony is a real bonus.\"}');
+INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
+(931, 'en', 3, 'opinions', '{\"opinion\":\"A comfortable flat in a good location.\"}'),
+(932, 'en', 7, 'opinions', '{\"opinion\":\"It was excellent value for money.\"}'),
+(933, 'en', 15, 'opinions', '{\"opinion\":\"Simple, yet comfortable.\"}'),
+(934, 'en', 11, 'opinions', '{\"opinion\":\"Comfortable beds and a clean bathroom.\"}'),
+(935, 'en', 114, 'opinions', '{\"opinion\":\"A clean and tidy flat.\"}'),
+(936, 'en', 115, 'opinions', '{\"opinion\":\"Nothing special, but decent.\"}'),
+(937, 'en', 19, 'opinions', '{\"opinion\":\"Clean and tidy accommodation.\"}'),
+(938, 'en', 110, 'opinions', '{\"opinion\":\"It’s a small room, but it’s in a good location.\"}'),
+(939, 'en', 52, 'opinions', '{\"opinion\":\"A cosy little studio with everything you need. I particularly liked the balcony; we used to have our coffee there in the mornings.\"}'),
+(940, 'en', 86, 'opinions', '{\"opinion\":\"The owner was very friendly and helpful.\"}'),
+(941, 'en', 113, 'opinions', '{\"opinion\":\"It\'s a great spot for sightseeing.\"}'),
+(942, 'en', 117, 'opinions', '{\"opinion\":\"A very comfortable bed.\"}'),
+(943, 'en', 85, 'opinions', '{\"opinion\":\"Simple accommodation, but everything worked.\"}'),
+(944, 'en', 81, 'opinions', '{\"opinion\":\"A pleasant flat, but the Wi-Fi was sometimes slow.\"}'),
+(945, 'en', 74, 'opinions', '{\"opinion\":\"The flat was well-equipped and clean. Check-in was straightforward.\"}'),
+(946, 'en', 53, 'opinions', '{\"opinion\":\"A lovely flat with modern furnishings. The neighbourhood was quiet, so we were able to relax properly.\"}'),
+(947, 'en', 23, 'opinions', '{\"opinion\":\"It was a comfortable stay.\"}'),
+(948, 'en', 79, 'opinions', '{\"opinion\":\"An apartment offering excellent value for money.\"}'),
+(949, 'en', 80, 'opinions', '{\"opinion\":\"A cosy flat, well-equipped.\"}'),
+(950, 'en', 116, 'opinions', '{\"opinion\":\"The kitchen is not fully equipped.\"}'),
+(951, 'en', 87, 'opinions', '{\"opinion\":\"It’s in a great location, close to lots of restaurants.\"}'),
+(952, 'en', 75, 'opinions', '{\"opinion\":\"A very cosy place to stay, in a great location. I’d recommend it to others.\"}'),
+(953, 'en', 118, 'opinions', '{\"opinion\":\"There were no parking spaces nearby.\"}'),
+(954, 'en', 100, 'opinions', '{\"opinion\":\"A well-located and cosy flat.\"}'),
+(955, 'en', 56, 'opinions', '{\"opinion\":\"A well-located flat, close to public transport. Ideal for a short stay.\"}'),
+(956, 'en', 83, 'opinions', '{\"opinion\":\"The flat was comfortable and spacious.\"}'),
+(957, 'en', 82, 'opinions', '{\"opinion\":\"Very clean and well-maintained accommodation.\"}'),
+(958, 'en', 59, 'opinions', '{\"opinion\":\"A simple but comfortable flat. It was just right for a weekend.\"}'),
+(959, 'en', 84, 'opinions', '{\"opinion\":\"Beautiful views and a quiet neighbourhood.\"}'),
+(960, 'en', 57, 'opinions', '{\"opinion\":\"A cosy place to stay, with clean rooms and a comfortable bed. Overall, we were satisfied.\"}'),
+(961, 'en', 58, 'opinions', '{\"opinion\":\"The flat was very well equipped; it had everything you could need. The kitchen is particularly practical.\"}'),
+(962, 'en', 78, 'opinions', '{\"opinion\":\"The accommodation was clean and easy to get to.\"}'),
+(963, 'en', 60, 'opinions', '{\"opinion\":\"Great location; most of the sights are within walking distance. We’d love to come back.\"}'),
+(964, 'en', 69, 'opinions', '{\"opinion\":\"A lovely flat with good transport links. We had no trouble getting to all the main places.\"}'),
+(965, 'en', 97, 'opinions', '{\"opinion\":\"A lovely flat with good transport links.\"}'),
+(966, 'en', 98, 'opinions', '{\"opinion\":\"It was a very pleasant stay.\"}'),
+(967, 'en', 99, 'opinions', '{\"opinion\":\"A comfortable bed and a clean room.\"}'),
+(968, 'en', 63, 'opinions', '{\"opinion\":\"The flat is spacious and bright, and the beds were very comfortable.\"}'),
+(969, 'en', 64, 'opinions', '{\"opinion\":\"All in all, it was a good place to stay, although finding a parking space in the area was a bit of a struggle.\"}'),
+(970, 'en', 66, 'opinions', '{\"opinion\":\"A very clean and modern flat. I particularly liked the large living room.\"}'),
+(971, 'en', 65, 'opinions', '{\"opinion\":\"A lovely flat, well-equipped. The host was very helpful.\"}'),
+(972, 'en', 12, 'opinions', '{\"opinion\":\"Ideal for couples.\"}'),
+(973, 'en', 4, 'opinions', '{\"opinion\":\"A quiet neighbourhood and modern furnishings.\"}'),
+(974, 'en', 16, 'opinions', '{\"opinion\":\"A lovely, well-appointed flat.\"}'),
+(975, 'en', 20, 'opinions', '{\"opinion\":\"A great choice for a weekend getaway.\"}'),
+(976, 'en', 8, 'opinions', '{\"opinion\":\"A pleasant, peaceful place to stay.\"}'),
+(977, 'en', 125, 'opinions', '{\"opinion\":\"I was completely satisfied.\"}'),
+(978, 'en', 24, 'opinions', '{\"opinion\":\"A quiet neighbourhood with good facilities.\"}'),
+(979, 'en', 89, 'opinions', '{\"opinion\":\"A lovely, bright flat.\"}'),
+(980, 'en', 121, 'opinions', '{\"opinion\":\"It’s in a great location, close to everything.\"}'),
+(981, 'en', 119, 'opinions', '{\"opinion\":\"A very cosy studio.\"}'),
+(982, 'en', 123, 'opinions', '{\"opinion\":\"Good value for money.\"}'),
+(983, 'en', 91, 'opinions', '{\"opinion\":\"Excellent location and modern facilities.\"}'),
+(984, 'en', 88, 'opinions', '{\"opinion\":\"A comfortable flat with clean rooms.\"}'),
+(985, 'en', 54, 'opinions', '{\"opinion\":\"Good value for money. It was clean, although the bathroom could do with a bit of a refresh.\"}'),
+(986, 'en', 92, 'opinions', '{\"opinion\":\"The flat is very well equipped.\"}'),
+(987, 'en', 55, 'opinions', '{\"opinion\":\"A very cosy and bright flat. The owner replied quickly to all our questions.\"}'),
+(988, 'en', 124, 'opinions', '{\"opinion\":\"The room was smaller than it looked in the photos.\"}'),
+(989, 'en', 90, 'opinions', '{\"opinion\":\"It\'s an average place to stay, but good value for money.\"}'),
+(990, 'en', 122, 'opinions', '{\"opinion\":\"The cleanliness left something to be desired.\"}'),
+(991, 'en', 120, 'opinions', '{\"opinion\":\"It\'s a nice flat, but a bit noisy.\"}'),
+(992, 'en', 61, 'opinions', '{\"opinion\":\"The flat was clean and tidy, and check-in was quick. It was a pleasant experience staying here.\"}'),
+(993, 'en', 68, 'opinions', '{\"opinion\":\"The neighbourhood is quiet and the flat is well-equipped. Everything was fine.\"}'),
+(994, 'en', 62, 'opinions', '{\"opinion\":\"Cosy accommodation in a quiet neighbourhood. The décor is modern and tasteful.\"}'),
+(995, 'en', 67, 'opinions', '{\"opinion\":\"A pleasant, cosy place to stay. A good choice for couples.\"}'),
+(996, 'en', 93, 'opinions', '{\"opinion\":\"A clean, tidy and well-equipped flat.\"}'),
+(997, 'en', 71, 'opinions', '{\"opinion\":\"A simple but clean and tidy flat. Good value for money.\"}'),
+(998, 'en', 72, 'opinions', '{\"opinion\":\"It was a very pleasant stay; the flat is modern and comfortable.\"}'),
+(999, 'en', 73, 'opinions', '{\"opinion\":\"It’s a small studio, but it has everything you need. Perfect for a short stay.\"}'),
+(1000, 'sr', 63, 'opinions', '{\"opinion\":\"Стана је пространа и светла, а кревети су били веома удобни.\"}'),
+(1001, 'sr', 55, 'opinions', '{\"opinion\":\"Веома пријатан и светао стан. Власник је брзо одговорио на сва наша питања.\"}'),
+(1002, 'sr', 56, 'opinions', '{\"opinion\":\"Стано добро лоциран, близу јавног превоза. Идеалан за кратки боравак.\"}'),
+(1003, 'sr', 60, 'opinions', '{\"opinion\":\"Одлична локација; већина знаменитости је на пешачкој удаљености. Волели бисмо да се вратимо.\"}'),
+(1004, 'sr', 58, 'opinions', '{\"opinion\":\"Стана је била веома добро опремљена; имала је све што вам може затребати. Кухиња је нарочито практична.\"}'),
+(1005, 'sr', 12, 'opinions', '{\"opinion\":\"Идеално за парове.\"}'),
+(1006, 'sr', 16, 'opinions', '{\"opinion\":\"Прелеп, добро опремљен стан.\"}'),
+(1007, 'sr', 4, 'opinions', '{\"opinion\":\"Тихо комшилук и модерно намештање.\"}'),
+(1008, 'sr', 8, 'opinions', '{\"opinion\":\"Пријатно, мирно место за боравак.\"}'),
+(1009, 'sr', 20, 'opinions', '{\"opinion\":\"Одличан избор за викенд-путовање.\"}'),
+(1010, 'sr', 6, 'opinions', '{\"opinion\":\"Савршено за кратки боравак.\"}'),
+(1011, 'sr', 119, 'opinions', '{\"opinion\":\"Веома пријатан студио.\"}'),
+(1012, 'sr', 123, 'opinions', '{\"opinion\":\"Добра вредност за новац.\"}'),
+(1013, 'sr', 92, 'opinions', '{\"opinion\":\"Стана је веома добро опремљена.\"}'),
+(1014, 'sr', 24, 'opinions', '{\"opinion\":\"Тихо насеље са добрим садржајима.\"}'),
+(1015, 'sr', 125, 'opinions', '{\"opinion\":\"Био сам потпуно задовољан.\"}'),
+(1016, 'sr', 122, 'opinions', '{\"opinion\":\"Чистоћа је остављала много тога за пожелети.\"}'),
+(1017, 'sr', 91, 'opinions', '{\"opinion\":\"Одлична локација и модерни садржаји.\"}'),
+(1018, 'sr', 93, 'opinions', '{\"opinion\":\"Чист, уредан и добро опремљен стан.\"}'),
+(1019, 'sr', 120, 'opinions', '{\"opinion\":\"То је леп стан, али је мало бучан.\"}'),
+(1020, 'sr', 124, 'opinions', '{\"opinion\":\"Соба је била мања него што је изгледала на фотографијама.\"}'),
+(1021, 'sr', 121, 'opinions', '{\"opinion\":\"Налази се на одличној локацији, близу свега.\"}'),
+(1022, 'sr', 62, 'opinions', '{\"opinion\":\"Удобно смештање у мирном комшилуку. Декор је модеран и укусан.\"}'),
+(1023, 'sr', 54, 'opinions', '{\"opinion\":\"Добра вредност за новац. Било је чисто, иако би купатило могло да користи мало освежавања.\"}'),
+(1024, 'sr', 61, 'opinions', '{\"opinion\":\"Станови су били чисти и уредни, а пријава је била брза. Било је пријатно искуство боравка овде.\"}'),
+(1025, 'sr', 94, 'opinions', '{\"opinion\":\"Мирно комшилук, удобно смештање.\"}'),
+(1026, 'sr', 96, 'opinions', '{\"opinion\":\"Пристојан смештај за кратки боравак.\"}'),
+(1027, 'sr', 77, 'opinions', '{\"opinion\":\"Модерно намештен стан са удобним креветима.\"}'),
+(1028, 'sr', 76, 'opinions', '{\"opinion\":\"Леп стан, иако је улица увече помало бучна.\"}'),
+(1029, 'sr', 95, 'opinions', '{\"opinion\":\"Заиста пријатан стан; лепо смо се провели.\"}'),
+(1030, 'sr', 89, 'opinions', '{\"opinion\":\"Прелеп, светли стан.\"}'),
+(1031, 'sr', 88, 'opinions', '{\"opinion\":\"Удобан стан са чистим собама.\"}'),
+(1032, 'sr', 72, 'opinions', '{\"opinion\":\"Био је то веома пријатан боравак; стан је модеран и удобан.\"}'),
+(1033, 'sr', 67, 'opinions', '{\"opinion\":\"Пријатно, удобно место за боравак. Добар избор за парове.\"}'),
+(1034, 'sr', 73, 'opinions', '{\"opinion\":\"То је мали студио, али има све што вам треба. Савршено за кратки боравак.\"}'),
+(1035, 'sr', 90, 'opinions', '{\"opinion\":\"То је просечно место за боравак, али добра вредност за новац.\"}'),
+(1036, 'sr', 68, 'opinions', '{\"opinion\":\"Околина је мирна, а стан је добро опремљен. Све је било у реду.\"}'),
+(1037, 'sr', 99, 'opinions', '{\"opinion\":\"Удобни кревет и чиста соба.\"}'),
+(1038, 'sr', 100, 'opinions', '{\"opinion\":\"Удобан стан на одличној локацији.\"}'),
+(1039, 'sr', 98, 'opinions', '{\"opinion\":\"Био је то веома пријатан боравак.\"}'),
+(1040, 'sr', 97, 'opinions', '{\"opinion\":\"Прелеп стан са добрим саобраћајним везама.\"}'),
+(1041, 'sr', 69, 'opinions', '{\"opinion\":\"Прелеп стан са добрим саобраћајним везама. Нисмо имали проблема да дођемо до свих главних места.\"}'),
+(1042, 'sr', 65, 'opinions', '{\"opinion\":\"Прелеп стан, добро опремљен. Домаћин је био веома услужан.\"}'),
+(1043, 'sr', 64, 'opinions', '{\"opinion\":\"Све у свему, било је добро место за боравак, иако је паркирање у том крају било помало напорно.\"}'),
+(1044, 'sr', 66, 'opinions', '{\"opinion\":\"Веома чист и модеран стан. Посебно ми се допала велика дневна соба.\"}'),
+(1045, 'sr', 83, 'opinions', '{\"opinion\":\"Стана је био удобан и простран.\"}'),
+(1046, 'sr', 84, 'opinions', '{\"opinion\":\"Прелепи погледи и мирна околина.\"}'),
+(1047, 'sr', 78, 'opinions', '{\"opinion\":\"Смештај је био чист и лако доступан.\"}'),
+(1048, 'sr', 82, 'opinions', '{\"opinion\":\"Веома чист и добро одржаван смештај.\"}'),
+(1049, 'sr', 59, 'opinions', '{\"opinion\":\"Једноставан, али удобан стан. Био је баш прикладан за викенд.\"}'),
+(1050, 'sr', 57, 'opinions', '{\"opinion\":\"Удобно место за боравак, са чистим собама и удобним креветом. У целини смо били задовољни.\"}'),
+(1051, 'sr', 71, 'opinions', '{\"opinion\":\"Једноставан, али чист и уредан стан. Добар однос цене и квалитета.\"}'),
+(1052, 'sr', 70, 'opinions', '{\"opinion\":\"Поглед из прозора био је прелеп. Удобно место за боравак.\"}'),
+(1053, 'sr', 21, 'opinions', '{\"opinion\":\"Веома пријатан стан.\"}'),
+(1054, 'sr', 18, 'opinions', '{\"opinion\":\"Поглед са балкона је прелеп.\"}'),
+(1055, 'sr', 101, 'opinions', '{\"opinion\":\"Одлична локација, чист стан.\"}'),
+(1056, 'sr', 9, 'opinions', '{\"opinion\":\"Апартман је био веома добро опремљен.\"}'),
+(1057, 'sr', 5, 'opinions', '{\"opinion\":\"Веома чист и уредан стан.\"}'),
+(1058, 'sr', 10, 'opinions', '{\"opinion\":\"Модеран и светли студио.\"}'),
+(1059, 'sr', 105, 'opinions', '{\"opinion\":\"Веома је пријатно и добро опремљено.\"}'),
+(1060, 'sr', 106, 'opinions', '{\"opinion\":\"Помало је скупо за своју величину.\"}'),
+(1061, 'sr', 109, 'opinions', '{\"opinion\":\"Смештај је испунио наша очекивања.\"}'),
+(1062, 'sr', 17, 'opinions', '{\"opinion\":\"Угодан стан са добрим саобраћајним везама.\"}'),
+(1063, 'sr', 25, 'opinions', '{\"opinion\":\"Били смо веома задовољни смештајем.\"}'),
+(1064, 'sr', 7, 'opinions', '{\"opinion\":\"Било је одлична вредност за новац.\"}'),
+(1065, 'sr', 13, 'opinions', '{\"opinion\":\"Налази се на одличној локацији за разгледање.\"}'),
+(1066, 'sr', 104, 'opinions', '{\"opinion\":\"Стана је била чиста, али је комшилук био бучан.\"}'),
+(1067, 'sr', 108, 'opinions', '{\"opinion\":\"Било је у реду, али могло би бити чистије.\"}'),
+(1068, 'sr', 102, 'opinions', '{\"opinion\":\"Стано је био прелеп, али је Wi-Fi понекад био мало спор.\"}'),
+(1069, 'sr', 1, 'opinions', '{\"opinion\":\"Веома пријатан стан, на само неколико минута хода од центра града.\"}'),
+(1070, 'sr', 110, 'opinions', '{\"opinion\":\"То је мала соба, али је на доброј локацији.\"}'),
+(1071, 'sr', 22, 'opinions', '{\"opinion\":\"То је мали студио, али има све што вам треба.\"}'),
+(1072, 'sr', 51, 'opinions', '{\"opinion\":\"Био је то заиста пријатан стан, чист и добро опремљен. Центар града је на лакој пешачкој удаљености, па је био савршен избор за истраживање града.\"}'),
+(1073, 'sr', 14, 'opinions', '{\"opinion\":\"Пријатно место за боравак.\"}'),
+(1074, 'sr', 103, 'opinions', '{\"opinion\":\"Просечан смештај; био је у реду за викенд.\"}'),
+(1075, 'sr', 2, 'opinions', '{\"opinion\":\"Прелеп мали студио; нарочито ми се допао балкон.\"}'),
+(1076, 'sr', 117, 'opinions', '{\"opinion\":\"Веома удобан кревет.\"}'),
+(1077, 'sr', 114, 'opinions', '{\"opinion\":\"Чист и уредан стан.\"}'),
+(1078, 'sr', 23, 'opinions', '{\"opinion\":\"Био је то удобан боравак.\"}'),
+(1079, 'sr', 15, 'opinions', '{\"opinion\":\"Једноставно, али удобно.\"}'),
+(1080, 'sr', 11, 'opinions', '{\"opinion\":\"Удобни кревети и чиста купатила.\"}'),
+(1081, 'sr', 112, 'opinions', '{\"opinion\":\"Купатило треба реновирати.\"}'),
+(1082, 'sr', 3, 'opinions', '{\"opinion\":\"Удобан стан на доброј локацији.\"}'),
+(1083, 'sr', 111, 'opinions', '{\"opinion\":\"Власник је веома пријатељски настројен.\"}'),
+(1084, 'sr', 113, 'opinions', '{\"opinion\":\"То је одлично место за разгледање.\"}'),
+(1085, 'sr', 118, 'opinions', '{\"opinion\":\"У близини није било паркинг места.\"}'),
+(1086, 'sr', 116, 'opinions', '{\"opinion\":\"Кухиња није потпуно опремљена.\"}'),
+(1087, 'sr', 81, 'opinions', '{\"opinion\":\"Угодан стан, али је Wi-Fi понекад био спор.\"}'),
+(1088, 'sr', 53, 'opinions', '{\"opinion\":\"Прелеп стан са модерним намештајем. Комшилук је био тиха, па смо могли правилно да се опустимо.\"}'),
+(1089, 'sr', 52, 'opinions', '{\"opinion\":\"Удобни мали студио са свим што вам треба. Посебно ми се допао балкон; тамо смо ујутру пили кафу.\"}'),
+(1090, 'sr', 115, 'opinions', '{\"opinion\":\"Ништа посебно, али пристојно.\"}'),
+(1091, 'sr', 107, 'opinions', '{\"opinion\":\"Удобан студио; балкон је прави бонус.\"}'),
+(1092, 'sr', 80, 'opinions', '{\"opinion\":\"Удобан стан, добро опремљен.\"}'),
+(1093, 'sr', 75, 'opinions', '{\"opinion\":\"Веома пријатно место за боравак, на одличној локацији. Препоручио бих га другима.\"}'),
+(1094, 'sr', 79, 'opinions', '{\"opinion\":\"Стана који нуди одличан однос цене и квалитета.\"}'),
+(1095, 'sr', 74, 'opinions', '{\"opinion\":\"Стана је била добро опремљена и чиста. Пријем је био једноставан.\"}'),
+(1096, 'sr', 19, 'opinions', '{\"opinion\":\"Чист и уредан смештај.\"}'),
+(1097, 'sr', 87, 'opinions', '{\"opinion\":\"Налази се на одличној локацији, близу многих ресторана.\"}'),
+(1098, 'sr', 86, 'opinions', '{\"opinion\":\"Власник је био веома пријатељски настројен и услужан.\"}'),
+(1099, 'sr', 85, 'opinions', '{\"opinion\":\"Једноставан смештај, али је све функционисало.\"}'),
+(1100, 'de', 12, 'opinions', '{\"opinion\":\"Ideal für Paare.\"}'),
+(1101, 'de', 4, 'opinions', '{\"opinion\":\"Ruhige Lage und moderne Ausstattung.\"}'),
+(1102, 'de', 16, 'opinions', '{\"opinion\":\"Eine schöne und gut ausgestattete Wohnung.\"}'),
+(1103, 'de', 121, 'opinions', '{\"opinion\":\"Es liegt hervorragend, in der Nähe von allem.\"}'),
+(1104, 'de', 8, 'opinions', '{\"opinion\":\"Eine angenehme, ruhige Unterkunft.\"}'),
+(1105, 'de', 123, 'opinions', '{\"opinion\":\"Gutes Preis-Leistungs-Verhältnis.\"}'),
+(1106, 'de', 24, 'opinions', '{\"opinion\":\"Ruhige Lage und gute Ausstattung.\"}'),
+(1107, 'de', 120, 'opinions', '{\"opinion\":\"Eine schöne Wohnung, aber etwas laut.\"}'),
+(1108, 'de', 20, 'opinions', '{\"opinion\":\"Eine gute Wahl für einen Wochenendausflug.\"}'),
+(1109, 'de', 119, 'opinions', '{\"opinion\":\"Ein sehr gemütliches Studio.\"}'),
+(1110, 'de', 91, 'opinions', '{\"opinion\":\"Eine sehr gute Lage und eine moderne Ausstattung.\"}'),
+(1111, 'de', 62, 'opinions', '{\"opinion\":\"Eine gemütliche Unterkunft in einer ruhigen Gegend. Die Einrichtung ist modern und geschmackvoll.\"}'),
+(1112, 'de', 125, 'opinions', '{\"opinion\":\"Ich war vollkommen zufrieden.\"}'),
+(1113, 'de', 124, 'opinions', '{\"opinion\":\"Das Zimmer war kleiner als auf den Bildern.\"}'),
+(1114, 'de', 122, 'opinions', '{\"opinion\":\"Die Sauberkeit ließ zu wünschen übrig.\"}'),
+(1115, 'de', 55, 'opinions', '{\"opinion\":\"Eine sehr gemütliche und helle Wohnung. Der Vermieter hat alle unsere Fragen umgehend beantwortet.\"}'),
+(1116, 'de', 93, 'opinions', '{\"opinion\":\"Eine saubere, gepflegte und gut ausgestattete Wohnung.\"}'),
+(1117, 'de', 92, 'opinions', '{\"opinion\":\"Die Ausstattung der Wohnung ist hervorragend.\"}'),
+(1118, 'de', 61, 'opinions', '{\"opinion\":\"Die Wohnung war sauber und ordentlich, der Check-in verlief schnell. Es war ein angenehmer Aufenthalt hier.\"}'),
+(1119, 'de', 54, 'opinions', '{\"opinion\":\"Eine Unterkunft mit einem absolut angemessenen Preis-Leistungs-Verhältnis. Die Sauberkeit war in Ordnung, auch wenn das Badezimmer etwas renovierungsbedürftig ist.\"}'),
+(1120, 'de', 99, 'opinions', '{\"opinion\":\"Ein bequemes Bett und ein sauberes Zimmer.\"}'),
+(1121, 'de', 97, 'opinions', '{\"opinion\":\"Schöne Wohnung mit guter Verkehrsanbindung.\"}'),
+(1122, 'de', 98, 'opinions', '{\"opinion\":\"Es war ein sehr angenehmer Aufenthalt.\"}'),
+(1123, 'de', 63, 'opinions', '{\"opinion\":\"Die Wohnung ist geräumig und hell, die Betten waren sehr bequem.\"}'),
+(1124, 'de', 64, 'opinions', '{\"opinion\":\"Insgesamt eine gute Unterkunft, auch wenn das Parken in der Umgebung etwas schwierig war.\"}'),
+(1125, 'de', 9, 'opinions', '{\"opinion\":\"Die Ausstattung der Wohnung war hervorragend.\"}'),
+(1126, 'de', 105, 'opinions', '{\"opinion\":\"Sehr gemütlich und gut ausgestattet.\"}'),
+(1127, 'de', 17, 'opinions', '{\"opinion\":\"Eine gemütliche Wohnung mit guter Verkehrsanbindung.\"}'),
+(1128, 'de', 21, 'opinions', '{\"opinion\":\"Eine sehr gemütliche Wohnung.\"}'),
+(1129, 'de', 25, 'opinions', '{\"opinion\":\"Wir waren sehr zufrieden mit der Unterkunft.\"}'),
+(1130, 'de', 13, 'opinions', '{\"opinion\":\"Eine sehr gute Lage für Stadtrundgänge.\"}'),
+(1131, 'de', 101, 'opinions', '{\"opinion\":\"Sehr gute Lage, saubere Wohnung.\"}'),
+(1132, 'de', 5, 'opinions', '{\"opinion\":\"Eine sehr saubere und gepflegte Wohnung.\"}'),
+(1133, 'de', 6, 'opinions', '{\"opinion\":\"Ideal für einen kurzen Aufenthalt.\"}'),
+(1134, 'de', 106, 'opinions', '{\"opinion\":\"Für seine Größe ist es etwas teuer.\"}'),
+(1135, 'de', 10, 'opinions', '{\"opinion\":\"Ein modernes und helles Studio.\"}'),
+(1136, 'de', 18, 'opinions', '{\"opinion\":\"Die Aussicht vom Balkon ist sehr schön.\"}'),
+(1137, 'de', 14, 'opinions', '{\"opinion\":\"Eine Unterkunft mit freundlicher Atmosphäre.\"}'),
+(1138, 'de', 22, 'opinions', '{\"opinion\":\"Ein kleines Studio, aber es ist alles vorhanden.\"}'),
+(1139, 'de', 102, 'opinions', '{\"opinion\":\"Schöne Wohnung, aber das WLAN war manchmal langsam.\"}'),
+(1140, 'de', 103, 'opinions', '{\"opinion\":\"Eine durchschnittliche Unterkunft, für ein Wochenende war es in Ordnung.\"}'),
+(1141, 'de', 1, 'opinions', '{\"opinion\":\"Eine sehr gemütliche Wohnung, nur wenige Gehminuten vom Stadtzentrum entfernt.\"}'),
+(1142, 'de', 104, 'opinions', '{\"opinion\":\"Die Wohnung war sauber, aber die Umgebung war laut.\"}'),
+(1143, 'de', 2, 'opinions', '{\"opinion\":\"Ein hübsches kleines Studio, besonders der Balkon hat mir gefallen.\"}'),
+(1144, 'de', 51, 'opinions', '{\"opinion\":\"Es war eine sehr gemütliche Wohnung, sauber und gut ausgestattet. Das Stadtzentrum ist auch zu Fuß leicht zu erreichen, daher war es die perfekte Wahl, um die Stadt zu erkunden.\"}'),
+(1145, 'de', 86, 'opinions', '{\"opinion\":\"Der Eigentümer war sehr freundlich und hilfsbereit.\"}'),
+(1146, 'de', 85, 'opinions', '{\"opinion\":\"Eine einfache Unterkunft, aber alles hat funktioniert.\"}'),
+(1147, 'de', 74, 'opinions', '{\"opinion\":\"Die Wohnung war gut ausgestattet und sauber. Der Check-in verlief reibungslos.\"}'),
+(1148, 'de', 71, 'opinions', '{\"opinion\":\"Eine einfache, aber saubere und gepflegte Wohnung. Gutes Preis-Leistungs-Verhältnis.\"}'),
+(1149, 'de', 87, 'opinions', '{\"opinion\":\"Es liegt sehr günstig, in der Nähe vieler Restaurants.\"}'),
+(1150, 'de', 75, 'opinions', '{\"opinion\":\"Eine sehr gemütliche Unterkunft in guter Lage. Ich kann sie nur weiterempfehlen.\"}'),
+(1151, 'de', 72, 'opinions', '{\"opinion\":\"Es war ein sehr angenehmer Aufenthalt, die Wohnung ist modern und komfortabel.\"}'),
+(1152, 'de', 73, 'opinions', '{\"opinion\":\"Ein kleines Studio, aber es ist mit allem Notwendigen ausgestattet. Perfekt für einen kurzen Aufenthalt.\"}'),
+(1153, 'de', 65, 'opinions', '{\"opinion\":\"Eine schöne Wohnung mit guter Ausstattung. Der Vermieter war sehr hilfsbereit.\"}'),
+(1154, 'de', 66, 'opinions', '{\"opinion\":\"Ein sehr sauberes und modernes Apartment. Besonders gut hat mir das große Wohnzimmer gefallen.\"}'),
+(1155, 'de', 100, 'opinions', '{\"opinion\":\"Eine gut gelegene und gemütliche Ferienwohnung.\"}'),
+(1156, 'de', 77, 'opinions', '{\"opinion\":\"Modern eingerichtete Wohnung mit bequemen Betten.\"}'),
+(1157, 'de', 76, 'opinions', '{\"opinion\":\"Schöne Wohnung, auch wenn es abends auf der Straße etwas laut ist.\"}'),
+(1158, 'de', 96, 'opinions', '{\"opinion\":\"Eine ordentliche Unterkunft für einen kurzen Aufenthalt.\"}'),
+(1159, 'de', 94, 'opinions', '{\"opinion\":\"Ruhige Umgebung, komfortable Unterkunft.\"}'),
+(1160, 'de', 95, 'opinions', '{\"opinion\":\"Eine sehr gemütliche Wohnung, wir haben uns dort sehr wohlgefühlt.\"}'),
+(1161, 'de', 70, 'opinions', '{\"opinion\":\"Die Aussicht aus dem Fenster war sehr schön. Eine gemütliche Unterkunft.\"}'),
+(1162, 'de', 78, 'opinions', '{\"opinion\":\"Die Unterkunft war sauber und gut erreichbar.\"}'),
+(1163, 'de', 56, 'opinions', '{\"opinion\":\"Eine gut gelegene Wohnung in der Nähe der öffentlichen Verkehrsmittel. Ideal für einen kurzen Aufenthalt.\"}'),
+(1164, 'de', 59, 'opinions', '{\"opinion\":\"Eine einfache, aber gemütliche Ferienwohnung. Für ein Wochenende war sie völlig ausreichend.\"}'),
+(1165, 'de', 60, 'opinions', '{\"opinion\":\"Die Lage ist hervorragend, die meisten Sehenswürdigkeiten sind zu Fuß erreichbar. Wir würden gerne wiederkommen.\"}'),
+(1166, 'de', 57, 'opinions', '{\"opinion\":\"Eine Unterkunft mit angenehmer Atmosphäre, sauberen Zimmern und bequemen Betten. Insgesamt waren wir zufrieden.\"}'),
+(1167, 'de', 58, 'opinions', '{\"opinion\":\"Die Ausstattung der Wohnung war sehr gut, es ist alles vorhanden. Besonders die Küche ist sehr praktisch.\"}'),
+(1168, 'de', 84, 'opinions', '{\"opinion\":\"Schöne Aussicht und ruhige Umgebung.\"}'),
+(1169, 'de', 82, 'opinions', '{\"opinion\":\"Eine sehr saubere und gut gepflegte Unterkunft.\"}'),
+(1170, 'de', 83, 'opinions', '{\"opinion\":\"Die Wohnung war gemütlich und geräumig.\"}'),
+(1171, 'de', 89, 'opinions', '{\"opinion\":\"Eine schöne und helle Wohnung.\"}'),
+(1172, 'de', 88, 'opinions', '{\"opinion\":\"Eine gemütliche Ferienwohnung mit sauberen Zimmern.\"}'),
+(1173, 'de', 90, 'opinions', '{\"opinion\":\"Eine durchschnittliche Unterkunft, aber das Preis-Leistungs-Verhältnis stimmt.\"}'),
+(1174, 'de', 67, 'opinions', '{\"opinion\":\"Eine Unterkunft mit angenehmer, gemütlicher Atmosphäre. Eine gute Wahl für Paare.\"}'),
+(1175, 'de', 68, 'opinions', '{\"opinion\":\"Die Gegend ist ruhig und die Wohnung ist gut ausgestattet. Alles war in Ordnung.\"}'),
+(1176, 'de', 109, 'opinions', '{\"opinion\":\"Die Unterkunft entsprach den Erwartungen.\"}'),
+(1177, 'de', 111, 'opinions', '{\"opinion\":\"Ein sehr freundlicher Besitzer.\"}'),
+(1178, 'de', 112, 'opinions', '{\"opinion\":\"Das Badezimmer muss renoviert werden.\"}'),
+(1179, 'de', 15, 'opinions', '{\"opinion\":\"Einfach, aber bequem.\"}'),
+(1180, 'de', 108, 'opinions', '{\"opinion\":\"Es war in Ordnung, könnte aber sauberer sein.\"}'),
+(1181, 'de', 110, 'opinions', '{\"opinion\":\"Das Zimmer ist klein, liegt aber gut.\"}'),
+(1182, 'de', 3, 'opinions', '{\"opinion\":\"Eine gemütliche Wohnung in guter Lage.\"}'),
+(1183, 'de', 23, 'opinions', '{\"opinion\":\"Es war ein angenehmer Aufenthalt.\"}'),
+(1184, 'de', 107, 'opinions', '{\"opinion\":\"Ein gemütliches Studio, der Balkon ist ein großes Plus.\"}'),
+(1185, 'de', 117, 'opinions', '{\"opinion\":\"Ein sehr bequemes Bett.\"}'),
+(1186, 'de', 7, 'opinions', '{\"opinion\":\"Das Preis-Leistungs-Verhältnis war völlig in Ordnung.\"}'),
+(1187, 'de', 19, 'opinions', '{\"opinion\":\"Eine saubere und gepflegte Unterkunft.\"}'),
+(1188, 'de', 116, 'opinions', '{\"opinion\":\"Die Küchenausstattung ist unvollständig.\"}'),
+(1189, 'de', 113, 'opinions', '{\"opinion\":\"Ein idealer Ausgangspunkt für Stadtrundgänge.\"}'),
+(1190, 'de', 115, 'opinions', '{\"opinion\":\"Nichts Besonderes, aber in Ordnung.\"}'),
+(1191, 'de', 114, 'opinions', '{\"opinion\":\"Eine saubere und aufgeräumte Wohnung.\"}'),
+(1192, 'de', 79, 'opinions', '{\"opinion\":\"Eine Wohnung mit einem sehr guten Preis-Leistungs-Verhältnis.\"}'),
+(1193, 'de', 11, 'opinions', '{\"opinion\":\"Bequeme Betten und ein sauberes Badezimmer.\"}'),
+(1194, 'de', 53, 'opinions', '{\"opinion\":\"Ein schönes Apartment mit moderner Einrichtung. Die Gegend war ruhig, sodass wir uns sehr gut erholen konnten.\"}'),
+(1195, 'de', 52, 'opinions', '{\"opinion\":\"Ein gemütliches kleines Studio, in dem alles Nötige vorhanden ist. Besonders gut hat uns der Balkon gefallen, auf dem wir morgens unseren Kaffee getrunken haben.\"}'),
+(1196, 'de', 69, 'opinions', '{\"opinion\":\"Schöne Wohnung mit guter Verkehrsanbindung. Wir konnten alle wichtigen Orte leicht erreichen.\"}'),
+(1197, 'de', 118, 'opinions', '{\"opinion\":\"Es gab keinen Parkplatz in der Nähe.\"}'),
+(1198, 'de', 80, 'opinions', '{\"opinion\":\"Gemütliche Wohnung mit guter Ausstattung.\"}'),
+(1199, 'de', 81, 'opinions', '{\"opinion\":\"Ein gemütliches Apartment, aber das WLAN war manchmal langsam.\"}'),
+(1200, 'it', 24, 'opinions', '{\"opinion\":\"Zona tranquilla e ben attrezzata.\"}'),
+(1201, 'it', 8, 'opinions', '{\"opinion\":\"Una sistemazione piacevole e tranquilla.\"}'),
+(1202, 'it', 12, 'opinions', '{\"opinion\":\"Ideale per le coppie.\"}'),
+(1203, 'it', 91, 'opinions', '{\"opinion\":\"Ottima posizione e arredamento moderno.\"}'),
+(1204, 'it', 4, 'opinions', '{\"opinion\":\"Zona tranquilla e arredamento moderno.\"}'),
+(1205, 'it', 119, 'opinions', '{\"opinion\":\"Un monolocale davvero accogliente.\"}'),
+(1206, 'it', 20, 'opinions', '{\"opinion\":\"Un\'ottima scelta per una gita nel fine settimana.\"}'),
+(1207, 'it', 16, 'opinions', '{\"opinion\":\"Un appartamento bello e ben arredato.\"}'),
+(1208, 'it', 92, 'opinions', '{\"opinion\":\"L\'arredamento dell\'appartamento è eccellente.\"}'),
+(1209, 'it', 121, 'opinions', '{\"opinion\":\"Si trova in una posizione eccellente, vicino a tutto.\"}'),
+(1210, 'it', 124, 'opinions', '{\"opinion\":\"La stanza era più piccola rispetto alle foto.\"}'),
+(1211, 'it', 123, 'opinions', '{\"opinion\":\"Buon rapporto qualità-prezzo.\"}'),
+(1212, 'it', 125, 'opinions', '{\"opinion\":\"Sono rimasto pienamente soddisfatto.\"}'),
+(1213, 'it', 122, 'opinions', '{\"opinion\":\"La pulizia lasciava a desiderare.\"}'),
+(1214, 'it', 93, 'opinions', '{\"opinion\":\"Appartamento pulito, ordinato e ben attrezzato.\"}'),
+(1215, 'it', 120, 'opinions', '{\"opinion\":\"È un bell\'appartamento, ma un po\' rumoroso.\"}'),
+(1216, 'it', 54, 'opinions', '{\"opinion\":\"Una sistemazione con un ottimo rapporto qualità-prezzo. La pulizia era soddisfacente, anche se il bagno potrebbe essere un po’ più rinnovato.\"}'),
+(1217, 'it', 61, 'opinions', '{\"opinion\":\"L\'appartamento era pulito e in ordine, il check-in è stato veloce. È stata una piacevole esperienza soggiornare qui.\"}'),
+(1218, 'it', 55, 'opinions', '{\"opinion\":\"Un appartamento molto accogliente e luminoso. Il proprietario ha risposto prontamente a tutte le nostre domande.\"}'),
+(1219, 'it', 62, 'opinions', '{\"opinion\":\"Una sistemazione accogliente in una zona tranquilla. L\'arredamento è moderno e di buon gusto.\"}'),
+(1220, 'it', 96, 'opinions', '{\"opinion\":\"Una sistemazione adeguata per un soggiorno breve.\"}'),
+(1221, 'it', 94, 'opinions', '{\"opinion\":\"Zona tranquilla, alloggio confortevole.\"}'),
+(1222, 'it', 95, 'opinions', '{\"opinion\":\"Un appartamento davvero accogliente, ci siamo trovati benissimo.\"}'),
+(1223, 'it', 77, 'opinions', '{\"opinion\":\"Appartamento arredato in stile moderno, con letti comodi.\"}'),
+(1224, 'it', 70, 'opinions', '{\"opinion\":\"La vista dalla finestra era davvero bella. Una sistemazione accogliente.\"}'),
+(1225, 'it', 76, 'opinions', '{\"opinion\":\"Bel appartamento, anche se la strada è un po\' rumorosa la sera.\"}'),
+(1226, 'it', 88, 'opinions', '{\"opinion\":\"Appartamento confortevole, con camere pulite.\"}'),
+(1227, 'it', 89, 'opinions', '{\"opinion\":\"Un appartamento bello e luminoso.\"}'),
+(1228, 'it', 67, 'opinions', '{\"opinion\":\"Una sistemazione accogliente e confortevole. Un\'ottima scelta per le coppie.\"}'),
+(1229, 'it', 68, 'opinions', '{\"opinion\":\"Il quartiere è tranquillo e l\'appartamento è ben attrezzato. È andato tutto bene.\"}'),
+(1230, 'it', 90, 'opinions', '{\"opinion\":\"Una sistemazione nella media, ma con un buon rapporto qualità-prezzo.\"}'),
+(1231, 'it', 72, 'opinions', '{\"opinion\":\"È stato un soggiorno davvero piacevole, l\'appartamento è moderno e confortevole.\"}'),
+(1232, 'it', 73, 'opinions', '{\"opinion\":\"È un monolocale piccolo, ma ha tutto il necessario. È perfetto per un soggiorno breve.\"}'),
+(1233, 'it', 21, 'opinions', '{\"opinion\":\"Un appartamento davvero accogliente.\"}'),
+(1234, 'it', 5, 'opinions', '{\"opinion\":\"Appartamento molto pulito e ordinato.\"}'),
+(1235, 'it', 13, 'opinions', '{\"opinion\":\"Ottima posizione per visitare la città.\"}'),
+(1236, 'it', 109, 'opinions', '{\"opinion\":\"L\'alloggio era all\'altezza delle aspettative.\"}'),
+(1237, 'it', 102, 'opinions', '{\"opinion\":\"Bel appartamento, ma il Wi-Fi a volte era lento.\"}'),
+(1238, 'it', 101, 'opinions', '{\"opinion\":\"Ottima posizione, appartamento pulito.\"}'),
+(1239, 'it', 10, 'opinions', '{\"opinion\":\"Monolocale moderno e luminoso.\"}'),
+(1240, 'it', 1, 'opinions', '{\"opinion\":\"Un appartamento molto accogliente, a pochi minuti a piedi dal centro città.\"}'),
+(1241, 'it', 25, 'opinions', '{\"opinion\":\"Siamo rimasti molto soddisfatti dell\'alloggio.\"}'),
+(1242, 'it', 112, 'opinions', '{\"opinion\":\"Il bagno ha bisogno di essere ristrutturato.\"}'),
+(1243, 'it', 6, 'opinions', '{\"opinion\":\"Ideale per soggiorni brevi.\"}'),
+(1244, 'it', 105, 'opinions', '{\"opinion\":\"Molto accogliente e ben attrezzato.\"}'),
+(1245, 'it', 9, 'opinions', '{\"opinion\":\"L\'arredamento dell\'appartamento era eccellente.\"}'),
+(1246, 'it', 106, 'opinions', '{\"opinion\":\"È un po\' costoso rispetto alle sue dimensioni.\"}'),
+(1247, 'it', 104, 'opinions', '{\"opinion\":\"L\'appartamento era pulito, ma la zona era rumorosa.\"}'),
+(1248, 'it', 103, 'opinions', '{\"opinion\":\"Una sistemazione nella media, ma andava bene per un fine settimana.\"}'),
+(1249, 'it', 22, 'opinions', '{\"opinion\":\"È un monolocale piccolo, ma c\'è tutto ciò che serve.\"}'),
+(1250, 'it', 110, 'opinions', '{\"opinion\":\"È una stanza piccola, ma si trova in una buona posizione.\"}'),
+(1251, 'it', 17, 'opinions', '{\"opinion\":\"Un appartamento accogliente, ben servito dai mezzi di trasporto.\"}'),
+(1252, 'it', 107, 'opinions', '{\"opinion\":\"Confortevole monolocale, il balcone è un grande vantaggio.\"}'),
+(1253, 'it', 51, 'opinions', '{\"opinion\":\"Era un appartamento molto accogliente, pulito e ben attrezzato. Il centro città è facilmente raggiungibile a piedi, quindi è stata una scelta perfetta per esplorare la città.\"}'),
+(1254, 'it', 14, 'opinions', '{\"opinion\":\"Una sistemazione dall\'atmosfera accogliente.\"}'),
+(1255, 'it', 2, 'opinions', '{\"opinion\":\"Un grazioso monolocale, mi è piaciuto particolarmente il balcone.\"}'),
+(1256, 'it', 23, 'opinions', '{\"opinion\":\"È stato un soggiorno piacevole.\"}'),
+(1257, 'it', 108, 'opinions', '{\"opinion\":\"Andava bene, ma potrebbe essere più pulito.\"}'),
+(1258, 'it', 111, 'opinions', '{\"opinion\":\"Il proprietario è molto cordiale.\"}'),
+(1259, 'it', 18, 'opinions', '{\"opinion\":\"La vista dal balcone è davvero bella.\"}'),
+(1260, 'it', 19, 'opinions', '{\"opinion\":\"Alloggio pulito e ordinato.\"}'),
+(1261, 'it', 3, 'opinions', '{\"opinion\":\"Appartamento confortevole, in ottima posizione.\"}'),
+(1262, 'it', 11, 'opinions', '{\"opinion\":\"Letti comodi e bagno pulito.\"}'),
+(1263, 'it', 115, 'opinions', '{\"opinion\":\"Niente di speciale, ma corretto.\"}'),
+(1264, 'it', 117, 'opinions', '{\"opinion\":\"Un letto molto comodo.\"}'),
+(1265, 'it', 114, 'opinions', '{\"opinion\":\"Appartamento pulito e ordinato.\"}'),
+(1266, 'it', 7, 'opinions', '{\"opinion\":\"In termini di rapporto qualità-prezzo, andava benissimo.\"}'),
+(1267, 'it', 113, 'opinions', '{\"opinion\":\"È un ottimo punto di partenza per visitare la città.\"}'),
+(1268, 'it', 15, 'opinions', '{\"opinion\":\"Semplice, ma comodo.\"}'),
+(1269, 'it', 116, 'opinions', '{\"opinion\":\"La cucina è poco attrezzata.\"}'),
+(1270, 'it', 118, 'opinions', '{\"opinion\":\"Non c\'era nessun parcheggio nelle vicinanze.\"}'),
+(1271, 'it', 79, 'opinions', '{\"opinion\":\"Un appartamento con un ottimo rapporto qualità-prezzo.\"}'),
+(1272, 'it', 53, 'opinions', '{\"opinion\":\"Un bell\'appartamento, arredato in stile moderno. Il quartiere era tranquillo, quindi ci siamo potuti riposare molto bene.\"}'),
+(1273, 'it', 52, 'opinions', '{\"opinion\":\"Un piccolo monolocale accogliente, dotato di tutto il necessario. Il balcone ci è piaciuto particolarmente: la mattina ci bevevamo il caffè lì.\"}'),
+(1274, 'it', 80, 'opinions', '{\"opinion\":\"Appartamento accogliente e ben attrezzato.\"}'),
+(1275, 'it', 81, 'opinions', '{\"opinion\":\"Appartamento accogliente, ma il Wi-Fi a volte era lento.\"}'),
+(1276, 'it', 78, 'opinions', '{\"opinion\":\"L\'alloggio era pulito e facilmente raggiungibile.\"}'),
+(1277, 'it', 84, 'opinions', '{\"opinion\":\"Bella vista e zona tranquilla.\"}'),
+(1278, 'it', 83, 'opinions', '{\"opinion\":\"L\'appartamento era confortevole e spazioso.\"}'),
+(1279, 'it', 82, 'opinions', '{\"opinion\":\"Una sistemazione molto pulita e ben tenuta.\"}'),
+(1280, 'it', 56, 'opinions', '{\"opinion\":\"Appartamento in ottima posizione, vicino ai mezzi pubblici. Ideale per soggiorni brevi.\"}'),
+(1281, 'it', 59, 'opinions', '{\"opinion\":\"Un appartamento semplice ma confortevole. È stato perfetto per un fine settimana.\"}'),
+(1282, 'it', 58, 'opinions', '{\"opinion\":\"L\'arredamento dell\'appartamento era ottimo, c\'era proprio tutto. La cucina è particolarmente pratica.\"}'),
+(1283, 'it', 57, 'opinions', '{\"opinion\":\"Una struttura dall\'atmosfera piacevole, con camere pulite e letti comodi. Nel complesso siamo rimasti soddisfatti.\"}'),
+(1284, 'it', 60, 'opinions', '{\"opinion\":\"Ottima posizione, la maggior parte delle attrazioni è raggiungibile a piedi. Ci torneremmo volentieri.\"}'),
+(1285, 'it', 86, 'opinions', '{\"opinion\":\"Il proprietario è stato molto gentile e disponibile.\"}'),
+(1286, 'it', 100, 'opinions', '{\"opinion\":\"Appartamento in ottima posizione e dall\'atmosfera accogliente.\"}'),
+(1287, 'it', 85, 'opinions', '{\"opinion\":\"Una sistemazione semplice, ma tutto funzionava.\"}'),
+(1288, 'it', 87, 'opinions', '{\"opinion\":\"Si trova in un\'ottima posizione, vicino a molti ristoranti.\"}'),
+(1289, 'it', 74, 'opinions', '{\"opinion\":\"L\'appartamento era ben attrezzato e pulito. Il check-in è stato semplice.\"}'),
+(1290, 'it', 75, 'opinions', '{\"opinion\":\"Una sistemazione molto accogliente, in ottima posizione. La consiglio vivamente.\"}'),
+(1291, 'it', 97, 'opinions', '{\"opinion\":\"Bel appartamento, ben collegato.\"}'),
+(1292, 'it', 99, 'opinions', '{\"opinion\":\"Letto comodo e camera pulita.\"}'),
+(1293, 'it', 98, 'opinions', '{\"opinion\":\"È stata un\'esperienza di soggiorno davvero piacevole.\"}'),
+(1294, 'it', 63, 'opinions', '{\"opinion\":\"L\'appartamento è spazioso e luminoso, i letti erano molto comodi.\"}'),
+(1295, 'it', 64, 'opinions', '{\"opinion\":\"Nel complesso, una buona sistemazione, anche se trovare parcheggio nella zona è stato un po\' complicato.\"}'),
+(1296, 'it', 69, 'opinions', '{\"opinion\":\"Un bell\'appartamento, ben collegato. Abbiamo raggiunto facilmente tutti i luoghi di interesse.\"}'),
+(1297, 'it', 65, 'opinions', '{\"opinion\":\"Un bell\'appartamento, ben attrezzato. Il padrone di casa è stato molto disponibile.\"}'),
+(1298, 'it', 66, 'opinions', '{\"opinion\":\"Appartamento molto pulito e moderno. Mi è piaciuto particolarmente l\'ampio soggiorno.\"}'),
+(1299, 'it', 71, 'opinions', '{\"opinion\":\"Un appartamento semplice, ma pulito e ordinato. Ottimo rapporto qualità-prezzo.\"}'),
+(1300, 'ja', 124, 'opinions', '{\"opinion\":\"部屋は写真よりも狭かった。\"}'),
+(1301, 'ja', 4, 'opinions', '{\"opinion\":\"静かな環境とモダンな内装。\"}'),
+(1302, 'ja', 8, 'opinions', '{\"opinion\":\"快適で落ち着いた宿泊施設です。\"}'),
+(1303, 'ja', 16, 'opinions', '{\"opinion\":\"美しく、設備の整ったアパートです。\"}'),
+(1304, 'ja', 12, 'opinions', '{\"opinion\":\"カップルに最適です。\"}'),
+(1305, 'ja', 125, 'opinions', '{\"opinion\":\"大満足でした。\"}'),
+(1306, 'ja', 119, 'opinions', '{\"opinion\":\"とても雰囲気の良いスタジオです。\"}'),
+(1307, 'ja', 123, 'opinions', '{\"opinion\":\"コストパフォーマンスが良い。\"}'),
+(1308, 'ja', 24, 'opinions', '{\"opinion\":\"静かな環境と充実した設備。\"}'),
+(1309, 'ja', 121, 'opinions', '{\"opinion\":\"立地が素晴らしく、どこへ行くにも便利です。\"}'),
+(1310, 'ja', 120, 'opinions', '{\"opinion\":\"素敵なアパートですが、少し騒がしいです。\"}'),
+(1311, 'ja', 92, 'opinions', '{\"opinion\":\"このアパートの設備は素晴らしいです。\"}'),
+(1312, 'ja', 20, 'opinions', '{\"opinion\":\"週末の小旅行にぴったりです。\"}'),
+(1313, 'ja', 61, 'opinions', '{\"opinion\":\"部屋は清潔で整頓されており、チェックインもスムーズでした。ここでの滞在はとても快適でした。\"}'),
+(1314, 'ja', 62, 'opinions', '{\"opinion\":\"落ち着いたエリアにある居心地の良い宿泊施設です。インテリアはモダンで洗練されています。\"}'),
+(1315, 'ja', 122, 'opinions', '{\"opinion\":\"清潔さには物足りなさを感じた。\"}'),
+(1316, 'ja', 93, 'opinions', '{\"opinion\":\"清潔で整頓されており、設備も充実したアパートメントです。\"}'),
+(1317, 'ja', 91, 'opinions', '{\"opinion\":\"立地が素晴らしく、モダンな内装です。\"}'),
+(1318, 'ja', 55, 'opinions', '{\"opinion\":\"とても居心地が良く、明るいアパートです。オーナーは私たちの質問すべてに素早く答えてくれました。\"}'),
+(1319, 'ja', 54, 'opinions', '{\"opinion\":\"コストパフォーマンスの面では申し分ない宿泊施設です。清潔さは問題ありませんでしたが、バスルームはもう少し改装されていてもよかったかもしれません。\"}'),
+(1320, 'ja', 100, 'opinions', '{\"opinion\":\"立地が良く、居心地の良いアパートメントです。\"}'),
+(1321, 'ja', 69, 'opinions', '{\"opinion\":\"素敵なアパートで、交通の便も良い。主要な場所へはすべて簡単にアクセスできました。\"}'),
+(1322, 'ja', 63, 'opinions', '{\"opinion\":\"アパートは広々として明るく、ベッドはとても快適でした。\"}'),
+(1323, 'ja', 98, 'opinions', '{\"opinion\":\"とても快適な滞在でした。\"}'),
+(1324, 'ja', 99, 'opinions', '{\"opinion\":\"快適なベッドと清潔な部屋。\"}'),
+(1325, 'ja', 64, 'opinions', '{\"opinion\":\"全体的に良い宿泊施設でしたが、周辺での駐車は少し不便でした。\"}'),
+(1326, 'ja', 97, 'opinions', '{\"opinion\":\"素敵なアパートで、交通の便も良い。\"}'),
+(1327, 'ja', 87, 'opinions', '{\"opinion\":\"立地がとても良く、多くのレストランが近くにあります。\"}'),
+(1328, 'ja', 86, 'opinions', '{\"opinion\":\"オーナーはとても親切で、親身になって助けてくれました。\"}'),
+(1329, 'ja', 85, 'opinions', '{\"opinion\":\"シンプルな宿泊施設でしたが、すべて問題なく機能していました。\"}'),
+(1330, 'ja', 5, 'opinions', '{\"opinion\":\"とても清潔で整頓されたアパートです。\"}'),
+(1331, 'ja', 74, 'opinions', '{\"opinion\":\"アパートは設備が整っていて、清潔でした。チェックインもスムーズでした。\"}'),
+(1332, 'ja', 75, 'opinions', '{\"opinion\":\"とても雰囲気の良い宿で、立地も良いです。他の方にもお勧めします。\"}'),
+(1333, 'ja', 1, 'opinions', '{\"opinion\":\"とても雰囲気の良いアパートで、都心まで徒歩数分です。\"}'),
+(1334, 'ja', 117, 'opinions', '{\"opinion\":\"とても快適なベッドです。\"}'),
+(1335, 'ja', 118, 'opinions', '{\"opinion\":\"近くに駐車スペースがなかった。\"}'),
+(1336, 'ja', 79, 'opinions', '{\"opinion\":\"コストパフォーマンスに優れたアパートです。\"}'),
+(1337, 'ja', 9, 'opinions', '{\"opinion\":\"そのアパートの設備は素晴らしかった。\"}'),
+(1338, 'ja', 21, 'opinions', '{\"opinion\":\"とても雰囲気の良いアパートです。\"}'),
+(1339, 'ja', 106, 'opinions', '{\"opinion\":\"サイズを考えると少し高いですね。\"}'),
+(1340, 'ja', 101, 'opinions', '{\"opinion\":\"立地が素晴らしく、清潔なアパートです。\"}'),
+(1341, 'ja', 13, 'opinions', '{\"opinion\":\"観光には絶好のロケーションです。\"}'),
+(1342, 'ja', 25, 'opinions', '{\"opinion\":\"宿泊施設にはとても満足しました。\"}'),
+(1343, 'ja', 10, 'opinions', '{\"opinion\":\"モダンで明るいスタジオ。\"}'),
+(1344, 'ja', 104, 'opinions', '{\"opinion\":\"部屋はきれいでしたが、周辺は騒がしかったです。\"}'),
+(1345, 'ja', 52, 'opinions', '{\"opinion\":\"居心地の良い小さなスタジオで、必要なものはすべて揃っています。特にバルコニーが気に入りました。毎朝そこでコーヒーを飲みました。\"}'),
+(1346, 'ja', 51, 'opinions', '{\"opinion\":\"とても雰囲気の良いアパートで、清潔で設備も充実していました。中心街へも徒歩で簡単にアクセスできたので、街を探索するには最適な場所でした。\"}'),
+(1347, 'ja', 89, 'opinions', '{\"opinion\":\"明るく美しいアパートです。\"}'),
+(1348, 'ja', 67, 'opinions', '{\"opinion\":\"居心地が良く、アットホームな雰囲気の宿泊施設です。カップルに最適です。\"}'),
+(1349, 'ja', 94, 'opinions', '{\"opinion\":\"静かな周辺環境、快適な宿泊施設。\"}'),
+(1350, 'ja', 90, 'opinions', '{\"opinion\":\"ごく普通の宿泊施設ですが、コストパフォーマンスは悪くありません。\"}'),
+(1351, 'ja', 77, 'opinions', '{\"opinion\":\"モダンな設備が整ったアパートで、快適なベッドが備わっています。\"}'),
+(1352, 'ja', 88, 'opinions', '{\"opinion\":\"快適なアパートで、部屋は清潔です。\"}'),
+(1353, 'ja', 95, 'opinions', '{\"opinion\":\"とても雰囲気の良いアパートで、快適に過ごせました。\"}'),
+(1354, 'ja', 96, 'opinions', '{\"opinion\":\"短期滞在にぴったりの宿泊施設。\"}'),
+(1355, 'ja', 70, 'opinions', '{\"opinion\":\"窓からの眺めはとても素敵でした。雰囲気の良い宿です。\"}'),
+(1356, 'ja', 76, 'opinions', '{\"opinion\":\"素敵なアパートですが、夜になると通りが少し騒がしいです。\"}'),
+(1357, 'ja', 68, 'opinions', '{\"opinion\":\"周辺は静かで、アパートの設備も充実していました。すべてが順調でした。\"}'),
+(1358, 'ja', 73, 'opinions', '{\"opinion\":\"小さなスタジオですが、必要なものはすべて揃っています。短期滞在には最適です。\"}'),
+(1359, 'ja', 72, 'opinions', '{\"opinion\":\"とても快適な滞在でした。アパートはモダンで快適でした。\"}'),
+(1360, 'ja', 71, 'opinions', '{\"opinion\":\"シンプルですが、清潔で整ったアパートです。コストパフォーマンスが良いです。\"}'),
+(1361, 'ja', 17, 'opinions', '{\"opinion\":\"快適なアパートで、交通の便も良い。\"}'),
+(1362, 'ja', 105, 'opinions', '{\"opinion\":\"とても雰囲気があり、設備も充実しています。\"}'),
+(1363, 'ja', 103, 'opinions', '{\"opinion\":\"ごく普通の宿泊施設でしたが、週末の滞在には十分でした。\"}'),
+(1364, 'ja', 102, 'opinions', '{\"opinion\":\"素敵なアパートでしたが、Wi-Fiの速度が時々遅かったです。\"}'),
+(1365, 'ja', 80, 'opinions', '{\"opinion\":\"居心地の良いアパートで、設備も充実しています。\"}'),
+(1366, 'ja', 81, 'opinions', '{\"opinion\":\"快適なアパートでしたが、Wi-Fiの速度が時々遅かったです。\"}'),
+(1367, 'ja', 112, 'opinions', '{\"opinion\":\"バスルームはリフォームが必要です。\"}'),
+(1368, 'ja', 3, 'opinions', '{\"opinion\":\"快適なアパートで、立地も良い。\"}'),
+(1369, 'ja', 109, 'opinions', '{\"opinion\":\"宿泊施設は期待通りでした。\"}'),
+(1370, 'ja', 111, 'opinions', '{\"opinion\":\"とても気さくなオーナーです。\"}'),
+(1371, 'ja', 110, 'opinions', '{\"opinion\":\"部屋は小さいですが、立地は良いです。\"}'),
+(1372, 'ja', 19, 'opinions', '{\"opinion\":\"清潔で整った宿泊施設。\"}'),
+(1373, 'ja', 23, 'opinions', '{\"opinion\":\"快適な滞在でした。\"}'),
+(1374, 'ja', 11, 'opinions', '{\"opinion\":\"快適なベッドと清潔なバスルーム。\"}'),
+(1375, 'ja', 108, 'opinions', '{\"opinion\":\"悪くなかったけど、もう少しきれいでもよかった。\"}'),
+(1376, 'ja', 7, 'opinions', '{\"opinion\":\"コストパフォーマンスは申し分なかった。\"}'),
+(1377, 'ja', 15, 'opinions', '{\"opinion\":\"シンプルだけど、使いやすい。\"}'),
+(1378, 'ja', 115, 'opinions', '{\"opinion\":\"特別なものはないが、しっかりしている。\"}'),
+(1379, 'ja', 113, 'opinions', '{\"opinion\":\"観光には絶好のロケーションです。\"}'),
+(1380, 'ja', 53, 'opinions', '{\"opinion\":\"モダンなインテリアの素敵なアパートでした。周辺は静かで、とてもリラックスできました。\"}'),
+(1381, 'ja', 114, 'opinions', '{\"opinion\":\"清潔で整頓された住まい。\"}'),
+(1382, 'ja', 116, 'opinions', '{\"opinion\":\"キッチンの設備が不十分です。\"}'),
+(1383, 'ja', 65, 'opinions', '{\"opinion\":\"設備の整った素敵なアパートでした。大家さんはとても親切でした。\"}'),
+(1384, 'ja', 66, 'opinions', '{\"opinion\":\"とても清潔でモダンなアパートメントです。特に広いリビングが気に入りました。\"}'),
+(1385, 'ja', 6, 'opinions', '{\"opinion\":\"短期滞在に最適です。\"}'),
+(1386, 'ja', 14, 'opinions', '{\"opinion\":\"アットホームな雰囲気の宿泊施設。\"}'),
+(1387, 'ja', 22, 'opinions', '{\"opinion\":\"小さなスタジオですが、必要なものはすべて揃っています。\"}'),
+(1388, 'ja', 18, 'opinions', '{\"opinion\":\"バルコニーからの眺めはとても素晴らしいです。\"}'),
+(1389, 'ja', 2, 'opinions', '{\"opinion\":\"素敵なワンルームですね。特にバルコニーが気に入りました。\"}'),
+(1390, 'ja', 107, 'opinions', '{\"opinion\":\"快適なスタジオで、バルコニーがあるのが大きな魅力です。\"}'),
+(1391, 'ja', 78, 'opinions', '{\"opinion\":\"宿泊施設は清潔で、アクセスも便利でした。\"}'),
+(1392, 'ja', 83, 'opinions', '{\"opinion\":\"そのアパートは快適で広々としていました。\"}'),
+(1393, 'ja', 84, 'opinions', '{\"opinion\":\"眺めが良く、静かな環境です。\"}'),
+(1394, 'ja', 82, 'opinions', '{\"opinion\":\"とても清潔で手入れが行き届いた宿泊施設です。\"}'),
+(1395, 'ja', 59, 'opinions', '{\"opinion\":\"シンプルだけど快適なアパートメントでした。週末の滞在には申し分ありませんでした。\"}'),
+(1396, 'ja', 58, 'opinions', '{\"opinion\":\"アパートの設備はとても充実していて、必要なものはすべて揃っていました。特にキッチンは使い勝手が良かったです。\"}'),
+(1397, 'ja', 56, 'opinions', '{\"opinion\":\"好立地のアパートで、公共交通機関へのアクセスも良好です。短期滞在に最適です。\"}'),
+(1398, 'ja', 57, 'opinions', '{\"opinion\":\"居心地の良い雰囲気の宿で、部屋は清潔でベッドも快適でした。全体的に満足しました。\"}'),
+(1399, 'ja', 60, 'opinions', '{\"opinion\":\"立地が最高で、主要な観光スポットのほとんどが徒歩圏内です。またぜひ訪れたいと思います。\"}'),
+(1400, 'en', 143, 'opinions', '{\"opinion\":\"A beautiful beach.\"}'),
+(1401, 'en', 144, 'opinions', '{\"opinion\":\"A charming old town.\"}'),
+(1402, 'en', 142, 'opinions', '{\"opinion\":\"The Acropolis is stunning.\"}'),
+(1403, 'en', 43, 'opinions', '{\"opinion\":\"A very beautiful beach.\"}'),
+(1404, 'en', 31, 'opinions', '{\"opinion\":\"A beautiful castle and park.\"}'),
+(1405, 'en', 30, 'opinions', '{\"opinion\":\"The atmosphere of the concert is unforgettable.\"}'),
+(1406, 'en', 44, 'opinions', '{\"opinion\":\"A charming stroll through the old town.\"}'),
+(1407, 'en', 42, 'opinions', '{\"opinion\":\"The Acropolis is stunning.\"}'),
+(1408, 'en', 130, 'opinions', '{\"opinion\":\"The concert was really atmospheric.\"}'),
+(1409, 'en', 49, 'opinions', '{\"opinion\":\"The atmosphere at the Christmas market is magical.\"}'),
+(1410, 'en', 148, 'opinions', '{\"opinion\":\"A really fun amusement park.\"}'),
+(1411, 'en', 32, 'opinions', '{\"opinion\":\"A pleasant walk along the banks of the Danube.\"}'),
+(1412, 'en', 48, 'opinions', '{\"opinion\":\"The Prater amusement park is great fun.\"}'),
+(1413, 'en', 132, 'opinions', '{\"opinion\":\"A pleasant walk along the banks of the Danube.\"}'),
+(1414, 'en', 131, 'opinions', '{\"opinion\":\"It’s a beautiful castle, but there are loads of tourists.\"}'),
+(1415, 'en', 149, 'opinions', '{\"opinion\":\"The market has a lovely atmosphere, but it’s very crowded.\"}'),
+(1416, 'en', 46, 'opinions', '{\"opinion\":\"A truly inspiring design tour.\"}'),
+(1417, 'en', 36, 'opinions', '{\"opinion\":\"The view from the Eiffel Tower is wonderful.\"}'),
+(1418, 'en', 37, 'opinions', '{\"opinion\":\"A romantic stroll along the banks of the Seine.\"}'),
+(1419, 'en', 137, 'opinions', '{\"opinion\":\"A romantic stroll, but there are lots of tourists.\"}'),
+(1420, 'en', 136, 'opinions', '{\"opinion\":\"The Eiffel Tower is a fantastic experience.\"}'),
+(1421, 'en', 146, 'opinions', '{\"opinion\":\"An interesting design tour.\"}'),
+(1422, 'en', 140, 'opinions', '{\"opinion\":\"An interesting historical site.\"}'),
+(1423, 'en', 41, 'opinions', '{\"opinion\":\"Milan’s fashion district is very elegant.\"}'),
+(1424, 'en', 133, 'opinions', '{\"opinion\":\"An interesting tour of Parliament.\"}'),
+(1425, 'en', 40, 'opinions', '{\"opinion\":\"A visit to the Colosseum is a wonderful experience.\"}'),
+(1426, 'en', 126, 'opinions', '{\"opinion\":\"It was a very pleasant spa experience.\"}'),
+(1427, 'en', 26, 'opinions', '{\"opinion\":\"The Hagymatikum spa was a fantastic experience.\"}'),
+(1428, 'en', 33, 'opinions', '{\"opinion\":\"A very interesting tour of Parliament.\"}'),
+(1429, 'en', 134, 'opinions', '{\"opinion\":\"A beautiful evening view.\"}'),
+(1430, 'en', 141, 'opinions', '{\"opinion\":\"It was a great event, combined with some shopping.\"}'),
+(1431, 'en', 135, 'opinions', '{\"opinion\":\"A beautiful historic setting.\"}'),
+(1432, 'en', 35, 'opinions', '{\"opinion\":\"The castle district is very atmospheric.\"}'),
+(1433, 'en', 34, 'opinions', '{\"opinion\":\"Cruising on the Danube is particularly beautiful in the evening.\"}'),
+(1434, 'en', 138, 'opinions', '{\"opinion\":\"A very informative sightseeing tour.\"}'),
+(1435, 'en', 45, 'opinions', '{\"opinion\":\"The fjord tour was wonderful.\"}'),
+(1436, 'en', 38, 'opinions', '{\"opinion\":\"Berlin has a very interesting history.\"}'),
+(1437, 'en', 145, 'opinions', '{\"opinion\":\"The view of the fjord is magnificent.\"}'),
+(1438, 'en', 39, 'opinions', '{\"opinion\":\"The beer-tasting tour was brilliant.\"}'),
+(1439, 'en', 139, 'opinions', '{\"opinion\":\"The beer tasting was great fun.\"}'),
+(1440, 'en', 47, 'opinions', '{\"opinion\":\"Warsaw’s historic centre is fascinating.\"}'),
+(1441, 'en', 147, 'opinions', '{\"opinion\":\"It\'s a lovely town, but the visit was short.\"}'),
+(1442, 'en', 151, 'opinions', '{\"opinion\":\"beautiful.\"}'),
+(1443, 'en', 28, 'opinions', '{\"opinion\":\"The castle and the cathedral are stunning.\"}'),
+(1444, 'en', 27, 'opinions', '{\"opinion\":\"A really interesting sightseeing tour of Prague.\"}'),
+(1445, 'en', 29, 'opinions', '{\"opinion\":\"There’s a lovely view from the boat.\"}'),
+(1446, 'en', 127, 'opinions', '{\"opinion\":\"A lovely sightseeing tour, full of interesting stories.\"}'),
+(1447, 'en', 50, 'opinions', '{\"opinion\":\"An evening stroll across Charles Bridge is lovely.\"}'),
+(1448, 'en', 129, 'opinions', '{\"opinion\":\"A romantic boat trip on the river.\"}');
+INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
+(1449, 'en', 128, 'opinions', '{\"opinion\":\"The view was fantastic.\"}'),
+(1450, 'en', 150, 'opinions', '{\"opinion\":\"The evening lights on the bridge are beautiful.\"}'),
+(1451, 'sr', 140, 'opinions', '{\"opinion\":\"Занимљиво историјско место.\"}'),
+(1452, 'sr', 134, 'opinions', '{\"opinion\":\"Прелепан вечерњи поглед.\"}'),
+(1453, 'sr', 133, 'opinions', '{\"opinion\":\"Занимљива тура по Парламенту.\"}'),
+(1454, 'sr', 33, 'opinions', '{\"opinion\":\"Веома занимљива тура по парламенту.\"}'),
+(1455, 'sr', 40, 'opinions', '{\"opinion\":\"Посета Колисеуму је дивно искуство.\"}'),
+(1456, 'sr', 35, 'opinions', '{\"opinion\":\"Замак је веома атмосферичан.\"}'),
+(1457, 'sr', 41, 'opinions', '{\"opinion\":\"Модна четврт Милана је веома елегантна.\"}'),
+(1458, 'sr', 126, 'opinions', '{\"opinion\":\"Било је то веома пријатно спа искуство.\"}'),
+(1459, 'sr', 135, 'opinions', '{\"opinion\":\"Прелепо историјско окружење.\"}'),
+(1460, 'sr', 34, 'opinions', '{\"opinion\":\"Кружење Дунавом је нарочито лепо увече.\"}'),
+(1461, 'sr', 26, 'opinions', '{\"opinion\":\"Спа Хагиматикум је био фантастично искуство.\"}'),
+(1462, 'sr', 38, 'opinions', '{\"opinion\":\"Берлин има веома занимљиву историју.\"}'),
+(1463, 'sr', 36, 'opinions', '{\"opinion\":\"Поглед са Ајфелове куле је диван.\"}'),
+(1464, 'sr', 141, 'opinions', '{\"opinion\":\"Био је то сјајан догађај, уз мало куповине.\"}'),
+(1465, 'sr', 136, 'opinions', '{\"opinion\":\"Ајфелова кула је фантастично искуство.\"}'),
+(1466, 'sr', 137, 'opinions', '{\"opinion\":\"Романтична шетња, али има много туриста.\"}'),
+(1467, 'sr', 37, 'opinions', '{\"opinion\":\"Романтична шетња дуж обала Сене.\"}'),
+(1468, 'sr', 39, 'opinions', '{\"opinion\":\"Тура дегустације пива била је сјајна.\"}'),
+(1469, 'sr', 139, 'opinions', '{\"opinion\":\"Дегустација пива је била сјајна забава.\"}'),
+(1470, 'sr', 138, 'opinions', '{\"opinion\":\"Веома информативна тура по разгледању знаменитости.\"}'),
+(1471, 'sr', 151, 'opinions', '{\"opinion\":\"прелепо\"}'),
+(1472, 'sr', 143, 'opinions', '{\"opinion\":\"Прелепа плажа.\"}'),
+(1473, 'sr', 43, 'opinions', '{\"opinion\":\"Веома прелепа плажа.\"}'),
+(1474, 'sr', 128, 'opinions', '{\"opinion\":\"Поглед је био фантастичан.\"}'),
+(1475, 'sr', 28, 'opinions', '{\"opinion\":\"Замак и катедрала су задивљујући.\"}'),
+(1476, 'sr', 42, 'opinions', '{\"opinion\":\"Акрополис је задивљујућ.\"}'),
+(1477, 'sr', 27, 'opinions', '{\"opinion\":\"Заиста занимљива тура по знаменитостима Прага.\"}'),
+(1478, 'sr', 31, 'opinions', '{\"opinion\":\"Прелеп замак и парк.\"}'),
+(1479, 'sr', 142, 'opinions', '{\"opinion\":\"Акрополис је задивљујућ.\"}'),
+(1480, 'sr', 29, 'opinions', '{\"opinion\":\"Из чамца се пружа прелеп поглед.\"}'),
+(1481, 'sr', 150, 'opinions', '{\"opinion\":\"Вечерња светла на мосту су прелепа.\"}'),
+(1482, 'sr', 50, 'opinions', '{\"opinion\":\"Вечерња шетња преко Карловог моста је дивна.\"}'),
+(1483, 'sr', 127, 'opinions', '{\"opinion\":\"Прелепа тура за разгледање знаменитости, пуна занимљивих прича.\"}'),
+(1484, 'sr', 130, 'opinions', '{\"opinion\":\"Концерт је био заиста атмосферичан.\"}'),
+(1485, 'sr', 129, 'opinions', '{\"opinion\":\"Романтично путовање чамцем по реци.\"}'),
+(1486, 'sr', 30, 'opinions', '{\"opinion\":\"Атмосфера концерта је незаборавна.\"}'),
+(1487, 'sr', 32, 'opinions', '{\"opinion\":\"Пријатна шетња дуж обала Дунава.\"}'),
+(1488, 'sr', 132, 'opinions', '{\"opinion\":\"Пријатна шетња дуж обала Дунава.\"}'),
+(1489, 'sr', 48, 'opinions', '{\"opinion\":\"Забавни парк Пратер је одлична забава.\"}'),
+(1490, 'sr', 131, 'opinions', '{\"opinion\":\"То је прелепа тврђава, али има пуно туриста.\"}'),
+(1491, 'sr', 149, 'opinions', '{\"opinion\":\"На пијаци влада дивна атмосфера, али је веома гужва.\"}'),
+(1492, 'sr', 49, 'opinions', '{\"opinion\":\"Атмосфера на божићној пијаци је магична.\"}'),
+(1493, 'sr', 148, 'opinions', '{\"opinion\":\"Заиста забаван забавни парк.\"}'),
+(1494, 'sr', 45, 'opinions', '{\"opinion\":\"Тура по фјордовима је била дивна.\"}'),
+(1495, 'sr', 145, 'opinions', '{\"opinion\":\"Поглед на фјорд је величанствен.\"}'),
+(1496, 'sr', 144, 'opinions', '{\"opinion\":\"Шармантан стари град.\"}'),
+(1497, 'sr', 44, 'opinions', '{\"opinion\":\"Шармантна шетња кроз стари град.\"}'),
+(1498, 'sr', 47, 'opinions', '{\"opinion\":\"Историјско језгро Варшаве је фасцинантно.\"}'),
+(1499, 'sr', 147, 'opinions', '{\"opinion\":\"То је прелепи град, али је посета била кратка.\"}'),
+(1500, 'sr', 146, 'opinions', '{\"opinion\":\"Занимљива тура дизајна.\"}'),
+(1501, 'sr', 46, 'opinions', '{\"opinion\":\"Заиста инспиративна тура дизајна.\"}'),
+(1502, 'de', 135, 'opinions', '{\"opinion\":\"Eine schöne historische Umgebung.\"}'),
+(1503, 'de', 133, 'opinions', '{\"opinion\":\"Eine interessante Führung durch das Parlament.\"}'),
+(1504, 'de', 126, 'opinions', '{\"opinion\":\"Es war ein sehr angenehmes Badeerlebnis.\"}'),
+(1505, 'de', 134, 'opinions', '{\"opinion\":\"Ein wunderschönes Abendpanorama.\"}'),
+(1506, 'de', 144, 'opinions', '{\"opinion\":\"Eine gemütliche Altstadt.\"}'),
+(1507, 'de', 33, 'opinions', '{\"opinion\":\"Eine sehr interessante Führung durch das Parlament.\"}'),
+(1508, 'de', 35, 'opinions', '{\"opinion\":\"Das Burgviertel ist sehr stimmungsvoll.\"}'),
+(1509, 'de', 44, 'opinions', '{\"opinion\":\"Ein gemütlicher Spaziergang durch die Altstadt.\"}'),
+(1510, 'de', 26, 'opinions', '{\"opinion\":\"Der Besuch im Hagymatikum-Bad war ein fantastisches Erlebnis.\"}'),
+(1511, 'de', 34, 'opinions', '{\"opinion\":\"Die Schifffahrt auf der Donau ist am Abend besonders schön.\"}'),
+(1512, 'de', 38, 'opinions', '{\"opinion\":\"Die Geschichte Berlins ist sehr interessant.\"}'),
+(1513, 'de', 138, 'opinions', '{\"opinion\":\"Eine sehr informative Stadtführung.\"}'),
+(1514, 'de', 39, 'opinions', '{\"opinion\":\"Die Bierverkostungstour war großartig.\"}'),
+(1515, 'de', 139, 'opinions', '{\"opinion\":\"Die Bierverkostung hat Spaß gemacht.\"}'),
+(1516, 'de', 36, 'opinions', '{\"opinion\":\"Vom Eiffelturm aus hat man eine herrliche Aussicht.\"}'),
+(1517, 'de', 37, 'opinions', '{\"opinion\":\"Ein romantischer Spaziergang am Ufer der Seine.\"}'),
+(1518, 'de', 136, 'opinions', '{\"opinion\":\"Der Eiffelturm ist ein fantastisches Erlebnis.\"}'),
+(1519, 'de', 137, 'opinions', '{\"opinion\":\"Ein romantischer Spaziergang, aber es sind viele Touristen da.\"}'),
+(1520, 'de', 30, 'opinions', '{\"opinion\":\"Die Atmosphäre des Konzerts ist unvergesslich.\"}'),
+(1521, 'de', 131, 'opinions', '{\"opinion\":\"Ein schönes Schloss, aber sehr viele Touristen.\"}'),
+(1522, 'de', 46, 'opinions', '{\"opinion\":\"Ein sehr inspirierender Design-Spaziergang.\"}'),
+(1523, 'de', 130, 'opinions', '{\"opinion\":\"Das Konzert war sehr stimmungsvoll.\"}'),
+(1524, 'de', 48, 'opinions', '{\"opinion\":\"Der Prater ist ein sehr unterhaltsamer Vergnügungspark.\"}'),
+(1525, 'de', 31, 'opinions', '{\"opinion\":\"Ein wunderschönes Schloss und ein wunderschöner Park.\"}'),
+(1526, 'de', 146, 'opinions', '{\"opinion\":\"Eine interessante Design-Stadtrundfahrt.\"}'),
+(1527, 'de', 32, 'opinions', '{\"opinion\":\"Ein angenehmer Spaziergang am Donauufer.\"}'),
+(1528, 'de', 148, 'opinions', '{\"opinion\":\"Ein sehr unterhaltsamer Vergnügungspark.\"}'),
+(1529, 'de', 149, 'opinions', '{\"opinion\":\"Der Markt ist gemütlich, aber sehr überfüllt.\"}'),
+(1530, 'de', 49, 'opinions', '{\"opinion\":\"Die Atmosphäre auf dem Weihnachtsmarkt ist zauberhaft.\"}'),
+(1531, 'de', 132, 'opinions', '{\"opinion\":\"Ein angenehmer Spaziergang am Donauufer.\"}'),
+(1532, 'de', 142, 'opinions', '{\"opinion\":\"Die Akropolis ist beeindruckend.\"}'),
+(1533, 'de', 143, 'opinions', '{\"opinion\":\"Ein wunderschöner Strand.\"}'),
+(1534, 'de', 42, 'opinions', '{\"opinion\":\"Die Akropolis ist beeindruckend.\"}'),
+(1535, 'de', 43, 'opinions', '{\"opinion\":\"Ein sehr schöner Strand.\"}'),
+(1536, 'de', 147, 'opinions', '{\"opinion\":\"Eine schöne Stadt, aber das Programm war zu kurz.\"}'),
+(1537, 'de', 47, 'opinions', '{\"opinion\":\"Das historische Zentrum von Warschau ist interessant.\"}'),
+(1538, 'de', 140, 'opinions', '{\"opinion\":\"Ein interessanter historischer Ort.\"}'),
+(1539, 'de', 41, 'opinions', '{\"opinion\":\"Das Modeviertel von Mailand ist sehr elegant.\"}'),
+(1540, 'de', 40, 'opinions', '{\"opinion\":\"Ein Besuch im Kolosseum ist ein großartiges Erlebnis.\"}'),
+(1541, 'de', 141, 'opinions', '{\"opinion\":\"Es war ein schönes Programm, kombiniert mit einem Einkaufsbummel.\"}'),
+(1542, 'de', 151, 'opinions', '{\"opinion\":\"schön.\"}'),
+(1543, 'de', 128, 'opinions', '{\"opinion\":\"Die Aussicht war fantastisch.\"}'),
+(1544, 'de', 29, 'opinions', '{\"opinion\":\"Schöne Aussicht vom Schiff aus.\"}'),
+(1545, 'de', 27, 'opinions', '{\"opinion\":\"Eine sehr interessante Stadtrundfahrt in Prag.\"}'),
+(1546, 'de', 129, 'opinions', '{\"opinion\":\"Eine romantische Bootsfahrt auf dem Fluss.\"}'),
+(1547, 'de', 127, 'opinions', '{\"opinion\":\"Eine schöne Stadtrundfahrt mit vielen interessanten Geschichten.\"}'),
+(1548, 'de', 28, 'opinions', '{\"opinion\":\"Die Burg und die Kathedrale sind beeindruckend.\"}'),
+(1549, 'de', 45, 'opinions', '{\"opinion\":\"Die Fjordtour war wunderbar.\"}'),
+(1550, 'de', 50, 'opinions', '{\"opinion\":\"Ein Abendspaziergang über die Karlsbrücke ist wunderschön.\"}'),
+(1551, 'de', 145, 'opinions', '{\"opinion\":\"Der Anblick des Fjords ist wunderschön.\"}'),
+(1552, 'de', 150, 'opinions', '{\"opinion\":\"Die abendliche Beleuchtung der Brücke ist wunderschön.\"}'),
+(1553, 'it', 146, 'opinions', '{\"opinion\":\"Un tour della città dal design interessante.\"}'),
+(1554, 'it', 140, 'opinions', '{\"opinion\":\"Un luogo storico interessante.\"}'),
+(1555, 'it', 41, 'opinions', '{\"opinion\":\"Il quartiere della moda di Milano è davvero elegante.\"}'),
+(1556, 'it', 46, 'opinions', '{\"opinion\":\"Una passeggiata alla scoperta del design davvero stimolante.\"}'),
+(1557, 'it', 47, 'opinions', '{\"opinion\":\"Il centro storico di Varsavia è interessante.\"}'),
+(1558, 'it', 40, 'opinions', '{\"opinion\":\"Visitare il Colosseo è un\'esperienza indimenticabile.\"}'),
+(1559, 'it', 141, 'opinions', '{\"opinion\":\"È stata una bella giornata, abbinata allo shopping.\"}'),
+(1560, 'it', 147, 'opinions', '{\"opinion\":\"È una bella città, ma il programma era breve.\"}'),
+(1561, 'it', 138, 'opinions', '{\"opinion\":\"Una visita guidata molto istruttiva.\"}'),
+(1562, 'it', 38, 'opinions', '{\"opinion\":\"La storia di Berlino è davvero interessante.\"}'),
+(1563, 'it', 139, 'opinions', '{\"opinion\":\"La degustazione di birra è stata divertente.\"}'),
+(1564, 'it', 39, 'opinions', '{\"opinion\":\"Il tour di degustazione della birra è stato fantastico.\"}'),
+(1565, 'it', 36, 'opinions', '{\"opinion\":\"Dalla Torre Eiffel si gode di una vista meravigliosa.\"}'),
+(1566, 'it', 136, 'opinions', '{\"opinion\":\"La Torre Eiffel è un\'esperienza fantastica.\"}'),
+(1567, 'it', 137, 'opinions', '{\"opinion\":\"Una passeggiata romantica, ma ci sono molti turisti.\"}'),
+(1568, 'it', 37, 'opinions', '{\"opinion\":\"Una romantica passeggiata lungo le rive della Senna.\"}'),
+(1569, 'it', 43, 'opinions', '{\"opinion\":\"Una spiaggia davvero bellissima.\"}'),
+(1570, 'it', 143, 'opinions', '{\"opinion\":\"Una bellissima spiaggia.\"}'),
+(1571, 'it', 42, 'opinions', '{\"opinion\":\"L\'Acropoli è impressionante.\"}'),
+(1572, 'it', 142, 'opinions', '{\"opinion\":\"L\'Acropoli è impressionante.\"}'),
+(1573, 'it', 135, 'opinions', '{\"opinion\":\"Un bellissimo contesto storico.\"}'),
+(1574, 'it', 126, 'opinions', '{\"opinion\":\"È stata un\'esperienza molto piacevole.\"}'),
+(1575, 'it', 133, 'opinions', '{\"opinion\":\"Un\'interessante visita guidata al Parlamento.\"}'),
+(1576, 'it', 33, 'opinions', '{\"opinion\":\"Una visita guidata al Parlamento davvero interessante.\"}'),
+(1577, 'it', 35, 'opinions', '{\"opinion\":\"Il quartiere del castello è davvero suggestivo.\"}'),
+(1578, 'it', 134, 'opinions', '{\"opinion\":\"Una splendida vista panoramica serale.\"}'),
+(1579, 'it', 34, 'opinions', '{\"opinion\":\"La navigazione sul Danubio è particolarmente suggestiva di sera.\"}'),
+(1580, 'it', 26, 'opinions', '{\"opinion\":\"La visita alle terme Hagymatikum è stata un\'esperienza fantastica.\"}'),
+(1581, 'it', 145, 'opinions', '{\"opinion\":\"La vista sul fiordo è meravigliosa.\"}'),
+(1582, 'it', 45, 'opinions', '{\"opinion\":\"L\'escursione nel fiordo è stata meravigliosa.\"}'),
+(1583, 'it', 144, 'opinions', '{\"opinion\":\"Un affascinante centro storico.\"}'),
+(1584, 'it', 44, 'opinions', '{\"opinion\":\"Una piacevole passeggiata nel centro storico.\"}'),
+(1585, 'it', 27, 'opinions', '{\"opinion\":\"Una visita guidata molto interessante a Praga.\"}'),
+(1586, 'it', 127, 'opinions', '{\"opinion\":\"Una bella visita della città, ricca di storie interessanti.\"}'),
+(1587, 'it', 128, 'opinions', '{\"opinion\":\"La vista era fantastica.\"}'),
+(1588, 'it', 29, 'opinions', '{\"opinion\":\"Bella vista dalla barca.\"}'),
+(1589, 'it', 150, 'opinions', '{\"opinion\":\"Le luci serali del ponte sono bellissime.\"}'),
+(1590, 'it', 151, 'opinions', '{\"opinion\":\"bello.\"}'),
+(1591, 'it', 50, 'opinions', '{\"opinion\":\"Una passeggiata serale sul Ponte Carlo è meravigliosa.\"}'),
+(1592, 'it', 28, 'opinions', '{\"opinion\":\"Il castello e la cattedrale sono davvero impressionanti.\"}'),
+(1593, 'it', 129, 'opinions', '{\"opinion\":\"Una romantica gita in barca sul fiume.\"}'),
+(1594, 'it', 31, 'opinions', '{\"opinion\":\"Un bellissimo castello e un parco.\"}'),
+(1595, 'it', 30, 'opinions', '{\"opinion\":\"L\'atmosfera del concerto è indimenticabile.\"}'),
+(1596, 'it', 148, 'opinions', '{\"opinion\":\"Un parco divertimenti davvero divertente.\"}'),
+(1597, 'it', 48, 'opinions', '{\"opinion\":\"Il parco divertimenti Prater è davvero divertente.\"}'),
+(1598, 'it', 130, 'opinions', '{\"opinion\":\"Il concerto è stato davvero suggestivo.\"}'),
+(1599, 'it', 32, 'opinions', '{\"opinion\":\"Una piacevole passeggiata lungo le rive del Danubio.\"}'),
+(1600, 'it', 131, 'opinions', '{\"opinion\":\"È un bel castello, ma c\'è tantissima gente.\"}'),
+(1601, 'it', 132, 'opinions', '{\"opinion\":\"Una piacevole passeggiata lungo le rive del Danubio.\"}'),
+(1602, 'it', 49, 'opinions', '{\"opinion\":\"L\'atmosfera del mercatino di Natale è magica.\"}'),
+(1603, 'it', 149, 'opinions', '{\"opinion\":\"Il mercatino è accogliente, ma molto affollato.\"}'),
+(1604, 'ja', 46, 'opinions', '{\"opinion\":\"とても刺激的なデザインの散策でした。\"}'),
+(1605, 'ja', 126, 'opinions', '{\"opinion\":\"とても心地よい入浴体験でした。\"}'),
+(1606, 'ja', 134, 'opinions', '{\"opinion\":\"とても美しい夕景です。\"}'),
+(1607, 'ja', 34, 'opinions', '{\"opinion\":\"ドナウ川での船旅は、夕方が特に美しい。\"}'),
+(1608, 'ja', 35, 'opinions', '{\"opinion\":\"城下町はとても風情があります。\"}'),
+(1609, 'ja', 146, 'opinions', '{\"opinion\":\"ユニークなデザインの街並み。\"}'),
+(1610, 'ja', 133, 'opinions', '{\"opinion\":\"興味深い議会見学ツアー。\"}'),
+(1611, 'ja', 33, 'opinions', '{\"opinion\":\"とても興味深い国会議事堂見学ツアーでした。\"}'),
+(1612, 'ja', 135, 'opinions', '{\"opinion\":\"美しい歴史的な環境です。\"}'),
+(1613, 'ja', 26, 'opinions', '{\"opinion\":\"ハギマティクム温泉は素晴らしい体験でした。\"}'),
+(1614, 'ja', 137, 'opinions', '{\"opinion\":\"ロマンチックな散歩コースですが、観光客が多いです。\"}'),
+(1615, 'ja', 36, 'opinions', '{\"opinion\":\"エッフェル塔からの眺めは素晴らしい。\"}'),
+(1616, 'ja', 27, 'opinions', '{\"opinion\":\"プラハでの観光はとても興味深いものでした。\"}'),
+(1617, 'ja', 136, 'opinions', '{\"opinion\":\"エッフェル塔は素晴らしい体験です。\"}'),
+(1618, 'ja', 151, 'opinions', '{\"opinion\":\"きれい。\"}'),
+(1619, 'ja', 128, 'opinions', '{\"opinion\":\"景色は素晴らしかった。\"}'),
+(1620, 'ja', 29, 'opinions', '{\"opinion\":\"船からの眺めは素晴らしい。\"}'),
+(1621, 'ja', 28, 'opinions', '{\"opinion\":\"城と大聖堂は圧巻です。\"}'),
+(1622, 'ja', 127, 'opinions', '{\"opinion\":\"素敵な街歩きで、興味深い話がたくさんありました。\"}'),
+(1623, 'ja', 37, 'opinions', '{\"opinion\":\"セーヌ川のほとりを散策するロマンチックなひととき。\"}'),
+(1624, 'ja', 150, 'opinions', '{\"opinion\":\"夕暮れの橋の明かりは美しい。\"}'),
+(1625, 'ja', 129, 'opinions', '{\"opinion\":\"川でのロマンチックなクルーズ。\"}'),
+(1626, 'ja', 50, 'opinions', '{\"opinion\":\"カール橋での夕方の散歩は素晴らしい。\"}'),
+(1627, 'ja', 144, 'opinions', '{\"opinion\":\"風情ある旧市街。\"}'),
+(1628, 'ja', 44, 'opinions', '{\"opinion\":\"旧市街の雰囲気たっぷりの散策。\"}'),
+(1629, 'ja', 140, 'opinions', '{\"opinion\":\"興味深い歴史的な場所です。\"}'),
+(1630, 'ja', 40, 'opinions', '{\"opinion\":\"コロッセオを訪れるのは素晴らしい体験です。\"}'),
+(1631, 'ja', 141, 'opinions', '{\"opinion\":\"買い物と合わせて、とても楽しいプログラムでした。\"}'),
+(1632, 'ja', 41, 'opinions', '{\"opinion\":\"ミラノのファッション地区はとてもエレガントです。\"}'),
+(1633, 'ja', 139, 'opinions', '{\"opinion\":\"ビールの試飲会は楽しかった。\"}'),
+(1634, 'ja', 138, 'opinions', '{\"opinion\":\"とても勉強になる街歩きでした。\"}'),
+(1635, 'ja', 39, 'opinions', '{\"opinion\":\"ビール試飲ツアーは最高でした。\"}'),
+(1636, 'ja', 38, 'opinions', '{\"opinion\":\"ベルリンの歴史はとても興味深い。\"}'),
+(1637, 'ja', 130, 'opinions', '{\"opinion\":\"コンサートはとても雰囲気がありました。\"}'),
+(1638, 'ja', 31, 'opinions', '{\"opinion\":\"美しい城と公園。\"}'),
+(1639, 'ja', 30, 'opinions', '{\"opinion\":\"コンサートの雰囲気は忘れられない。\"}'),
+(1640, 'ja', 131, 'opinions', '{\"opinion\":\"素敵な城ですが、観光客がとても多いです。\"}'),
+(1641, 'ja', 32, 'opinions', '{\"opinion\":\"ドナウ川のほとりを散策するのは心地よい。\"}'),
+(1642, 'ja', 148, 'opinions', '{\"opinion\":\"とても楽しい遊園地です。\"}'),
+(1643, 'ja', 48, 'opinions', '{\"opinion\":\"プラーター遊園地はとても楽しいです。\"}'),
+(1644, 'ja', 49, 'opinions', '{\"opinion\":\"クリスマスマーケットの雰囲気は魔法のようだ。\"}'),
+(1645, 'ja', 132, 'opinions', '{\"opinion\":\"ドナウ川のほとりを散策するのは心地よい。\"}'),
+(1646, 'ja', 149, 'opinions', '{\"opinion\":\"その市場は雰囲気があるけれど、とても混雑している。\"}'),
+(1647, 'ja', 43, 'opinions', '{\"opinion\":\"とても美しい海岸です。\"}'),
+(1648, 'ja', 142, 'opinions', '{\"opinion\":\"アクロポリスは素晴らしい。\"}'),
+(1649, 'ja', 42, 'opinions', '{\"opinion\":\"アクロポリスは素晴らしい。\"}'),
+(1650, 'ja', 143, 'opinions', '{\"opinion\":\"美しい海岸。\"}'),
+(1651, 'ja', 145, 'opinions', '{\"opinion\":\"フィヨルドの景色は素晴らしい。\"}'),
+(1652, 'ja', 45, 'opinions', '{\"opinion\":\"フィヨルドのツアーは素晴らしかったです。\"}'),
+(1653, 'ja', 47, 'opinions', '{\"opinion\":\"ワルシャワの歴史的中心部は興味深い。\"}'),
+(1654, 'ja', 147, 'opinions', '{\"opinion\":\"素敵な街でしたが、滞在期間が短かったです。\"}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tábla szerkezet ehhez a táblához `users`
 --
 
 CREATE TABLE `users` (
@@ -2238,7 +2995,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- A tábla adatainak kiíratása `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `password`, `phone_number`, `gender`, `user_type`, `card_number`, `expiration`) VALUES
@@ -2344,11 +3101,11 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- Indexek a kiírt táblákhoz
 --
 
 --
--- Indexes for table `accommodations`
+-- A tábla indexei `accommodations`
 --
 ALTER TABLE `accommodations`
   ADD PRIMARY KEY (`id`),
@@ -2357,13 +3114,13 @@ ALTER TABLE `accommodations`
   ADD KEY `country_id` (`country_id`);
 
 --
--- Indexes for table `accommodations_details`
+-- A tábla indexei `accommodations_details`
 --
 ALTER TABLE `accommodations_details`
   ADD PRIMARY KEY (`apartman_id`);
 
 --
--- Indexes for table `billing_address`
+-- A tábla indexei `billing_address`
 --
 ALTER TABLE `billing_address`
   ADD PRIMARY KEY (`id`),
@@ -2371,13 +3128,13 @@ ALTER TABLE `billing_address`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `card_networks`
+-- A tábla indexei `card_networks`
 --
 ALTER TABLE `card_networks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cities`
+-- A tábla indexei `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`),
@@ -2385,21 +3142,21 @@ ALTER TABLE `cities`
   ADD KEY `country_id` (`country_id`);
 
 --
--- Indexes for table `countries`
+-- A tábla indexei `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `country_name` (`name`);
 
 --
--- Indexes for table `currency`
+-- A tábla indexei `currency`
 --
 ALTER TABLE `currency`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `shorted_name` (`shorted_name`);
 
 --
--- Indexes for table `experiences`
+-- A tábla indexei `experiences`
 --
 ALTER TABLE `experiences`
   ADD PRIMARY KEY (`id`),
@@ -2407,7 +3164,7 @@ ALTER TABLE `experiences`
   ADD KEY `city_name` (`city_id`);
 
 --
--- Indexes for table `favourite`
+-- A tábla indexei `favourite`
 --
 ALTER TABLE `favourite`
   ADD PRIMARY KEY (`id`),
@@ -2415,7 +3172,7 @@ ALTER TABLE `favourite`
   ADD KEY `apartman_id` (`apartman_id`);
 
 --
--- Indexes for table `history`
+-- A tábla indexei `history`
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`),
@@ -2424,7 +3181,7 @@ ALTER TABLE `history`
   ADD KEY `owner_id` (`owner_id`);
 
 --
--- Indexes for table `opinions`
+-- A tábla indexei `opinions`
 --
 ALTER TABLE `opinions`
   ADD PRIMARY KEY (`id`),
@@ -2432,113 +3189,113 @@ ALTER TABLE `opinions`
   ADD KEY `accommodation_id` (`item_id`);
 
 --
--- Indexes for table `report`
+-- A tábla indexei `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `translations`
+-- A tábla indexei `translations`
 --
 ALTER TABLE `translations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- A tábla indexei `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT for table `accommodations`
+-- AUTO_INCREMENT a táblához `accommodations`
 --
 ALTER TABLE `accommodations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
--- AUTO_INCREMENT for table `billing_address`
+-- AUTO_INCREMENT a táblához `billing_address`
 --
 ALTER TABLE `billing_address`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `card_networks`
+-- AUTO_INCREMENT a táblához `card_networks`
 --
 ALTER TABLE `card_networks`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT for table `cities`
+-- AUTO_INCREMENT a táblához `cities`
 --
 ALTER TABLE `cities`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT a táblához `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT for table `currency`
+-- AUTO_INCREMENT a táblához `currency`
 --
 ALTER TABLE `currency`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `experiences`
+-- AUTO_INCREMENT a táblához `experiences`
 --
 ALTER TABLE `experiences`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT for table `favourite`
+-- AUTO_INCREMENT a táblához `favourite`
 --
 ALTER TABLE `favourite`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `history`
+-- AUTO_INCREMENT a táblához `history`
 --
 ALTER TABLE `history`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
--- AUTO_INCREMENT for table `opinions`
+-- AUTO_INCREMENT a táblához `opinions`
 --
 ALTER TABLE `opinions`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
--- AUTO_INCREMENT for table `report`
+-- AUTO_INCREMENT a táblához `report`
 --
 ALTER TABLE `report`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `translations`
+-- AUTO_INCREMENT a táblához `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=900;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1655;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
--- Constraints for dumped tables
+-- Megkötések a kiírt táblákhoz
 --
 
 --
--- Constraints for table `accommodations`
+-- Megkötések a táblához `accommodations`
 --
 ALTER TABLE `accommodations`
   ADD CONSTRAINT `accommodations_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -2546,40 +3303,40 @@ ALTER TABLE `accommodations`
   ADD CONSTRAINT `accommodations_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `accommodations_details`
+-- Megkötések a táblához `accommodations_details`
 --
 ALTER TABLE `accommodations_details`
   ADD CONSTRAINT `accommodations_details_ibfk_1` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `billing_address`
+-- Megkötések a táblához `billing_address`
 --
 ALTER TABLE `billing_address`
   ADD CONSTRAINT `billing_address_ibfk_1` FOREIGN KEY (`history_id`) REFERENCES `history` (`id`),
   ADD CONSTRAINT `billing_address_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `cities`
+-- Megkötések a táblához `cities`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `experiences`
+-- Megkötések a táblához `experiences`
 --
 ALTER TABLE `experiences`
   ADD CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `experiences_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `favourite`
+-- Megkötések a táblához `favourite`
 --
 ALTER TABLE `favourite`
   ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `history`
+-- Megkötések a táblához `history`
 --
 ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `accommodations` (`owner_id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -2587,14 +3344,14 @@ ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_4` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `opinions`
+-- Megkötések a táblához `opinions`
 --
 ALTER TABLE `opinions`
   ADD CONSTRAINT `opinions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `opinions_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `report`
+-- Megkötések a táblához `report`
 --
 ALTER TABLE `report`
   ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);

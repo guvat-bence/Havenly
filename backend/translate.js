@@ -14,8 +14,8 @@ const translator = authKey ? new deepl.Translator(authKey) : null;
 // ha a kulcs rendben van ,akkor el végzi a fordítást és a kapott eredményt vissza küldi.
 async function translate(text, targetLanguage) {
 
-  // ha a translator == nul-al akkor hibával tér vissza.
-  if (translator == nul) {
+  // ha a translator == null-al akkor hibával tér vissza.
+  if (translator == null) {
     throw new Error("DeepL API key not configured");
   }
 
