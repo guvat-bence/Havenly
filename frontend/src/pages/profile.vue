@@ -381,23 +381,63 @@ function change(obj)
 
 function openMessages(data)
 {
-  talkingWith.value = `${data.first_name} ${data.middle_name} ${data.last_name}` ;
-  
-}
-
-// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
-axios.get(`http://localhost:3000/getMessages/${user.id.split(' ')[0]}`)
+  // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+  axios.post(`http://localhost:3000/getMessages`,{from_id:data.from_user_id,to_id:data.to_user_id})
   .then(details=>
   {
     console.log(details.data);
-    
-    userMessages.value = details.data.messages;
-    userContacts.value = details.data.contacts;
+    sendingMessage.message = '';
+    sendingMessage.from_id = user.id.split(" ")[0];
+    sendingMessage.to_id = data.from_user_id;
+    userMessages.value = details.data;
   })
   .catch(error=>
   {
     console.error(error);
   })
+
+  talkingWith.value = `${data.first_name} ${data.middle_name} ${data.last_name}` ;
+  
+}
+
+// adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
+.then(details=>
+{
+  console.log(details.data);
+  userContacts.value = details.data;
+})
+.catch(error=>
+{
+  console.error(error);
+})
+
+function sendMessage()
+{
+  console.log(sendingMessage);
+  sendingMessage.message = '';
+
+  axios.post(`http://localhost:3000/sendMessages`,sendingMessage)
+  .then(response=>{
+    
+    // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+    axios.post(`http://localhost:3000/getMessages`,{from_id:data.from_user_id,to_id:data.to_user_id})
+    .then(details=>
+    {
+      console.log(details.data);
+      sendingMessage.message = '';
+      sendingMessage.from_id = user.id.split(" ")[0];
+    })
+    .catch(error=>
+    {
+      console.error(error);
+    })
+  })
+  .catch(err=>{
+    console.log(err);
+
+  })
+}
 
 // végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
 // ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
@@ -446,38 +486,38 @@ function getTranslation()
 	}
 }
 
-  /**
-   * @param {int} id - felhasználó id
-   * Lekéri az adott id alapján a felhasználóhoz rendelet előzményeket
-   */
-  let getHistory = (id) => {
-    axios.post('http://localhost:3000/getHistory',{id:id})
-    .then(datas => {
+/**
+ * @param {int} id - felhasználó id
+ * Lekéri az adott id alapján a felhasználóhoz rendelet előzményeket
+ */
+let getHistory = (id) => {
+  axios.post('http://localhost:3000/getHistory',{id:id})
+  .then(datas => {
 
-      // tömb feltöltése
-      history.value = datas.data;
+    // tömb feltöltése
+    history.value = datas.data;
 
-      getTranslation();
-    })
-    .catch(e => console.error(e.response))
-  }
+    getTranslation();
+  })
+  .catch(e => console.error(e.response))
+}
 
-  let getReports = () => {
-    axios.get('http://localhost:3000/getReports ')
-    .then(datas => {
+let getReports = () => {
+  axios.get('http://localhost:3000/getReports ')
+  .then(datas => {
 
-      // tömb feltöltése
-      reports.value = datas.data;
-      console.log(reports.value)
+    // tömb feltöltése
+    reports.value = datas.data;
+    console.log(reports.value)
 
-      getTranslation();
-    })
-    .catch(e => console.error(e.response))
-  }
+    getTranslation();
+  })
+  .catch(e => console.error(e.response))
+}
 
-  let convertDateTime = (x) => {
-    return new Date(x).toISOString().split("T")[0]
-  }
+let convertDateTime = (x) => {
+  return new Date(x).toISOString().split("T")[0]
+}
 
 // ezzel a watch-al a model adatait figyeljük,
 // amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
@@ -1104,7 +1144,7 @@ watch(card,()=>
                 <button @click="deleteUser()"
                         type="button" 
                         class="col-10
-                               text-nowrap mx-3 my-3
+                               mx-3 my-3
                                btn btn-danger">
                   <i class="fa-solid fa-user-xmark fa-xl"></i>
                   {{ $t("profile.delete_user") }}
@@ -1180,7 +1220,7 @@ watch(card,()=>
                    style="height:600px;">
               
                 <!-- Bal oldali emberek megjelenítése -->
-                <div class="col-5 col-sm-4 border 
+                <div class="col-3 col-sm-4 border 
                             border-1 border-white 
                             rounded-start p-0 h-100">
 
@@ -1201,7 +1241,7 @@ watch(card,()=>
                 </div>
 
                 <!-- Jobb oldali üzenet megjelenítés -->
-                <div v-if="talkingWith!=''" class="col-7 col-sm-8 
+                <div v-if="talkingWith!=''" class="slide-fade-in col-9 col-sm-8 
                             d-flex flex-column bg-white 
                             rounded-end text-black p-0" 
                       style="height: 600px;">
@@ -1224,7 +1264,7 @@ watch(card,()=>
                               overflow-x-hidden">
 
                     <!-- Üzenetek -->
-                    <div class="row p-3 col-12"
+                    <div class="row col-12 my-3"
                          style="min-height: 40px;" 
                          v-for="x in userMessages"
                         :class="x.from_user_id == user.id.split(' ')[0]?'justify-content-end':'justify-content-start'" >
@@ -1233,22 +1273,33 @@ watch(card,()=>
                         {{ x.sended_time }}
                       </span>
 
-                      <div class="text-white rounded-3 col-10 col-sm-8 col-md-6"
-                           :class="x.from_user_id == user.id.split(' ')[0]?'bg-dark ':'bg-secondary'">
-                        <!-- Üzenet -->
-                        <span class="w-auto">
-                        {{ x.message }}
-                        </span>
+                      <div class="row col-10 col-sm-8 col-md-6 mt-2"
+                           :class="x.from_user_id == user.id.split(' ')[0]?'justify-content-end':'justify-content-start ms-2'" >
+                        <div class="text-white rounded-3 w-auto d-inline-block p-2"
+                            :class="x.from_user_id == user.id.split(' ')[0]?'bg-dark ms-1':'bg-secondary'">
+                          <!-- Üzenet -->
+                          <span class="w-auto">
+                          {{ x.message }}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   <!-- messageBar -->
-                  <div class=" py-2 bg-secondary rounded-end">
-                    <input class="form-control col-8" 
-                           type="search" 
-                           name="messageBar" 
-                           id="messageBar">
+                  <div class=" d-flex justify-content-center py-2 bg-secondary bg-opacity-50 rounded-end">
+                    <div class="ms-1 me-2 col-6 col-md-10">
+                        <input v-model="sendingMessage.message"
+                               class="form-control" 
+                               type="search" 
+                               name="messageBar" 
+                               id="messageBar">
+                    </div>
+                    <button class="w-auto btn btn-outline-light"
+                            @click="sendMessage()"
+                            :disabled="sendingMessage.message==''">
+                      <i class="fa-solid fa-paper-plane fa-xl"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1439,6 +1490,21 @@ input:not([type="checkbox"],[type="radio"])::after {
 body.messageBoxShowUp{
   pointer-events: none;
   overflow: hidden;
+}
+
+.slide-fade-in {
+  animation: slideFadeIn 0.6s ease forwards;
+}
+
+@keyframes slideFadeIn {
+  0% {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .fade-in {
