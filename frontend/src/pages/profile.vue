@@ -52,13 +52,15 @@ let messages =
   succesDeleting: t("profile.messages.succesDeleting")
 }
 
-// Változók definiállása.
-let history = ref([])
+//Beszélgetéshez szükséges adatok
 let sendingMessage = reactive({
   from_id:"",
   to_id:"",
   message:"",
 });
+
+// Változók definiállása.
+let history = ref([])
 let modelCopie = reactive({... model});
 let cardCopie = reactive({... card});
 let passwordCopie = {... passwords};
@@ -420,27 +422,29 @@ axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
 function sendMessage()
 {
   console.log(sendingMessage);
-  sendingMessage.message = '';
 
   axios.post(`http://localhost:3000/sendMessages`,sendingMessage)
   .then(response=>{
     
-    // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
-    axios.post(`http://localhost:3000/getMessages`,{from_id:data.from_user_id,to_id:data.to_user_id})
-    .then(details=>
+    if(response.data.affectedRows>0)
     {
-      console.log(details.data);
-      sendingMessage.message = '';
-      sendingMessage.from_id = user.id.split(" ")[0];
-    })
-    .catch(error=>
-    {
-      console.error(error);
-    })
+      // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+      axios.post(`http://localhost:3000/getMessages`,{from_id:sendingMessage.from_id,to_id:sendingMessage.to_id})
+      .then(details=>
+      {
+        console.log(details.data);
+        userMessages.value = details.data;
+        sendingMessage.message = '';
+        sendingMessage.from_id = user.id.split(" ")[0];
+      })
+      .catch(error=>
+      {
+        console.error(error);
+      })
+    }
   })
   .catch(err=>{
     console.log(err);
-
   })
 }
 
@@ -537,8 +541,6 @@ watch(card,()=>
 {
  change(card);
 },{deep:true})
-
-
 </script>
 <template>
   <div class="account">

@@ -1380,8 +1380,21 @@ app.post("/getMessages",(req,res)=>{
 // Üzenet küldése
 app.post("/sendMessages",(req,res)=>{
   let datas = req.body;
-
-  db.query(``,[],(err,result)=>{
+  
+  db.query(`INSERT INTO messages(
+              from_user_id,
+              to_user_id,
+              message)
+            VALUES(?,?,?)`,
+            [datas.from_id,datas.to_id,datas.message],
+            (err,result)=>{
     
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+    res.json(result);
+    return;
   })
 })
