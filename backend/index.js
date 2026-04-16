@@ -1345,8 +1345,8 @@ app.post("/deleteOpinion",(req,res) =>{
   })
 })
 
-// Üzenetek lekérezése
-app.get("/getMessages/:id",(req,res)=>{
+// Kontaktok lekérezése
+app.get("/getContacts/:id",(req,res)=>{
   let id = req.params.id;
 
   db.query(`SELECT DISTINCT
@@ -1367,31 +1367,42 @@ app.get("/getMessages/:id",(req,res)=>{
       return;
     }
 
-    if(contacts.length==0)
+    res.json(contacts);
+    return;
+  })
+})   
+
+// Üzenetek lekérezése
+app.post("/getMessages",(req,res)=>{
+  let datas = req.body;
+
+  db.query(`SELECT 
+              messages.from_user_id,
+              messages.to_user_id,
+              messages.sended_time,
+              messages.message
+            FROM messages
+            INNER JOIN users
+            ON users.id = messages.from_user_id
+            WHERE (messages.to_user_id = ? AND messages.from_user_id = ?) OR (messages.to_user_id = ? AND messages.from_user_id = ?)
+            ORDER BY messages.sended_time`,
+          [datas.from_id,datas.to_id,datas.to_id,datas.from_id,],(err,messages)=>{
+    if(err)
     {
-      res.json(contacts);
+      res.status(500).send("Adatbázis hiba");
       return;
     }
-    
-    db.query(`SELECT 
-                messages.from_user_id,
-                messages.to_user_id,
-                messages.sended_time,
-                messages.message
-              FROM messages
-              INNER JOIN users
-              ON users.id = messages.from_user_id
-              WHERE messages.to_user_id = ? OR messages.from_user_id = ?
-              ORDER BY messages.sended_time`,
-            [id,id],(err,messages)=>{
-      if(err)
-      {
-        res.status(500).send("Adatbázis hiba");
-        return;
-      }
 
-      res.json({contacts,messages});
-      return;
-    })
+    res.json(messages);
+    return;
+  })
+})
+
+// Üzenet küldése
+app.post("/sendMessages",(req,res)=>{
+  let datas = req.body;
+
+  db.query(``,[],(err,result)=>{
+    
   })
 })

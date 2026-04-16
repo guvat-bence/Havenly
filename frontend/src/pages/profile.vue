@@ -54,6 +54,11 @@ let messages =
 
 // Változók definiállása.
 let history = ref([])
+let sendingMessage = reactive({
+  from_id:"",
+  to_id:"",
+  message:"",
+});
 let modelCopie = reactive({... model});
 let cardCopie = reactive({... card});
 let passwordCopie = {... passwords};
