@@ -479,39 +479,18 @@ app.get("/getReports", (req, res) => {
   db.query(`
     SELECT r.id,
            r.user_id,
-           CONCAT(u.first_name, ' ', u.middle_name, ' ', u.last_name) AS full_name,
+           CONCAT(u.first_name, ' ', u.middle_name, ' ', u.last_name) AS reporter_full_name,
            r.message,
            r.message_type,
            r.item_type,
            r.item_id
     FROM report r
-    INNER JOIN users u ON r.user_id = u.id
-  `, async (err, reports) => {
-
+    INNER JOIN users u ON r.user_id = u.id 
+  `,(err, reports) => {
     if (err) {
-      return res.status(500).send('Sikertelen lekérdezés1');
+      return res.status(500).send('Sikertelen lekérdezés');
     }
-
-    try {
-      // Minden reporthoz lekérdezzük a megfelelő táblát
-      const promises = reports.map(x => {
-        return new Promise((resolve, reject) => {
-          db.query(`SELECT * FROM ${x.item_type} WHERE id = ?`, [x.item_id], (err, rows) => {
-            if (err) 
-              return reject(err);
-            
-            resolve({ report: x, data: rows[0] });
-          });
-        });
-      });
-
-      const results = await Promise.all(promises);
-
-      res.send(results);
-
-    } catch (err2) {
-      res.status(500).send('Sikertelen lekérdezés2: ' + err2);
-    }
+    res.send(reports)
   });
 });
 

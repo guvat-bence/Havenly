@@ -1206,8 +1206,33 @@ watch(card,()=>
                 tabindex="0">
             <div class="row my-2"
                   v-for="x in reports">
-              <div class="bg-black bg-opacity-25 rounded-3">
-                <h1>{{ x.data }}</h1>
+              <div class="bg-black bg-opacity-25 rounded-3 reportCards">
+                <div class="row">
+                  <div class="text-white-50 top-0 d-flex justify-content-between">
+                    <p>
+                      Azonosító: #{{ x.id }}
+                    </p>
+
+                    <p>
+                      Típus: {{ x.item_type }}
+                    </p>
+                  </div>
+
+                  <h5 class="text-white top-0">
+                    {{ x.reporter_full_name }}
+                  </h5>
+                </div>
+                <div class="row">
+                  <h6>
+                    {{ x.message_type }}
+                  </h6>
+                </div>
+
+                <div class="row mt-3">
+                  <p class="text-capitalize">
+                    {{ x.message }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1531,5 +1556,12 @@ body.messageBoxShowUp{
   from { opacity:1; transform: scale(1); }
   to   { opacity:0; transform: scale(0); }
 }
+.reportCards {
+  transition: 0.8s;
+}
 
+.reportCards:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+}
 </style>

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 15, 2026 at 11:48 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2026. Ápr 16. 13:45
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `havenly`
+-- Adatbázis: `havenly`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accommodations`
+-- Tábla szerkezet ehhez a táblához `accommodations`
 --
 
 CREATE TABLE `accommodations` (
@@ -45,7 +45,7 @@ CREATE TABLE `accommodations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `accommodations`
+-- A tábla adatainak kiíratása `accommodations`
 --
 
 INSERT INTO `accommodations` (`id`, `language_short_name`, `owner_id`, `country_id`, `city_id`, `name`, `folder_name`, `size`, `price`, `guest_number`, `bedroom`, `bed`, `bathroom`, `description`) VALUES
@@ -149,7 +149,7 @@ INSERT INTO `accommodations` (`id`, `language_short_name`, `owner_id`, `country_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accommodations_details`
+-- Tábla szerkezet ehhez a táblához `accommodations_details`
 --
 
 CREATE TABLE `accommodations_details` (
@@ -178,7 +178,7 @@ CREATE TABLE `accommodations_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `accommodations_details`
+-- A tábla adatainak kiíratása `accommodations_details`
 --
 
 INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `microwave`, `basic_spices`, `dishes`, `extra_bed_linen`, `darkening`, `night_lamp`, `towels`, `hair_dryer`, `smart_tv`, `bluetooth_speaker`, `usb_charger`, `work_table`, `suitcase_rack`, `iron`, `safe`, `balcony`, `board_games`, `free_wifi`, `parking_lot`) VALUES
@@ -282,7 +282,7 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `billing_address`
+-- Tábla szerkezet ehhez a táblához `billing_address`
 --
 
 CREATE TABLE `billing_address` (
@@ -302,7 +302,7 @@ CREATE TABLE `billing_address` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `card_networks`
+-- Tábla szerkezet ehhez a táblához `card_networks`
 --
 
 CREATE TABLE `card_networks` (
@@ -312,7 +312,7 @@ CREATE TABLE `card_networks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `card_networks`
+-- A tábla adatainak kiíratása `card_networks`
 --
 
 INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
@@ -394,7 +394,7 @@ INSERT INTO `card_networks` (`id`, `network_name`, `prefix`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Tábla szerkezet ehhez a táblához `cities`
 --
 
 CREATE TABLE `cities` (
@@ -404,7 +404,7 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cities`
+-- A tábla adatainak kiíratása `cities`
 --
 
 INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
@@ -626,7 +626,7 @@ INSERT INTO `cities` (`id`, `country_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Tábla szerkezet ehhez a táblához `countries`
 --
 
 CREATE TABLE `countries` (
@@ -635,7 +635,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `countries`
+-- A tábla adatainak kiíratása `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`) VALUES
@@ -713,7 +713,7 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currency`
+-- Tábla szerkezet ehhez a táblához `currency`
 --
 
 CREATE TABLE `currency` (
@@ -724,7 +724,7 @@ CREATE TABLE `currency` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `currency`
+-- A tábla adatainak kiíratása `currency`
 --
 
 INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
@@ -773,7 +773,7 @@ INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `experiences`
+-- Tábla szerkezet ehhez a táblához `experiences`
 --
 
 CREATE TABLE `experiences` (
@@ -788,7 +788,7 @@ CREATE TABLE `experiences` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `experiences`
+-- A tábla adatainak kiíratása `experiences`
 --
 
 INSERT INTO `experiences` (`id`, `language_short_name`, `country_id`, `city_id`, `name`, `folder_name`, `price`, `description`) VALUES
@@ -878,7 +878,7 @@ INSERT INTO `experiences` (`id`, `language_short_name`, `country_id`, `city_id`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favourite`
+-- Tábla szerkezet ehhez a táblához `favourite`
 --
 
 CREATE TABLE `favourite` (
@@ -888,7 +888,7 @@ CREATE TABLE `favourite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `favourite`
+-- A tábla adatainak kiíratása `favourite`
 --
 
 INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
@@ -943,7 +943,7 @@ INSERT INTO `favourite` (`id`, `user_id`, `apartman_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- Tábla szerkezet ehhez a táblához `history`
 --
 
 CREATE TABLE `history` (
@@ -958,7 +958,7 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `history`
+-- A tábla adatainak kiíratása `history`
 --
 
 INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price`, `rent_date`, `rent_beginning`, `rent_end`) VALUES
@@ -1088,7 +1088,7 @@ INSERT INTO `history` (`id`, `renter_id`, `owner_id`, `accommodation_id`, `price
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Tábla szerkezet ehhez a táblához `messages`
 --
 
 CREATE TABLE `messages` (
@@ -1100,7 +1100,7 @@ CREATE TABLE `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `messages`
+-- A tábla adatainak kiíratása `messages`
 --
 
 INSERT INTO `messages` (`id`, `from_user_id`, `to_user_id`, `sended_time`, `message`) VALUES
@@ -1111,7 +1111,7 @@ INSERT INTO `messages` (`id`, `from_user_id`, `to_user_id`, `sended_time`, `mess
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opinions`
+-- Tábla szerkezet ehhez a táblához `opinions`
 --
 
 CREATE TABLE `opinions` (
@@ -1125,7 +1125,7 @@ CREATE TABLE `opinions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `opinions`
+-- A tábla adatainak kiíratása `opinions`
 --
 
 INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rate`, `language_short_name`) VALUES
@@ -1284,7 +1284,7 @@ INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `opinion`, `rat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `report`
+-- Tábla szerkezet ehhez a táblához `report`
 --
 
 CREATE TABLE `report` (
@@ -1293,13 +1293,21 @@ CREATE TABLE `report` (
   `message` text NOT NULL,
   `message_type` varchar(40) NOT NULL,
   `item_type` varchar(40) NOT NULL,
-  `item_id` int(5) NOT NULL
+  `item_id` int(5) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `report`
+--
+
+INSERT INTO `report` (`id`, `user_id`, `message`, `message_type`, `item_type`, `item_id`, `status`) VALUES
+(1, 1, 'asd', 'incorrect_info', 'accommodations', 5, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `translations`
+-- Tábla szerkezet ehhez a táblához `translations`
 --
 
 CREATE TABLE `translations` (
@@ -1311,7 +1319,7 @@ CREATE TABLE `translations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `translations`
+-- A tábla adatainak kiíratása `translations`
 --
 
 INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`, `item`) VALUES
@@ -2981,7 +2989,7 @@ INSERT INTO `translations` (`id`, `language_short_name`, `item_id`, `item_name`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tábla szerkezet ehhez a táblához `users`
 --
 
 CREATE TABLE `users` (
@@ -2999,7 +3007,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- A tábla adatainak kiíratása `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `password`, `phone_number`, `gender`, `user_type`, `card_number`, `expiration`) VALUES
@@ -3105,11 +3113,11 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `middle_name`, `email`, `p
 (100, 'Ella', 'Russell', NULL, 'ella.r98@gmail.com', 'ERus98', '+15120000098', 'F', 'U', NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- Indexek a kiírt táblákhoz
 --
 
 --
--- Indexes for table `accommodations`
+-- A tábla indexei `accommodations`
 --
 ALTER TABLE `accommodations`
   ADD PRIMARY KEY (`id`),
@@ -3118,13 +3126,13 @@ ALTER TABLE `accommodations`
   ADD KEY `country_id` (`country_id`);
 
 --
--- Indexes for table `accommodations_details`
+-- A tábla indexei `accommodations_details`
 --
 ALTER TABLE `accommodations_details`
   ADD PRIMARY KEY (`apartman_id`);
 
 --
--- Indexes for table `billing_address`
+-- A tábla indexei `billing_address`
 --
 ALTER TABLE `billing_address`
   ADD PRIMARY KEY (`id`),
@@ -3132,13 +3140,13 @@ ALTER TABLE `billing_address`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `card_networks`
+-- A tábla indexei `card_networks`
 --
 ALTER TABLE `card_networks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cities`
+-- A tábla indexei `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`),
@@ -3146,21 +3154,21 @@ ALTER TABLE `cities`
   ADD KEY `country_id` (`country_id`);
 
 --
--- Indexes for table `countries`
+-- A tábla indexei `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `country_name` (`name`);
 
 --
--- Indexes for table `currency`
+-- A tábla indexei `currency`
 --
 ALTER TABLE `currency`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `shorted_name` (`shorted_name`);
 
 --
--- Indexes for table `experiences`
+-- A tábla indexei `experiences`
 --
 ALTER TABLE `experiences`
   ADD PRIMARY KEY (`id`),
@@ -3168,7 +3176,7 @@ ALTER TABLE `experiences`
   ADD KEY `city_name` (`city_id`);
 
 --
--- Indexes for table `favourite`
+-- A tábla indexei `favourite`
 --
 ALTER TABLE `favourite`
   ADD PRIMARY KEY (`id`),
@@ -3176,7 +3184,7 @@ ALTER TABLE `favourite`
   ADD KEY `apartman_id` (`apartman_id`);
 
 --
--- Indexes for table `history`
+-- A tábla indexei `history`
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`),
@@ -3185,13 +3193,13 @@ ALTER TABLE `history`
   ADD KEY `owner_id` (`owner_id`);
 
 --
--- Indexes for table `messages`
+-- A tábla indexei `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `opinions`
+-- A tábla indexei `opinions`
 --
 ALTER TABLE `opinions`
   ADD PRIMARY KEY (`id`),
@@ -3199,119 +3207,119 @@ ALTER TABLE `opinions`
   ADD KEY `accommodation_id` (`item_id`);
 
 --
--- Indexes for table `report`
+-- A tábla indexei `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `translations`
+-- A tábla indexei `translations`
 --
 ALTER TABLE `translations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- A tábla indexei `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT for table `accommodations`
+-- AUTO_INCREMENT a táblához `accommodations`
 --
 ALTER TABLE `accommodations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
--- AUTO_INCREMENT for table `billing_address`
+-- AUTO_INCREMENT a táblához `billing_address`
 --
 ALTER TABLE `billing_address`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `card_networks`
+-- AUTO_INCREMENT a táblához `card_networks`
 --
 ALTER TABLE `card_networks`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT for table `cities`
+-- AUTO_INCREMENT a táblához `cities`
 --
 ALTER TABLE `cities`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT a táblához `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT for table `currency`
+-- AUTO_INCREMENT a táblához `currency`
 --
 ALTER TABLE `currency`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `experiences`
+-- AUTO_INCREMENT a táblához `experiences`
 --
 ALTER TABLE `experiences`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT for table `favourite`
+-- AUTO_INCREMENT a táblához `favourite`
 --
 ALTER TABLE `favourite`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `history`
+-- AUTO_INCREMENT a táblához `history`
 --
 ALTER TABLE `history`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT a táblához `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `opinions`
+-- AUTO_INCREMENT a táblához `opinions`
 --
 ALTER TABLE `opinions`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
--- AUTO_INCREMENT for table `report`
+-- AUTO_INCREMENT a táblához `report`
 --
 ALTER TABLE `report`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `translations`
+-- AUTO_INCREMENT a táblához `translations`
 --
 ALTER TABLE `translations`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1655;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
--- Constraints for dumped tables
+-- Megkötések a kiírt táblákhoz
 --
 
 --
--- Constraints for table `accommodations`
+-- Megkötések a táblához `accommodations`
 --
 ALTER TABLE `accommodations`
   ADD CONSTRAINT `accommodations_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -3319,40 +3327,40 @@ ALTER TABLE `accommodations`
   ADD CONSTRAINT `accommodations_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `accommodations_details`
+-- Megkötések a táblához `accommodations_details`
 --
 ALTER TABLE `accommodations_details`
   ADD CONSTRAINT `accommodations_details_ibfk_1` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `billing_address`
+-- Megkötések a táblához `billing_address`
 --
 ALTER TABLE `billing_address`
   ADD CONSTRAINT `billing_address_ibfk_1` FOREIGN KEY (`history_id`) REFERENCES `history` (`id`),
   ADD CONSTRAINT `billing_address_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `cities`
+-- Megkötések a táblához `cities`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `experiences`
+-- Megkötések a táblához `experiences`
 --
 ALTER TABLE `experiences`
   ADD CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `experiences_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `favourite`
+-- Megkötések a táblához `favourite`
 --
 ALTER TABLE `favourite`
   ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`apartman_id`) REFERENCES `accommodations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `history`
+-- Megkötések a táblához `history`
 --
 ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `accommodations` (`owner_id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -3360,14 +3368,14 @@ ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_4` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `opinions`
+-- Megkötések a táblához `opinions`
 --
 ALTER TABLE `opinions`
   ADD CONSTRAINT `opinions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `opinions_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `accommodations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `report`
+-- Megkötések a táblához `report`
 --
 ALTER TABLE `report`
   ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
