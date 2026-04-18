@@ -381,7 +381,52 @@
     "human": "人",
     "login": "ログイン",
     "renting": "予約",
-    "information_text":"体験の説明および価格は参考情報としてのみ提供されています。"
+    "information_text":"体験の説明および価格は参考情報としてのみ提供されています。",
+    "opinion": {
+      "others_opinion": "他の人の意見:",
+      "opinion": "意見",
+      "write_opinion": "あなたの意見を書いてください！",
+      "send_opinion": "意見を送信",
+      "back": "キャンセル",
+      "report": "意見を報告！",
+      "upload_question": "操作を続行しますか？",
+      "succes_upload": "操作が成功しました！"
+    },
+    "report": {
+      "any_problems": "問題を見つけましたか？",
+      "report_to_we": "私たちに報告してください:",
+      "report_problem": "問題を報告！",
+      "report_type": "問題の種類",
+      "report_detail": "問題の詳細",
+      "choose": "-- 選択 --",
+      "itemsProblemTypes": {
+        "incorrect_info": "誤った情報",
+        "missing_info": "情報が不足しています",
+        "description_error": "説明が不正確 / 誤解を招く",
+        "image_issue": "画像が不適切",
+        "price_issue": "価格が間違っている / 一致しない",
+        "availability_issue": "在庫情報が不正確",
+        "location_issue": "場所が間違っている",
+        "duplicate": "重複した広告",
+        "inappropriate_content": "不適切なコンテンツ",
+        "other": "その他"
+      },
+      "reviewProblemTypes": {
+        "spam": "スパム / 広告",
+        "offensive": "攻撃的 / 下品な内容",
+        "fake_review": "偽のレビュー",
+        "irrelevant": "無関係",
+        "misleading": "誤解を招く",
+        "duplicate_review": "重複レビュー",
+        "hate_speech": "ヘイトスピーチ",
+        "personal_data": "個人情報を含む",
+        "other": "その他"
+      },
+      "question": "",
+      "send": "送信",
+      "yes": "はい",
+      "no": "いいえ"
+    }
   },
   "about_us":
   {

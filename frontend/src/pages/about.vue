@@ -59,7 +59,6 @@ let opinionModelCopie = {... opinionModel};
 let deleteType= ref(false);
 let choosedType= ref(false);
 let problemModelEmty = {... problemModel};
-let responseModalText = ref("");
 let daysname = computed(()=>(t('about.days_short')).split(","));
 let monthsname = computed(()=>(t('about.months')).split(","));
 let arriveDayId= ref(null); 
@@ -238,7 +237,6 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
 	datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
 
-
 	// tömb feltöltése
 	item.value = datas.data;
 	
@@ -329,7 +327,6 @@ if(props.table_name == "accommodations")
 		for(let y in allIcons)
 		{
 			allIcons[y]["text"] = computed(()=>(t(`about.extras.${y}`)));
-		
 		}
 
 		iconsAndTexts = allIcons;
@@ -680,11 +677,19 @@ function setReportModal(datas)
 
 	if(datas?.owner_id){
 		problemTypes.value = allProblemTypes["itemsProblemTypes"];
+		for(let x of problemTypes.value)
+		{
+			x.label = t(`about.report.itemsProblemTypes.${x.value}`)
+		}
 		problemModel.type = props.table_name;
 	
 	}
 	else{
 		problemTypes.value = allProblemTypes["reviewProblemTypes"];
+		for(let x of problemTypes.value)
+		{
+			x.label = t(`about.report.reviewProblemTypes.${x.value}`)
+		}
 		problemModel.type = "opinions";
 	}
 
@@ -1078,7 +1083,8 @@ watch(model,()=>
 							</div>
 
 							<!-- személyek száma szakasz -->
-							<div class="mb-3 row justify-content-center">
+							<div v-if="user.id.split(' ')[0] != item[0].owner_id"
+									 class="mb-3 row justify-content-center">
 
 								<!-- személyek száma szakasz label -->
 								<label for="guest_number" class="form-label col-12">
@@ -1094,7 +1100,7 @@ watch(model,()=>
 							</div>
 
               <!-- Foglalaás gomb -->
-							<button v-if="user.id!=''"
+							<button v-if="user.id!='' && user.id.split(' ')[0] != item[0].owner_id"
 											v-bind:disabled="rentedDayIds.length==0"
 											@click="renting()"
 											type="button"
@@ -1104,8 +1110,9 @@ watch(model,()=>
               </button>
 
 							 <!-- Bejelentkezés gomb gomb -->
-							<router-link to="/havenly/login" v-if="user.id ==''"
-										  class="btn btn-secondary col-6 
+							<router-link to="/havenly/login"
+													 v-if="user.id =='' && user.id.split(' ')[0] != item[0].owner_id"
+										       class="btn btn-secondary col-6 
                       				rounded-pill">
                 {{ $t('about.login') }}
               </router-link>
@@ -1117,27 +1124,28 @@ watch(model,()=>
 				<div class="row justify-content-center text-center mx-2 my-3
 										border border-2 rounded-3 bg-dark bg-opacity-50
 										col-12 col-sm-6 col-md-4 p-2">
-					<h4>Valami problémát talált?</h4>
-					<h4> Jelentsd nekünk:</h4>
+					<h4>{{ $t("about.report.any_problems") }}</h4>
+					<h4>{{ $t("about.report.report_to_we") }}</h4>
 					<button @click=" setReportModal(item[0])"
 									:disabled="user.id==null"
 									class="my-2 btn w-auto rounded-3 btn-danger">
 						<i class="fa-solid fa-ban"></i>
-						Probléma jelentése!
+						{{ $t("about.report.report_problem") }}
 					</button>
 
 				</div>
 		
 				<!-- Vélemény címe -->
 				<h4 v-if="opinions.length!=0"
-						class="my-3 text-center">Mások véleményei:
-					<span>({{ opinions.length }} vélemény)</span>
+						class="my-3 text-center">{{ $t("about.opinion.others_opinion") }}
+					<span>({{ opinions.length }} {{ $t("about.opinion.opinion") }})</span>
 				</h4>
 
 				<!-- Vélemény írása --> 
-				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null)"
+				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null && user.id.split(' ')[0] != item[0].owner_id)"
 						 class="row justify-content-center">
-					<div class="row justify-content-center 
+
+					<form class="row justify-content-center 
 											col-12 col-md-5 m-3 
 											rounded-3 bg-white 
 											text-dark border border-white">
@@ -1147,7 +1155,7 @@ watch(model,()=>
 							<!-- Label -->
 							<label class="form-label col-5" 
 										 for="asd">
-								Írja meg a saját véleményét!
+								{{ $t("about.opinion.write_opinion") }}
 							</label>
 
 							<!-- értékelési szintje -->
@@ -1175,20 +1183,22 @@ watch(model,()=>
 														sendedProblem = true;openModal();"
 										class="my-2 btn w-auto rounded-4 
 													 btn-primary"
+										type="button"
 										:disabled="opinionModel.message==''|| opinionModel.rate==0
 											|| JSON.stringify(opinionModel)==JSON.stringify(opinionModelCopie)">
-							Vélemény beküldése!
+							{{ $t("about.opinion.send_opinion") }}
 						</button>
 
 						<!-- Mégsem gomb -->
 						<button @click="resetOpinion()"
 										class="my-2 ms-1 btn w-auto rounded-4 
 													 btn-secondary"
+										type="button"
 										:disabled="JSON.stringify(opinionModel)==JSON.stringify(opinionModelEmty)">
-							Mégsem
+							{{ $t("about.opinion.back") }}
 						</button>
 
-					</div>
+					</form>
 				</div>
 
 				<!-- Vélemény --> 
@@ -1211,41 +1221,47 @@ watch(model,()=>
 					</div>
 
 					<!-- maga a vélemény -->
-					<p class="p-2 text-break">{{opinion["opinion"] }}</p>
+					<p class="my-3 text-break">{{opinion["opinion"] }}</p>
 
-					<!-- Vélemény szerkesztése gomb -->
-					<button v-if="user.id.split(' ')[0] == opinion.user_id"
-									@click="deleteType = false;
-													editOpinion(opinion);"
-									:disabled="user.id==null"
-									class="my-2 btn w-auto rounded-4 
-												 me-1 btn-primary">
-						<i class="fa-regular fa-pen-to-square"></i>
-						Szerkesztés
-					</button>
-					
-					<!-- Vélemény törlése gomb -->
-					<button v-if="user.user_type=='A'"
-									@click="modalType = 'report';
-													sendedProblem = true;
-													deleteType = true;
-													opinionModel.opinion_id = opinion.id;
-													openModal();"
-									:disabled="user.id==null"
-									class="my-2 btn w-auto rounded-4 
-												  me-auto btn-secondary">
-						<i class="fa-solid fa-trash-can"></i>
-						Törlés
-					</button>
+					<div class="d-flex justify-content-center p-0">
 
-					<!-- Vélemény jelentés gomb -->
-					<button @click=" setReportModal(opinion)"
-									:disabled="user.id==null"
-									class="my-2 btn w-auto rounded-4 
-												 ms-auto btn-danger">
-						<i class="fa-solid fa-ban"></i>
-						Vélemény jelentése!
-					</button>
+						<div class="d-flex justify-content-start col-6">
+
+							<!-- Vélemény szerkesztése gomb -->
+							<button v-if="user.id.split(' ')[0] == opinion.user_id"
+											@click="deleteType = false;
+															editOpinion(opinion);"
+											:disabled="user.id==null"
+											class="my-1 mx-1 btn w-auto rounded-4 
+														btn-primary">
+								<i class="fa-regular fa-pen-to-square"></i>
+							</button>
+							
+							<!-- Vélemény törlése gomb -->
+							<button v-if="user.user_type=='A'"
+											@click="modalType = 'report';
+															sendedProblem = true;
+															deleteType = true;
+															opinionModel.opinion_id = opinion.id;
+															openModal();"
+											:disabled="user.id==null"
+											class="btn w-auto rounded-4 
+														my-1 mx-1 btn-secondary">
+								<i class="fa-solid fa-trash-can"></i>
+							</button>
+
+						</div>
+						<div class="d-flex justify-content-end col-6">
+							<!-- Vélemény jelentés gomb -->
+							<button @click=" setReportModal(opinion)"
+											:disabled="user.id==null"
+											class="my-1 mx-1 btn w-auto rounded-4 
+														btn-danger">
+								<i class="fa-solid fa-ban"></i>
+								{{ $t("about.opinion.report") }}
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -1330,7 +1346,7 @@ watch(model,()=>
 								<!-- Label -->
 								<label for="problem_type" 
 											class="form-label">
-									Probléma fajtája
+									{{ $t("about.report.report_type") }}
 								</label>
 
 								<!-- Select -->
@@ -1341,8 +1357,8 @@ watch(model,()=>
 
 									<!-- alapvető válasz -->
 									<option value="" 
-													selected>
-										-- Válasszon -- 
+													selected hidden>
+										{{ $t("about.report.choose") }} 
 									</option>
 									<option v-for="item in problemTypes"
 													:value="item.value">
@@ -1357,7 +1373,7 @@ watch(model,()=>
 								<!-- Label -->
 								<label for="problem_description" 
 											class="form-label">
-									Probléma részletei
+									{{ $t("about.report.report_detail") }} 
 								</label>
 
 								<!-- Textarea -->
@@ -1370,22 +1386,24 @@ watch(model,()=>
 													maxlength="200">
 								</textarea>
 							</div>
-
-							<!-- Beküldés gomb -->
-							<button :disabled="problemModel.description==''|| problemModel.name==''"
-											type="button"
-											class="btn btn-dark w-auto mb-2"
-											@click="sendProblem()">
-								Beküldés
-							</button>
+							<div class="mb-3 d-flex justify-content-center">
+								<!-- Beküldés gomb -->
+								<button :disabled="problemModel.description==''|| problemModel.name==''"
+												type="button"
+												class="btn btn-dark w-auto mb-2"
+												@click="sendProblem()">
+									{{ $t("about.report.send") }}
+								</button>
+							</div>
+							
 						</div>
 
 						<div v-if="sendedProblem" 
 								 class="row justify-content-center">
 							<h1 class="text-center m-4">
 								{{ choosedType
-										?responseModalText='Sikeres művelet!':
-										responseModalText='Kivánja folytatni a műveletett?' }}
+										?$t('about.opinion.succes_upload'):
+										$t('about.opinion.upload_question') }}
 							</h1>
 
 							<!-- Beküldés gomb -->
@@ -1393,7 +1411,7 @@ watch(model,()=>
 											type="button"
 											class="btn btn-primary w-auto mb-2"
 											@click="opinionsOptions(opinionModel)">
-								Igen
+								{{ $t("about.report.yes") }}
 							</button>
 
 							<!-- Beküldés gomb -->
@@ -1401,7 +1419,7 @@ watch(model,()=>
 											type="button"
 											class="btn btn-secondary w-auto mb-2 mx-1"
 											@click="closeModal()">
-								Nem
+								{{ $t("about.report.no") }}
 							</button>
 						</div>
 					</form>

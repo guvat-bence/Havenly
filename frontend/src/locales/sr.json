@@ -381,7 +381,52 @@
     "human": "особа",
     "login": "пријава",
     "renting": "резервација",
-    "information_text":"Опис и цена искуства служе само у информативне сврхе."
+    "information_text":"Опис и цена искуства служе само у информативне сврхе.",
+    "opinion": {
+      "others_opinion": "Мишљења других:",
+      "opinion": "мишљење",
+      "write_opinion": "Напишите своје мишљење!",
+      "send_opinion": "Пошаљи мишљење",
+      "back": "Откажи",
+      "report": "Пријави мишљење!",
+      "upload_question": "Да ли желите да наставите?",
+      "succes_upload": "Операција успешна!"
+    },
+    "report": {
+      "any_problems": "Пронашли сте проблем?",
+      "report_to_we": "Пријавите нам:",
+      "report_problem": "Пријави проблем!",
+      "report_type": "Врста проблема",
+      "report_detail": "Детаљи проблема",
+      "choose": "-- Изаберите --",
+      "itemsProblemTypes": {
+        "incorrect_info": "Нетачне информације",
+        "missing_info": "Недостају информације",
+        "description_error": "Опис нетачан / обмањујући",
+        "image_issue": "Слике нису одговарајуће",
+        "price_issue": "Погрешна цена / не поклапа се",
+        "availability_issue": "Погрешна доступност",
+        "location_issue": "Погрешна локација",
+        "duplicate": "Дуплирани оглас",
+        "inappropriate_content": "Непримерен садржај",
+        "other": "Остало"
+      },
+      "reviewProblemTypes": {
+        "spam": "Спам / реклама",
+        "offensive": "Увредљив / вулгаран садржај",
+        "fake_review": "Лажна рецензија",
+        "irrelevant": "Нерелевантно",
+        "misleading": "Обмањујуће",
+        "duplicate_review": "Дуплирана рецензија",
+        "hate_speech": "Говор мржње",
+        "personal_data": "Садржи личне податке",
+        "other": "Остало"
+      },
+      "question": "",
+      "send": "Пошаљи",
+      "yes": "Да",
+      "no": "Не"
+    }
   },
   "about_us":
   {

@@ -381,7 +381,52 @@
     "human": "person",
     "login": "Anmelden",
     "renting": "Buchung",
-    "information_text":"Die Beschreibung und der Preis des Erlebnisses dienen nur zu Informationszwecken."
+    "information_text":"Die Beschreibung und der Preis des Erlebnisses dienen nur zu Informationszwecken.",
+    "opinion": {
+      "others_opinion": "Meinungen anderer:",
+      "opinion": "Meinung",
+      "write_opinion": "Schreiben Sie Ihre eigene Meinung!",
+      "send_opinion": "Meinung senden",
+      "back": "Abbrechen",
+      "report": "Meinung melden!",
+      "upload_question": "Möchten Sie den Vorgang fortsetzen?",
+      "succes_upload": "Vorgang erfolgreich!"
+    },
+    "report": {
+      "any_problems": "Haben Sie ein Problem gefunden?",
+      "report_to_we": "Melden Sie es uns:",
+      "report_problem": "Problem melden!",
+      "report_type": "Art des Problems",
+      "report_detail": "Problemdetails",
+      "choose": "-- Wählen --",
+      "itemsProblemTypes": {
+        "incorrect_info": "Falsche Informationen",
+        "missing_info": "Fehlende Informationen",
+        "description_error": "Beschreibung ungenau / irreführend",
+        "image_issue": "Bilder sind ungeeignet",
+        "price_issue": "Falscher Preis / stimmt nicht überein",
+        "availability_issue": "Falsche Verfügbarkeit",
+        "location_issue": "Falscher Standort",
+        "duplicate": "Doppelte Anzeige",
+        "inappropriate_content": "Unangemessener Inhalt",
+        "other": "Sonstiges"
+      },
+      "reviewProblemTypes": {
+        "spam": "Spam / Werbung",
+        "offensive": "Beleidigender / vulgärer Inhalt",
+        "fake_review": "Gefälschte Bewertung",
+        "irrelevant": "Irrelevant",
+        "misleading": "Irreführend",
+        "duplicate_review": "Doppelte Bewertung",
+        "hate_speech": "Hassrede",
+        "personal_data": "Enthält persönliche Daten",
+        "other": "Sonstiges"
+      },
+      "question": "",
+      "send": "Senden",
+      "yes": "Ja",
+      "no": "Nein"
+    }
   },
   "about_us":
   {

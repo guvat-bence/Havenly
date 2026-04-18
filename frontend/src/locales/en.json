@@ -377,7 +377,52 @@
     "human": "person",
     "login": "Login",
     "renting": "Booking",
-    "information_text":"The description and price of the experience are for informational purposes only."
+    "information_text":"The description and price of the experience are for informational purposes only.",
+    "opinion": {
+      "others_opinion": "Others' opinions:",
+      "opinion": "opinion",
+      "write_opinion": "Write your own opinion!",
+      "send_opinion": "Submit opinion",
+      "back": "Cancel",
+      "report": "Report opinion!",
+      "upload_question": "Do you want to continue the operation?",
+      "succes_upload": "Operation successful!"
+    },
+    "report": {
+      "any_problems": "Found a problem?",
+      "report_to_we": "Report it to us:",
+      "report_problem": "Report a problem!",
+      "report_type": "Problem type",
+      "report_detail": "Problem details",
+      "choose": "-- Choose --",
+      "itemsProblemTypes": {
+        "incorrect_info": "Incorrect information",
+        "missing_info": "Missing information",
+        "description_error": "Description inaccurate / misleading",
+        "image_issue": "Images are not appropriate",
+        "price_issue": "Incorrect price / mismatch",
+        "availability_issue": "Incorrect availability",
+        "location_issue": "Incorrect location",
+        "duplicate": "Duplicate listing",
+        "inappropriate_content": "Inappropriate content",
+        "other": "Other"
+      },
+      "reviewProblemTypes": {
+        "spam": "Spam / advertisement",
+        "offensive": "Offensive / vulgar content",
+        "fake_review": "Fake review",
+        "irrelevant": "Irrelevant",
+        "misleading": "Misleading",
+        "duplicate_review": "Duplicate review",
+        "hate_speech": "Hate speech",
+        "personal_data": "Contains personal data",
+        "other": "Other"
+      },
+      "question": "",
+      "send": "Submit",
+      "yes": "Yes",
+      "no": "No"
+    }
   },
   "about_us": {
     "about_us": "About Us",

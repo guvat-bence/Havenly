@@ -397,6 +397,8 @@ function openMessages(data)
     sendingMessage.from_id = user.id.split(" ")[0];
     sendingMessage.to_id = data.from_user_id;
     userMessages.value = details.data;
+
+    scrollToBottom();
   })
   .catch(error=>
   {
@@ -419,9 +421,18 @@ axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
   console.error(error);
 })
 
+function scrollToBottom()
+{
+  setTimeout(()=>{
+    
+    let messageBox = document.body.querySelector("div#messageBox");
+    messageBox.scrollTop = messageBox.scrollHeight;
+
+  },50)
+}
+
 function sendMessage()
 {
-  console.log(sendingMessage);
 
   axios.post(`http://localhost:3000/sendMessages`,sendingMessage)
   .then(response=>{
@@ -436,6 +447,8 @@ function sendMessage()
         userMessages.value = details.data;
         sendingMessage.message = '';
         sendingMessage.from_id = user.id.split(" ")[0];
+
+        scrollToBottom();
       })
       .catch(error=>
       {
@@ -1247,7 +1260,8 @@ watch(card,()=>
                tabindex="0">
 
               <!-- Maga az egész beszélgetés -->
-              <div v-if="userContacts!=''" class="row justify-content-center 
+              <div v-if="userContacts!=''" 
+                   class="row justify-content-center 
                           overflow-y-hidden" 
                    style="height:600px;">
               
@@ -1273,16 +1287,17 @@ watch(card,()=>
                 </div>
 
                 <!-- Jobb oldali üzenet megjelenítés -->
-                <div v-if="talkingWith!=''" class="slide-fade-in col-9 col-sm-8 
+                <div v-if="talkingWith!=''"
+                     class="slide-fade-in col-9 col-sm-8 
                             d-flex flex-column bg-white 
                             rounded-end text-black p-0" 
-                      style="height: 600px;">
+                     style="height: 600px;">
                   
                   <!-- Címzett kiírása -->
                   <div class="d-flex w-100 align-items-center 
                               border-bottom border-secondary 
                               bg-secondary bg-opacity-25" 
-                        style="height: 40px;">
+                       style="height: 40px;">
 
                     <!-- Címzett -->
                     <span class="ms-1">
@@ -1293,7 +1308,8 @@ watch(card,()=>
                   <!-- Üzenet rész -->
                   <div class="flex-grow-1 
                               overflow-y-auto 
-                              overflow-x-hidden">
+                              overflow-x-hidden"
+                        id = "messageBox">
 
                     <!-- Üzenetek -->
                     <div class="row col-12 my-3"
@@ -1310,7 +1326,7 @@ watch(card,()=>
                         <div class="text-white rounded-3 w-auto d-inline-block p-2"
                             :class="x.from_user_id == user.id.split(' ')[0]?'bg-dark ms-1':'bg-secondary'">
                           <!-- Üzenet -->
-                          <span class="w-auto">
+                          <span class="w-auto text-break">
                           {{ x.message }}
                           </span>
                         </div>
@@ -1320,13 +1336,18 @@ watch(card,()=>
 
                   <!-- messageBar -->
                   <div class=" d-flex justify-content-center py-2 bg-secondary bg-opacity-50 rounded-end">
+                    
+                    <!-- üzenet írása -->
                     <div class="ms-1 me-2 col-6 col-md-10">
                         <input v-model="sendingMessage.message"
                                class="form-control" 
                                type="search" 
                                name="messageBar" 
+                               @keydown="$event.key=='Enter'&&sendingMessage.message!=''?sendMessage():''"
                                id="messageBar">
                     </div>
+
+                    <!-- Üzenet küldés gomb -->
                     <button class="w-auto btn btn-outline-light"
                             @click="sendMessage()"
                             :disabled="sendingMessage.message==''">
@@ -1335,6 +1356,8 @@ watch(card,()=>
                   </div>
                 </div>
               </div>
+
+              <!--  HA nincs még beszélgetése opció -->
               <div v-if="userContacts==''"
                    class="text-center">
                 <h2>Még nincsenek beszélgetései! Foglaljon le egy szállást, hogy ezt a funkciót használni tudja!</h2>

@@ -381,7 +381,52 @@
     "human": "persona",
     "login": "Accesso",
     "renting": "Prenotazione",
-    "information_text":"La descrizione e il prezzo dell'esperienza sono solo a scopo informativo."
+    "information_text":"La descrizione e il prezzo dell'esperienza sono solo a scopo informativo.",
+    "opinion": {
+      "others_opinion": "Opinioni degli altri:",
+      "opinion": "opinione",
+      "write_opinion": "Scrivi la tua opinione!",
+      "send_opinion": "Invia opinione",
+      "back": "Annulla",
+      "report": "Segnala opinione!",
+      "upload_question": "Vuoi continuare l'operazione?",
+      "succes_upload": "Operazione riuscita!"
+    },
+    "report": {
+      "any_problems": "Hai trovato un problema?",
+      "report_to_we": "Segnalalo a noi:",
+      "report_problem": "Segnala un problema!",
+      "report_type": "Tipo di problema",
+      "report_detail": "Dettagli del problema",
+      "choose": "-- Scegli --",
+      "itemsProblemTypes": {
+        "incorrect_info": "Informazioni errate",
+        "missing_info": "Informazioni mancanti",
+        "description_error": "Descrizione imprecisa / fuorviante",
+        "image_issue": "Immagini non appropriate",
+        "price_issue": "Prezzo errato / non corrisponde",
+        "availability_issue": "Disponibilità errata",
+        "location_issue": "Posizione errata",
+        "duplicate": "Annuncio duplicato",
+        "inappropriate_content": "Contenuto inappropriato",
+        "other": "Altro"
+      },
+      "reviewProblemTypes": {
+        "spam": "Spam / pubblicità",
+        "offensive": "Contenuto offensivo / volgare",
+        "fake_review": "Recensione falsa",
+        "irrelevant": "Irrilevante",
+        "misleading": "Fuorviante",
+        "duplicate_review": "Recensione duplicata",
+        "hate_speech": "Incitamento all'odio",
+        "personal_data": "Contiene dati personali",
+        "other": "Altro"
+      },
+      "question": "",
+      "send": "Invia",
+      "yes": "Sì",
+      "no": "No"
+    }
   },
   "about_us":
   {

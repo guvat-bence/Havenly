@@ -85,7 +85,56 @@
     "human":"fő",
     "login":"Bejelentkezés",
     "renting":"Foglalás",
-    "information_text":"Az élmény leírása és ára csak tájékoztató jellegű."
+    "information_text":"Az élmény leírása és ára csak tájékoztató jellegű.",
+    "opinion":
+    {
+      "others_opinion":"Mások véleményei:",
+      "opinion":"vélemény",
+      "write_opinion":"Írja meg a saját véleményét!",
+      "send_opinion":"Vélemény beküldése",
+      "back":"Mégsem",
+      "report":"Vélemény jelentése!",
+      "upload_question":"Kivánja folytatni a műveletett?",
+      "succes_upload":"Sikeres művelet!"
+    },
+    "report":
+    {
+      "any_problems":"Valami problémát talált?",
+      "report_to_we":"Jelentsd nekünk:",
+      "report_problem":"Probléma jelentése!",
+      "report_type":"Probléma fajtája",
+      "report_detail":"Probléma részletei",
+      "choose":"-- Válasszon --",
+      "itemsProblemTypes":
+      {
+        "incorrect_info": "Hibás információ",
+        "missing_info": "Hiányzó információ",
+        "description_error": "Leírás pontatlan / félrevezető",
+        "image_issue": "Képek nem megfelelőek",
+        "price_issue": "Ár hibás / nem egyezik",
+        "availability_issue": "Elérhetőség hibás",
+        "location_issue": "Helyszín hibás",
+        "duplicate": "Duplikált hirdetés",
+        "inappropriate_content": "Nem megfelelő tartalom",
+        "other": "Egyéb"
+      },
+      "reviewProblemTypes":
+      {
+        "spam": "Spam / reklám",
+        "offensive": "Sértő / trágár tartalom",
+        "fake_review": "Valótlan vélemény",
+        "irrelevant": "Nem releváns",
+        "misleading": "Félrevezető",
+        "duplicate_review": "Duplikált vélemény",
+        "hate_speech": "Gyűlöletkeltő tartalom",
+        "personal_data": "Személyes adatot tartalmaz",
+        "other": "Egyéb"
+      },
+      "question":"",
+      "send":"Beküldés",
+      "yes":"Igen",
+      "no":"Nem"
+    } 
   },
   "search":{
     "search_title":"Keresés",
