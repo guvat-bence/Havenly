@@ -418,6 +418,7 @@ function imageShow(img)
 	openModal();
 }
 
+// Modal meghívása
 function openModal()
 {
 	modal = document.querySelector("#imageShowModal");
@@ -657,6 +658,7 @@ function showDays()
 	}
 }
 
+// Átküldjük a foglalás oldanak a szükséges adatokat.
 function renting()
 {
 	rent.accommodation_full_price = rent_price.value;
@@ -669,12 +671,14 @@ function renting()
 	router.replace({path:'/havenly/basket'})
 }
 
+// beállítjuk modalt az alapján hogy, mit szeretnénk megvalósítani.
 function setReportModal(datas)
 {
 	sendedProblem.value = false;
 
 	Object.assign(problemModel,problemModelEmty);
 
+	// ha van owner_id akkor a szállások/élmények problémák listáját tölti be.
 	if(datas?.owner_id){
 		problemTypes.value = allProblemTypes["itemsProblemTypes"];
 		for(let x of problemTypes.value)
@@ -684,6 +688,7 @@ function setReportModal(datas)
 		problemModel.type = props.table_name;
 	
 	}
+	// ha nincs owner_id-ja akkor pedig a vélemények probléma listáját tölti be.
 	else{
 		problemTypes.value = allProblemTypes["reviewProblemTypes"];
 		for(let x of problemTypes.value)
@@ -693,31 +698,35 @@ function setReportModal(datas)
 		problemModel.type = "opinions";
 	}
 
+	// beállítjuk az id-kat és a a modelType-ot. 
 	modalType.value = "report";
 	problemModel.item_id = datas.id;
 	problemModel.user_id = user.id.split(" ")[0];
 
+	// Megnyitjuk a modalt().
 	openModal();
 }
 
+// feltöltjük az adott problémát a az adatbázisba.
 function sendProblem(){
 	
 	axios.post("http://localhost:3000/sendProblem",problemModel)
 	.then(response=>{
 
+		// Ha sikeres volt a feltöltés akkor bele megy.
 		if(response.data.affectedRows)
 		{
+			// átállítjuk a modalhoz kapcsolatos értékeket.
 			choosedType.value = true;
 			sendedProblem.value = true;
-			
 		}
 	})
 	.catch(err=>{
 		console.log(err);
 	})
-
 }
 
+// Beállítjuk az értékeléshez a csillagokat
 function selectStar(x)
 {
 	let star = document.querySelectorAll(".opinion-star");
@@ -737,6 +746,7 @@ function selectStar(x)
 	}
 }
 
+// Megszerezzük az összes értékelés azt adott tárgyhoz 
 function getAllOpinions()
 {
 	axios.post(`http://localhost:3000/opinions`,
@@ -750,17 +760,18 @@ function getAllOpinions()
 	})
 }
 
+// Elküldjük az adott vélemény az adatbázisba.
 function sendOpinion()
 {
-
 	console.log(opinionModel.rate);
-	
 
+	// Beállítjuk az id-kat
 	opinionModel.item_id = item.value[0].id;
 	opinionModel.user_id = user.id.split(" ")[0];
 	
 	let url = "";
 
+	//beállítjuk az url-t attól függően, hogy módosítjuk vagy feltöltjük a az adott véleményt
 	switch(opinionModelCopie.opinion_id)
 	{
 		case '':
@@ -771,10 +782,15 @@ function sendOpinion()
 			break;
 	}
 
+	// feltöltjük a váleményt
 	axios.post(`http://localhost:3000/${url}`,opinionModel)
 	.then(response=>{
+
+		// HA sikeres volt a feltöltés akkkor bele megy.
 		if(response.data.affectedRows)
 		{
+			// Vissza állítjuk az értékeket az alaplvető beállításokra
+			// A modalt pedig hogy jelezze a feltöltés sikerét
 			modalType.value = 'report';
 			sendedProblem.value = true;
 			Object.assign(opinionModel,opinionModelEmty);
@@ -785,7 +801,10 @@ function sendOpinion()
 				item.classList.add("text-secondary");
 			})
 
+			// MEnyitjuk a modalt
 			openModal();
+
+			// Lehívjuk az összes véleményt
 			getAllOpinions();
 		}
 	})
@@ -794,6 +813,8 @@ function sendOpinion()
 	})
 }
 
+// HA módosítani szeretnénk az éréteket a véleménynél,
+// akkor ez írja át a szükséges adatokat hozzá.
 function editOpinion(x)
 {
 	opinionModel.opinion_id=x.id;
@@ -815,6 +836,7 @@ function editOpinion(x)
 
 }
 
+// Visszaállítjuk a véleményt alapra.
 function resetOpinion()
 {
 	Object.assign(opinionModel,opinionModelEmty);
@@ -827,12 +849,17 @@ function resetOpinion()
 	})
 }
 
+// Ennek segítségével törlünk ki véleményket.
 function deleteOpinion(x)
 {
 	axios.post(`http://localhost:3000/deleteOpinion`,x)
 	.then(response=>{
+
+		// HA sikeres volt a törlés akkor bele megy.
 		if(response.data.affectedRows)
 		{
+			// Vissza állítjuk az értékeket az alaplvető beállításokra
+			// A modalt pedig hogy jelezze a feltöltés sikerét
 			modalType.value = 'report';
 			sendedProblem.value = true;
 			opinionModel.opinion_id = "";
@@ -844,6 +871,7 @@ function deleteOpinion(x)
 				item.classList.add("text-secondary");
 			})
 
+			// Megnyitja a modalt és lehívja az összes vélemény.
 			openModal();
 			getAllOpinions();
 		}
@@ -853,6 +881,7 @@ function deleteOpinion(x)
 	})
 }
 
+// Beállítjuk hogy melyik folyamatott szeretnénk csinálni.
 function opinionsOptions(value)
 {
 	choosedType.value = true;
@@ -988,7 +1017,9 @@ watch(model,()=>
 					</div>
 
 					<!-- Az adott szállás/élmény leírása -->
-					<div  :class="props.table_name=='experiences'?'col-md-8 col-xl-8':'col-md-4 col-xl-4'"
+					<div  :class="props.table_name=='experiences'
+													?'col-md-8 col-xl-8'
+													:'col-md-4 col-xl-4'"
 								class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
                      text-center align-items-center border border-2 rounded-3 
 										 col-12">
@@ -1145,11 +1176,13 @@ watch(model,()=>
 				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null && user.id.split(' ')[0] != item[0].owner_id)"
 						 class="row justify-content-center">
 
+					<!-- A vélemény form-ja -->
 					<form class="row justify-content-center 
 											col-12 col-md-5 m-3 
 											rounded-3 bg-white 
 											text-dark border border-white">
 
+						<!-- Label -->
 						<div class="row mb-3 mt-3">
 
 							<!-- Label -->
@@ -1186,6 +1219,7 @@ watch(model,()=>
 										type="button"
 										:disabled="opinionModel.message==''|| opinionModel.rate==0
 											|| JSON.stringify(opinionModel)==JSON.stringify(opinionModelCopie)">
+							<i class="fa-solid fa-arrow-up-from-bracket"></i>
 							{{ $t("about.opinion.send_opinion") }}
 						</button>
 
@@ -1195,6 +1229,7 @@ watch(model,()=>
 													 btn-secondary"
 										type="button"
 										:disabled="JSON.stringify(opinionModel)==JSON.stringify(opinionModelEmty)">
+							<i class="fa-solid fa-circle-xmark"></i>
 							{{ $t("about.opinion.back") }}
 						</button>
 
@@ -1337,6 +1372,7 @@ watch(model,()=>
 							</button>
 						</div>
 
+						<!-- probléma rész -->
 						<div v-if="sendedProblem!= true"
 								 class="row justify-content-center">
 
@@ -1386,18 +1422,21 @@ watch(model,()=>
 													maxlength="200">
 								</textarea>
 							</div>
+
+							<!-- Beküldés gomb -->
 							<div class="mb-3 d-flex justify-content-center">
 								<!-- Beküldés gomb -->
 								<button :disabled="problemModel.description==''|| problemModel.name==''"
 												type="button"
 												class="btn btn-dark w-auto mb-2"
 												@click="sendProblem()">
+									<i class="fa-solid fa-arrow-up-from-bracket"></i>
 									{{ $t("about.report.send") }}
 								</button>
 							</div>
-							
 						</div>
 
+						<!-- visszajelzés rész -->
 						<div v-if="sendedProblem" 
 								 class="row justify-content-center">
 							<h1 class="text-center m-4">
@@ -1406,7 +1445,7 @@ watch(model,()=>
 										$t('about.opinion.upload_question') }}
 							</h1>
 
-							<!-- Beküldés gomb -->
+							<!-- Igen gomb -->
 							<button v-if="choosedType!=true"
 											type="button"
 											class="btn btn-primary w-auto mb-2"
@@ -1414,7 +1453,7 @@ watch(model,()=>
 								{{ $t("about.report.yes") }}
 							</button>
 
-							<!-- Beküldés gomb -->
+							<!-- Nem gomb -->
 							<button v-if="choosedType!=true"
 											type="button"
 											class="btn btn-secondary w-auto mb-2 mx-1"
