@@ -501,6 +501,8 @@
       "end": "Fine:",
       "price": "Prezzo:"
     },
+    "text_accommodations": "Non hai ancora prenotazioni di alloggi!",
+    "text_messages": "Non hai ancora conversazioni! Prenota un alloggio per poter utilizzare questa funzione!",
     "personal_detail":"Dati personali",
     "card_datas":"Dati della carta",
     "password_modify":"Modifica password",

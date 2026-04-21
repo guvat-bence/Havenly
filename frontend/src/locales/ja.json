@@ -493,6 +493,8 @@
       "end": "終了:",
       "price": "価格:"
     },
+    "text_accommodations": "まだ事前に予約された宿泊施設はありません！",
+    "text_messages": "まだ会話はありません！この機能を利用するには宿泊施設を予約してください！",
     "personal_detail":"個人情報",
     "card_datas":"カード情報",
     "password_modify":"パスワード変更",

@@ -508,6 +508,8 @@
       "end":"Vége:",
       "price":"Ár:"
     },
+    "text_accommodations":"Még nincsen előzetesen lefoglalt szállása!",
+    "text_messages":"Még nincsenek beszélgetései! Foglaljon le egy szállást, hogy ezt a funkciót használni tudja!",
     "personal_detail":"Személyes adatok",
     "card_datas":"Kártya adatok",
     "password_modify":"Jelszó módosítása",

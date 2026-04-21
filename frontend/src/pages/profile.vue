@@ -1361,7 +1361,7 @@ watch(card,()=>
               <!--  HA nincs még beszélgetése opció -->
               <div v-if="userContacts==''"
                    class="text-center">
-                <h2>Még nincsenek beszélgetései! Foglaljon le egy szállást, hogy ezt a funkciót használni tudja!</h2>
+                <h2>{{ $t('profile.text_messages') }}</h2>
               </div>
           </div>
 
@@ -1439,7 +1439,7 @@ watch(card,()=>
                   <!-- Nincs még lefoglalt szállás szöveg -->
                   <div v-if="history.length==0"
                        class="text-center">
-                    <h2>Még nincsen előzetesen lefoglalt szállása!</h2>
+                    <h2>{{ $t("profile.text_accommodations") }}</h2>
                   </div>
                </div>
           </div>

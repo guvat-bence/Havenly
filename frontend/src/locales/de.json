@@ -501,6 +501,8 @@
       "end": "Ende:",
       "price": "Preis:"
     },
+    "text_accommodations": "Sie haben noch keine im Voraus gebuchten Unterkünfte!",
+    "text_messages": "Sie haben noch keine Unterhaltungen! Buchen Sie eine Unterkunft, um diese Funktion nutzen zu können!",
     "personal_detail":"Persönliche Daten",
     "card_datas":"Kartendaten",
     "password_modify":"Passwort ändern",
