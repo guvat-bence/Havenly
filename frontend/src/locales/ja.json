@@ -481,6 +481,18 @@
     "navbar_datas":"私のデータ",
     "nabar_posts":"私の投稿",
     "navbar_messages":"私の会話",
+    "navbar_admin": "管理",
+    "navbar_admin_group": {
+      "id": "識別子:",
+      "type": "タイプ:"
+    },
+    "navbar_history": "履歴",
+    "navbar_history_group": {
+      "rent": "レンタル:",
+      "start": "開始:",
+      "end": "終了:",
+      "price": "価格:"
+    },
     "personal_detail":"個人情報",
     "card_datas":"カード情報",
     "password_modify":"パスワード変更",

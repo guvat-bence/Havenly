@@ -496,6 +496,18 @@
     "navbar_datas":"Adataim",
     "nabar_posts":"Közzétételeim",
     "navbar_messages":"Beszélgetéseim",
+    "navbar_admin":"Adminisztráció",
+    "navbar_admin_group":{
+      "id":"Azonosító:",
+      "type":"Típus:"
+    },
+    "navbar_history":"Előzmények",
+    "navbar_history_group":{
+      "rent":"Bérlés:",
+      "start":"Kezdés:",
+      "end":"Vége:",
+      "price":"Ár:"
+    },
     "personal_detail":"Személyes adatok",
     "card_datas":"Kártya adatok",
     "password_modify":"Jelszó módosítása",

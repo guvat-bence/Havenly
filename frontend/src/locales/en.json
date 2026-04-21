@@ -483,6 +483,18 @@
     "navbar_datas":"My Data",
     "nabar_posts":"My Posts",
     "navbar_messages":"My Conversations",
+    "navbar_admin": "Administration",
+    "navbar_admin_group": {
+      "id": "Identifier:",
+      "type": "Type:"
+    },
+    "navbar_history": "History",
+    "navbar_history_group": {
+      "rent": "Rental:",
+      "start": "Start:",
+      "end": "End:",
+      "price": "Price:"
+    },
     "personal_detail":"Personal Details",
     "card_datas":"Card Details",
     "password_modify":"Change Password",

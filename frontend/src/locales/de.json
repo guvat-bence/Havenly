@@ -489,6 +489,18 @@
     "navbar_datas":"Meine Daten",
     "nabar_posts":"Meine Beiträge",
     "navbar_messages":"Meine Gespräche",
+    "navbar_admin": "Administration",
+    "navbar_admin_group": {
+      "id": "Kennung:",
+      "type": "Typ:"
+    },
+    "navbar_history": "Verlauf",
+    "navbar_history_group": {
+      "rent": "Miete:",
+      "start": "Beginn:",
+      "end": "Ende:",
+      "price": "Preis:"
+    },
     "personal_detail":"Persönliche Daten",
     "card_datas":"Kartendaten",
     "password_modify":"Passwort ändern",

@@ -489,6 +489,18 @@
     "navbar_datas":"Моји подаци",
     "nabar_posts":"Моје објаве",
     "navbar_messages":"Моји разговори",
+    "navbar_admin": "Администрација",
+    "navbar_admin_group": {
+      "id": "Идентификатор:",
+      "type": "Тип:"
+    },
+    "navbar_history": "Историја",
+    "navbar_history_group": {
+      "rent": "Изнајмљивање:",
+      "start": "Почетак:",
+      "end": "Крај:",
+      "price": "Цена:"
+    },
     "personal_detail":"Лични подаци",
     "card_datas":"Подаци о картици",
     "password_modify":"Промена лозинке",

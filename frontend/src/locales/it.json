@@ -489,6 +489,18 @@
     "navbar_datas":"I miei dati",
     "nabar_posts":"I miei post",
     "navbar_messages":"Le mie conversazioni",
+    "navbar_admin": "Amministrazione",
+    "navbar_admin_group": {
+      "id": "Identificatore:",
+      "type": "Tipo:"
+    },
+    "navbar_history": "Cronologia",
+    "navbar_history_group": {
+      "rent": "Noleggio:",
+      "start": "Inizio:",
+      "end": "Fine:",
+      "price": "Prezzo:"
+    },
     "personal_detail":"Dati personali",
     "card_datas":"Dati della carta",
     "password_modify":"Modifica password",

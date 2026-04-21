@@ -386,18 +386,21 @@ function change(obj)
   changed.value = false;
 }
 
+// Lehívjuk azokat a beszélgetések amik az adott userhez tartoznak  
 function openMessages(data)
 {
   // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
   axios.post(`http://localhost:3000/getMessages`,{from_id:data.from_user_id,to_id:data.to_user_id})
   .then(details=>
   {
+    // beállítjuk az alavető adatokat
     console.log(details.data);
     sendingMessage.message = '';
     sendingMessage.from_id = user.id.split(" ")[0];
     sendingMessage.to_id = data.from_user_id;
     userMessages.value = details.data;
 
+    // automatikusan le görgetünk a beszélgetések aljára.
     scrollToBottom();
   })
   .catch(error=>
@@ -405,8 +408,8 @@ function openMessages(data)
     console.error(error);
   })
 
+  // Annak a neve akivel a user éppen beszélget.
   talkingWith.value = `${data.first_name} ${data.middle_name} ${data.last_name}` ;
-  
 }
 
 // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
@@ -421,6 +424,7 @@ axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
   console.error(error);
 })
 
+// Ennek a függvénynek a segítségével görgetünk a beszélgetés aljára.
 function scrollToBottom()
 {
   setTimeout(()=>{
@@ -431,6 +435,7 @@ function scrollToBottom()
   },50)
 }
 
+// Ezzel küldünk el új üzeneteket.
 function sendMessage()
 {
 
@@ -537,10 +542,6 @@ let getReports = () => {
   .catch(e => console.error(e.response))
 }
 
-let convertDateTime = (x) => {
-  return new Date(x).toISOString().split("T")[0]
-}
-
 // ezzel a watch-al a model adatait figyeljük,
 // amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
 watch(model,()=>
@@ -601,7 +602,7 @@ watch(card,()=>
                   @click="getReports()"
                   v-if="user.user_type === 'A'">
             <i class="fa-solid fa-user-tie fa-lg"></i>
-            Adminisztáció
+            {{ $t("profile.navbar_admin") }}
           </button>
 
           <!-- Beszélgetéseim opció -->
@@ -628,7 +629,7 @@ watch(card,()=>
                   aria-selected="false"
                   v-on:click="getHistory(user.id)">
             <i class="fa-solid fa-clock fa-lg"></i>
-             Előzmények 
+             {{ $t("profile.navbar_history") }}
           </button>
         </div>
       </nav>
@@ -1225,11 +1226,11 @@ watch(card,()=>
                 <div class="row">
                   <div class="text-white-50 top-0 d-flex justify-content-between">
                     <p>
-                      Azonosító: #{{ x.id }}
+                      {{ $t("profile.navbar_admin_group.id") }} #{{ x.id }}
                     </p>
 
                     <p>
-                      Típus: {{ x.item_type }}
+                     {{ $t("profile.navbar_admin_group.type") }} {{ x.item_type }}
                     </p>
                   </div>
 
@@ -1406,14 +1407,14 @@ watch(card,()=>
 
                       <!-- szállás ára és bérlési dátuma -->
                       <div>
-                        <p>Ár: 
+                        <p>{{ $t("profile.navbar_history_group.price") }}
                           {{ x.price * selectedCurrency.currencyMultiplier }} 
                           {{ selectedCurrency.currencyShortedName }}
                         </p>
 
                         <!-- Bérlés dátuma -->
                         <p class="text-white-50">
-                          Bérlés: {{ convertDateTime(x.rent_date) }}
+                          {{ $t("profile.navbar_history_group.rent") }} {{ x.rent_date }}
                         </p>
                       </div>
                       
@@ -1423,13 +1424,13 @@ watch(card,()=>
                         <!-- Bérlés kezdete -->
                         <p class="text-white-50 col-12 
                                   col-md-6 text-nowrap">
-                          Kezdés: {{ convertDateTime(x.rent_beginning) }}
+                         {{ $t("profile.navbar_history_group.start") }} {{ x.rent_beginning }}
                         </p>
 
                         <!-- Bérlés vége -->
                         <p class="text-white-50 col-12 
                                   col-md-6 text-nowrap">
-                          Vége: {{ convertDateTime(x.rent_end) }}
+                          {{ $t("profile.navbar_history_group.end") }} {{ x.rent_end }}
                         </p>
                       </div>
                     </div>
