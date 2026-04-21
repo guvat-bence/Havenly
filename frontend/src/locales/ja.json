@@ -428,6 +428,37 @@
       "no": "いいえ"
     }
   },
+  "basket": {
+    "title": "カート",
+    "pay": "支払い",
+    "rent_message": "ご予約ありがとうございます！ご不明な点がございましたら、お気軽にお問い合わせください！",
+    "succesful_renting": "予約が完了しました！",
+    "card": {
+      "person_number": "人数:",
+      "from": "開始:",
+      "to": "終了:",
+      "price": "基本料金:",
+      "tax": "手数料",
+      "final_price": "合計:"
+    },
+    "user_datas": {
+      "title": "請求情報",
+      "names": "氏名",
+      "first_name": "名",
+      "last_name": "姓",
+      "middle_name": "ミドルネーム",
+      "contact_information": "連絡先情報",
+      "email": "メール",
+      "phone_number": "電話番号",
+      "city": "市区町村",
+      "postal_code": "郵便番号",
+      "billing_addres": "請求先住所",
+      "card_number": "カード番号",
+      "month": "月",
+      "year": "年",
+      "cvv": "CVV"
+    }
+  },
   "about_us":
   {
     "about_us":"私たちについて",

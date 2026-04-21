@@ -136,6 +136,38 @@
       "no":"Nem"
     } 
   },
+  "basket":
+  {
+    "title":"Kosár",
+    "pay":"Fizetés",
+    "rent_message":"Köszönöm a foglalását! Bármilyen kérdéssel kapcsolatban forduljon bátran hozzám!",
+    "succesful_renting":"Sikeres foglalás!",
+    "card":{
+      "person_number":"Személyszám:",
+      "from":"Ettől:",
+      "to":"Eddig:",
+      "price":"Alapár:",
+      "tax":"Kezelési díj",
+      "final_price":"Összesen:"
+    },
+    "user_datas":{
+      "title":"Számlázási adatok",
+      "names":"Nevek",
+      "first_name":"Keresztnév",
+      "last_name":"Vezetéknév",
+      "middle_name":"Második név",
+      "contact_information":"Elérési módok",
+      "email":"Email",
+      "phone_number":"Telefonszám",
+      "city":"Város",
+      "postal_code":"Irányítószám",
+      "billing_addres":" Számlázási cím",
+      "card_number":"Kártyaszám",
+      "month":"Hónap",
+      "year":"Év",
+      "cvv":"CVV"
+    }
+  },
   "search":{
     "search_title":"Keresés",
     "countries":

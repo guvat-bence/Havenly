@@ -428,6 +428,37 @@
       "no": "Nein"
     }
   },
+  "basket": {
+    "title": "Warenkorb",
+    "pay": "Bezahlung",
+    "rent_message": "Vielen Dank für Ihre Buchung! Bei Fragen können Sie sich gerne an mich wenden!",
+    "succesful_renting": "Buchung erfolgreich!",
+    "card": {
+      "person_number": "Personenanzahl:",
+      "from": "Von:",
+      "to": "Bis:",
+      "price": "Grundpreis:",
+      "tax": "Bearbeitungsgebühr",
+      "final_price": "Gesamt:"
+    },
+    "user_datas": {
+      "title": "Rechnungsdaten",
+      "names": "Namen",
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "middle_name": "Zweiter Name",
+      "contact_information": "Kontaktinformationen",
+      "email": "E-Mail",
+      "phone_number": "Telefonnummer",
+      "city": "Stadt",
+      "postal_code": "Postleitzahl",
+      "billing_addres": "Rechnungsadresse",
+      "card_number": "Kartennummer",
+      "month": "Monat",
+      "year": "Jahr",
+      "cvv": "CVV"
+    }
+  },
   "about_us":
   {
     "about_us":"Über uns",

@@ -428,6 +428,37 @@
       "no": "No"
     }
   },
+  "basket": {
+    "title": "Carrello",
+    "pay": "Pagamento",
+    "rent_message": "Grazie per la tua prenotazione! Per qualsiasi domanda, non esitare a contattarmi!",
+    "succesful_renting": "Prenotazione riuscita!",
+    "card": {
+      "person_number": "Numero di persone:",
+      "from": "Da:",
+      "to": "A:",
+      "price": "Prezzo base:",
+      "tax": "Costo di gestione",
+      "final_price": "Totale:"
+    },
+    "user_datas": {
+      "title": "Dati di fatturazione",
+      "names": "Nomi",
+      "first_name": "Nome",
+      "last_name": "Cognome",
+      "middle_name": "Secondo nome",
+      "contact_information": "Informazioni di contatto",
+      "email": "Email",
+      "phone_number": "Numero di telefono",
+      "city": "Città",
+      "postal_code": "Codice postale",
+      "billing_addres": "Indirizzo di fatturazione",
+      "card_number": "Numero della carta",
+      "month": "Mese",
+      "year": "Anno",
+      "cvv": "CVV"
+    }
+  },
   "about_us":
   {
     "about_us":"Chi siamo",

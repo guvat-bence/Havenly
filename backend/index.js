@@ -1079,40 +1079,68 @@ app.post("/rentAccomodation", (req, res) => {
                                  price,
                                  rent_beginning, 
                                  rent_end) VALUES (?,?,?,?,?,?)`,
-          [data.id,
-          data.owner_id,
-          data.accommodation_id,
-          data.price,
-          data.rent_beginning,
-          data.rent_end], (err, result) => {
+                                [data.id,
+                                  data.owner_id,
+                                  data.accommodation_id,
+                                  data.price,
+                                  data.rent_beginning,
+                                  data.rent_end], (err, history)=>{
             
-            if (err) {
-              res.status(500).send("Adatbázis hiba");
-              return;
-            }
-            else {
+          if (err) {
+            res.status(500).send("Adatbázis hiba");
+            return;
+          }
+          else {
 
-              db.query(`INSERT INTO messages(
-                          from_user_id,
-                          to_user_id,
-                          message)
-                        VALUES(?,?,?)`,
-                        [data.owner_id,data.id,data.message],
+            db.query(`INSERT INTO messages(
+                        from_user_id,
+                        to_user_id,
+                        message)
+                      VALUES(?,?,?)`,
+                      [data.owner_id,data.id,data.message],
+                      (err,result)=>{
+
+              if(err)
+              {
+                res.status(500).send("Adatbázis hiba");
+                return;
+              }
+
+              if(result.affectedRows>0)
+              {
+                db.query(`INSERT INTO billing_address(
+                            user_id,
+                            history_id,
+                            name,
+                            email,
+                            phone_number,
+                            city,
+                            postal_code,
+                            billing_address1,
+                            billing_address2,
+                            card_number)
+                          VALUES(?,?,?,?,?,?,?,?,?,?)`,
+                        [data.owner_id,history.insertId,
+                          (`${data.firstName} ${data.middleName} ${data.lastName}`),
+                          data.email,data.phoneNum,data.city,data.postalCode,
+                          data.address1,data.address2,data.cardnumber],
                         (err,result)=>{
 
-                if(err)
-                {
-                  res.status(500).send("Adatbázis hiba");
-                  return;
-                }
+                  if(err)
+                  {
+                    res.status(500).send("Adatbázis hiba");
+                    return;
+                  }
 
-                if(result.affectedRows>0)
-                {
-                  res.send('Sikeres foglalás')
-                  return;
-                }
-              })
-            }
+                  if(result.affectedRows>0)
+                  {
+                    res.send('Sikeres foglalás')
+                    return;
+                  }
+                })
+              }
+            })
+          }
         })
       }
     }

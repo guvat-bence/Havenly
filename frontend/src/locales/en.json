@@ -424,6 +424,37 @@
       "no": "No"
     }
   },
+  "basket": {
+    "title": "Basket",
+    "pay": "Payment",
+    "rent_message": "Thank you for your reservation! Feel free to contact me if you have any questions!",
+    "succesful_renting": "Booking successful!",
+    "card": {
+      "person_number": "Number of persons:",
+      "from": "From:",
+      "to": "To:",
+      "price": "Base price:",
+      "tax": "Handling fee",
+      "final_price": "Total:"
+    },
+    "user_datas": {
+      "title": "Billing details",
+      "names": "Names",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "middle_name": "Middle name",
+      "contact_information": "Contact information",
+      "email": "Email",
+      "phone_number": "Phone number",
+      "city": "City",
+      "postal_code": "Postal code",
+      "billing_addres": "Billing address",
+      "card_number": "Card number",
+      "month": "Month",
+      "year": "Year",
+      "cvv": "CVV"
+    }
+  },
   "about_us": {
     "about_us": "About Us",
     "who_are_we": "Who Are We?",

@@ -6,7 +6,9 @@ import { user } from '@/store/user';
 import { reactive, ref, Transition, watch } from 'vue';
 import axios, { Axios } from 'axios';
 import { convertStrings } from '@/common';
+import { useI18n } from 'vue-i18n';
 
+const {t} = useI18n();
 let router = useRouter()
 let accommodation_data = JSON.parse(rent.accommodation);
 let cardData = ref([])
@@ -59,12 +61,18 @@ let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
 let payForAccomadtion = () => {
 
-  model.message = "Köszönöm a foglalását! Bármilyen kérdéssel kapcsolatban forduljon bátran hozzám!";
+  model.message = t("basket.rent_message");
 
   axios.post('http://localhost:3000/rentAccomodation', model)
   .then(response => {
     console.log(response.data)
-    alert(response.data);
+    if(response.data =='Sikeres foglalás')
+    {
+      alert(t("basket.succesful_renting"));
+    }
+    else{
+      alert(response.data);
+    }
     router.push("/havenly");
   })
   .catch(e => console.error(e))
@@ -115,7 +123,7 @@ let validateData = () => {
 </script>
 <template>
   <div class="container mt-2">
-    <h1 class="display-1 text-center text-white " v-on:click="step++">Kosár</h1>
+    <h1 class="display-1 text-center text-white">{{ $t("basket.title") }}</h1>
     <div class="row flex-row-reverse">
 
       <!-- Accomodation data-->
@@ -143,18 +151,18 @@ let validateData = () => {
                 <!-- Details -->
                 <div>
                   <div class="row">
-                    <p>Személyszám: {{ rent.guests}}</p>
-                    <p>Ettől: {{ rent.rent_beginning }}</p>
-                    <p>Eddig: {{ rent.rent_end }}</p>
+                    <p>{{ $t("basket.card.person_number") }} {{ rent.guests}}</p>
+                    <p>{{ $t("basket.card.from") }} {{ rent.rent_beginning }}</p>
+                    <p>{{ $t("basket.card.to") }} {{ rent.rent_end }}</p>
                   </div>
                   <hr>
 
                   <!-- Prices -->
                   <div>
-                    <p>Alapár: {{ (rent.accommodation_full_price * 
+                    <p>{{ $t("basket.card.price") }} {{ (rent.accommodation_full_price * 
                                    selectedCurrency.currencyMultiplier).toLocaleString('fi-FI') }} 
                                {{ selectedCurrency.currencyShortedName }}</p>
-                    <p>Kezelési díj 
+                    <p>{{ $t("basket.card.tax") }} 
                       <span class="text-danger">(8%)</span>:
                       {{ ((rent.accommodation_full_price * 
                            selectedCurrency.currencyMultiplier) * 0.08).toLocaleString('fi-FI') }} 
@@ -165,7 +173,7 @@ let validateData = () => {
 
                   <!-- Overall price -->
                   <div>
-                    <p class="fw-bold mb-0">Összesen: 
+                    <p class="fw-bold mb-0">{{ $t("basket.card.final_price") }}
                       {{((rent.accommodation_full_price * 
                           selectedCurrency.currencyMultiplier) + 
                         ((rent.accommodation_full_price * 
@@ -189,7 +197,7 @@ let validateData = () => {
                    border-white p-4 rounded-3 h-50 
                    text-white my-auto">
 
-        <h4 class="display-5 mb-4 text-center">Számlázási adatok</h4>
+        <h4 class="display-5 mb-4 text-center">{{ $t("basket.user_datas.title") }}</h4>
         
         <Transition :name="transitionName"
                     type="transition" 
@@ -200,7 +208,7 @@ let validateData = () => {
               <!-- Names -->
               <div class="row justify-content-center mb-3">
                 <div>
-                  <h5 class="text-center">Nevek</h5>
+                  <h5 class="text-center">{{ $t("basket.user_datas.names") }}</h5>
                 </div>
 
                 <!-- FirstName -->
@@ -210,13 +218,13 @@ let validateData = () => {
                       class="mb-3 m-0 col-12">
                   <label for="InputFirstName" 
                         class="form-label">
-                    Keresztnév
+                    {{ $t("basket.user_datas.first_name") }}
                   </label>
                   <input type="text" 
-                        class="form-control" 
-                        id="InputFirstName"
-                        placeholder="Keresztnév" 
-                        v-model="model.firstName">
+                         class="form-control" 
+                         id="InputFirstName"
+                         :placeholder="t('basket.user_datas.first_name')" 
+                         v-model="model.firstName">
                 </div>
 
                 <!-- MiddleName -->
@@ -224,12 +232,12 @@ let validateData = () => {
                     class="mb-3 col-12 col-lg-4">
                   <label for="InputMiddleName" 
                           class="form-label">
-                    Harmadiknév
+                    {{ $t("basket.user_datas.middle_name") }}
                   </label>
                   <input type="text" 
                           class="form-control" 
                           id="InputMiddleName"
-                          placeholder="Harmadiknév" 
+                          :placeholder="t('basket.user_datas.middle_name')" 
                           v-model="model.middleName">
                 </div>
 
@@ -240,12 +248,12 @@ let validateData = () => {
                       class="mb-3 m-0 col-12">
                   <label for="InputLastName" 
                         class="form-label">
-                    Vezetéknév
+                    {{ $t('basket.user_datas.last_name') }}
                   </label>
                   <input type="text" 
                         class="form-control" 
                         id="InputLastName"
-                        placeholder="Vezetéknév"
+                        :placeholder="t('basket.user_datas.last_name')" 
                         v-model="model.lastName">
                 </div>
               </div>
@@ -253,19 +261,19 @@ let validateData = () => {
               <!-- Contact information -->
               <div class="row">
                 <div>
-                  <h5 class="text-center">Elérési módok</h5>
+                  <h5 class="text-center">{{ $t("basket.user_datas.contact_information") }}</h5>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3 col-12 col-lg-6">
                   <label for="InputEmail" 
                         class="form-label">
-                    Email
+                    {{ $t("basket.user_datas.email") }}
                   </label>
                   <input type="email" 
                         class="form-control" 
                         id="InputEmail"
-                        placeholder="Email cím" 
+                        :placeholder="t('basket.user_datas.email')" 
                         v-model="model.email">
                 </div>
 
@@ -273,12 +281,12 @@ let validateData = () => {
                 <div class="mb-3 col-12 col-lg-6">
                   <label for="InputPhoneNum" 
                         class="form-label">
-                    Telefonszám
+                    {{ $t("basket.user_datas.phone_number") }}
                   </label>
                   <input type="text" 
                         class="form-control" 
                         id="InputPhoneNum" 
-                        placeholder="Telefonszám"
+                        :placeholder="t('basket.user_datas.phone_number')"
                         v-model="model.phoneNum">
                 </div>
               </div>
@@ -291,53 +299,53 @@ let validateData = () => {
                 
                 <!-- city -->
                 <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
+                  <label for="InputCity" 
                         class="form-label">
-                    Város
+                    {{ $t("basket.user_datas.city") }}
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName"
+                        id="InputCity"
                         v-model="model.city"
-                        placeholder="Város">
+                        :placeholder="t('basket.user_datas.city')">
                 </div>
 
                 <!-- postal code -->
                 <div class="col-lg-6 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
+                  <label for="InputPostal" 
                         class="form-label">
-                    Irányítószám
+                    {{ $t("basket.user_datas.postal_code") }}
                   </label>
                   <input type="number" 
                         class="form-control" 
-                        id="InputLastName"
-                        placeholder="Irányítószám"
+                        id="InputPostal"
+                        :placeholder="t('basket.user_datas.postal_code')"
                         v-model="model.postalCode">
                 </div>
 
                 <!-- Address1 -->
                 <div class="col-lg-12 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
+                  <label for="InputAddress1" 
                         class="form-label">
-                    Számlázási cím
+                    {{ $t("basket.user_datas.billing_addres") }}
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName"
-                        placeholder="Számlázási cím 1. sor"
+                        id="InputAddress1"
+                        :placeholder="t('basket.user_datas.billing_addres')"
                         v-model="model.address1">
                 </div>
 
                 <!-- Address2 -->
                 <div class="col-lg-12 mb-3 m-0 col-12">
-                  <label for="InputLastName" 
+                  <label for="InputAddress2" 
                         class="form-label">
-                    Számlázási cím
+                    {{ $t("basket.user_datas.billing_addres") }}
                   </label>
                   <input type="text" 
                         class="form-control" 
-                        id="InputLastName"
-                        placeholder="Számlázási cím 2. sor"
+                        id="InputAddress2"
+                        :placeholder="t('basket.user_datas.billing_addres')"
                         v-model="model.address2">
                 </div>
               </div>
@@ -352,29 +360,32 @@ let validateData = () => {
                   <div class="mb-3 col-9 col-md-8 col-lg-10">
                     <label for="inputCardNumber" 
                             class="form-label">
-                      Kártyaszám
+                      {{ $t("basket.user_datas.card_number") }}
                     </label>
                     <input type="text"
                           class="form-control"
                           id="inputCardNumber"
-                          placeholder="Kártyaszám"
+                          :placeholder="t('basket.user_datas.card_number')"
                           v-model="model.cardnumber"
                           maxlength="24">
                   </div>
 
                   <!-- CardBrand -->
                   <div class="mb-3 col-3 col-md-4 col-lg-2 m-0 d-flex align-items-end">
-                    <img :src="`/cards/${currentCard}.png`"
+                    <img  v-if="model.cardnumber!=null && model.cardnumber?.length>3"
+                          :src="`/cards/${currentCard}.png`"
+                          @error="e => e.target.classList.add('d-none')"
+                          @load="e => e.target.classList.remove('d-none')"
                           class="img-fluid w-auto ratio-4x3"
                           style="height: 30px;" 
-                          alt="">
+                          alt="CardBrand">
                   </div>
 
                   <!-- Month -->
                   <div class="mb-3 col-6 col-lg-4">
                     <label class="form-label"
                             for="inputMonth">
-                      Hónap
+                      {{ $t("basket.user_datas.month") }}
                     </label>
                     <select class="form-select"
                             id="inputMonth"
@@ -384,7 +395,7 @@ let validateData = () => {
                               :selected="!model.expiration_month"
                               class="d-none"
                               disabled="true">
-                        hónap
+                        {{ $t("basket.user_datas.month") }}
                       </option>
 
                       <option v-for="x in 12"
@@ -398,7 +409,7 @@ let validateData = () => {
                   <div class="mb-3 col-6 col-sm-3 col-lg-4">
                     <label class="form-label"
                             for="inputYear">
-                      Év
+                      {{ $t("basket.user_datas.year") }}
                     </label>
 
                     <select class="form-select"
@@ -408,7 +419,7 @@ let validateData = () => {
                       <option value="null"
                               :selected="!model.expirationYear"
                               class="d-none">
-                        év
+                         {{ $t("basket.user_datas.year") }}
                       </option>
 
                       <option v-for="x in 5"
@@ -422,12 +433,12 @@ let validateData = () => {
                   <div class="mb-3 col-6 col-sm-3 col-lg-4">
                     <label for="inputCVV" 
                             class="form-label">
-                      CVV
+                       {{ $t("basket.user_datas.cvv") }}
                     </label>
                     <input type="text"
                             class="form-control"
                             id="inputCVV"
-                            placeholder="CVV"
+                            :placeholder="t('basket.user_datas.cvv')"
                             v-model="model.cvv"
                             maxlength="3">
                   </div>
@@ -454,7 +465,7 @@ let validateData = () => {
                   @click="step === 2 ? payForAccomadtion() 
                                      : (transitionName = 'slide-out',step++) "
                     v-bind:disabled="step === 2  && !validateData()" >
-            {{ step === 2 ? "Fizetés" : "Következő"  }}
+            {{ step === 2 ? $t("basket.pay") : $t("register.next") }}
           </button>
         </div>
       </div>

@@ -294,8 +294,8 @@ CREATE TABLE `billing_address` (
   `phone_number` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
-  `billing_address1` varchar(255) NOT NULL,
-  `billing_address2` varchar(255) NOT NULL,
+  `billing_address1` varchar(255) DEFAULT NULL,
+  `billing_address2` varchar(255) DEFAULT NULL,
   `card_number` varchar(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
