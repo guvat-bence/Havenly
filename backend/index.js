@@ -477,15 +477,28 @@ app.get('/createExpreienceLocationList',(req, res) => {
 
 app.get("/getReports", (req, res) => {
   db.query(`
-    SELECT r.id,
-           r.user_id,
-           CONCAT(u.first_name, ' ', u.middle_name, ' ', u.last_name) AS reporter_full_name,
-           r.message,
-           r.message_type,
-           r.item_type,
-           r.item_id
-    FROM report r
-    INNER JOIN users u ON r.user_id = u.id 
+    SELECT  r.id,
+            r.user_id,
+            r.message,
+            r.message_type,
+            r.item_type,
+            r.item_id,
+            r.status,
+            a.name AS accommodation_name
+    FROM
+        report r
+    LEFT JOIN opinions o ON
+        r.item_type = 'opinions' AND r.item_id = o.id
+    LEFT JOIN accommodations a ON
+        (
+            (
+                r.item_type = 'opinions' AND o.item_type = 'accommodations' AND o.item_id = a.id
+            ) OR(
+                r.item_type = 'accommodations' AND r.item_id = a.id
+            )
+        )
+    WHERE
+        r.id = 1;
   `,(err, reports) => {
     if (err) {
       return res.status(500).send('Sikertelen lekérdezés');
