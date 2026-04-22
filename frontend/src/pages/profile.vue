@@ -60,7 +60,8 @@ let sendingMessage = reactive({
 });
 
 // Változók definiállása.
-let history = ref([])
+let history = ref([]);
+let userItems = ref([]);
 let modelCopie = reactive({... model});
 let cardCopie = reactive({... card});
 let passwordCopie = {... passwords};
@@ -412,6 +413,9 @@ function openMessages(data)
   talkingWith.value = `${data.first_name} ${data.middle_name} ${data.last_name}` ;
 }
 
+// Contactok lehúzása
+function getContacts()
+{
 // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
 axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
 .then(details=>
@@ -423,6 +427,7 @@ axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
 {
   console.error(error);
 })
+}
 
 // Ennek a függvénynek a segítségével görgetünk a beszélgetés aljára.
 function scrollToBottom()
@@ -466,6 +471,18 @@ function sendMessage()
   })
 }
 
+
+function getUserItems()
+{
+  axios.get(`http://localhost:3000/getUserItems/${user.id.split(' ')[0]}`)
+  .then(response =>{
+    console.log(response.data);
+    userItems.value = response.data;
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+}
 // végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
 // ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
 // akkor az eredeti verzióját tölti be.
@@ -586,7 +603,8 @@ watch(card,()=>
                   data-bs-target="#nav-posts" 
                   type="button" role="tab" 
                   aria-controls="nav-posts" 
-                  aria-selected="false">
+                  aria-selected="false"
+                  @click="getUserItems()">
             <i class="fa-solid fa-upload fa-lg"></i>
             {{ $t("profile.nabar_posts") }}
           </button>
@@ -613,7 +631,8 @@ watch(card,()=>
                   type="button" 
                   role="tab" 
                   aria-controls="nav-chats" 
-                  aria-selected="false">
+                  aria-selected="false"
+                  @click="getContacts()">
             <i class="fa-solid fa-comments fa-lg"></i>
             {{ $t("profile.navbar_messages") }}
           </button>
@@ -1181,36 +1200,73 @@ watch(card,()=>
               aria-labelledby="nav-posts-tab" 
               tabindex="0">
 
-            <div class="card mb-3 col-5">
-              <div class="row g-0">
+              <!-- előzmények rész -->
+              <div class="overflow-y-auto py-2" 
+                  style="height: 400px !important;">
 
-                <div class=" col-xl-6">
-                  <img src="../images/fff.jpg" class="img-fluid rounded-start" alt="...">
-                </div>
+                <!-- Lefoglat szállások -->
+                <RouterLink :to="{name:'about',params:{table_name:'accommodations',id:x.id,name:x.name}}"
+                      v-if="userItems.length!=0"
+                      v-for="x in userItems.accommodations"
+                      class="d-flex nav-link text-white 
+                            mb-4 bg-black bg-opacity-25 
+                            rounded-3 p-2 border border-1 
+                            border-white">
 
-                <div class="col-xl-6">
-                  <div class="card-body">
+                  <!-- Szállás képe -->
+                  <img  style="height: 170px; width: 170px;"
+                        :src="`/countries/${convertStrings(x.country_name)}` +
+                            `/cities/${convertStrings(x.city_name)}` +
+                            `/accommodations/${convertStrings(x.folder_name)}/001.png`"
+                        class="justify-content-start rounded-3 img-fluid" 
+                        alt="accomodation_image">
 
-                    <h5 class="card-title">
-                      Card title
-                    </h5>
+                  <!-- Foglalás adatai -->
+                  <div class="mx-auto">
 
-                    <div class="row justify-content-center">
-                      <button class="btn btn-secondary m-1 col-4">
-                        Megnéz
-                      </button>
-                      <button class="btn btn-info  m-1  col-4">
-                        Módosít
-                      </button>
-                      <button class="btn btn-danger  m-1  col-4">
-                        Töröl
-                      </button>
+                    <!-- szállás neve -->
+                    <div class="row">
+                      <h3 class="text-white mx-auto 
+                                  text-center fw-light 
+                                  col-12">
+                        {{ x.name }}
+                      </h3>
                     </div>
 
+                    <!-- szállás ára és bérlési dátuma -->
+                    <div>
+                      <p>{{ $t("profile.navbar_history_group.price") }}
+                        {{ x.price * selectedCurrency.currencyMultiplier }} 
+                        {{ selectedCurrency.currencyShortedName }}
+                      </p>
+
+                      <!-- Bérlés dátuma -->
+                      <p class="text-white-50">
+                        {{ $t("profile.navbar_history_group.rent") }} {{ x.rent_date }}
+                      </p>
+                    </div>
+                    
+                    <!-- Bérlés kezdete és vége -->
+                    <div class="row">
+
+                      <!-- Bérlés kezdete -->
+                      <p class="text-white-50 col-12 
+                                col-md-6 text-nowrap">
+                        {{ $t("profile.navbar_history_group.start") }} {{ x.rent_beginning }}
+                      </p>
+
+                      <!-- Bérlés vége -->
+                      <p class="text-white-50 col-12 
+                                col-md-6 text-nowrap">
+                        {{ $t("profile.navbar_history_group.end") }} {{ x.rent_end }}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </RouterLink>
+
+                <!-- Nincs még lefoglalt szállás szöveg -->
+                  <h2>{{ $t("profile.text_accommodations") }}</h2>
               </div>
-            </div>
 
           </div>
 
@@ -1496,7 +1552,6 @@ watch(card,()=>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   </div>

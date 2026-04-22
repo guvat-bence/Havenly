@@ -1426,3 +1426,73 @@ app.post("/sendMessages",(req,res)=>{
     return;
   })
 })
+
+app.get("/getUserItems/:id",(req,res)=>{
+  let id = req.params.id;
+
+  db.query(`SELECT
+              accommodations.id,
+              accommodations.language_short_name,
+              accommodations.owner_id,
+              accommodations.country_id,
+              accommodations.city_id,
+              accommodations.name,
+              accommodations.folder_name,
+              accommodations.size,
+              accommodations.price,
+              accommodations.guest_number,
+              accommodations.bedroom,
+              accommodations.bed,
+              accommodations.bathroom,
+              accommodations.description,
+              countries.name AS 'country_name',
+              cities.name AS 'city_name'
+            FROM accommodations
+            INNER JOIN countries
+            ON countries.id = country_id
+            INNER JOIN cities
+            ON cities.id = city_id
+            WHERE owner_id = ?`,[id],(err,accommodations)=>{
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    db.query(`SELECT
+                experiences.id,
+                experiences.uploaded_id,
+                experiences.language_short_name,
+                experiences.country_id,
+                experiences.city_id,
+                experiences.name,
+                experiences.folder_name,
+                experiences.price,
+                experiences.description,
+                countries.name AS 'country_name',
+                cities.name AS 'city_name'
+              FROM experiences
+              INNER JOIN countries
+              ON countries.id = country_id
+              INNER JOIN cities
+              ON cities.id = city_id
+              WHERE uploaded_id = ?`,[id],(err,experiences)=>{
+
+      if(err)
+      {
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+
+      if(experiences.length==0)
+      {
+        res.json(accommodations);
+        return;
+      }
+
+      res.json({accommodations,experiences});
+      return;
+
+    })
+  })
+})
