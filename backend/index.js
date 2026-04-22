@@ -497,8 +497,7 @@ app.get("/getReports", (req, res) => {
                 r.item_type = 'accommodations' AND r.item_id = a.id
             )
         )
-    WHERE
-        r.id = 1;
+    WHERE 1;
   `,(err, reports) => {
     if (err) {
       return res.status(500).send('Sikertelen lekérdezés');
