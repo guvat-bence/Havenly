@@ -559,6 +559,7 @@ let getReports = () => {
   .catch(e => console.error(e.response))
 }
 
+
 // ezzel a watch-al a model adatait figyeljük,
 // amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
 watch(model,()=>
@@ -1277,10 +1278,13 @@ watch(card,()=>
                 aria-labelledby="nav-posts-tab" 
                 tabindex="0">
             <div class="row my-2"
-                  v-for="x in reports">
+                  v-for="x in reports"
+                  v-on:click="router.push({name:'about',
+                                         params:{table_name:'accommodations',  
+                                         id:x.accommodation_id,  name:x.accommodation_name}})">
               <div class="bg-black bg-opacity-25 rounded-3 reportCards">
                 <div class="row">
-                  <div class="text-white-50 top-0 d-flex justify-content-between">
+                  <div class="text-white-50 m-1 top-0 d-flex justify-content-between">
                     <p>
                       {{ $t("profile.navbar_admin_group.id") }} #{{ x.id }}
                     </p>
@@ -1291,7 +1295,7 @@ watch(card,()=>
                   </div>
 
                   <h5 class="text-white top-0">
-                    {{ x.reporter_full_name }}
+                    {{ x.full_name }}
                   </h5>
                 </div>
                 <div class="row">
