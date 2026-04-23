@@ -471,31 +471,38 @@ function sendMessage()
   })
 }
 
-
 function getUserItems()
 {
   axios.get(`http://localhost:3000/getUserItems/${user.id.split(' ')[0]}`)
   .then(response =>{
     console.log(response.data);
     userItems.value = response.data;
+
+    for(let x in userItems.value)
+    {
+      console.log(x);
+      
+      getTranslationUserTypes(userItems.value[x]);
+    }
+    
   })
   .catch(err=>{
     console.log(err);
   })
 }
-// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
+// végigmegy a history összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
 // ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
 // akkor az eredeti verzióját tölti be.
 // HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
 //  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
 // utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
 // ha esetleg hiba akana afordítással akkor a művele megszakad é kiírja a konzolbon.
-function getTranslation()
+function getTranslation(item)
 {
-	for(let x in history.value)
+	for(let x in item.value)
 	{
 		axios.post(`http://localhost:3000/translate`,
-			{item_id:history.value[x].accommodation_id,item_name:'accommodations',language_short_name:locale.value})
+			{item_id:item.value[x].accommodation_id,item_name:'accommodations',language_short_name:locale.value})
 		.then(datas=>
 		{
 			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
@@ -503,14 +510,69 @@ function getTranslation()
 			{
 				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
 				let text  = JSON.parse(datas.data.data[0].item);
-				history.value[x].accommodation_name = text["title"];
+				item.value[x].accommodation_name = text["title"];
 				
 			}
 			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
  			else if(datas.data.message == "original")
 			{
 				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
-				history.value[x].accommodation_name = datas.data.data[0].name;
+				item.value[x].accommodation_name = datas.data.data[0].name;
+			}
+			// ha az üzenet failed akkor megy bele
+			else if(datas.data.message == "failed")
+			{
+				console.log("Hiba történt az api forítás során!");
+				return false;
+			}
+			// minden ellenkező esetben pedig újra töltjük az oldalt.
+			else{
+				location.reload();
+			}
+		})
+		.catch(err=>
+		{
+			console.log(err);
+		})
+	}
+}
+
+// végigmegy a userItems összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
+// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
+// akkor az eredeti verzióját tölti be.
+// HA egy dolognak nincsen fordítása és eredeti verziója sem paszzol a jelenlegi nyelvhez,
+//  akkor api segítségével lefordítja és feltölti adatbázisba a fordítások közé, és újra idítja az oldalt,
+// utána pendig az egész függvény előröl kezdődik és így már be fogja tölteni az adot tárgy fordítását.
+// ha esetleg hiba akana afordítással akkor a művele megszakad é kiírja a konzolbon.
+function getTranslationUserTypes(item)
+{
+  console.log(item);
+  
+
+	for(let x in item)
+	{
+    console.log(item[x]);
+    
+
+		axios.post(`http://localhost:3000/translate`,
+			{item_id:item[x].id,item_name:item[x].table_type,language_short_name:locale.value})
+		.then(datas=>
+		{
+      console.log(datas);
+      
+			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
+			if(datas.data.message == "translationed")
+			{
+				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
+				let text  = JSON.parse(datas.data.data[0].item);
+				item[x].accommodation_name = text["title"];
+				
+			}
+			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
+ 			else if(datas.data.message == "original")
+			{
+				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
+				item[x].accommodation_name = datas.data.data[0].name;
 			}
 			// ha az üzenet failed akkor megy bele
 			else if(datas.data.message == "failed")
@@ -541,7 +603,7 @@ let getHistory = (id) => {
     // tömb feltöltése
     history.value = datas.data;
 
-    getTranslation();
+    getTranslation(history);
   })
   .catch(e => console.error(e.response))
 }
@@ -554,7 +616,6 @@ let getReports = () => {
     reports.value = datas.data;
     console.log(reports.value)
 
-    getTranslation();
   })
   .catch(e => console.error(e.response))
 }
@@ -1201,72 +1262,74 @@ watch(card,()=>
               aria-labelledby="nav-posts-tab" 
               tabindex="0">
 
-              <!-- előzmények rész -->
+              <!-- feltöltött elemek -->
               <div class="overflow-y-auto py-2" 
                   style="height: 400px !important;">
 
-                <!-- Lefoglat szállások -->
-                <RouterLink :to="{name:'about',params:{table_name:'accommodations',id:x.id,name:x.name}}"
-                      v-if="userItems.length!=0"
-                      v-for="x in userItems.accommodations"
-                      class="d-flex nav-link text-white 
-                            mb-4 bg-black bg-opacity-25 
-                            rounded-3 p-2 border border-1 
-                            border-white">
+                <div v-for="items in userItems"
+                     v-if="userItems.length!=0">
 
-                  <!-- Szállás képe -->
-                  <img  style="height: 170px; width: 170px;"
-                        :src="`/countries/${convertStrings(x.country_name)}` +
-                            `/cities/${convertStrings(x.city_name)}` +
-                            `/accommodations/${convertStrings(x.folder_name)}/001.png`"
-                        class="justify-content-start rounded-3 img-fluid" 
-                        alt="accomodation_image">
+                  <!-- Lefoglat szállások -->
+                  <RouterLink :to="{name:'about',params:{table_name:x.table_type,id:x.id,name:x.name}}" 
+                        v-for="x in items"
+                        class="d-flex nav-link text-white 
+                              mb-4 bg-black bg-opacity-25 
+                              rounded-3 p-2 border border-1 
+                              border-white">
 
-                  <!-- Foglalás adatai -->
-                  <div class="mx-auto">
+                    <!-- Szállás képe -->
+                    <img  style="height: 170px; width: 170px;"
+                          :src="`/countries/${convertStrings(x.country_name)}` +
+                              `/cities/${convertStrings(x.city_name)}` +
+                              `/${x.table_type}/${convertStrings(x.folder_name)}/001.png`"
+                          class="justify-content-start rounded-3 img-fluid" 
+                          alt="accomodation_image">
 
-                    <!-- szállás neve -->
-                    <div class="row">
-                      <h3 class="text-white mx-auto 
-                                  text-center fw-light 
-                                  col-12">
-                        {{ x.name }}
-                      </h3>
+                    <!-- Foglalás adatai -->
+                    <div class="mx-auto pt-4">
+
+                      <!-- szállás neve -->
+                      <div class="row">
+                        <h3 class="text-white mx-auto 
+                                    text-center fw-light 
+                                    col-12">
+                          {{ x.name }}
+                        </h3>
+                      </div>
+
+                      <!-- szállás ára és bérlési dátuma -->
+                      <div>
+                        <!-- Bérlés dátuma -->
+                        <p class="text-white-50">
+                          {{x.country_name}}, {{ x.city_name }}
+                        </p>
+                      </div>
+                      
+                      <!-- Bérlés kezdete és vége -->
+                      <div class="row justify-content-center">
+
+                       <button class="btn btn-primary mx-1 
+                                      w-auto">
+                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                          Megnéz
+                       </button>
+                       <button class="btn btn-secondary mx-1  
+                                      w-auto">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                          Módosít
+                       </button>
+                       <button class="btn btn-danger mx-1  
+                                      w-auto">
+                          <i class="fa-solid fa-circle-minus"></i>
+                          Töröl
+                       </button>
+                      </div>
                     </div>
-
-                    <!-- szállás ára és bérlési dátuma -->
-                    <div>
-                      <p>{{ $t("profile.navbar_history_group.price") }}
-                        {{ x.price * selectedCurrency.currencyMultiplier }} 
-                        {{ selectedCurrency.currencyShortedName }}
-                      </p>
-
-                      <!-- Bérlés dátuma -->
-                      <p class="text-white-50">
-                        {{ $t("profile.navbar_history_group.rent") }} {{ x.rent_date }}
-                      </p>
-                    </div>
-                    
-                    <!-- Bérlés kezdete és vége -->
-                    <div class="row">
-
-                      <!-- Bérlés kezdete -->
-                      <p class="text-white-50 col-12 
-                                col-md-6 text-nowrap">
-                        {{ $t("profile.navbar_history_group.start") }} {{ x.rent_beginning }}
-                      </p>
-
-                      <!-- Bérlés vége -->
-                      <p class="text-white-50 col-12 
-                                col-md-6 text-nowrap">
-                        {{ $t("profile.navbar_history_group.end") }} {{ x.rent_end }}
-                      </p>
-                    </div>
-                  </div>
-                </RouterLink>
-
-                <!-- Nincs még lefoglalt szállás szöveg -->
-                  <h2>{{ $t("profile.text_accommodations") }}</h2>
+                  </RouterLink>
+                  <h2 v-if="userItems.length==0">
+                    {{ $t("profile.text_accommodations") }}
+                  </h2>
+                </div>
               </div>
 
           </div>

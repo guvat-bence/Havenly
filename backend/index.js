@@ -1459,7 +1459,8 @@ app.get("/getUserItems/:id",(req,res)=>{
               accommodations.bathroom,
               accommodations.description,
               countries.name AS 'country_name',
-              cities.name AS 'city_name'
+              cities.name AS 'city_name',
+              'accommodations' AS 'table_type'
             FROM accommodations
             INNER JOIN countries
             ON countries.id = country_id
@@ -1483,7 +1484,8 @@ app.get("/getUserItems/:id",(req,res)=>{
                 experiences.price,
                 experiences.description,
                 countries.name AS 'country_name',
-                cities.name AS 'city_name'
+                cities.name AS 'city_name',
+                'experiences' AS 'table_type'
               FROM experiences
               INNER JOIN countries
               ON countries.id = country_id
