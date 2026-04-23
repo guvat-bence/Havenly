@@ -230,6 +230,7 @@ if(counter>0)
 // Az összes véleményy lehívása
 getAllOpinions();
 
+console.log(props)
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 .then(datas=>{
