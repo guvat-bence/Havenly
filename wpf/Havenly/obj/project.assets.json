@@ -781,19 +781,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bence\\.nuget\\packages\\": {}
+    "C:\\Users\\mateh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\xampp\\htdocs\\html\\Havenly\\Havenly\\Havenly.csproj",
+      "projectUniqueName": "E:\\Havenly\\wpf\\Havenly\\Havenly.csproj",
       "projectName": "Havenly",
-      "projectPath": "E:\\xampp\\htdocs\\html\\Havenly\\Havenly\\Havenly.csproj",
-      "packagesPath": "C:\\Users\\Bence\\.nuget\\packages\\",
-      "outputPath": "E:\\xampp\\htdocs\\html\\Havenly\\Havenly\\obj\\",
+      "projectPath": "E:\\Havenly\\wpf\\Havenly\\Havenly.csproj",
+      "packagesPath": "C:\\Users\\mateh\\.nuget\\packages\\",
+      "outputPath": "E:\\Havenly\\wpf\\Havenly\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bence\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mateh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -818,7 +818,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -852,7 +853,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
