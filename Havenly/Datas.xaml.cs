@@ -64,7 +64,12 @@ namespace Havenly
                         variation = "datetime";
                         counter++;
                     }
-                    else if (dataType == typeof(string) && (dataName == "description" || dataName == "apartman_details"))
+                    else if (dataType == typeof(string) && 
+                            (dataName == "description" || 
+                            dataName == "apartman_details" || 
+                            dataName == "item" || 
+                            dataName == "opinion" ||
+                            dataName == "message"))
                     {
                         variation = "description";
                         counter++;
@@ -136,6 +141,8 @@ namespace Havenly
                 {
                     case "gender":
                     case "user_type":
+                    case "rate":
+                    case "status":
                         tb.MaxLength = 1;
                         break;
 
@@ -143,6 +150,7 @@ namespace Havenly
                     case "bed":
                     case "bathroom":
                     case "guest_number":
+                    case "language_short_name":
                         tb.MaxLength = 2;
                         break;
 
@@ -157,6 +165,7 @@ namespace Havenly
                         break;
 
                     case "shorted_name":
+                    case "postal_code":
                         tb.MaxLength = 10;
                         break;
 
@@ -170,6 +179,9 @@ namespace Havenly
                     case "folder_name":
                     case "phone_number":
                     case "password":
+                    case "message_type":
+                    case "item_type":
+                    case "item_name":
                         tb.MaxLength = 40;
                         break;
 
@@ -182,11 +194,14 @@ namespace Havenly
 
                     case "name":
                     case "payment_type":
+                    case "city":
                         tb.MaxLength = 150;
                         break;
 
                     case "email":
-                        tb.MaxLength = 254;
+                    case "billing_address1":
+                    case "billing_address2":
+                        tb.MaxLength = 255;
                         break;
 
                     default:

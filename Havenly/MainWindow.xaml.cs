@@ -65,6 +65,11 @@ namespace Havenly
             removeButton.IsEnabled = false;
             card_networks_btn.IsEnabled = false;
             currencybtn.IsEnabled = false;
+            translationsbtn.IsEnabled = false;
+            reportbtn.IsEnabled = false;
+            opinionsbtn.IsEnabled = false;
+            billing_addressbtn.IsEnabled = false;
+
         }
 
         string currentTable = "";
@@ -133,6 +138,10 @@ namespace Havenly
             card_networks_btn.IsEnabled = true;
             currencybtn.IsEnabled = true;
             datagrid0.IsReadOnly = true;
+            translationsbtn.IsEnabled = true;
+            reportbtn.IsEnabled = true;
+            opinionsbtn.IsEnabled = true;
+            billing_addressbtn.IsEnabled = true;
         }
         private void experience_button_Click(object sender, RoutedEventArgs e)
         {
@@ -207,6 +216,7 @@ namespace Havenly
             accommodationbtn.IsEnabled = false;
 
         }
+
         private void card_networks_btn_Click(object sender, RoutedEventArgs e)
         {
             currentTable = "card_networks";
@@ -221,6 +231,37 @@ namespace Havenly
             readData("currency");
             enable_btns();
             currencybtn.IsEnabled = false;
+        }
+        private void billing_addressbtn_Click(object sender, RoutedEventArgs e)
+        {
+            currentTable = "billing_address";
+            readData("billing_address");
+            enable_btns();
+            billing_addressbtn.IsEnabled = false;
+        }
+
+        private void opinionsbtn_Click(object sender, RoutedEventArgs e)
+        {
+            currentTable = "opinions";
+            readData("opinions");
+            enable_btns();
+            opinionsbtn.IsEnabled = false;
+        }
+
+        private void reportbtn_Click(object sender, RoutedEventArgs e)
+        {
+            currentTable = "report";
+            readData("report");
+            enable_btns();
+            reportbtn.IsEnabled = false;
+        }
+
+        private void translationsbtn_Click(object sender, RoutedEventArgs e)
+        {
+            currentTable = "translations";
+            readData("translations");
+            enable_btns();
+            translationsbtn.IsEnabled = false;
         }
 
         string operation = "";
@@ -290,7 +331,6 @@ namespace Havenly
                 {
                    
                     enable_btns();
-                    operation = "";
                 }
                 
             }

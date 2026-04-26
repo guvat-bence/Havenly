@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="1435870.png" />
+    <None Remove="billing_addres.png" />
     <None Remove="card_network.png" />
     <None Remove="currency.png" />
     <None Remove="image\approve.png" />
@@ -34,6 +36,9 @@
     <None Remove="image\szallas.png" />
     <None Remove="image\user.png" />
     <None Remove="login.png" />
+    <None Remove="opinions.png" />
+    <None Remove="reports.png" />
+    <None Remove="translations.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -85,9 +90,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="billing_addres.png" />
     <Resource Include="card_network.png" />
     <Resource Include="currency.png" />
     <Resource Include="login.png" />
+    <Resource Include="opinions.png" />
+    <Resource Include="reports.png" />
+    <Resource Include="translations.png" />
   </ItemGroup>
 
 </Project>

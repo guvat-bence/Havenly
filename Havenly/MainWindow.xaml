@@ -5,22 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Havenly"
     mc:Ignorable="d"
-    Title="MainWindow" Height="900" Width="1200">
+    Title="MainWindow" Height="1037" Width="1200">
 
     <Grid Background="#4a3d94">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="0*" />
         </Grid.ColumnDefinitions>
-
-        <Label Content="Havenly adminisztrátor UI"
-            HorizontalAlignment="Left"
-            Margin="63,22,0,0"
-            VerticalAlignment="Top"
-            Height="72"
-            Width="605"
-            FontSize="50"
-            Name="test" Grid.Column="1" />
 
         <Border Margin="0,58,104,0"
             HorizontalAlignment="Right"
@@ -29,12 +20,13 @@
             BorderThickness="2"
             BorderBrush="Transparent"
             CornerRadius="20"
-            Height="794"
+            Height="924"
             Padding="10"
             Background="#2f275e">
-            <UniformGrid Rows="10" Columns="1" Margin="-12,-12,177,-12">
+            <UniformGrid Rows="14
+                         " Columns="1" Margin="-12,-12,177,-12">
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -45,7 +37,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -56,7 +48,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -67,7 +59,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -78,7 +70,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -89,7 +81,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -100,7 +92,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -111,7 +103,7 @@
                             Stretch="Uniform" />
                 </Button>
 
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -121,7 +113,7 @@
                             MaxWidth="96"
                             Stretch="Uniform" />
                 </Button>
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -132,7 +124,7 @@
                             MaxWidth="96"
                             Stretch="Uniform" />
                 </Button>
-                <Button Height="80"
+                <Button Height="60"
                         Width="80"
                         MaxHeight="80"
                         MaxWidth="80"
@@ -143,6 +135,50 @@
                             MaxWidth="96"
                             Stretch="Uniform" />
                 </Button>
+                <Button Height="60"
+                    Width="80"
+                    MaxHeight="80"
+                    MaxWidth="80"
+                    x:Name="billing_addressbtn" 
+                     Margin="11,1,11,1" Click="billing_addressbtn_Click">
+                    <Image Source="/billing_addres.png"
+                        MaxHeight="93"
+                        MaxWidth="96"
+                        Stretch="Uniform" />
+                </Button>
+                <Button Height="60"
+                    Width="80"
+                    MaxHeight="80"
+                    MaxWidth="80"
+                    x:Name="opinionsbtn" 
+                    Margin="11,1,11,1" Click="opinionsbtn_Click">
+                    <Image Source="/opinions.png"
+                        MaxHeight="93"
+                        MaxWidth="96"
+                        Stretch="Uniform" />
+                </Button>
+                <Button Height="60"
+                    Width="80"
+                    MaxHeight="80"
+                    MaxWidth="80"
+                    x:Name="reportbtn" 
+                     Margin="11,1,11,1" Click="reportbtn_Click">
+                    <Image Source="/reports.png"
+                        MaxHeight="93"
+                        MaxWidth="96"
+                        Stretch="Uniform" />
+                </Button>
+                <Button Height="60"
+                    Width="80"
+                    MaxHeight="80"
+                    MaxWidth="80"
+                    x:Name="translationsbtn" 
+                     Margin="11,1,11,1" Click="translationsbtn_Click">
+                    <Image Source="/translations.png"
+                        MaxHeight="93"
+                        MaxWidth="96"
+                        Stretch="Uniform" />
+                </Button>
 
             </UniformGrid>
         </Border>
@@ -151,12 +187,12 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Padding="10"
-                Height="536"
+                Height="667"
                 Width="706"
                 CornerRadius="20"
                 BorderBrush="Transparent"
                 BorderThickness="2" 
-                Margin="10,106,0,0">
+                Margin="10,83,0,0">
             <DataGrid Background="Transparent" 
                       BorderBrush="Transparent" 
                       d:ItemsSource="{d:SampleData ItemCount=5}"
@@ -166,16 +202,16 @@
                       Name="datagrid0"
                       PreviewKeyDown="datagrid0_PreviewKeyDown"
                       MouseDoubleClick="datagrid0_MouseDoubleClick"
-                      HorizontalAlignment="Center" Height="499" Width="634" Margin="0,15,0,0"/>
+                      HorizontalAlignment="Center" Height="577" Width="634" Margin="0,15,0,0"/>
         </Border>
 
         <Label Content="City" 
                HorizontalAlignment="Right" 
                VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"
-               Margin="0,66,104,0" 
+               Margin="0,61,104,0" 
                VerticalAlignment="Top"
-               Height="69" 
+               Height="60" 
                Width="202"
                FontSize="30"/>
 
@@ -183,9 +219,9 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,140,104,0" 
+            Margin="0,126,104,0" 
             VerticalAlignment="Top"
-            Height="68" 
+            Height="60" 
             Width="202"
             FontSize="30"/>
 
@@ -193,9 +229,9 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,219,104,0" 
+            Margin="0,191,104,0" 
             VerticalAlignment="Top"
-            Height="75" 
+            Height="60" 
             Width="202"
             FontSize="30"/>
 
@@ -203,48 +239,48 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,303,104,0" 
+            Margin="0,261,107,0" 
             VerticalAlignment="Top"
-            Height="71" 
-            Width="202"
+            Height="60" 
+            Width="199"
             FontSize="30"/>
 
         <Label Content="Favourite" 
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,389,104,0" 
+            Margin="0,326,107,0" 
             VerticalAlignment="Top"
-            Height="66" 
-            Width="202"
+            Height="60" 
+            Width="199"
             FontSize="30"/>
 
         <Label Content="History" 
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,455,104,0" 
+            Margin="0,394,107,0" 
             VerticalAlignment="Top"
-            Height="78" 
-            Width="202"
+            Height="60" 
+            Width="199"
             FontSize="30"/>
         <Label Content="Users" 
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,538,104,0" 
+            Margin="0,459,107,0" 
             VerticalAlignment="Top"
-            Height="70" 
-            Width="202"
+            Height="60" 
+            Width="199"
             FontSize="30"/>
         <Label Content="Accommodation" 
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,620,104,0" 
+            Margin="0,524,107,0" 
             VerticalAlignment="Top"
-            Height="74" 
-            Width="202"
+            Height="60" 
+            Width="199"
             FontSize="25"/>
 
         <Label Content="Táblák"
@@ -308,19 +344,55 @@
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,699,104,0" 
+            Margin="0,589,107,0" 
             VerticalAlignment="Top"
-            Height="74" 
-            Width="202"
+            Height="60" 
+            Width="199"
+            FontSize="25"/>
+        <Label Content="Billing Address" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,724,107,0" 
+            VerticalAlignment="Top"
+            Height="60" 
+            Width="199"
+            FontSize="25"/>
+        <Label Content="Opinions" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,789,107,0" 
+            VerticalAlignment="Top"
+            Height="60" 
+            Width="199"
+            FontSize="25"/>
+        <Label Content="Report" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,854,107,0" 
+            VerticalAlignment="Top"
+            Height="60" 
+            Width="199"
+            FontSize="25"/>
+        <Label Content="Translations" 
+            HorizontalAlignment="Right" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Margin="0,922,107,0" 
+            VerticalAlignment="Top"
+            Height="60" 
+            Width="199"
             FontSize="25"/>
         <Label Content="Currency" 
             HorizontalAlignment="Right" 
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Margin="0,778,104,0" 
+            Margin="0,654,107,0" 
             VerticalAlignment="Top"
-            Height="74" 
-            Width="202"
+            Height="60" 
+            Width="199"
             FontSize="25"/>
     </Grid>
 </Window>
