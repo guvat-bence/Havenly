@@ -71,7 +71,10 @@
 ## Az első indítás utáni indításkor:
 
 ### 1. Adatbázis indítása
-    Nyissa meg a "xampp" alkamazást, a "MySQL" menüpontnál kattintson a start gombra.
+
+    Nyissa meg a "xampp" alkamazást, majd az "Apache" menüpontnál kattintson a start gombra.
+
+    Majd a "MySQL" menüpontnál kattintson a start gombra.
 
 ### 2. Backend indítása
     cd web
@@ -116,7 +119,10 @@
 ## Az első indítás utáni indításkor:
 
 ### 1. Adatbázis indítása
-    Nyissa meg a "xampp" alkamazást, a "MySQL" menüpontnál kattintson a start gombra.
+    Nyissa meg a "xampp" alkamazást, majd az "Apache" menüpontnál kattintson a start gombra.
+
+    Majd a "MySQL" menüpontnál kattintson a start gombra.
+
 
 ### 2. Alkalmazás indítása
     
