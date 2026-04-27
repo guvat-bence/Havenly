@@ -27,7 +27,7 @@ const db = mysql.createConnection({
 db.connect((err) => {
   if (err) {
     console.error("Hiba a MySQL kapcsolódáskor:", err);
-    return;
+    process.exit(1);
   }
   console.log("Sikeres MySQL kapcsolat!");
 });

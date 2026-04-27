@@ -1,0 +1,887 @@
+{
+  "navbar":
+  {
+    "accommodations":"Alloggi",
+    "experiences":"Esperienze",
+    "about_us":"Chi siamo",
+    "settings":"Impostazioni",
+    "login":"Accesso",
+    "registration":"Registrazione",
+    "logout":"Disconnetti"
+  },
+  "footer":
+  {
+    "quick_accesses":"Accessi rapidi:",
+    "main_page":"Pagina principale",
+    "about_us":"Chi siamo",
+    "accommodations":"Alloggi",
+    "experiences":"Esperienze",
+    "havenly":"Havenly",
+    "motto":"-Le esperienze sono infinite, e il senso di casa ti accompagna sempre.",
+    "data_protection":"Protezione dei dati",
+    "term_of_use":"Termini di utilizzo",
+    "contacts":"Contatti",
+    "phone_number":"+36303425678",
+    "addres":"Kecskemét, József Attila u. 5",
+    "copyright":"2025-2026 Havenly"
+  },
+  "home":
+  {
+    "search":"Cosa stai cercando?",
+    "accommodations":"Alloggi",
+    "experiences":"Esperienze",
+    "popular_accomodations":"I nostri alloggi più popolari"
+  },
+  "card": {
+    "interest": "interessato",
+    "night": "notte",
+    "human": "persona"
+  },
+ "accommodations": {
+    "title_first_part": "Alloggi che",
+    "title_second_part": "offre"
+  },
+  "experiences": {
+    "title_first_part": "Esperienze che",
+    "title_second_part": "offre"
+  },
+  "search":
+  {
+    "search_title":"Ricerca",
+    "countries": {
+      "1": "Giappone",
+      "2": "Italia",
+      "3": "Ungheria",
+      "4": "Francia",
+      "5": "Spagna",
+      "6": "Germania",
+      "7": "Austria",
+      "8": "Grecia",
+      "9": "Thailandia",
+      "10": "Brasile",
+      "11": "Canada",
+      "12": "Stati Uniti",
+      "13": "Australia",
+      "14": "Corea del Sud",
+      "15": "Cina",
+      "16": "India",
+      "17": "Messico",
+      "18": "Portogallo",
+      "19": "Svezia",
+      "20": "Norvegia",
+      "21": "Finlandia",
+      "22": "Polonia",
+      "23": "Repubblica Ceca",
+      "24": "Slovacchia",
+      "25": "Romania",
+      "26": "Croazia",
+      "27": "Slovenia",
+      "28": "Serbia",
+      "29": "Montenegro",
+      "30": "Bosnia ed Erzegovina",
+      "31": "Albania",
+      "32": "Bulgaria",
+      "33": "Turchia",
+      "34": "Egitto",
+      "35": "Marocco",
+      "36": "Sudafrica",
+      "37": "Argentina",
+      "38": "Cile",
+      "39": "Perù",
+      "40": "Colombia",
+      "41": "Irlanda",
+      "42": "Belgio",
+      "43": "Paesi Bassi",
+      "44": "Lussemburgo",
+      "45": "Liechtenstein",
+      "46": "Svizzera",
+      "47": "Estonia",
+      "48": "Lettonia",
+      "49": "Lituania",
+      "50": "Malta",
+      "51": "Islanda",
+      "52": "Georgia",
+      "53": "Ucraina",
+      "54": "Bielorussia",
+      "55": "Russia",
+      "56": "Kazakistan",
+      "57": "Singapore",
+      "58": "Malesia",
+      "59": "Indonesia",
+      "60": "Vietnam",
+      "61": "Filippine",
+      "62": "Pakistan",
+      "63": "Nepal",
+      "64": "Sri Lanka",
+      "65": "Iran",
+      "66": "Iraq",
+      "67": "Arabia Saudita",
+      "68": "Emirati Arabi Uniti",
+      "69": "Israele",
+      "70": "Nuova Zelanda"
+    },
+    "cities":
+    {
+      "1": "Tokyo",
+      "2": "Osaka",
+      "3": "Sapporo",
+      "4": "Roma",
+      "5": "Milano",
+      "6": "Napoli",
+      "7": "Budapest",
+      "8": "Szeged",
+      "9": "Debrecen",
+      "10": "Parigi",
+      "11": "Lione",
+      "12": "Marsiglia",
+      "13": "Madrid",
+      "14": "Barcellona",
+      "15": "Siviglia",
+      "16": "Berlino",
+      "17": "Monaco di Baviera",
+      "18": "Colonia",
+      "19": "Vienna",
+      "20": "Linz",
+      "21": "Salisburgo",
+      "22": "Atene",
+      "23": "Salonicco",
+      "24": "Rodi",
+      "25": "Bangkok",
+      "26": "Phuket",
+      "27": "Chiang Mai",
+      "28": "San Paolo",
+      "29": "Rio de Janeiro",
+      "30": "Brasilia",
+      "31": "Montreal",
+      "32": "Toronto",
+      "33": "Vancouver",
+      "34": "New York",
+      "35": "Los Angeles",
+      "36": "Chicago",
+      "37": "Sydney",
+      "38": "Melbourne",
+      "39": "Brisbane",
+      "40": "Seul",
+      "41": "Busan",
+      "42": "Incheon",
+      "43": "Pechino",
+      "44": "Shanghai",
+      "45": "Guangzhou",
+      "46": "Mumbai",
+      "47": "Bangalore",
+      "48": "Chennai",
+      "49": "Città del Messico",
+      "50": "Guadalajara",
+      "51": "Monterrey",
+      "52": "Lisbona",
+      "53": "Porto",
+      "54": "Faro",
+      "55": "Stoccolma",
+      "56": "Malmö",
+      "57": "Örebro",
+      "58": "Oslo",
+      "59": "Bergen",
+      "60": "Tromsø",
+      "61": "Helsinki",
+      "62": "Tampere",
+      "63": "Oulu",
+      "64": "Varsavia",
+      "65": "Cracovia",
+      "66": "Danzica",
+      "67": "Praga",
+      "68": "Brno",
+      "69": "České Budějovice",
+      "70": "Bratislava",
+      "71": "Košice",
+      "72": "Banská Bystrica",
+      "73": "Bucarest",
+      "74": "Cluj-Napoca",
+      "75": "Brașov",
+      "76": "Zagabria",
+      "77": "Spalato",
+      "78": "Fiume",
+      "79": "Lubiana",
+      "80": "Maribor",
+      "81": "Capodistria",
+      "82": "Belgrado",
+      "83": "Niš",
+      "84": "Novi Sad",
+      "85": "Podgorica",
+      "86": "Cattaro",
+      "87": "Bar",
+      "88": "Sarajevo",
+      "89": "Mostar",
+      "90": "Tuzla",
+      "91": "Tirana",
+      "92": "Durazzo",
+      "93": "Valona",
+      "94": "Sofia",
+      "95": "Plovdiv",
+      "96": "Varna",
+      "97": "Istanbul",
+      "98": "Ankara",
+      "99": "Smirne",
+      "100": "Il Cairo",
+      "101": "Alessandria",
+      "102": "Giza",
+      "103": "Marrakech",
+      "104": "Fès",
+      "105": "Rabat",
+      "106": "Città del Capo",
+      "107": "Johannesburg",
+      "108": "Durban",
+      "109": "Buenos Aires",
+      "110": "Córdoba",
+      "111": "Rosario",
+      "112": "Santiago",
+      "113": "Valparaíso",
+      "114": "Concepción",
+      "115": "Lima",
+      "116": "Cusco",
+      "117": "Arequipa",
+      "118": "Bogotá",
+      "119": "Medellín",
+      "120": "Cali",
+      "121": "Dublino",
+      "122": "Cork",
+      "123": "Galway",
+      "124": "Bruxelles",
+      "125": "Gand",
+      "126": "Anversa",
+      "127": "Amsterdam",
+      "128": "L'Aia",
+      "129": "Rotterdam",
+      "130": "Lussemburgo",
+      "131": "Esch-sur-Alzette",
+      "132": "Differdange",
+      "133": "Vaduz",
+      "134": "Triesen",
+      "135": "Eschen",
+      "136": "Zurigo",
+      "137": "Berna",
+      "138": "Ginevra",
+      "139": "Tallinn",
+      "140": "Tartu",
+      "141": "Pärnu",
+      "142": "Riga",
+      "143": "Liepāja",
+      "144": "Jelgava",
+      "145": "Vilnius",
+      "146": "Kaunas",
+      "147": "Šiauliai",
+      "148": "La Valletta",
+      "149": "Sliema",
+      "150": "San Giuliano",
+      "151": "Reykjavik",
+      "152": "Akureyri",
+      "153": "Selfoss",
+      "154": "Tbilisi",
+      "155": "Kutaisi",
+      "156": "Batumi",
+      "157": "Kiev",
+      "158": "Leopoli",
+      "159": "Dnipro",
+      "160": "Minsk",
+      "161": "Vitebsk",
+      "162": "Grodno",
+      "163": "Mosca",
+      "164": "San Pietroburgo",
+      "165": "Ekaterinburg",
+      "166": "Almaty",
+      "167": "Astana",
+      "168": "Shymkent",
+      "169": "Singapore",
+      "170": "Jurong East",
+      "171": "Tampines",
+      "172": "Kuala Lumpur",
+      "173": "Johor Bahru",
+      "174": "George Town",
+      "175": "Giacarta",
+      "176": "Bandung",
+      "177": "Surabaya",
+      "178": "Hanoi",
+      "179": "Città di Ho Chi Minh",
+      "180": "Da Nang",
+      "181": "Manila",
+      "182": "Città di Cebu",
+      "183": "Città di Davao",
+      "184": "Islamabad",
+      "185": "Lahore",
+      "186": "Karachi",
+      "187": "Kathmandu",
+      "188": "Pokhara",
+      "189": "Biratnagar",
+      "190": "Colombo",
+      "191": "Kandy",
+      "192": "Galle",
+      "193": "Teheran",
+      "194": "Mashhad",
+      "195": "Isfahan",
+      "196": "Baghdad",
+      "197": "Bassora",
+      "198": "Erbil",
+      "199": "Riad",
+      "200": "Gedda",
+      "201": "Dammam",
+      "202": "Dubai",
+      "203": "Abu Dhabi",
+      "204": "Sharjah",
+      "205": "Tel Aviv",
+      "206": "Gerusalemme",
+      "207": "Haifa",
+      "208": "Auckland",
+      "209": "Wellington",
+      "210": "Dunedin",
+      "211": "Makó",
+      "212": "Apátfalva",
+      "213": "Pécs",
+      "214": "Győr"
+    }
+  },
+  "log_out":
+  {
+    "log_out":"Sei sicuro di voler uscire?",
+    "yes":"Disconnetti",
+    "no":"Annulla"
+  },
+  "about":
+  {
+    "months": "Gennaio,Febbraio,Marzo,Aprile,Maggio,Giugno,Luglio,Agosto,Settembre,Ottobre,Novembre,Dicembre",
+    "days_full": "Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato,Domenica",
+    "days_short": "L,M,M,G,V,S,D",
+    "accommodation_extras": "cosa offre la struttura",
+    "extras":
+    {
+      "balcony": "balcone",
+      "basic_spices": "spezie base",
+      "bluetooth_speaker": "altoparlante bluetooth",
+      "board_games": "giochi da tavolo",
+      "coffee_maker": "macchina del caffè",
+      "darkening": "tende oscuranti",
+      "dishes": "stoviglie",
+      "extra_bed_linen": "biancheria extra",
+      "free_wifi": "wifi",
+      "hair_dryer": "asciugacapelli",
+      "iron": "ferro da stiro",
+      "kettle": "bollitore",
+      "microwave": "microonde",
+      "night_lamp": "lampada da notte",
+      "parking_lot": "parcheggio",
+      "safe": "cassaforte",
+      "smart_tv": "smart tv",
+      "suitcase_rack": "portavaligie",
+      "towels": "asciugamani",
+      "usb_charger": "caricabatterie usb",
+      "work_table": "scrivania"
+    },
+    "arrive_time": "orario di arrivo",
+    "departure_time": "orario di partenza",
+    "sum": "totale:",
+    "number_of_guest": "numero di ospiti",
+    "human": "persona",
+    "login": "Accesso",
+    "renting": "Prenotazione",
+    "information_text":"La descrizione e il prezzo dell'esperienza sono solo a scopo informativo.",
+    "opinion": {
+      "others_opinion": "Opinioni degli altri:",
+      "opinion": "opinione",
+      "write_opinion": "Scrivi la tua opinione!",
+      "send_opinion": "Invia opinione",
+      "back": "Annulla",
+      "report": "Segnala opinione!",
+      "upload_question": "Vuoi continuare l'operazione?",
+      "succes_upload": "Operazione riuscita!"
+    },
+    "report": {
+      "any_problems": "Hai trovato un problema?",
+      "report_to_we": "Segnalalo a noi:",
+      "report_problem": "Segnala un problema!",
+      "report_type": "Tipo di problema",
+      "report_detail": "Dettagli del problema",
+      "choose": "-- Scegli --",
+      "itemsProblemTypes": {
+        "incorrect_info": "Informazioni errate",
+        "missing_info": "Informazioni mancanti",
+        "description_error": "Descrizione imprecisa / fuorviante",
+        "image_issue": "Immagini non appropriate",
+        "price_issue": "Prezzo errato / non corrisponde",
+        "availability_issue": "Disponibilità errata",
+        "location_issue": "Posizione errata",
+        "duplicate": "Annuncio duplicato",
+        "inappropriate_content": "Contenuto inappropriato",
+        "other": "Altro"
+      },
+      "reviewProblemTypes": {
+        "spam": "Spam / pubblicità",
+        "offensive": "Contenuto offensivo / volgare",
+        "fake_review": "Recensione falsa",
+        "irrelevant": "Irrilevante",
+        "misleading": "Fuorviante",
+        "duplicate_review": "Recensione duplicata",
+        "hate_speech": "Incitamento all'odio",
+        "personal_data": "Contiene dati personali",
+        "other": "Altro"
+      },
+      "question": "",
+      "send": "Invia",
+      "yes": "Sì",
+      "no": "No"
+    }
+  },
+  "basket": {
+    "title": "Carrello",
+    "pay": "Pagamento",
+    "rent_message": "Grazie per la tua prenotazione! Per qualsiasi domanda, non esitare a contattarmi!",
+    "succesful_renting": "Prenotazione riuscita!",
+    "card": {
+      "person_number": "Numero di persone:",
+      "from": "Da:",
+      "to": "A:",
+      "price": "Prezzo base:",
+      "tax": "Costo di gestione",
+      "final_price": "Totale:"
+    },
+    "user_datas": {
+      "title": "Dati di fatturazione",
+      "names": "Nomi",
+      "first_name": "Nome",
+      "last_name": "Cognome",
+      "middle_name": "Secondo nome",
+      "contact_information": "Informazioni di contatto",
+      "email": "Email",
+      "phone_number": "Numero di telefono",
+      "city": "Città",
+      "postal_code": "Codice postale",
+      "billing_addres": "Indirizzo di fatturazione",
+      "card_number": "Numero della carta",
+      "month": "Mese",
+      "year": "Anno",
+      "cvv": "CVV"
+    }
+  },
+  "about_us":
+  {
+    "about_us":"Chi siamo",
+    "who_are_we":"Chi siamo?",
+    "who_are_we_text":"Havenly è una moderna piattaforma di prenotazione di alloggi, creata da due sviluppatori appassionati, Guvat Bence József e Herczeg Máté János, con l’obiettivo di rendere la ricerca e l’affitto di alloggi più semplice, trasparente e ricca di esperienze per tutti gli utenti.",
+    "havenly_mission":"La missione di Havenly",
+    "havenly_mission_text":"Il nostro obiettivo è creare un sito web facile da usare, dove la prenotazione e l’affitto di alloggi avvengano in modo rapido, sicuro e confortevole. Havenly non è solo un sistema di prenotazione, ma anche una piattaforma comunitaria che mette in contatto viaggiatori e host, aiutando allo stesso tempo a scoprire i valori nascosti e le attrazioni delle diverse località.",
+    "havenly_offer_title":"Cosa offre Havenly agli utenti",
+    "havenly_offer_alt_title":"Havenly offre agli utenti la possibilità di:",
+    "havenly_offer":
+    {
+      "first_offer":"prenotare alloggi o caricare e affittare le proprie strutture dopo la registrazione,",
+      "second_offer":"caricare descrizioni dettagliate degli alloggi, immagini e video,",
+      "third_offer":"aggiungere attrazioni locali ed esperienze alle città,",
+      "fourth_offer":"aiutare altri utenti nelle loro decisioni tramite recensioni,",
+      "fifth_offer":"gestire in modo sicuro i dati dell’account e di pagamento,",
+      "sixth_offer":"modificare o cancellare facilmente alloggi e prenotazioni."
+    },
+    "booking_and_security_title":"Prenotazioni e sicurezza",
+    "booking_and_security_text":"Il sito gestisce automaticamente le prenotazioni, evitando sovrapposizioni di date e doppie prenotazioni. Ogni prenotazione genera una notifica immediata per l’host, e entrambe le parti hanno la possibilità di cancellare la prenotazione secondo condizioni predefinite.",
+    "contact_and_communication":"Contatti e comunicazione",
+    "contact_and_communication_text":"Havenly dispone di un sistema di messaggistica interno che consente una comunicazione rapida e semplice tra host e ospiti. Inoltre, il contatto è garantito anche via e-mail e telefono, poiché la registrazione è possibile solo con dati di contatto validi.",
+    "multilingualism_and_future_title":"Multilinguismo e visione futura",
+    "multilingualism_and_future_text":"Il sito sarà disponibile in più lingue per offrire una soluzione accessibile e comoda a un pubblico il più ampio possibile. Il nostro obiettivo a lungo termine è rendere Havenly una piattaforma affidabile e in continua evoluzione, capace di creare un reale valore sia per i viaggiatori che per gli host."
+  },
+  "register":
+  {
+    "title":"Passaggio",
+    "first_name":"Nome",
+    "last_name":"Cognome",
+    "middle_name":"Secondo nome",
+    "email":"Indirizzo email",
+    "phone_number":"Numero di telefono",
+    "example_phone_number":"Esempio: +36301234567",
+    "password":"Password",
+    "password_requirement":"La password deve contenere almeno una lettera maiuscola e un numero",
+    "password_requirement_second":"Deve contenere almeno 6 caratteri",
+    "password_again":"Conferma password",
+    "show_password":"Mostra password:",
+    "next":"Avanti",
+    "previous":"Indietro",
+    "gender":"Genere",
+    "male":"Maschile",
+    "female":"Femminile",
+    "succes_message":"Registrazione avvenuta con successo!",
+    "email_message":"Questa email è già in uso!",
+    "phone_number_message":"Questo numero di telefono è già in uso!"
+  },
+  "login":
+  {
+    "title":"Accesso",
+    "email":"Indirizzo email",
+    "password":"Password",
+    "show_password":"Mostra password:",
+    "log_in":"Accedi"
+  },
+  "profile":
+  {
+    "navbar_datas":"I miei dati",
+    "nabar_posts":"I miei post",
+    "navbar_messages":"Le mie conversazioni",
+    "navbar_admin": "Amministrazione",
+    "navbar_admin_group": {
+      "id": "Identificatore:",
+      "type": "Tipo:"
+    },
+    "navbar_history": "Cronologia",
+    "navbar_history_group": {
+      "rent": "Noleggio:",
+      "start": "Inizio:",
+      "end": "Fine:",
+      "price": "Prezzo:"
+    },
+    "text_accommodations": "Non hai ancora prenotazioni di alloggi!",
+    "text_messages": "Non hai ancora conversazioni! Prenota un alloggio per poter utilizzare questa funzione!",
+    "personal_detail":"Dati personali",
+    "card_datas":"Dati della carta",
+    "password_modify":"Modifica password",
+    "delete_user":"Elimina account",
+    "names":"Nomi",
+    "first_name":"Nome",
+    "last_name":"Cognome",
+    "middle_name":"Secondo nome",
+    "contact":"Metodi di contatto",
+    "email":"Indirizzo email",
+    "phone_number":"Numero di telefono",
+    "gender":"Genere",
+    "male":"Maschile",
+    "female":"Femminile",
+    "card_number":"Numero della carta",
+    "card_month":"Mese",
+    "card_year":"Anno",
+    "original_password":"Password attuale",
+    "new_password":"Nuova password",
+    "password_requirement":"La password deve contenere almeno una lettera maiuscola e un numero",
+    "password_requirement_second":"Deve contenere almeno 6 caratteri",
+    "password_requirement_third":"La password attuale e quella nuova non possono essere uguali",
+    "password_again":"Ripeti la nuova password",
+    "show_password":"Mostra password:",
+    "save":"Salva",
+    "save_all":"Salva tutto",
+    "delete_datas":"Elimina dati",
+    "unsave":"Annulla",
+    "yes":"Sì",
+    "no":"No",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "Sei sicuro di voler salvare le modifiche?",
+      "deleting":"Sei sicuro di voler eliminare il tuo account?",
+      "deletingCardDatas":"Sei sicuro di voler eliminare i dati della carta?",
+      "passwordError":"Hai inserito una password attuale errata!",
+      "emailError":"L'indirizzo email fornito è già in uso!",
+      "succesEditing":"Modifica riuscita!",
+      "succesDeleting":"Il tuo account è stato eliminato con successo!"
+    }
+  },
+  "settings":
+  {
+    "settings":"Impostazioni",
+    "language_choose": "Scegli la lingua",
+    "currency_choose":"Selezione della valuta",
+    "languages": {
+      "hu": "Ungherese",
+      "en": "Inglese",
+      "sr": "Serbo",
+      "de": "Tedesco",
+      "it": "Italiano",
+      "ja": "Giapponese"
+    },
+    "currencys":
+    {
+      "EUR": "Euro",
+      "HUF": "Fiorino ungherese",
+      "RSD": "Dinaro serbo",
+      "USD": "Dollaro statunitense",
+      "CHF": "Franco svizzero",
+      "JPY": "Yen giapponese",
+      "CNY": "Yuan cinese",
+      "KRW": "Won sudcoreano",
+      "INR": "Rupia indiana",
+      "IDR": "Rupia indonesiana",
+      "SGD": "Dollaro di Singapore",
+      "THB": "Baht thailandese",
+      "PHP": "Peso filippino",
+      "MYR": "Ringgit malese",
+      "VND": "Dong vietnamita",
+      "CAD": "Dollaro canadese",
+      "AUD": "Dollaro australiano",
+      "NZD": "Dollaro neozelandese",
+      "NOK": "Corona norvegese",
+      "SEK": "Corona svedese",
+      "DKK": "Corona danese",
+      "CZK": "Corona ceca",
+      "PLN": "Zloty polacco",
+      "RON": "Leu rumeno",
+      "TRY": "Lira turca",
+      "BRL": "Real brasiliano",
+      "ARS": "Peso argentino",
+      "MXN": "Peso messicano",
+      "ZAR": "Rand sudafricano",
+      "EGP": "Sterlina egiziana",
+      "SAR": "Riyal saudita",
+      "AED": "Dirham degli Emirati Arabi Uniti",
+      "KWD": "Dinaro kuwaitiano",
+      "QAR": "Riyal qatariota",
+      "HKD": "Dollaro di Hong Kong",
+      "TWD": "Nuovo dollaro taiwanese",
+      "PKR": "Rupia pakistana",
+      "BDT": "Taka bengalese",
+      "LKR": "Rupia dello Sri Lanka",
+      "ILS": "Shekel israeliano",
+      "GBP": "Sterlina britannica"
+    }
+  },
+  "data_protection":
+  {
+    "data_protection_title":"Informativa sulla privacy",
+    "data_protection_text_first":"Havenly è impegnata nella protezione dei dati personali degli utenti. La presente informativa sulla privacy ha lo scopo di spiegare in modo chiaro e trasparente quali dati raccogliamo, come li trattiamo e quali diritti spettano agli utenti in relazione ai loro dati personali.",
+    "data_protection_text_second":"Havenly è una piattaforma online di prenotazione e condivisione di alloggi, dove gli utenti possono prenotare strutture, caricare le proprie proprietà e condividere attrazioni locali ed esperienze con altri.",
+    "data_controller_datas":{
+      "data_controller_datas_title":"1. Dati del titolare del trattamento",
+      "data_controller_name_title":"Nome del titolare del trattamento:",
+      "data_controller_name":"Havenly",
+      "project_type_title":"Tipo di progetto",
+      "project_type":"Progetto di esame - applicazione web di prenotazione e condivisione di alloggi",
+      "contact_title":"Contatti"
+    },
+    "privacy_information":
+    {
+      "privacy_information_title":"2. Tipologie di dati personali trattati",
+      "registration_datas":
+      {
+        "registration_datas_title":"2.1. Dati forniti durante la registrazione",
+        "full_name":"Nome completo",
+        "email":"Indirizzo e-mail",
+        "phone_number":"Numero di telefono",
+        "password":"Password"
+      },
+      "profile_datas":
+      {
+        "profile_datas_title":"2.2. Dati del profilo",
+        "adress":"Indirizzo di residenza o domicilio (opzionale)",
+        "paying_methods":"Impostazioni dei metodi di pagamento",
+        "bank_card_datas":"Dati della carta bancaria (gestiti da un fornitore di pagamento esterno, non da Havenly)"
+      },
+      "accommodations_datas":
+      {
+        "accommodations_datas_title":"2.3. Dati relativi al caricamento degli alloggi",
+        "accommodation_addres":"Indirizzo della proprietà",
+        "description":"Descrizione",
+        "pictures":"Fotografie",
+        "prices_and_renting":"Prezzi e dati di disponibilità"
+      },
+      "renting_datas":
+      {
+        "renting_datas_title":"2.4. Dati di prenotazione",
+        "renting_time":"Periodo della prenotazione",
+        "renter_and_owner_datas":"Dati dell’ospite e dell’host",
+        "payment_informations":"Informazioni di pagamento"
+      },
+      "communication_datas":
+      {
+        "communication_datas_title":"2.5. Dati di comunicazione",
+        "communication":"Contenuto dei messaggi scambiati all’interno del sito",
+        "metedatas":"Metadati delle comunicazioni via e-mail e telefono"
+      },
+      "tech_datas":
+      {
+        "tech_datas":"2.6. Dati tecnici",
+        "ip_addres":"Indirizzo IP",
+        "browser_type":"Tipo di browser",
+        "log_in_times":"Orari di accesso"
+      }
+    },
+    "data_controlling_goal":
+    {
+      "data_controlling_goal_title":"3. Finalità del trattamento dei dati",
+      "user_profile":"Creazione e gestione dell’account utente",
+      "renting":"Gestione delle prenotazioni",
+      "experiences_and_accommodations":"Caricamento e modifica di alloggi e attrazioni",
+      "payment":"Gestione dei pagamenti",
+      "communications":"Garantire la comunicazione tra ospite e host",
+      "webiste_working":"Garantire e migliorare il funzionamento del sito web",
+      "scams":"Prevenzione degli abusi",
+      "policy":"Adempimento degli obblighi di legge"
+    },
+    "data_controlling_policy":
+    {
+      "data_controlling_policy_title":"4. Base giuridica del trattamento",
+      "user_agree":"Consenso dell’utente",
+      "contract":"Esecuzione del contratto (prenotazioni, gestione dell’account)",
+      "law":"Adempimento di obblighi legali",
+      "law2":"Legittimo interesse del fornitore (sicurezza, prevenzione degli abusi)"
+    },
+    "data_storeing":
+    {
+      "data_storeing_title":"5. Durata della conservazione dei dati",
+      "user_datas":"Dati dell’account utente: fino alla cancellazione dell’account",
+      "renting_datas":"Dati di prenotazione: per il periodo previsto dalla legge",
+      "messages":"Messaggi: fino alla cancellazione dell’account",
+      "tech_datas":"Dati tecnici: per il tempo necessario al funzionamento del sistema"
+    },
+    "data_forwarding":
+    {
+      "data_forwarding_title":"6. Trasferimento dei dati e fornitori esterni",
+      "intro":"Havenly può trasferire alcuni dati a partner esterni, ad esempio:",
+      "payment_providers":"Fornitori di servizi di pagamento",
+      "hosting_provider":"Fornitore di hosting",
+      "email_provider":"Servizio di invio e-mail",
+      "analytics":"Sistemi di analisi o logging (se utilizzati)",
+      "minimal_data":"La quantità di dati trasferiti è sempre limitata al minimo necessario"
+    },
+    "user_rights":
+    {
+      "user_rights_title":"7. Diritti degli utenti",
+      "access":"Accesso ai propri dati",
+      "correction":"Rettifica dei dati",
+      "deletion":"Cancellazione dei dati (\"diritto all’oblio\")",
+      "restriction":"Limitazione del trattamento",
+      "portability":"Portabilità dei dati",
+      "withdraw_consent":"Revoca del consenso",
+      "complaint":"Diritto di reclamo presso l’autorità nazionale per la protezione dei dati"
+    },
+    "data_security":
+    {
+      "data_security_title":"8. Sicurezza dei dati",
+      "intro":"Havenly adotta tutte le misure tecniche e organizzative ragionevoli per proteggere i dati personali",
+      "https":"Trasmissione dei dati crittografata (HTTPS)",
+      "password_hash":"Conservazione sicura delle password tramite hashing",
+      "backups":"Backup di sicurezza regolari",
+      "permissions":"Gestione delle autorizzazioni",
+      "abuse_monitoring":"Sistemi di monitoraggio degli abusi"
+    },
+    "privacy_policy_modification":
+    {
+      "privacy_policy_modification_title":"9. Modifica dell’informativa sulla privacy",
+      "modification_text":"Havenly si riserva il diritto di modificare la presente informativa sulla privacy in qualsiasi momento",
+      "notification":"Gli utenti saranno informati delle modifiche tramite il sito web"
+    }
+  },
+  "term_of_use":
+  {
+    "title":"Termini di utilizzo",
+    "intro":
+    {
+      "description_1":"Havenly (di seguito: \"Fornitore\", \"Piattaforma\", \"Noi\") è un’applicazione web online di prenotazione e condivisione di alloggi che consente agli utenti di prenotare strutture, caricare proprietà proprie e condividere attrazioni locali ed esperienze.",
+      "description_2":"Utilizzando la Piattaforma, l’utente (\"Utente\", \"Lei\") accetta i presenti Termini di Utilizzo. Se non è d’accordo con i termini, la invitiamo a non utilizzare il servizio."
+    },
+    "service_nature":
+    {
+      "service_nature_title":"1. Natura del servizio",
+      "intro":"Havenly è un’applicazione web sviluppata come progetto di esame che offre le seguenti funzionalità:",
+      "features":
+      {
+        "browse_booking":"consultazione e prenotazione di alloggi",
+        "property_upload":"caricamento e gestione di proprietà proprie",
+        "experiences":"condivisione di attrazioni locali ed esperienze",
+        "messaging":"messaggistica tra ospite e host",
+        "profile":"creazione e modifica del profilo utente",
+        "payments":"impostazione dei metodi di pagamento"
+      },
+      "education_note":"Il funzionamento della Piattaforma è a scopo educativo, ma i termini seguono la logica di un servizio reale."
+    },
+    "registration_account":
+    {
+      "registration_account_title":"2. Registrazione e account utente",
+      "requirements_intro":"Per utilizzare la Piattaforma è necessaria la registrazione. L’Utente è tenuto a:",
+      "requirements":
+      {
+        "real_data":"fornire dati reali",
+        "valid_contact":"utilizzare un indirizzo e-mail e un numero di telefono validi",
+        "secure_password":"scegliere una password sicura"
+      },
+      "responsibility":"L’Utente è responsabile della sicurezza del proprio account, in particolare della riservatezza della password. Il Fornitore non è responsabile per l’uso non autorizzato dell’account."
+    },
+    "user_obligations":
+    {
+      "user_obligations_title":"3. Obblighi dell’utente",
+      "intro":"L’Utente si impegna a:",
+      "rules":
+      {
+        "legal_use":"non utilizzare la Piattaforma per scopi illegali",
+        "truthful_content":"non caricare contenuti falsi, fuorvianti o offensivi",
+        "personal_rights":"non violare i diritti personali di terzi",
+        "copyright":"non pubblicare contenuti protetti da copyright senza autorizzazione",
+        "system_integrity":"non tentare di compromettere il funzionamento del sistema"
+      },
+      "sanctions":"Il Fornitore ha il diritto di sospendere o cancellare l’account degli utenti che violano le regole."
+    },
+    "property_responsibility":
+    {
+      "property_responsibility_title":"4. Caricamento degli alloggi e responsabilità",
+      "host_intro":"L’Utente che carica un alloggio (\"Host\") è responsabile di:",
+      "host_duties":
+      {
+        "accurate_data":"garantire la veridicità dei dati forniti",
+        "legal_media":"assicurare l’uso legale di immagini e video caricati",
+        "availability":"garantire che la proprietà sia effettivamente disponibile",
+        "timely_response":"rispondere tempestivamente alle prenotazioni"
+      },
+      "disclaimer":"Il Fornitore non è responsabile della qualità, dello stato degli alloggi o delle controversie tra Host e Ospite."
+    },
+    "bookings_cancellations":
+    {
+      "bookings_cancellations_title":"5. Prenotazioni e cancellazioni",
+      "booking_process_title":"Procedura di prenotazione:",
+      "booking_process":
+      {
+        "select":"L’Utente seleziona l’alloggio e le date",
+        "check":"Il sistema verifica la disponibilità",
+        "confirmation":"La prenotazione viene confermata e l’Host riceve una notifica"
+      },
+      "cancellation_title":"Cancellazione della prenotazione:",
+      "cancellation_rules":
+      {
+        "guest_rules":"L’Ospite può cancellare la prenotazione secondo le condizioni stabilite dall’Host",
+        "host_rights":"L’Host ha il diritto di rifiutare o cancellare la prenotazione se le date non sono adeguate"
+      },
+      "refunds":"L’importo del rimborso dipende dalle regole stabilite dall’Host."
+    },
+    "payments":
+    {
+      "payments_title":"6. Pagamenti",
+      "payment_info":"La Piattaforma consente di impostare metodi di pagamento. I dati della carta bancaria sono gestiti da un fornitore di pagamento esterno.",
+      "no_liability_intro":"Il Fornitore non è responsabile per:",
+      "no_liability":
+      {
+        "provider_errors":"errori del fornitore di servizi di pagamento",
+        "declined_transactions":"transazioni rifiutate",
+        "incorrect_data":"danni derivanti da dati inseriti in modo errato"
+      }
+    },
+    "messaging":
+    {
+      "messaging_title":"7. Messaggistica",
+      "rules":"La Piattaforma offre un sistema di messaggistica tra Host e Ospite. L’Utente si impegna a non inviare messaggi molesti, offensivi o illegali.",
+      "monitoring":"Il Fornitore si riserva il diritto di esaminare le comunicazioni in caso di sospetto abuso."
+    },
+    "liability_limitation":
+    {
+      "liability_limitation_title":"8. Limitazione di responsabilità",
+      "no_liability_intro":"Il Fornitore non è responsabile per:",
+      "no_liability":
+      {
+        "downtime":"malfunzionamenti o interruzioni della Piattaforma",
+        "user_content":"contenuti caricati dagli utenti",
+        "property_quality":"qualità o stato degli alloggi",
+        "disputes":"controversie tra Host e Ospite",
+        "booking_errors":"danni derivanti da prenotazioni errate"
+      },
+      "own_risk":"L’utilizzo della Piattaforma avviene a proprio rischio."
+    },
+    "service_modification":
+    {
+      "service_modification_title":"9. Modifica del servizio",
+      "modification_right":"Il Fornitore si riserva il diritto di modificare le funzionalità, ampliare o limitare il servizio e aggiornare i presenti Termini di Utilizzo.",
+      "notification":"Gli utenti saranno informati delle modifiche tramite il sito web."
+    },
+    "contact":
+    {
+      "contact_title":"10. Contatti",
+      "contact_text":"In caso di domande o problemi, l’Utente può contattarci tramite i recapiti forniti."
+    }
+  }
+}

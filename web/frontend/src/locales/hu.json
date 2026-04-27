@@ -1,0 +1,897 @@
+{
+  "navbar":
+  {
+    "accommodations":"Szállások",
+    "experiences":"Élmények",
+    "about_us":"Rólunk",
+    "settings":"Beállítások",
+    "login":"Bejelentkezés",
+    "registration":"Regisztráció",
+    "logout":"Kijelentkezés"
+  },
+  "footer":
+  {
+    "quick_accesses":"Gyors Elérések:",
+    "main_page":"Főoldal",
+    "about_us":"Rólunk",
+    "accommodations":"Szállások",
+    "experiences":"Élmények",
+    "havenly":"Havenly",
+    "motto":"-Az élmények határtalanok, az otthon érzése pedig mindig veled tart.",
+    "data_protection":"Adatvédelem",
+    "term_of_use":"Felhasználói Feltételek",
+    "contacts":"Elérhetőségeink",
+    "phone_number":"+36303425678",
+    "addres":"Kecskemét, József Attila u. 5",
+    "copyright":"2025-2026 Havenly"
+  },
+  "home":
+  {
+    "search":"Mit keresel?",
+    "accommodations":"Szállások",
+    "experiences":"Élmények",
+    "popular_accomodations":"Legnépszerűbb szállásaink"
+  },
+  "card":{
+    "interest":"Érdekel",
+    "night":"éjszaka",
+    "human":"fő"
+  },
+  "accommodations":
+  {
+    "title_first_part":"Szállások amiket",
+    "title_second_part":"kínál"
+    
+  },
+  "experiences":
+  {
+    "title_first_part":"Élmények amiket",
+    "title_second_part":"kínál"
+  },
+  "about":
+  {
+    "months": "Január,Február,Március,Április,Május,Június,Július,Augusztus,Szeptember,Október,November,December",
+    "days_full":"Hétfő,Kedd,Szerda,Csütörtök,Péntek,Szombat,Vasárnap",
+    "days_short":"H,K,Sz,Cs,P,Sz,V",
+    "accommodation_extras":"Amit a szállás kínál",
+    "extras":
+    {
+      "balcony": "erkély",
+      "basic_spices": "fűszerek",
+      "bluetooth_speaker": "bluetooth-os hangszóró",
+      "board_games": "társasjátékok",
+      "coffee_maker": "kávéfőző",
+      "darkening": "sötétítő",
+      "dishes": "edények",
+      "extra_bed_linen": "extra ágynemű",
+      "free_wifi": "wifi",
+      "hair_dryer": "hajszárító",
+      "iron": "vasaló",
+      "kettle": "vízforraló",
+      "microwave": "mikró",
+      "night_lamp": "éjjeli lámpa",
+      "parking_lot": "parkoló",
+      "safe": "széf",
+      "smart_tv": "okos tv",
+      "suitcase_rack": "bőröndtartó",
+      "towels": "törölközők",
+      "usb_charger": "usb töltő",
+      "work_table": "munkaasztal"
+    },
+    "arrive_time":"Érkezés időpontja",
+    "departure_time":"Távozás időpontja",
+    "sum":"Összesen:",
+    "number_of_guest":"Személyek száma",
+    "human":"fő",
+    "login":"Bejelentkezés",
+    "renting":"Foglalás",
+    "information_text":"Az élmény leírása és ára csak tájékoztató jellegű.",
+    "opinion":
+    {
+      "others_opinion":"Mások véleményei:",
+      "opinion":"vélemény",
+      "write_opinion":"Írja meg a saját véleményét!",
+      "send_opinion":"Vélemény beküldése",
+      "back":"Mégsem",
+      "report":"Vélemény jelentése!",
+      "upload_question":"Kivánja folytatni a műveletett?",
+      "succes_upload":"Sikeres művelet!"
+    },
+    "report":
+    {
+      "any_problems":"Valami problémát talált?",
+      "report_to_we":"Jelentsd nekünk:",
+      "report_problem":"Probléma jelentése!",
+      "report_type":"Probléma fajtája",
+      "report_detail":"Probléma részletei",
+      "choose":"-- Válasszon --",
+      "itemsProblemTypes":
+      {
+        "incorrect_info": "Hibás információ",
+        "missing_info": "Hiányzó információ",
+        "description_error": "Leírás pontatlan / félrevezető",
+        "image_issue": "Képek nem megfelelőek",
+        "price_issue": "Ár hibás / nem egyezik",
+        "availability_issue": "Elérhetőség hibás",
+        "location_issue": "Helyszín hibás",
+        "duplicate": "Duplikált hirdetés",
+        "inappropriate_content": "Nem megfelelő tartalom",
+        "other": "Egyéb"
+      },
+      "reviewProblemTypes":
+      {
+        "spam": "Spam / reklám",
+        "offensive": "Sértő / trágár tartalom",
+        "fake_review": "Valótlan vélemény",
+        "irrelevant": "Nem releváns",
+        "misleading": "Félrevezető",
+        "duplicate_review": "Duplikált vélemény",
+        "hate_speech": "Gyűlöletkeltő tartalom",
+        "personal_data": "Személyes adatot tartalmaz",
+        "other": "Egyéb"
+      },
+      "question":"",
+      "send":"Beküldés",
+      "yes":"Igen",
+      "no":"Nem"
+    } 
+  },
+  "basket":
+  {
+    "title":"Kosár",
+    "pay":"Fizetés",
+    "rent_message":"Köszönöm a foglalását! Bármilyen kérdéssel kapcsolatban forduljon bátran hozzám!",
+    "succesful_renting":"Sikeres foglalás!",
+    "card":{
+      "person_number":"Személyszám:",
+      "from":"Ettől:",
+      "to":"Eddig:",
+      "price":"Alapár:",
+      "tax":"Kezelési díj",
+      "final_price":"Összesen:"
+    },
+    "user_datas":{
+      "title":"Számlázási adatok",
+      "names":"Nevek",
+      "first_name":"Keresztnév",
+      "last_name":"Vezetéknév",
+      "middle_name":"Második név",
+      "contact_information":"Elérési módok",
+      "email":"Email",
+      "phone_number":"Telefonszám",
+      "city":"Város",
+      "postal_code":"Irányítószám",
+      "billing_addres":" Számlázási cím",
+      "card_number":"Kártyaszám",
+      "month":"Hónap",
+      "year":"Év",
+      "cvv":"CVV"
+    }
+  },
+  "search":{
+    "search_title":"Keresés",
+    "countries":
+    {
+      "1": "Japán",
+      "2": "Olaszország",
+      "3": "Magyarország",
+      "4": "Franciaország",
+      "5": "Spanyolország",
+      "6": "Németország",
+      "7": "Ausztria",
+      "8": "Görögország",
+      "9": "Thaiföld",
+      "10": "Brazília",
+      "11": "Kanada",
+      "12": "Egyesült Államok",
+      "13": "Ausztrália",
+      "14": "Dél-Korea",
+      "15": "Kína",
+      "16": "India",
+      "17": "Mexikó",
+      "18": "Portugália",
+      "19": "Svédország",
+      "20": "Norvégia",
+      "21": "Finnország",
+      "22": "Lengyelország",
+      "23": "Csehország",
+      "24": "Szlovákia",
+      "25": "Románia",
+      "26": "Horvátország",
+      "27": "Szlovénia",
+      "28": "Szerbia",
+      "29": "Montenegró",
+      "30": "Bosznia-Hercegovina",
+      "31": "Albánia",
+      "32": "Bulgária",
+      "33": "Törökország",
+      "34": "Egyiptom",
+      "35": "Marokkó",
+      "36": "Dél-afrikai Köztársaság",
+      "37": "Argentína",
+      "38": "Chile",
+      "39": "Peru",
+      "40": "Kolumbia",
+      "41": "Írország",
+      "42": "Belgium",
+      "43": "Hollandia",
+      "44": "Luxemburg",
+      "45": "Liechtenstein",
+      "46": "Svájc",
+      "47": "Észtország",
+      "48": "Lettország",
+      "49": "Litvánia",
+      "50": "Málta",
+      "51": "Izland",
+      "52": "Grúzia",
+      "53": "Ukrajna",
+      "54": "Fehéroroszország",
+      "55": "Oroszország",
+      "56": "Kazahsztán",
+      "57": "Szingapúr",
+      "58": "Malajzia",
+      "59": "Indonézia",
+      "60": "Vietnam",
+      "61": "Fülöp-szigetek",
+      "62": "Pakisztán",
+      "63": "Nepál",
+      "64": "Srí Lanka",
+      "65": "Irán",
+      "66": "Irak",
+      "67": "Szaúd-Arábia",
+      "68": "Egyesült Arab Emírségek",
+      "69": "Izrael",
+      "70": "Új-Zéland"
+    },
+    "cities":
+    {
+      "1": "Tokió",
+      "2": "Oszaka",
+      "3": "Szapporo",
+      "4": "Róma",
+      "5": "Milánó",
+      "6": "Nápoly",
+      "7": "Budapest",
+      "8": "Szeged",
+      "9": "Debrecen",
+      "10": "Párizs",
+      "11": "Lyon",
+      "12": "Marseille",
+      "13": "Madrid",
+      "14": "Barcelona",
+      "15": "Sevilla",
+      "16": "Berlin",
+      "17": "München",
+      "18": "Köln",
+      "19": "Bécs",
+      "20": "Linz",
+      "21": "Salzburg",
+      "22": "Athén",
+      "23": "Szaloniki",
+      "24": "Rodosz",
+      "25": "Bangkok",
+      "26": "Phuket",
+      "27": "Chiang Mai",
+      "28": "São Paulo",
+      "29": "Rio de Janeiro",
+      "30": "Brasília",
+      "31": "Montreal",
+      "32": "Toronto",
+      "33": "Vancouver",
+      "34": "New York",
+      "35": "Los Angeles",
+      "36": "Chicago",
+      "37": "Sydney",
+      "38": "Melbourne",
+      "39": "Brisbane",
+      "40": "Szöul",
+      "41": "Puszan",
+      "42": "Incshon",
+      "43": "Peking",
+      "44": "Sanghaj",
+      "45": "Kuangcsou",
+      "46": "Mumbai",
+      "47": "Bangalore",
+      "48": "Csennai",
+      "49": "Mexikóváros",
+      "50": "Guadalajara",
+      "51": "Monterrey",
+      "52": "Lisszabon",
+      "53": "Porto",
+      "54": "Faro",
+      "55": "Stockholm",
+      "56": "Malmö",
+      "57": "Örebro",
+      "58": "Oslo",
+      "59": "Bergen",
+      "60": "Tromsø",
+      "61": "Helsinki",
+      "62": "Tampere",
+      "63": "Oulu",
+      "64": "Varsó",
+      "65": "Krakkó",
+      "66": "Gdańsk",
+      "67": "Prága",
+      "68": "Brno",
+      "69": "České Budějovice",
+      "70": "Pozsony",
+      "71": "Kassa",
+      "72": "Besztercebánya",
+      "73": "Bukarest",
+      "74": "Kolozsvár",
+      "75": "Brașov",
+      "76": "Zágráb",
+      "77": "Split",
+      "78": "Rijeka",
+      "79": "Ljubljana",
+      "80": "Maribor",
+      "81": "Koper",
+      "82": "Belgrád",
+      "83": "Niš",
+      "84": "Novi Sad",
+      "85": "Podgorica",
+      "86": "Kotor",
+      "87": "Bar",
+      "88": "Szarajevó",
+      "89": "Mostar",
+      "90": "Tuzla",
+      "91": "Tirana",
+      "92": "Durrës",
+      "93": "Vlorë",
+      "94": "Szófia",
+      "95": "Plovdiv",
+      "96": "Varna",
+      "97": "Isztambul",
+      "98": "Ankara",
+      "99": "Izmir",
+      "100": "Kairó",
+      "101": "Alexandria",
+      "102": "Gíza",
+      "103": "Marrákes",
+      "104": "Fés",
+      "105": "Rabat",
+      "106": "Fokváros",
+      "107": "Johannesburg",
+      "108": "Durban",
+      "109": "Buenos Aires",
+      "110": "Córdoba",
+      "111": "Rosario",
+      "112": "Santiago",
+      "113": "Valparaíso",
+      "114": "Concepción",
+      "115": "Lima",
+      "116": "Cusco",
+      "117": "Arequipa",
+      "118": "Bogotá",
+      "119": "Medellín",
+      "120": "Cali",
+      "121": "Dublin",
+      "122": "Cork",
+      "123": "Galway",
+      "124": "Brüsszel",
+      "125": "Ghent",
+      "126": "Antwerpen",
+      "127": "Amszterdam",
+      "128": "Hágai",
+      "129": "Rotterdam",
+      "130": "Luxemburg",
+      "131": "Esch-sur-Alzette",
+      "132": "Differdange",
+      "133": "Vaduz",
+      "134": "Triesen",
+      "135": "Eschen",
+      "136": "Zürich",
+      "137": "Bern",
+      "138": "Genf",
+      "139": "Tallinn",
+      "140": "Tartu",
+      "141": "Pärnu",
+      "142": "Riga",
+      "143": "Liepāja",
+      "144": "Jelgava",
+      "145": "Vilnius",
+      "146": "Kaunas",
+      "147": "Šiauliai",
+      "148": "Valletta",
+      "149": "Sliema",
+      "150": "St. Julian’s",
+      "151": "Reykjavik",
+      "152": "Akureyri",
+      "153": "Selfoss",
+      "154": "Tbiliszi",
+      "155": "Kutaisi",
+      "156": "Batumi",
+      "157": "Kijev",
+      "158": "Lviv",
+      "159": "Dnipro",
+      "160": "Minszk",
+      "161": "Vitebsk",
+      "162": "Grodno",
+      "163": "Moszkva",
+      "164": "Szentpétervár",
+      "165": "Jekatyerinburg",
+      "166": "Almaty",
+      "167": "Asztana",
+      "168": "Ssimkent",
+      "169": "Szingapúr",
+      "170": "Jurong East",
+      "171": "Tampines",
+      "172": "Kuala Lumpur",
+      "173": "Johor Bahru",
+      "174": "George Town",
+      "175": "Jakarta",
+      "176": "Bandung",
+      "177": "Surabaya",
+      "178": "Hanoi",
+      "179": "Ho Chi Minh-város",
+      "180": "Da Nang",
+      "181": "Manila",
+      "182": "Cebu-város",
+      "183": "Davao-város",
+      "184": "Iszlámábád",
+      "185": "Lahore",
+      "186": "Karachi",
+      "187": "Kathmandu",
+      "188": "Pokhara",
+      "189": "Biratnagar",
+      "190": "Colombo",
+      "191": "Kandy",
+      "192": "Galle",
+      "193": "Teherán",
+      "194": "Mashhad",
+      "195": "Iszfahán",
+      "196": "Bagdad",
+      "197": "Basra",
+      "198": "Erbil",
+      "199": "Rijád",
+      "200": "Dzsiddá",
+      "201": "Dammam",
+      "202": "Dubai",
+      "203": "Abu Dhabi",
+      "204": "Sharjah",
+      "205": "Tel-Aviv",
+      "206": "Jeruzsálem",
+      "207": "Haifa",
+      "208": "Auckland",
+      "209": "Wellington",
+      "210": "Dunedin",
+      "211": "Makó",
+      "212": "Apátfalva",
+      "213": "Pécs",
+      "214": "Győr"
+    }
+  },
+  "log_out":
+  {
+    "log_out":"Biztos ki szeretnél jelentkezni?",
+    "yes":"Kijelentkezés",
+    "no":"Mégsem"
+  },
+  "about_us":
+  {
+    "about_us":"Rólunk",
+    "who_are_we":"Kik vagyunk?",
+    "who_are_we_text":"A Havenly egy modern szállásfoglaló platform, amelyet két lelkes fejlesztő, Guvat Bence József és Herczeg Máté János hozott létre azzal a céllal, hogy egyszerűbbé, átláthatóbbá és élménydúsabbá tegye a szálláskeresést és kiadást minden felhasználó számára.",
+    "havenly_mission":"A Havenly küldetése",
+    "havenly_mission_text":"Célunk egy olyan felhasználóbarát weboldal létrehozása, ahol a szállásfoglalás és a szálláskiadás gyorsan, biztonságosan és kényelmesen valósul meg. A Havenly nemcsak egy foglalási rendszer, hanem egy közösségi platform is, amely összeköti az utazókat és a szállásadókat, miközben segít felfedezni az adott települések rejtett értékeit és látványosságait.",
+    "havenly_offer_title":"Mit kínál a Havenly a felhasználóknak",
+    "havenly_offer_alt_title":"A Havenly lehetőséget biztosít arra, hogy a felhasználók:",
+    "havenly_offer":
+    {
+      "first_offer":"regisztráció után szállásokat foglaljanak vagy saját szállásukat feltöltsék és kiadják,",
+      "second_offer":"részletes szállásleírásokat, képeket és videókat töltsenek fel,",
+      "third_offer":"helyi látványosságokat és élményeket adjanak hozzá városokhoz,",
+      "fourth_offer":"értékeléseikkel segítsék más felhasználók döntését,",
+      "fifth_offer":"biztonságosan kezeljék fiók- és fizetési adataikat,",
+      "sixth_offer":"egyszerűen módosítsák vagy töröljék szállásaikat és foglalásaikat."
+    },
+    "booking_and_security_title":"Foglalás és biztonság",
+    "booking_and_security_text":"A weboldal automatikusan kezeli a foglalásokat, így kizárva az időpontütközéseket és a dupla foglalás lehetőségét. Minden foglalásról a szállásadó azonnali értesítést kap, és mindkét fél számára biztosított a foglalás lemondásának lehetősége, előre meghatározott feltételek mellett.",
+    "contact_and_communication":"Kapcsolatartás és kommunikáció",
+    "contact_and_communication_text":"A Havenly saját üzenetküldő rendszerrel rendelkezik, amely lehetővé teszi a gyors és egyszerű kommunikációt a szállásadók és a foglalók között. Emellett a kapcsolatfelvétel e-maien és telefonon keresztül is biztosított, mivel a regisztráció kizárólag érvényes elérhetőségekkel lehetséges.",
+    "multilingualism_and_future_title":"Többnyelvűség és jövőkép",
+    "multilingualism_and_future_text":"Az oldal több nyelven is elérhető lesz, hogy minél szélesebb felhasználói kör számára nyújtson elérhető és kényelmes megoldást. Hosszú távú célunk, hogy a Havenly egy megbízható, folyamatosan fejlődő platformmá váljon, amely valódi értéket teremt az utazók és a szállásadók számára egyaránt."
+  },
+  "register":
+  {
+    "title":"lépés",
+    "first_name":"Keresztnév",
+    "last_name":"Vezetéknév",
+    "middle_name":"Második név",
+    "email":"Email cím",
+    "phone_number":"Telefonszám",
+    "example_phone_number":"Példa: +36301234567",
+    "password":"Jelszó",
+    "password_requirement":"A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot",
+    "password_requirement_second":"Minimum 6 karaktert kell tartalmaznia",
+    "password_again":"Megerősítő jelszó",
+    "show_password":"Jelszó megjelenítése:",
+    "next":"Következő",
+    "previous":"Vissza",
+    "gender":"Nem",
+    "male":"férfi",
+    "female":"nő",
+    "succes_message":"Sikeres regisztráció!",
+    "email_message":"Ez az email már foglalt!",
+    "phone_number_message":"Ez a telefonszám már foglalt!"
+  },
+  "login":
+  {
+    "title":"Bejelentkezés",
+    "email":"Email cím",
+    "password":"Jelszó",
+    "show_password":"Jelszó megjelenítése:",
+    "log_in":"Bejelentkezés"
+  },
+  "profile":
+  {
+    "navbar_datas":"Adataim",
+    "nabar_posts":"Közzétételeim",
+    "navbar_messages":"Beszélgetéseim",
+    "navbar_admin":"Adminisztráció",
+    "navbar_admin_group":{
+      "id":"Azonosító:",
+      "type":"Típus:"
+    },
+    "navbar_history":"Előzmények",
+    "navbar_history_group":{
+      "rent":"Bérlés:",
+      "start":"Kezdés:",
+      "end":"Vége:",
+      "price":"Ár:"
+    },
+    "text_accommodations":"Még nincsen előzetesen lefoglalt szállása!",
+    "text_messages":"Még nincsenek beszélgetései! Foglaljon le egy szállást, hogy ezt a funkciót használni tudja!",
+    "personal_detail":"Személyes adatok",
+    "card_datas":"Kártya adatok",
+    "password_modify":"Jelszó módosítása",
+    "delete_user":"Fiók törlése",
+    "names":"Nevek",
+    "first_name":"Keresztnév",
+    "last_name":"Vezetéknév",
+    "middle_name":"Második név",
+    "contact":"Elérési módok",
+    "email":"Email cím",
+    "phone_number":"Telefonszám",
+    "gender":"Nem",
+    "male":"férfi",
+    "female":"nő",
+    "card_number":"Kártyaszám",
+    "card_month":"Hónap",
+    "card_year":"Év",
+    "original_password":"Eredeti jelszó",
+    "new_password":"Új jelszó",
+    "password_requirement":"A jelszónak tartalmaznia kell legalább egy nagybetűt és egy számot",
+    "password_requirement_second":"Minimum 6 karaktert kell tartalmaznia",
+    "password_requirement_third":"Az eredeti és az új jelszó nem egyezhet",
+    "password_again":"Új jelszó mégegyszer",
+    "show_password":"Jelszó megjelenítése:",
+    "save":"Mentés",
+    "save_all":"Összes mentése",
+    "delete_datas":"Adatok törlése",
+    "unsave":"Mégsem",
+    "yes":"Igen",
+    "no":"Nem",
+    "ok":"OK",
+    "messages":
+    {
+      "editing": "Biztos menti a változtatásokat?",
+      "deleting":"Biztos törli a fiókját?",
+      "deletingCardDatas":"Biztos törli a kártya adatokat?",
+      "passwordError":"Hibás jelenlegi jelszót adott meg!",
+      "emailError":"A megadott email cím már foglalt! ",
+      "succesEditing":"Sikeres változtatás!",
+      "succesDeleting":"Sikeresen törölte a fiókját!"
+    }
+   
+  },
+  "settings":
+  {
+    "settings":"Beállítások",
+    "language_choose":"Nyelv választása",
+    "currency_choose":"Valuta választása",
+    "languages":
+    { 
+      "hu": "Magyar", 
+      "en": "Angol", 
+      "sr": "Szerb", 
+      "de": "Német", 
+      "it": "Olasz", 
+      "ja": "Japán" 
+    },
+    "currencys":
+    {
+      "EUR": "Euro",
+      "HUF": "Magyar forint",
+      "RSD": "Szerb dinár",
+      "USD": "Amerikai dollár",
+      "CHF": "Svájci frank",
+      "JPY": "Japán jen",
+      "CNY": "Kínai jüan",
+      "KRW": "Dél-koreai won",
+      "INR": "Indiai rúpia",
+      "IDR": "Indonéz rúpia",
+      "SGD": "Szingapúri dollár",
+      "THB": "Thai baht",
+      "PHP": "Fülöp-szigeteki peso",
+      "MYR": "Maláj ringgit",
+      "VND": "Vietnámi dong",
+      "CAD": "Kanadai dollár",
+      "AUD": "Ausztrál dollár",
+      "NZD": "Új-zélandi dollár",
+      "NOK": "Norvég korona",
+      "SEK": "Svéd korona",
+      "DKK": "Dán korona",
+      "CZK": "Cseh korona",
+      "PLN": "Lengyel zloty",
+      "RON": "Román lej",
+      "TRY": "Török líra",
+      "BRL": "Brazil real",
+      "ARS": "Argentin peso",
+      "MXN": "Mexikói peso",
+      "ZAR": "Dél-afrikai rand",
+      "EGP": "Egyiptomi font",
+      "SAR": "Szaúdi riál",
+      "AED": "Egyesült Arab Emírségek dirham",
+      "KWD": "Kuvaiti dinár",
+      "QAR": "Katari riál",
+      "HKD": "Hongkongi dollár",
+      "TWD": "Taiwani új dollár",
+      "PKR": "Pakisztáni rúpia",
+      "BDT": "Bangladesi taka",
+      "LKR": "Srí Lanka-i rúpia",
+      "ILS": "Izraeli sékel",
+      "GBP": "Angol font"
+    }
+  },
+  "data_protection":
+  {
+    "data_protection_title":"Adatvédelmi nyilatkozat",
+    "data_protection_text_first":"A Havenly elkötelezett a felhasználók személyes adatainak védelme iránt. Jelen adatvédelmi nyilatkozat célja, hogy átláthatóan és érthetően bemutassa, milyen adatokat gyűjtünk, hogyan kezeljük azokat, és milyen jogok illetik meg a felhasználókat a személyes adataik kapcsán.",
+    "data_protection_text_second":"A Havenly egy online szállásfoglaló és szállásmegosztó platform, ahol a felhasználók szállásokat foglalhatnak, saját ingatlanjaikat feltölthetik, valamint helyi látványosságokat és élményeket oszthatnak meg másokkal.",
+    "data_controller_datas":{
+      "data_controller_datas_title":"1. Az adatkezelő adatai",
+      "data_controller_name_title":"Adatkezelő neve:",
+      "data_controller_name":"Havenly",
+      "project_type_title":"Projekt típusa",
+      "project_type":"Vizsgaremek - szállásfoglaló és szállásmegosztó webalkalmazás",
+      "contact_title":"Elérhatőség"
+    },
+    "privacy_information":
+    {
+      "privacy_information_title":"2. A kezelt személyes adatok köre",
+      "registration_datas":
+      {
+        "registration_datas_title":"2.1. Regisztráció során megadott adatok",
+        "full_name":"Teljes név",
+        "email":"Email-cím",
+        "phone_number":"Telefonszám",
+        "password":"Jelszó"
+      },
+      "profile_datas":
+      {
+        "profile_datas_title":"2.2. Profiladatok",
+        "adress":"Lakcím vagy tartózkodási hely (opcionális)",
+        "paying_methods":"Fizetési mód beállításai",
+        "bank_card_datas":"Bankkártya-adatok (külső fizetési szolgáltató kezeli, nem a Havenly)"
+      },
+      "accommodations_datas":
+      {
+        "accommodations_datas_title":"2.3. Szállásfeltöltéshez kapcsolódó adatok",
+        "accommodation_addres":"Ingatlan címe",
+        "description":"Leírás",
+        "pictures":"Fényképek",
+        "prices_and_renting":"Árazás és foglalhatósági adatok"
+      },
+      "renting_datas":
+      {
+        "renting_datas_title":"2.4. Foglalási adatok",
+        "renting_time":"Foglalás időpontja",
+        "renter_and_owner_datas":"Foglaló és kiadó adatai",
+        "payment_informations":"Fizetési információk"
+      },
+      "communication_datas":
+      {
+        "communication_datas_title":"2.5. Kommunikációs adatok",
+        "communication":"A weboldalon belüli üzenetváltások tartalma",
+        "metedatas":"E-mailes és telefonos kommunikáció metaadatai"
+      },
+      "tech_datas":
+      {
+        "tech_datas":"2.6. Teknikai adatok",
+        "ip_addres":"IP-cím",
+        "browser_type":"Böngésző típusa",
+        "log_in_times":"Bejelentkezési időpontok"
+      }
+    },
+    "data_controlling_goal":
+    {
+      "data_controlling_goal_title":"3. Az adatkezeléss célja",
+      "user_profile":"Felhasználói fiók létrehozása és kezelése",
+      "renting":"Szállásfoglalások lebonyolítása",
+      "experiences_and_accommodations":"Szállások és látványosságok feltöltése, szerkesztése",
+      "payment":"Fizetések kezelése",
+      "communications":"A foglaló és a kiadó közötti kommunikáció biztosítása",
+      "webiste_working":"A weboldal működésének biztosítása és fejlesztése",
+      "scams":"Visszaélések megelőzése",
+      "policy":"Jogszabályi kötelezettségek teljesítése"
+    },
+    "data_controlling_policy":
+    {
+      "data_controlling_policy_title":"4. Az adatkezelés jogalapja",
+      "user_agree":"Felhasználó hozzájárulása",
+      "contract":"Szerződés teljesítése (foglalások, fiókkezelés)",
+      "law":"Jogi kötelezettség teljesítése",
+      "law2":"Szolgáltató jogos érdeke (biztonság, visszaélések megelőzése)"
+    },
+    "data_storeing":
+    {
+      "data_storeing_title":"5. Adattárolás időtartama",
+      "user_datas":"A felhasználói fiók adatai: a fiók törléséig",
+      "renting_datas":"Foglalási adatok: jogszabályban előírt ideig",
+      "messages":"Üzenetek: a fiók törléséig",
+      "tech_datas":"Technikai adatok: a rendszer működéséhez szükséges ideig"
+    } ,
+    "data_forwarding":
+    {
+      "data_forwarding_title":"6. Adatok továbbítása és külső szolgáltatók",
+      "intro":"A Havenly bizonyos adatokat külső partnereknek továbbíthat, például:",
+      "payment_providers":"Fizetési szolgáltatók (bankkártya-adatok kezelése)",
+      "hosting_provider":"Tárhelyszolgáltató",
+      "email_provider":"E-mail küldő szolgáltató",
+      "analytics":"Analitikai vagy naplózó rendszerek (amennyiben használunk ilyet)",
+      "minimal_data":"A továbbított adatok mennyisége mindig a minimálisan szükségesre korlátozódik"
+    },
+    "user_rights":
+    {
+      "user_rights_title":"7. Felhasználói jogok",
+      "access":"Hozzáférés a saját adataikhoz",
+      "correction":"Adatok helyesbítése",
+      "deletion":"Adatok törlése („elfeledtetés joga”)",
+      "restriction":"Adatkezelés korlátozása",
+      "portability":"Adathordozhatóság",
+      "withdraw_consent":"Hozzájárulás visszavonása",
+      "complaint":"Panasztétel joga a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH)"
+    },
+    "data_security":
+    {
+      "data_security_title":"8. Adatbiztonság",
+      "intro":"A Havenly minden ésszerű technikai és szervezési intézkedést megtesz a személyes adatok védelme érdekében",
+      "https":"Titkosított adatátvitel (HTTPS)",
+      "password_hash":"Jelszavak biztonságos, hash-elt tárolása",
+      "backups":"Rendszeres biztonsági mentések",
+      "permissions":"Jogosultságkezelés",
+      "abuse_monitoring":"Visszaélés-figyelő rendszerek alkalmazása"
+    },
+    "privacy_policy_modification":
+    {
+      "privacy_policy_modification_title":"9. Az adatvédelmi nyilatkozat módosítása",
+      "modification_text":"A Havenly fenntartja a jogot, hogy jelen adatvédelmi nyilatkozatot bármikor módosítsa",
+      "notification":"A változásokról a felhasználókat a weboldalon keresztül értesítjük"
+    }
+  },
+  "term_of_use":
+  {
+    "title":"Felhasználási feltételek",
+    "intro":
+    {
+      "description_1":"A Havenly (továbbiakban: „Szolgáltató”, „Platform”, „Mi”) egy online szállásfoglaló és szállásmegosztó webalkalmazás, amely lehetővé teszi a felhasználók számára szállások foglalását, saját ingatlanok feltöltését, valamint helyi látványosságok és élmények megosztását.",
+      "description_2":"A Platform használatával a felhasználó („Felhasználó”, „Ön”) elfogadja a jelen Felhasználási Feltételeket. Amennyiben nem ért egyet a feltételekkel, kérjük, ne használja a szolgáltatást."
+    },
+    "service_nature":
+    {
+      "service_nature_title":"1. A szolgáltatás jellege",
+      "intro":"A Havenly egy vizsgaremek keretében készült webalkalmazás, amely a következő funkciókat biztosítja:",
+      "features":
+      {
+        "browse_booking":"szállások böngészése és foglalása",
+        "property_upload":"saját ingatlanok feltöltése és kezelése",
+        "experiences":"helyi látványosságok és élmények megosztása",
+        "messaging":"üzenetküldés a foglaló és a kiadó között",
+        "profile":"felhasználói profil létrehozása és szerkesztése",
+        "payments":"fizetési módok beállítása"
+      },
+      "education_note":"A Platform működése oktatási célú fejlesztésen alapul, de a feltételek valós szolgáltatás logikáját követik."
+    },
+    "registration_account":
+    {
+      "registration_account_title":"2. Regisztráció és felhasználói fiók",
+      "requirements_intro":"A Platform használatához regisztráció szükséges. A Felhasználó köteles:",
+      "requirements":
+      {
+        "real_data":"valós adatokat megadni",
+        "valid_contact":"érvényes e-mail címet és telefonszámot használni",
+        "secure_password":"biztonságos jelszót választani"
+      },
+      "responsibility":"A Felhasználó felelős a fiókja biztonságáért, különösen a jelszó titokban tartásáért. A fiók jogosulatlan használatáért a Szolgáltató nem vállal felelősséget."
+    },
+    "user_obligations":
+    {
+      "user_obligations_title":"3. A felhasználó kötelezettségei",
+      "intro":"A Felhasználó vállalja, hogy:",
+      "rules":
+      {
+        "legal_use":"nem használja a Platformot jogellenes célokra",
+        "truthful_content":"nem tölt fel valótlan, félrevezető vagy sértő tartalmat",
+        "personal_rights":"nem sérti mások személyiségi jogait",
+        "copyright":"nem tesz közzé jogvédett tartalmat engedély nélkül",
+        "system_integrity":"nem próbálja meg megzavarni a rendszer működését"
+      },
+      "sanctions":"A Szolgáltató jogosult a szabályokat megszegő felhasználók fiókját felfüggeszteni vagy törölni."
+    },
+    "property_responsibility":
+    {
+      "property_responsibility_title":"4. Szállások feltöltése és felelősség",
+      "host_intro":"A szállást feltöltő Felhasználó („Kiadó”) felelős azért, hogy:",
+      "host_duties":
+      {
+        "accurate_data":"a megadott adatok valósak legyenek",
+        "legal_media":"a feltöltött képek és videók jogszerűen használhatók legyenek",
+        "availability":"az ingatlan valóban kiadható legyen",
+        "timely_response":"a foglalásokra időben reagáljon"
+      },
+      "disclaimer":"A Szolgáltató nem vállal felelősséget a szállások minőségéért, állapotáért vagy a Kiadó és a Foglaló közötti vitákért."
+    },
+    "bookings_cancellations":
+    {
+      "bookings_cancellations_title":"5. Foglalások és lemondások",
+      "booking_process_title":"A foglalás menete:",
+      "booking_process":
+      {
+        "select":"A Felhasználó kiválasztja a szállást és az időpontot",
+        "check":"A rendszer ellenőrzi a foglalhatóságot",
+        "confirmation":"A foglalás létrejön, a Kiadó értesítést kap"
+      },
+      "cancellation_title":"A foglalás lemondása:",
+      "cancellation_rules":
+      {
+        "guest_rules":"A Foglaló a Kiadó által meghatározott feltételek szerint mondhatja le a foglalást",
+        "host_rights":"A Kiadó jogosult visszautasítani vagy lemondani a foglalást, ha az időpont nem megfelelő számára"
+      },
+      "refunds":"A visszatérítések mértéke a Kiadó által meghatározott szabályoktól függ."
+    },
+    "payments":
+    {
+      "payments_title":"6. Fizetések",
+      "payment_info":"A Platform lehetőséget biztosít fizetési módok beállítására. A bankkártya-adatokat nem a Havenly kezeli, hanem külső fizetési szolgáltató.",
+      "no_liability_intro":"A Szolgáltató nem vállal felelősséget:",
+      "no_liability":
+      {
+        "provider_errors":"a fizetési szolgáltató hibáiért",
+        "declined_transactions":"a tranzakciók elutasításáért",
+        "incorrect_data":"a hibásan megadott adatokból eredő károkért"
+      }
+    },
+    "messaging":
+    {
+      "messaging_title":"7. Üzenetküldés",
+      "rules":"A Platform üzenetküldő rendszert biztosít a Kiadó és a Foglaló között. A Felhasználó vállalja, hogy nem küld zaklató, sértő vagy jogellenes üzenetet.",
+      "monitoring":"A Szolgáltató fenntartja a jogot az üzenetváltások vizsgálatára visszaélés gyanúja esetén."
+    },
+    "liability_limitation":
+    {
+      "liability_limitation_title":"8. Felelősségkorlátozás",
+      "no_liability_intro":"A Szolgáltató nem vállal felelősséget:",
+      "no_liability":
+      {
+        "downtime":"a Platform esetleges hibáiért vagy leállásáért",
+        "user_content":"a Felhasználók által feltöltött tartalmakért",
+        "property_quality":"a szállások minőségéért vagy állapotáért",
+        "disputes":"a Kiadó és a Foglaló közötti vitákért",
+        "booking_errors":"a hibás foglalásokból eredő károkért"
+      },
+      "own_risk":"A Platformot mindenki saját felelősségére használja."
+    },
+    "service_modification":
+    {
+      "service_modification_title":"9. A szolgáltatás módosítása",
+      "modification_right":"A Szolgáltató fenntartja a jogot a funkciók módosítására, a szolgáltatás bővítésére vagy korlátozására, valamint a jelen Felhasználási Feltételek megváltoztatására.",
+      "notification":"A változásokról a Felhasználókat a weboldalon keresztül értesítjük."
+    },
+    "contact":
+    {
+      "contact_title":"10. Kapcsolat",
+      "contact_text":"Kérdés vagy probléma esetén a Felhasználó a megadott elérhetőségeken keresztül léphet kapcsolatba velünk."
+    }
+  }
+}
