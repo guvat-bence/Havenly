@@ -14,6 +14,9 @@ dist-ssr
 coverage
 *.local
 
+**/bin/
+**/obj/
+
 .env
 
 # Editor directories and files
@@ -22,6 +25,7 @@ coverage
 .vs
 .idea
 *.suo
+*.user
 *.ntvs*
 *.njsproj
 *.sln
