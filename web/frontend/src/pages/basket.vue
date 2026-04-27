@@ -73,7 +73,7 @@ let payForAccomadtion = () => {
     else{
       alert(response.data);
     }
-    router.push("/havenly");
+    router.push("/");
   })
   .catch(e => console.error(e))
 }

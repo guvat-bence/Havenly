@@ -14,57 +14,57 @@ import Term_of_use from '@/pages/term_of_use.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 let routes = [
   {
-    path: "/havenly",
+    path: "/",
     component: Home 
   },
   {
-    path: "/havenly/aboutus",
+    path: "/aboutus",
     component: aboutus
   },
   {
-    path: "/havenly/accommodation",
+    path: "/accommodation",
     component: Accommodation
   },
   {
-    path: "/havenly/experience",
+    path: "/experience",
     component: Experience
   },
   {
-    path: "/havenly/register",
+    path: "/register",
     component: Register
   },
   {
-    path: "/havenly/login",
+    path: "/login",
     component: Login
   },
   {
-    path: "/havenly/data_protection",
+    path: "/data_protection",
     component: Data_protection
   },
   {
-    path: "/havenly/term_of_use",
+    path: "/term_of_use",
     component: Term_of_use
   },
   {
     name: "about",
-    path: "/havenly/about/:table_name:/:id/:name",
+    path: "/about/:table_name:/:id/:name",
     component: About,
     props:true
   },
   {
-    path: "/havenly/settings",
+    path: "/settings",
     component: Settings
   },
   {
-    path: "/havenly/profile",
+    path: "/profile",
     component: Profile
   },
   {
-    path: "/havenly/logout",
+    path: "/logout",
     component: Logoutconfirmation
   },
   {
-    path:"/havenly/basket",
+    path:"/basket",
     component: Basket
   }
 ]

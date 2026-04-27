@@ -669,7 +669,7 @@ function renting()
 	rent.guests = model.guests;
 	rent.accommodation =JSON.stringify(item.value[0]);
 
-	router.replace({path:'/havenly/basket'})
+	router.replace({path:'/basket'})
 }
 
 // beállítjuk modalt az alapján hogy, mit szeretnénk megvalósítani.
@@ -702,7 +702,7 @@ function setReportModal(datas)
 	// beállítjuk az id-kat és a a modelType-ot. 
 	modalType.value = "report";
 	problemModel.item_id = datas.id;
-	problemModel.user_id = user.id.split(" ")[0];
+	problemModel.user_id = user.id;
 
 	// Megnyitjuk a modalt().
 	openModal();
@@ -768,7 +768,7 @@ function sendOpinion()
 
 	// Beállítjuk az id-kat
 	opinionModel.item_id = item.value[0].id;
-	opinionModel.user_id = user.id.split(" ")[0];
+	opinionModel.user_id = user.id;
 	
 	let url = "";
 
@@ -1115,7 +1115,7 @@ watch(model,()=>
 							</div>
 
 							<!-- személyek száma szakasz -->
-							<div v-if="user.id.split(' ')[0] != item[0].owner_id"
+							<div v-if="user.id != item[0].owner_id"
 									 class="mb-3 row justify-content-center">
 
 								<!-- személyek száma szakasz label -->
@@ -1132,7 +1132,7 @@ watch(model,()=>
 							</div>
 
               <!-- Foglalaás gomb -->
-							<button v-if="user.id!='' && user.id.split(' ')[0] != item[0].owner_id"
+							<button v-if="user.id!=null && user.id != item[0].owner_id"
 											v-bind:disabled="rentedDayIds.length==0"
 											@click="renting()"
 											type="button"
@@ -1142,8 +1142,8 @@ watch(model,()=>
               </button>
 
 							 <!-- Bejelentkezés gomb gomb -->
-							<router-link to="/havenly/login"
-													 v-if="user.id =='' && user.id.split(' ')[0] != item[0].owner_id"
+							<router-link to="/login"
+													 v-if="user.id ==null && user.id != item[0].owner_id"
 										       class="btn btn-secondary col-6 
                       				rounded-pill">
                 {{ $t('about.login') }}
@@ -1174,7 +1174,7 @@ watch(model,()=>
 				</h4>
 
 				<!-- Vélemény írása --> 
-				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null && user.id.split(' ')[0] != item[0].owner_id)"
+				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null && user.id != item[0].owner_id)"
 						 class="row justify-content-center">
 
 					<!-- A vélemény form-ja -->
@@ -1264,7 +1264,7 @@ watch(model,()=>
 						<div class="d-flex justify-content-start col-6">
 
 							<!-- Vélemény szerkesztése gomb -->
-							<button v-if="user.id.split(' ')[0] == opinion.user_id"
+							<button v-if="user.id == opinion.user_id"
 											@click="deleteType = false;
 															editOpinion(opinion);"
 											:disabled="user.id==null"

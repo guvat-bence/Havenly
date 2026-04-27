@@ -4,15 +4,9 @@ import Myfooter from './components/footer.vue';
 import { user } from './store/user';
 import router from './router';
 
-let websitekey = window.location.pathname.split("/")[1];
- 
-let id = user.id!=null?user.id:"none";
-
-if(websitekey != 'havenly')
-  router.push("/havenly")
 
 let checkforUser = () => {
-  if (!id.includes('havenly')) {
+  if (user.id==null) {
     localStorage.removeItem("id");
     localStorage.removeItem("first_name");
     localStorage.removeItem("last_name");

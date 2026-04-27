@@ -38,11 +38,11 @@ axios.get("http://localhost:3000/accommodations/top5")
                     p-4 border border-1 border-white mb-5">
             <!-- Keresési mező -->
             <div class="justify-content-center d-flex">
-              <RouterLink to="/havenly/accommodation" 
+              <RouterLink to="/accommodation" 
                           class="btn btn-outline-light mx-1">
                 {{ $t("home.accommodations") }}
               </RouterLink>
-              <RouterLink to="/havenly/experience" 
+              <RouterLink to="/experience" 
                           class="btn btn-outline-light mx-1">
                 {{ $t("home.experiences") }}
               </RouterLink>

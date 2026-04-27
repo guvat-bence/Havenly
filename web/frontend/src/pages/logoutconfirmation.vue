@@ -18,7 +18,7 @@ if(!user.id)
 		user.expirationMonth = "";
 		user.expirationYear = "";
 
-		router.push("/havenly")
+		router.push("/")
 	},
 	cancel = () => {
 		router.back()

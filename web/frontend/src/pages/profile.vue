@@ -15,7 +15,7 @@ if(!user.id)
 
 // A felhasználó alap adatai.
 let model = reactive({
-  userID: user.id.split(" ")[0],
+  userID: user.id,
   firstName: user.firstname,
   lastName: user.lasttname,
   middleName: user.middlename,
@@ -26,7 +26,7 @@ let model = reactive({
 
 // A felhasználó kártya adatai.
 let card = reactive({
-  userID: user.id.split(" ")[0],
+  userID: user.id,
   cardNumber: user.cardNumber,
   expirationMonth: user.expirationMonth,
   expirationYear: user.expirationYear
@@ -34,7 +34,7 @@ let card = reactive({
 
 // A felhasználó jelszavai
 let passwords = reactive({
-    userID: user.id.split(" ")[0],
+    userID: user.id,
     currentPassword :"",
     newPassword:"",
     confirmPassword:""
@@ -138,7 +138,7 @@ function removeDeletedUserValues()
   user.user_type = "";
   user.cardNumber = "";
   user.expiration = "";
-  router.push("/havenly");
+  router.push("/");
 }
 
 // Az újként megadott adatokat állítjuk be alapértelmezetre.
@@ -397,7 +397,7 @@ function openMessages(data)
     // beállítjuk az alavető adatokat
     console.log(details.data);
     sendingMessage.message = '';
-    sendingMessage.from_id = user.id.split(" ")[0];
+    sendingMessage.from_id = user.id;
     sendingMessage.to_id = data.from_user_id;
     userMessages.value = details.data;
 
@@ -417,7 +417,7 @@ function openMessages(data)
 function getContacts()
 {
 // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
-axios.get(`http://localhost:3000/getContacts/${user.id.split(' ')[0]}`)
+axios.get(`http://localhost:3000/getContacts/${user.id}`)
 .then(details=>
 {
   console.log(details.data);
@@ -456,7 +456,7 @@ function sendMessage()
         console.log(details.data);
         userMessages.value = details.data;
         sendingMessage.message = '';
-        sendingMessage.from_id = user.id.split(" ")[0];
+        sendingMessage.from_id = user.id;
 
         scrollToBottom();
       })
@@ -473,7 +473,7 @@ function sendMessage()
 
 function getUserItems()
 {
-  axios.get(`http://localhost:3000/getUserItems/${user.id.split(' ')[0]}`)
+  axios.get(`http://localhost:3000/getUserItems/${user.id}`)
   .then(response =>{
     console.log(response.data);
     userItems.value = response.data;
@@ -1440,16 +1440,16 @@ watch(card,()=>
                     <div class="row col-12 my-3"
                          style="min-height: 40px;" 
                          v-for="x in userMessages"
-                        :class="x.from_user_id == user.id.split(' ')[0]?'justify-content-end':'justify-content-start'" >
+                        :class="x.from_user_id == user.id?'justify-content-end':'justify-content-start'" >
 
                       <span>
                         {{ x.sended_time }}
                       </span>
 
                       <div class="row col-10 col-sm-8 col-md-6 mt-2"
-                           :class="x.from_user_id == user.id.split(' ')[0]?'justify-content-end':'justify-content-start ms-2'" >
+                           :class="x.from_user_id == user.id?'justify-content-end':'justify-content-start ms-2'" >
                         <div class="text-white rounded-3 w-auto d-inline-block p-2"
-                            :class="x.from_user_id == user.id.split(' ')[0]?'bg-dark ms-1':'bg-secondary'">
+                            :class="x.from_user_id == user.id?'bg-dark ms-1':'bg-secondary'">
                           <!-- Üzenet -->
                           <span class="w-auto text-break">
                           {{ x.message }}

@@ -6,10 +6,8 @@ import { reactive, ref, watch } from 'vue';
 
 const router = useRouter()
 
-let websitekey = window.location.pathname.split("/")[1];
-
 if(user.id)
-  router.push("/havenly")
+  router.push("/")
 // Model dekralálása
 let model = reactive({
   email: "",
@@ -35,7 +33,7 @@ let model = reactive({
         // Ha sikeres akkor 
         // a felasználó adait töltse fel a visszakapott adatokkal
         else{
-          user.id = `${response.data.user.id} ${websitekey}`;
+          user.id = response.data.user.id;
           user.firstname = response.data.user.first_name;
           user.lasttname = response.data.user.last_name;
           user.middlename = response.data.user.middle_name;

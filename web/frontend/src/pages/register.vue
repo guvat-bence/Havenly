@@ -4,12 +4,9 @@ import { user } from '@/store/user';
 import axios from 'axios';
 import { reactive, ref, watch } from 'vue';
 
-
 //securityCheck
   if(user.id)
-    router.push("/havenly")
-
-let websitekey = window.location.pathname.split("/")[1];
+    router.push("/")
 
 // Változók és funkciók deklarálása
 let step = ref(0),
@@ -71,7 +68,7 @@ let step = ref(0),
 
         if(isSuccess){
           setTimeout(() => {
-            user.id = `${response.data.insertedId} ${websitekey}`
+            user.id = response.data.insertedId;
             user.firstname = model.firstname;
             user.lasttname = model.lastname;
             user.middlename = model.middlename;
@@ -79,7 +76,7 @@ let step = ref(0),
             user.phone_number = model.phone_number;
             user.user_type = "U";
             user.gender = model.gender;
-            router.push("/havenly");
+            router.push("/");
             location.reload();
           }, 1500);
         }
