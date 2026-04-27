@@ -1,0 +1,102 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>image\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="image\icons\**" />
+    <EmbeddedResource Remove="image\icons\**" />
+    <None Remove="image\icons\**" />
+    <Page Remove="image\icons\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="1435870.png" />
+    <None Remove="billing_addres.png" />
+    <None Remove="card_network.png" />
+    <None Remove="currency.png" />
+    <None Remove="image\approve.png" />
+    <None Remove="image\city.png" />
+    <None Remove="image\country.png" />
+    <None Remove="image\create.png" />
+    <None Remove="image\decline.png" />
+    <None Remove="image\delete.png" />
+    <None Remove="image\details.png" />
+    <None Remove="image\experience.png" />
+    <None Remove="image\expreience.png" />
+    <None Remove="image\favourite.png" />
+    <None Remove="image\history.png" />
+    <None Remove="image\modify.png" />
+    <None Remove="image\szallas.png" />
+    <None Remove="image\user.png" />
+    <None Remove="login.png" />
+    <None Remove="opinions.png" />
+    <None Remove="reports.png" />
+    <None Remove="translations.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="image\approve.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\city.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\country.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\create.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\decline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\details.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\experience.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\favourite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\history.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\icon.ico" />
+    <Content Include="image\modify.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\szallas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.5.0" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="billing_addres.png" />
+    <Resource Include="card_network.png" />
+    <Resource Include="currency.png" />
+    <Resource Include="login.png" />
+    <Resource Include="opinions.png" />
+    <Resource Include="reports.png" />
+    <Resource Include="translations.png" />
+  </ItemGroup>
+
+</Project>
