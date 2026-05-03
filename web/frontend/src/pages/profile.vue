@@ -565,14 +565,14 @@ function getTranslationUserTypes(item)
 			{
 				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
 				let text  = JSON.parse(datas.data.data[0].item);
-				item[x].accommodation_name = text["title"];
+				item[x].name = text["title"];
 				
 			}
 			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
  			else if(datas.data.message == "original")
 			{
 				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
-				item[x].accommodation_name = datas.data.data[0].name;
+				item[x].name = datas.data.data[0].name;
 			}
 			// ha az üzenet failed akkor megy bele
 			else if(datas.data.message == "failed")
@@ -620,6 +620,15 @@ let getReports = () => {
   .catch(e => console.error(e.response))
 }
 
+function deleteUserItem()
+{
+  if(!confirm("Biztosan törölni szeretné?"))
+  {
+    return;
+  }
+  console.log(("asadad"));
+  
+}
 
 // ezzel a watch-al a model adatait figyeljük,
 // amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
@@ -1270,8 +1279,7 @@ watch(card,()=>
                      v-if="userItems.length!=0">
 
                   <!-- Lefoglat szállások -->
-                  <RouterLink :to="{name:'about',params:{table_name:x.table_type,id:x.id,name:x.name}}" 
-                        v-for="x in items"
+                  <div v-for="x in items"
                         class="d-flex nav-link text-white 
                               mb-4 bg-black bg-opacity-25 
                               rounded-3 p-2 border border-1 
@@ -1308,24 +1316,26 @@ watch(card,()=>
                       <!-- Bérlés kezdete és vége -->
                       <div class="row justify-content-center">
 
-                       <button class="btn btn-primary mx-1 
-                                      w-auto">
+                       <RouterLink :to="{name:'about',params:{table_name:x.table_type,id:x.id,name:x.name}}"
+                               class="btn btn-primary mx-1 
+                                     w-auto">
                           <i class="fa-solid fa-arrow-up-right-from-square"></i>
                           Megnéz
-                       </button>
-                       <button class="btn btn-secondary mx-1  
-                                      w-auto">
+                       </RouterLink>
+                       <RouterLink :to="{name:'userItem',params:{table_name:x.table_type,id:x.id,name:x.name}}"
+                                    class="btn btn-secondary mx-1 w-auto">
                           <i class="fa-solid fa-pen-to-square"></i>
                           Módosít
-                       </button>
-                       <button class="btn btn-danger mx-1  
+                       </RouterLink>
+                       <button @click="deleteUserItem()"
+                               class="btn btn-danger mx-1  
                                       w-auto">
                           <i class="fa-solid fa-circle-minus"></i>
                           Töröl
                        </button>
                       </div>
                     </div>
-                  </RouterLink>
+                  </div>
                   <h2 v-if="userItems.length==0">
                     {{ $t("profile.text_accommodations") }}
                   </h2>

@@ -15,15 +15,8 @@ export let user = reactive({
   expirationMonth: localStorage.getItem("expirationMonth") ?? ""
 })
 
-console.log(user);
-
-
 // Ha a user adatai változnak akkor a localstorage-be mentse el
 watch(user,(newUser) => { 
-
-  console.log(user);
-  
-
   localStorage.setItem("id",newUser.id); 
   localStorage.setItem("first_name", newUser.firstname); 
   localStorage.setItem("last_name", newUser.lasttname); 
