@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+const fs = require('node:fs/promises');
 const {translate} = require("./translate.js");
+const { rmdir } = require("node:fs");
 const port = 3000;
 require("dotenv").config();
 
@@ -1530,3 +1532,21 @@ app.get("/getUserItems/:id",(req,res)=>{
     })
   })
 })
+
+  app.post("/removeItem", (req,res) => {
+    const data = req.body;
+    db.query(`DELETE FROM ${data.table} WHERE id = ?`, [data.id], 
+            (err,result) => {
+      if(err)
+        return res.status(500).send('Adatbázis hiba...')
+
+      if(result.affectedRows === 0)
+        return res.status(500).send('Sikertelen törlés')
+
+      fs.rm(`../frontend/public/${data.path}`,
+                {recursive: true}, (err) => {
+        return res.status(500).send('Sikertelen mappa törlés')
+      })
+      return res.send('Sikeres törlés')
+    })
+  })

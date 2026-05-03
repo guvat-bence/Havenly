@@ -299,6 +299,7 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 	console.error(error);
 })
 
+
 // meghívjuk a makeCalendar függvényt
 // késleltetjük az indulását,
 // így akkor fog leutni amikor már a hozzá kellő html részel is betöltődtek.
@@ -897,6 +898,20 @@ function opinionsOptions(value)
 	}
 }
 
+let deleteItem = (data) => {
+	console.log("DELETE ITEM FUT")
+    axios.post('http://localhost:3000/removeItem',data)
+    .then(x => {
+				console.log('Sikeres')
+        alert(x.data)
+				setTimeout(() => {
+					router.push('/')
+				}, 200);
+        
+    })
+    .catch(e => alert(e.response.data))
+	}
+
 // figyeleli az érekezési és távozási napok változását.
 // ha mind a kettőnek van értéke akkor a kettő dátum közötti napokat hozzáadja a rentedDayIds-hez.
 // ha nincs értékük de viszont a rentedDayIds-nak van, akkor pedig törli a benne lévő napokat.
@@ -949,7 +964,22 @@ watch(model,()=>
 </script>
 <template>
 	<div class="about">
+		
+		<div class="justify-content-end d-flex p-3 w-100">
+			<button class="btn-danger btn w-auto"
+							@click="deleteItem({name: item[0].name, 
+																	id: item[0].id,
+																	table: props.table_name,
+																	path: `countries/${convertStrings(item[0].country_name)}` +
+																				`/cities/${convertStrings(item[0].city_name)}` +
+																				`/${props.table_name}/${convertStrings(item[0].folder_name)}`})">
+				<i class="fa-trash fa-solid"></i>
+			</button>
+		</div>
+
 		<div class="container text-white" v-if="item.length>0">
+
+			
 
 			<!-- Kép megjelenítés és a szállás/élmény címe -->
 			<div class="row justify-content-center">
