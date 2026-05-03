@@ -395,7 +395,6 @@ function openMessages(data)
   .then(details=>
   {
     // beállítjuk az alavető adatokat
-    console.log(details.data);
     sendingMessage.message = '';
     sendingMessage.from_id = user.id;
     sendingMessage.to_id = data.from_user_id;
@@ -420,7 +419,6 @@ function getContacts()
 axios.get(`http://localhost:3000/getContacts/${user.id}`)
 .then(details=>
 {
-  console.log(details.data);
   userContacts.value = details.data;
 })
 .catch(error=>
@@ -453,7 +451,6 @@ function sendMessage()
       axios.post(`http://localhost:3000/getMessages`,{from_id:sendingMessage.from_id,to_id:sendingMessage.to_id})
       .then(details=>
       {
-        console.log(details.data);
         userMessages.value = details.data;
         sendingMessage.message = '';
         sendingMessage.from_id = user.id;
@@ -475,12 +472,10 @@ function getUserItems()
 {
   axios.get(`http://localhost:3000/getUserItems/${user.id}`)
   .then(response =>{
-    console.log(response.data);
     userItems.value = response.data;
 
     for(let x in userItems.value)
     {
-      console.log(x);
       
       getTranslationUserTypes(userItems.value[x]);
     }
@@ -546,19 +541,14 @@ function getTranslation(item)
 // ha esetleg hiba akana afordítással akkor a művele megszakad é kiírja a konzolbon.
 function getTranslationUserTypes(item)
 {
-  console.log(item);
-  
 
 	for(let x in item)
 	{
-    console.log(item[x]);
     
-
 		axios.post(`http://localhost:3000/translate`,
 			{item_id:item[x].id,item_name:item[x].table_type,language_short_name:locale.value})
 		.then(datas=>
 		{
-      console.log(datas);
       
 			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
 			if(datas.data.message == "translationed")
@@ -1272,7 +1262,7 @@ watch(card,()=>
               tabindex="0">
 
               <!-- feltöltött elemek -->
-              <div class="overflow-y-auto py-2" 
+              <div class="overflow-y-auto overflow-x-hidden py-2" 
                   style="height: 400px !important;">
 
                 <div v-for="items in userItems"

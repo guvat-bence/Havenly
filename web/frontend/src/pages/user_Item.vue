@@ -1,29 +1,62 @@
 <script setup>
-import { user } from '@/store/user';
-import router from '@/router';
-import { reactive, ref, watch } from 'vue';
-import axios from 'axios';
-import { useI18n } from 'vue-i18n';
-import { selectedCurrency } from '@/store/currency';
-import { convertStrings } from '@/common';
-let changedModel = ref(false);
+import { user } from '@/store/user'
+import router from '@/router'
+import { reactive, ref, watch } from 'vue'
+import axios from 'axios'
+import { useI18n } from 'vue-i18n'
+import { selectedCurrency } from '@/store/currency'
+import { convertStrings } from '@/common'
+
+const props = defineProps(['table_name','id','name'])
 const {t} = useI18n();
 const {locale} = useI18n();
-// A felhasználó alap adatai.
+
 let model = reactive({
-  userID: user.id,
-  firstName: user.firstname,
-  lastName: user.lasttname,
-  middleName: user.middlename,
-  email: user.email,
-  phoneNum: user.phone_number,
-  gender: user.gender,
+  bathroom:"",
+  bed:"",
+  bedroom:"",
+  city_id:"",
+  city_name:"",
+  city_trans_name:"",
+  country_id:"",
+  country_name:"",
+  country_trans_name:"",
+  description:"",
+  folder_name:"",
+  guest_number:"",
+  id:"",
+  name:"",
+  owner_id:"",
+  price:"",
+  size:""
+})
+
+let item = ref([]);
+let itemClone = "";
+let changedModel = ref(false);
+
+// adatbázisból lehúzzuk a szállás/élmény többi adatát.
+axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
+.then(datas=>{
+
+	datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
+	datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
+
+	// tömb feltöltése
+	item.value = datas.data[0];
+  console.log(item.value);
+  itemClone = {... item};
+
+  item.value.price =  item.value.price*(selectedCurrency.currencyMultiplier).toLocaleString('fi-FI');
+
+  Object.assign(model,item.value);
+  
+})
+.catch(err=>{
+  console.log(err);
 })
 
 
-//securityCheck.
-if(!user.id)
-  router.back()
 </script>
 <template>
   <div class="userItem">
@@ -58,7 +91,7 @@ if(!user.id)
               <div class="mb-3 m-0 col-12 col-lg-6">
 
                 <!-- Label -->
-                <label for="InputFirstName" 
+                <label for="country" 
                         class="form-label">
                   <i class="fa-solid fa-earth-europe"></i>
                   Ország
@@ -67,15 +100,16 @@ if(!user.id)
                 <!-- Input -->
                 <input type="text" 
                         class="form-control" 
-                        id="InputFirstName" 
-                        v-model="model.firstName">
+                        id="country" 
+                        v-model="model.city_name"
+                        autocomplete="off">
               </div>
 
               <!-- Város -->
               <div class="mb-3 col-12 col-lg-6">
 
                 <!-- Label -->
-                <label for="InputMiddleName" 
+                <label for="city" 
                         class="form-label">
                  <i class="fa-solid fa-city"></i>
                   Város
@@ -84,8 +118,9 @@ if(!user.id)
                 <!-- Input -->
                 <input type="text" 
                         class="form-control" 
-                        id="InputMiddleName" 
-                        v-model="model.middleName">
+                        id="city" 
+                        v-model="model.country_name"
+                        autocomplete="off">
               </div>
             </div>
 
@@ -102,24 +137,25 @@ if(!user.id)
               <div class="mb-3 col-12 col-lg-6">
 
                 <!-- Label -->
-                <label for="InputEmail" 
+                <label for="name" 
                         class="form-label">
                   <i class="fa-solid fa-file-signature"></i>
                   Név
                 </label>
 
                 <!-- Input -->
-                <input type="email" 
+                <input type="text" 
                         class="form-control" 
-                        id="InputEmail" 
-                        v-model="model.email">
+                        id="name" 
+                        v-model="model.name"
+                        autocomplete="off">
               </div>
 
               <!-- Leírás -->
               <div class="mb-3 col-12 col-lg-6">
 
                 <!-- Label -->
-                <label for="InputPhoneNum" 
+                <label for="description" 
                         class="form-label">
                   <i class="fa-solid fa-file-signature"></i>
                   Leírás
@@ -127,18 +163,18 @@ if(!user.id)
 
                 <!-- Input -->
                <textarea class="form-control col-10" 
-										 id="asd" 
+										 id="description" 
 										 type="text"
 										 value=""
 										 rows="5"
-										 maxlength="200"
-										 v-model="model.email">
+										 maxlength="500"
+										 v-model="model.description">
 							</textarea>
               </div>
             </div>
 
             <!-- Részletek -->
-            <div class="row mb-4">   
+            <div class="row mb-4 justify-content-center">   
 
               <!-- Cím -->
               <h5 class="text-center">
@@ -146,106 +182,118 @@ if(!user.id)
                 Részletek
               </h5>
 
-              <!-- Ország -->
+              <!-- Ár -->
               <div class="mb-3 m-0 col-12 col-lg-4">
 
                 <!-- Label -->
-                <label for="InputFirstName" 
+                <label for="price" 
                         class="form-label">
-                  <i class="fa-solid fa-earth-europe"></i>
-                  Ország
+                  <i class="fa-solid fa-money-bill"></i>
+                  Ár ({{ selectedCurrency.currencyShortedName }}) 
+                    / {{ props.table_name=="accommodations"?'éjszaka':'fő' }}
                 </label>
 
                 <!-- Input -->
                 <input type="text" 
                         class="form-control" 
-                        id="InputFirstName" 
-                        v-model="model.firstName">
+                        id="price" 
+                        v-model="model.price"
+                        autocomplete="off">
               </div>
 
-              <!-- Város -->
-              <div class="mb-3 col-12 col-lg-4">
+              <!-- Méret -->
+              <div v-if="props.table_name=='accommodations'"
+                   class="mb-3 col-12 col-lg-4">
 
                 <!-- Label -->
-                <label for="InputMiddleName" 
+                <label for="size" 
                         class="form-label">
-                 <i class="fa-solid fa-city"></i>
-                  Város
+                  <i class="fa-solid fa-ruler-combined"></i>
+                  Méret (m²)
                 </label>
 
                 <!-- Input -->
                 <input type="text" 
                         class="form-control" 
-                        id="InputMiddleName" 
-                        v-model="model.middleName">
-              </div>
-              
-              <!-- Város -->
-              <div class="mb-3 col-12 col-lg-4">
-
-                <!-- Label -->
-                <label for="InputMiddleName" 
-                        class="form-label">
-                 <i class="fa-solid fa-city"></i>
-                  Város
-                </label>
-
-                <!-- Input -->
-                <input type="text" 
-                        class="form-control" 
-                        id="InputMiddleName" 
-                        v-model="model.middleName">
-              </div>
-
-              <!-- Ország -->
-              <div class="mb-3 m-0 col-12 col-lg-4">
-
-                <!-- Label -->
-                <label for="InputFirstName" 
-                        class="form-label">
-                  <i class="fa-solid fa-earth-europe"></i>
-                  Ország
-                </label>
-
-                <!-- Input -->
-                <input type="text" 
-                        class="form-control" 
-                        id="InputFirstName" 
-                        v-model="model.firstName">
-              </div>
-
-              <!-- Város -->
-              <div class="mb-3 col-12 col-lg-4">
-
-                <!-- Label -->
-                <label for="InputMiddleName" 
-                        class="form-label">
-                 <i class="fa-solid fa-city"></i>
-                  Város
-                </label>
-
-                <!-- Input -->
-                <input type="text" 
-                        class="form-control" 
-                        id="InputMiddleName" 
-                        v-model="model.middleName">
+                        id="size" 
+                        v-model="model.size"
+                        autocomplete="off">
               </div>
               
-              <!-- Város -->
-              <div class="mb-3 col-12 col-lg-4">
+              <!-- Vendégek száma -->
+              <div v-if="props.table_name=='accommodations'"
+                   class="mb-3 col-12 col-lg-4">
 
                 <!-- Label -->
-                <label for="InputMiddleName" 
+                <label for="guests_number" 
                         class="form-label">
-                 <i class="fa-solid fa-city"></i>
-                  Város
+                  <i class="fa-solid fa-people-group"></i>
+                  Vendégek száma
                 </label>
 
                 <!-- Input -->
                 <input type="text" 
                         class="form-control" 
-                        id="InputMiddleName" 
-                        v-model="model.middleName">
+                        id="guests_number" 
+                        v-model="model.guest_number"
+                        autocomplete="off">
+              </div>
+
+              <!-- Hálószobák száma -->
+              <div v-if="props.table_name=='accommodations'"
+                   class="mb-3 m-0 col-12 col-lg-4">
+
+                <!-- Label -->
+                <label for="bedrooms_number" 
+                        class="form-label">
+                    <i class="fa-solid fa-house-chimney"></i>
+                    Hálószobák száma
+                </label>
+
+                <!-- Input -->
+                <input type="text" 
+                        class="form-control" 
+                        id="bedrooms_number" 
+                        v-model="model.bedroom"
+                        autocomplete="off">
+              </div>
+
+              <!-- Ágyak száma -->
+              <div v-if="props.table_name=='accommodations'"
+                   class="mb-3 col-12 col-lg-4">
+
+                <!-- Label -->
+                <label for="beds_number" 
+                        class="form-label">
+                  <i class="fa-solid fa-bed"></i>
+                  Ágyak száma
+                </label>
+
+                <!-- Input -->
+                <input type="text" 
+                        class="form-control" 
+                        id="beds_number" 
+                        v-model="model.bed"
+                        autocomplete="off">
+              </div>
+              
+              <!-- Fürdőszobák száma -->
+              <div v-if="props.table_name=='accommodations'"
+                   class="mb-3 col-12 col-lg-4">
+
+                <!-- Label -->
+                <label for="bathoroom_number" 
+                        class="form-label">
+                  <i class="fa-solid fa-bath"></i>
+                  Fürdőszobák száma
+                </label>
+
+                <!-- Input -->
+                <input type="text" 
+                        class="form-control" 
+                        id="bathoroom_number" 
+                        v-model="model.bathroom"
+                        autocomplete="off">
               </div>
             </div>
 
@@ -259,7 +307,7 @@ if(!user.id)
               </h5>
 
               <!-- Képek -->
-              <div v-for="x in 10"
+              <div v-for="x in props.table_name=='accommodations'?10:3"
                    class="mb-3 m-0 col-12 col-lg-3">
 
                 <label class="form-label d-flex 
@@ -267,11 +315,22 @@ if(!user.id)
                               align-items-center border" 
                       :for="x"
                       style="height: 150px;
-                            cursor:pointer;">
-                  <i class="fa-solid fa-image"></i>          
-                  Kép
+                             cursor:pointer;
+                             background-repeat: no-repeat;
+                             background-position: center;
+                             background-size: contain;"
+                      :style=" item!=''?{
+                        backgroundImage: `url(/countries/${convertStrings(model.country_name)}/cities/${convertStrings(model.city_name)}/${props.table_name}/${model.folder_name}/0${x<10?`0${x}`:x}.png)`
+                      }:{}">
+                  <span v-if="item==''">
+                    <i class="fa-solid fa-image"></i>          
+                    Kép
+                  </span>
                 </label>
-                <input type="file" class="form-control d-none" :id="x">
+                <input type="file" 
+                       class="form-control d-none"
+                       :id="x"
+                       accept="image/*">
               </div>
 
             </div>
@@ -287,16 +346,6 @@ if(!user.id)
                       class="col-12 col-sm-12 col-md-4 col-lg-3
                               mx-2 my-2 btn btn-light">
                 {{ $t("profile.save") }}
-              </button>
-
-              <!-- Összes mentése gomb -->
-              <button v-if="changedModel==true && changedCard==true"
-                      @click="messageBox('open');
-                              messageBoxmessage = messages.editing"
-                      type="button"
-                      class="col-12 col-sm-12 col-md-4 col-lg-3 
-                              mx-2 my-2 text-nowrap btn btn-light">
-                {{ $t("profile.save_all") }}
               </button>
 
               <!-- Mégse gomb -->

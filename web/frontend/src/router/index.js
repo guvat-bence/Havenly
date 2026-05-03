@@ -71,7 +71,8 @@ let routes = [
   {
     name:"userItem",
     path:"/userItem/:table_name:/:id/:name",
-    component: User_Item
+    component: User_Item,
+    props:true
   }
 ]
 const router = createRouter({
