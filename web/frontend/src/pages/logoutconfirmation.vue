@@ -7,16 +7,36 @@ if(!user.id)
 
 
 	let logout = () => {
-		user.id = "";
-		user.firstname = "";
-		user.lasttname = "";
-		user.middlename = "";
-		user.phone_number = "";
-		user.gender = "";
-		user.user_type = "";
-		user.cardNumber = "";
-		user.expirationMonth = "";
-		user.expirationYear = "";
+		
+	  localStorage.removeItem("id");
+    localStorage.removeItem("first_name");
+    localStorage.removeItem("last_name");
+    localStorage.removeItem("middle_name");
+    localStorage.removeItem("email");
+    localStorage.removeItem("phone_number");
+    localStorage.removeItem("gender");
+    localStorage.removeItem("user_type");
+    localStorage.removeItem("card_number");
+    localStorage.removeItem("expiration");
+    localStorage.removeItem("accommodation_full_price");
+    localStorage.removeItem("rent_beginning");
+    localStorage.removeItem("rent_end");
+    localStorage.removeItem("accommodation_path");
+    localStorage.removeItem("guests_number");
+    localStorage.removeItem("accommodation");
+    localStorage.removeItem("currencyID");
+    localStorage.removeItem("currencyName");
+    localStorage.removeItem("currencyMultiplier");
+    localStorage.removeItem("currencyShortedName");
+    localStorage.removeItem("locale_name");
+    localStorage.removeItem("accommodation_full_price");
+    localStorage.removeItem("rent_beginning");
+    localStorage.removeItem("rent_end");
+    localStorage.removeItem("accommodation_path");
+    localStorage.removeItem("guests_number");
+    localStorage.removeItem("accommodation");
+    localStorage.removeItem("expirationYear");
+    localStorage.removeItem("expirationMonth");
 
 		router.push("/")
 	},

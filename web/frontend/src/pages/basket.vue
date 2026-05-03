@@ -10,14 +10,22 @@ import { useI18n } from 'vue-i18n';
 
 const {t} = useI18n();
 let router = useRouter()
-let accommodation_data = JSON.parse(rent.accommodation);
 let cardData = ref([])
 let currentCard = ref("")
+let accommodation_data = "";
+
+try
+{
+accommodation_data = JSON.parse(rent.accommodation);
+}
+catch{
+  router.back();
+}
 
 if(!user.id)
   router.back()
 
-// véletlenszerü 5 ország beolvasása
+// Kártyatipusok beolvasása
 axios.get('http://localhost:3000/getCardNetwork')
   .then(response => {
     cardData.value = response.data
@@ -73,6 +81,12 @@ let payForAccomadtion = () => {
     else{
       alert(response.data);
     }
+    rent.accommodation_full_price="";
+    rent.rent_beginning="";
+    rent.rent_end="";
+    rent.accommodation_path="";
+    rent.guests="";
+    rent.accommodation="";
     router.push("/");
   })
   .catch(e => console.error(e))

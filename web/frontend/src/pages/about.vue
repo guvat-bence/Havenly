@@ -1132,7 +1132,7 @@ watch(model,()=>
 							</div>
 
               <!-- Foglalaás gomb -->
-							<button v-if="user.id!=null && user.id != item[0].owner_id"
+							<button v-if="user.id!='' && user.id != item[0].owner_id"
 											v-bind:disabled="rentedDayIds.length==0"
 											@click="renting()"
 											type="button"
@@ -1143,7 +1143,7 @@ watch(model,()=>
 
 							 <!-- Bejelentkezés gomb gomb -->
 							<router-link to="/login"
-													 v-if="user.id ==null && user.id != item[0].owner_id"
+													 v-if="user.id =='' && user.id != item[0].owner_id"
 										       class="btn btn-secondary col-6 
                       				rounded-pill">
                 {{ $t('about.login') }}
@@ -1159,7 +1159,7 @@ watch(model,()=>
 					<h4>{{ $t("about.report.any_problems") }}</h4>
 					<h4>{{ $t("about.report.report_to_we") }}</h4>
 					<button @click=" setReportModal(item[0])"
-									:disabled="user.id==null"
+									:disabled="user.id==''"
 									class="my-2 btn w-auto rounded-3 btn-danger">
 						<i class="fa-solid fa-ban"></i>
 						{{ $t("about.report.report_problem") }}
@@ -1174,7 +1174,7 @@ watch(model,()=>
 				</h4>
 
 				<!-- Vélemény írása --> 
-				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!=null && user.id != item[0].owner_id)"
+				<div v-if="reserved_once || (props.table_name=='experiences' && user.id!='' && user.id != item[0].owner_id)"
 						 class="row justify-content-center">
 
 					<!-- A vélemény form-ja -->
@@ -1267,7 +1267,7 @@ watch(model,()=>
 							<button v-if="user.id == opinion.user_id"
 											@click="deleteType = false;
 															editOpinion(opinion);"
-											:disabled="user.id==null"
+											:disabled="user.id==''"
 											class="my-1 mx-1 btn w-auto rounded-4 
 														btn-primary">
 								<i class="fa-regular fa-pen-to-square"></i>
@@ -1280,7 +1280,7 @@ watch(model,()=>
 															deleteType = true;
 															opinionModel.opinion_id = opinion.id;
 															openModal();"
-											:disabled="user.id==null"
+											:disabled="user.id==''"
 											class="btn w-auto rounded-4 
 														my-1 mx-1 btn-secondary">
 								<i class="fa-solid fa-trash-can"></i>
@@ -1290,7 +1290,7 @@ watch(model,()=>
 						<div class="d-flex justify-content-end col-6">
 							<!-- Vélemény jelentés gomb -->
 							<button @click=" setReportModal(opinion)"
-											:disabled="user.id==null"
+											:disabled="user.id==''"
 											class="my-1 mx-1 btn w-auto rounded-4 
 														btn-danger">
 								<i class="fa-solid fa-ban"></i>

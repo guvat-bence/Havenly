@@ -2,7 +2,7 @@ import { watch, reactive } from "vue";
 
 //Hívja le a localstorage adatai
 export let user = reactive({
-  id: localStorage.getItem("id") ?? null,
+  id: localStorage.getItem("id") ?? "",
   firstname: localStorage.getItem("first_name") ?? "",
   lasttname: localStorage.getItem("last_name") ?? "",
   middlename: localStorage.getItem("middle_name")=="null"?"":localStorage.getItem("middle_name") ?? "",
@@ -15,8 +15,15 @@ export let user = reactive({
   expirationMonth: localStorage.getItem("expirationMonth") ?? ""
 })
 
+console.log(user);
+
+
 // Ha a user adatai változnak akkor a localstorage-be mentse el
 watch(user,(newUser) => { 
+
+  console.log(user);
+  
+
   localStorage.setItem("id",newUser.id); 
   localStorage.setItem("first_name", newUser.firstname); 
   localStorage.setItem("last_name", newUser.lasttname); 

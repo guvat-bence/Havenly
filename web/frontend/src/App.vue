@@ -6,7 +6,7 @@ import router from './router';
 
 
 let checkforUser = () => {
-  if (user.id==null) {
+  if (user.id=="") {
     localStorage.removeItem("id");
     localStorage.removeItem("first_name");
     localStorage.removeItem("last_name");
@@ -28,6 +28,14 @@ let checkforUser = () => {
     localStorage.removeItem("currencyMultiplier");
     localStorage.removeItem("currencyShortedName");
     localStorage.removeItem("locale_name");
+    localStorage.removeItem("accommodation_full_price");
+    localStorage.removeItem("rent_beginning");
+    localStorage.removeItem("rent_end");
+    localStorage.removeItem("accommodation_path");
+    localStorage.removeItem("guests_number");
+    localStorage.removeItem("accommodation");
+    localStorage.removeItem("expirationYear");
+    localStorage.removeItem("expirationMonth");
   }
 }
 if (user)
