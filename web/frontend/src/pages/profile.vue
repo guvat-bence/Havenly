@@ -1265,17 +1265,59 @@ watch(card,()=>
               <div class="overflow-y-auto overflow-x-hidden py-2" 
                   style="height: 400px !important;">
 
+                <!-- Új elem -->
+                <div class="d-flex nav-link text-white 
+                            mb-4 bg-black bg-opacity-25 
+                            rounded-3 p-2 border border-1 
+                            border-white">
+
+                  <!-- Elem képe -->
+                  <img  style="height: 170px; width: 170px;"
+                        src="../images/image3.png"
+                        class="justify-content-start rounded-3 img-fluid" 
+                        alt="accomodation_image">
+
+                  <!-- Elem adatai -->
+                  <div class="mx-auto pt-4">
+
+                    <!-- Elem neve -->
+                    <div class="row">
+                      <h3 class="text-white mx-auto 
+                                  text-center fw-light 
+                                  col-12">
+                        Új elem feltöltése
+                      </h3>
+                    </div>
+                    
+                    <!-- Gombok -->
+                    <div class="row justify-content-center mt-5">
+
+                      <!-- Módosít gomb -->
+                      <RouterLink to="/userItem/accommodations/0/new"
+                                  class="btn btn-secondary mx-1 w-auto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Szállás feltötése
+                      </RouterLink>
+
+                      <!-- Módosít gomb -->
+                      <RouterLink to="/userItem/expreiences/0/new"
+                                  class="btn btn-secondary mx-1 w-auto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Élmény feltötése
+                      </RouterLink>
+                    </div>
+                  </div>
+                </div>
                 <div v-for="items in userItems"
                      v-if="userItems.length!=0">
-
-                  <!-- Lefoglat szállások -->
+                  <!-- Elemek -->
                   <div v-for="x in items"
                         class="d-flex nav-link text-white 
                               mb-4 bg-black bg-opacity-25 
                               rounded-3 p-2 border border-1 
                               border-white">
 
-                    <!-- Szállás képe -->
+                    <!-- Elem képe -->
                     <img  style="height: 170px; width: 170px;"
                           :src="`/countries/${convertStrings(x.country_name)}` +
                               `/cities/${convertStrings(x.city_name)}` +
@@ -1283,10 +1325,10 @@ watch(card,()=>
                           class="justify-content-start rounded-3 img-fluid" 
                           alt="accomodation_image">
 
-                    <!-- Foglalás adatai -->
+                    <!-- Elem adatai -->
                     <div class="mx-auto pt-4">
 
-                      <!-- szállás neve -->
+                      <!-- Elem neve -->
                       <div class="row">
                         <h3 class="text-white mx-auto 
                                     text-center fw-light 
@@ -1295,28 +1337,34 @@ watch(card,()=>
                         </h3>
                       </div>
 
-                      <!-- szállás ára és bérlési dátuma -->
+                      <!-- Elem helye és gombok -->
                       <div>
-                        <!-- Bérlés dátuma -->
+                        <!--Elem helye -->
                         <p class="text-white-50">
                           {{x.country_name}}, {{ x.city_name }}
                         </p>
                       </div>
                       
-                      <!-- Bérlés kezdete és vége -->
+                      <!-- Gombok -->
                       <div class="row justify-content-center">
 
+                        <!-- Megnéz gomb -->
                        <RouterLink :to="{name:'about',params:{table_name:x.table_type,id:x.id,name:x.name}}"
                                class="btn btn-primary mx-1 
                                      w-auto">
                           <i class="fa-solid fa-arrow-up-right-from-square"></i>
                           Megnéz
                        </RouterLink>
+
+                       <!-- Módosít gomb -->
                        <RouterLink :to="{name:'userItem',params:{table_name:x.table_type,id:x.id,name:x.name}}"
                                     class="btn btn-secondary mx-1 w-auto">
                           <i class="fa-solid fa-pen-to-square"></i>
                           Módosít
+
                        </RouterLink>
+
+                       <!-- Töröl gomb -->
                        <button @click="deleteUserItem()"
                                class="btn btn-danger mx-1  
                                       w-auto">

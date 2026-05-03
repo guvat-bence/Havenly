@@ -1530,3 +1530,16 @@ app.get("/getUserItems/:id",(req,res)=>{
     })
   })
 })
+
+
+app.post("/uploadUserItem",(req,res)=>{
+  let datas = req.body;
+  console.log(datas);
+  return;
+})
+
+app.post("/updateUserItem",(req,res)=>{
+  let datas = req.body;
+  console.log(datas);
+  return;
+})

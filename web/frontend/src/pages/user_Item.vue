@@ -11,6 +11,16 @@ const props = defineProps(['table_name','id','name'])
 const {t} = useI18n();
 const {locale} = useI18n();
 
+let images = reactive({})
+
+
+for(let x=0;x<(props.table_name=="accommodations"?10:3);x++)
+{
+  images[x] = "";
+}
+
+let imagesCopie = {... images};
+
 let model = reactive({
   bathroom:"",
   bed:"",
@@ -32,31 +42,128 @@ let model = reactive({
 })
 
 let item = ref([]);
-let itemClone = "";
-let changedModel = ref(false);
+let modelCopie = {... model};
 
-// adatbázisból lehúzzuk a szállás/élmény többi adatát.
-axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
-.then(datas=>{
+if(props.id!=0 && props.name!="new")
+{
+  // adatbázisból lehúzzuk a szállás/élmény többi adatát.
+  axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
+  .then(datas=>{
 
-	datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
-	datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
+    datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
+    datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
 
-	// tömb feltöltése
-	item.value = datas.data[0];
-  console.log(item.value);
-  itemClone = {... item};
+    // tömb feltöltése
+    item.value = datas.data[0];
+    console.log(item.value);
 
-  item.value.price =  item.value.price*(selectedCurrency.currencyMultiplier).toLocaleString('fi-FI');
+    item.value.price =  item.value.price*(selectedCurrency.currencyMultiplier).toLocaleString('fi-FI');
 
-  Object.assign(model,item.value);
+    Object.assign(model,item.value);
+    Object.assign(modelCopie,item.value);
+
+    for(let x=0;x<(props.table_name=="accommodations"?10:3);x++)
+    {
+      images[x] = "image";
+    }
+    imagesCopie = {... images}
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+}
+
+function check()
+{
+  if(model.city_name=="")
+    return false;
+  if(model.country_name=="")
+    return false;
+  if(model.description=="")
+    return false;
+  if(model.name=="")
+    return false;
+  if(model.price=="" || model.price > 9999999)
+    return false;
+  if(props.table_name=="accommodations" && model.bathroom=="" || model.bathroom > 99)
+    return false;
+  if(props.table_name=="accommodations" && model.bedroom=="" || model.bedroom > 99)
+    return false;
+  if(props.table_name=="accommodations" && model.bed=="" || model.bed > 99)
+    return false;
+  if(props.table_name=="accommodations" && model.guest_number=="" || model.guest_number > 99)
+    return false;
+  if(props.table_name=="accommodations" && model.size=="" || model.size > 999)
+    return false;
+
+  if(props.name=="new"){
+    for(let x in images)
+    {
+      if(images[x] == "")
+      {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function uploadImage(item)
+{
+  let item_id = item.currentTarget.id;
+  let file = item.currentTarget.files[0];
+ 
+  if(file.type.includes("images/"))
+  {
+    return;
+  }
+
+  let reader = new FileReader();
+
+  reader.onload=()=>{
+
+    let label = document.body.querySelector(`label[for='${item_id}']`);
+    label.style.backgroundImage =`url(${reader.result})`;
+    label.innerHTML = "";
+
+    images[item_id-1] = reader.result;
+    console.log(images);
+  };
+  reader.onerror=(e)=>{
+    console.log(e);
+  }
+
+  reader.readAsDataURL(file);
   
-})
-.catch(err=>{
-  console.log(err);
-})
+}
 
+function uploadItem()
+{
 
+  let url = "";
+
+  if(model.id != "")
+  {
+    url = "update";
+  }
+  else
+  {
+    url = "upload";
+  }
+
+  axios.post(`http://localhost:3000/${url}UserItem`,{datas:model,images:images})
+  .then(response=>{
+    console.log(response);
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+}
+
+watch([model,images],()=>{
+  check();
+},{deep:true})
 </script>
 <template>
   <div class="userItem">
@@ -194,11 +301,12 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 </label>
 
                 <!-- Input -->
-                <input type="text" 
+                <input type="number" 
                         class="form-control" 
                         id="price" 
                         v-model="model.price"
-                        autocomplete="off">
+                        autocomplete="off"
+                        max="9999999">
               </div>
 
               <!-- Méret -->
@@ -213,11 +321,12 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 </label>
 
                 <!-- Input -->
-                <input type="text" 
+                <input type="number" 
                         class="form-control" 
                         id="size" 
                         v-model="model.size"
-                        autocomplete="off">
+                        autocomplete="off"
+                        max="999">
               </div>
               
               <!-- Vendégek száma -->
@@ -232,11 +341,12 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 </label>
 
                 <!-- Input -->
-                <input type="text" 
+                <input type="number" 
                         class="form-control" 
                         id="guests_number" 
                         v-model="model.guest_number"
-                        autocomplete="off">
+                        autocomplete="off"
+                        max="99">
               </div>
 
               <!-- Hálószobák száma -->
@@ -251,11 +361,12 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 </label>
 
                 <!-- Input -->
-                <input type="text" 
+                <input type="number" 
                         class="form-control" 
                         id="bedrooms_number" 
                         v-model="model.bedroom"
-                        autocomplete="off">
+                        autocomplete="off"
+                        max="99">
               </div>
 
               <!-- Ágyak száma -->
@@ -270,11 +381,12 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 </label>
 
                 <!-- Input -->
-                <input type="text" 
+                <input type="number" 
                         class="form-control" 
                         id="beds_number" 
                         v-model="model.bed"
-                        autocomplete="off">
+                        autocomplete="off"
+                        max="99">
               </div>
               
               <!-- Fürdőszobák száma -->
@@ -289,11 +401,12 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 </label>
 
                 <!-- Input -->
-                <input type="text" 
+                <input type="number" 
                         class="form-control" 
                         id="bathoroom_number" 
                         v-model="model.bathroom"
-                        autocomplete="off">
+                        autocomplete="off"
+                        max="99">
               </div>
             </div>
 
@@ -310,18 +423,20 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
               <div v-for="x in props.table_name=='accommodations'?10:3"
                    class="mb-3 m-0 col-12 col-lg-3">
 
-                <label class="form-label d-flex 
+                <label :for="x" 
+                       class="form-label d-flex 
                               justify-content-center 
                               align-items-center border" 
-                      :for="x"
-                      style="height: 150px;
+                       style="height: 150px;
                              cursor:pointer;
                              background-repeat: no-repeat;
                              background-position: center;
                              background-size: contain;"
-                      :style=" item!=''?{
-                        backgroundImage: `url(/countries/${convertStrings(model.country_name)}/cities/${convertStrings(model.city_name)}/${props.table_name}/${model.folder_name}/0${x<10?`0${x}`:x}.png)`
-                      }:{}">
+                       :style=" item!=''?{
+                        backgroundImage: `url(/countries/${convertStrings(item.country_name)}`+
+                                          `/cities/${convertStrings(item.city_name)}/`+
+                                          `${props.table_name}/${item.folder_name}`+
+                                          `/0${x<10?`0${x}`:x}.png)`}:{}">
                   <span v-if="item==''">
                     <i class="fa-solid fa-image"></i>          
                     Kép
@@ -330,7 +445,8 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
                 <input type="file" 
                        class="form-control d-none"
                        :id="x"
-                       accept="image/*">
+                       accept="image/*"
+                       @change="uploadImage($event)">
               </div>
 
             </div>
@@ -339,9 +455,8 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
             <div class="row mx-1 justify-content-center">
 
               <!-- Mentés gomb -->
-              <button v-if="changedModel==true && changedCard!=true"
-                      @click="messageBox('open');
-                              messageBoxmessage = messages.editing"
+              <button :disabled="(!check() || JSON.stringify(model)==JSON.stringify(modelCopie))"
+                      @click="uploadItem()"
                       type="button"
                       class="col-12 col-sm-12 col-md-4 col-lg-3
                               mx-2 my-2 btn btn-light">
@@ -349,8 +464,8 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
               </button>
 
               <!-- Mégse gomb -->
-              <button :disabled="changedModel!=true"
-                      @click="restoreDatas(model)"
+              <button :disabled="JSON.stringify(model)==JSON.stringify(modelCopie)"
+                      @click="Object.assign(model,modelCopie)"
                       type="button" 
                       class="col-12 col-sm-12 col-md-4 col-lg-3
                             mx-2 my-2 btn btn-secondary">
