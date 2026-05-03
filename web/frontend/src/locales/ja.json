@@ -456,7 +456,8 @@
       "card_number": "カード番号",
       "month": "月",
       "year": "年",
-      "cvv": "CVV"
+      "cvv": "CVV",
+      "card_datas": "既存のカード情報を使用する"
     }
   },
   "about_us":

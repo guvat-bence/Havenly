@@ -456,7 +456,8 @@
       "card_number": "Numero della carta",
       "month": "Mese",
       "year": "Anno",
-      "cvv": "CVV"
+      "cvv": "CVV",
+      "card_datas": "Utilizza i dati della carta esistenti"
     }
   },
   "about_us":

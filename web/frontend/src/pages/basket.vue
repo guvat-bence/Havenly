@@ -13,10 +13,14 @@ let router = useRouter()
 let cardData = ref([])
 let currentCard = ref("")
 let accommodation_data = "";
+let showDatas = ref(false);
 
 try
 {
 accommodation_data = JSON.parse(rent.accommodation);
+
+if (!accommodation_data.id || !user.id)
+  router.back()
 }
 catch{
   router.back();
@@ -31,9 +35,6 @@ axios.get('http://localhost:3000/getCardNetwork')
     cardData.value = response.data
   })
   .catch(e => console.error(e))
-
-if (!accommodation_data.id || !user.id)
-  router.back()
 
 let transitionName 
 let step = ref(0)
@@ -64,6 +65,24 @@ let model = reactive({
   door: null,
   message:"",
 })
+
+// Ezzel a functionnal állítjuk be vagy éppen töröljük ki a profilban megadott kártyadatokat.
+function showCardDatas()
+{
+  showDatas.value = showDatas.value == true?false:true;
+
+  if(showDatas.value == true)
+  {
+    model.cardnumber = user.cardNumber;
+    model.expiration_month = user.expirationMonth;
+    model.expirationYear = user.expirationYear;
+  }
+  else{
+    model.cardnumber = "";
+    model.expiration_month = null;
+    model.expirationYear = null;
+  }
+}
 
 let currentExpYear = ref(new Date().getFullYear().toString().substring(2,4))
 
@@ -412,8 +431,7 @@ let validateData = () => {
                         {{ $t("basket.user_datas.month") }}
                       </option>
 
-                      <option v-for="x in 12"
-                              :value="{x}">
+                      <option v-for="x in 12">
                         {{ x.toString().padStart(2,'0') }}
                       </option>
                     </select>
@@ -436,8 +454,7 @@ let validateData = () => {
                          {{ $t("basket.user_datas.year") }}
                       </option>
 
-                      <option v-for="x in 5"
-                              :value="x">
+                      <option v-for="x in 5">
                         {{ parseInt(currentExpYear) + x }}
                       </option>
                     </select>
@@ -455,6 +472,22 @@ let validateData = () => {
                             :placeholder="t('basket.user_datas.cvv')"
                             v-model="model.cvv"
                             maxlength="3">
+                  </div>
+
+                  <!-- Card Datas -->
+                  <div v-if="user.cardNumber!=''"
+                       class="mb-3 form-check 
+                              d-flex justify-content-center">
+
+                    <input type="checkbox" 
+                           class="form-check-input me-1" 
+                           id="cardDatas"
+                           @change="showCardDatas()">
+
+                    <label class="form-check-label" 
+                           for="cardDatas">
+                      {{ $t("basket.user_datas.card_datas") }}
+                    </label>
                   </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import Myfooter from './components/footer.vue';
 import { user } from './store/user';
 import router from './router';
 
+console.log(user.id);
 
 let checkforUser = () => {
   if (user.id=="") {

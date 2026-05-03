@@ -38,7 +38,8 @@ if(!user.id)
     localStorage.removeItem("expirationYear");
     localStorage.removeItem("expirationMonth");
 
-		router.push("/")
+		router.push("/");
+    location.reload();
 	},
 	cancel = () => {
 		router.back()
