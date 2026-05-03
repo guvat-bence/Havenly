@@ -1520,7 +1520,7 @@ app.get("/getUserItems/:id",(req,res)=>{
 
       if(experiences.length==0)
       {
-        res.json(accommodations);
+        res.json({accommodations});
         return;
       }
 
