@@ -1468,6 +1468,7 @@ app.post("/sendMessages",(req,res)=>{
   })
 })
 
+// Országok és Vérosok megszerzése
 app.get("/getAllLocations",(req,res)=>{
 
   db.query(`SELECT
@@ -1877,6 +1878,7 @@ function getLocation(item_id,item,item_name,language_short_name,callback)
   })
 }
 
+// Országok és városok feltöltése
 app.post("/uploadLocations",(req,res)=>{
   let datas = req.body;
   
