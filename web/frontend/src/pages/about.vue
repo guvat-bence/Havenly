@@ -16,6 +16,7 @@ const { t } = useI18n();
 const {locale} = useI18n();
 
 // változók létrehozása
+let unloaded_images = ref(false);
 let item = ref([]);
 let reserved_once = ref(false);
 let problemTypes = ref([]);
@@ -1006,12 +1007,14 @@ watch(model,()=>
 																		/${props.table_name}/${convertStrings(item[0].folder_name)}/${img}`"
 							class="img my-2 mx-2 card-img-top rounded-5 border border-white border-5"
 							@click="imageShow(img)"
-							style="object-fit:cover">
+							style="object-fit:cover"
+							@error="e =>{e.target.classList.add('d-none'),unloaded_images = true}"
+              @load="e =>{e.target.classList.remove('d-none')}">
 					</div>
 
 					<!-- Ha 3-nál több kép van,akkor ez a kép is megjelenik -->
 					 <!-- Mutatva hogy folytatódik galária(...) -->
-					<div v-if="props.table_name=='accommodations'" 
+					<div v-if="props.table_name=='accommodations'&& unloaded_images!=true" 
 							 class=" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3">
 						<img height="300"
 								 src="../images/image3.png"
@@ -1053,7 +1056,7 @@ watch(model,()=>
 								class="row justify-content-center my-3 mx-3 py-3 bg-dark bg-opacity-50
                      text-center align-items-center border border-2 rounded-3 
 										 col-12">
-						<p>	{{ item[0].description }}</p>
+						<p class="text-break">	{{ item[0].description }}</p>
 					</div>
 
 					<!-- Élénye árai, tájékoztató jellegű szöveg -->

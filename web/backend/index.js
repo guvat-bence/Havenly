@@ -808,6 +808,7 @@ app.post("/translate",(req,res)=>
   });
 });
 
+// Kártyatipusok leklérdezése
 app.get("/getCardNetwork",(req,res) => {
   db.query(`SELECT id, 
                    network_name, 
@@ -825,6 +826,7 @@ app.get("/getCardNetwork",(req,res) => {
   })
 });
 
+// User adatainak módosítása
 app.post("/updateUser/Privacy",(req,res)=>{
   let datas = req.body;
   datas.middleName=datas.middleName!=""?datas.middleName:null;
@@ -881,6 +883,7 @@ app.post("/updateUser/Privacy",(req,res)=>{
   })
 });
 
+//  User kártya adatainak módosítása
 app.post("/updateUser/Card",(req,res)=>{
   let datas = req.body;
   db.query(`UPDATE users
@@ -925,6 +928,7 @@ app.post("/updateUser/Card",(req,res)=>{
   });  
 });
 
+//  User összes adatainak módosítása
 app.post("/updateUser/allDatas",(req,res)=>{
   let datas = req.body;
   db.query(`UPDATE users
@@ -984,6 +988,7 @@ app.post("/updateUser/allDatas",(req,res)=>{
   });  
 });
 
+//  User jelszavának módosítása
 app.post("/updateUser/Password",(req,res)=>{
   let datas = req.body;
   db.query(`SELECT id
@@ -1024,7 +1029,7 @@ app.post("/updateUser/Password",(req,res)=>{
     }
     })
 });
-
+// User törlése
 app.post("/deleteUser",(req,res)=>{
  let datas = req.body.userID;
   db.query(`DELETE FROM users
@@ -1043,6 +1048,7 @@ app.post("/deleteUser",(req,res)=>{
   });  
 });
 
+// Usert kártyaadatainak törlése
 app.post("/deleteCardDatas",(req,res)=>{
   let datas = req.body;
   
@@ -1087,6 +1093,7 @@ app.post("/deleteCardDatas",(req,res)=>{
   })
 });
 
+// Szállás bérlése
 app.post("/rentAccomodation", (req, res) => {
   let data = req.body;
 
@@ -1461,6 +1468,40 @@ app.post("/sendMessages",(req,res)=>{
   })
 })
 
+app.get("/getAllLocations",(req,res)=>{
+
+  db.query(`SELECT
+              id,
+              name
+            FROM countries`,(err,countries)=>{
+   if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    db.query(`SELECT
+                cities.id,
+                cities.country_id,
+                cities.name,
+                countries.name AS 'country_name'
+              FROM cities
+              INNER JOIN countries
+              ON cities.country_id = countries.id`,(err,cities)=>{
+      if(err)
+      {
+        res.status(500).send("Adatbázis hiba");
+        return;
+      }
+
+      res.json({countries,cities});
+      return;
+
+    })
+  })
+})
+
+// User által feltöltött elemek lekérése
 app.get("/getUserItems/:id",(req,res)=>{
   let id = req.params.id;
 
@@ -1533,11 +1574,366 @@ app.get("/getUserItems/:id",(req,res)=>{
   })
 })
 
-
-app.post("/uploadUserItem",(req,res)=>{
+//User által feltöltött szállás frissítése
+app.post("/accommodations/updateUserItem",(req,res)=>{
   let datas = req.body;
-  console.log(datas);
-  return;
+
+  db.query(`UPDATE
+              accommodations
+            SET
+              owner_id = ?,
+              country_id = ?,
+              city_id = ?,
+              name = ?,
+              size = ?,
+              price = ?,
+              guest_number = ?,
+              bedroom = ?,
+              bed = ?,
+              bathroom = ?,
+              description = ?
+            WHERE id = ?`,[datas.datas.user_id,
+                           datas.datas.country_id,datas.datas.city_id,
+                           datas.datas.name,datas.datas.size,
+                           datas.datas.price,datas.datas.guest_number,
+                           datas.datas.bedroom,datas.datas.bed,
+                           datas.datas.bathroom,datas.datas.description,
+                           datas.datas.id],(err,result)=>{
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    if(result.affectedRows>0)
+    {
+      db.query(`UPDATE accommodations_details
+                SET
+                  coffee_maker = ?,
+                  kettle = ?,
+                  microwave = ?,
+                  basic_spices = ?,
+                  dishes = ?,
+                  extra_bed_linen = ?,
+                  darkening = ?,
+                  night_lamp = ?,
+                  towels = ?,
+                  hair_dryer = ?,
+                  smart_tv = ?,
+                  bluetooth_speaker = ?,
+                  usb_charger = ?,
+                  work_table = ?,
+                  suitcase_rack = ?,
+                  iron = ?,
+                  safe = ?,
+                  balcony = ?,
+                  board_games = ?,
+                  free_wifi = ?,
+                  parking_lot = ?
+                WHERE apartman_id = ?`,[datas.datas.coffee_maker,datas.datas.kettle,
+                           datas.datas.microwave,datas.datas.basic_spices,
+                           datas.datas.dishes,datas.datas.extra_bed_linen,
+                           datas.datas.darkening,datas.datas.night_lamp,
+                           datas.datas.towels,datas.datas.hair_dryer,
+                           datas.datas.smart_tv,datas.datas.bluetooth_speaker,
+                           datas.datas.usb_charger,datas.datas.work_table,
+                           datas.datas.suitcase_rack,datas.datas.iron,
+                           datas.datas.safe,datas.datas.balcony,
+                           datas.datas.board_games,datas.datas.free_wifi,
+                           datas.datas.parking_lot,datas.datas.id],(err,result)=>{
+        if(err)
+        {
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+        res.json(result);
+        return;
+      })
+    }
+    else{
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+  })
+})
+
+//User szállásának feltöltése
+app.post("/accommodations/uploadUserItem",(req,res)=>{
+  let datas = req.body;
+  
+  db.query(`INSERT INTO accommodations(
+              language_short_name,
+              owner_id,
+              country_id,
+              city_id,
+              name,
+              folder_name,
+              size,
+              price,
+              guest_number,
+              bedroom,
+              bed,
+              bathroom,
+              description)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+            [datas.datas.language_short_name,datas.datas.user_id,
+             datas.datas.country_id,datas.datas.city_id,
+             datas.datas.name,datas.datas.folder_name,datas.datas.size,
+             datas.datas.price,datas.datas.guest_number,
+             datas.datas.bedroom,datas.datas.bed,
+             datas.datas.bathroom,datas.datas.description],(err,result)=>{
+    if(err)
+    {
+      console.log(err);
+      
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    console.log(result);
+    
+    if(result.affectedRows>0){
+
+      db.query(`INSERT INTO accommodations_details(
+                  apartman_id,
+                  coffee_maker,
+                  kettle,
+                  microwave,
+                  basic_spices,
+                  dishes,
+                  extra_bed_linen,
+                  darkening,
+                  night_lamp,
+                  towels,
+                  hair_dryer,
+                  smart_tv,
+                  bluetooth_speaker,
+                  usb_charger,
+                  work_table,
+                  suitcase_rack,
+                  iron,
+                  safe,
+                  balcony,
+                  board_games,
+                  free_wifi,
+                  parking_lot)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                [result.insertId,datas.datas.coffee_maker,datas.datas.kettle,
+                  datas.datas.microwave,datas.datas.basic_spices,
+                  datas.datas.dishes,datas.datas.extra_bed_linen,
+                  datas.datas.darkening,datas.datas.night_lamp,
+                  datas.datas.towels,datas.datas.hair_dryer,
+                  datas.datas.smart_tv,datas.datas.bluetooth_speaker,
+                  datas.datas.usb_charger,datas.datas.work_table,
+                  datas.datas.suitcase_rack,datas.datas.iron,
+                  datas.datas.safe,datas.datas.balcony,
+                  datas.datas.board_games,datas.datas.free_wifi,
+                  datas.datas.parking_lot],(err,result)=>{
+        if(err)
+        {
+          console.log(err);
+          
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+        console.log(result);
+        
+        res.json(result);
+        return;
+      })
+    }
+    else{
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+  })
+})
+
+//User által feltöltött élmény frissítése
+app.post("/experiences/updateUserItem",(req,res)=>{
+  let datas = req.body;
+  db.query(`UPDATE experiences
+            SET
+              uploaded_id =?,
+              language_short_name = ?,
+              country_id = ?,
+              city_id = ?,
+              name = ?,
+              price = ?,
+              description = ?
+            WHERE id = ?`,[datas.datas.user_id,datas.datas.language_short_name,
+                           datas.datas.country_id,datas.datas.city_id,
+                           datas.datas.name,datas.datas.price,
+                           datas.datas.description,datas.datas.id],(err,result)=>{
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    res.json(result);
+    return;
+  })
+})
+
+//User élményének feltöltése
+app.post("/experiences/uploadUserItem",(req,res)=>{
+  let datas = req.body;
+  db.query(`INSERT INTO experiences(
+                uploaded_id,
+                language_short_name,
+                country_id,
+                city_id,
+                name,
+                folder_name,
+                price,
+                description)
+            VALUES(?,?,?,?,?,?,?,?)`,
+            [datas.datas.user_id,datas.datas.language_short_name,
+             datas.datas.country_id,datas.datas.city_id,
+             datas.datas.name,datas.datas.folder_name,
+             datas.datas.price,datas.datas.description],(err,result)=>{
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    res.json(result);
+    return;
+  })
+})
+
+// Ennek segítségével fordítjuk le a városokat/országokat.
+function getLocation(item_id,item,item_name,language_short_name,callback)
+{
+
+  // megnézzük, hogy az adott elemnek van e már fórdítása.
+  db.query(`SELECT
+                language_short_name,
+                item_id,
+                item_name
+            FROM translations
+            WHERE item_id = ? AND item_name = ? AND language_short_name = ?`,
+    [item_id,item_name,language_short_name],
+    async (err,response)=>
+    {
+      // Hiba estén vissza küldjük a hibát.
+      if(err){
+        callback(err);
+        return;
+      }
+
+      // Ha van fordítása akkor csak vissza térünk
+      if(response.length>0)
+      {
+        return;
+      }
+      else
+      {
+        // átállítja a nyelv potos nevét a fordítás miatt.
+        let current_language_short_name =  language_short_name;
+        if(current_language_short_name == "en")
+        {
+          current_language_short_name = "en-GB";
+        }
+      
+        // megpróbálja a fordítást elkészíteni
+        try
+        {
+          
+          // az elem véleményét lefordítatjuk.
+          let translated_item = await translate(
+            item,
+            current_language_short_name
+          );
+
+          // ezek után pedig feltöltjük az új adatoakat a translatins táblába.
+          db.query(`INSERT INTO translations(
+                      language_short_name,
+                      item_id,
+                      item_name,
+                      item)
+                    VALUES(?,?,?,?)`,
+          [language_short_name,item_id,item_name,translated_item],
+          (err,result)=>
+            {
+              // ha hiba vna, ide jön be.
+              if(err)
+              {
+                callback(`Hiba a(z) translations-ba való feltöltéskor: ${err}`);
+                return;
+              }
+              return;
+          });
+        }
+        // ha bármi hiba adódna az api-al akkor ide lép be
+        catch(err)
+        {
+          callback(`Sikertelen elem fordítás. ${err}`);
+          return;
+        }
+      }
+  })
+}
+
+app.post("/uploadLocations",(req,res)=>{
+  let datas = req.body;
+  
+  db.query(`INSERT INTO countries(name, language_short_name)
+            VALUES(?,?)`,[datas.country_name,datas.language_short_name],(err,country)=>{
+  
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+
+    if(datas.language_short_name != "hu")
+    {
+      getLocation(datas.country_id,datas.country_name,'countries',datas.language_short_name,(err,result)=>{
+        if(err)
+        {
+          console.log(err);
+          return;
+        }
+
+      })
+    }
+
+    if(country.affectedRows>0)
+    {
+      db.query(`INSERT INTO cities(
+                  country_id,
+                  name,
+                  language_short_name)
+                VALUES(?,?,?)`,[country.insertId,datas.city_name,
+                                datas.language_short_name],(err,city)=>{
+        if(err)
+        {
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+        if(datas.language_short_name != "hu")
+        {
+          getLocation(datas.city_id,datas.city_name,'cities',datas.language_short_name,(err,result)=>{
+            if(err)
+            {
+              console.log(err);
+              return;
+            }
+          })
+        }
+        
+        res.json({country,city});
+      })
+    }
+    else{
+      res.status(500).send("Adatbázis hiba");
+      return;
+    }
+  })
 })
 
 app.post("/removeItem", (req,res) => {

@@ -1,24 +1,28 @@
 <script setup>
 import { user } from '@/store/user'
-import router from '@/router'
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
 import { selectedCurrency } from '@/store/currency'
 import { convertStrings } from '@/common'
+import router from '@/router'
+import allIcons from '@/json/icons.json';
 
 const props = defineProps(['table_name','id','name'])
 const {t} = useI18n();
 const {locale} = useI18n();
 
-let images = reactive({})
+if(!user.id)
+  router.back()
 
+let images = reactive({})
+let item_details = ref([]);
+let iconsAndTexts = ref([]);
 
 for(let x=0;x<(props.table_name=="accommodations"?10:3);x++)
 {
   images[x] = "";
 }
-
 let imagesCopie = {... images};
 
 let model = reactive({
@@ -27,10 +31,8 @@ let model = reactive({
   bedroom:"",
   city_id:"",
   city_name:"",
-  city_trans_name:"",
   country_id:"",
   country_name:"",
-  country_trans_name:"",
   description:"",
   folder_name:"",
   guest_number:"",
@@ -38,11 +40,51 @@ let model = reactive({
   name:"",
   owner_id:"",
   price:"",
-  size:""
+  size:"",
+  user_id:user.id,
+  language_short_name:locale.value,
+  balcony:"",
+  basic_spices:"",
+  bluetooth_speaker:"",
+  board_games:"",
+  coffee_maker:"",
+  darkening:"",
+  dishes:"",
+  extra_bed_linen:"",
+  free_wifi:"",
+  hair_dryer:"",
+  iron:"",
+  kettle:"",
+  microwave:"",
+  night_lamp:"",
+  parking_lot:"",
+  safe:"",
+  smart_tv:"",
+  suitcase_rack:"",
+  towels:"",
+  usb_charger:"",
+  work_table:""
 })
 
 let item = ref([]);
 let modelCopie = {... model};
+let locations = ref([]);
+
+axios.get(`http://localhost:3000/getAllLocations`)
+.then(response=>{
+  locations.value = response.data;
+})
+.catch(err=>{
+  console.log(err);
+})
+
+for(let y in allIcons)
+{
+  allIcons[y]["text"] = computed(()=>(t(`about.extras.${y}`)));
+  allIcons[y]["id"] = y;
+}
+
+item_details.value = allIcons;
 
 if(props.id!=0 && props.name!="new")
 {
@@ -50,23 +92,68 @@ if(props.id!=0 && props.name!="new")
   axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
   .then(datas=>{
 
-    datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
-    datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
-
     // tömb feltöltése
     item.value = datas.data[0];
-    console.log(item.value);
 
-    item.value.price =  item.value.price*(selectedCurrency.currencyMultiplier).toLocaleString('fi-FI');
+    item.value.price =  item.value.price*selectedCurrency.currencyMultiplier;
+
+    item.value.country_id = "";
+    item.value.city_id = "";
 
     Object.assign(model,item.value);
     Object.assign(modelCopie,item.value);
+   
 
     for(let x=0;x<(props.table_name=="accommodations"?10:3);x++)
     {
       images[x] = "image";
     }
     imagesCopie = {... images}
+
+    if(props.table_name=="accommodations")
+    {
+      // adatbázisból lehúzzuk a szálláshoz tartozó részleteket
+      axios.get(`http://localhost:3000/accommodations/accommodations_details/${props.id}`)
+      .then(details=>
+      {
+
+        // végigmegyünk a részleteken
+        for(let x in details.data[0])
+        {
+
+          // ha van olyan részlet amit tartalmaz a szállás
+          // akkor hozzá adjuk a item_details listához 
+          // az adott részlethez tartozó elemet az iconsAndTexts-ből
+          if(details.data[0][x] == 1)
+          {
+            iconsAndTexts.value.push({
+              id:[x.id],
+              ...allIcons[x]});
+          }
+        }
+
+        for(let x in item_details.value)
+        {
+          for(let y in iconsAndTexts.value)
+          {
+            if(item_details.value[x].id == iconsAndTexts.value[y].id)
+            {
+              model[item_details.value[x].id] = true;
+            }
+          }
+        }
+
+        Object.assign(modelCopie,model);
+        
+      })
+      .catch(error=>
+      {
+        console.error(error);
+      })
+    }
+
+    
+
   })
   .catch(err=>{
     console.log(err);
@@ -112,6 +199,10 @@ function check()
 function uploadImage(item)
 {
   let item_id = item.currentTarget.id;
+
+  if(item.currentTarget.files.length!=1)
+    return;
+
   let file = item.currentTarget.files[0];
  
   if(file.type.includes("images/"))
@@ -128,7 +219,6 @@ function uploadImage(item)
     label.innerHTML = "";
 
     images[item_id-1] = reader.result;
-    console.log(images);
   };
   reader.onerror=(e)=>{
     console.log(e);
@@ -141,6 +231,60 @@ function uploadImage(item)
 function uploadItem()
 {
 
+  for(let x of locations.value.countries)
+  {
+    if(convertStrings(x.name) == convertStrings(model.country_name))
+    {
+      model.country_id = x.id
+    }
+  }
+
+  for(let x of locations.value.cities)
+  {
+    if(convertStrings(x.name) == convertStrings(model.city_name))
+    {
+      model.city_id = x.id
+    }
+  }
+
+  for(let x in model)
+  {
+    if(model[x] == true && item_details?.value[x]?.id == x)
+    {
+      model[x] = 1;
+    }
+    else if(model[x] == "" && item_details?.value[x]?.id == x)
+    {
+      model[x] = 0;
+    }
+  }
+
+  model.price = model.price/selectedCurrency.currencyMultiplier;
+  model.folder_name = convertStrings(model.name);
+
+  if(model.city_id=="" || model.country_id=="")
+  {
+    axios.post(`http://localhost:3000/uploadLocations`,model)
+    .then(response=>{
+      console.log(response.data);
+
+      model.city_id = response.data.city.insertId;
+      model.country_id = response.data.country.insertId;
+
+      ItemRequest();
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+  else
+  {
+    ItemRequest();
+  }
+}
+
+function ItemRequest()
+{
   let url = "";
 
   if(model.id != "")
@@ -151,10 +295,11 @@ function uploadItem()
   {
     url = "upload";
   }
-
-  axios.post(`http://localhost:3000/${url}UserItem`,{datas:model,images:images})
+  
+  axios.post(`http://localhost:3000/${props.table_name}/${url}UserItem`,{datas:model})
   .then(response=>{
     console.log(response);
+    router.back();
   })
   .catch(err=>{
     console.log(err);
@@ -208,7 +353,7 @@ watch([model,images],()=>{
                 <input type="text" 
                         class="form-control" 
                         id="country" 
-                        v-model="model.city_name"
+                        v-model="model.country_name"
                         autocomplete="off">
               </div>
 
@@ -226,7 +371,7 @@ watch([model,images],()=>{
                 <input type="text" 
                         class="form-control" 
                         id="city" 
-                        v-model="model.country_name"
+                        v-model="model.city_name"
                         autocomplete="off">
               </div>
             </div>
@@ -410,6 +555,31 @@ watch([model,images],()=>{
               </div>
             </div>
 
+            <!-- Amit a szállás kínál -->
+            <div v-if="props.table_name=='accommodations'"
+                 class="row mb-4 ps-2 justify-content-center">   
+
+              <!-- Cím -->
+              <h5 class="text-center">
+                <i class="fa-solid fa-circle-info"></i>
+                Amit a szállás kínál
+              </h5>
+
+              <div v-for="x in item_details" 
+                   class="mb-3 form-check col-12 col-md-6 col-lg-4 ">
+
+                <input type="checkbox" 
+                       class="form-check-input" 
+                       :id="x.id"
+                       v-model="model[x.id]">
+
+                <label class="form-check-label" 
+                       :for="x.id">
+                  <i :class="x.icon"></i>
+                  {{ x.text }}
+                </label>
+              </div>
+            </div>
             <!-- Képek -->
             <div class="row mb-4 justify-content-center">   
 
@@ -431,7 +601,7 @@ watch([model,images],()=>{
                              cursor:pointer;
                              background-repeat: no-repeat;
                              background-position: center;
-                             background-size: contain;"
+                             background-size: cover;"
                        :style=" item!=''?{
                         backgroundImage: `url(/countries/${convertStrings(item.country_name)}`+
                                           `/cities/${convertStrings(item.city_name)}/`+

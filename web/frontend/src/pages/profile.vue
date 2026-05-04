@@ -1300,7 +1300,7 @@ watch(card,()=>
                       </RouterLink>
 
                       <!-- Módosít gomb -->
-                      <RouterLink to="/userItem/expreiences/0/new"
+                      <RouterLink to="/userItem/experiences/0/new"
                                   class="btn btn-secondary mx-1 w-auto">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Élmény feltötése
