@@ -1540,28 +1540,20 @@ app.post("/uploadUserItem",(req,res)=>{
   return;
 })
 
-app.post("/updateUserItem",(req,res)=>{
-  let datas = req.body;
-  console.log(datas);
-  return;
-})
-  })
-})
+app.post("/removeItem", (req,res) => {
+  const data = req.body;
+  db.query(`DELETE FROM ${data.table} WHERE id = ?`, [data.id], 
+          (err,result) => {
+    if(err)
+      return res.status(500).send('Adatbázis hiba...')
 
-  app.post("/removeItem", (req,res) => {
-    const data = req.body;
-    db.query(`DELETE FROM ${data.table} WHERE id = ?`, [data.id], 
-            (err,result) => {
-      if(err)
-        return res.status(500).send('Adatbázis hiba...')
+    if(result.affectedRows === 0)
+      return res.status(500).send('Sikertelen törlés')
 
-      if(result.affectedRows === 0)
-        return res.status(500).send('Sikertelen törlés')
-
-      fs.rm(`../frontend/public/${data.path}`,
-                {recursive: true}, (err) => {
-        return res.status(500).send('Sikertelen mappa törlés')
-      })
-      return res.send('Sikeres törlés')
+    fs.rm(`../frontend/public/${data.path}`,
+              {recursive: true}, (err) => {
+      return res.status(500).send('Sikertelen mappa törlés')
     })
+    return res.send('Sikeres törlés')
   })
+})
