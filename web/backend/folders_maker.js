@@ -164,7 +164,7 @@ db.query(
     { 
       
       //Elérési útvonal az accomodations mappához.
-      folderDir = `../frontend/public/countries/${convertStrings(datas[i].country_name)}`+
+      folderDir = `../web/../frontend/public/countries/${convertStrings(datas[i].country_name)}`+
                   `/cities/${convertStrings(datas[i].city_name)}`+
                   `/accommodations/${convertStrings(datas[i].accommodation_name)}`;
 

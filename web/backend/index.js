@@ -1522,7 +1522,7 @@ app.get("/getUserItems/:id",(req,res)=>{
 
       if(experiences.length==0)
       {
-        res.json(accommodations);
+        res.json({accommodations});
         return;
       }
 
@@ -1530,6 +1530,21 @@ app.get("/getUserItems/:id",(req,res)=>{
       return;
 
     })
+  })
+})
+
+
+app.post("/uploadUserItem",(req,res)=>{
+  let datas = req.body;
+  console.log(datas);
+  return;
+})
+
+app.post("/updateUserItem",(req,res)=>{
+  let datas = req.body;
+  console.log(datas);
+  return;
+})
   })
 })
 

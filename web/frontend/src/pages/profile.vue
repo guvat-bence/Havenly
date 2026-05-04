@@ -395,7 +395,6 @@ function openMessages(data)
   .then(details=>
   {
     // beállítjuk az alavető adatokat
-    console.log(details.data);
     sendingMessage.message = '';
     sendingMessage.from_id = user.id;
     sendingMessage.to_id = data.from_user_id;
@@ -420,7 +419,6 @@ function getContacts()
 axios.get(`http://localhost:3000/getContacts/${user.id}`)
 .then(details=>
 {
-  console.log(details.data);
   userContacts.value = details.data;
 })
 .catch(error=>
@@ -453,7 +451,6 @@ function sendMessage()
       axios.post(`http://localhost:3000/getMessages`,{from_id:sendingMessage.from_id,to_id:sendingMessage.to_id})
       .then(details=>
       {
-        console.log(details.data);
         userMessages.value = details.data;
         sendingMessage.message = '';
         sendingMessage.from_id = user.id;
@@ -475,12 +472,10 @@ function getUserItems()
 {
   axios.get(`http://localhost:3000/getUserItems/${user.id}`)
   .then(response =>{
-    console.log(response.data);
     userItems.value = response.data;
 
     for(let x in userItems.value)
     {
-      console.log(x);
       
       getTranslationUserTypes(userItems.value[x]);
     }
@@ -546,33 +541,28 @@ function getTranslation(item)
 // ha esetleg hiba akana afordítással akkor a művele megszakad é kiírja a konzolbon.
 function getTranslationUserTypes(item)
 {
-  console.log(item);
-  
 
 	for(let x in item)
 	{
-    console.log(item[x]);
     
-
 		axios.post(`http://localhost:3000/translate`,
 			{item_id:item[x].id,item_name:item[x].table_type,language_short_name:locale.value})
 		.then(datas=>
 		{
-      console.log(datas);
       
 			// ha a translationed üzenettl tér vissza, akkor tudjuk, hogy mgtalálta az elem fodítását.
 			if(datas.data.message == "translationed")
 			{
 				// az adatbázisban tárolt json fáljt beolvassuk és átadjuk az értékét.
 				let text  = JSON.parse(datas.data.data[0].item);
-				item[x].accommodation_name = text["title"];
+				item[x].name = text["title"];
 				
 			}
 			// ha az original üzenettel tér vissza, akkor tudjuk, hogy az elem eredeti verzióját találta meg.
  			else if(datas.data.message == "original")
 			{
 				// ezután beállítjuk és felhasználjuk az erdeti verzió értékeit.
-				item[x].accommodation_name = datas.data.data[0].name;
+				item[x].name = datas.data.data[0].name;
 			}
 			// ha az üzenet failed akkor megy bele
 			else if(datas.data.message == "failed")
@@ -620,6 +610,15 @@ let getReports = () => {
   .catch(e => console.error(e.response))
 }
 
+function deleteUserItem()
+{
+  if(!confirm("Biztosan törölni szeretné?"))
+  {
+    return;
+  }
+  console.log(("asadad"));
+  
+}
 
 // ezzel a watch-al a model adatait figyeljük,
 // amikor megváltozik bármelyik adata, akkor meghívja a "change" függvényt.
@@ -1263,21 +1262,62 @@ watch(card,()=>
               tabindex="0">
 
               <!-- feltöltött elemek -->
-              <div class="overflow-y-auto py-2" 
+              <div class="overflow-y-auto overflow-x-hidden py-2" 
                   style="height: 400px !important;">
 
+                <!-- Új elem -->
+                <div class="d-flex nav-link text-white 
+                            mb-4 bg-black bg-opacity-25 
+                            rounded-3 p-2 border border-1 
+                            border-white">
+
+                  <!-- Elem képe -->
+                  <img  style="height: 170px; width: 170px;"
+                        src="../images/image3.png"
+                        class="justify-content-start rounded-3 img-fluid" 
+                        alt="accomodation_image">
+
+                  <!-- Elem adatai -->
+                  <div class="mx-auto pt-4">
+
+                    <!-- Elem neve -->
+                    <div class="row">
+                      <h3 class="text-white mx-auto 
+                                  text-center fw-light 
+                                  col-12">
+                        Új elem feltöltése
+                      </h3>
+                    </div>
+                    
+                    <!-- Gombok -->
+                    <div class="row justify-content-center mt-5">
+
+                      <!-- Módosít gomb -->
+                      <RouterLink to="/userItem/accommodations/0/new"
+                                  class="btn btn-secondary mx-1 w-auto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Szállás feltötése
+                      </RouterLink>
+
+                      <!-- Módosít gomb -->
+                      <RouterLink to="/userItem/expreiences/0/new"
+                                  class="btn btn-secondary mx-1 w-auto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Élmény feltötése
+                      </RouterLink>
+                    </div>
+                  </div>
+                </div>
                 <div v-for="items in userItems"
                      v-if="userItems.length!=0">
-
-                  <!-- Lefoglat szállások -->
-                  <RouterLink :to="{name:'about',params:{table_name:x.table_type,id:x.id,name:x.name}}" 
-                        v-for="x in items"
+                  <!-- Elemek -->
+                  <div v-for="x in items"
                         class="d-flex nav-link text-white 
                               mb-4 bg-black bg-opacity-25 
                               rounded-3 p-2 border border-1 
                               border-white">
 
-                    <!-- Szállás képe -->
+                    <!-- Elem képe -->
                     <img  style="height: 170px; width: 170px;"
                           :src="`/countries/${convertStrings(x.country_name)}` +
                               `/cities/${convertStrings(x.city_name)}` +
@@ -1285,10 +1325,10 @@ watch(card,()=>
                           class="justify-content-start rounded-3 img-fluid" 
                           alt="accomodation_image">
 
-                    <!-- Foglalás adatai -->
+                    <!-- Elem adatai -->
                     <div class="mx-auto pt-4">
 
-                      <!-- szállás neve -->
+                      <!-- Elem neve -->
                       <div class="row">
                         <h3 class="text-white mx-auto 
                                     text-center fw-light 
@@ -1297,35 +1337,43 @@ watch(card,()=>
                         </h3>
                       </div>
 
-                      <!-- szállás ára és bérlési dátuma -->
+                      <!-- Elem helye és gombok -->
                       <div>
-                        <!-- Bérlés dátuma -->
+                        <!--Elem helye -->
                         <p class="text-white-50">
                           {{x.country_name}}, {{ x.city_name }}
                         </p>
                       </div>
                       
-                      <!-- Bérlés kezdete és vége -->
+                      <!-- Gombok -->
                       <div class="row justify-content-center">
 
-                       <button class="btn btn-primary mx-1 
-                                      w-auto">
+                        <!-- Megnéz gomb -->
+                       <RouterLink :to="{name:'about',params:{table_name:x.table_type,id:x.id,name:x.name}}"
+                               class="btn btn-primary mx-1 
+                                     w-auto">
                           <i class="fa-solid fa-arrow-up-right-from-square"></i>
                           Megnéz
-                       </button>
-                       <button class="btn btn-secondary mx-1  
-                                      w-auto">
+                       </RouterLink>
+
+                       <!-- Módosít gomb -->
+                       <RouterLink :to="{name:'userItem',params:{table_name:x.table_type,id:x.id,name:x.name}}"
+                                    class="btn btn-secondary mx-1 w-auto">
                           <i class="fa-solid fa-pen-to-square"></i>
                           Módosít
-                       </button>
-                       <button class="btn btn-danger mx-1  
+
+                       </RouterLink>
+
+                       <!-- Töröl gomb -->
+                       <button @click="deleteUserItem()"
+                               class="btn btn-danger mx-1  
                                       w-auto">
                           <i class="fa-solid fa-circle-minus"></i>
                           Töröl
                        </button>
                       </div>
                     </div>
-                  </RouterLink>
+                  </div>
                   <h2 v-if="userItems.length==0">
                     {{ $t("profile.text_accommodations") }}
                   </h2>

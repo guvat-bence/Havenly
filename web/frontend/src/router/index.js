@@ -11,6 +11,7 @@ import Profile from '@/pages/profile.vue'
 import Register from '@/pages/register.vue'
 import Settings from '@/pages/settings.vue'
 import Term_of_use from '@/pages/term_of_use.vue'
+import User_Item from '@/pages/user_Item.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 let routes = [
   {
@@ -66,6 +67,12 @@ let routes = [
   {
     path:"/basket",
     component: Basket
+  },
+  {
+    name:"userItem",
+    path:"/userItem/:table_name:/:id/:name",
+    component: User_Item,
+    props:true
   }
 ]
 const router = createRouter({

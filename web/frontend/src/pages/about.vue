@@ -230,7 +230,6 @@ if(counter>0)
 // Az összes véleményy lehívása
 getAllOpinions();
 
-console.log(props)
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 .then(datas=>{
@@ -1218,7 +1217,7 @@ watch(model,()=>
 
 							<!-- Label -->
 							<label class="form-label col-5" 
-										 for="asd">
+										 for="opinion">
 								{{ $t("about.opinion.write_opinion") }}
 							</label>
 
@@ -1232,7 +1231,7 @@ watch(model,()=>
 
 							<!-- Vélemény -->
 							<textarea class="form-control col-10" 
-										 id="asd" 
+										 id="opinion" 
 										 type="text"
 										 value=""
 										 rows="5"
