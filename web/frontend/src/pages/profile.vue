@@ -1672,36 +1672,12 @@ watch(card,()=>
     </div>
   </div>
 </template>
-
 <style>
-
-/* profile inputok effektusai */
-input:not([type="checkbox"],[type="radio"]):focus,
-input:not([type="checkbox"],[type="radio"]):hover,
-input:not([type="checkbox"],[type="radio"])::after {
-  background-color: white !important;
-  box-shadow: 0px 0px 10px white !important;
-  transition: 200ms;
-  color: black !important;
-}
 
 .people:hover{
 
   background-color: hsl(210, 5%, 25%);
   cursor: pointer;
-}
-
-.nav-tabs {
-    --bs-nav-tabs-link-active-color: black;
-}
-
-.nav-link {
-    --bs-nav-link-color:rgb(149, 158, 152);
-    --bs-nav-link-hover-color: white;
-}
-.account {
-  position: relative;
-  z-index: 1020;
 }
 
 .messageBox{
@@ -1714,6 +1690,7 @@ input:not([type="checkbox"],[type="radio"])::after {
   user-select: auto;
 
 }
+
 body.messageBoxShowUp{
   pointer-events: none;
   overflow: hidden;

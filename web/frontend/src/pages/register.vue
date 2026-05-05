@@ -375,15 +375,3 @@ watch(model, () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Regisztrációs inputok effektusai */
-input:not([type="checkbox"],[type="radio"]):focus,
-input:not([type="checkbox"],[type="radio"]):hover,
-input:not([type="checkbox"],[type="radio"])::after {
-  background-color: white !important;
-  box-shadow: 0px 0px 10px white !important;
-  transition: 200ms;
-  color: black !important;
-}
-</style>

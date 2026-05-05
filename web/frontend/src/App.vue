@@ -2,8 +2,7 @@
 import Navbar from './components/navbar.vue';
 import Myfooter from './components/footer.vue';
 import { user } from './store/user';
-import router from './router';
-
+import router from './router'; 
 let checkforUser = () => {
   if (user.id=="") {
     localStorage.removeItem("id");
@@ -55,6 +54,21 @@ if (user)
 body {
   background-color: hsl(0, 0%, 20%) !important;
 }
+
+.account {
+  position: relative;
+  z-index: 1020;
+}
+
+.nav-tabs {
+    --bs-nav-tabs-link-active-color: black;
+}
+
+.nav-link {
+    --bs-nav-link-color:rgb(149, 158, 152);
+    --bs-nav-link-hover-color: white;
+}
+
 .experience,.accommodation,.home,.about_us{
   opacity: 0;
   transform: translateY(60px);
@@ -88,6 +102,18 @@ body {
     0% 	{opacity:0;transform: scale(0); }
   25% 	{opacity:0;transform: scale(0); }
   100% 	{opacity:1;transform: scale(1); }
+}
+
+.home,.login,.register,.account{
+  /* profile inputok effektusai */
+  input:not([type="checkbox"],[type="radio"]):focus,
+  input:not([type="checkbox"],[type="radio"]):hover,
+  input:not([type="checkbox"],[type="radio"])::after {
+    background-color: white !important;
+    box-shadow: 0px 0px 10px white !important;
+    transition: 200ms;
+    color: black !important;
+  }
 }
 
 /* Becsúszás animáció */

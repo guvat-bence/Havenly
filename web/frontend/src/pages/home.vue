@@ -74,15 +74,6 @@ axios.get("http://localhost:3000/accommodations/top5")
 </template>
 
 <style scoped>
-input:not([type="checkbox"]):focus,
-input:not([type="checkbox"]):hover,
-input:not([type="checkbox"])::after{
-  background-color: white !important;
-  box-shadow: 0px 0px 10px white !important;
-  transition: 200ms;
-  color: black !important;
-}
-
 #searchPart
 {
   background-image: url("../images/gif03.gif");
@@ -92,5 +83,4 @@ input:not([type="checkbox"])::after{
   height: 500px;
 
 }
-
 </style>
