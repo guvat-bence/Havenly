@@ -76,7 +76,7 @@ function getTranslation()
 		})
 		.catch(err=>
 		{
-			console.log(err);
+			return;
 		})
 	}
 }
