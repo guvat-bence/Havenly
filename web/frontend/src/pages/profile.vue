@@ -1390,10 +1390,16 @@ watch(card,()=>
                 tabindex="0">
             <div class="row my-2"
                   v-for="x in reports"
-                  v-on:click="router.push({ name:'about',
-                                            params:{table_name: x.place_type,  
-                                                    id:x.item_id,  
-                                                    name:x.place_name}})">
+                  v-on:click="x.place_name 
+                              ? router.push({ 
+                                  name: 'about', 
+                                  params: { 
+                                      table_name: x.place_type, 
+                                      id: x.item_id, 
+                                      name: x.place_name 
+                                  } 
+                              })
+                              : router.push('/invalidPlace')">
               <div class="bg-black bg-opacity-25 rounded-3 reportCards">
                 <div class="row">
                   <div class="text-white-50 m-1 top-0 d-flex justify-content-between">
