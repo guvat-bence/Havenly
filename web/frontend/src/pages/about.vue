@@ -233,10 +233,19 @@ getAllOpinions();
 
 // adatbázisból lehúzzuk a szállás/élmény többi adatát.
 axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
-.then(datas=>{
+.then(async datas=>{
 
-	datas.data[0].country_trans_name =t(`search.countries.${datas.data[0].country_id}`);
-	datas.data[0].city_trans_name = t(`search.cities.${datas.data[0].city_id}`);
+	await axios.post('http://localhost:3000/getAllLocations',{country_id:datas.data[0].country_id,
+																										city_id:datas.data[0].city_id,
+																										language_short_name:locale.value})
+	.then(translations=>{
+
+		datas.data[0].country_trans_name = translations.data.countries[0].name; 
+		datas.data[0].city_trans_name = translations.data.cities[0].name;
+	})
+	.catch(err=>{
+		console.log(err);
+	})
 
 	// tömb feltöltése
 	item.value = datas.data;
@@ -1503,10 +1512,13 @@ watch(model,()=>
 <style>
 
 /* szállás/élményy képeinek kiemelése */
+.img {
+    transition: box-shadow 0.4s ease-in-out;
+}
+
 .img:hover {
-	box-shadow: 0px 0px 40px rgb(255, 255, 255);
-	cursor: pointer;
-	transition: 200ms;
+    box-shadow: 0px 0px 35px rgba(255, 255, 255, 0.6);
+		cursor: pointer;
 }
 
 /* a kép nagyításához */

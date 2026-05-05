@@ -7,6 +7,7 @@ import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const {t} = useI18n();
+const {locale} = useI18n();
 
 let country = ref([]),
     data = ref([]),
@@ -15,18 +16,26 @@ let country = ref([]),
 
 // véletlenszerü 5 ország beolvasása
 axios.get('http://localhost:3000/accommodations/randCountryID')
-  .then(response => {
+.then(async response => {
 
-    for(let x in response.data)
-    {
-      response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
-    }
+  for(let x in response.data)
+  {
+    await axios.post('http://localhost:3000/getAllLocations',{country_id:response.data[x].country_id,
+                                                      city_id:1,
+                                                      language_short_name:locale.value})
+    .then(translations=>{
 
-    country.value = response.data;
-    data.value = country.value;
-    
-  })
-  .catch(e => console.error(e))
+      response.data[x].country_name = translations.data.countries[0].name;
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+
+  country.value = response.data;
+  data.value = country.value;
+})
+.catch(e => console.error(e))
 
 watch(searchInput,(value) => {
   // Ha nincs keresési mezőben érték akkor térjen vissza az alap értékekhez

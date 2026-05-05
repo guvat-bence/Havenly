@@ -57,19 +57,14 @@ body {
 }
 .experience,.accommodation,.home,.about_us{
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1.5s ease forwards;
+  transform: translateY(60px);
+  animation: fadeInUp 4s ease forwards;
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    0% 	{opacity:0;transform: translateY(60px); }
+  25% 	{opacity:0;transform: translateY(20px); }
+  100% 	{opacity:1;transform: translateY(0); }
 }
 
 
@@ -86,7 +81,7 @@ body {
   transition: 300ms;
 }
 
-.login,.register,.settings,.logout,.cardhover,.account{
+.login,.register,.settings,.logout,.cardhover,.account,.userItem{
   animation: scaleIn 1s ease both;
 }
 @keyframes scaleIn {

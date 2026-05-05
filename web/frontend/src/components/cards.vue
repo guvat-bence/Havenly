@@ -82,13 +82,24 @@ function getTranslation()
 }
 
 axios.get(`http://localhost:3000/${props.tableName}`)
-.then(response => {
+.then(async response => {
 
 	for(let x in response.data)
 	{
-		// beállíítja az adott elemnek az éppen kiválaszott nyelvhez lefordított város és ország nevét.
-		response.data[x].country_trans_name =t(`search.countries.${response.data[x].country_id}`);
-		response.data[x].city_trans_name = t(`search.cities.${response.data[x].city_id}`);
+
+		await axios.post('http://localhost:3000/getAllLocations',{country_id:response.data[x].country_id,
+																												city_id:response.data[x].city_id,
+																												language_short_name:locale.value})
+		.then(translations=>{
+
+			// beállíítja az adott elemnek az éppen kiválaszott nyelvhez lefordított város és ország nevét.
+			response.data[x].country_trans_name = translations.data.countries[0].name;
+			response.data[x].city_trans_name = translations.data.cities[0].name;
+			
+		})
+		.catch(err=>{
+			console.log(err);
+		})
 	}
 
 	items.value = response.data

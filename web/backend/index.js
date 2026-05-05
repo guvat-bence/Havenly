@@ -1468,37 +1468,131 @@ app.post("/sendMessages",(req,res)=>{
   })
 })
 
-// Országok és Vérosok megszerzése
-app.get("/getAllLocations",(req,res)=>{
+// Országok és Vérosok megszerzése, és lefordítása ha szükséges
+app.post("/getAllLocations",(req,res)=>{
+
+  let datas = req.body;
 
   db.query(`SELECT
-              id,
-              name
-            FROM countries`,(err,countries)=>{
-   if(err)
+              item AS 'name'
+            FROM translations
+            WHERE item_id = ? AND item_name = ? 
+            AND language_short_name = ?`,
+            [datas.country_id,'countries',datas.language_short_name],(err,transCountry)=>{
+    if(err)
     {
       res.status(500).send("Adatbázis hiba");
       return;
     }
 
-    db.query(`SELECT
-                cities.id,
-                cities.country_id,
-                cities.name,
-                countries.name AS 'country_name'
-              FROM cities
-              INNER JOIN countries
-              ON cities.country_id = countries.id`,(err,cities)=>{
-      if(err)
-      {
-        res.status(500).send("Adatbázis hiba");
+    if(transCountry.length>0)
+    {
+      db.query(`SELECT
+                  item AS 'name'
+                FROM translations
+                WHERE item_id = ? AND item_name = ? 
+                AND language_short_name = ?`,
+                [datas.city_id,'cities',datas.language_short_name],(err,transCity)=>{
+        if(err)
+        {
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
+
+        res.json({countries:transCountry,cities:transCity});
         return;
-      }
+      })
+    }
+    else{
+      db.query(`SELECT
+                name
+              FROM countries
+              WHERE id = ? AND language_short_name = ?`,
+              [datas.country_id,datas.language_short_name],(err,originalCountries)=>{
 
-      res.json({countries,cities});
-      return;
+        if(err)
+        {
+          res.status(500).send("Adatbázis hiba");
+          return;
+        }
 
-    })
+        if(originalCountries.length>0){
+
+          db.query(`SELECT
+                      name
+                    FROM cities
+                    WHERE id = ? AND language_short_name = ?`,
+                    [datas.city_id,datas.language_short_name],(err,originalCities)=>{
+            if(err)
+            {
+              res.status(500).send("Adatbázis hiba");
+              return;
+            }
+
+            res.json({countries:originalCountries,cities:originalCities});
+            return;
+
+          })
+        }
+        else{
+          db.query(`SELECT
+                  id,
+                  name,
+                  language_short_name
+                FROM countries
+                WHERE id = ?`,
+                [datas.country_id],(err,countries)=>{
+
+            if(err)
+            {
+              res.status(500).send("Adatbázis hiba");
+              return;
+            }
+
+            if(countries.length>0)
+            {
+              db.query(`SELECT
+                          id,
+                          country_id,
+                          name,
+                          language_short_name
+                        FROM cities
+                        WHERE id = ?`,[datas.city_id],(err,cities)=>{
+                if(err)
+                {
+                  res.status(500).send("Adatbázis hiba");
+                  return;
+                }
+
+                getLocation(countries[0].id,countries[0].name,'countries',datas.language_short_name,(err,result)=>{
+
+                  if(err)
+                  {
+                    res.status(500).send("Adatbázis hiba");
+                    return;
+                  }
+
+                  if(result.length>0)
+                  {
+                    getLocation(cities[0].id,cities[0].name,'cities',datas.language_short_name,(err,result2)=>{
+
+                      if(err)
+                      {
+                        res.status(500).send("Adatbázis hiba");
+                        return;
+                      }
+
+                      res.json({countries:result,cities:result2})
+                      return;
+                    })
+                  }
+                })
+              })
+            }
+          })
+        }
+      })
+    }
   })
 })
 
@@ -1806,76 +1900,66 @@ app.post("/experiences/uploadUserItem",(req,res)=>{
 })
 
 // Ennek segítségével fordítjuk le a városokat/országokat.
-function getLocation(item_id,item,item_name,language_short_name,callback)
+async function getLocation(item_id,item,item_name,language_short_name,callback)
 {
 
-  // megnézzük, hogy az adott elemnek van e már fórdítása.
-  db.query(`SELECT
+  // átállítja a nyelv potos nevét a fordítás miatt.
+  let current_language_short_name =  language_short_name;
+  if(current_language_short_name == "en")
+  {
+    current_language_short_name = "en-GB";
+  }
+
+  // megpróbálja a fordítást elkészíteni
+  try
+  {
+    
+    // az elem véleményét lefordítatjuk.
+    let translated_item = await translate(
+      item,
+      current_language_short_name
+    );
+
+    // ezek után pedig feltöltjük az új adatoakat a translatins táblába.
+    db.query(`INSERT INTO translations(
                 language_short_name,
                 item_id,
-                item_name
-            FROM translations
-            WHERE item_id = ? AND item_name = ? AND language_short_name = ?`,
-    [item_id,item_name,language_short_name],
-    async (err,response)=>
+                item_name,
+                item)
+              VALUES(?,?,?,?)`,
+    [language_short_name,item_id,item_name,translated_item],
+    (err,result)=>
     {
-      // Hiba estén vissza küldjük a hibát.
-      if(err){
-        callback(err);
-        return;
-      }
-
-      // Ha van fordítása akkor csak vissza térünk
-      if(response.length>0)
-      {
-        return;
-      }
-      else
-      {
-        // átállítja a nyelv potos nevét a fordítás miatt.
-        let current_language_short_name =  language_short_name;
-        if(current_language_short_name == "en")
+        // ha hiba vna, ide jön be.
+        if(err)
         {
-          current_language_short_name = "en-GB";
-        }
-      
-        // megpróbálja a fordítást elkészíteni
-        try
-        {
-          
-          // az elem véleményét lefordítatjuk.
-          let translated_item = await translate(
-            item,
-            current_language_short_name
-          );
-
-          // ezek után pedig feltöltjük az új adatoakat a translatins táblába.
-          db.query(`INSERT INTO translations(
-                      language_short_name,
-                      item_id,
-                      item_name,
-                      item)
-                    VALUES(?,?,?,?)`,
-          [language_short_name,item_id,item_name,translated_item],
-          (err,result)=>
-            {
-              // ha hiba vna, ide jön be.
-              if(err)
-              {
-                callback(`Hiba a(z) translations-ba való feltöltéskor: ${err}`);
-                return;
-              }
-              return;
-          });
-        }
-        // ha bármi hiba adódna az api-al akkor ide lép be
-        catch(err)
-        {
-          callback(`Sikertelen elem fordítás. ${err}`);
+          callback(`Hiba a(z) translations-ba való feltöltéskor: ${err}`);
           return;
         }
-      }
-  })
+        db.query(`SELECT
+                  item AS 'name'
+              FROM translations
+              WHERE item_id = ? AND item_name = ? AND language_short_name = ?`,
+              [item_id,item_name,language_short_name],
+              async (err,response)=>{
+
+          // ha hiba vna, ide jön be.
+          if(err)
+          {
+            callback(`Hiba a(z) translations-ba való feltöltéskor: ${err}`);
+            return;
+          }
+
+          callback(null,response);
+        })
+    })
+  }
+  // ha bármi hiba adódna az api-al akkor ide lép be
+  catch(err)
+  {
+    callback(`Sikertelen elem fordítás. ${err}`);
+    return;
+  }
 }
 
 // Országok és városok feltöltése
@@ -1891,18 +1975,6 @@ app.post("/uploadLocations",(req,res)=>{
       return;
     }
 
-    if(datas.language_short_name != "hu")
-    {
-      getLocation(datas.country_id,datas.country_name,'countries',datas.language_short_name,(err,result)=>{
-        if(err)
-        {
-          console.log(err);
-          return;
-        }
-
-      })
-    }
-
     if(country.affectedRows>0)
     {
       db.query(`INSERT INTO cities(
@@ -1915,17 +1987,6 @@ app.post("/uploadLocations",(req,res)=>{
         {
           res.status(500).send("Adatbázis hiba");
           return;
-        }
-
-        if(datas.language_short_name != "hu")
-        {
-          getLocation(datas.city_id,datas.city_name,'cities',datas.language_short_name,(err,result)=>{
-            if(err)
-            {
-              console.log(err);
-              return;
-            }
-          })
         }
         
         res.json({country,city});

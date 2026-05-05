@@ -7,17 +7,27 @@ import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const {t} = useI18n();
+const {locale} = useI18n();
 let country = ref([]);
 let data = ref([]);
 let result = ref([]);
 
 // véletlenszerü 5 ország beolvasása
 axios.get('http://localhost:3000/experiences/randCountryID')
-  .then(response => {
+  .then(async response => {
 
     for(let x in response.data)
     {
-      response.data[x].country_name =t(`search.countries.${response.data[x].country_id}`);
+      await axios.post('http://localhost:3000/getAllLocations',{country_id:response.data[x].country_id,
+                                                      city_id:1,
+                                                      language_short_name:locale.value})
+      .then(translations=>{
+
+        response.data[x].country_name = translations.data.countries[0].name;
+      })
+      .catch(err=>{
+        console.log(err);
+      })
     }
 
     country.value = response.data;
