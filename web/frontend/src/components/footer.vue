@@ -87,20 +87,14 @@
 
           <!-- Facebook -->
           <a class="nav-link" 
-             href="">
+             href="https://www.facebook.com/makokeri">
               <i class="fa-brands fa-square-facebook fa-xl"></i>
             </a>
 
           <!-- Instagram -->
           <a class="nav-link"
-             href="">
+             href="https://www.instagram.com/makokeri?fbclid=IwZXh0bgNhZW0CMTAAYnJpZBExMk5WZzlqY1lLMjRmNUdTMnNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6-PwllVtv7s28I_23NAuGMVU2tXH5qCD4W1wSU6tp7-QRfeB4UstjS-hBbPA_aem_HKcJgaoioTFmK4JyalJqqg">
               <i class="fa-brands fa-instagram fa-xl"></i>
-          </a>
-
-          <!-- Twitter -->
-          <a class="nav-link" 
-             href="">
-              <i class="fa-brands fa-x-twitter fa-xl"></i>
           </a>
         </div>
       </section>

@@ -1779,14 +1779,14 @@ body.messageBoxShowUp{
 }
 
 .fade-in {
-  animation: fadeInUp 1s ease both;
+  animation: fadeIn 1s ease both;
 }
 
 .fade-out {
   animation: fadeOutDown 0.5s ease both;
 }
 
-@keyframes fadeInUp {
+@keyframes fadeIn {
 
   0% 	{opacity:0;transform: scale(0); }
   25% 	{opacity:0;transform: scale(0); }

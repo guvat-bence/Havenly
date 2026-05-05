@@ -2,7 +2,6 @@
 import Navbar from './components/navbar.vue';
 import Myfooter from './components/footer.vue';
 import { user } from './store/user';
-import router from './router'; 
 let checkforUser = () => {
   if (user.id=="") {
     localStorage.removeItem("id");
@@ -71,7 +70,7 @@ body {
 
 .experience,.accommodation,.home,.about_us{
   opacity: 0;
-  transform: translateY(60px);
+  transform: translateY(90px);
   animation: fadeInUp 4s ease forwards;
 }
 
@@ -96,7 +95,7 @@ body {
 }
 
 .login,.register,.settings,.logout,.cardhover,.account,.userItem{
-  animation: scaleIn 1s ease both;
+  animation: scaleIn 3s ease both;
 }
 @keyframes scaleIn {
     0% 	{opacity:0;transform: scale(0); }

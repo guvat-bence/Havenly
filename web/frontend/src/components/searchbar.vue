@@ -2,7 +2,7 @@
 import { convertStrings } from '@/common';
 import { activeLocations, searchInput } from '@/js/getLocation';
 import axios from 'axios';
-import { computed, reactive, ref } from 'vue';
+import {reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 

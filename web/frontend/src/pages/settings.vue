@@ -1,7 +1,7 @@
 <script setup>
 import { selectedCurrency } from '@/store/currency';
 import axios from 'axios';
-import { computed, reactive,ref } from 'vue';
+import { computed, ref } from 'vue';
 import languages from "@/json/languages.json"
 import { useI18n } from 'vue-i18n';
 import {selectedLanguage} from '@/store/current_language.js';

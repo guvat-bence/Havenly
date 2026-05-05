@@ -17,7 +17,6 @@ let model = reactive({
   message = ref(""),
   isSuccess,
   showpasscheck = ref(false),
-  expiration_sliced = ref([]),
 
   // login függvény
   login = () => {

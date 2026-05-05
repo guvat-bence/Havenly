@@ -19,6 +19,7 @@ let images = reactive({})
 let item_details = ref([]);
 let iconsAndTexts = ref([]);
 
+// Ezzel állítjuk be images-nek az alapvető tartalmát
 for(let x=0;x<(props.table_name=="accommodations"?10:3);x++)
 {
   images[x] = "";
@@ -70,16 +71,17 @@ let item = ref([]);
 let modelCopie = {... model};
 let locations = ref([]);
 
+// ezzel lehívjuk az összes ország és város id-ját és nevét
 axios.get(`http://localhost:3000/getAllCitiesAndCountries/${locale.value}`)
 .then(response=>{
   locations.value = response.data;
-  console.log(locations.value);
   
 })
 .catch(err=>{
   console.log(err);
 })
 
+// Betölti az iconok megfelelő nyelvi írását
 for(let y in allIcons)
 {
   allIcons[y]["text"] = computed(()=>(t(`about.extras.${y}`)));
@@ -88,6 +90,7 @@ for(let y in allIcons)
 
 item_details.value = allIcons;
 
+// Ha nem új elemekt szeretnénk feltölteni akkor betölti a meglévő elem adatait
 if(props.id!=0 && props.name!="new")
 {
   // adatbázisból lehúzzuk a szállás/élmény többi adatát.
@@ -162,6 +165,7 @@ if(props.id!=0 && props.name!="new")
   })
 }
 
+// Ellenőrizzük a megadott adatokat
 function check()
 {
   if(model.city_name=="")
@@ -198,6 +202,7 @@ function check()
   return true;
 }
 
+// Ezzel jelenítjük meg a User által kiválasztot képeket
 function uploadImage(item)
 {
   let item_id = item.currentTarget.id;
@@ -230,6 +235,7 @@ function uploadImage(item)
   
 }
 
+// Ezzel a functionnal töltünk fel elemeket vagy módosíytunk az adatbázisba
 function uploadItem()
 {
 
@@ -237,7 +243,7 @@ function uploadItem()
   {
 
     if((convertStrings(x.country_name) == convertStrings(model.country_name)) 
-        || (convertStrings(x.country_transname) == convertStrings(model.country_name)))
+        ||(x.country_transname!=null && (convertStrings(x.country_transname) == convertStrings(model.country_name))))
     {
       model.country_id = x.country_id
     }
@@ -246,7 +252,7 @@ function uploadItem()
   for(let x of locations.value)
   {
     if((convertStrings(x.city_name) == convertStrings(model.city_name))
-        || (convertStrings(x.city_transname) == convertStrings(model.city_name)))
+        || (x.city_transname!=null && (convertStrings(x.city_transname) == convertStrings(model.city_name))))
     {
       model.city_id = x.city_id
     }
@@ -288,6 +294,7 @@ function uploadItem()
   }
 }
 
+// ezzel a functionnal töltjük be a kellő helyeken az adatbázishoz kellő kérést
 function ItemRequest()
 {
   let url = "";

@@ -4,7 +4,7 @@ import { selectedCurrency } from '@/store/currency';
 import { rent } from '@/store/current_rent';
 import { user } from '@/store/user';
 import { reactive, ref, Transition, watch } from 'vue';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import { convertStrings } from '@/common';
 import { useI18n } from 'vue-i18n';
 

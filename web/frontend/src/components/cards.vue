@@ -10,7 +10,6 @@ const {locale} =  useI18n();
 // items,toCard definiálása
 let items = ref([]);
 let toCard = ref([]);
-let toImage = ref([]); 
 
 // Props a rugalmasság érdekében
 let props = defineProps({

@@ -249,7 +249,22 @@ axios.get(`http://localhost:3000/${props.table_name}/${props.id}`)
 
 	// tömb feltöltése
 	item.value = datas.data;
-	
+
+	axios.post('http://localhost:3000/getHistory',{id:user.id})
+	.then(datas => {
+		
+		for(let x of datas.data)
+		{
+			if(x.accommodation_id == item?.value[0]?.id)
+			{
+				reserved_once.value = true;
+				break;
+			}
+		}
+
+	})
+	.catch(e => console.error(e))
+
 	
 	// végigmegy a kártya összes elemén, majd megnézi adatbázisban hogy van-e neki az adott nyelvre fordítása,
 	// ha nincsen rá fordítás, de azon a nyelven vagyunk amilye nnyelven feltöltöttük az adottott tárgyat,
@@ -359,22 +374,6 @@ if(props.table_name == "accommodations")
 	{
 		console.error(error);
 	})
-
-	axios.post('http://localhost:3000/getHistory',{id:user.id})
-    .then(datas => {
-		
-			for(let x of datas.data)
-			{
-				if(x.accommodation_id == item?.value[0]?.id)
-				{
-					reserved_once.value = true;
-					break;
-				}
-			}
-
-    })
-    .catch(e => console.error(e))
-
 
 	//adatbázisból le kérjük a szálláshoz kapcsolatos foglalásokat, és ezeket napra pontosan el tároljuk
 	// hogy a naptárban me gtudjuk őket jeleníteni.
