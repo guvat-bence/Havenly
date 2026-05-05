@@ -437,46 +437,69 @@ app.get('/getCurrency', (req, res) => {
 })
 
 //Lekérdezi az aktív szállások helyét egyszer
-app.get('/createAccomodationLocationList',(req, res) => {
-  const query = ` SELECT DISTINCT countries.name AS country_name, 
-                  countries.id AS country_id,
-                  cities.name AS city_name,
-                  cities.id AS city_ID
-                  FROM countries 
-                  INNER JOIN cities ON cities.country_id = countries.id 
-                  INNER JOIN accommodations ON cities.id = accommodations.city_id 
-                  LEFT JOIN experiences ON cities.id = experiences.city_id `;
-  db.query(query, (err,result) => {
+app.get('/createAccomodationLocationList/:language_short_name',(req, res) => {
+  let datas = req.params.language_short_name;
+
+  const query = ` SELECT DISTINCT
+                    countries.name AS country_name,
+                    countries.id AS country_id,
+                    cities.name AS city_name,
+                    cities.id AS city_id,
+                    transcity.item AS city_transname,
+                    transcountry.item AS country_transname
+                  FROM countries
+                  INNER JOIN cities ON cities.country_id = countries.id
+                  INNER JOIN accommodations ON cities.id = accommodations.city_id
+                  LEFT JOIN experiences ON cities.id = experiences.city_id
+                  LEFT JOIN translations AS transcity
+                  ON cities.id = transcity.item_id 
+                      AND transcity.item_name = 'cities' 
+                      AND transcity.language_short_name = ?
+                  LEFT JOIN translations AS transcountry
+                  ON countries.id = transcountry.item_id 
+                      AND transcountry.item_name = 'countries' 
+                      AND transcountry.language_short_name = ?`;
+  db.query(query,[datas,datas],(err,result) => {
     if(err){
       res.status(401).send("Sikertelen beolvasás")
       return;
     }
 
     res.send(result);
-    
   })
 });
 
 //Lekérdezi az aktív élmények helyét egyszer
-app.get('/createExpreienceLocationList',(req, res) => {
+app.get('/createExpreienceLocationList/:language_short_name',(req, res) => {
+  let datas = req.params.language_short_name;
   const query = ` SELECT DISTINCT countries.name AS country_name, 
                   countries.id AS country_id,
                   cities.name AS city_name,
-                  cities.id AS city_ID
+                  cities.id AS city_id,
+                  transcity.item AS city_transname,
+                  transcountry.item AS country_transname
                   FROM countries 
                   INNER JOIN cities ON cities.country_id = countries.id 
-                  INNER JOIN experiences ON cities.id = experiences.city_id`;
-  db.query(query, (err,result) => {
+                  INNER JOIN experiences ON cities.id = experiences.city_id
+                  LEFT JOIN translations AS transcity
+                  ON cities.id = transcity.item_id 
+                      AND transcity.item_name = 'cities' 
+                      AND transcity.language_short_name = ?
+                  LEFT JOIN translations AS transcountry
+                  ON countries.id = transcountry.item_id 
+                      AND transcountry.item_name = 'countries' 
+                      AND transcountry.language_short_name = ?`;
+  db.query(query,[datas,datas],(err,result) => {
     if(err){
       res.status(401).send("Sikertelen beolvasás")
       return;
     }
-
-    res.send(result);
     
+    res.send(result);
   })
 });
 
+// Az adott bejelentéseket szerzi meg
 app.get("/getReports", (req, res) => {
   db.query(`SELECT  r.id,
                     r.user_id,
@@ -528,6 +551,7 @@ app.get("/getReports", (req, res) => {
   });
 });
 
+// Report átállítása
 app.post("/sendReportValidation", (req,res) => {
   const data = req.body
   db.query(`UPDATE report SET status = ? WHERE id = ?`, [data.status, data.id], (err,result) => {
@@ -1974,6 +1998,36 @@ async function getLocation(item_id,item,item_name,language_short_name,callback)
     return;
   }
 }
+
+//Lekérdezi az összes országot és várost
+app.get('/getAllCitiesAndCountries/:language_short_name',(req, res) => {
+  let datas = req.params.language_short_name;
+  
+  const query = ` SELECT DISTINCT
+                    countries.name AS country_name,
+                    countries.id AS country_id,
+                    cities.name AS city_name,
+                    cities.id AS city_id,
+                    transcity.item AS city_transname,
+                    transcountry.item AS country_transname
+                  FROM countries
+                  INNER JOIN cities ON cities.country_id = countries.id
+                  LEFT JOIN translations AS transcity
+                  ON cities.id = transcity.item_id 
+                      AND transcity.item_name = 'cities' 
+                      AND transcity.language_short_name = ?
+                  LEFT JOIN translations AS transcountry
+                  ON countries.id = transcountry.item_id 
+                      AND transcountry.item_name = 'countries' 
+                      AND transcountry.language_short_name = ? `;
+  db.query(query,[datas,datas],(err,result) => {
+    if(err){
+      res.status(401).send("Sikertelen beolvasás")
+      return;
+    }
+    res.send(result);
+  })
+});
 
 // Országok és városok feltöltése
 app.post("/uploadLocations",(req,res)=>{

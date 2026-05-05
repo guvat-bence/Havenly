@@ -70,9 +70,11 @@ let item = ref([]);
 let modelCopie = {... model};
 let locations = ref([]);
 
-axios.get(`http://localhost:3000/getAllLocations`)
+axios.get(`http://localhost:3000/getAllCitiesAndCountries/${locale.value}`)
 .then(response=>{
   locations.value = response.data;
+  console.log(locations.value);
+  
 })
 .catch(err=>{
   console.log(err);
@@ -231,19 +233,22 @@ function uploadImage(item)
 function uploadItem()
 {
 
-  for(let x of locations.value.countries)
+  for(let x of locations.value)
   {
-    if(convertStrings(x.name) == convertStrings(model.country_name))
+
+    if((convertStrings(x.country_name) == convertStrings(model.country_name)) 
+        || (convertStrings(x.country_transname) == convertStrings(model.country_name)))
     {
-      model.country_id = x.id
+      model.country_id = x.country_id
     }
   }
 
-  for(let x of locations.value.cities)
+  for(let x of locations.value)
   {
-    if(convertStrings(x.name) == convertStrings(model.city_name))
+    if((convertStrings(x.city_name) == convertStrings(model.city_name))
+        || (convertStrings(x.city_transname) == convertStrings(model.city_name)))
     {
-      model.city_id = x.id
+      model.city_id = x.city_id
     }
   }
 

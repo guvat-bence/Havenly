@@ -471,12 +471,11 @@ function sendMessage()
 function getUserItems()
 {
   axios.get(`http://localhost:3000/getUserItems/${user.id}`)
-  .then(response =>{
+  .then(async response =>{
     userItems.value = response.data;
 
     for(let x in userItems.value)
-    {
-      
+    { 
       getTranslationUserTypes(userItems.value[x]);
     }
     
@@ -544,6 +543,20 @@ function getTranslationUserTypes(item)
 
 	for(let x in item)
 	{
+
+    axios.post('http://localhost:3000/getAllLocations',{country_id:item[x].country_id,
+                                                      city_id:item[x].city_id,
+                                                      language_short_name:locale.value})
+    .then(translations=>{
+
+      // beállíítja az adott elemnek az éppen kiválaszott nyelvhez lefordított város és ország nevét.
+      item[x].country_trans_name = translations.data.countries[0].name;
+      item[x].city_trans_name = translations.data.cities[0].name;
+      
+    })
+    .catch(err=>{
+      console.log(err);
+    })
     
 		axios.post(`http://localhost:3000/translate`,
 			{item_id:item[x].id,item_name:item[x].table_type,language_short_name:locale.value})
@@ -1352,7 +1365,7 @@ watch(card,()=>
                       <div>
                         <!--Elem helye -->
                         <p class="text-white-50">
-                          {{x.country_name}}, {{ x.city_name }}
+                          {{x.country_trans_name}}, {{ x.city_trans_name }}
                         </p>
                       </div>
                       

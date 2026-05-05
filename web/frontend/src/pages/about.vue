@@ -973,6 +973,8 @@ watch(model,()=>
 </script>
 <template>
 	<div class="about">
+
+		<!-- Törlés gomb -->
 		<div class="justify-content-end d-flex p-3 w-100"
 				 v-if="item[0] && item[0].owner_id === user.id || user.user_type === 'A'">
 			<button class="btn-danger btn w-auto"
@@ -986,9 +988,8 @@ watch(model,()=>
 			</button>
 		</div>
 
+		<!-- Maga a tartalom -->
 		<div class="container text-white" v-if="item.length>0">
-
-			
 
 			<!-- Kép megjelenítés és a szállás/élmény címe -->
 			<div class="row justify-content-center">

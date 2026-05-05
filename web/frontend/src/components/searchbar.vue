@@ -22,24 +22,18 @@ let result = reactive({
 
 	//getActiveLocations függvény
 	getActiveLocations = (x) => {
-		axios.get(`http://localhost:3000/create${x}LocationList`)
+		
+		axios.get(`http://localhost:3000/create${x}LocationList/${locale.value}`)
 		.then(async response => {
 
 			for(let x in response.data)
 			{
-				await axios.post('http://localhost:3000/getAllLocations',{country_id:response.data[x].country_ID,
-																											city_id:response.data[x].city_id,
-																											language_short_name:locale.value})
-				.then(async translations=>{
 
+				if(response.data[x].city_transname !=null && response.data[x].country_transname != null){
 					// beállíítja az adott elemnek az éppen kiválaszott nyelvhez lefordított város és ország nevét.
-					response.data[x].country_name = translations.data.countries[0].name;
-					response.data[x].city_name = translations.data.cities[0].name;
-
-				})
-				.catch(err=>{
-					console.log(err);
-				})	
+					response.data[x].country_name = response.data[x].country_transname;
+					response.data[x].city_name = response.data[x].city_transname;
+				}
 			}
 
 			activeLocations.value = response.data;
