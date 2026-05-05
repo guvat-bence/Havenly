@@ -908,18 +908,23 @@ function opinionsOptions(value)
 }
 
 let deleteItem = (data) => {
-	console.log("DELETE ITEM FUT")
-    axios.post('http://localhost:3000/removeItem',data)
-    .then(x => {
-				console.log('Sikeres')
-        alert(x.data)
-				setTimeout(() => {
-					router.push('/')
-				}, 200);
-        
-    })
-    .catch(e => alert(e.response.data))
-	}
+
+	if(!confirm(`${t("profile.navbar_posts_group.question")}`))
+  {
+    return;
+  }
+
+	axios.post('http://localhost:3000/removeItem',data)
+	.then(x => {
+			console.log('Sikeres')
+			alert(x.data)
+			setTimeout(() => {
+				router.push('/')
+			}, 200);
+			
+	})
+	.catch(e => alert(e.response.data))
+}
 
 // figyeleli az érekezési és távozási napok változását.
 // ha mind a kettőnek van értéke akkor a kettő dátum közötti napokat hozzáadja a rentedDayIds-hez.

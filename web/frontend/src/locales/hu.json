@@ -238,11 +238,41 @@
   {
     "navbar_datas":"Adataim",
     "nabar_posts":"Közzétételeim",
+    "navbar_posts_group":{
+      "new_item":"Új elem feltöltése",
+      "accommodation":"Szállás feltötése",
+      "experience":"Élmény feltötése",
+      "watch":"Megnéz",
+      "edit":"Módosít",
+      "delete":"Töröl",
+      "text":"Önnen még nincsen eg feltöltött eleme sem!",
+      "question":"Biztosan törölni szeretné?",
+      "user_item":{
+        "datas":"Adatok",
+        "location":"Helyzet",
+        "country":"Ország",
+        "city":"Város",
+        "name_texts":"Név és leírás",
+        "name":"Név",
+        "text":"Leírás",
+        "details":"Részletek",
+        "price":"Ár",
+        "size":"Méret",
+        "guest":"Vendégek száma",
+        "bedroom":"Hálószobák száma",
+        "beds":"Ágyak száma",
+        "bathrooms":"Fürdőszobák száma",
+        "extras":"Amit a szállás kínál",
+        "images":"Képek",
+        "image":"Kép"
+      }
+    },
     "navbar_messages":"Beszélgetéseim",
     "navbar_admin":"Adminisztráció",
     "navbar_admin_group":{
       "id":"Azonosító:",
-      "type":"Típus:"
+      "type":"Típus:",
+      "real":"Indokoltság"
     },
     "navbar_history":"Előzmények",
     "navbar_history_group":{

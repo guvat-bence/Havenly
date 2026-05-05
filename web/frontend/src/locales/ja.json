@@ -223,11 +223,41 @@
   {
     "navbar_datas":"私のデータ",
     "nabar_posts":"私の投稿",
-    "navbar_messages":"私の会話",
+    "navbar_posts_group": {
+      "new_item": "新しい項目をアップロード",
+      "accommodation": "宿泊施設をアップロード",
+      "experience": "体験をアップロード",
+      "watch": "表示",
+      "edit": "編集",
+      "delete": "削除",
+      "text": "まだアップロードされた項目はありません！",
+      "question": "本当に削除してもよろしいですか？",
+      "user_item": {
+        "datas": "データ",
+        "location": "場所",
+        "country": "国",
+        "city": "市",
+        "name_texts": "名前と説明",
+        "name": "名前",
+        "text": "説明",
+        "details": "詳細",
+        "price": "価格",
+        "size": "サイズ",
+        "guest": "宿泊人数",
+        "bedroom": "寝室数",
+        "beds": "ベッド数",
+        "bathrooms": "バスルーム数",
+        "extras": "宿泊施設の設備",
+        "images": "画像",
+        "image": "画像"
+      }
+    },
+    "navbar_messages": "会話",
     "navbar_admin": "管理",
     "navbar_admin_group": {
       "id": "識別子:",
-      "type": "タイプ:"
+      "type": "タイプ:",
+      "real": "理由"
     },
     "navbar_history": "履歴",
     "navbar_history_group": {

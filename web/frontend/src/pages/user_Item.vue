@@ -329,7 +329,7 @@ watch([model,images],()=>{
           <!-- Cím -->
           <h4 class="text-center">
             <i class="fa-solid fa-square-poll-horizontal"></i>
-             Adatok
+            {{ $t("profile.navbar_posts_group.user_item.datas") }}
           </h4>
 
           <!-- Adatok és gombok -->
@@ -341,7 +341,7 @@ watch([model,images],()=>{
               <!-- Helyzet -->
               <h5 class="text-center">
                 <i class="fa-regular fa-compass fa-lg"></i>
-                Helyzet
+                {{ $t("profile.navbar_posts_group.user_item.location") }}
               </h5>
 
               <!-- Ország -->
@@ -351,7 +351,7 @@ watch([model,images],()=>{
                 <label for="country" 
                         class="form-label">
                   <i class="fa-solid fa-earth-europe"></i>
-                  Ország
+                  {{ $t("profile.navbar_posts_group.user_item.country") }}
                 </label>
 
                 <!-- Input -->
@@ -368,8 +368,8 @@ watch([model,images],()=>{
                 <!-- Label -->
                 <label for="city" 
                         class="form-label">
-                 <i class="fa-solid fa-city"></i>
-                  Város
+                  <i class="fa-solid fa-city"></i>
+                  {{ $t("profile.navbar_posts_group.user_item.city") }}
                 </label>
 
                 <!-- Input -->
@@ -386,8 +386,8 @@ watch([model,images],()=>{
 
               <!-- Cím -->
               <h5 class="text-center">
-               <i class="fa-solid fa-book-open"></i>
-                Név és leírás
+                <i class="fa-solid fa-book-open"></i>
+                {{ $t("profile.navbar_posts_group.user_item.name_texts") }}
               </h5>
 
               <!-- Név -->
@@ -397,7 +397,7 @@ watch([model,images],()=>{
                 <label for="name" 
                         class="form-label">
                   <i class="fa-solid fa-file-signature"></i>
-                  Név
+                  {{ $t("profile.navbar_posts_group.user_item.name") }}
                 </label>
 
                 <!-- Input -->
@@ -415,7 +415,7 @@ watch([model,images],()=>{
                 <label for="description" 
                         class="form-label">
                   <i class="fa-solid fa-file-signature"></i>
-                  Leírás
+                  {{ $t("profile.navbar_posts_group.user_item.text") }}
                 </label>
 
                 <!-- Input -->
@@ -436,7 +436,7 @@ watch([model,images],()=>{
               <!-- Cím -->
               <h5 class="text-center">
                 <i class="fa-solid fa-circle-info"></i>
-                Részletek
+                {{ $t("profile.navbar_posts_group.user_item.details") }}
               </h5>
 
               <!-- Ár -->
@@ -446,7 +446,7 @@ watch([model,images],()=>{
                 <label for="price" 
                         class="form-label">
                   <i class="fa-solid fa-money-bill"></i>
-                  Ár ({{ selectedCurrency.currencyShortedName }}) 
+                  {{ $t("profile.navbar_posts_group.user_item.price") }} ({{ selectedCurrency.currencyShortedName }}) 
                     / {{ props.table_name=="accommodations"?'éjszaka':'fő' }}
                 </label>
 
@@ -467,7 +467,7 @@ watch([model,images],()=>{
                 <label for="size" 
                         class="form-label">
                   <i class="fa-solid fa-ruler-combined"></i>
-                  Méret (m²)
+                  {{ $t("profile.navbar_posts_group.user_item.size") }} (m²)
                 </label>
 
                 <!-- Input -->
@@ -487,7 +487,7 @@ watch([model,images],()=>{
                 <label for="guests_number" 
                         class="form-label">
                   <i class="fa-solid fa-people-group"></i>
-                  Vendégek száma
+                  {{ $t("profile.navbar_posts_group.user_item.guest") }}
                 </label>
 
                 <!-- Input -->
@@ -507,7 +507,7 @@ watch([model,images],()=>{
                 <label for="bedrooms_number" 
                         class="form-label">
                     <i class="fa-solid fa-house-chimney"></i>
-                    Hálószobák száma
+                    {{ $t("profile.navbar_posts_group.user_item.bedroom") }}
                 </label>
 
                 <!-- Input -->
@@ -527,7 +527,7 @@ watch([model,images],()=>{
                 <label for="beds_number" 
                         class="form-label">
                   <i class="fa-solid fa-bed"></i>
-                  Ágyak száma
+                  {{ $t("profile.navbar_posts_group.user_item.beds") }}
                 </label>
 
                 <!-- Input -->
@@ -547,7 +547,7 @@ watch([model,images],()=>{
                 <label for="bathoroom_number" 
                         class="form-label">
                   <i class="fa-solid fa-bath"></i>
-                  Fürdőszobák száma
+                  {{ $t("profile.navbar_posts_group.user_item.bathrooms") }}
                 </label>
 
                 <!-- Input -->
@@ -567,7 +567,7 @@ watch([model,images],()=>{
               <!-- Cím -->
               <h5 class="text-center">
                 <i class="fa-solid fa-circle-info"></i>
-                Amit a szállás kínál
+                {{ $t("profile.navbar_posts_group.user_item.extras") }}
               </h5>
 
               <div v-for="x in item_details" 
@@ -591,7 +591,7 @@ watch([model,images],()=>{
             <!-- Cím -->
               <h5 class="text-center">
                 <i class="fa-regular fa-images"></i>
-                Képek
+                {{ $t("profile.navbar_posts_group.user_item.images") }}
               </h5>
 
               <!-- Képek -->
@@ -614,7 +614,7 @@ watch([model,images],()=>{
                                           `/0${x<10?`0${x}`:x}.png)`}:{}">
                   <span v-if="item==''">
                     <i class="fa-solid fa-image"></i>          
-                    Kép
+                    {{ $t("profile.navbar_posts_group.user_item.image") }}
                   </span>
                 </label>
                 <input type="file" 

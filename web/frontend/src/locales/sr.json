@@ -231,11 +231,41 @@
   {
     "navbar_datas":"Моји подаци",
     "nabar_posts":"Моје објаве",
-    "navbar_messages":"Моји разговори",
+    "navbar_posts_group": {
+      "new_item": "Отпреми нову ставку",
+      "accommodation": "Отпреми смештај",
+      "experience": "Отпреми искуство",
+      "watch": "Погледај",
+      "edit": "Измени",
+      "delete": "Обриши",
+      "text": "Још увек немате ниједну отпремљену ставку!",
+      "question": "Да ли сте сигурни да желите да обришете?",
+      "user_item": {
+        "datas": "Подаци",
+        "location": "Локација",
+        "country": "Држава",
+        "city": "Град",
+        "name_texts": "Назив и опис",
+        "name": "Назив",
+        "text": "Опис",
+        "details": "Детаљи",
+        "price": "Цена",
+        "size": "Величина",
+        "guest": "Број гостију",
+        "bedroom": "Број спаваћих соба",
+        "beds": "Број кревета",
+        "bathrooms": "Број купатила",
+        "extras": "Шта смештај нуди",
+        "images": "Слике",
+        "image": "Слика"
+      }
+    },
+    "navbar_messages": "Моји разговори",
     "navbar_admin": "Администрација",
     "navbar_admin_group": {
       "id": "Идентификатор:",
-      "type": "Тип:"
+      "type": "Тип:",
+      "real": "Оправданост"
     },
     "navbar_history": "Историја",
     "navbar_history_group": {

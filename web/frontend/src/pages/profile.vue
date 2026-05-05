@@ -634,13 +634,23 @@ let sendValdation = (statusNum, id) => {
   })
 }
 
-function deleteUserItem()
+function deleteUserItem(datas)
 {
-  if(!confirm("Biztosan törölni szeretné?"))
+  if(!confirm(`${t("profile.navbar_posts_group.question")}`))
   {
     return;
   }
-  console.log(("asadad"));
+  
+  axios.post('http://localhost:3000/removeItem',datas)
+  .then(x => {
+      console.log('Sikeres')
+      alert(x.data)
+      setTimeout(() => {
+        router.push('/')
+      }, 200);
+      
+  })
+  .catch(e => alert(e.response.data))
   
 }
 
@@ -1309,7 +1319,7 @@ watch(card,()=>
                       <h3 class="text-white mx-auto 
                                   text-center fw-light 
                                   col-12">
-                        Új elem feltöltése
+                       {{ $t("profile.navbar_posts_group.new_item") }}
                       </h3>
                     </div>
                     
@@ -1320,14 +1330,14 @@ watch(card,()=>
                       <RouterLink to="/userItem/accommodations/0/new"
                                   class="btn btn-secondary mx-1 w-auto">
                         <i class="fa-solid fa-pen-to-square"></i>
-                        Szállás feltötése
+                        {{ $t("profile.navbar_posts_group.accommodation") }}
                       </RouterLink>
 
                       <!-- Módosít gomb -->
                       <RouterLink to="/userItem/experiences/0/new"
                                   class="btn btn-secondary mx-1 w-auto">
                         <i class="fa-solid fa-pen-to-square"></i>
-                        Élmény feltötése
+                        {{ $t("profile.navbar_posts_group.experience") }}
                       </RouterLink>
                     </div>
                   </div>
@@ -1347,7 +1357,7 @@ watch(card,()=>
                               `/cities/${convertStrings(x.city_name)}` +
                               `/${x.table_type}/${convertStrings(x.folder_name)}/001.png`"
                           class="justify-content-start rounded-3 img-fluid" 
-                          alt="accomodation_image">
+                          alt="item_image">
 
                     <!-- Elem adatai -->
                     <div class="mx-auto pt-4">
@@ -1377,29 +1387,34 @@ watch(card,()=>
                                class="btn btn-primary mx-1 
                                      w-auto">
                           <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                          Megnéz
+                          {{ $t("profile.navbar_posts_group.watch") }}
                        </RouterLink>
 
                        <!-- Módosít gomb -->
                        <RouterLink :to="{name:'userItem',params:{table_name:x.table_type,id:x.id,name:x.name}}"
                                     class="btn btn-secondary mx-1 w-auto">
                           <i class="fa-solid fa-pen-to-square"></i>
-                          Módosít
+                          {{ $t("profile.navbar_posts_group.edit") }}
 
                        </RouterLink>
 
                        <!-- Töröl gomb -->
-                       <button @click="deleteUserItem()"
+                       <button @click="deleteUserItem({name: x.name, 
+                                                       id: x.id,
+                                                       table: x.table_type,
+                                                       path: `countries/${convertStrings(x.country_name)}` +
+                                                             `/cities/${convertStrings(x.city_name)}` +
+                                                             `/${x.table_type}/${convertStrings(x.folder_name)}`})"
                                class="btn btn-danger mx-1  
                                       w-auto">
                           <i class="fa-solid fa-circle-minus"></i>
-                          Töröl
+                          {{ $t("profile.navbar_posts_group.delete") }}
                        </button>
                       </div>
                     </div>
                   </div>
                   <h2 v-if="userItems.length==0">
-                    {{ $t("profile.text_accommodations") }}
+                    {{ $t("profile.navbar_posts_group.text") }}
                   </h2>
                 </div>
               </div>
@@ -1428,7 +1443,7 @@ watch(card,()=>
 
                   <div class="text-white-50 m-1 top-0 d-flex justify-content-end">
 
-                    <p class="text-white">Indokoltság</p>
+                    <p class="text-white">{{ $t("profile.navbar_admin_group.real") }}</p>
 
                     <button class="btn btn-outline-success mx-2"
                             v-on:click="sendValdation(1, x.id)">

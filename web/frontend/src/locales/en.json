@@ -225,11 +225,41 @@
   {
     "navbar_datas":"My Data",
     "nabar_posts":"My Posts",
-    "navbar_messages":"My Conversations",
+    "navbar_posts_group": {
+      "new_item": "Upload new item",
+      "accommodation": "Upload accommodation",
+      "experience": "Upload experience",
+      "watch": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "text": "You don't have any uploaded items yet!",
+      "question": "Are you sure you want to delete?",
+      "user_item": {
+        "datas": "Data",
+        "location": "Location",
+        "country": "Country",
+        "city": "City",
+        "name_texts": "Name and description",
+        "name": "Name",
+        "text": "Description",
+        "details": "Details",
+        "price": "Price",
+        "size": "Size",
+        "guest": "Number of guests",
+        "bedroom": "Number of bedrooms",
+        "beds": "Number of beds",
+        "bathrooms": "Number of bathrooms",
+        "extras": "What the accommodation offers",
+        "images": "Images",
+        "image": "Image"
+      }
+    },
+    "navbar_messages": "My conversations",
     "navbar_admin": "Administration",
     "navbar_admin_group": {
       "id": "Identifier:",
-      "type": "Type:"
+      "type": "Type:",
+      "real": "Justification"
     },
     "navbar_history": "History",
     "navbar_history_group": {

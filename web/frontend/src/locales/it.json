@@ -231,11 +231,41 @@
   {
     "navbar_datas":"I miei dati",
     "nabar_posts":"I miei post",
-    "navbar_messages":"Le mie conversazioni",
+    "navbar_posts_group": {
+      "new_item": "Carica nuovo elemento",
+      "accommodation": "Carica alloggio",
+      "experience": "Carica esperienza",
+      "watch": "Visualizza",
+      "edit": "Modifica",
+      "delete": "Elimina",
+      "text": "Non hai ancora caricato alcun elemento!",
+      "question": "Sei sicuro di voler eliminare?",
+      "user_item": {
+        "datas": "Dati",
+        "location": "Posizione",
+        "country": "Paese",
+        "city": "Città",
+        "name_texts": "Nome e descrizione",
+        "name": "Nome",
+        "text": "Descrizione",
+        "details": "Dettagli",
+        "price": "Prezzo",
+        "size": "Dimensione",
+        "guest": "Numero di ospiti",
+        "bedroom": "Numero di camere da letto",
+        "beds": "Numero di letti",
+        "bathrooms": "Numero di bagni",
+        "extras": "Cosa offre l'alloggio",
+        "images": "Immagini",
+        "image": "Immagine"
+      }
+    },
+    "navbar_messages": "Le mie conversazioni",
     "navbar_admin": "Amministrazione",
     "navbar_admin_group": {
       "id": "Identificatore:",
-      "type": "Tipo:"
+      "type": "Tipo:",
+      "real": "Motivazione"
     },
     "navbar_history": "Cronologia",
     "navbar_history_group": {
