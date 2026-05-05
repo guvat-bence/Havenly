@@ -610,6 +610,17 @@ let getReports = () => {
   .catch(e => console.error(e.response))
 }
 
+let sendValdation = (statusNum, id) => {
+  axios.post('http://localhost:3000/sendReportValidation',{status: statusNum, id: id})
+  .then(data => {
+    alert(data.data)
+    getReports()
+  })
+  .catch(e => {
+    alert(e.response.data)
+  })
+}
+
 function deleteUserItem()
 {
   if(!confirm("Biztosan törölni szeretné?"))
@@ -1389,12 +1400,8 @@ watch(card,()=>
                 aria-labelledby="nav-posts-tab" 
                 tabindex="0">
             <div class="row my-2"
-                  v-for="x in reports"
-                  v-on:click="router.push({ name:'about',
-                                            params:{table_name: x.place_type,  
-                                                    id:x.item_id,  
-                                                    name:x.place_name}})">
-              <div class="bg-black bg-opacity-25 rounded-3 reportCards">
+                  v-for="x in reports">
+              <div class="bg-black bg-opacity-25 rounded-3">
                 <div class="row">
                   <div class="text-white-50 m-1 top-0 d-flex justify-content-between">
                     <p>
@@ -1406,10 +1413,26 @@ watch(card,()=>
                     </p>
                   </div>
 
+                  <div class="text-white-50 m-1 top-0 d-flex justify-content-end">
+
+                    <p class="text-white">Indokoltság</p>
+
+                    <button class="btn btn-outline-success mx-2"
+                            v-on:click="sendValdation(1, x.id)">
+                      <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button class="btn btn-outline-danger"
+                            v-on:click="sendValdation(2, x.id)">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+
                   <h5 class="text-white top-0">
                     {{ x.full_name }}
                   </h5>
                 </div>
+                
                 <div class="row">
                   <h6>
                     {{ x.message_type }}
@@ -1420,6 +1443,22 @@ watch(card,()=>
                   <p class="text-capitalize">
                     {{ x.message }}
                   </p>
+                </div>
+
+                <div class="row mt-3">
+                  <button class="btn btn-outline-primary"
+                          v-on:click="x.place_name 
+                              ? router.push({ 
+                                  name: 'about', 
+                                  params: { 
+                                      table_name: x.place_type, 
+                                      id: x.item_id, 
+                                      name: x.place_name 
+                                  } 
+                              })
+                              : router.push('/invalidPlace')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </button>
                 </div>
               </div>
             </div>

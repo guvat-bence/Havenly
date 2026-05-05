@@ -520,13 +520,26 @@ app.get("/getReports", (req, res) => {
                             r.item_type = 'experiences' AND r.item_id = e.id
                         )
                     )
-                WHERE 1`,(err, reports) => {
+                WHERE status = 0`,(err, reports) => {
     if (err) {
       return res.status(500).send('Sikertelen lekérdezés');
     }
     res.send(reports)
   });
 });
+
+app.post("/sendReportValidation", (req,res) => {
+  const data = req.body
+  db.query(`UPDATE report SET status = ? WHERE id = ?`, [data.status, data.id], (err,result) => {
+    if(err)
+      return res.status(500).send('Adatbázis hiba...')
+
+    if(result.affectedRows === 0) 
+      return res.status(500).send('Sikertelen validálás')
+
+    return res.send('Sikeres validálás')
+  })
+})
 
 //az adott szálláshoz való history elemek lehívása.
 app.get("/history/:id", (req, res) => {

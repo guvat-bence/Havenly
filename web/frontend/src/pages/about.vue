@@ -973,8 +973,8 @@ watch(model,()=>
 </script>
 <template>
 	<div class="about">
-		
-		<div class="justify-content-end d-flex p-3 w-100">
+		<div class="justify-content-end d-flex p-3 w-100"
+				 v-if="item[0] && item[0].owner_id === user.id || user.user_type === 'A'">
 			<button class="btn-danger btn w-auto"
 							@click="deleteItem({name: item[0].name, 
 																	id: item[0].id,

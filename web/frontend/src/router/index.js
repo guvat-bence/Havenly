@@ -5,6 +5,7 @@ import Basket from '@/pages/basket.vue'
 import Data_protection from '@/pages/data_protection.vue'
 import Experience from '@/pages/experience.vue'
 import Home from '@/pages/home.vue'
+import InvalidPlace from '@/pages/invalidPlace.vue'
 import Login from '@/pages/login.vue'
 import Logoutconfirmation from '@/pages/logoutconfirmation.vue'
 import Profile from '@/pages/profile.vue'
@@ -73,6 +74,10 @@ let routes = [
     path:"/userItem/:table_name:/:id/:name",
     component: User_Item,
     props:true
+  },
+  {
+    path: "/invalidPlace",
+    component: InvalidPlace
   }
 ]
 const router = createRouter({
