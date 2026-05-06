@@ -2,6 +2,25 @@
 import Navbar from './components/navbar.vue';
 import Myfooter from './components/footer.vue';
 import { user } from './store/user';
+import axios from 'axios';
+
+if(user.id!="")
+{
+  axios.post(`http://localhost:3000/chekUser`,user)
+  .then(response=>{
+   
+    if(response.data.length==0)
+    {
+      user.id="";
+      checkforUser();
+    }
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+
+}
+
 let checkforUser = () => {
   if (user.id=="") {
     localStorage.removeItem("id");

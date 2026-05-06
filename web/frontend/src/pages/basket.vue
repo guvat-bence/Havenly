@@ -252,6 +252,7 @@ let validateData = () => {
                   <label for="InputFirstName" 
                         class="form-label">
                     {{ $t("basket.user_datas.first_name") }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="text" 
                          class="form-control" 
@@ -282,6 +283,7 @@ let validateData = () => {
                   <label for="InputLastName" 
                         class="form-label">
                     {{ $t('basket.user_datas.last_name') }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="text" 
                         class="form-control" 
@@ -302,6 +304,7 @@ let validateData = () => {
                   <label for="InputEmail" 
                         class="form-label">
                     {{ $t("basket.user_datas.email") }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="email" 
                         class="form-control" 
@@ -315,6 +318,7 @@ let validateData = () => {
                   <label for="InputPhoneNum" 
                         class="form-label">
                     {{ $t("basket.user_datas.phone_number") }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="text" 
                         class="form-control" 
@@ -335,6 +339,7 @@ let validateData = () => {
                   <label for="InputCity" 
                         class="form-label">
                     {{ $t("basket.user_datas.city") }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="text" 
                         class="form-control" 
@@ -348,6 +353,7 @@ let validateData = () => {
                   <label for="InputPostal" 
                         class="form-label">
                     {{ $t("basket.user_datas.postal_code") }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="number" 
                         class="form-control" 
@@ -361,6 +367,7 @@ let validateData = () => {
                   <label for="InputAddress1" 
                         class="form-label">
                     {{ $t("basket.user_datas.billing_addres") }}
+                    <span class="text-danger">*</span>
                   </label>
                   <input type="text" 
                         class="form-control" 
@@ -394,6 +401,7 @@ let validateData = () => {
                     <label for="inputCardNumber" 
                             class="form-label">
                       {{ $t("basket.user_datas.card_number") }}
+                      <span class="text-danger">*</span>
                     </label>
                     <input type="text"
                           class="form-control"
@@ -419,6 +427,7 @@ let validateData = () => {
                     <label class="form-label"
                             for="inputMonth">
                       {{ $t("basket.user_datas.month") }}
+                      <span class="text-danger">*</span>
                     </label>
                     <select class="form-select"
                             id="inputMonth"
@@ -442,6 +451,7 @@ let validateData = () => {
                     <label class="form-label"
                             for="inputYear">
                       {{ $t("basket.user_datas.year") }}
+                      <span class="text-danger">*</span>
                     </label>
 
                     <select class="form-select"
@@ -465,6 +475,7 @@ let validateData = () => {
                     <label for="inputCVV" 
                             class="form-label">
                        {{ $t("basket.user_datas.cvv") }}
+                       <span class="text-danger">*</span>
                     </label>
                     <input type="text"
                             class="form-control"

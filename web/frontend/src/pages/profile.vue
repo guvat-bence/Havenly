@@ -617,7 +617,6 @@ let getReports = () => {
 
     // tömb feltöltése
     reports.value = datas.data;
-    console.log(reports.value)
 
   })
   .catch(e => console.error(e.response))

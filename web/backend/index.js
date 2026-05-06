@@ -2066,6 +2066,7 @@ app.post("/uploadLocations",(req,res)=>{
   })
 })
 
+// Kitörli a User egyik kiválaszott elemét.
 app.post("/removeItem", (req,res) => {
   const data = req.body;
   db.query(`DELETE FROM ${data.table} WHERE id = ?`, [data.id], 
@@ -2081,5 +2082,24 @@ app.post("/removeItem", (req,res) => {
       return res.status(500).send('Sikertelen mappa törlés')
     })
     return res.send('Sikeres törlés')
+  })
+})
+
+// Leelenőri,hogy létezik e az adott User fiókja az adatbázisban.
+app.post("/chekUser",(req,res)=>{
+  let datas = req.body;
+
+  db.query(`SELECT id
+            FROM users
+            WHERE id = ? AND email = ?`,
+            [datas.id,datas.email],(err,result)=>{
+    if(err)
+    {
+      res.status(500).send("Adatbázis hiba!");
+      return;
+    }
+
+    res.json(result);
+    return;
   })
 })
