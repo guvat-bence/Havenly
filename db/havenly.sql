@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Máj 04. 22:41
+-- Létrehozás ideje: 2026. Máj 06. 14:13
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -286,8 +286,8 @@ INSERT INTO `accommodations_details` (`apartman_id`, `coffee_maker`, `kettle`, `
 --
 
 CREATE TABLE `billing_address` (
-  `user_id` int(5) NOT NULL,
-  `history_id` int(5) NOT NULL,
+  `user_id` int(5) DEFAULT NULL,
+  `history_id` int(5) DEFAULT NULL,
   `id` int(5) NOT NULL,
   `name` varchar(150) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -908,7 +908,7 @@ INSERT INTO `currency` (`id`, `full_name`, `multiplier`, `shorted_name`) VALUES
 
 CREATE TABLE `experiences` (
   `id` int(5) NOT NULL,
-  `uploaded_id` int(5) NOT NULL,
+  `uploaded_id` int(5) DEFAULT NULL,
   `language_short_name` varchar(2) NOT NULL DEFAULT 'hu',
   `country_id` int(5) DEFAULT NULL,
   `city_id` int(5) DEFAULT NULL,
@@ -1786,7 +1786,7 @@ INSERT INTO `opinions` (`id`, `user_id`, `item_id`, `item_type`, `rate`, `langua
 
 CREATE TABLE `report` (
   `id` int(5) NOT NULL,
-  `user_id` int(5) NOT NULL,
+  `user_id` int(5) DEFAULT NULL,
   `message_type` varchar(40) NOT NULL,
   `item_type` varchar(40) NOT NULL,
   `item_id` int(5) NOT NULL,
@@ -5301,8 +5301,8 @@ ALTER TABLE `accommodations_details`
 -- Megkötések a táblához `billing_address`
 --
 ALTER TABLE `billing_address`
-  ADD CONSTRAINT `billing_address_ibfk_1` FOREIGN KEY (`history_id`) REFERENCES `history` (`id`),
-  ADD CONSTRAINT `billing_address_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `billing_address_ibfk_1` FOREIGN KEY (`history_id`) REFERENCES `history` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `billing_address_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `cities`
@@ -5316,7 +5316,7 @@ ALTER TABLE `cities`
 ALTER TABLE `experiences`
   ADD CONSTRAINT `experiences_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `experiences_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `experiences_ibfk_3` FOREIGN KEY (`uploaded_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `experiences_ibfk_3` FOREIGN KEY (`uploaded_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `favourite`
@@ -5344,7 +5344,7 @@ ALTER TABLE `opinions`
 -- Megkötések a táblához `report`
 --
 ALTER TABLE `report`
-  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
